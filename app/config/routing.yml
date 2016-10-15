@@ -1,0 +1,3 @@
+CriveroPrueba:
+    resource: "@CriveroPruebaBundle/Resources/config/routing.yml"
+    prefix: /

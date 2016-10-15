@@ -1,0 +1,24 @@
+{% extends '::base.html.twig' %}
+{% block title %} Vista desde main {% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet">
+{% endblock %}
+{% block navegation %}
+    <ul>
+	<li><a href="#">Clientes</a></li>
+	<li><a href="#">Monitores</a></li>
+	<li><a href="#">Canchas</a></li>
+	<li><a href="#">Contacto</a></li>
+    </ul>
+{% endblock %}
+{% block body %}
+    <div id="pagina" class="cfix">
+        <div id ="contenido">
+            {% block contenido %}
+                mi contenido
+            {% endblock %}
+        </div>
+    
+    </div>
+            
+{% endblock %}

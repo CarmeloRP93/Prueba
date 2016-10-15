@@ -1,0 +1,74 @@
+body, html{margin:0; padding: 0;background: #eee; color: #333;}
+h1, h2, h3 {margin:18px; border-bottom: 1px solid #eee; color: #222;}
+
+#pagina{width: 1000px; margin: 20px auto; background:#fff; border-radius: 6px;}
+#pagina .fila{display: block; padding: 10px 20px;}
+#pagina .fila.par{background: #f5f5f5;}
+#pagina .fila:hover{background: #f2f2f2;}
+
+
+a{color: #333; text-decoration: none;}
+
+.cfix{*zoom: 1;}
+.cfix:before, .cfix:after{display:table; content: "";}
+.cfix:after{clear: both;}
+
+nav  {
+    display: block;
+    overflow: hidden;
+}
+
+nav ul {
+    display: inline-block;
+    list-style-type: none;
+    margin-left: 22em;
+    padding: .7em;
+    float: left;
+    list-style: none;
+    background: #444;
+    background: rgba(0,0,0,.2);
+    border-radius: .5em;    
+    box-shadow: 0 1px 0 rgba(255,255,255,.2), 0 2px 1px rgba(0,0,0,.8) inset; 
+}
+
+nav li {
+    float:left;
+}
+
+nav a {
+    float:left;
+    padding: .8em 1.5em;
+    text-decoration: none;
+    color: #555;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    font: bold 1.1em/1 'trebuchet MS', Arial, Helvetica;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #fff #ccc #999 #eee;
+    background: #c1c1c1;
+    background: linear-gradient(#f5f5f5, #c1c1c1);            
+ }
+ 
+nav a:hover, nav a:focus {
+    outline: 0;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0,0,0,.2);
+    background: #fac754;
+    background: linear-gradient(#fac754, #f8ac00);
+}
+
+nav a:active {
+    box-shadow: 0 0 2px 2px rgba(0,0,0,.3) inset;
+}
+ 
+nav li:first-child a {
+    border-left: 0;
+    border-radius: 4px 0 0 4px;            
+}
+
+nav li:last-child a {
+    border-right: 0;
+    border-radius: 0 4px 4px 0;            
+}

@@ -1,0 +1,13 @@
+crivero_prueba_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: CriveroPruebaBundle:Default:index, name: "Puto" }
+crivero_prueba_alumnos:
+    pattern:  /alumnos
+    defaults: { _controller: CriveroPruebaBundle:Default:alumnos }
+crivero_prueba_alumno:
+    pattern:  /alumno/{matricula}
+    defaults: { _controller: CriveroPruebaBundle:Default:alumno }
+
+crivero_prueba_soccer:
+    pattern:  /soccer
+    defaults: { _controller: CriveroPruebaBundle:Default:soccer }

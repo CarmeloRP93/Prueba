@@ -1,0 +1,7 @@
+parameters:
+#    crivero_prueba.example.class: Crivero\PruebaBundle\Example
+
+services:
+#    crivero_prueba.example:
+#        class: %crivero_prueba.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
