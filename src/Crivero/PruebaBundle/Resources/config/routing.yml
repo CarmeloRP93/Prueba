@@ -4,9 +4,22 @@ crivero_prueba_homepage:
 crivero_prueba_alumnos:
     pattern:  /alumnos
     defaults: { _controller: CriveroPruebaBundle:Default:alumnos }
+    
+crivero_prueba_clientes:
+    pattern:  /clientes
+    defaults: { _controller: CriveroPruebaBundle:Default:clientes }
+    
+crivero_prueba_monitores:
+    pattern:  /monitores
+    defaults: { _controller: CriveroPruebaBundle:Default:monitores }
+    
 crivero_prueba_alumno:
     pattern:  /alumno/{matricula}
     defaults: { _controller: CriveroPruebaBundle:Default:alumno }
+    
+crivero_prueba_monitor:
+    pattern:  /monitor/{matricula}
+    defaults: { _controller: CriveroPruebaBundle:Default:monitor }
 
 crivero_prueba_soccer:
     pattern:  /soccer

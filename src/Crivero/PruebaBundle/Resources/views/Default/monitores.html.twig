@@ -1,0 +1,12 @@
+{# empty Twig template #}
+{# empty Twig template #}
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
+
+{% block title %} Vista de Monitores {% endblock %}
+{% block contenido %}
+<h1>Listado de Monitores</h1>
+{% for monitor in monitores %}
+    <a href="{{url('crivero_prueba_monitor', {'matricula': monitor.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ monitor.matricula }} - {{ monitor.nombre }} </a>
+{% endfor %}
+
+{% endblock %}

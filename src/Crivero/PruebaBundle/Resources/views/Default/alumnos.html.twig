@@ -1,18 +1,6 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 
 {% block title %} Vista de Admin {% endblock %}
-{% block navegation %}
-        <ul>
-		<li><a href="#">Clientes</a></li>
-		<li><a href="#">Monitores</a></li>
-		<li><a href="#">Canchas</a></li>
-		<li><a href="#">Contacto</a></li>
-	</ul>
-{% endblock %}
 {% block contenido %}
-<h1>Listado de Clientes</h1>
-{% for alumno in alumnos %}
-    <a href="{{url('crivero_prueba_alumno', {'matricula': alumno.matricula})}}>}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ alumno.matricula }} - {{ alumno.nombre }} </a>
-{% endfor %}
-
+    <h1>Vista principal de Administrador</h1>
 {% endblock %}

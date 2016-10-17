@@ -1,0 +1,7 @@
+{# empty Twig template #}
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
+{% block title %}Vista de {{monitor.nombre}} {% endblock %}
+{% block contenido %}
+<h1>Detalles del Monitor</h1>
+    <div>{{monitor.matricula}} - {{monitor.nombre}}</div>
+{% endblock %}
