@@ -120,14 +120,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // crivero_prueba_homepage
-        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello(?:/(?P<name>[^/]++))?$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_homepage')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::indexAction',  'name' => 'Puto',));
-        }
+        if (0 === strpos($pathinfo, '/h')) {
+            // crivero_prueba_homepage
+            if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello(?:/(?P<name>[^/]++))?$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_homepage')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::indexAction',  'name' => 'Pablo',));
+            }
 
-        // crivero_prueba_alumnos
-        if ($pathinfo === '/alumnos') {
-            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::alumnosAction',  '_route' => 'crivero_prueba_alumnos',);
+            // crivero_prueba_home
+            if ($pathinfo === '/home') {
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::homeAction',  '_route' => 'crivero_prueba_home',);
+            }
+
         }
 
         // crivero_prueba_clientes
@@ -140,14 +143,24 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::monitoresAction',  '_route' => 'crivero_prueba_monitores',);
         }
 
-        // crivero_prueba_alumno
-        if (0 === strpos($pathinfo, '/alumno') && preg_match('#^/alumno/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_alumno')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::alumnoAction',));
+        // crivero_prueba_cliente
+        if (0 === strpos($pathinfo, '/cliente') && preg_match('#^/cliente/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cliente')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::clienteAction',));
         }
 
         // crivero_prueba_monitor
         if (0 === strpos($pathinfo, '/monitor') && preg_match('#^/monitor/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_monitor')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::monitorAction',));
+        }
+
+        // crivero_prueba_canchas
+        if ($pathinfo === '/canchas') {
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::canchasAction',  '_route' => 'crivero_prueba_canchas',);
+        }
+
+        // crivero_prueba_torneos
+        if ($pathinfo === '/torneos') {
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::torneosAction',  '_route' => 'crivero_prueba_torneos',);
         }
 
         // crivero_prueba_soccer

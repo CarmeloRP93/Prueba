@@ -2,10 +2,18 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 
 {% block title %} Vista de Clientes {% endblock %}
+{% block navegation %}        
+        <ul>
+		<li><a class="active" href="{{url('crivero_prueba_clientes')}}">Clientes</a></li>
+		<li><a href="{{url('crivero_prueba_monitores')}}">Monitores</a></li>
+		<li><a href="{{url('crivero_prueba_canchas')}}">Canchas</a></li>
+		<li><a href="{{url('crivero_prueba_torneos')}}">Torneos</a></li>
+	</ul>
+{% endblock %}
 {% block contenido %}
 <h1>Listado de Clientes</h1>
-{% for alumno in alumnos %}
-    <a href="{{url('crivero_prueba_alumno', {'matricula': alumno.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ alumno.matricula }} - {{ alumno.nombre }} </a>
+{% for cliente in clientes %}
+    <a href="{{url('crivero_prueba_cliente', {'matricula': cliente.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ cliente.matricula }} - {{ cliente.nombre }} </a>
 {% endfor %}
 
 {% endblock %}

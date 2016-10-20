@@ -56,12 +56,21 @@ class __TwigTemplate_3d54a05536215a22f3c757ea543b327210444025e965a575e6926107d2a
     public function block_navegation($context, array $blocks = array())
     {
         // line 7
-        echo "    <ul>
-\t<li><a href=\"#\">Clientes</a></li>
-\t<li><a href=\"#\">Monitores</a></li>
-\t<li><a href=\"#\">Canchas</a></li>
-\t<li><a href=\"#\">Contacto</a></li>
-    </ul>
+        echo "        <ul>
+\t\t<li><a href=\"";
+        // line 8
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_clientes");
+        echo "\">Clientes</a></li>
+\t\t<li><a href=\"";
+        // line 9
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_monitores");
+        echo "\">Monitores</a></li>
+\t\t<li><a href=\"";
+        // line 10
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_canchas");
+        echo "\">Canchas</a></li>
+\t\t<li><a href=\"#\">Contacto</a></li>
+\t</ul>
 ";
     }
 
@@ -74,7 +83,7 @@ class __TwigTemplate_3d54a05536215a22f3c757ea543b327210444025e965a575e6926107d2a
             ";
         // line 17
         $this->displayBlock('contenido', $context, $blocks);
-        // line 20
+        // line 19
         echo "        </div>
     
     </div>
@@ -86,8 +95,7 @@ class __TwigTemplate_3d54a05536215a22f3c757ea543b327210444025e965a575e6926107d2a
     public function block_contenido($context, array $blocks = array())
     {
         // line 18
-        echo "                mi contenido
-            ";
+        echo "            ";
     }
 
     public function getTemplateName()
@@ -102,6 +110,6 @@ class __TwigTemplate_3d54a05536215a22f3c757ea543b327210444025e965a575e6926107d2a
 
     public function getDebugInfo()
     {
-        return array (  89 => 18,  86 => 17,  78 => 20,  76 => 17,  72 => 15,  69 => 14,  59 => 7,  56 => 6,  49 => 4,  46 => 3,  40 => 2,  11 => 1,);
+        return array (  98 => 18,  95 => 17,  87 => 19,  85 => 17,  81 => 15,  78 => 14,  70 => 10,  66 => 9,  62 => 8,  59 => 7,  56 => 6,  49 => 4,  46 => 3,  40 => 2,  11 => 1,);
     }
 }

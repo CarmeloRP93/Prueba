@@ -1,0 +1,19 @@
+{# empty Twig template #}
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
+
+{% block title %} Vista de Canchas {% endblock %}
+{% block navegation %}        
+        <ul>
+		<li><a href="{{url('crivero_prueba_clientes')}}">Clientes</a></li>
+		<li><a href="{{url('crivero_prueba_monitores')}}">Monitores</a></li>
+		<li><a class="active" href="{{url('crivero_prueba_canchas')}}">Canchas</a></li>
+		<li><a href="{{url('crivero_prueba_torneos')}}">Torneos</a></li>
+	</ul>
+{% endblock %}                
+{% block contenido %}
+<h1>Listado de Canchas</h1>
+{% for cancha in canchas %}
+    <a href="{{url('crivero_prueba_alumno', {'matricula': cancha.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ cancha.matricula }} - {{ cancha.nombre }} - {{ cancha.disponibilidad}} </a>
+{% endfor %}
+
+{% endblock %}

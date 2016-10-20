@@ -1,9 +1,9 @@
 crivero_prueba_homepage:
     pattern:  /hello/{name}
-    defaults: { _controller: CriveroPruebaBundle:Default:index, name: "Puto" }
-crivero_prueba_alumnos:
-    pattern:  /alumnos
-    defaults: { _controller: CriveroPruebaBundle:Default:alumnos }
+    defaults: { _controller: CriveroPruebaBundle:Default:index, name: "Pablo" }
+crivero_prueba_home:
+    pattern:  /home
+    defaults: { _controller: CriveroPruebaBundle:Default:home }
     
 crivero_prueba_clientes:
     pattern:  /clientes
@@ -13,13 +13,21 @@ crivero_prueba_monitores:
     pattern:  /monitores
     defaults: { _controller: CriveroPruebaBundle:Default:monitores }
     
-crivero_prueba_alumno:
-    pattern:  /alumno/{matricula}
-    defaults: { _controller: CriveroPruebaBundle:Default:alumno }
+crivero_prueba_cliente:
+    pattern:  /cliente/{matricula}
+    defaults: { _controller: CriveroPruebaBundle:Default:cliente }
     
 crivero_prueba_monitor:
     pattern:  /monitor/{matricula}
     defaults: { _controller: CriveroPruebaBundle:Default:monitor }
+    
+crivero_prueba_canchas:
+    pattern:  /canchas
+    defaults: { _controller: CriveroPruebaBundle:Default:canchas }
+    
+crivero_prueba_torneos:
+    pattern:  /torneos
+    defaults: { _controller: CriveroPruebaBundle:Default:torneos }
 
 crivero_prueba_soccer:
     pattern:  /soccer

@@ -72,3 +72,18 @@ nav li:last-child a {
     border-right: 0;
     border-radius: 0 4px 4px 0;            
 }
+
+.active {
+    outline: 0;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0,0,0,.2);
+    background: #fac754;
+    background: linear-gradient(#fac754, #f8ac00);
+}
+
+.usuarfot {
+    float: left;
+    height: 500px;
+    border: transparent 1px;
+    width: 20%;
+}

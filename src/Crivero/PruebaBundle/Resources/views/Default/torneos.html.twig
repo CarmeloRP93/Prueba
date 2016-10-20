@@ -1,0 +1,20 @@
+{# empty Twig template #}
+{# empty Twig template #}
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
+
+{% block title %} Vista de Torneos {% endblock %}
+{% block navegation %}        
+        <ul>
+		<li><a href="{{url('crivero_prueba_clientes')}}">Clientes</a></li>
+		<li><a href="{{url('crivero_prueba_monitores')}}">Monitores</a></li>
+		<li><a href="{{url('crivero_prueba_canchas')}}">Canchas</a></li>
+		<li><a class="active" href="#">Torneos</a></li>
+	</ul>
+{% endblock %}
+{% block contenido %}
+<h1>Listado de Torneos</h1>
+{% for torneo in torneos %}
+    <a href="{{url('crivero_prueba_monitor', {'matricula': torneo.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ torneo.matricula }} - {{ torneo.nombre }} </a>
+{% endfor %}
+
+{% endblock %}

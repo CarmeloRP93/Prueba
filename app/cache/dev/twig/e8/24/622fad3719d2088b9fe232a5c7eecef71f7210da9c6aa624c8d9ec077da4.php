@@ -46,12 +46,12 @@ class __TwigTemplate_e824622fad3719d2088b9fe232a5c7eecef71f7210da9c6aa624c8d9ec0
     {
         // line 4
         echo "<h1>Detalles del Alumno</h1>
-    <div>";
+<div>";
         // line 5
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["alumno"]) ? $context["alumno"] : $this->getContext($context, "alumno")), "matricula", array()), "html", null, true);
         echo " - ";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["alumno"]) ? $context["alumno"] : $this->getContext($context, "alumno")), "nombre", array()), "html", null, true);
-        echo "
+        echo "</div>
 ";
     }
 

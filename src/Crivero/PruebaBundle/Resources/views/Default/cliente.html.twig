@@ -1,0 +1,22 @@
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
+{% block title %}Vista de {{cliente.nombre}} {% endblock %}
+{% block contenido %}
+    <div class="usuardesc">
+        <button style="float: right; margin-right: 5em;">Enviar mensaje</button>
+        <button style="float: right; margin-right: 3em;">Dar de baja</button>
+        <h1>{{cliente.nombre}}</h1>
+        <div class="usuarfot">
+            <img src="{{ asset('images/no-image-found.png') }}" style="float: left; width: 100%;" />        
+        </div>
+        <div class="usuardat">
+            <div style="float: right; margin-right: 20em; margin-top: -18px">
+                <h4>Reservas: </h4> <p>Lopez Socas - 01/11/2016</p>
+                <h4>Sesiones: </h4> <p>Zumba - 30/10/2016</p>
+            </div>
+            <h4>Sexo: </h4> <p>Masculino</p>
+            <h4>F.Nacimiento: </h4> <p>08/10/1993</p>
+            <h4>Registro: </h4> <p>11/10/2016</p>
+        </div>
+    </div>
+    </div>
+{% endblock %}
