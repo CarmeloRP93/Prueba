@@ -66,9 +66,14 @@ class __TwigTemplate_bedaf517f0e188de5d424725a4338105360ae7202db99305107e8b45bb7
     public function block_contenido($context, array $blocks = array())
     {
         // line 15
-        echo "<h1>Listado de Torneos</h1>
+        echo "<div id=\"buscador\">
+    <form>
+        <input type=\"search\" name=\"torneo\" placeholder=\"Buscar torneo\"/>
+    </form>
+</div>
+<h1>Listado de Torneos</h1>
 ";
-        // line 16
+        // line 21
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["torneos"]) ? $context["torneos"] : $this->getContext($context, "torneos")));
         $context['loop'] = array(
@@ -85,7 +90,7 @@ class __TwigTemplate_bedaf517f0e188de5d424725a4338105360ae7202db99305107e8b45bb7
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["torneo"]) {
-            // line 17
+            // line 22
             echo "    <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_monitor", array("matricula" => $this->getAttribute($context["torneo"], "matricula", array()))), "html", null, true);
             echo "\" class=\"fila ";
@@ -108,7 +113,7 @@ class __TwigTemplate_bedaf517f0e188de5d424725a4338105360ae7202db99305107e8b45bb7
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['torneo'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 19
+        // line 24
         echo "
 ";
     }
@@ -125,6 +130,6 @@ class __TwigTemplate_bedaf517f0e188de5d424725a4338105360ae7202db99305107e8b45bb7
 
     public function getDebugInfo()
     {
-        return array (  112 => 19,  89 => 17,  72 => 16,  69 => 15,  66 => 14,  58 => 10,  54 => 9,  50 => 8,  44 => 6,  38 => 5,  11 => 3,);
+        return array (  117 => 24,  94 => 22,  77 => 21,  69 => 15,  66 => 14,  58 => 10,  54 => 9,  50 => 8,  44 => 6,  38 => 5,  11 => 3,);
     }
 }

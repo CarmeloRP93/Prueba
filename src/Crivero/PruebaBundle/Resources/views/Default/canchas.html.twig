@@ -11,9 +11,14 @@
 	</ul>
 {% endblock %}                
 {% block contenido %}
+<div id="buscador">
+    <form>
+        <input type="search" name="cancha" placeholder="Buscar cancha"/>
+    </form>
+</div>
 <h1>Listado de Canchas</h1>
 {% for cancha in canchas %}
-    <a href="{{url('crivero_prueba_alumno', {'matricula': cancha.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ cancha.matricula }} - {{ cancha.nombre }} - {{ cancha.disponibilidad}} </a>
+    <a href="{{url('crivero_prueba_cancha', {'matricula': cancha.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ cancha.matricula }} - {{ cancha.nombre }} - {{ cancha.disponibilidad}} </a>
 {% endfor %}
 
 {% endblock %}

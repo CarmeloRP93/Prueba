@@ -3,12 +3,26 @@
 {% block stylesheets %}
     <link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet">
 {% endblock %}
+
+{% block header %}
+<div class="logout">
+    <form action="{{url('crivero_prueba_home')}}">
+        <button>Log out</button>
+    </form>
+</div>
+<div class="perfil">
+    <form>
+        <button>Perfil</button>
+    </form>
+</div>
+{% endblock %}
+
 {% block navegation %}
         <ul>
 		<li><a href="{{url('crivero_prueba_clientes')}}">Clientes</a></li>
 		<li><a href="{{url('crivero_prueba_monitores')}}">Monitores</a></li>
 		<li><a href="{{url('crivero_prueba_canchas')}}">Canchas</a></li>
-		<li><a href="#">Contacto</a></li>
+		<li><a href="#">Torneos</a></li>
 	</ul>
 {% endblock %}
 {% block body %}

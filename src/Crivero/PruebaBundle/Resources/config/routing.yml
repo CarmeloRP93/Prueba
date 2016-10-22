@@ -24,6 +24,10 @@ crivero_prueba_monitor:
 crivero_prueba_canchas:
     pattern:  /canchas
     defaults: { _controller: CriveroPruebaBundle:Default:canchas }
+
+crivero_prueba_cancha:
+    pattern:  /cancha/{matricula}
+    defaults: { _controller: CriveroPruebaBundle:Default:cancha }
     
 crivero_prueba_torneos:
     pattern:  /torneos

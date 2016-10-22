@@ -20,6 +20,7 @@ class __TwigTemplate_a2f38eaa862416a0f44264c788ca63826d3a8c0ba4b8d77651ec0c39fc7
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'stylesheets' => array($this, 'block_stylesheets'),
+            'header' => array($this, 'block_header'),
             'navegation' => array($this, 'block_navegation'),
             'contenido' => array($this, 'block_contenido'),
         );
@@ -52,14 +53,19 @@ class __TwigTemplate_a2f38eaa862416a0f44264c788ca63826d3a8c0ba4b8d77651ec0c39fc7
     }
 
     // line 7
-    public function block_navegation($context, array $blocks = array())
+    public function block_header($context, array $blocks = array())
     {
     }
 
     // line 8
+    public function block_navegation($context, array $blocks = array())
+    {
+    }
+
+    // line 9
     public function block_contenido($context, array $blocks = array())
     {
-        // line 9
+        // line 10
         echo "    <div class=\"container\">
 
         <div id=\"login-form\">
@@ -108,6 +114,6 @@ class __TwigTemplate_a2f38eaa862416a0f44264c788ca63826d3a8c0ba4b8d77651ec0c39fc7
 
     public function getDebugInfo()
     {
-        return array (  63 => 9,  60 => 8,  55 => 7,  48 => 5,  45 => 4,  39 => 3,  11 => 1,);
+        return array (  69 => 10,  66 => 9,  61 => 8,  56 => 7,  49 => 5,  46 => 4,  40 => 3,  11 => 1,);
     }
 }

@@ -12,6 +12,11 @@
 	</ul>
 {% endblock %}
 {% block contenido %}
+<div id="buscador">
+    <form>
+        <input type="search" name="monitor" placeholder="Buscar monitor"/>
+    </form>
+</div>
 <h1>Listado de Monitores</h1>
 {% for monitor in monitores %}
     <a href="{{url('crivero_prueba_monitor', {'matricula': monitor.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ monitor.matricula }} - {{ monitor.nombre }} </a>

@@ -91,6 +91,11 @@ class DefaultController extends Controller
        return $this->render('CriveroPruebaBundle:Default:canchas.html.twig', array("canchas"=>$this->canchas));
     }
     
+    public function canchaAction($matricula)
+    {
+       return $this->render('CriveroPruebaBundle:Default:cancha.html.twig', array("cancha"=>$this->canchas[$matricula-1]));
+    }
+    
     public function torneosAction()
     {
        return $this->render('CriveroPruebaBundle:Default:torneos.html.twig', array("torneos"=>$this->torneos));

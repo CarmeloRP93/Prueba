@@ -5,11 +5,14 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        
+        <div id="cabecera">
+            {% block header %}
+            {% endblock %}
+        </div>
+        
         <nav>
             {% block navegation %}
-		<ul>
-			<li><a href="#">Contacto</a></li>
-		</ul>
             {% endblock %}
 	</nav>
     </head>

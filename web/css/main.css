@@ -87,3 +87,59 @@ nav li:last-child a {
     border: transparent 1px;
     width: 20%;
 }
+
+#buscador {
+    float: right;
+    margin-right: 30px;
+    margin-top: 6px;
+}
+
+#buscador form input {
+    height: 25px;
+}
+
+#reservas {
+    list-style-type: none;
+    padding: 0;
+}
+
+#sesiones {
+    list-style-type: none;
+    padding: 0;
+}
+
+#reservas li {
+    width: 325px;
+}
+
+.acciones {
+    float: right;
+}
+
+.accionesExclus button {
+    float: right;
+    margin-right: 3em;
+    height: 30px
+}
+
+#resersiones {
+    float: right;
+    margin-right: 14em; 
+    margin-top: -18px
+}
+
+.logout {
+    float: right; 
+    padding-top: 30px;
+    padding-right: 65px;
+}
+
+.perfil {
+    padding-top: 30px;
+    padding-left: 65px;
+}
+
+#cabecera {
+    margin-bottom: -10px;
+}
+

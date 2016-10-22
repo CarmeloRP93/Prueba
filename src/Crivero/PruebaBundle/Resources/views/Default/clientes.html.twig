@@ -11,6 +11,11 @@
 	</ul>
 {% endblock %}
 {% block contenido %}
+<div id="buscador">
+    <form>
+        <input type="search" name="cliente" placeholder="Buscar cliente"/>
+    </form>
+</div>
 <h1>Listado de Clientes</h1>
 {% for cliente in clientes %}
     <a href="{{url('crivero_prueba_cliente', {'matricula': cliente.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ cliente.matricula }} - {{ cliente.nombre }} </a>
