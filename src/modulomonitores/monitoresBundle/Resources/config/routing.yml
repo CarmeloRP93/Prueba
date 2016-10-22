@@ -1,0 +1,10 @@
+modulomonitores_monitores_homeMonitores:
+    pattern:  /homeMonitores
+    defaults: { _controller: modulomonitoresmonitoresBundle:Default:homeMonitores }
+modulomonitores_monitores_sesionesMonitores:
+    pattern:  /sesionesMonitores
+    defaults: { _controller: modulomonitoresmonitoresBundle:Default:sesionesMonitores }
+modulomonitores_monitores_sesionMonitores:
+    pattern:  /sesionMonitores/{matricula}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Default:sesionMonitores }    
+

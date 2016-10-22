@@ -1,0 +1,6 @@
+{% extends 'moduloclientesclienteBundle::main.html.twig' %}
+{% block title %}Vista de {{reserva.nombre}} {% endblock %}
+{% block contenido %}
+<h1>Detalles de las reservas</h1>
+    <div>{{reserva.matricula}} - {{reserva.nombre}}- {{reserva.tiempo}}</div>
+{% endblock %}

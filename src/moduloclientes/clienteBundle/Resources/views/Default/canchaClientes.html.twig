@@ -1,0 +1,6 @@
+{% extends 'moduloclientesclienteBundle::main.html.twig' %}
+{% block title %}Vista de {{cancha.nombre}} {% endblock %}
+{% block contenido %}
+<h1>Detalles de la cancha</h1>
+    <div>{{cancha.matricula}} - {{cancha.nombre}}- {{cancha.disponibilidad}}</div>
+{% endblock %}

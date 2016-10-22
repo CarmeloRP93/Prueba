@@ -1,7 +1,43 @@
-{# empty Twig template #}
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
+
 {% block title %}Vista de {{monitor.nombre}} {% endblock %}
 {% block contenido %}
-<h1>Detalles del Monitor</h1>
-    <div>{{monitor.matricula}} - {{monitor.nombre}}</div>
+    <div class="usuardesc">
+        <div class="accionesExclus">
+            <button>Enviar mensaje</button>
+            <button>Dar de baja</button>
+        </div>
+        <h1>{{monitor.nombre}}</h1>
+        <div class="usuarfot">
+            <img src="{{ asset('images/no-image-found.png') }}" style="float: left; width: 100%;" />        
+        </div>
+        <div class="usuardat">
+            <div id="resersiones">
+                
+                <div>
+                    <h4>Sesiones: </h4> 
+                    <ul id="sesiones">
+                        <li>
+                            <div class="acciones">
+                                <button>Modificar</button>
+                                <button>Cancelar</button>
+                            </div>
+                            <p>Bodycombat - 06/11/2016</p>
+                        </li>
+                        <li>
+                            <div class="acciones">
+                                <button>Modificar</button>
+                                <button>Cancelar</button>
+                            </div>
+                            <p>Zumba - 08/11/2016</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <h4>Sexo: </h4> <p>Masculino</p>
+            <h4>F.Nacimiento: </h4> <p>08/10/1993</p>
+            <h4>Registro: </h4> <p>11/10/2016</p>
+        </div>
+    </div>
+    </div>
 {% endblock %}

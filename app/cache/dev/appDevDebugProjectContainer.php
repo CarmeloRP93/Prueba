@@ -640,7 +640,7 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['doctrine_cache.providers.doctrine.orm.default_metadata_cache'] = $instance = new \Doctrine\Common\Cache\ArrayCache();
 
-        $instance->setNamespace('sf2orm_default_2aaa1fac202cfd73278c721ff55aa149c8e9b1c244ee9084994349798ad859aa');
+        $instance->setNamespace('sf2orm_default_4e2f4a0f488563c463e846f364ca7212ecfccafa3551f7c7194631be21e741b3');
 
         return $instance;
     }
@@ -657,7 +657,7 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['doctrine_cache.providers.doctrine.orm.default_query_cache'] = $instance = new \Doctrine\Common\Cache\ArrayCache();
 
-        $instance->setNamespace('sf2orm_default_2aaa1fac202cfd73278c721ff55aa149c8e9b1c244ee9084994349798ad859aa');
+        $instance->setNamespace('sf2orm_default_4e2f4a0f488563c463e846f364ca7212ecfccafa3551f7c7194631be21e741b3');
 
         return $instance;
     }
@@ -674,7 +674,7 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['doctrine_cache.providers.doctrine.orm.default_result_cache'] = $instance = new \Doctrine\Common\Cache\ArrayCache();
 
-        $instance->setNamespace('sf2orm_default_2aaa1fac202cfd73278c721ff55aa149c8e9b1c244ee9084994349798ad859aa');
+        $instance->setNamespace('sf2orm_default_4e2f4a0f488563c463e846f364ca7212ecfccafa3551f7c7194631be21e741b3');
 
         return $instance;
     }
@@ -2974,6 +2974,8 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath(($this->targetDirs[3].'\\vendor\\symfony\\swiftmailer-bundle/Resources/views'), 'Swiftmailer');
         $instance->addPath(($this->targetDirs[3].'\\vendor\\doctrine\\doctrine-bundle/Resources/views'), 'Doctrine');
         $instance->addPath(($this->targetDirs[3].'\\src\\Crivero\\PruebaBundle/Resources/views'), 'CriveroPrueba');
+        $instance->addPath(($this->targetDirs[3].'\\src\\moduloclientes\\clienteBundle/Resources/views'), 'moduloclientescliente');
+        $instance->addPath(($this->targetDirs[3].'\\src\\modulomonitores\\monitoresBundle/Resources/views'), 'modulomonitoresmonitores');
         $instance->addPath(($this->targetDirs[3].'\\src\\Acme\\DemoBundle/Resources/views'), 'AcmeDemo');
         $instance->addPath(($this->targetDirs[3].'\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views'), 'WebProfiler');
         $instance->addPath(($this->targetDirs[3].'\\vendor\\sensio\\distribution-bundle\\Sensio\\Bundle\\DistributionBundle/Resources/views'), 'SensioDistribution');
@@ -3425,6 +3427,8 @@ class appDevDebugProjectContainer extends Container
                 'DoctrineBundle' => 'Doctrine\\Bundle\\DoctrineBundle\\DoctrineBundle',
                 'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle',
                 'CriveroPruebaBundle' => 'Crivero\\PruebaBundle\\CriveroPruebaBundle',
+                'moduloclientesclienteBundle' => 'moduloclientes\\clienteBundle\\moduloclientesclienteBundle',
+                'modulomonitoresmonitoresBundle' => 'modulomonitores\\monitoresBundle\\modulomonitoresmonitoresBundle',
                 'AcmeDemoBundle' => 'Acme\\DemoBundle\\AcmeDemoBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',

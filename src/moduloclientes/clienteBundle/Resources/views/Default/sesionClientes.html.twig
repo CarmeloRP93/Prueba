@@ -1,0 +1,6 @@
+{% extends 'moduloclientesclienteBundle::main.html.twig' %}
+{% block title %}Vista de {{sesion.nombre}} {% endblock %}
+{% block contenido %}
+<h1>Detalles de los entrenamientos</h1>
+    <div>{{sesion.matricula}} - {{sesion.nombre}}- {{sesion.estado}}</div>
+{% endblock %}

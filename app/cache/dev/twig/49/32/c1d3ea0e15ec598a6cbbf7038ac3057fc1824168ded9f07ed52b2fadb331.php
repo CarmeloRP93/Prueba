@@ -7,12 +7,12 @@ class __TwigTemplate_4932c1d3ea0e15ec598a6cbbf7038ac3057fc1824168ded9f07ed52b2fa
     {
         parent::__construct($env);
 
-        // line 2
+        // line 1
         try {
             $this->parent = $this->env->loadTemplate("CriveroPruebaBundle::main.html.twig");
         } catch (Twig_Error_Loader $e) {
             $e->setTemplateFile($this->getTemplateName());
-            $e->setTemplateLine(2);
+            $e->setTemplateLine(1);
 
             throw $e;
         }
@@ -45,13 +45,50 @@ class __TwigTemplate_4932c1d3ea0e15ec598a6cbbf7038ac3057fc1824168ded9f07ed52b2fa
     public function block_contenido($context, array $blocks = array())
     {
         // line 5
-        echo "<h1>Detalles del Monitor</h1>
-    <div>";
-        // line 6
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "matricula", array()), "html", null, true);
-        echo " - ";
+        echo "    <div class=\"usuardesc\">
+        <div class=\"accionesExclus\">
+            <button>Enviar mensaje</button>
+            <button>Dar de baja</button>
+        </div>
+        <h1>";
+        // line 10
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "nombre", array()), "html", null, true);
-        echo "</div>
+        echo "</h1>
+        <div class=\"usuarfot\">
+            <img src=\"";
+        // line 12
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/no-image-found.png"), "html", null, true);
+        echo "\" style=\"float: left; width: 100%;\" />        
+        </div>
+        <div class=\"usuardat\">
+            <div id=\"resersiones\">
+                
+                <div>
+                    <h4>Sesiones: </h4> 
+                    <ul id=\"sesiones\">
+                        <li>
+                            <div class=\"acciones\">
+                                <button>Modificar</button>
+                                <button>Cancelar</button>
+                            </div>
+                            <p>Bodycombat - 06/11/2016</p>
+                        </li>
+                        <li>
+                            <div class=\"acciones\">
+                                <button>Modificar</button>
+                                <button>Cancelar</button>
+                            </div>
+                            <p>Zumba - 08/11/2016</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <h4>Sexo: </h4> <p>Masculino</p>
+            <h4>F.Nacimiento: </h4> <p>08/10/1993</p>
+            <h4>Registro: </h4> <p>11/10/2016</p>
+        </div>
+    </div>
+    </div>
 ";
     }
 
@@ -67,6 +104,6 @@ class __TwigTemplate_4932c1d3ea0e15ec598a6cbbf7038ac3057fc1824168ded9f07ed52b2fa
 
     public function getDebugInfo()
     {
-        return array (  51 => 6,  48 => 5,  45 => 4,  37 => 3,  11 => 2,);
+        return array (  60 => 12,  55 => 10,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }

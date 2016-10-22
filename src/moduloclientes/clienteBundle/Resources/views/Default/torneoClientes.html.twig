@@ -1,0 +1,6 @@
+{% extends 'moduloclientesclienteBundle::main.html.twig' %}
+{% block title %}Vista de {{torneo.nombre}} {% endblock %}
+{% block contenido %}
+<h1>Detalles de las torneos</h1>
+    <div>{{torneo.matricula}} - {{torneo.nombre}}- {{torneo.tiempo}}</div>
+{% endblock %}

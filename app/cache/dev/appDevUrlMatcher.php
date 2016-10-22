@@ -120,6 +120,81 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // modulomonitores_monitores_homeMonitores
+        if ($pathinfo === '/homeMonitores') {
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DefaultController::homeMonitoresAction',  '_route' => 'modulomonitores_monitores_homeMonitores',);
+        }
+
+        if (0 === strpos($pathinfo, '/sesion')) {
+            // modulomonitores_monitores_sesionesMonitores
+            if ($pathinfo === '/sesionesMonitores') {
+                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DefaultController::sesionesMonitoresAction',  '_route' => 'modulomonitores_monitores_sesionesMonitores',);
+            }
+
+            // modulomonitores_monitores_sesionMonitores
+            if (0 === strpos($pathinfo, '/sesionMonitores') && preg_match('#^/sesionMonitores/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_sesionMonitores')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DefaultController::sesionMonitoresAction',));
+            }
+
+        }
+
+        // moduloclientes_cliente_homeClientes
+        if ($pathinfo === '/homeClientes') {
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::homeClientesAction',  '_route' => 'moduloclientes_cliente_homeClientes',);
+        }
+
+        if (0 === strpos($pathinfo, '/cancha')) {
+            // moduloclientes_cliente_canchasClientes
+            if ($pathinfo === '/canchasClientes') {
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::canchasClientesAction',  '_route' => 'moduloclientes_cliente_canchasClientes',);
+            }
+
+            // moduloclientes_cliente_canchaClientes
+            if (0 === strpos($pathinfo, '/canchaClientes') && preg_match('#^/canchaClientes/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_canchaClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::canchaClientesAction',));
+            }
+
+        }
+
+        if (0 === strpos($pathinfo, '/reserva')) {
+            // moduloclientes_cliente_reservasClientes
+            if ($pathinfo === '/reservasClientes') {
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::reservasClientesAction',  '_route' => 'moduloclientes_cliente_reservasClientes',);
+            }
+
+            // moduloclientes_cliente_reservaClientes
+            if (0 === strpos($pathinfo, '/reservaClientes') && preg_match('#^/reservaClientes/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_reservaClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::reservaClientesAction',));
+            }
+
+        }
+
+        if (0 === strpos($pathinfo, '/torneo')) {
+            // moduloclientes_cliente_torneosClientes
+            if ($pathinfo === '/torneosClientes') {
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::torneosClientesAction',  '_route' => 'moduloclientes_cliente_torneosClientes',);
+            }
+
+            // moduloclientes_cliente_torneoClientes
+            if (0 === strpos($pathinfo, '/torneoClientes') && preg_match('#^/torneoClientes/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_torneoClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::torneoClientesAction',));
+            }
+
+        }
+
+        if (0 === strpos($pathinfo, '/sesion')) {
+            // moduloclientes_cliente_sesionesClientes
+            if ($pathinfo === '/sesionesClientes') {
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::sesionesClientesAction',  '_route' => 'moduloclientes_cliente_sesionesClientes',);
+            }
+
+            // moduloclientes_cliente_sesionClientes
+            if (0 === strpos($pathinfo, '/sesionClientes') && preg_match('#^/sesionClientes/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_sesionClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::sesionClientesAction',));
+            }
+
+        }
+
         if (0 === strpos($pathinfo, '/h')) {
             // crivero_prueba_homepage
             if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello(?:/(?P<name>[^/]++))?$#s', $pathinfo, $matches)) {

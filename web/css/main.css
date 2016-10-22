@@ -111,7 +111,9 @@ nav li:last-child a {
 #reservas li {
     width: 325px;
 }
-
+#sesiones li {
+    width: 325px;
+}
 .acciones {
     float: right;
 }

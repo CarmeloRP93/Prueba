@@ -20,6 +20,7 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'stylesheets' => array($this, 'block_stylesheets'),
+            'header' => array($this, 'block_header'),
             'navegation' => array($this, 'block_navegation'),
             'body' => array($this, 'block_body'),
             'contenido' => array($this, 'block_contenido'),
@@ -52,35 +53,58 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
 ";
     }
 
-    // line 6
+    // line 7
+    public function block_header($context, array $blocks = array())
+    {
+        // line 8
+        echo "<div class=\"logout\">
+    <form action=\"";
+        // line 9
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_home");
+        echo "\">
+        <button>Log out</button>
+    </form>
+</div>
+<div class=\"perfil\">
+    <form>
+        <button>Perfil</button>
+    </form>
+</div>
+";
+    }
+
+    // line 20
     public function block_navegation($context, array $blocks = array())
     {
-        // line 7
+        // line 21
         echo "        <ul>
 \t\t<li><a href=\"";
-        // line 8
+        // line 22
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_clientes");
         echo "\">Clientes</a></li>
 \t\t<li><a href=\"";
-        // line 9
+        // line 23
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_monitores");
         echo "\">Monitores</a></li>
-\t\t<li><a href=\"#\">Canchas</a></li>
-\t\t<li><a href=\"#\">Contacto</a></li>
+\t\t<li><a href=\"";
+        // line 24
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_canchas");
+        echo "\">Canchas</a></li>
+\t\t<li><a href=\"#\">Torneos</a></li>
 \t</ul>
 ";
     }
 
-    // line 14
+    // line 28
     public function block_body($context, array $blocks = array())
     {
-        // line 15
+        // line 29
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 17
+        // line 31
         $this->displayBlock('contenido', $context, $blocks);
-        // line 19
+        // line 33
         echo "        </div>
     
     </div>
@@ -88,10 +112,10 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
 ";
     }
 
-    // line 17
+    // line 31
     public function block_contenido($context, array $blocks = array())
     {
-        // line 18
+        // line 32
         echo "            ";
     }
 
@@ -107,6 +131,6 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
 
     public function getDebugInfo()
     {
-        return array (  95 => 18,  92 => 17,  84 => 19,  82 => 17,  78 => 15,  75 => 14,  66 => 9,  62 => 8,  59 => 7,  56 => 6,  49 => 4,  46 => 3,  40 => 2,  11 => 1,);
+        return array (  119 => 32,  116 => 31,  108 => 33,  106 => 31,  102 => 29,  99 => 28,  91 => 24,  87 => 23,  83 => 22,  80 => 21,  77 => 20,  63 => 9,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
     }
 }

@@ -1,0 +1,27 @@
+moduloclientes_cliente_homeClientes:
+    pattern:  /homeClientes
+    defaults: { _controller: moduloclientesclienteBundle:Default:homeClientes }
+moduloclientes_cliente_canchasClientes:
+    pattern:  /canchasClientes
+    defaults: { _controller: moduloclientesclienteBundle:Default:canchasClientes }
+moduloclientes_cliente_canchaClientes:
+    pattern:  /canchaClientes/{matricula}
+    defaults: { _controller: moduloclientesclienteBundle:Default:canchaClientes }
+moduloclientes_cliente_reservasClientes:
+    pattern:  /reservasClientes
+    defaults: { _controller: moduloclientesclienteBundle:Default:reservasClientes }
+moduloclientes_cliente_reservaClientes:
+    pattern:  /reservaClientes/{matricula}
+    defaults: { _controller: moduloclientesclienteBundle:Default:reservaClientes }
+moduloclientes_cliente_torneosClientes:
+    pattern:  /torneosClientes
+    defaults: { _controller: moduloclientesclienteBundle:Default:torneosClientes }
+moduloclientes_cliente_torneoClientes:
+    pattern:  /torneoClientes/{matricula}
+    defaults: { _controller: moduloclientesclienteBundle:Default:torneoClientes }
+moduloclientes_cliente_sesionesClientes:
+    pattern:  /sesionesClientes
+    defaults: { _controller: moduloclientesclienteBundle:Default:sesionesClientes }
+moduloclientes_cliente_sesionClientes:
+    pattern:  /sesionClientes/{matricula}
+    defaults: { _controller: moduloclientesclienteBundle:Default:sesionClientes }
