@@ -1,0 +1,11 @@
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
+
+{% block title %}Vista de {{torneo.nombre}} {% endblock %}
+{% block contenido %}
+    <h2>Detalles de Torneo</h2>
+    {% if torneo.estado == "Solicitud Presentada" %}
+        <button>Aceptar Solicitud</button>
+        <button>Rechazar Solicitud </button>
+    {% endif %}
+    
+{% endblock %}

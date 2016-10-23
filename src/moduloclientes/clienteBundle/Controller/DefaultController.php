@@ -19,16 +19,16 @@ class DefaultController extends Controller
             array("matricula"=>10, "nombre"=>"Victoria Gonzalez", "disponibilidad"=>"Si")
         );
     var $reservas = array(
-            array("matricula"=>1, "nombre"=>"Carmelo Rivero", "tiempo"=>"Si"),
-            array("matricula"=>2, "nombre"=>"Joshua Almeida", "tiempo"=>"Si"),
-            array("matricula"=>3, "nombre"=>"Eduardo Mendoza", "tiempo"=>"No"),
-            array("matricula"=>4, "nombre"=>"Pablo Exposito", "tiempo"=>"No"),
-            array("matricula"=>5, "nombre"=>"Pedro Ramirez", "tiempo"=>"Si"),
-            array("matricula"=>6, "nombre"=>"Suleima Sanchez", "tiempo"=>"Si"),
-            array("matricula"=>7, "nombre"=>"Claudia Lopez", "tiempo"=>"No"),
-            array("matricula"=>8, "nombre"=>"Andrea Quintana", "tiempo"=>"Si"),
-            array("matricula"=>9, "nombre"=>"Daniel Suarez", "tiempo"=>"No"),
-            array("matricula"=>10, "nombre"=>"Victoria Gonzalez", "tiempo"=>"Si")
+            array("matricula"=>1, "nombre"=>"Carmelo Rivero"),
+            array("matricula"=>2, "nombre"=>"Joshua Almeida"),
+            array("matricula"=>3, "nombre"=>"Eduardo Mendoza"),
+            array("matricula"=>4, "nombre"=>"Pablo Exposito"),
+            array("matricula"=>5, "nombre"=>"Pedro Ramirez"),
+            array("matricula"=>6, "nombre"=>"Suleima Sanchez"),
+            array("matricula"=>7, "nombre"=>"Claudia Lopez"),
+            array("matricula"=>8, "nombre"=>"Andrea Quintana"),
+            array("matricula"=>9, "nombre"=>"Daniel Suarez"),
+            array("matricula"=>10, "nombre"=>"Victoria Gonzalez")
         );
     var $torneos = array(
             array("matricula"=>1, "nombre"=>"Carmelo Rivero", "tiempo"=>"Si"),

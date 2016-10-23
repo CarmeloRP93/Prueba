@@ -90,21 +90,28 @@ class __TwigTemplate_3d54a05536215a22f3c757ea543b327210444025e965a575e6926107d2a
         // line 24
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_canchas");
         echo "\">Canchas</a></li>
-\t\t<li><a href=\"#\">Torneos</a></li>
+\t\t<li><a href=\"";
+        // line 25
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_torneos");
+        echo "\">Torneos</a></li>
+                <li><a href=\"";
+        // line 26
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_sesiones");
+        echo "\">Sesiones</a></li>
 \t</ul>
 ";
     }
 
-    // line 28
+    // line 29
     public function block_body($context, array $blocks = array())
     {
-        // line 29
+        // line 30
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 31
+        // line 32
         $this->displayBlock('contenido', $context, $blocks);
-        // line 33
+        // line 34
         echo "        </div>
     
     </div>
@@ -112,10 +119,10 @@ class __TwigTemplate_3d54a05536215a22f3c757ea543b327210444025e965a575e6926107d2a
 ";
     }
 
-    // line 31
+    // line 32
     public function block_contenido($context, array $blocks = array())
     {
-        // line 32
+        // line 33
         echo "            ";
     }
 
@@ -131,6 +138,6 @@ class __TwigTemplate_3d54a05536215a22f3c757ea543b327210444025e965a575e6926107d2a
 
     public function getDebugInfo()
     {
-        return array (  119 => 32,  116 => 31,  108 => 33,  106 => 31,  102 => 29,  99 => 28,  91 => 24,  87 => 23,  83 => 22,  80 => 21,  77 => 20,  63 => 9,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
+        return array (  126 => 33,  123 => 32,  115 => 34,  113 => 32,  109 => 30,  106 => 29,  99 => 26,  95 => 25,  91 => 24,  87 => 23,  83 => 22,  80 => 21,  77 => 20,  63 => 9,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
     }
 }

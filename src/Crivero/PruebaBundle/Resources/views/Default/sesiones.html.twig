@@ -1,0 +1,25 @@
+{# empty Twig template #}
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
+
+{% block title %} Vista de Sesiones {% endblock %}
+{% block navegation %}        
+        <ul>
+		<li><a href="{{url('crivero_prueba_clientes')}}">Clientes</a></li>
+		<li><a href="{{url('crivero_prueba_monitores')}}">Monitores</a></li>
+		<li><a href="{{url('crivero_prueba_canchas')}}">Canchas</a></li>
+		<li><a href="{{url('crivero_prueba_torneos')}}">Torneos</a></li>
+		<li><a class="active" href="{{url('crivero_prueba_sesiones')}}">Sesiones</a></li>
+	</ul>
+{% endblock %}
+{% block contenido %}
+<div id="buscador">
+    <form>
+        <input type="search" name="sesion" placeholder="Buscar sesion"/>
+    </form>
+</div>
+<h1>Listado de Sesiones</h1>
+{% for sesion in sesiones %}
+    <a href="{{url('crivero_prueba_sesion', {'matricula': sesion.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ sesion.matricula }} - {{ sesion.nombre }} - {{ sesion.estado }}</a>
+{% endfor %}
+
+{% endblock %}

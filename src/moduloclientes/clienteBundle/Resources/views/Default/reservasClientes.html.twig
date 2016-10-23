@@ -18,7 +18,7 @@
 </div>
 <h1>Listado de Reservas</h1>
 {% for reserva in reservas %}
-    <a href="{{url('moduloclientes_cliente_reservaClientes', {'matricula': reserva.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ reserva.matricula }} - {{ reserva.nombre }} - {{ reserva.tiempo}} </a>
+    <a href="{{url('moduloclientes_cliente_reservaClientes', {'matricula': reserva.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ reserva.matricula }} - {{ reserva.nombre }} </a>
 {% endfor %}
 
 {% endblock %}

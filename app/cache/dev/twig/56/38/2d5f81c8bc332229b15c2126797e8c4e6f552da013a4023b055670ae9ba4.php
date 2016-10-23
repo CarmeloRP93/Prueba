@@ -61,14 +61,18 @@ class __TwigTemplate_56382d5f81c8bc332229b15c2126797e8c4e6f552da013a4023b055670a
         // line 10
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_torneos");
         echo "\">Torneos</a></li>
+\t\t<li><a href=\"";
+        // line 11
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_sesiones");
+        echo "\">Sesiones</a></li>
 \t</ul>
 ";
     }
 
-    // line 13
+    // line 14
     public function block_contenido($context, array $blocks = array())
     {
-        // line 14
+        // line 15
         echo "<div id=\"buscador\">
     <form>
         <input type=\"search\" name=\"cliente\" placeholder=\"Buscar cliente\"/>
@@ -76,7 +80,7 @@ class __TwigTemplate_56382d5f81c8bc332229b15c2126797e8c4e6f552da013a4023b055670a
 </div>
 <h1>Listado de Clientes</h1>
 ";
-        // line 20
+        // line 21
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["clientes"]) ? $context["clientes"] : $this->getContext($context, "clientes")));
         $context['loop'] = array(
@@ -93,7 +97,7 @@ class __TwigTemplate_56382d5f81c8bc332229b15c2126797e8c4e6f552da013a4023b055670a
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["cliente"]) {
-            // line 21
+            // line 22
             echo "    <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_cliente", array("matricula" => $this->getAttribute($context["cliente"], "matricula", array()))), "html", null, true);
             echo "\" class=\"fila ";
@@ -116,7 +120,7 @@ class __TwigTemplate_56382d5f81c8bc332229b15c2126797e8c4e6f552da013a4023b055670a
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cliente'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 23
+        // line 24
         echo "
 ";
     }
@@ -133,6 +137,6 @@ class __TwigTemplate_56382d5f81c8bc332229b15c2126797e8c4e6f552da013a4023b055670a
 
     public function getDebugInfo()
     {
-        return array (  120 => 23,  97 => 21,  80 => 20,  72 => 14,  69 => 13,  62 => 10,  58 => 9,  54 => 8,  50 => 7,  44 => 5,  38 => 4,  11 => 2,);
+        return array (  124 => 24,  101 => 22,  84 => 21,  76 => 15,  73 => 14,  66 => 11,  62 => 10,  58 => 9,  54 => 8,  50 => 7,  44 => 5,  38 => 4,  11 => 2,);
     }
 }

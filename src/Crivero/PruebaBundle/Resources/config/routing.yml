@@ -33,6 +33,18 @@ crivero_prueba_torneos:
     pattern:  /torneos
     defaults: { _controller: CriveroPruebaBundle:Default:torneos }
 
+crivero_prueba_torneo:
+    pattern:  /torneo/{matricula}
+    defaults: { _controller: CriveroPruebaBundle:Default:torneo }
+    
+crivero_prueba_sesiones:
+    pattern:  /sesiones
+    defaults: { _controller: CriveroPruebaBundle:Default:sesiones }
+
+crivero_prueba_sesion:
+    pattern:  /sesion/{matricula}
+    defaults: { _controller: CriveroPruebaBundle:Default:sesion }
+
 crivero_prueba_soccer:
     pattern:  /soccer
     defaults: { _controller: CriveroPruebaBundle:Default:soccer }

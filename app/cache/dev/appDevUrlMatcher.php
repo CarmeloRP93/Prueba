@@ -241,14 +241,38 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // crivero_prueba_torneos
-        if ($pathinfo === '/torneos') {
-            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::torneosAction',  '_route' => 'crivero_prueba_torneos',);
+        if (0 === strpos($pathinfo, '/torneo')) {
+            // crivero_prueba_torneos
+            if ($pathinfo === '/torneos') {
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::torneosAction',  '_route' => 'crivero_prueba_torneos',);
+            }
+
+            // crivero_prueba_torneo
+            if (preg_match('#^/torneo/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_torneo')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::torneoAction',));
+            }
+
         }
 
-        // crivero_prueba_soccer
-        if ($pathinfo === '/soccer') {
-            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::soccerAction',  '_route' => 'crivero_prueba_soccer',);
+        if (0 === strpos($pathinfo, '/s')) {
+            if (0 === strpos($pathinfo, '/sesion')) {
+                // crivero_prueba_sesiones
+                if ($pathinfo === '/sesiones') {
+                    return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::sesionesAction',  '_route' => 'crivero_prueba_sesiones',);
+                }
+
+                // crivero_prueba_sesion
+                if (preg_match('#^/sesion/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_sesion')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::sesionAction',));
+                }
+
+            }
+
+            // crivero_prueba_soccer
+            if ($pathinfo === '/soccer') {
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::soccerAction',  '_route' => 'crivero_prueba_soccer',);
+            }
+
         }
 
         // _welcome

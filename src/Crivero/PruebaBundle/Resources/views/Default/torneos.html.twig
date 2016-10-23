@@ -9,6 +9,7 @@
 		<li><a href="{{url('crivero_prueba_monitores')}}">Monitores</a></li>
 		<li><a href="{{url('crivero_prueba_canchas')}}">Canchas</a></li>
 		<li><a class="active" href="#">Torneos</a></li>
+                <li><a href="{{url('crivero_prueba_sesiones')}}">Sesiones</a></li>
 	</ul>
 {% endblock %}
 {% block contenido %}
@@ -19,7 +20,7 @@
 </div>
 <h1>Listado de Torneos</h1>
 {% for torneo in torneos %}
-    <a href="{{url('crivero_prueba_monitor', {'matricula': torneo.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ torneo.matricula }} - {{ torneo.nombre }} </a>
+    <a href="{{url('crivero_prueba_torneo', {'matricula': torneo.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ torneo.matricula }} - {{ torneo.nombre }} - {{torneo.estado}}</a>
 {% endfor %}
 
 {% endblock %}
