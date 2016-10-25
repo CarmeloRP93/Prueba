@@ -2,10 +2,28 @@
 
 {% block title %}Vista de {{sesion.nombre}} {% endblock %}
 {% block contenido %}
-    <h2>Detalles de la Sesion</h2>
+    <div style="text-align: center">
+        <h2>{{sesion.nombre}} - Abdomen</h2>
+    </div>
     {% if sesion.estado == "Solicitud Presentada" %}
-        <button>Aceptar Solicitud</button>
-        <button>Rechazar Solicitud </button>
+        <div id="accionesesion" style="margin-left: 18px; margin-right: 18px;">
+            <button style="height: 25px;">Aceptar Solicitud</button>
+            <button style="float: right; height: 25px;">Rechazar Solicitud </button>
+        </div>
     {% endif %}
-    
+    <div id="sesiondat">
+        <div id="sesionfot" style="margin-left: 16em; margin-top: 20px;">
+            <img src="{{ asset('images/abdd.jpg') }}" style="width: 65%;" />        
+        </div>
+        <div id="colder" style="float: right; margin-right: 6em;">
+            <h4>Tiempo estimado:</h4> <p>40-45 minutos</p>
+            <h4>Descanso entre ejercicios:</h4> <p>2-3 minutos</p>
+            <h4>Objetivos:</h4> <p>Definir abdominales y tonificar el vientre </p>
+        </div>
+        <div id="colizq" style="margin-left: 7.5em;">
+            <h4>Monitor:</h4> <p>Jordan</p>
+            <h4>Ejercicios:</h4> <p>Plancha dinámica, Elevación de piernas y Patadas de rana</p>
+            <h4>Repeticiones:</h4> <p>3/Ejercicio</p>
+            <h4>Material:</h4> <p>Nuestro propio cuerpo para completar esta efectiva sesion para el abdomen</p>
+            
 {% endblock %}

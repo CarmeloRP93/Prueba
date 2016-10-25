@@ -99,8 +99,6 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
             echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "matricula", array()), "html", null, true);
             echo " - ";
             echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "nombre", array()), "html", null, true);
-            echo " - ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "tiempo", array()), "html", null, true);
             echo " </a>
 ";
             ++$context['loop']['index0'];
@@ -132,6 +130,6 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
 
     public function getDebugInfo()
     {
-        return array (  119 => 23,  94 => 21,  77 => 20,  69 => 14,  66 => 13,  59 => 10,  55 => 9,  51 => 8,  44 => 5,  38 => 4,  11 => 2,);
+        return array (  117 => 23,  94 => 21,  77 => 20,  69 => 14,  66 => 13,  59 => 10,  55 => 9,  51 => 8,  44 => 5,  38 => 4,  11 => 2,);
     }
 }

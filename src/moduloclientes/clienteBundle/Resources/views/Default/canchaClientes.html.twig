@@ -2,5 +2,59 @@
 {% block title %}Vista de {{cancha.nombre}} {% endblock %}
 {% block contenido %}
 <h1>Detalles de la cancha</h1>
-    <div>{{cancha.matricula}} - {{cancha.nombre}}- {{cancha.disponibilidad}}</div>
+    
+      <div class="container text-center">
+        <h3>Detalles de Cancha</h3>
+    </div>
+        
+         <div class="text-center">
+           <h4>Nombre de la cancha</h4>
+        </div>
+
+        <div class="col-md-6 col-xs-12">
+
+            <div class="text-center">
+                <img src="{{ asset('images/cancha_de_marmolejo.jpg') }}" width="180px" class="img-rounded"/><br>
+
+                <br>{% if cancha.disponibilidad == "Disponible" %}
+                      <div class="text-center">
+                        <button class="btn btn-primary">Reservar</button>
+                      </div>
+                      {% else %}
+                      <div class="text-center">
+                        <button class="btn btn-danger">Reservada</button>
+                      </div>
+                {% endif %}
+            </div><br>
+
+        </div>
+
+        <div class="col-md-6 col-xs-12">
+            <div class="text-center">
+                <label class="control-label span7 text-left">Horario: </label>
+                <label class="control-label span7 text-right">15:00 - 18:30 </label>
+            </div>
+
+            <div class="text-center">
+                <label class="control-label span7 text-left">Dimensiones: </label>
+                <label class="control-label span7 text-right">100 m2</label>
+            </div>
+
+            <div class="text-center">
+                <label class="control-label span7 text-left">Mínimo de personas para jugar: </label>
+                <label class="control-label span7 text-right">20</label>
+            </div>
+
+            <div class="text-center">
+                <label class="control-label span7 text-left">Valoracion: </label>
+                <label class=" text-right">5.0</label>
+            </div>
+
+            <div class="text-center">
+                <label class="control-label span7 text-left">Dirección: </label>
+                <label class="control-label span7 text-right">Calle Desengaño, 21</label>
+            </div><br>
+
+    </div>
+    
 {% endblock %}

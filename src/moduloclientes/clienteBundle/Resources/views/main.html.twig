@@ -18,13 +18,45 @@
 {% endblock %}
 
 {% block navegation %}
-    <ul>
-        <li><a href="{{url('moduloclientes_cliente_reservasClientes')}}">Reservas</a></li>
-        <li><a href="{{url('moduloclientes_cliente_canchasClientes')}}">Canchas</a></li>
-        <li><a href="{{url('moduloclientes_cliente_torneosClientes')}}">Torneos</a></li>
-        <li><a href="{{url('moduloclientes_cliente_sesionesClientes')}}">Entrenamiento</a></li>
+    <header>
+        <nav class="navbar navbar-default" role="navigation">
+            <!-- El logotipo y el icono que despliega el menú se agrupan
+                 para mostrarlos mejor en los dispositivos móviles -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Desplegar navegación</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Logotipo</a>
+            </div>
 
-    </ul>
+
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{url('crivero_prueba_clientes')}}">Clientes</a></li>
+                    <li><a href="{{url('crivero_prueba_monitores')}}">Monitores</a></li>
+                    <li><a href="{{url('crivero_prueba_canchas')}}">Canchas</a></li>
+                    <li><a href="{{url('crivero_prueba_torneos')}}">Torneos</a></li>
+                    <li><a href="{{url('crivero_prueba_sesiones')}}">Sesiones</a></li>
+                </ul>
+
+                <form class="navbar-form navbar-center" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Nombre, cancha...">
+                    </div>
+                    <button type="submit" class="btn btn-default">Buscar</button>
+                </form>
+                
+                <div class="text-right">
+                    <a href = #>Perfil</a>
+                    <a href = "{{url('crivero_prueba_home')}}">Log out</a>
+                </div>
+            </div>
+        </nav>
+    </header>
 {% endblock %}
 {% block body %}
     <div id="pagina" class="cfix">

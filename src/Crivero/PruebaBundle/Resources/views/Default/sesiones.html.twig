@@ -2,15 +2,7 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 
 {% block title %} Vista de Sesiones {% endblock %}
-{% block navegation %}        
-        <ul>
-		<li><a href="{{url('crivero_prueba_clientes')}}">Clientes</a></li>
-		<li><a href="{{url('crivero_prueba_monitores')}}">Monitores</a></li>
-		<li><a href="{{url('crivero_prueba_canchas')}}">Canchas</a></li>
-		<li><a href="{{url('crivero_prueba_torneos')}}">Torneos</a></li>
-		<li><a class="active" href="{{url('crivero_prueba_sesiones')}}">Sesiones</a></li>
-	</ul>
-{% endblock %}
+
 {% block contenido %}
 <div id="buscador">
     <form>

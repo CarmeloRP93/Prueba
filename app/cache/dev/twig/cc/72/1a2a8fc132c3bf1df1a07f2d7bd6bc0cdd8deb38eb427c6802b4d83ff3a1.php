@@ -46,14 +46,6 @@ class __TwigTemplate_cc721a2a8fc132c3bf1df1a07f2d7bd6bc0cdd8deb38eb427c6802b4d83
     {
         // line 4
         echo "<h1>Detalles de las reservas</h1>
-    <div>";
-        // line 5
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["reserva"]) ? $context["reserva"] : $this->getContext($context, "reserva")), "matricula", array()), "html", null, true);
-        echo " - ";
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["reserva"]) ? $context["reserva"] : $this->getContext($context, "reserva")), "nombre", array()), "html", null, true);
-        echo "- ";
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["reserva"]) ? $context["reserva"] : $this->getContext($context, "reserva")), "tiempo", array()), "html", null, true);
-        echo "</div>
 ";
     }
 
@@ -69,6 +61,6 @@ class __TwigTemplate_cc721a2a8fc132c3bf1df1a07f2d7bd6bc0cdd8deb38eb427c6802b4d83
 
     public function getDebugInfo()
     {
-        return array (  51 => 5,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }
