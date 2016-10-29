@@ -19,7 +19,6 @@ class __TwigTemplate_56382d5f81c8bc332229b15c2126797e8c4e6f552da013a4023b055670a
 
         $this->blocks = array(
             'title' => array($this, 'block_title'),
-            'navegation' => array($this, 'block_navegation'),
             'contenido' => array($this, 'block_contenido'),
         );
     }
@@ -40,39 +39,10 @@ class __TwigTemplate_56382d5f81c8bc332229b15c2126797e8c4e6f552da013a4023b055670a
         echo " Vista de Clientes ";
     }
 
-    // line 5
-    public function block_navegation($context, array $blocks = array())
-    {
-        echo "        
-        <ul>
-\t\t<li><a class=\"active\" href=\"";
-        // line 7
-        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_clientes");
-        echo "\">Clientes</a></li>
-\t\t<li><a href=\"";
-        // line 8
-        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_monitores");
-        echo "\">Monitores</a></li>
-\t\t<li><a href=\"";
-        // line 9
-        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_canchas");
-        echo "\">Canchas</a></li>
-\t\t<li><a href=\"";
-        // line 10
-        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_torneos");
-        echo "\">Torneos</a></li>
-\t\t<li><a href=\"";
-        // line 11
-        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_sesiones");
-        echo "\">Sesiones</a></li>
-\t</ul>
-";
-    }
-
-    // line 14
+    // line 6
     public function block_contenido($context, array $blocks = array())
     {
-        // line 15
+        // line 7
         echo "<div id=\"buscador\">
     <form>
         <input type=\"search\" name=\"cliente\" placeholder=\"Buscar cliente\"/>
@@ -80,7 +50,7 @@ class __TwigTemplate_56382d5f81c8bc332229b15c2126797e8c4e6f552da013a4023b055670a
 </div>
 <h1>Listado de Clientes</h1>
 ";
-        // line 21
+        // line 13
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["clientes"]) ? $context["clientes"] : $this->getContext($context, "clientes")));
         $context['loop'] = array(
@@ -97,7 +67,7 @@ class __TwigTemplate_56382d5f81c8bc332229b15c2126797e8c4e6f552da013a4023b055670a
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["cliente"]) {
-            // line 22
+            // line 14
             echo "    <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_cliente", array("matricula" => $this->getAttribute($context["cliente"], "matricula", array()))), "html", null, true);
             echo "\" class=\"fila ";
@@ -120,7 +90,7 @@ class __TwigTemplate_56382d5f81c8bc332229b15c2126797e8c4e6f552da013a4023b055670a
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cliente'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 24
+        // line 16
         echo "
 ";
     }
@@ -137,6 +107,6 @@ class __TwigTemplate_56382d5f81c8bc332229b15c2126797e8c4e6f552da013a4023b055670a
 
     public function getDebugInfo()
     {
-        return array (  124 => 24,  101 => 22,  84 => 21,  76 => 15,  73 => 14,  66 => 11,  62 => 10,  58 => 9,  54 => 8,  50 => 7,  44 => 5,  38 => 4,  11 => 2,);
+        return array (  94 => 16,  71 => 14,  54 => 13,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
     }
 }

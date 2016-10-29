@@ -5,20 +5,10 @@
 {% endblock %}
 
 {% block header %}
-    <div class="logout">
-        <form action="{{url('moduloclientes_cliente_homeClientes')}}">
-            <button>Log out</button>
-        </form>
-    </div>
-    <div class="perfil">
-        <form>
-            <button>Perfil</button>
-        </form>
-    </div>
+ 
 {% endblock %}
 
 {% block navegation %}
-    <header>
         <nav class="navbar navbar-default" role="navigation">
             <!-- El logotipo y el icono que despliega el menú se agrupan
                  para mostrarlos mejor en los dispositivos móviles -->
@@ -36,11 +26,10 @@
 
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{url('crivero_prueba_clientes')}}">Clientes</a></li>
-                    <li><a href="{{url('crivero_prueba_monitores')}}">Monitores</a></li>
-                    <li><a href="{{url('crivero_prueba_canchas')}}">Canchas</a></li>
-                    <li><a href="{{url('crivero_prueba_torneos')}}">Torneos</a></li>
-                    <li><a href="{{url('crivero_prueba_sesiones')}}">Sesiones</a></li>
+                    <li><a href="{{url('moduloclientes_cliente_reservasClientes')}}">Reservas</a></li>
+                    <li><a href="{{url('moduloclientes_cliente_canchasClientes')}}">Canchas</a></li>
+                    <li><a href="{{url('moduloclientes_cliente_torneosClientes')}}">Torneos</a></li>
+                    <li><a href="{{url('moduloclientes_cliente_sesionesClientes')}}">Sesiones</a></li>
                 </ul>
 
                 <form class="navbar-form navbar-center" role="search">
@@ -48,15 +37,12 @@
                         <input type="text" class="form-control" placeholder="Nombre, cancha...">
                     </div>
                     <button type="submit" class="btn btn-default">Buscar</button>
-                </form>
-                
-                <div class="text-right">
+ 
                     <a href = #>Perfil</a>
                     <a href = "{{url('crivero_prueba_home')}}">Log out</a>
-                </div>
+                </form>
             </div>
         </nav>
-    </header>
 {% endblock %}
 {% block body %}
     <div id="pagina" class="cfix">

@@ -57,58 +57,76 @@ class __TwigTemplate_ea3a88a71f9dfd4439389f4c8d2f3feabb3b96637bccc8341c9af3afcd5
     public function block_header($context, array $blocks = array())
     {
         // line 8
-        echo "    <div class=\"logout\">
-        <form action=\"";
-        // line 9
-        echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_homeClientes");
-        echo "\">
-            <button>Log out</button>
-        </form>
-    </div>
-    <div class=\"perfil\">
-        <form>
-            <button>Perfil</button>
-        </form>
-    </div>
+        echo " 
 ";
     }
 
-    // line 20
+    // line 11
     public function block_navegation($context, array $blocks = array())
     {
-        // line 21
-        echo "    <ul>
-        <li><a href=\"";
-        // line 22
+        // line 12
+        echo "        <nav class=\"navbar navbar-default\" role=\"navigation\">
+            <!-- El logotipo y el icono que despliega el menú se agrupan
+                 para mostrarlos mejor en los dispositivos móviles -->
+            <div class=\"navbar-header\">
+                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\"
+                        data-target=\".navbar-ex1-collapse\">
+                    <span class=\"sr-only\">Desplegar navegación</span>
+                    <span class=\"icon-bar\"></span>
+                    <span class=\"icon-bar\"></span>
+                    <span class=\"icon-bar\"></span>
+                </button>
+                <a class=\"navbar-brand\" href=\"#\">Logotipo</a>
+            </div>
+
+
+            <div class=\"collapse navbar-collapse navbar-ex1-collapse\">
+                <ul class=\"nav navbar-nav\">
+                    <li><a href=\"";
+        // line 29
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_reservasClientes");
         echo "\">Reservas</a></li>
-        <li><a href=\"";
-        // line 23
+                    <li><a href=\"";
+        // line 30
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_canchasClientes");
         echo "\">Canchas</a></li>
-        <li><a href=\"";
-        // line 24
+                    <li><a href=\"";
+        // line 31
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_torneosClientes");
         echo "\">Torneos</a></li>
-        <li><a href=\"";
-        // line 25
+                    <li><a href=\"";
+        // line 32
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_sesionesClientes");
-        echo "\">Entrenamiento</a></li>
+        echo "\">Sesiones</a></li>
+                </ul>
 
-    </ul>
+                <form class=\"navbar-form navbar-center\" role=\"search\">
+                    <div class=\"form-group\">
+                        <input type=\"text\" class=\"form-control\" placeholder=\"Nombre, cancha...\">
+                    </div>
+                    <button type=\"submit\" class=\"btn btn-default\">Buscar</button>
+ 
+                    <a href = #>Perfil</a>
+                    <a href = \"";
+        // line 42
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_home");
+        echo "\">Log out</a>
+                </form>
+            </div>
+        </nav>
 ";
     }
 
-    // line 29
+    // line 47
     public function block_body($context, array $blocks = array())
     {
-        // line 30
+        // line 48
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 32
+        // line 50
         $this->displayBlock('contenido', $context, $blocks);
-        // line 34
+        // line 52
         echo "        </div>
 
     </div>
@@ -116,10 +134,10 @@ class __TwigTemplate_ea3a88a71f9dfd4439389f4c8d2f3feabb3b96637bccc8341c9af3afcd5
 ";
     }
 
-    // line 32
+    // line 50
     public function block_contenido($context, array $blocks = array())
     {
-        // line 33
+        // line 51
         echo "            ";
     }
 
@@ -135,6 +153,6 @@ class __TwigTemplate_ea3a88a71f9dfd4439389f4c8d2f3feabb3b96637bccc8341c9af3afcd5
 
     public function getDebugInfo()
     {
-        return array (  123 => 33,  120 => 32,  112 => 34,  110 => 32,  106 => 30,  103 => 29,  95 => 25,  91 => 24,  87 => 23,  83 => 22,  80 => 21,  77 => 20,  63 => 9,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
+        return array (  141 => 51,  138 => 50,  130 => 52,  128 => 50,  124 => 48,  121 => 47,  112 => 42,  99 => 32,  95 => 31,  91 => 30,  87 => 29,  68 => 12,  65 => 11,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
     }
 }

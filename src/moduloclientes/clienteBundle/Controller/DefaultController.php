@@ -43,16 +43,16 @@ class DefaultController extends Controller
             array("matricula"=>10, "nombre"=>"Victoria Gonzalez", "tiempo"=>"Si")
         );
     var $sesiones = array(
-            array("matricula"=>1, "nombre"=>"Carmelo Rivero", "estado"=>"completo"),
-            array("matricula"=>2, "nombre"=>"Joshua Almeida", "estado"=>"Disponible"),
-            array("matricula"=>3, "nombre"=>"Eduardo Mendoza", "estado"=>"Disponible"),
-            array("matricula"=>4, "nombre"=>"Pablo Exposito", "estado"=>"Apuntado"),
-            array("matricula"=>5, "nombre"=>"Pedro Ramirez", "estado"=>"completo"),
-            array("matricula"=>6, "nombre"=>"Suleima Sanchez", "estado"=>"Apuntado"),
-            array("matricula"=>7, "nombre"=>"Claudia Lopez", "estado"=>"completo"),
-            array("matricula"=>8, "nombre"=>"Andrea Quintana", "estado"=>"Apuntado"),
-            array("matricula"=>9, "nombre"=>"Daniel Suarez", "estado"=>"Disponible"),
-            array("matricula"=>10, "nombre"=>"Victoria Gonzalez", "estado"=>"Apuntado")
+            array("matricula"=>1, "nombre"=>"Sesion 01", "estado"=>"Completo"),
+            array("matricula"=>2, "nombre"=>"Sesion 02", "estado"=>"Disponible"),
+            array("matricula"=>3, "nombre"=>"Sesion 03", "estado"=>"Disponible"),
+            array("matricula"=>4, "nombre"=>"Sesion 04", "estado"=>"Apuntado"),
+            array("matricula"=>5, "nombre"=>"Sesion 05", "estado"=>"Completo"),
+            array("matricula"=>6, "nombre"=>"Sesion 06", "estado"=>"Finalizada"),
+            array("matricula"=>7, "nombre"=>"Sesion 07", "estado"=>"Completo"),
+            array("matricula"=>8, "nombre"=>"Sesion 08", "estado"=>"Apuntado"),
+            array("matricula"=>9, "nombre"=>"Sesion 09", "estado"=>"Disponible"),
+            array("matricula"=>10, "nombre"=>"Sesion 10", "estado"=>"Finalizada")
         );
     public function homeClientesAction()
     {

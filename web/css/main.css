@@ -16,6 +16,7 @@ a{color: #333; text-decoration: none;}
 }
  
 p {
+  font-size: 15px;
   margin-bottom: 20px;
 }
 
@@ -86,6 +87,7 @@ nav li:last-child a {
     border-radius: 0 4px 4px 0;            
 }
 */
+
 .active {
     outline: 0;
     color: #fff;
@@ -459,6 +461,7 @@ th {
 }
 .glyphicon-pencil:before {
   content: "\270f";
+  font-size: 18px;
 }
 .glyphicon-glass:before {
   content: "\e001";
@@ -1455,11 +1458,25 @@ p {
   font-weight: 300;
   line-height: 1.4;
 }
+
 @media (min-width: 768px) {
   .lead {
-    font-size: 21px;
+    font-size: 16px;
   }
 }
+
+@media (max-width: 768px) {
+  .lead {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 568px) {
+  .lead {
+    font-size: 0.8em;
+  }
+}
+
 small,
 .small {
   font-size: 85%;
@@ -3163,7 +3180,7 @@ select[multiple].input-lg {
 .btn {
   display: inline-block;
   padding: 6px 12px;
-  margin-bottom: 0;
+  margin-bottom: 14px;
   font-size: 14px;
   font-weight: normal;
   line-height: 1.42857143;

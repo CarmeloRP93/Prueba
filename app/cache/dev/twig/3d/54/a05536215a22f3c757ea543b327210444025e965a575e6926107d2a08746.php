@@ -57,72 +57,91 @@ class __TwigTemplate_3d54a05536215a22f3c757ea543b327210444025e965a575e6926107d2a
     public function block_header($context, array $blocks = array())
     {
         // line 8
-        echo "<div class=\"logout\">
-    <form action=\"";
-        // line 9
-        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_home");
-        echo "\">
-        <button>Log out</button>
-    </form>
-</div>
-<div class=\"perfil\">
-    <form>
-        <button>Perfil</button>
-    </form>
-</div>
+        echo "
 ";
     }
 
-    // line 20
+    // line 11
     public function block_navegation($context, array $blocks = array())
     {
-        // line 21
-        echo "        <ul>
-\t\t<li><a href=\"";
-        // line 22
+        // line 12
+        echo "        <nav class=\"navbar navbar-default\" role=\"navigation\">
+            <!-- El logotipo y el icono que despliega el menú se agrupan
+                 para mostrarlos mejor en los dispositivos móviles -->
+            <div class=\"navbar-header\">
+                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\"
+                        data-target=\".navbar-ex1-collapse\">
+                    <span class=\"sr-only\">Desplegar navegación</span>
+                    <span class=\"icon-bar\"></span>
+                    <span class=\"icon-bar\"></span>
+                    <span class=\"icon-bar\"></span>
+                </button>
+                <a class=\"navbar-brand\" href=\"#\">Logotipo</a>
+            </div>
+
+
+            <div class=\"collapse navbar-collapse navbar-ex1-collapse\">
+                <ul class=\"nav navbar-nav\">
+                    <li><a href=\"";
+        // line 29
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_clientes");
         echo "\">Clientes</a></li>
-\t\t<li><a href=\"";
-        // line 23
+                    <li><a href=\"";
+        // line 30
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_monitores");
         echo "\">Monitores</a></li>
-\t\t<li><a href=\"";
-        // line 24
+                    <li><a href=\"";
+        // line 31
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_canchas");
         echo "\">Canchas</a></li>
-\t\t<li><a href=\"";
-        // line 25
+                    <li><a href=\"";
+        // line 32
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_torneos");
         echo "\">Torneos</a></li>
-                <li><a href=\"";
-        // line 26
+                    <li><a href=\"";
+        // line 33
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_sesiones");
         echo "\">Sesiones</a></li>
-\t</ul>
+                </ul>
+
+                <form class=\"navbar-form navbar-center\" role=\"search\">
+                    <div class=\"form-group\">
+                        <input type=\"text\" class=\"form-control\" placeholder=\"Nombre, cancha...\">
+                    </div>
+                    <button type=\"submit\" class=\"btn btn-default\">Buscar</button>
+ 
+                    <a href = #>Perfil</a>
+                    <a href = \"";
+        // line 43
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_home");
+        echo "\">Log out</a>
+                </form>
+            </div>
+        </nav>
 ";
     }
 
-    // line 29
+    // line 48
     public function block_body($context, array $blocks = array())
     {
-        // line 30
+        // line 49
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 32
+        // line 51
         $this->displayBlock('contenido', $context, $blocks);
-        // line 34
+        // line 53
         echo "        </div>
-    
+
     </div>
-            
+
 ";
     }
 
-    // line 32
+    // line 51
     public function block_contenido($context, array $blocks = array())
     {
-        // line 33
+        // line 52
         echo "            ";
     }
 
@@ -138,6 +157,6 @@ class __TwigTemplate_3d54a05536215a22f3c757ea543b327210444025e965a575e6926107d2a
 
     public function getDebugInfo()
     {
-        return array (  126 => 33,  123 => 32,  115 => 34,  113 => 32,  109 => 30,  106 => 29,  99 => 26,  95 => 25,  91 => 24,  87 => 23,  83 => 22,  80 => 21,  77 => 20,  63 => 9,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
+        return array (  145 => 52,  142 => 51,  134 => 53,  132 => 51,  128 => 49,  125 => 48,  116 => 43,  103 => 33,  99 => 32,  95 => 31,  91 => 30,  87 => 29,  68 => 12,  65 => 11,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
     }
 }

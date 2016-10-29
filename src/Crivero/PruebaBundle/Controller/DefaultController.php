@@ -60,16 +60,16 @@ class DefaultController extends Controller
         );
     
         var $sesiones = array(
-            array("matricula"=>1, "nombre"=>"Carmelo Rivero", "estado"=>"Validada"),
-            array("matricula"=>2, "nombre"=>"Joshua Almeida", "estado"=>"Solicitud Presentada"),
-            array("matricula"=>3, "nombre"=>"Eduardo Mendoza", "estado"=>"Validada"),
-            array("matricula"=>4, "nombre"=>"Pablo Exposito", "estado"=>"Validada"),
-            array("matricula"=>5, "nombre"=>"Pedro Ramirez", "estado"=>"Validada"),
-            array("matricula"=>6, "nombre"=>"Suleima Sanchez", "estado"=>"Solicitud Presentada"),
-            array("matricula"=>7, "nombre"=>"Claudia Lopez", "estado"=>"Validada"),
-            array("matricula"=>8, "nombre"=>"Andrea Quintana", "estado"=>"Solicitud Presentada"),
-            array("matricula"=>9, "nombre"=>"Daniel Suarez", "estado"=>"Validada"),
-            array("matricula"=>10, "nombre"=>"Victoria Gonzalez", "estado"=>"Validada")
+            array("matricula"=>1, "nombre"=>"Sesion 01", "estado"=>"Validada"),
+            array("matricula"=>2, "nombre"=>"Sesion 02", "estado"=>"Solicitud Presentada"),
+            array("matricula"=>3, "nombre"=>"Sesion 03", "estado"=>"Validada"),
+            array("matricula"=>4, "nombre"=>"Sesion 04", "estado"=>"Validada"),
+            array("matricula"=>5, "nombre"=>"Sesion 05", "estado"=>"Validada"),
+            array("matricula"=>6, "nombre"=>"Sesion 06", "estado"=>"Solicitud Presentada"),
+            array("matricula"=>7, "nombre"=>"Sesion 07", "estado"=>"Validada"),
+            array("matricula"=>8, "nombre"=>"Sesion 08", "estado"=>"Solicitud Presentada"),
+            array("matricula"=>9, "nombre"=>"Sesion 09", "estado"=>"Validada"),
+            array("matricula"=>10, "nombre"=>"Sesion 10", "estado"=>"Validada")
         );
     
     public function indexAction($name)

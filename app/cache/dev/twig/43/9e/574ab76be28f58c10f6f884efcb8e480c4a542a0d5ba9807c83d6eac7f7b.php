@@ -48,14 +48,13 @@ class __TwigTemplate_439e574ab76be28f58c10f6f884efcb8e480c4a542a0d5ba9807c83d6ea
         echo "    <h2>Detalles de Torneo</h2>
     ";
         // line 6
-        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estado", array()) == "Validado")) {
+        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estado", array()) == "Solicitud Presentada")) {
             // line 7
-            echo "        <button>VAVAVAVA</button>
-        <button>VAVAVAVA</button>
-        <button>VAVAVAVA</button>
+            echo "        <button>Aceptar Solicitud</button>
+        <button>Rechazar Solicitud </button>
     ";
         }
-        // line 11
+        // line 10
         echo "    
 ";
     }
@@ -72,6 +71,6 @@ class __TwigTemplate_439e574ab76be28f58c10f6f884efcb8e480c4a542a0d5ba9807c83d6ea
 
     public function getDebugInfo()
     {
-        return array (  59 => 11,  53 => 7,  51 => 6,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  58 => 10,  53 => 7,  51 => 6,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }

@@ -46,6 +46,15 @@ class __TwigTemplate_863e109036b606fa217e03e3ba4ab133876f8c33f056f7a41b6b8555bb1
     {
         // line 5
         echo "    <h2>Detalles de Cancha</h2>
+      ";
+        // line 6
+        if (($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()) == "Disponible")) {
+            // line 7
+            echo "          <button>Reservar</button>
+    ";
+        }
+        // line 9
+        echo "    
     
 ";
     }
@@ -62,6 +71,6 @@ class __TwigTemplate_863e109036b606fa217e03e3ba4ab133876f8c33f056f7a41b6b8555bb1
 
     public function getDebugInfo()
     {
-        return array (  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  57 => 9,  53 => 7,  51 => 6,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }
