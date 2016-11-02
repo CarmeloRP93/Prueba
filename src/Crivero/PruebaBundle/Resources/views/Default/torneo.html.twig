@@ -2,10 +2,33 @@
 
 {% block title %}Vista de {{torneo.nombre}} {% endblock %}
 {% block contenido %}
-    <h2>Detalles de Torneo</h2>
+    <h2>Detalles del Torneo</h2>
     {% if torneo.estado == "Solicitud Presentada" %}
-        <button>Aceptar Solicitud</button>
-        <button>Rechazar Solicitud </button>
+        <div>
+            <form>
+                <button>Aceptar Solicitud</button>
+            </form>
+            <form>
+                <button>Rechazar Solicitud </button>
+            </form>
+        </div>
     {% endif %}
+    {% block detalles %}
+    {% if torneo.estado == "Validado" %}
+        <div >
+            <h3>Ver información de equipos</h3>
+            <ul>
+                {% for equipo in torneo.equipos %}
+                    <div>
+                        <li>{{equipo}}
+                            <button>Ver puesto</button>
+                            <button>Eliminar equipo</button>
+                        </li>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %} 
+    {% endblock%}
     
 {% endblock %}

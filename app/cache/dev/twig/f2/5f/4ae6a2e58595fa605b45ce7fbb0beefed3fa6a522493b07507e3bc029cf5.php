@@ -45,8 +45,7 @@ class __TwigTemplate_f25f4ae6a2e58595fa605b45ce7fbb0beefed3fa6a522493b07507e3bc0
     public function block_contenido($context, array $blocks = array())
     {
         // line 4
-        echo "<h1>Detalles de la cancha</h1>
-    
+        echo "<h1>Detalles de la cancha</h1>   
       <div class=\"container text-center\">
         <h3>Detalles de Cancha</h3>
     </div>
@@ -59,26 +58,26 @@ class __TwigTemplate_f25f4ae6a2e58595fa605b45ce7fbb0beefed3fa6a522493b07507e3bc0
 
             <div class=\"text-center\">
                 <img src=\"";
-        // line 17
+        // line 16
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/cancha_de_marmolejo.jpg"), "html", null, true);
         echo "\" width=\"180px\" class=\"img-rounded\"/><br>
 
                 <br>";
-        // line 19
+        // line 18
         if (($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()) == "Disponible")) {
-            // line 20
+            // line 19
             echo "                      <div class=\"text-center\">
                         <button class=\"btn btn-primary\">Reservar</button>
                       </div>
                       ";
         } else {
-            // line 24
+            // line 23
             echo "                      <div class=\"text-center\">
                         <button class=\"btn btn-danger\">Reservada</button>
                       </div>
                 ";
         }
-        // line 28
+        // line 27
         echo "            </div><br>
 
         </div>
@@ -126,6 +125,6 @@ class __TwigTemplate_f25f4ae6a2e58595fa605b45ce7fbb0beefed3fa6a522493b07507e3bc0
 
     public function getDebugInfo()
     {
-        return array (  82 => 28,  76 => 24,  70 => 20,  68 => 19,  63 => 17,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  81 => 27,  75 => 23,  69 => 19,  67 => 18,  62 => 16,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

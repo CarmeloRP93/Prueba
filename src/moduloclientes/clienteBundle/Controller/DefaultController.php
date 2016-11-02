@@ -31,16 +31,11 @@ class DefaultController extends Controller
             array("matricula"=>10, "nombre"=>"Victoria Gonzalez")
         );
     var $torneos = array(
-            array("matricula"=>1, "nombre"=>"Carmelo Rivero", "tiempo"=>"Si"),
-            array("matricula"=>2, "nombre"=>"Joshua Almeida", "tiempo"=>"Si"),
-            array("matricula"=>3, "nombre"=>"Eduardo Mendoza", "tiempo"=>"No"),
-            array("matricula"=>4, "nombre"=>"Pablo Exposito", "tiempo"=>"No"),
-            array("matricula"=>5, "nombre"=>"Pedro Ramirez", "tiempo"=>"Si"),
-            array("matricula"=>6, "nombre"=>"Suleima Sanchez", "tiempo"=>"Si"),
-            array("matricula"=>7, "nombre"=>"Claudia Lopez", "tiempo"=>"No"),
-            array("matricula"=>8, "nombre"=>"Andrea Quintana", "tiempo"=>"Si"),
-            array("matricula"=>9, "nombre"=>"Daniel Suarez", "tiempo"=>"No"),
-            array("matricula"=>10, "nombre"=>"Victoria Gonzalez", "tiempo"=>"Si")
+            array("matricula"=>1, "nombre"=>"Torneo 1", "estado"=>"Disponible","equipos"=>array("Equipo 1", "Equipo 2","Equipo 3")),
+            array("matricula"=>2, "nombre"=>"Torneo 2", "estado"=>"Disponible","equipos"=>array("Equipo 1","Equipo 3")),
+            array("matricula"=>3, "nombre"=>"Torneo 3", "estado"=>"Finalizado","equipos"=>array("Equipo 1","Equipo 3")),
+            array("matricula"=>4, "nombre"=>"Torneo 4", "estado"=>"Finalizado","equipos"=>array("Equipo 2","Equipo 3")),
+            array("matricula"=>5, "nombre"=>"Torneo 5", "estado"=>"Disponible","equipos"=>array("Equipo 1", "Equipo 2","Equipo 3"))
         );
     var $sesiones = array(
             array("matricula"=>1, "nombre"=>"Sesion 01", "estado"=>"Completo"),

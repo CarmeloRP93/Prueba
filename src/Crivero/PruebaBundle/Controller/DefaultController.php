@@ -47,16 +47,16 @@ class DefaultController extends Controller
         );
     
     var $torneos = array(
-            array("matricula"=>1, "nombre"=>"Carmelo Rivero", "estado"=>"Validado"),
-            array("matricula"=>2, "nombre"=>"Joshua Almeida", "estado"=>"Solicitud Presentada"),
-            array("matricula"=>3, "nombre"=>"Eduardo Mendoza", "estado"=>"Validado"),
-            array("matricula"=>4, "nombre"=>"Pablo Exposito", "estado"=>"Validado"),
-            array("matricula"=>5, "nombre"=>"Pedro Ramirez", "estado"=>"Validado"),
-            array("matricula"=>6, "nombre"=>"Suleima Sanchez", "estado"=>"Solicitud Presentada"),
-            array("matricula"=>7, "nombre"=>"Claudia Lopez", "estado"=>"Validado"),
-            array("matricula"=>8, "nombre"=>"Andrea Quintana", "estado"=>"Solicitud Presentada"),
-            array("matricula"=>9, "nombre"=>"Daniel Suarez", "estado"=>"Validado"),
-            array("matricula"=>10, "nombre"=>"Victoria Gonzalez", "estado"=>"Validado")
+            array("matricula"=>1, "nombre"=>"Torneo 1", "estado"=>"Validado","equipos"=>array("Equipo 1", "Equipo 2","Equipo 3")),
+            array("matricula"=>2, "nombre"=>"Torneo 2", "estado"=>"Solicitud Presentada","equipos"=>array("Equipo 1", "Equipo 2","Equipo 3")),
+            array("matricula"=>3, "nombre"=>"Torneo 3", "estado"=>"Validado","equipos"=>array("Equipo 1", "Equipo 2")),
+            array("matricula"=>4, "nombre"=>"Torneo 4", "estado"=>"Validado","equipos"=>array("Equipo 1", "Equipo 2")),
+            array("matricula"=>5, "nombre"=>"Torneo 5", "estado"=>"Validado","equipos"=>array("Equipo 1", "Equipo 2")),
+            array("matricula"=>6, "nombre"=>"Torneo 6", "estado"=>"Solicitud Presentada","equipos"=>array("Equipo 1", "Equipo 2")),
+            array("matricula"=>7, "nombre"=>"Torneo 7", "estado"=>"Validado","equipos"=>array("Equipo 1", "Equipo 2")),
+            array("matricula"=>8, "nombre"=>"Torneo 8", "estado"=>"Solicitud Presentada","equipos"=>array("Equipo 1", "Equipo 2")),
+            array("matricula"=>9, "nombre"=>"Torneo 9", "estado"=>"Validado","equipos"=>array("Equipo 1", "Equipo 2")),
+            array("matricula"=>10, "nombre"=>"Torneo 10", "estado"=>"Validado","equipos"=>array("Equipo 1", "Equipo 2"))
         );
     
         var $sesiones = array(
@@ -116,7 +116,7 @@ class DefaultController extends Controller
     
     public function torneoAction($matricula)
     {
-       return $this->render('CriveroPruebaBundle:Default:torneo.html.twig', array("torneo"=>$this->torneos[$matricula-1]));
+       return $this->render('CriveroPruebaBundle:Default:torneo.html.twig',array("torneo"=>$this->torneos[$matricula-1]));
     }
     
     public function sesionesAction()

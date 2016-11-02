@@ -1,17 +1,28 @@
 {# empty Twig template #}
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
 
-{% block title %} Vista de Torneos {% endblock %}
-             
+{% block title %} Vista de Torneos {% endblock %}             
 {% block contenido %}
 <div id="buscador">
     <form>
         <input type="search" name="torneo" placeholder="Buscar torneo"/>
     </form>
 </div>
-<h1>Listado de Torneos</h1>
-{% for torneo in torneos %}
-    <a href="{{url('moduloclientes_cliente_torneoClientes', {'matricula': torneo.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ torneo.matricula }} - {{ torneo.nombre }} - {{ torneo.tiempo}} </a>
-{% endfor %}
-
+<h1>Listado de mis Torneos</h1>
+    <ul>
+        <p>En curso: </p>
+        {% for torneo in torneos %}
+            {% if torneo.estado == "Disponible" %}
+                <li><a href="{{url('moduloclientes_cliente_torneoClientes', {'matricula': torneo.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ torneo.nombre }}</a></li>
+            {%endif%}
+       {% endfor %}
+    </ul>
+    <ul>
+        <p>Finalizado: </p>
+        {% for torneo in torneos %}
+            {%if torneo.estado == "Finalizado" %}
+                <li><a href="{{url('moduloclientes_cliente_torneoClientes', {'matricula': torneo.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ torneo.nombre }}</a></li>
+            {%endif%}
+       {% endfor %}
+    </ul>
 {% endblock %}

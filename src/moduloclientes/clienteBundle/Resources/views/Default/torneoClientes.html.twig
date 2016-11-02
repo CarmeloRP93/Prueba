@@ -1,6 +1,34 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
 {% block title %}Vista de {{torneo.nombre}} {% endblock %}
 {% block contenido %}
-<h1>Detalles de las torneos</h1>
-    <div>{{torneo.matricula}} - {{torneo.nombre}}- {{torneo.tiempo}}</div>
+<h1>Detalles del {{torneo.nombre}}</h1>
+    <div>
+    {% if torneo.estado == "Disponible"%}
+        <form>
+            <legend>Añadir miembros del equipo</legend>
+            <textarea rows="10"></textarea>
+            <p>Delegado del equipo (Persona de contacto)</p>
+            <input type="text" name="capitan"/><br>
+            <p>Nombre del equipo</p>
+            <input type="text" name="capitan"/><br>
+            <br>
+            <button>Registrar jugadores y equipo </button>
+        </form>
+    {%endif%}
+    </div>
+    <div>
+        <ul>
+        {%if torneo.estado == "Finalizado" %}
+            <h3>Resumen del {{torneo.nombre}}</h3>
+            {% for equipo in torneo.equipos %}
+                <div>
+                    <li>{{equipo}}
+                        <button>Posicion</button>
+                        <button>Datos del equipo</button>
+                    </li>
+                </div>
+            {% endfor %}
+        {%endif%}
+        </ul>
+    </div>
 {% endblock %}

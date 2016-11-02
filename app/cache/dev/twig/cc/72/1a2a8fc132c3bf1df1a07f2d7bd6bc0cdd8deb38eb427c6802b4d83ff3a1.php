@@ -45,7 +45,60 @@ class __TwigTemplate_cc721a2a8fc132c3bf1df1a07f2d7bd6bc0cdd8deb38eb427c6802b4d83
     public function block_contenido($context, array $blocks = array())
     {
         // line 4
-        echo "<h1>Detalles de las reservas</h1>
+        echo "      <div class=\"container text-center\">
+        <h3>Detalles de Reserva</h3>
+    </div>
+        
+         <div class=\"text-center\">
+           <h4>Nombre de la cancha</h4>
+        </div>
+
+        <div class=\"col-md-6 col-xs-12\">
+
+            <div class=\"text-center\">
+                <img src=\"";
+        // line 15
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/cancha_de_marmolejo.jpg"), "html", null, true);
+        echo "\" width=\"180px\" class=\"img-rounded\"/><br>
+
+                
+                <br>
+                      <div class=\"text-center\">
+                        <button class=\"btn btn-danger\">Cancelar</button>
+                      </div>
+                      
+            </div><br>
+
+        </div>
+
+        <div class=\"col-md-6 col-xs-12\">
+            <div class=\"text-center\">
+                <label class=\"control-label span7 text-left\">Día: </label>
+                <label class=\"control-label span7 text-right\">15/11/2016 </label>
+            </div>
+            
+            <div class=\"text-center\">
+                <label class=\"control-label span7 text-left\">Horario: </label>
+                <label class=\"control-label span7 text-right\">15:00 - 18:30 </label>
+            </div>
+
+            <div class=\"text-center\">
+                <label class=\"control-label span7 text-left\">Dimensiones: </label>
+                <label class=\"control-label span7 text-right\">100 m2</label>
+            </div>
+
+            <div class=\"text-center\">
+                <label class=\"control-label span7 text-left\">Valoracion: </label>
+                <label class=\" text-right\">5.0/5.0</label>
+            </div>
+
+            <div class=\"text-center\">
+                <label class=\"control-label span7 text-left\">Dirección: </label>
+                <label class=\"control-label span7 text-right\">Calle Desengaño, 21</label>
+            </div><br>
+
+    </div>
+    
 ";
     }
 
@@ -61,6 +114,6 @@ class __TwigTemplate_cc721a2a8fc132c3bf1df1a07f2d7bd6bc0cdd8deb38eb427c6802b4d83
 
     public function getDebugInfo()
     {
-        return array (  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  61 => 15,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

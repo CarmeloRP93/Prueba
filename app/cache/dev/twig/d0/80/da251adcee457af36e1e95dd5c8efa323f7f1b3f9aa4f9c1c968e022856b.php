@@ -20,6 +20,7 @@ class __TwigTemplate_d080da251adcee457af36e1e95dd5c8efa323f7f1b3f9aa4f9c1c968e02
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'contenido' => array($this, 'block_contenido'),
+            'detalles' => array($this, 'block_detalles'),
         );
     }
 
@@ -45,18 +46,67 @@ class __TwigTemplate_d080da251adcee457af36e1e95dd5c8efa323f7f1b3f9aa4f9c1c968e02
     public function block_contenido($context, array $blocks = array())
     {
         // line 5
-        echo "    <h2>Detalles de Torneo</h2>
+        echo "    <h2>Detalles del Torneo</h2>
     ";
         // line 6
         if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estado", array()) == "Solicitud Presentada")) {
             // line 7
-            echo "        <button>Aceptar Solicitud</button>
-        <button>Rechazar Solicitud </button>
+            echo "        <div>
+            <form>
+                <button>Aceptar Solicitud</button>
+            </form>
+            <form>
+                <button>Rechazar Solicitud </button>
+            </form>
+        </div>
     ";
         }
-        // line 10
+        // line 16
+        echo "    ";
+        $this->displayBlock('detalles', $context, $blocks);
+        // line 33
         echo "    
 ";
+    }
+
+    // line 16
+    public function block_detalles($context, array $blocks = array())
+    {
+        // line 17
+        echo "    ";
+        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estado", array()) == "Validado")) {
+            // line 18
+            echo "        <div >
+            <h3>Ver información de equipos</h3>
+            <ul>
+                ";
+            // line 21
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "equipos", array()));
+            foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
+                // line 22
+                echo "                    <div>
+                        <li>";
+                // line 23
+                echo twig_escape_filter($this->env, $context["equipo"], "html", null, true);
+                echo "
+                            <button>Ver puesto</button>
+                            <button>Eliminar equipo</button>
+                        </li>
+                    </div>
+                ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 29
+            echo "            </ul>
+        </div>
+    ";
+        }
+        // line 31
+        echo " 
+    ";
     }
 
     public function getTemplateName()
@@ -71,6 +121,6 @@ class __TwigTemplate_d080da251adcee457af36e1e95dd5c8efa323f7f1b3f9aa4f9c1c968e02
 
     public function getDebugInfo()
     {
-        return array (  58 => 10,  53 => 7,  51 => 6,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  108 => 31,  103 => 29,  91 => 23,  88 => 22,  84 => 21,  79 => 18,  76 => 17,  73 => 16,  68 => 33,  65 => 16,  54 => 7,  52 => 6,  49 => 5,  46 => 4,  38 => 3,  11 => 1,);
     }
 }
