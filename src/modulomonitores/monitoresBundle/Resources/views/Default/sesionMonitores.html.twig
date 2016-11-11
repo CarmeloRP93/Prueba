@@ -4,4 +4,15 @@
 {% block contenido %}
 <h1>Detalles de los entrenamientos</h1>
     <div>{{sesion.matricula}} - {{sesion.nombre}}- {{sesion.estado}}</div>
+    <div>
+        <ul>
+            <h3> {{sesion.nombre}} </h3>
+            {% for rutina in sesion.rutinas %}
+                <div>
+                    <li>{{rutina}}
+                    </li>
+                </div>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

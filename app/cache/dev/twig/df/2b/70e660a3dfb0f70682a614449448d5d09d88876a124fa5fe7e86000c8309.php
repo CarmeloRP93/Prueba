@@ -37,7 +37,7 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
     // line 4
     public function block_title($context, array $blocks = array())
     {
-        echo " Vista de Sesiones de entrenamiento ";
+        echo " Vista de entrenamiento ";
     }
 
     // line 5
@@ -45,7 +45,7 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
     {
         echo "        
         <ul>
-                <li><a class=\"active\" href=\"#\">Sesiones de entrenamiento</a></li>
+                <li><a class=\"active\" href=\"#\">Entrenamiento</a></li>
 \t</ul>
 ";
     }
@@ -59,7 +59,7 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
         <input type=\"search\" name=\"sesion\" placeholder=\"Buscar sesion\"/>
     </form>
 </div>
-<h1>Listado de Sesiones de entrenamiento</h1>
+<h1>Listado de Entrenamiento</h1>
 ";
         // line 17
         $context['_parent'] = (array) $context;

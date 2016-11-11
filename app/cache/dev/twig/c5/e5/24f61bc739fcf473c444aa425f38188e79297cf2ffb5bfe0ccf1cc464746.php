@@ -45,46 +45,84 @@ class __TwigTemplate_c5e524f61bc739fcf473c444aa425f38188e79297cf2ffb5bfe0ccf1cc4
     public function block_contenido($context, array $blocks = array())
     {
         // line 4
-        echo "<h1>Detalles del ";
+        echo "<div class=\"container\">
+<h1>Detalles del ";
+        // line 5
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "nombre", array()), "html", null, true);
         echo "</h1>
-    <div>
     ";
         // line 6
-        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estado", array()) == "Disponible")) {
+        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estado", array()) == "Inscripcion")) {
             // line 7
-            echo "        <form>
-            <legend>Añadir miembros del equipo</legend>
-            <textarea rows=\"10\"></textarea>
-            <p>Delegado del equipo (Persona de contacto)</p>
-            <input type=\"text\" name=\"capitan\"/><br>
-            <p>Nombre del equipo</p>
-            <input type=\"text\" name=\"capitan\"/><br>
-            <br>
-            <button>Registrar jugadores y equipo </button>
+            echo "        <form class=\"form-horizontal\">
+            <div class=\"row container-fluid\">
+                <div class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6\">
+                    <label class=\"control-label span7 text-left\">Añadir miembros del equipo</label>
+                    <textarea class=\"form-control\" rows=\"5\"></textarea>
+                </div>
+                <div class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6\">
+                    <label class=\"control-label span7 text-left\">Delegado del equipo (Persona de contacto)</label>
+                    <input class=\"form-control\" type=\"text\" name=\"capitan\"/><br>
+                    <label class=\"control-label span7 text-left\">Nombre del equipo</label>
+                    <input class=\"form-control\" type=\"text\" name=\"capitan\"/><br>
+                </div>
+                
+                <div class=\"text-center\">
+                    <button class=\"btn btn-primary\">Registrar jugadores y equipo </button>
+                </div>
+            </div>
         </form>
     ";
         }
-        // line 18
-        echo "    </div>
+        // line 26
+        echo "    ";
+        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estado", array()) == "Disponible")) {
+            // line 27
+            echo "        <h3>Insertar tabla de liga</h3>
+            <table class=\"table-striped\">
+                <tr>
+                    <th>Posición</th>
+                    <th>Equipo</th>
+                    <th>Puntos</th>
+                    <th>Ganados</th>
+                    <th>Perdidos</th>
+                    <th>Empatados</th>
+                    <th>G. a favor</th>
+                    <th>G. en contra</th>
+                </tr>
+                <tr>
+                    <td>1º</td>
+                    <td>Real Madrid</td>
+                    <td>5</td>
+                    <td>1</td>
+                    <td>5</td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td>1</td>
+                </tr>
+            </table>
+    ";
+        }
+        // line 51
+        echo "</div>
     <div>
         <ul>
         ";
-        // line 21
+        // line 54
         if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estado", array()) == "Finalizado")) {
-            // line 22
+            // line 55
             echo "            <h3>Resumen del ";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "nombre", array()), "html", null, true);
             echo "</h3>
             ";
-            // line 23
+            // line 56
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "equipos", array()));
             foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
-                // line 24
+                // line 57
                 echo "                <div>
                     <li>";
-                // line 25
+                // line 58
                 echo twig_escape_filter($this->env, $context["equipo"], "html", null, true);
                 echo "
                         <button>Posicion</button>
@@ -96,10 +134,10 @@ class __TwigTemplate_c5e524f61bc739fcf473c444aa425f38188e79297cf2ffb5bfe0ccf1cc4
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 31
+            // line 64
             echo "        ";
         }
-        // line 32
+        // line 65
         echo "        </ul>
     </div>
 ";
@@ -117,6 +155,6 @@ class __TwigTemplate_c5e524f61bc739fcf473c444aa425f38188e79297cf2ffb5bfe0ccf1cc4
 
     public function getDebugInfo()
     {
-        return array (  103 => 32,  100 => 31,  88 => 25,  85 => 24,  81 => 23,  76 => 22,  74 => 21,  69 => 18,  56 => 7,  54 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  141 => 65,  138 => 64,  126 => 58,  123 => 57,  119 => 56,  114 => 55,  112 => 54,  107 => 51,  81 => 27,  78 => 26,  57 => 7,  55 => 6,  51 => 5,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

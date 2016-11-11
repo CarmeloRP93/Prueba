@@ -90,12 +90,18 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
         // line 30
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_canchasClientes");
         echo "\">Canchas</a></li>
-                    <li><a href=\"";
-        // line 31
+                    
+                    <li class=\"dropdown\">
+                            <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Torneos <b class=\"caret\"></b></a>
+                            <ul class=\"dropdown-menu\">
+                              <li><a href=\"";
+        // line 35
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_torneosClientes");
-        echo "\">Torneos</a></li>
+        echo "\"> Mis torneos </a></li>
+                            </ul>
+                     </li>
                     <li><a href=\"";
-        // line 32
+        // line 38
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_sesionesClientes");
         echo "\">Sesiones</a></li>
                 </ul>
@@ -108,7 +114,7 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
  
                     <a href = #>Perfil</a>
                     <a href = \"";
-        // line 42
+        // line 48
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_home");
         echo "\">Log out</a>
                 </form>
@@ -117,16 +123,16 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
 ";
     }
 
-    // line 47
+    // line 53
     public function block_body($context, array $blocks = array())
     {
-        // line 48
+        // line 54
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 50
+        // line 56
         $this->displayBlock('contenido', $context, $blocks);
-        // line 52
+        // line 58
         echo "        </div>
 
     </div>
@@ -134,10 +140,10 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
 ";
     }
 
-    // line 50
+    // line 56
     public function block_contenido($context, array $blocks = array())
     {
-        // line 51
+        // line 57
         echo "            ";
     }
 
@@ -153,6 +159,6 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
 
     public function getDebugInfo()
     {
-        return array (  141 => 51,  138 => 50,  130 => 52,  128 => 50,  124 => 48,  121 => 47,  112 => 42,  99 => 32,  95 => 31,  91 => 30,  87 => 29,  68 => 12,  65 => 11,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
+        return array (  147 => 57,  144 => 56,  136 => 58,  134 => 56,  130 => 54,  127 => 53,  118 => 48,  105 => 38,  99 => 35,  91 => 30,  87 => 29,  68 => 12,  65 => 11,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
     }
 }

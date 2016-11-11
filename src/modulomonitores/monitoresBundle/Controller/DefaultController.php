@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller
 {
     var $sesiones = array(
-            array("matricula"=>1, "nombre"=>"Carmelo Rivero", "estado"=>"completo"),
+            array("matricula"=>1, "nombre"=>"Carmelo Rivero", "estado"=>"completo", "rutinas"=>array("rutina 1", "rutina 2","rutina 3")),
             array("matricula"=>2, "nombre"=>"Joshua Almeida", "estado"=>"Disponible"),
             array("matricula"=>3, "nombre"=>"Eduardo Mendoza", "estado"=>"Disponible"),
             array("matricula"=>4, "nombre"=>"Pablo Exposito", "estado"=>"Apuntado"),

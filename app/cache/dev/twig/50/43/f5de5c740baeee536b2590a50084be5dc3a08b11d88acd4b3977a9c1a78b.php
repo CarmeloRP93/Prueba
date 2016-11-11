@@ -77,22 +77,72 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
     public function block_navegation($context, array $blocks = array())
     {
         // line 21
-        echo "    <ul>
-        <li><a href=\"#\">Sesiones de entrenamiento</a></li>
-    </ul>
+        echo " <nav class=\"navbar navbar-default\" role=\"navigation\">
+            <!-- El logotipo y el icono que despliega el menú se agrupan
+                 para mostrarlos mejor en los dispositivos móviles -->
+            <div class=\"navbar-header\">
+                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\"
+                        data-target=\".navbar-ex1-collapse\">
+                    <span class=\"sr-only\">Desplegar navegación</span>
+                    <span class=\"icon-bar\"></span>
+                    <span class=\"icon-bar\"></span>
+                    <span class=\"icon-bar\"></span>
+                </button>
+                <a class=\"navbar-brand\" href=\"#\">Logotipo</a>
+            </div>
+
+
+            <div class=\"collapse navbar-collapse navbar-ex1-collapse\">
+                <ul class=\"nav navbar-nav\">
+                    <li><a href=\"";
+        // line 38
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_clientes");
+        echo "\">Clientes</a></li>
+                    <li><a href=\"";
+        // line 39
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_monitores");
+        echo "\">Monitores</a></li>
+                    <li><a href=\"";
+        // line 40
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_canchas");
+        echo "\">Canchas</a></li>
+                    <li><a href=\"";
+        // line 41
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_torneos");
+        echo "\">Torneos</a></li>
+                    <li><a href=\"";
+        // line 42
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_sesiones");
+        echo "\">Sesiones</a></li>
+                </ul>
+
+                <form class=\"navbar-form navbar-center\" role=\"search\">
+                    <div class=\"form-group\">
+                        <input type=\"text\" class=\"form-control\" placeholder=\"Nombre, cancha...\">
+                    </div>
+                    <button type=\"submit\" class=\"btn btn-default\">Buscar</button>
+ 
+                    <a href = #>Perfil</a>
+                    <a href = \"";
+        // line 52
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_home");
+        echo "\">Log out</a>
+                </form>
+            </div>
+        </nav>
 ";
     }
 
-    // line 25
+    // line 57
     public function block_body($context, array $blocks = array())
     {
-        // line 26
+        // line 58
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 28
+        // line 60
         $this->displayBlock('contenido', $context, $blocks);
-        // line 30
+        // line 62
         echo "        </div>
 
     </div>
@@ -100,10 +150,10 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 ";
     }
 
-    // line 28
+    // line 60
     public function block_contenido($context, array $blocks = array())
     {
-        // line 29
+        // line 61
         echo "            ";
     }
 
@@ -119,6 +169,6 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 
     public function getDebugInfo()
     {
-        return array (  107 => 29,  104 => 28,  96 => 30,  94 => 28,  90 => 26,  87 => 25,  80 => 21,  77 => 20,  63 => 9,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
+        return array (  157 => 61,  154 => 60,  146 => 62,  144 => 60,  140 => 58,  137 => 57,  128 => 52,  115 => 42,  111 => 41,  107 => 40,  103 => 39,  99 => 38,  80 => 21,  77 => 20,  63 => 9,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
     }
 }

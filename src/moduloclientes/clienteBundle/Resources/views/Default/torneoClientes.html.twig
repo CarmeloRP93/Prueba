@@ -1,21 +1,54 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
 {% block title %}Vista de {{torneo.nombre}} {% endblock %}
 {% block contenido %}
+<div class="container">
 <h1>Detalles del {{torneo.nombre}}</h1>
-    <div>
-    {% if torneo.estado == "Disponible"%}
-        <form>
-            <legend>Añadir miembros del equipo</legend>
-            <textarea rows="10"></textarea>
-            <p>Delegado del equipo (Persona de contacto)</p>
-            <input type="text" name="capitan"/><br>
-            <p>Nombre del equipo</p>
-            <input type="text" name="capitan"/><br>
-            <br>
-            <button>Registrar jugadores y equipo </button>
+    {% if torneo.estado == "Inscripcion"%}
+        <form class="form-horizontal">
+            <div class="row container-fluid">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <label class="control-label span7 text-left">Añadir miembros del equipo</label>
+                    <textarea class="form-control" rows="5"></textarea>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <label class="control-label span7 text-left">Delegado del equipo (Persona de contacto)</label>
+                    <input class="form-control" type="text" name="capitan"/><br>
+                    <label class="control-label span7 text-left">Nombre del equipo</label>
+                    <input class="form-control" type="text" name="capitan"/><br>
+                </div>
+                
+                <div class="text-center">
+                    <button class="btn btn-primary">Registrar jugadores y equipo </button>
+                </div>
+            </div>
         </form>
     {%endif%}
-    </div>
+    {% if torneo.estado == "Disponible"%}
+        <h3>Insertar tabla de liga</h3>
+            <table class="table-striped">
+                <tr>
+                    <th>Posición</th>
+                    <th>Equipo</th>
+                    <th>Puntos</th>
+                    <th>Ganados</th>
+                    <th>Perdidos</th>
+                    <th>Empatados</th>
+                    <th>G. a favor</th>
+                    <th>G. en contra</th>
+                </tr>
+                <tr>
+                    <td>1º</td>
+                    <td>Real Madrid</td>
+                    <td>5</td>
+                    <td>1</td>
+                    <td>5</td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td>1</td>
+                </tr>
+            </table>
+    {%endif%}
+</div>
     <div>
         <ul>
         {%if torneo.estado == "Finalizado" %}
