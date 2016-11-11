@@ -1,18 +1,9 @@
 {# empty Twig template #}
 {% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
 
-{% block title %} Vista de entrenamiento {% endblock %}
-{% block navegation %}        
-        <ul>
-                <li><a class="active" href="#">Entrenamiento</a></li>
-	</ul>
-{% endblock %}                
+{% block title %} Vista de entrenamiento {% endblock %}            
 {% block contenido %}
-<div id="buscador">
-    <form>
-        <input type="search" name="sesion" placeholder="Buscar sesion"/>
-    </form>
-</div>
+
 <h1>Listado de Entrenamiento</h1>
 {% for sesion in sesiones %}
     <a href="{{url('modulomonitores_monitores_sesionMonitores', {'matricula': sesion.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ sesion.matricula }} - {{ sesion.nombre }} - {{ sesion.estado}} </a>

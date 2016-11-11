@@ -61,7 +61,6 @@ class __TwigTemplate_d080da251adcee457af36e1e95dd5c8efa323f7f1b3f9aa4f9c1c968e02
         $this->displayBlock('detalles', $context, $blocks);
         // line 21
         echo "    </div>
-
 ";
     }
 
@@ -108,6 +107,6 @@ class __TwigTemplate_d080da251adcee457af36e1e95dd5c8efa323f7f1b3f9aa4f9c1c968e02
 
     public function getDebugInfo()
     {
-        return array (  93 => 19,  82 => 15,  78 => 14,  75 => 13,  72 => 12,  69 => 11,  63 => 21,  60 => 11,  55 => 8,  53 => 7,  49 => 5,  46 => 4,  38 => 3,  11 => 1,);
+        return array (  92 => 19,  81 => 15,  77 => 14,  74 => 13,  71 => 12,  68 => 11,  63 => 21,  60 => 11,  55 => 8,  53 => 7,  49 => 5,  46 => 4,  38 => 3,  11 => 1,);
     }
 }

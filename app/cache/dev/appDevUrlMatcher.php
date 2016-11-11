@@ -136,6 +136,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_sesionMonitores')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DefaultController::sesionMonitoresAction',));
             }
 
+            // modulomonitores_monitores_sesionesDedicadas
+            if ($pathinfo === '/sesionesDedicadas') {
+                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DefaultController::sesionesDedicadasAction',  '_route' => 'modulomonitores_monitores_sesionesDedicadas',);
+            }
+
+            // modulomonitores_monitores_sesionDedicada
+            if (0 === strpos($pathinfo, '/sesionDedicada') && preg_match('#^/sesionDedicada/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_sesionDedicada')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DefaultController::sesionDedicadaAction',));
+            }
+
         }
 
         // moduloclientes_cliente_homeClientes

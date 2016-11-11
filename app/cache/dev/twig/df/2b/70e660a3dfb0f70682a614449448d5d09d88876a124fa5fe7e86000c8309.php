@@ -19,7 +19,6 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
 
         $this->blocks = array(
             'title' => array($this, 'block_title'),
-            'navegation' => array($this, 'block_navegation'),
             'contenido' => array($this, 'block_contenido'),
         );
     }
@@ -41,27 +40,13 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
     }
 
     // line 5
-    public function block_navegation($context, array $blocks = array())
-    {
-        echo "        
-        <ul>
-                <li><a class=\"active\" href=\"#\">Entrenamiento</a></li>
-\t</ul>
-";
-    }
-
-    // line 10
     public function block_contenido($context, array $blocks = array())
     {
-        // line 11
-        echo "<div id=\"buscador\">
-    <form>
-        <input type=\"search\" name=\"sesion\" placeholder=\"Buscar sesion\"/>
-    </form>
-</div>
+        // line 6
+        echo "
 <h1>Listado de Entrenamiento</h1>
 ";
-        // line 17
+        // line 8
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["sesiones"]) ? $context["sesiones"] : $this->getContext($context, "sesiones")));
         $context['loop'] = array(
@@ -78,7 +63,7 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
-            // line 18
+            // line 9
             echo "    <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_sesionMonitores", array("matricula" => $this->getAttribute($context["sesion"], "matricula", array()))), "html", null, true);
             echo "\" class=\"fila ";
@@ -103,7 +88,7 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 20
+        // line 11
         echo "
 ";
     }
@@ -120,6 +105,6 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
 
     public function getDebugInfo()
     {
-        return array (  107 => 20,  82 => 18,  65 => 17,  57 => 11,  54 => 10,  44 => 5,  38 => 4,  11 => 2,);
+        return array (  92 => 11,  67 => 9,  50 => 8,  46 => 6,  43 => 5,  37 => 4,  11 => 2,);
     }
 }

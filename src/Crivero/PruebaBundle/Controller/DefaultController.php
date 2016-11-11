@@ -47,6 +47,7 @@ class DefaultController extends Controller
         );
     
     var $torneos = array(
+
             array("matricula"=>1, "nombre"=>"Torneo 1", "estado"=>"Validado","equipos"=>array("Equipo 1", "Equipo 2","Equipo 3")),
             array("matricula"=>2, "nombre"=>"Torneo 2", "estado"=>"Solicitud Presentada","equipos"=>array("Equipo 1", "Equipo 2","Equipo 3")),
             array("matricula"=>3, "nombre"=>"Torneo 3", "estado"=>"Validado","equipos"=>array("Equipo 1", "Equipo 2")),
@@ -57,6 +58,7 @@ class DefaultController extends Controller
             array("matricula"=>8, "nombre"=>"Torneo 8", "estado"=>"Solicitud Presentada","equipos"=>array("Equipo 1", "Equipo 2")),
             array("matricula"=>9, "nombre"=>"Torneo 9", "estado"=>"Validado","equipos"=>array("Equipo 1", "Equipo 2")),
             array("matricula"=>10, "nombre"=>"Torneo 10", "estado"=>"Validado","equipos"=>array("Equipo 1", "Equipo 2"))
+
         );
     
         var $sesiones = array(

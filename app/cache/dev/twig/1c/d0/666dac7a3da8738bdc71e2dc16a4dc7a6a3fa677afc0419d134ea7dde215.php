@@ -7,12 +7,12 @@ class __TwigTemplate_1cd0666dac7a3da8738bdc71e2dc16a4dc7a6a3fa677afc0419d134ea7d
     {
         parent::__construct($env);
 
-        // line 2
+        // line 1
         try {
             $this->parent = $this->env->loadTemplate("modulomonitoresmonitoresBundle::main.html.twig");
         } catch (Twig_Error_Loader $e) {
             $e->setTemplateFile($this->getTemplateName());
-            $e->setTemplateLine(2);
+            $e->setTemplateLine(1);
 
             throw $e;
         }
@@ -33,7 +33,7 @@ class __TwigTemplate_1cd0666dac7a3da8738bdc71e2dc16a4dc7a6a3fa677afc0419d134ea7d
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 3
+    // line 2
     public function block_title($context, array $blocks = array())
     {
         echo "Vista de ";
@@ -41,34 +41,25 @@ class __TwigTemplate_1cd0666dac7a3da8738bdc71e2dc16a4dc7a6a3fa677afc0419d134ea7d
         echo " ";
     }
 
-    // line 4
+    // line 3
     public function block_contenido($context, array $blocks = array())
     {
-        // line 5
-        echo "<h1>Detalles de los entrenamientos</h1>
-    <div>";
-        // line 6
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "matricula", array()), "html", null, true);
-        echo " - ";
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "nombre", array()), "html", null, true);
-        echo "- ";
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()), "html", null, true);
-        echo "</div>
-    <div>
+        // line 4
+        echo "    <div>
         <ul>
             <h3> ";
-        // line 9
+        // line 6
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "nombre", array()), "html", null, true);
         echo " </h3>
             ";
-        // line 10
+        // line 7
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "rutinas", array()));
         foreach ($context['_seq'] as $context["_key"] => $context["rutina"]) {
-            // line 11
+            // line 8
             echo "                <div>
                     <li>";
-            // line 12
+            // line 9
             echo twig_escape_filter($this->env, $context["rutina"], "html", null, true);
             echo "
                     </li>
@@ -78,7 +69,7 @@ class __TwigTemplate_1cd0666dac7a3da8738bdc71e2dc16a4dc7a6a3fa677afc0419d134ea7d
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['rutina'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 16
+        // line 13
         echo "        </ul>
     </div>
 ";
@@ -96,6 +87,6 @@ class __TwigTemplate_1cd0666dac7a3da8738bdc71e2dc16a4dc7a6a3fa677afc0419d134ea7d
 
     public function getDebugInfo()
     {
-        return array (  82 => 16,  72 => 12,  69 => 11,  65 => 10,  61 => 9,  51 => 6,  48 => 5,  45 => 4,  37 => 3,  11 => 2,);
+        return array (  73 => 13,  63 => 9,  60 => 8,  56 => 7,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

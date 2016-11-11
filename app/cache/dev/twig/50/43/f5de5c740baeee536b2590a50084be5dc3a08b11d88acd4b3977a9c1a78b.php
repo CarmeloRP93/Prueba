@@ -57,26 +57,14 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
     public function block_header($context, array $blocks = array())
     {
         // line 8
-        echo "    <div class=\"logout\">
-        <form action=\"";
-        // line 9
-        echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_homeMonitores");
-        echo "\">
-            <button>Log out</button>
-        </form>
-    </div>
-    <div class=\"perfil\">
-        <form>
-            <button>Perfil</button>
-        </form>
-    </div>
+        echo "
 ";
     }
 
-    // line 20
+    // line 11
     public function block_navegation($context, array $blocks = array())
     {
-        // line 21
+        // line 12
         echo " <nav class=\"navbar navbar-default\" role=\"navigation\">
             <!-- El logotipo y el icono que despliega el menú se agrupan
                  para mostrarlos mejor en los dispositivos móviles -->
@@ -95,36 +83,24 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
             <div class=\"collapse navbar-collapse navbar-ex1-collapse\">
                 <ul class=\"nav navbar-nav\">
                     <li><a href=\"";
-        // line 38
-        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_clientes");
-        echo "\">Clientes</a></li>
-                    <li><a href=\"";
-        // line 39
-        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_monitores");
-        echo "\">Monitores</a></li>
-                    <li><a href=\"";
-        // line 40
-        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_canchas");
-        echo "\">Canchas</a></li>
-                    <li><a href=\"";
-        // line 41
-        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_torneos");
-        echo "\">Torneos</a></li>
-                    <li><a href=\"";
-        // line 42
-        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_sesiones");
+        // line 29
+        echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_sesionesMonitores");
         echo "\">Sesiones</a></li>
+                    <li><a href=\"";
+        // line 30
+        echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_sesionesDedicadas");
+        echo "\">Sesiones dedicadas</a></li>
                 </ul>
 
                 <form class=\"navbar-form navbar-center\" role=\"search\">
                     <div class=\"form-group\">
-                        <input type=\"text\" class=\"form-control\" placeholder=\"Nombre, cancha...\">
+                        <input type=\"text\" class=\"form-control\" placeholder=\"Nombre, sesion...\">
                     </div>
                     <button type=\"submit\" class=\"btn btn-default\">Buscar</button>
  
                     <a href = #>Perfil</a>
                     <a href = \"";
-        // line 52
+        // line 40
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_home");
         echo "\">Log out</a>
                 </form>
@@ -133,16 +109,16 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 ";
     }
 
-    // line 57
+    // line 45
     public function block_body($context, array $blocks = array())
     {
-        // line 58
+        // line 46
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 60
+        // line 48
         $this->displayBlock('contenido', $context, $blocks);
-        // line 62
+        // line 50
         echo "        </div>
 
     </div>
@@ -150,10 +126,10 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 ";
     }
 
-    // line 60
+    // line 48
     public function block_contenido($context, array $blocks = array())
     {
-        // line 61
+        // line 49
         echo "            ";
     }
 
@@ -169,6 +145,6 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 
     public function getDebugInfo()
     {
-        return array (  157 => 61,  154 => 60,  146 => 62,  144 => 60,  140 => 58,  137 => 57,  128 => 52,  115 => 42,  111 => 41,  107 => 40,  103 => 39,  99 => 38,  80 => 21,  77 => 20,  63 => 9,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
+        return array (  133 => 49,  130 => 48,  122 => 50,  120 => 48,  116 => 46,  113 => 45,  104 => 40,  91 => 30,  87 => 29,  68 => 12,  65 => 11,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
     }
 }
