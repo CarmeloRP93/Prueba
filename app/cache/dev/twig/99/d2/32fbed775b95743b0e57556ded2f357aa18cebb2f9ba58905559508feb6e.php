@@ -38,6 +38,8 @@ class __TwigTemplate_99d232fbed775b95743b0e57556ded2f357aa18cebb2f9ba58905559508
     {
         echo "Vista de ";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "nombre", array()), "html", null, true);
+        echo " - ";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "cliente", array()), "html", null, true);
         echo " ";
     }
 
@@ -45,33 +47,60 @@ class __TwigTemplate_99d232fbed775b95743b0e57556ded2f357aa18cebb2f9ba58905559508
     public function block_contenido($context, array $blocks = array())
     {
         // line 4
-        echo "    <div>
-        <ul>
-            <h3> ";
+        echo "    <div class=\"text-center\">
+        <h3>
+            ";
         // line 6
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "nombre", array()), "html", null, true);
-        echo " </h3>
-            ";
-        // line 7
-        $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "rutinas", array()));
-        foreach ($context['_seq'] as $context["_key"] => $context["rutina"]) {
-            // line 8
-            echo "                <div>
-                    <li>";
-            // line 9
-            echo twig_escape_filter($this->env, $context["rutina"], "html", null, true);
-            echo "
-                    </li>
-                </div>
-            ";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['rutina'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 13
-        echo "        </ul>
+        echo " - ";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "cliente", array()), "html", null, true);
+        echo "
+            <small class=\"text-muted\">Abdomen</small>
+        </h3>
     </div>
+    
+    <div id=\"sesiondat\">
+        <div id=\"sesionfot\" style=\"margin-top: 14px;\">
+            <img src=\"";
+        // line 13
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/abdd.jpg"), "html", null, true);
+        echo "\" class=\"img-responsive center-block\" />        
+        </div>
+  
+        ";
+        // line 16
+        if (($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()) == "Validada")) {
+            // line 17
+            echo "        <div class=\"accionesesion text-center\" style=\"margin-left: 30px; margin-right: 10px;\">
+            <button style=\"height: 30px; width: 250px;\" class=\"btn btn-success col-sm-3 col-sm-offset-3\">Modificar sesion</button>
+            <button style=\"height: 30px; width: 250px;\" class=\"btn btn-danger col-sm-3 col-sm-offset-1\">Eliminar sesion </button>
+        </div>
+    ";
+        } else {
+            // line 22
+            echo "        <div class=\"text-center\">
+            <button style=\"height: 30px; width: 600px;\" class=\"btn btn-warning\">Sin validar</button>
+        </div>
+    ";
+        }
+        // line 26
+        echo "    
+        
+           <div class=\"row\">
+                    <div id=\"colizq\" class=\"col-md-4 col-md-offset-3\" >
+                        <h4>Monitor:</h4> <p>Jordan</p>
+                        <h4>Ejercicios:</h4> <p >Plancha dinámica, Elevación de piernas y Patadas de rana</p>
+                        <h4>Repeticiones:</h4> <p>3/Ejercicio</p>
+                        <h4>Material:</h4> <p>Nuestro propio cuerpo para completar esta efectiva sesion para el abdomen</p>
+                    </div>
+                    <div id=\"colder\" class=\"col-md-4\">
+                        <h4>Tiempo estimado:</h4> <p>40-45 minutos</p>
+                        <h4>Descanso entre ejercicios:</h4> <p>2-3 minutos</p>
+                        <h4>Objetivos:</h4> <p>Definir abdominales y tonificar el vientre </p>
+                    </div>
+           </div>
+    </div>
+            
 ";
     }
 
@@ -87,6 +116,6 @@ class __TwigTemplate_99d232fbed775b95743b0e57556ded2f357aa18cebb2f9ba58905559508
 
     public function getDebugInfo()
     {
-        return array (  73 => 13,  63 => 9,  60 => 8,  56 => 7,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  87 => 26,  81 => 22,  74 => 17,  72 => 16,  66 => 13,  54 => 6,  50 => 4,  47 => 3,  37 => 2,  11 => 1,);
     }
 }

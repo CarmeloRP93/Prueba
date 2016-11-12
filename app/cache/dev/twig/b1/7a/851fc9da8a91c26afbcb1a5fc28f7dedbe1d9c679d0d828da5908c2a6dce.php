@@ -73,6 +73,8 @@ class __TwigTemplate_b17a851fc9da8a91c26afbcb1a5fc28f7dedbe1d9c679d0d828da5908c2
             echo " - ";
             echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
             echo " - ";
+            echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "cliente", array()), "html", null, true);
+            echo " - ";
             echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "estado", array()), "html", null, true);
             echo " </a>
 ";
@@ -89,7 +91,9 @@ class __TwigTemplate_b17a851fc9da8a91c26afbcb1a5fc28f7dedbe1d9c679d0d828da5908c2
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 11
-        echo "
+        echo "<div class=\"accionesesion text-center\" style=\"margin-top:5px; margin-left: 5px\">
+        <button style=\"height: 30px; width: 200px;\" class=\"btn btn-success col-sm-1\">Crear sesion dedicada</button>
+    </div>
 ";
     }
 
@@ -105,6 +109,6 @@ class __TwigTemplate_b17a851fc9da8a91c26afbcb1a5fc28f7dedbe1d9c679d0d828da5908c2
 
     public function getDebugInfo()
     {
-        return array (  92 => 11,  67 => 9,  50 => 8,  46 => 6,  43 => 5,  37 => 4,  11 => 2,);
+        return array (  94 => 11,  67 => 9,  50 => 8,  46 => 6,  43 => 5,  37 => 4,  11 => 2,);
     }
 }

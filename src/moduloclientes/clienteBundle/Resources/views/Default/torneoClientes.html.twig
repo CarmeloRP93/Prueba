@@ -1,67 +1,69 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
 {% block title %}Vista de {{torneo.nombre}} {% endblock %}
 {% block contenido %}
-<div class="container">
-<h1>Detalles del {{torneo.nombre}}</h1>
-    {% if torneo.estado == "Inscripcion"%}
-        <form class="form-horizontal">
-            <div class="row container-fluid">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    <label class="control-label span7 text-left">Añadir miembros del equipo</label>
-                    <textarea class="form-control" rows="5"></textarea>
+    <div class="container">
+        <h1>Detalles del {{torneo.nombre}}</h1>
+        {% if torneo.estado == "Inscripcion"%}
+            <form class="form-horizontal">
+                <div class="row container-fluid">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <label class="control-label span7 text-left">Añadir miembros del equipo</label>
+                        <textarea class="form-control" rows="5"></textarea>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <label class="control-label span7 text-left">Delegado del equipo (Persona de contacto)</label>
+                        <input class="form-control" type="text" name="capitan"/><br>
+                        <label class="control-label span7 text-left">Nombre del equipo</label>
+                        <input class="form-control" type="text" name="capitan"/><br>
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn btn-primary">Registrar jugadores y equipo </button>
+                    </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    <label class="control-label span7 text-left">Delegado del equipo (Persona de contacto)</label>
-                    <input class="form-control" type="text" name="capitan"/><br>
-                    <label class="control-label span7 text-left">Nombre del equipo</label>
-                    <input class="form-control" type="text" name="capitan"/><br>
-                </div>
-                
-                <div class="text-center">
-                    <button class="btn btn-primary">Registrar jugadores y equipo </button>
-                </div>
+            </form>
+        {%endif%}
+        {% if torneo.estado == "Disponible"%}
+            <h3>Insertar tabla de liga del deporte en cuestión (fútbol,baloncesto, tenis)</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th> Posición </th>
+                            <th> Equipo  </th>
+                            <th> Puntos   </th>
+                            <th> Victorias </th>
+                            <th> Derrotas </th>
+                            <th> Empates  </th>
+                        </tr>
+                    </thead>
+                    {%for i in 1..16%} 
+                        <tr>
+                            <td>  {{i}}º  </td>
+                            <td>Equipo {{i}} </td>
+                            <td>   {{(15*3)-(i*2)}}   </td>
+                            <td>   {{(16-i)}}   </td>
+                            <td>   {{i-1}}   </td>
+                            <td>   {{0}}   </td>
+                        </tr>
+                    {%endfor%}
+                </table>
             </div>
-        </form>
-    {%endif%}
-    {% if torneo.estado == "Disponible"%}
-        <h3>Insertar tabla de liga</h3>
-            <table class="table-striped">
-                <tr>
-                    <th>Posición</th>
-                    <th>Equipo</th>
-                    <th>Puntos</th>
-                    <th>Ganados</th>
-                    <th>Perdidos</th>
-                    <th>Empatados</th>
-                    <th>G. a favor</th>
-                    <th>G. en contra</th>
-                </tr>
-                <tr>
-                    <td>1º</td>
-                    <td>Real Madrid</td>
-                    <td>5</td>
-                    <td>1</td>
-                    <td>5</td>
-                    <td>4</td>
-                    <td>0</td>
-                    <td>1</td>
-                </tr>
-            </table>
-    {%endif%}
-</div>
+        {%endif%}
+    </div>
     <div>
         <ul>
-        {%if torneo.estado == "Finalizado" %}
-            <h3>Resumen del {{torneo.nombre}}</h3>
-            {% for equipo in torneo.equipos %}
-                <div>
-                    <li>{{equipo}}
-                        <button>Posicion</button>
-                        <button>Datos del equipo</button>
-                    </li>
-                </div>
-            {% endfor %}
-        {%endif%}
+            {%if torneo.estado == "Finalizado" %}
+                <h3>Resumen del {{torneo.nombre}}</h3>
+                {% for equipo in torneo.equipos %}
+                    <div>
+                        <li>{{equipo}}
+                            <button>Posicion</button>
+                            <button>Datos del equipo</button>
+                        </li>
+                    </div>
+                {% endfor %}
+            {%endif%}
         </ul>
     </div>
 {% endblock %}
