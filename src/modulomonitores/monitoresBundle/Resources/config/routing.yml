@@ -1,19 +1,19 @@
 modulomonitores_monitores_homeMonitores:
     pattern:  /homeMonitores
-    defaults: { _controller: modulomonitoresmonitoresBundle:Default:homeMonitores }
+    defaults: { _controller: modulomonitoresmonitoresBundle:Home:homeMonitores }
     
 modulomonitores_monitores_sesionesMonitores:
     pattern:  /sesionesMonitores
-    defaults: { _controller: modulomonitoresmonitoresBundle:Default:sesionesMonitores }
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:sesionesMonitores }
     
 modulomonitores_monitores_sesionMonitores:
     pattern:  /sesionMonitores/{matricula}
-    defaults: { _controller: modulomonitoresmonitoresBundle:Default:sesionMonitores }    
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:sesionMonitores }    
 
 modulomonitores_monitores_sesionesDedicadas:
     pattern:  /sesionesDedicadas
-    defaults: { _controller: modulomonitoresmonitoresBundle:Default:sesionesDedicadas }    
+    defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:sesionesDedicadas }    
     
 modulomonitores_monitores_sesionDedicada:
     pattern:  /sesionDedicada/{matricula}
-    defaults: { _controller: modulomonitoresmonitoresBundle:Default:sesionDedicada } 
+    defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:sesionDedicada } 

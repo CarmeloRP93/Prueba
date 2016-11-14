@@ -1,50 +1,47 @@
 crivero_prueba_homepage:
     pattern:  /hello/{name}
-    defaults: { _controller: CriveroPruebaBundle:Default:index, name: "Pablo" }
+    defaults: { _controller: CriveroPruebaBundle:Home:index, name: "Pablo" }
 crivero_prueba_home:
     pattern:  /home
-    defaults: { _controller: CriveroPruebaBundle:Default:home }
+    defaults: { _controller: CriveroPruebaBundle:Home:home }
     
 crivero_prueba_clientes:
     pattern:  /clientes
-    defaults: { _controller: CriveroPruebaBundle:Default:clientes }
+    defaults: { _controller: CriveroPruebaBundle:Cliente:clientes }
     
 crivero_prueba_monitores:
     pattern:  /monitores
-    defaults: { _controller: CriveroPruebaBundle:Default:monitores }
+    defaults: { _controller: CriveroPruebaBundle:Monitor:monitores }
     
 crivero_prueba_cliente:
     pattern:  /cliente/{matricula}
-    defaults: { _controller: CriveroPruebaBundle:Default:cliente }
+    defaults: { _controller: CriveroPruebaBundle:Cliente:cliente }
     
 crivero_prueba_monitor:
     pattern:  /monitor/{matricula}
-    defaults: { _controller: CriveroPruebaBundle:Default:monitor }
+    defaults: { _controller: CriveroPruebaBundle:Monitor:monitor }
     
 crivero_prueba_canchas:
     pattern:  /canchas
-    defaults: { _controller: CriveroPruebaBundle:Default:canchas }
+    defaults: { _controller: CriveroPruebaBundle:Cancha:canchas }
 
 crivero_prueba_cancha:
     pattern:  /cancha/{matricula}
-    defaults: { _controller: CriveroPruebaBundle:Default:cancha }
+    defaults: { _controller: CriveroPruebaBundle:Cancha:cancha }
     
 crivero_prueba_torneos:
     pattern:  /torneos
-    defaults: { _controller: CriveroPruebaBundle:Default:torneos }
+    defaults: { _controller: CriveroPruebaBundle:Torneo:torneos }
 
 crivero_prueba_torneo:
     pattern:  /torneo/{matricula}
-    defaults: { _controller: CriveroPruebaBundle:Default:torneo }
+    defaults: { _controller: CriveroPruebaBundle:Torneo:torneo }
     
 crivero_prueba_sesiones:
     pattern:  /sesiones
-    defaults: { _controller: CriveroPruebaBundle:Default:sesiones }
+    defaults: { _controller: CriveroPruebaBundle:Sesion:sesiones }
 
 crivero_prueba_sesion:
     pattern:  /sesion/{matricula}
-    defaults: { _controller: CriveroPruebaBundle:Default:sesion }
+    defaults: { _controller: CriveroPruebaBundle:Sesion:sesion }
 
-crivero_prueba_soccer:
-    pattern:  /soccer
-    defaults: { _controller: CriveroPruebaBundle:Default:soccer }

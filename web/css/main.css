@@ -416,10 +416,12 @@ th {
   .table td,
   .table th {
     background-color: #fff !important;
+    text-align: center;
   }
   .table-bordered th,
   .table-bordered td {
     border: 1px solid #ddd !important;
+    text-align: center !important;
   }
 }
 @font-face {
@@ -2437,6 +2439,7 @@ caption {
 th {
   text-align: left;
 }
+
 .table {
   width: 100%;
   max-width: 100%;
@@ -2452,10 +2455,12 @@ th {
   line-height: 1.42857143;
   vertical-align: top;
   border-top: 1px solid #ddd;
+  text-align: center;
 }
 .table > thead > tr > th {
   vertical-align: bottom;
   border-bottom: 2px solid #ddd;
+  text-align: center;
 }
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
@@ -2489,10 +2494,12 @@ th {
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
   border: 1px solid #ddd;
+  text-align: center;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
   border-bottom-width: 2px;
+  text-align: center;
 }
 .table-striped > tbody > tr:nth-of-type(odd) {
   background-color: #f9f9f9;
@@ -2641,6 +2648,7 @@ table th[class*="col-"] {
   }
   .table-responsive > .table-bordered {
     border: 0;
+    
   }
   .table-responsive > .table-bordered > thead > tr > th:first-child,
   .table-responsive > .table-bordered > tbody > tr > th:first-child,

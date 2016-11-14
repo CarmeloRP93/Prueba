@@ -122,46 +122,46 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         // modulomonitores_monitores_homeMonitores
         if ($pathinfo === '/homeMonitores') {
-            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DefaultController::homeMonitoresAction',  '_route' => 'modulomonitores_monitores_homeMonitores',);
+            return array (  '_controller' => 'modulomonitoresmonitoresBundle:Home:homeMonitores',  '_route' => 'modulomonitores_monitores_homeMonitores',);
         }
 
         if (0 === strpos($pathinfo, '/sesion')) {
             // modulomonitores_monitores_sesionesMonitores
             if ($pathinfo === '/sesionesMonitores') {
-                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DefaultController::sesionesMonitoresAction',  '_route' => 'modulomonitores_monitores_sesionesMonitores',);
+                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::sesionesMonitoresAction',  '_route' => 'modulomonitores_monitores_sesionesMonitores',);
             }
 
             // modulomonitores_monitores_sesionMonitores
             if (0 === strpos($pathinfo, '/sesionMonitores') && preg_match('#^/sesionMonitores/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_sesionMonitores')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DefaultController::sesionMonitoresAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_sesionMonitores')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::sesionMonitoresAction',));
             }
 
             // modulomonitores_monitores_sesionesDedicadas
             if ($pathinfo === '/sesionesDedicadas') {
-                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DefaultController::sesionesDedicadasAction',  '_route' => 'modulomonitores_monitores_sesionesDedicadas',);
+                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DedicadaController::sesionesDedicadasAction',  '_route' => 'modulomonitores_monitores_sesionesDedicadas',);
             }
 
             // modulomonitores_monitores_sesionDedicada
             if (0 === strpos($pathinfo, '/sesionDedicada') && preg_match('#^/sesionDedicada/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_sesionDedicada')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DefaultController::sesionDedicadaAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_sesionDedicada')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DedicadaController::sesionDedicadaAction',));
             }
 
         }
 
         // moduloclientes_cliente_homeClientes
         if ($pathinfo === '/homeClientes') {
-            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::homeClientesAction',  '_route' => 'moduloclientes_cliente_homeClientes',);
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\HomeController::homeClientesAction',  '_route' => 'moduloclientes_cliente_homeClientes',);
         }
 
         if (0 === strpos($pathinfo, '/cancha')) {
             // moduloclientes_cliente_canchasClientes
             if ($pathinfo === '/canchasClientes') {
-                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::canchasClientesAction',  '_route' => 'moduloclientes_cliente_canchasClientes',);
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::canchasClientesAction',  '_route' => 'moduloclientes_cliente_canchasClientes',);
             }
 
             // moduloclientes_cliente_canchaClientes
             if (0 === strpos($pathinfo, '/canchaClientes') && preg_match('#^/canchaClientes/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_canchaClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::canchaClientesAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_canchaClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::canchaClientesAction',));
             }
 
         }
@@ -169,12 +169,12 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         if (0 === strpos($pathinfo, '/reserva')) {
             // moduloclientes_cliente_reservasClientes
             if ($pathinfo === '/reservasClientes') {
-                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::reservasClientesAction',  '_route' => 'moduloclientes_cliente_reservasClientes',);
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::reservasClientesAction',  '_route' => 'moduloclientes_cliente_reservasClientes',);
             }
 
             // moduloclientes_cliente_reservaClientes
             if (0 === strpos($pathinfo, '/reservaClientes') && preg_match('#^/reservaClientes/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_reservaClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::reservaClientesAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_reservaClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::reservaClientesAction',));
             }
 
         }
@@ -182,12 +182,12 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         if (0 === strpos($pathinfo, '/torneo')) {
             // moduloclientes_cliente_torneosClientes
             if ($pathinfo === '/torneosClientes') {
-                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::torneosClientesAction',  '_route' => 'moduloclientes_cliente_torneosClientes',);
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\TorneoController::torneosClientesAction',  '_route' => 'moduloclientes_cliente_torneosClientes',);
             }
 
             // moduloclientes_cliente_torneoClientes
             if (0 === strpos($pathinfo, '/torneoClientes') && preg_match('#^/torneoClientes/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_torneoClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::torneoClientesAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_torneoClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\TorneoController::torneoClientesAction',));
             }
 
         }
@@ -195,12 +195,12 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         if (0 === strpos($pathinfo, '/sesion')) {
             // moduloclientes_cliente_sesionesClientes
             if ($pathinfo === '/sesionesClientes') {
-                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::sesionesClientesAction',  '_route' => 'moduloclientes_cliente_sesionesClientes',);
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::sesionesClientesAction',  '_route' => 'moduloclientes_cliente_sesionesClientes',);
             }
 
             // moduloclientes_cliente_sesionClientes
             if (0 === strpos($pathinfo, '/sesionClientes') && preg_match('#^/sesionClientes/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_sesionClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\DefaultController::sesionClientesAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_sesionClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::sesionClientesAction',));
             }
 
         }
@@ -208,45 +208,45 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         if (0 === strpos($pathinfo, '/h')) {
             // crivero_prueba_homepage
             if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello(?:/(?P<name>[^/]++))?$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_homepage')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::indexAction',  'name' => 'Pablo',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_homepage')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\HomeController::indexAction',  'name' => 'Pablo',));
             }
 
             // crivero_prueba_home
             if ($pathinfo === '/home') {
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::homeAction',  '_route' => 'crivero_prueba_home',);
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\HomeController::homeAction',  '_route' => 'crivero_prueba_home',);
             }
 
         }
 
         // crivero_prueba_clientes
         if ($pathinfo === '/clientes') {
-            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::clientesAction',  '_route' => 'crivero_prueba_clientes',);
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ClienteController::clientesAction',  '_route' => 'crivero_prueba_clientes',);
         }
 
         // crivero_prueba_monitores
         if ($pathinfo === '/monitores') {
-            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::monitoresAction',  '_route' => 'crivero_prueba_monitores',);
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MonitorController::monitoresAction',  '_route' => 'crivero_prueba_monitores',);
         }
 
         // crivero_prueba_cliente
         if (0 === strpos($pathinfo, '/cliente') && preg_match('#^/cliente/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cliente')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::clienteAction',));
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cliente')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ClienteController::clienteAction',));
         }
 
         // crivero_prueba_monitor
         if (0 === strpos($pathinfo, '/monitor') && preg_match('#^/monitor/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_monitor')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::monitorAction',));
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_monitor')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MonitorController::monitorAction',));
         }
 
         if (0 === strpos($pathinfo, '/cancha')) {
             // crivero_prueba_canchas
             if ($pathinfo === '/canchas') {
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::canchasAction',  '_route' => 'crivero_prueba_canchas',);
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::canchasAction',  '_route' => 'crivero_prueba_canchas',);
             }
 
             // crivero_prueba_cancha
             if (preg_match('#^/cancha/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::canchaAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::canchaAction',));
             }
 
         }
@@ -254,106 +254,25 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         if (0 === strpos($pathinfo, '/torneo')) {
             // crivero_prueba_torneos
             if ($pathinfo === '/torneos') {
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::torneosAction',  '_route' => 'crivero_prueba_torneos',);
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\TorneoController::torneosAction',  '_route' => 'crivero_prueba_torneos',);
             }
 
             // crivero_prueba_torneo
             if (preg_match('#^/torneo/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_torneo')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::torneoAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_torneo')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\TorneoController::torneoAction',));
             }
 
         }
 
-        if (0 === strpos($pathinfo, '/s')) {
-            if (0 === strpos($pathinfo, '/sesion')) {
-                // crivero_prueba_sesiones
-                if ($pathinfo === '/sesiones') {
-                    return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::sesionesAction',  '_route' => 'crivero_prueba_sesiones',);
-                }
-
-                // crivero_prueba_sesion
-                if (preg_match('#^/sesion/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_sesion')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::sesionAction',));
-                }
-
+        if (0 === strpos($pathinfo, '/sesion')) {
+            // crivero_prueba_sesiones
+            if ($pathinfo === '/sesiones') {
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::sesionesAction',  '_route' => 'crivero_prueba_sesiones',);
             }
 
-            // crivero_prueba_soccer
-            if ($pathinfo === '/soccer') {
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\DefaultController::soccerAction',  '_route' => 'crivero_prueba_soccer',);
-            }
-
-        }
-
-        // _welcome
-        if (rtrim($pathinfo, '/') === '') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', '_welcome');
-            }
-
-            return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\WelcomeController::indexAction',  '_route' => '_welcome',);
-        }
-
-        if (0 === strpos($pathinfo, '/demo')) {
-            if (0 === strpos($pathinfo, '/demo/secured')) {
-                if (0 === strpos($pathinfo, '/demo/secured/log')) {
-                    if (0 === strpos($pathinfo, '/demo/secured/login')) {
-                        // _demo_login
-                        if ($pathinfo === '/demo/secured/login') {
-                            return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::loginAction',  '_route' => '_demo_login',);
-                        }
-
-                        // _security_check
-                        if ($pathinfo === '/demo/secured/login_check') {
-                            return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::securityCheckAction',  '_route' => '_security_check',);
-                        }
-
-                    }
-
-                    // _demo_logout
-                    if ($pathinfo === '/demo/secured/logout') {
-                        return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::logoutAction',  '_route' => '_demo_logout',);
-                    }
-
-                }
-
-                if (0 === strpos($pathinfo, '/demo/secured/hello')) {
-                    // acme_demo_secured_hello
-                    if ($pathinfo === '/demo/secured/hello') {
-                        return array (  'name' => 'World',  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::helloAction',  '_route' => 'acme_demo_secured_hello',);
-                    }
-
-                    // _demo_secured_hello
-                    if (preg_match('#^/demo/secured/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => '_demo_secured_hello')), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::helloAction',));
-                    }
-
-                    // _demo_secured_hello_admin
-                    if (0 === strpos($pathinfo, '/demo/secured/hello/admin') && preg_match('#^/demo/secured/hello/admin/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => '_demo_secured_hello_admin')), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::helloadminAction',));
-                    }
-
-                }
-
-            }
-
-            // _demo
-            if (rtrim($pathinfo, '/') === '/demo') {
-                if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', '_demo');
-                }
-
-                return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::indexAction',  '_route' => '_demo',);
-            }
-
-            // _demo_hello
-            if (0 === strpos($pathinfo, '/demo/hello') && preg_match('#^/demo/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => '_demo_hello')), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::helloAction',));
-            }
-
-            // _demo_contact
-            if ($pathinfo === '/demo/contact') {
-                return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::contactAction',  '_route' => '_demo_contact',);
+            // crivero_prueba_sesion
+            if (preg_match('#^/sesion/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_sesion')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::sesionAction',));
             }
 
         }
