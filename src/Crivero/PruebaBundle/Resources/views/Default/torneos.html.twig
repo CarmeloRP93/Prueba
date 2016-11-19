@@ -3,11 +3,7 @@
 {% block title %} Vista de Torneos {% endblock %}
 
 {% block contenido %}
-<div id="buscador">
-    <form>
-        <input type="search" name="torneo" placeholder="Buscar torneo"/>
-    </form>
-</div>
+
 <h1>Listado de Torneos</h1>
 {% for torneo in torneos %}
     <a href="{{url('crivero_prueba_torneo', {'matricula': torneo.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ torneo.matricula }} - {{ torneo.nombre }} - {{torneo.estado}}</a>

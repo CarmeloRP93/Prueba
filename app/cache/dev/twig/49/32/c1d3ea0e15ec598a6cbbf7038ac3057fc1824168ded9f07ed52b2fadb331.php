@@ -57,37 +57,55 @@ class __TwigTemplate_4932c1d3ea0e15ec598a6cbbf7038ac3057fc1824168ded9f07ed52b2fa
         <div class=\"usuarfot\">
             <img src=\"";
         // line 12
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/no-image-found.png"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl($this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "imagen", array())), "html", null, true);
         echo "\" style=\"float: left; width: 100%;\" />        
         </div>
         <div class=\"usuardat\">
             <div id=\"resersiones\">
-                
                 <div>
                     <h4>Sesiones: </h4> 
                     <ul id=\"sesiones\">
-                        <li>
+                       ";
+        // line 19
+        $context["sesiones"] = twig_split_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "sesiones", array()), "**");
+        // line 20
+        echo "                            ";
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable(range(0, (isset($context["sesiones"]) ? $context["sesiones"] : $this->getContext($context, "sesiones"))));
+        foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
+            // line 21
+            echo "                        <li>
                             <div class=\"acciones\">
                                 <button>Modificar</button>
                                 <button>Cancelar</button>
                             </div>
-                            <p>Bodycombat - 06/11/2016</p>
+                            <p>";
+            // line 26
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesiones"]) ? $context["sesiones"] : $this->getContext($context, "sesiones")), $context["i"], array(), "array"), "html", null, true);
+            echo "</p>
                         </li>
-                        <li>
-                            <div class=\"acciones\">
-                                <button>Modificar</button>
-                                <button>Cancelar</button>
-                            </div>
-                            <p>Zumba - 08/11/2016</p>
-                        </li>
-                    </ul>
+                            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 29
+        echo "                    </ul>
                 </div>
             </div>
-            <h4>Sexo: </h4> <p>Masculino</p>
-            <h4>F.Nacimiento: </h4> <p>08/10/1993</p>
-            <h4>Registro: </h4> <p>11/10/2016</p>
+            <h4>F.Nacimiento: </h4> <p>";
+        // line 32
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "fNacimiento", array()), "html", null, true);
+        echo "</p>
+            <h4>Registro: </h4> <p>";
+        // line 33
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "registro", array()), "html", null, true);
+        echo "</p>
+            <h4>Telefono: </h4> <p>";
+        // line 34
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "telefono", array()), "html", null, true);
+        echo "</p>
         </div>
-    </div>
     </div>
 ";
     }
@@ -104,6 +122,6 @@ class __TwigTemplate_4932c1d3ea0e15ec598a6cbbf7038ac3057fc1824168ded9f07ed52b2fa
 
     public function getDebugInfo()
     {
-        return array (  60 => 12,  55 => 10,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  106 => 34,  102 => 33,  98 => 32,  93 => 29,  84 => 26,  77 => 21,  72 => 20,  70 => 19,  60 => 12,  55 => 10,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }

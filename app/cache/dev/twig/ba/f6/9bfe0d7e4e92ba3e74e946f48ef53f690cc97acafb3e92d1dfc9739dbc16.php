@@ -43,16 +43,17 @@ class __TwigTemplate_baf69bfe0d7e4e92ba3e74e946f48ef53f690cc97acafb3e92d1dfc9739
     public function block_contenido($context, array $blocks = array())
     {
         // line 7
-        echo "<div id=\"buscador\">
-    <form>
-        <input type=\"search\" name=\"cliente\" placeholder=\"Buscar cliente\"/>
-    </form>
-</div>
-<h1>Listado de Clientes</h1>
+        echo "<h1>Listado de Clientes</h1>
+    <div class=\"nuevoCliente\">
+        <a href=\"";
+        // line 9
+        echo $this->env->getExtension('routing')->getPath("crivero_prueba_nuevo");
+        echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">Nuevo Cliente <span class=\"glyphicon glyphicon-plus\"></span></a>
+    </div>
 ";
-        // line 13
+        // line 11
         $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["clientes"]) ? $context["clientes"] : $this->getContext($context, "clientes")));
+        $context['_seq'] = twig_ensure_traversable((isset($context["usuarios"]) ? $context["usuarios"] : $this->getContext($context, "usuarios")));
         $context['loop'] = array(
           'parent' => $context['_parent'],
           'index0' => 0,
@@ -66,18 +67,24 @@ class __TwigTemplate_baf69bfe0d7e4e92ba3e74e946f48ef53f690cc97acafb3e92d1dfc9739
             $context['loop']['length'] = $length;
             $context['loop']['last'] = 1 === $length;
         }
-        foreach ($context['_seq'] as $context["_key"] => $context["cliente"]) {
-            // line 14
-            echo "    <a href=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_cliente", array("matricula" => $this->getAttribute($context["cliente"], "matricula", array()))), "html", null, true);
-            echo "\" class=\"fila ";
-            echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
-            echo "\"> ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["cliente"], "matricula", array()), "html", null, true);
-            echo " - ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["cliente"], "nombre", array()), "html", null, true);
-            echo " </a>
-";
+        foreach ($context['_seq'] as $context["_key"] => $context["usuario"]) {
+            // line 12
+            echo "    ";
+            if (($this->getAttribute($context["usuario"], "tipo", array()) == 2)) {
+                // line 13
+                echo "        <div>
+            <a href=\"";
+                // line 14
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_cliente", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
+                echo "\" class=\"fila ";
+                echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
+                echo "\"> ";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "nombre", array()), "html", null, true);
+                echo " </a>
+        </div>
+        
+    ";
+            }
             ++$context['loop']['index0'];
             ++$context['loop']['index'];
             $context['loop']['first'] = false;
@@ -88,9 +95,9 @@ class __TwigTemplate_baf69bfe0d7e4e92ba3e74e946f48ef53f690cc97acafb3e92d1dfc9739
             }
         }
         $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cliente'], $context['_parent'], $context['loop']);
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['usuario'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 16
+        // line 19
         echo "
 ";
     }
@@ -107,6 +114,6 @@ class __TwigTemplate_baf69bfe0d7e4e92ba3e74e946f48ef53f690cc97acafb3e92d1dfc9739
 
     public function getDebugInfo()
     {
-        return array (  94 => 16,  71 => 14,  54 => 13,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  101 => 19,  78 => 14,  75 => 13,  72 => 12,  55 => 11,  50 => 9,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
     }
 }

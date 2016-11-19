@@ -9,35 +9,29 @@
         </div>
         <h1>{{monitor.nombre}}</h1>
         <div class="usuarfot">
-            <img src="{{ asset('images/no-image-found.png') }}" style="float: left; width: 100%;" />        
+            <img src="{{ asset(monitor.imagen) }}" style="float: left; width: 100%;" />        
         </div>
         <div class="usuardat">
             <div id="resersiones">
-                
                 <div>
                     <h4>Sesiones: </h4> 
                     <ul id="sesiones">
+                       {% set sesiones=monitor.sesiones|split('**') %}
+                            {% for i in 0..sesiones %}
                         <li>
                             <div class="acciones">
                                 <button>Modificar</button>
                                 <button>Cancelar</button>
                             </div>
-                            <p>Bodycombat - 06/11/2016</p>
+                            <p>{{sesiones[i]}}</p>
                         </li>
-                        <li>
-                            <div class="acciones">
-                                <button>Modificar</button>
-                                <button>Cancelar</button>
-                            </div>
-                            <p>Zumba - 08/11/2016</p>
-                        </li>
+                            {% endfor %}
                     </ul>
                 </div>
             </div>
-            <h4>Sexo: </h4> <p>Masculino</p>
-            <h4>F.Nacimiento: </h4> <p>08/10/1993</p>
-            <h4>Registro: </h4> <p>11/10/2016</p>
+            <h4>F.Nacimiento: </h4> <p>{{monitor.fNacimiento}}</p>
+            <h4>Registro: </h4> <p>{{monitor.registro}}</p>
+            <h4>Telefono: </h4> <p>{{monitor.telefono}}</p>
         </div>
-    </div>
     </div>
 {% endblock %}

@@ -43,14 +43,10 @@ class __TwigTemplate_9e69d89dea4d95ef01bb64b8f45cd9158a925d45f76a54014a9e70b0111
     public function block_contenido($context, array $blocks = array())
     {
         // line 7
-        echo "<div id=\"buscador\">
-    <form>
-        <input type=\"search\" name=\"cancha\" placeholder=\"Buscar cancha\"/>
-    </form>
-</div>
+        echo "
 <h1>Listado de Canchas</h1>
 ";
-        // line 13
+        // line 9
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["canchas"]) ? $context["canchas"] : $this->getContext($context, "canchas")));
         $context['loop'] = array(
@@ -67,15 +63,13 @@ class __TwigTemplate_9e69d89dea4d95ef01bb64b8f45cd9158a925d45f76a54014a9e70b0111
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["cancha"]) {
-            // line 14
+            // line 10
             echo "    <a href=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_cancha", array("matricula" => $this->getAttribute($context["cancha"], "matricula", array()))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_cancha", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
             echo "\" class=\"fila ";
             echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
             echo "\"> ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "matricula", array()), "html", null, true);
-            echo " - ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "nombre", array()), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "tipo", array()), "html", null, true);
             echo " - ";
             echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
             echo " </a>
@@ -92,7 +86,7 @@ class __TwigTemplate_9e69d89dea4d95ef01bb64b8f45cd9158a925d45f76a54014a9e70b0111
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cancha'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 16
+        // line 12
         echo "
 ";
     }
@@ -109,6 +103,6 @@ class __TwigTemplate_9e69d89dea4d95ef01bb64b8f45cd9158a925d45f76a54014a9e70b0111
 
     public function getDebugInfo()
     {
-        return array (  96 => 16,  71 => 14,  54 => 13,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  90 => 12,  67 => 10,  50 => 9,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
     }
 }

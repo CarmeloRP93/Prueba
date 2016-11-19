@@ -37,7 +37,7 @@ class __TwigTemplate_8577c42927d1617caba1c63a0118b6175f8449d00ca9553eec1156a0333
     public function block_title($context, array $blocks = array())
     {
         echo "Vista de ";
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "nombre", array()), "html", null, true);
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "tipo", array()), "html", null, true);
         echo " ";
     }
 
@@ -50,7 +50,10 @@ class __TwigTemplate_8577c42927d1617caba1c63a0118b6175f8449d00ca9553eec1156a0333
     </div>
         
          <div class=\"text-center\">
-           <h4>Nombre de la cancha</h4>
+           <h4>";
+        // line 9
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "tipo", array()), "html", null, true);
+        echo "</h4>
         </div>
 
         <div class=\"col-md-6 col-xs-12\">
@@ -58,12 +61,12 @@ class __TwigTemplate_8577c42927d1617caba1c63a0118b6175f8449d00ca9553eec1156a0333
             <div class=\"text-center\">
                 <img src=\"";
         // line 15
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/cancha_de_marmolejo.jpg"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "imagen", array())), "html", null, true);
         echo "\" width=\"180px\" class=\"img-rounded\"/><br>
 
                 <br>";
         // line 17
-        if (($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()) == "Disponible")) {
+        if (($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()) == "disponible")) {
             // line 18
             echo "                      <div class=\"text-center\">
                         <button class=\"btn btn-primary\">Reservar</button>
@@ -84,27 +87,18 @@ class __TwigTemplate_8577c42927d1617caba1c63a0118b6175f8449d00ca9553eec1156a0333
         <div class=\"col-md-6 col-xs-12\">
             <div class=\"text-center\">
                 <label class=\"control-label span7 text-left\">Horario: </label>
-                <label class=\"control-label span7 text-right\">15:00 - 18:30 </label>
-            </div>
-
-            <div class=\"text-center\">
-                <label class=\"control-label span7 text-left\">Dimensiones: </label>
-                <label class=\"control-label span7 text-right\">100 m2</label>
-            </div>
-
-            <div class=\"text-center\">
-                <label class=\"control-label span7 text-left\">Mínimo de personas para jugar: </label>
-                <label class=\"control-label span7 text-right\">20</label>
+                <label class=\"control-label span7 text-right\">";
+        // line 33
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "horario", array()), "html", null, true);
+        echo " </label>
             </div>
 
             <div class=\"text-center\">
                 <label class=\"control-label span7 text-left\">Valoracion: </label>
-                <label class=\" text-right\">5.0</label>
-            </div>
-
-            <div class=\"text-center\">
-                <label class=\"control-label span7 text-left\">Dirección: </label>
-                <label class=\"control-label span7 text-right\">Calle Desengaño, 21</label>
+                <label class=\" text-right\">";
+        // line 38
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "valoracion", array()), "html", null, true);
+        echo "</label>
             </div><br>
 
             <div class=\"text-center\">
@@ -128,6 +122,6 @@ class __TwigTemplate_8577c42927d1617caba1c63a0118b6175f8449d00ca9553eec1156a0333
 
     public function getDebugInfo()
     {
-        return array (  80 => 26,  74 => 22,  68 => 18,  66 => 17,  61 => 15,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  100 => 38,  92 => 33,  83 => 26,  77 => 22,  71 => 18,  69 => 17,  64 => 15,  55 => 9,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

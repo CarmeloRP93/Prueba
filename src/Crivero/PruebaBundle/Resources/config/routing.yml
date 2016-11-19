@@ -14,11 +14,26 @@ crivero_prueba_monitores:
     defaults: { _controller: CriveroPruebaBundle:Monitor:monitores }
     
 crivero_prueba_cliente:
-    pattern:  /cliente/{matricula}
+    pattern:  /cliente/{id}
     defaults: { _controller: CriveroPruebaBundle:Cliente:cliente }
+
+crivero_prueba_nuevo:
+    pattern:  /nuevo
+    defaults: { _controller: CriveroPruebaBundle:Cliente:nuevo }
+
+crivero_prueba_crear:
+    pattern:  /crear
+    defaults: { _controller: CriveroPruebaBundle:Cliente:crear }
+    requirements:
+        _method:  POST|GET
+
+crivero_prueba_eliminar:
+    pattern:  /eliminar/{id}
+    defaults: { _controller: CriveroPruebaBundle:Cliente:eliminar }
+    methods: [POST, DELETE]
     
 crivero_prueba_monitor:
-    pattern:  /monitor/{matricula}
+    pattern:  /monitor/{id}
     defaults: { _controller: CriveroPruebaBundle:Monitor:monitor }
     
 crivero_prueba_canchas:
@@ -26,7 +41,7 @@ crivero_prueba_canchas:
     defaults: { _controller: CriveroPruebaBundle:Cancha:canchas }
 
 crivero_prueba_cancha:
-    pattern:  /cancha/{matricula}
+    pattern:  /cancha/{id}
     defaults: { _controller: CriveroPruebaBundle:Cancha:cancha }
     
 crivero_prueba_torneos:
@@ -42,6 +57,8 @@ crivero_prueba_sesiones:
     defaults: { _controller: CriveroPruebaBundle:Sesion:sesiones }
 
 crivero_prueba_sesion:
-    pattern:  /sesion/{matricula}
+    pattern:  /sesion/{id}
     defaults: { _controller: CriveroPruebaBundle:Sesion:sesion }
+    
+    
 

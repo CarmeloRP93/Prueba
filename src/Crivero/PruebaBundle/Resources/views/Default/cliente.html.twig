@@ -5,56 +5,53 @@
     <div class="usuardesc">
         <div class="accionesExclus">
             <button>Enviar mensaje</button>
-            <button>Dar de baja</button>
+            <p>{{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form })}}</p>
         </div>
         <h1>{{cliente.nombre}}</h1>
         <div class="usuarfot">
-            <img src="{{ asset('images/no-image-found.png') }}" style="float: left; width: 100%;" />        
+            <img src="{{ asset(cliente.imagen) }}" style="float: left; width: 100%;" />        
         </div>
         <div class="usuardat">
             <div id="resersiones">
+                {% if cliente.reservas|length > 0 %}
                 <div>
                     <h4>Reservas: </h4> 
                     <ul id="reservas">
+                            {% set reservas=cliente.reservas|split('**') %}
+                            {% for i in 0..reservas %}
                         <li>
                             <div class="acciones">
                                 <button>Modificar</button>
                                 <button>Cancelar</button>
                             </div>
-                            <p>Cancha 01 - 01/11/2016</p>
+                            <p>{{reservas[i]}}</p>
                         </li>
-                        <li>
-                            <div class="acciones">
-                                <button>Modificar</button>
-                                <button>Cancelar</button>
-                            </div>
-                            <p>Cancha 02 - 05/11/2016</p>
-                        </li>
+                            {% endfor %}
                     </ul>
                 </div>
+                {% endif %}
+                
+                {% if cliente.sesiones|length > 0 %}
                 <div>
                     <h4>Sesiones: </h4> 
                     <ul id="sesiones">
+                        {% set sesiones=cliente.sesiones|split('**') %}
+                            {% for i in 0..sesiones %}
                         <li>
                             <div class="acciones">
                                 <button>Modificar</button>
                                 <button>Cancelar</button>
                             </div>
-                            <p>Bodycombat - 06/11/2016</p>
+                            <p>{{sesiones[i]}}</p>
                         </li>
-                        <li>
-                            <div class="acciones">
-                                <button>Modificar</button>
-                                <button>Cancelar</button>
-                            </div>
-                            <p>Zumba - 08/11/2016</p>
-                        </li>
+                            {% endfor %}
                     </ul>
                 </div>
+                {% endif %}
             </div>
-            <h4>Sexo: </h4> <p>Masculino</p>
-            <h4>F.Nacimiento: </h4> <p>08/10/1993</p>
-            <h4>Registro: </h4> <p>11/10/2016</p>
+            <h4>F.Nacimiento: </h4> <p>{{cliente.fNacimiento}}</p>
+            <h4>Registro: </h4> <p>{{cliente.registro|date('d/m/Y H:i')}}</p>
+            <h4>Telefono: </h4> <p>{{cliente.telefono}}</p>
         </div>
     </div>
     </div>

@@ -43,14 +43,10 @@ class __TwigTemplate_46f9ed36e174d6bfda0832ca6ce5401485751586870c0adca69bbdcec2b
     public function block_contenido($context, array $blocks = array())
     {
         // line 6
-        echo "<div id=\"buscador\">
-    <form>
-        <input type=\"search\" name=\"torneo\" placeholder=\"Buscar torneo\"/>
-    </form>
-</div>
+        echo "
 <h1>Listado de Torneos</h1>
 ";
-        // line 12
+        // line 8
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["torneos"]) ? $context["torneos"] : $this->getContext($context, "torneos")));
         $context['loop'] = array(
@@ -67,7 +63,7 @@ class __TwigTemplate_46f9ed36e174d6bfda0832ca6ce5401485751586870c0adca69bbdcec2b
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["torneo"]) {
-            // line 13
+            // line 9
             echo "    <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_torneo", array("matricula" => $this->getAttribute($context["torneo"], "matricula", array()))), "html", null, true);
             echo "\" class=\"fila ";
@@ -92,7 +88,7 @@ class __TwigTemplate_46f9ed36e174d6bfda0832ca6ce5401485751586870c0adca69bbdcec2b
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['torneo'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 15
+        // line 11
         echo "
 ";
     }
@@ -109,6 +105,6 @@ class __TwigTemplate_46f9ed36e174d6bfda0832ca6ce5401485751586870c0adca69bbdcec2b
 
     public function getDebugInfo()
     {
-        return array (  96 => 15,  71 => 13,  54 => 12,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  92 => 11,  67 => 9,  50 => 8,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

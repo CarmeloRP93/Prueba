@@ -4,14 +4,10 @@
 {% block title %} Vista de Sesiones {% endblock %}
 
 {% block contenido %}
-<div id="buscador">
-    <form>
-        <input type="search" name="sesion" placeholder="Buscar sesion"/>
-    </form>
-</div>
+
 <h1>Listado de Sesiones</h1>
 {% for sesion in sesiones %}
-    <a href="{{url('crivero_prueba_sesion', {'matricula': sesion.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ sesion.matricula }} - {{ sesion.nombre }} - {{ sesion.estado }}</a>
+    <a href="{{url('crivero_prueba_sesion', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{sesion.id}}: {{ sesion.nombre }} - {{ sesion.estado }}</a>
 {% endfor %}
 
 {% endblock %}

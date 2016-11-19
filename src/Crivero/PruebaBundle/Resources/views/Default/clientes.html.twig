@@ -4,14 +4,17 @@
 {% block title %} Vista de Clientes {% endblock %}
 
 {% block contenido %}
-<div id="buscador">
-    <form>
-        <input type="search" name="cliente" placeholder="Buscar cliente"/>
-    </form>
-</div>
 <h1>Listado de Clientes</h1>
-{% for cliente in clientes %}
-    <a href="{{url('crivero_prueba_cliente', {'matricula': cliente.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ cliente.matricula }} - {{ cliente.nombre }} </a>
+    <div class="nuevoCliente">
+        <a href="{{path('crivero_prueba_nuevo')}}" class="btn btn-success" style="height: 30px; width: 150px;">Nuevo Cliente <span class="glyphicon glyphicon-plus"></span></a>
+    </div>
+{% for usuario in usuarios %}
+    {% if usuario.tipo==2 %}
+        <div>
+            <a href="{{url('crivero_prueba_cliente', {'id': usuario.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ usuario.nombre }} </a>
+        </div>
+        
+    {% endif %}
 {% endfor %}
 
 {% endblock %}

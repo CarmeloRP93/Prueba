@@ -43,14 +43,10 @@ class __TwigTemplate_c1f45e323d9a32191de182f8e8607ca67573ae047a5ac0aa37a6b34765b
     public function block_contenido($context, array $blocks = array())
     {
         // line 7
-        echo "<div id=\"buscador\">
-    <form>
-        <input type=\"search\" name=\"sesion\" placeholder=\"Buscar sesion\"/>
-    </form>
-</div>
+        echo "
 <h1>Listado de Sesiones</h1>
 ";
-        // line 13
+        // line 9
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["sesiones"]) ? $context["sesiones"] : $this->getContext($context, "sesiones")));
         $context['loop'] = array(
@@ -67,14 +63,14 @@ class __TwigTemplate_c1f45e323d9a32191de182f8e8607ca67573ae047a5ac0aa37a6b34765b
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
-            // line 14
+            // line 10
             echo "    <a href=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_sesion", array("matricula" => $this->getAttribute($context["sesion"], "matricula", array()))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_sesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
             echo "\" class=\"fila ";
             echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
-            echo "\"> ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "matricula", array()), "html", null, true);
-            echo " - ";
+            echo "\"> Sesion ";
+            echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "id", array()), "html", null, true);
+            echo ": ";
             echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
             echo " - ";
             echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "estado", array()), "html", null, true);
@@ -92,7 +88,7 @@ class __TwigTemplate_c1f45e323d9a32191de182f8e8607ca67573ae047a5ac0aa37a6b34765b
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 16
+        // line 12
         echo "
 ";
     }
@@ -109,6 +105,6 @@ class __TwigTemplate_c1f45e323d9a32191de182f8e8607ca67573ae047a5ac0aa37a6b34765b
 
     public function getDebugInfo()
     {
-        return array (  96 => 16,  71 => 14,  54 => 13,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  92 => 12,  67 => 10,  50 => 9,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
     }
 }
