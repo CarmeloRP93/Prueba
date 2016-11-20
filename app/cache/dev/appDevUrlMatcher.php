@@ -199,7 +199,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
 
             // moduloclientes_cliente_sesionClientes
-            if (0 === strpos($pathinfo, '/sesionClientes') && preg_match('#^/sesionClientes/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
+            if (0 === strpos($pathinfo, '/sesionClientes') && preg_match('#^/sesionClientes/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_sesionClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::sesionClientesAction',));
             }
 
@@ -249,16 +249,30 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_crivero_prueba_crear:
 
-        // crivero_prueba_eliminar
-        if (0 === strpos($pathinfo, '/eliminar') && preg_match('#^/eliminar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
-                $allow = array_merge($allow, array('POST', 'DELETE'));
-                goto not_crivero_prueba_eliminar;
-            }
+        if (0 === strpos($pathinfo, '/eliminar')) {
+            // crivero_prueba_eliminar
+            if (preg_match('#^/eliminar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                    $allow = array_merge($allow, array('POST', 'DELETE'));
+                    goto not_crivero_prueba_eliminar;
+                }
 
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_eliminar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ClienteController::eliminarAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_eliminar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ClienteController::eliminarAction',));
+            }
+            not_crivero_prueba_eliminar:
+
+            // crivero_prueba_eliminarMonitor
+            if (0 === strpos($pathinfo, '/eliminarMonitor') && preg_match('#^/eliminarMonitor/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                    $allow = array_merge($allow, array('POST', 'DELETE'));
+                    goto not_crivero_prueba_eliminarMonitor;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_eliminarMonitor')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MonitorController::eliminarMonitorAction',));
+            }
+            not_crivero_prueba_eliminarMonitor:
+
         }
-        not_crivero_prueba_eliminar:
 
         // crivero_prueba_monitor
         if (0 === strpos($pathinfo, '/monitor') && preg_match('#^/monitor/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {

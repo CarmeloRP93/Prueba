@@ -27,7 +27,7 @@ class __TwigTemplate_3bddeff0ccb739486b463191cd86a9d592d5701ec315f6bbfb47c3b4cdc
         // line 4
         echo "Eliminar usuario";
         echo "\" class=\"btn btn-danger\" 
-           onclick=\"return confirm('Estas seguro?')\" >
+           onclick=\"return confirm('¿Estas seguro?')\" >
 
 ";
         // line 7

@@ -3,6 +3,7 @@
 namespace Crivero\PruebaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -15,7 +16,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity("email")
  * @ORM\HasLifecycleCallbacks()
  */
-class Usuarios
+
+class Usuarios implements UserInterface
 {
     /**
      * @var integer
@@ -341,4 +343,21 @@ class Usuarios
     {
         return $this->telefono;
     }
+
+    public function eraseCredentials() {
+        
+    }
+
+    public function getRoles() {
+        
+    }
+
+    public function getSalt() {
+        
+    }
+
+    public function getUsername() {
+        
+    }
+
 }

@@ -2699,10 +2699,10 @@
     </service>
     <service id="security.encoder_factory" class="Symfony\Component\Security\Core\Encoder\EncoderFactory">
       <argument type="collection">
-        <argument key="Symfony\Component\Security\Core\User\User" type="collection">
-          <argument key="class">%security.encoder.plain.class%</argument>
+        <argument key="Crivero\PruebaBundle\Entity\Usuarios" type="collection">
+          <argument key="class">%security.encoder.bcrypt.class%</argument>
           <argument key="arguments" type="collection">
-            <argument>false</argument>
+            <argument>12</argument>
           </argument>
         </argument>
       </argument>

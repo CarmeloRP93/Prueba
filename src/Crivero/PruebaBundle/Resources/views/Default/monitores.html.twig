@@ -12,5 +12,8 @@
         <a href="{{url('crivero_prueba_monitor', {'id': usuario.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ usuario.nombre }} </a>
     {% endif %}
 {% endfor %}
+ <div class="nuevoUsuario">
+        <a href="{{path('crivero_prueba_nuevo')}}" class="btn btn-success" style="height: 30px; width: 150px;">Nuevo Usuario <span class="glyphicon glyphicon-plus"></span></a>
+    </div>
 
 {% endblock %}

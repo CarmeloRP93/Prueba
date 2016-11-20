@@ -1,13 +1,9 @@
-{# empty Twig template #}
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 
 {% block title %} Vista de Clientes {% endblock %}
 
 {% block contenido %}
 <h1>Listado de Clientes</h1>
-    <div class="nuevoCliente">
-        <a href="{{path('crivero_prueba_nuevo')}}" class="btn btn-success" style="height: 30px; width: 150px;">Nuevo Cliente <span class="glyphicon glyphicon-plus"></span></a>
-    </div>
 {% for usuario in usuarios %}
     {% if usuario.tipo==2 %}
         <div>
@@ -16,5 +12,8 @@
         
     {% endif %}
 {% endfor %}
+    <div class="nuevoUsuario">
+        <a href="{{path('crivero_prueba_nuevo')}}" class="btn btn-success" style="height: 30px; width: 150px;">Nuevo Usuario <span class="glyphicon glyphicon-plus"></span></a>
+    </div>
 
 {% endblock %}

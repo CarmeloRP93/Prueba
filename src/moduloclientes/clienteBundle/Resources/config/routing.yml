@@ -23,5 +23,5 @@ moduloclientes_cliente_sesionesClientes:
     pattern:  /sesionesClientes
     defaults: { _controller: moduloclientesclienteBundle:Sesion:sesionesClientes }
 moduloclientes_cliente_sesionClientes:
-    pattern:  /sesionClientes/{matricula}
+    pattern:  /sesionClientes/{id}
     defaults: { _controller: moduloclientesclienteBundle:Sesion:sesionClientes }

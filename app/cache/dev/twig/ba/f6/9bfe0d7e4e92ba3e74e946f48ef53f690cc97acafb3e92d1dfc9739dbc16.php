@@ -7,12 +7,12 @@ class __TwigTemplate_baf69bfe0d7e4e92ba3e74e946f48ef53f690cc97acafb3e92d1dfc9739
     {
         parent::__construct($env);
 
-        // line 2
+        // line 1
         try {
             $this->parent = $this->env->loadTemplate("CriveroPruebaBundle::main.html.twig");
         } catch (Twig_Error_Loader $e) {
             $e->setTemplateFile($this->getTemplateName());
-            $e->setTemplateLine(2);
+            $e->setTemplateLine(1);
 
             throw $e;
         }
@@ -33,25 +33,19 @@ class __TwigTemplate_baf69bfe0d7e4e92ba3e74e946f48ef53f690cc97acafb3e92d1dfc9739
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 4
+    // line 3
     public function block_title($context, array $blocks = array())
     {
         echo " Vista de Clientes ";
     }
 
-    // line 6
+    // line 5
     public function block_contenido($context, array $blocks = array())
     {
-        // line 7
+        // line 6
         echo "<h1>Listado de Clientes</h1>
-    <div class=\"nuevoCliente\">
-        <a href=\"";
-        // line 9
-        echo $this->env->getExtension('routing')->getPath("crivero_prueba_nuevo");
-        echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">Nuevo Cliente <span class=\"glyphicon glyphicon-plus\"></span></a>
-    </div>
 ";
-        // line 11
+        // line 7
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["usuarios"]) ? $context["usuarios"] : $this->getContext($context, "usuarios")));
         $context['loop'] = array(
@@ -68,13 +62,13 @@ class __TwigTemplate_baf69bfe0d7e4e92ba3e74e946f48ef53f690cc97acafb3e92d1dfc9739
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["usuario"]) {
-            // line 12
+            // line 8
             echo "    ";
             if (($this->getAttribute($context["usuario"], "tipo", array()) == 2)) {
-                // line 13
+                // line 9
                 echo "        <div>
             <a href=\"";
-                // line 14
+                // line 10
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_cliente", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
                 echo "\" class=\"fila ";
                 echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
@@ -97,8 +91,14 @@ class __TwigTemplate_baf69bfe0d7e4e92ba3e74e946f48ef53f690cc97acafb3e92d1dfc9739
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['usuario'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 19
-        echo "
+        // line 15
+        echo "    <div class=\"nuevoUsuario\">
+        <a href=\"";
+        // line 16
+        echo $this->env->getExtension('routing')->getPath("crivero_prueba_nuevo");
+        echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">Nuevo Usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
+    </div>
+
 ";
     }
 
@@ -114,6 +114,6 @@ class __TwigTemplate_baf69bfe0d7e4e92ba3e74e946f48ef53f690cc97acafb3e92d1dfc9739
 
     public function getDebugInfo()
     {
-        return array (  101 => 19,  78 => 14,  75 => 13,  72 => 12,  55 => 11,  50 => 9,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  98 => 16,  95 => 15,  72 => 10,  69 => 9,  66 => 8,  49 => 7,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

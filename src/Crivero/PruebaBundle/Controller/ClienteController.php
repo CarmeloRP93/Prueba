@@ -43,6 +43,10 @@ class ClienteController extends Controller
       
       if($form->isValid())
       {
+        $password = $form->get('password')->getData();
+        $encoded= password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+        $usuario->setPassword($encoded);
+          
         $em=$this->getDoctrine()->getManager();
         $em->persist($usuario);
         $em->flush();

@@ -4,14 +4,9 @@
 {% block title %} Vista de entrenamiento {% endblock %}
                
 {% block contenido %}
-<div id="buscador">
-    <form>
-        <input type="search" name="sesion" placeholder="Buscar sesion"/>
-    </form>
-</div>
 <h1>Listado de entrenamiento</h1>
 {% for sesion in sesiones %}
-    <a href="{{url('moduloclientes_cliente_sesionClientes', {'matricula': sesion.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ sesion.matricula }} - {{ sesion.nombre }} - {{ sesion.estado}} </a>
+    <a href="{{url('moduloclientes_cliente_sesionClientes', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{sesion.id}}: {{ sesion.nombre }} - {{ sesion.estadoCliente}} </a>
 {% endfor %}
 
 {% endblock %}

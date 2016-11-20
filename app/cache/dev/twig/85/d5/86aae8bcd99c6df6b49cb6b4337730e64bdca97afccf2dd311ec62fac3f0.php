@@ -89,7 +89,13 @@ class __TwigTemplate_85d586aae8bcd99c6df6b49cb6b4337730e64bdca97afccf2dd311ec62f
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['usuario'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 15
-        echo "
+        echo " <div class=\"nuevoUsuario\">
+        <a href=\"";
+        // line 16
+        echo $this->env->getExtension('routing')->getPath("crivero_prueba_nuevo");
+        echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">Nuevo Usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
+    </div>
+
 ";
     }
 
@@ -105,6 +111,6 @@ class __TwigTemplate_85d586aae8bcd99c6df6b49cb6b4337730e64bdca97afccf2dd311ec62f
 
     public function getDebugInfo()
     {
-        return array (  92 => 15,  70 => 12,  67 => 11,  50 => 10,  46 => 8,  43 => 7,  37 => 5,  11 => 3,);
+        return array (  95 => 16,  92 => 15,  70 => 12,  67 => 11,  50 => 10,  46 => 8,  43 => 7,  37 => 5,  11 => 3,);
     }
 }

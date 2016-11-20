@@ -31,6 +31,11 @@ crivero_prueba_eliminar:
     pattern:  /eliminar/{id}
     defaults: { _controller: CriveroPruebaBundle:Cliente:eliminar }
     methods: [POST, DELETE]
+
+crivero_prueba_eliminarMonitor:
+    pattern:  /eliminarMonitor/{id}
+    defaults: { _controller: CriveroPruebaBundle:Monitor:eliminarMonitor }
+    methods: [POST, DELETE]
     
 crivero_prueba_monitor:
     pattern:  /monitor/{id}

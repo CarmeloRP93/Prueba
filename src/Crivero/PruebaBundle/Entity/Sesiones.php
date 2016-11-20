@@ -27,6 +27,14 @@ class Sesiones
      * @ORM\Column(name="monitor", type="string", length=200)
      */
     private $monitor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cliente", type="string", length=200, nullable=true)
+     */
+    private $cliente;
+    
     /**
      * @var string
      *
@@ -79,6 +87,13 @@ class Sesiones
     /**
      * @var string
      *
+     * @ORM\Column(name="estadoCliente", type="string", length=200)
+     */
+    private $estadoCliente;
+    
+    /**
+     * @var string
+     *
      * @ORM\Column(name="objetivo", type="string", length=255)
      */
     private $objetivo;
@@ -115,6 +130,29 @@ class Sesiones
     public function getMonitor()
     {
         return $this->monitor;
+    }
+    
+    /**
+     * Set cliente
+     *
+     * @param string $cliente
+     * @return Sesiones
+     */
+    public function setCliente($cliente)
+    {
+        $this->cliente = $cliente;
+
+        return $this;
+    }
+
+    /**
+     * Get cliente
+     *
+     * @return string 
+     */
+    public function getCliente()
+    {
+        return $this->cliente;
     }
     
     /**
@@ -276,6 +314,30 @@ class Sesiones
     {
         return $this->estado;
     }
+    
+    /**
+     * Set estadoCliente
+     *
+     * @param string $estadoCliente
+     * @return Sesiones
+     */
+    public function setEstadoCliente($estadoCliente)
+    {
+        $this->estadoCliente = $estadoCliente;
+
+        return $this;
+    }
+
+    /**
+     * Get estadoCliente
+     *
+     * @return string 
+     */
+    public function getEstadoCliente()
+    {
+        return $this->estadoCliente;
+    }
+    
     /**
      * Set objetivo
      *
