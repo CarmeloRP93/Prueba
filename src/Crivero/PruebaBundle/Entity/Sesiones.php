@@ -3,6 +3,7 @@
 namespace Crivero\PruebaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Sesiones
@@ -25,6 +26,7 @@ class Sesiones
      * @var string
      *
      * @ORM\Column(name="monitor", type="string", length=200)
+     * @Assert\NotBlank()
      */
     private $monitor;
 
@@ -39,6 +41,7 @@ class Sesiones
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=200)
+     * @Assert\NotBlank()
      */
     private $nombre;
 
@@ -46,6 +49,7 @@ class Sesiones
      * @var string
      *
      * @ORM\Column(name="imagen", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $imagen;
 
@@ -53,13 +57,15 @@ class Sesiones
      * @var string
      *
      * @ORM\Column(name="ejercicios", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $ejercicios;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="repeticiones", type="string", length=255)
+     * @ORM\Column(name="repeticiones", type="integer")
+     * @Assert\NotBlank()
      */
     private $repeticiones;
 
@@ -67,6 +73,7 @@ class Sesiones
      * @var integer
      *
      * @ORM\Column(name="duracion", type="integer")
+     * @Assert\NotBlank()
      */
     private $duracion;
   
@@ -74,6 +81,7 @@ class Sesiones
      * @var integer
      *
      * @ORM\Column(name="descanso", type="integer")
+     * @Assert\NotBlank()
      */
     private $descanso;
 
@@ -95,6 +103,7 @@ class Sesiones
      * @var string
      *
      * @ORM\Column(name="objetivo", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $objetivo;
 
@@ -227,7 +236,7 @@ class Sesiones
     /**
      * Set repeticiones
      *
-     * @param string $repeticiones
+     * @param integer $repeticiones
      * @return Sesiones
      */
     public function setRepeticiones($repeticiones)
@@ -240,7 +249,7 @@ class Sesiones
     /**
      * Get repeticiones
      *
-     * @return string 
+     * @return integer 
      */
     public function getRepeticiones()
     {

@@ -1,11 +1,14 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
-
-{% block title %}Vista de {{sesion.nombre}} {% endblock %}
+        {%    set nombre = sesion.nombre %}
+        {% if sesion.cliente!=null %}
+        {%    set nombre = sesion.cliente %}
+        {% endif %}
+{% block title %}Vista de {{nombre}} {% endblock %}
 {% block contenido %}
     <div class="text-center">
         <h3>
             Sesion {{sesion.id}}
-            <small class="text-muted">{{sesion.nombre}}</small>
+            <small class="text-muted">{{nombre}}</small>
         </h3>
     </div>
     
@@ -14,7 +17,7 @@
             <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" />        
         </div>
   
-    {% if sesion.estado == "Solicitud Presentada" %}
+    {% if sesion.estado == "pendiente" %}
         <div class="accionesesion text-center" style="margin-left: 18px; margin-right: 18px;">
             <button style="height: 30px; width: 250px;" class="btn btn-success col-sm-3 col-sm-offset-3">Aceptar Solicitud</button>
             <button style="height: 30px; width: 250px;" class="btn btn-danger col-sm-3 col-sm-offset-1">Rechazar Solicitud </button>

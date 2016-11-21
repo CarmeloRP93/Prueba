@@ -7,7 +7,7 @@ modulomonitores_monitores_sesionesMonitores:
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:sesionesMonitores }
     
 modulomonitores_monitores_sesionMonitores:
-    pattern:  /sesionMonitores/{matricula}
+    pattern:  /sesionMonitores/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:sesionMonitores }    
 
 modulomonitores_monitores_sesionesDedicadas:
@@ -15,5 +15,14 @@ modulomonitores_monitores_sesionesDedicadas:
     defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:sesionesDedicadas }    
     
 modulomonitores_monitores_sesionDedicada:
-    pattern:  /sesionDedicada/{matricula}
+    pattern:  /sesionDedicada/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:sesionDedicada } 
+    
+modulomonitores_monitores_nuevaSesion:
+    pattern:  /nuevaSesion
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:nuevaSesion }
+modulomonitores_monitores_crearSesion:
+    pattern:  /crearSesion
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:crearSesion }
+    requirements:
+        _method:  POST|GET

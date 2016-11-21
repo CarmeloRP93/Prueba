@@ -69,7 +69,7 @@ class __TwigTemplate_99d232fbed775b95743b0e57556ded2f357aa18cebb2f9ba58905559508
   
         ";
         // line 16
-        if (($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()) == "Validada")) {
+        if (($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()) == "validada")) {
             // line 17
             echo "        <div class=\"accionesesion text-center\" style=\"margin-left: 30px; margin-right: 10px;\">
             <button style=\"height: 30px; width: 250px;\" class=\"btn btn-success col-sm-3 col-sm-offset-3\">Modificar sesion</button>
@@ -88,15 +88,32 @@ class __TwigTemplate_99d232fbed775b95743b0e57556ded2f357aa18cebb2f9ba58905559508
         
            <div class=\"row\">
                     <div id=\"colizq\" class=\"col-md-4 col-md-offset-3\" >
-                        <h4>Monitor:</h4> <p>Jordan</p>
-                        <h4>Ejercicios:</h4> <p >Plancha dinámica, Elevación de piernas y Patadas de rana</p>
-                        <h4>Repeticiones:</h4> <p>3/Ejercicio</p>
-                        <h4>Material:</h4> <p>Nuestro propio cuerpo para completar esta efectiva sesion para el abdomen</p>
+                        <h4>Monitor:</h4> <p>";
+        // line 30
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "monitor", array()), "html", null, true);
+        echo "</p>
+                        <h4>Ejercicios:</h4> <p>";
+        // line 31
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "ejercicios", array()), "html", null, true);
+        echo "</p>
+                        <h4>Repeticiones:</h4> <p>";
+        // line 32
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "repeticiones", array()), "html", null, true);
+        echo " por ejercicio</p>
                     </div>
                     <div id=\"colder\" class=\"col-md-4\">
-                        <h4>Tiempo estimado:</h4> <p>40-45 minutos</p>
-                        <h4>Descanso entre ejercicios:</h4> <p>2-3 minutos</p>
-                        <h4>Objetivos:</h4> <p>Definir abdominales y tonificar el vientre </p>
+                        <h4>Tiempo estimado:</h4> <p>";
+        // line 35
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "duracion", array()), "html", null, true);
+        echo " minutos</p>
+                        <h4>Descanso entre ejercicios:</h4> <p>";
+        // line 36
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "descanso", array()), "html", null, true);
+        echo " minutos</p>
+                        <h4>Objetivo:</h4> <p>";
+        // line 37
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "objetivo", array()), "html", null, true);
+        echo "</p>
                     </div>
            </div>
     </div>
@@ -116,6 +133,6 @@ class __TwigTemplate_99d232fbed775b95743b0e57556ded2f357aa18cebb2f9ba58905559508
 
     public function getDebugInfo()
     {
-        return array (  87 => 26,  81 => 22,  74 => 17,  72 => 16,  66 => 13,  54 => 6,  50 => 4,  47 => 3,  37 => 2,  11 => 1,);
+        return array (  115 => 37,  111 => 36,  107 => 35,  101 => 32,  97 => 31,  93 => 30,  87 => 26,  81 => 22,  74 => 17,  72 => 16,  66 => 13,  54 => 6,  50 => 4,  47 => 3,  37 => 2,  11 => 1,);
     }
 }

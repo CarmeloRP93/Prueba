@@ -36,17 +36,16 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
     // line 4
     public function block_title($context, array $blocks = array())
     {
-        echo " Vista de entrenamiento ";
+        echo " Vista de Sesiones ";
     }
 
     // line 5
     public function block_contenido($context, array $blocks = array())
     {
         // line 6
-        echo "
-    <h1>Listado de Entrenamiento</h1>
+        echo "    <h1>Listado de Sesiones</h1>
     ";
-        // line 8
+        // line 7
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["sesiones"]) ? $context["sesiones"] : $this->getContext($context, "sesiones")));
         $context['loop'] = array(
@@ -63,19 +62,25 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
-            // line 9
-            echo "        <a href=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_sesionMonitores", array("matricula" => $this->getAttribute($context["sesion"], "matricula", array()))), "html", null, true);
-            echo "\" class=\"fila ";
-            echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
-            echo "\"> ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "matricula", array()), "html", null, true);
-            echo " - ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
-            echo " - ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "estado", array()), "html", null, true);
-            echo " </a>
-    ";
+            // line 8
+            echo "        ";
+            if (($this->getAttribute($context["sesion"], "cliente", array()) == null)) {
+                // line 9
+                echo "        <a href=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_sesionMonitores", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
+                echo "\" class=\"fila ";
+                echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
+                echo "\"> Sesion ";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "id", array()), "html", null, true);
+                echo ": ";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
+                echo " - ";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "estado", array()), "html", null, true);
+                echo "</a>
+        ";
+            }
+            // line 11
+            echo "        ";
             ++$context['loop']['index0'];
             ++$context['loop']['index'];
             $context['loop']['first'] = false;
@@ -88,10 +93,15 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 11
+        // line 12
         echo "    <div class=\"accionesesion text-center\" style=\"margin-top:5px; margin-left: 5px\">
-        <button style=\"height: 30px; width: 150px;\" class=\"btn btn-success col-sm-1\">Crear sesion</button>
+        <a href=\"";
+        // line 13
+        echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_nuevaSesion");
+        echo "\" class=\"btn btn-success col-sm-1\" style=\"height: 30px; width: 150px;\">Nuevo sesion <span class=\"glyphicon glyphicon-plus\"></span></a>
     </div>
+    
+        
 ";
     }
 
@@ -107,6 +117,6 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
 
     public function getDebugInfo()
     {
-        return array (  92 => 11,  67 => 9,  50 => 8,  46 => 6,  43 => 5,  37 => 4,  11 => 2,);
+        return array (  100 => 13,  97 => 12,  83 => 11,  69 => 9,  66 => 8,  49 => 7,  46 => 6,  43 => 5,  37 => 4,  11 => 2,);
     }
 }

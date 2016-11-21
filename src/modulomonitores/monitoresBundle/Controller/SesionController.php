@@ -3,29 +3,51 @@
 namespace modulomonitores\monitoresBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Crivero\PruebaBundle\Entity\Sesiones;
+use Crivero\PruebaBundle\Form\SesionesType;
+use Symfony\Component\HttpFoundation\Request;
+class SesionController extends Controller {
 
-class SesionController extends Controller
-{
-  var $sesiones = array(
-            array("matricula"=>1, "nombre"=>"Sesion 01", "estado"=>"Validada"),
-            array("matricula"=>2, "nombre"=>"Sesion 02", "estado"=>"Solicitud Presentada"),
-            array("matricula"=>3, "nombre"=>"Sesion 03", "estado"=>"Validada"),
-            array("matricula"=>4, "nombre"=>"Sesion 04", "estado"=>"Validada"),
-            array("matricula"=>5, "nombre"=>"Sesion 05", "estado"=>"Validada"),
-            array("matricula"=>6, "nombre"=>"Sesion 06", "estado"=>"Solicitud Presentada"),
-            array("matricula"=>7, "nombre"=>"Sesion 07", "estado"=>"Validada"),
-            array("matricula"=>8, "nombre"=>"Sesion 08", "estado"=>"Solicitud Presentada"),
-            array("matricula"=>9, "nombre"=>"Sesion 09", "estado"=>"Validada"),
-            array("matricula"=>10, "nombre"=>"Sesion 10", "estado"=>"Validada")
-        );
-  
-    public function sesionesMonitoresAction()
-    {
-       return $this->render('modulomonitoresmonitoresBundle:Default:sesionesMonitores.html.twig', array("sesiones"=>$this->sesiones));
+    public function sesionesMonitoresAction() {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesiones = $repository->findAll();
+        return $this->render('modulomonitoresmonitoresBundle:Default:sesionesMonitores.html.twig', array("sesiones" => $sesiones));
+    }
+
+    public function sesionMonitoresAction($id) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesion = $repository->find($id);
+        return $this->render('modulomonitoresmonitoresBundle:Default:sesionMonitores.html.twig', array("sesion" => $sesion));
+    }
+    public function nuevaSesionAction() {
+      $sesion = new Sesiones();
+      $form = $this->createCreateForm($sesion);
+      
+      return $this->render('modulomonitoresmonitoresBundle:Default:nuevaSesion.html.twig', array('form' => $form->createView()));
     }
     
-    public function sesionMonitoresAction($matricula)
-    {
-       return $this->render('modulomonitoresmonitoresBundle:Default:sesionMonitores.html.twig', array("sesion"=>$this->sesiones[$matricula-1]));
+    private function createCreateForm(Sesiones $entity){
+        $form = $this->createForm(new SesionesType(), $entity, array(
+            'action' => $this->generateUrl('modulomonitores_monitores_crearSesion'),
+            'method' => 'POST'
+            )); 
+        return $form;
+    }
+    public function crearSesionAction(Request $request) {
+      $sesion = new Sesiones();
+      $form = $this->createCreateForm($sesion);
+      $form->handleRequest($request);
+      
+      if($form->isValid())
+      {
+        $sesion->setEstado("pendiente");        
+        $sesion->setEstadoCliente("no disponible");        
+        $em=$this->getDoctrine()->getManager();
+        $em->persist($sesion);
+        $em->flush();
+        
+        return $this->redirect($this->generateUrl('modulomonitores_monitores_sesionesMonitores'));
+      }
+      return $this->render('modulomonitoresmonitoresBundle:Default:nuevaSesion.html.twig', array('form' => $form->createView()));
     }
 }
