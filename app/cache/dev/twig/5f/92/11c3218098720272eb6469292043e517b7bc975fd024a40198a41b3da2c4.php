@@ -111,11 +111,9 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
                     <button type=\"submit\" class=\"btn btn-default\">Buscar</button>
  
                     <a href = #>Perfil</a>
-                    <a href = \"";
-        // line 43
-        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_home");
-        echo "\">Log out</a>
-                </form>
+";
+        // line 44
+        echo "                </form>
             </div>
         </nav>
 ";
@@ -157,6 +155,6 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
 
     public function getDebugInfo()
     {
-        return array (  145 => 52,  142 => 51,  134 => 53,  132 => 51,  128 => 49,  125 => 48,  116 => 43,  103 => 33,  99 => 32,  95 => 31,  91 => 30,  87 => 29,  68 => 12,  65 => 11,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
+        return array (  143 => 52,  140 => 51,  132 => 53,  130 => 51,  126 => 49,  123 => 48,  116 => 44,  103 => 33,  99 => 32,  95 => 31,  91 => 30,  87 => 29,  68 => 12,  65 => 11,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
     }
 }

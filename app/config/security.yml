@@ -5,13 +5,28 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        in_memory:
-            memory:
-                users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        our_db_provider:
+            entity:
+                class: CriveroPruebaBundle:Usuarios
+                property: email
+                    
 
     firewalls:
+        default:
+                anonymous: ~
+                http_basic: ~
+                form_login:
+                    login_path: /login
+                    check_path: /login_check
+                    # field names for the username and password fields:
+                    username_parameter: _email
+                    password_parameter: _password
+                    # default_target_path: default_security_target
+                    # always_use_default_target_path: true
+                logout:
+                    path:   /logout
+                    target: /login
+        
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false

@@ -3,7 +3,7 @@
 namespace Crivero\PruebaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -17,7 +17,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\HasLifecycleCallbacks()
  */
 
-class Usuarios implements UserInterface
+class Usuarios implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer
@@ -50,6 +50,15 @@ class Usuarios implements UserInterface
      * @Assert\NotBlank()
      */
     private $password;
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", columnDefinition="ENUM('ROLE_ADMIN', 'ROLE_USER')", length=50)
+     * @Assert\NotBlank()
+     * @Assert\Choice(choices = {"ROLE_ADMIN", "ROLE_USER"})
+     */
+    private $role;
     
     /**
      * @var string
@@ -349,15 +358,70 @@ class Usuarios implements UserInterface
     }
 
     public function getRoles() {
-        
+        return array($this->role);
     }
 
     public function getSalt() {
-        
+        return null;
     }
 
     public function getUsername() {
         
     }
 
+    public function isAccountNonExpired() {
+        return true;
+    }
+
+    public function isCredentialsNonExpired() {
+        return true;
+    }
+
+    public function isEnabled() {
+        
+    }
+
+    public function serialize() {
+         return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password,
+        ));
+    }
+    
+    /**
+     * Set role
+     *
+     * @param string $role
+     * @return User
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+        return $this;
+    }
+    /**
+     * Get role
+     *
+     * @return string 
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }    
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized) {
+         list (
+            $this->id,
+            $this->email,
+            $this->password,
+        ) = unserialize($serialized);
+    }
+    
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+    
 }

@@ -221,15 +221,28 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/h')) {
-            // crivero_prueba_homepage
-            if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello(?:/(?P<name>[^/]++))?$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_homepage')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\HomeController::indexAction',  'name' => 'Pablo',));
+        // crivero_prueba_homepage
+        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello(?:/(?P<name>[^/]++))?$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_homepage')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\HomeController::indexAction',  'name' => 'Pablo',));
+        }
+
+        if (0 === strpos($pathinfo, '/log')) {
+            if (0 === strpos($pathinfo, '/login')) {
+                // crivero_prueba_login
+                if ($pathinfo === '/login') {
+                    return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SecurityController::loginAction',  '_route' => 'crivero_prueba_login',);
+                }
+
+                // crivero_prueba_login_check
+                if ($pathinfo === '/login_check') {
+                    return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SecurityController::loginCheckAction',  '_route' => 'crivero_prueba_login_check',);
+                }
+
             }
 
-            // crivero_prueba_home
-            if ($pathinfo === '/home') {
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\HomeController::homeAction',  '_route' => 'crivero_prueba_home',);
+            // crivero_prueba_logout
+            if ($pathinfo === '/logout') {
+                return array('_route' => 'crivero_prueba_logout');
             }
 
         }
