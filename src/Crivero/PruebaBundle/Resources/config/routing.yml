@@ -2,15 +2,21 @@ crivero_prueba_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: CriveroPruebaBundle:Home:index, name: "Pablo" }
     
+crivero_prueba_home:
+    pattern:  /home
+    defaults: { _controller: CriveroPruebaBundle:Cliente:home }
+    
 crivero_prueba_login:
     pattern:  /login
     defaults: { _controller: CriveroPruebaBundle:Security:login }
+    
 crivero_prueba_login_check:
     pattern:  /login_check
     defaults: { _controller: CriveroPruebaBundle:Security:loginCheck }
+    
 crivero_prueba_logout:
     pattern:  /logout
-
+    
 crivero_prueba_clientes:
     pattern:  /clientes
     defaults: { _controller: CriveroPruebaBundle:Cliente:clientes }
@@ -71,5 +77,8 @@ crivero_prueba_sesion:
     pattern:  /sesion/{id}
     defaults: { _controller: CriveroPruebaBundle:Sesion:sesion }
     
-    
-
+crivero_prueba_aceptarSesion:
+    pattern:  /aceptarSesion/{id}
+    defaults: { _controller: CriveroPruebaBundle:Sesion:aceptarSesion }
+    requirements:
+        _method:  POST|PUT|GET

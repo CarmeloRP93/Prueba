@@ -19,7 +19,6 @@ class UsuariosType extends AbstractType
             ->add('email', 'email')
             ->add('password', 'password')
             ->add('telefono', 'text')
-            ->add('imagen', 'text')
             ->add('tipo', 'choice', array('choices' => array(1 => 'Administrador', 2 => 'Cliente', 3 => 'Monitor')))
             ->add('fNacimiento', 'text')
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))

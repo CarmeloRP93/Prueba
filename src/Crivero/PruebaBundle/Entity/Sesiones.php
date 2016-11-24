@@ -106,13 +106,35 @@ class Sesiones
      * @Assert\NotBlank()
      */
     private $objetivo;
-
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nClientes", type="integer")
+     */
+    private $nClientes;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="lClientes", type="integer")
+     * @Assert\NotBlank()
+     */
+    private $lClientes;
 
     /**
      * Get id
      *
      * @return integer 
      */
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observaciones", type="string", length=255, nullable=true)
+     */
+    private $observaciones;
+    
     public function getId()
     {
         return $this->id;
@@ -368,5 +390,74 @@ class Sesiones
     public function getObjetivo()
     {
         return $this->objetivo;
+    }
+    
+    /**
+     * Set nClientes
+     *
+     * @param integer $nClientes
+     * @return Sesiones
+     */
+    public function setNClientes($nClientes)
+    {
+        $this->nClientes = $nClientes;
+
+        return $this;
+    }
+
+    /**
+     * Get nClientes
+     *
+     * @return integer 
+     */
+    public function getNClientes()
+    {
+        return $this->nClientes;
+    }
+    
+    /**
+     * Set lClientes
+     *
+     * @param integer $lClientes
+     * @return Sesiones
+     */
+    public function setLClientes($lClientes)
+    {
+        $this->lClientes = $lClientes;
+
+        return $this;
+    }
+
+    /**
+     * Get lClientes
+     *
+     * @return integer 
+     */
+    public function getLClientes()
+    {
+        return $this->lClientes;
+    }
+    
+    /**
+     * Set observaciones
+     *
+     * @param string $observaciones
+     * @return Sesiones
+     */
+    public function setObservaciones($observaciones)
+    {
+        $this->observaciones = $observaciones;
+
+        return $this;
+    }
+
+    /**
+     * Get observaciones
+     *
+     * @return string 
+     */
+    public function getObservaciones()
+    {
+        return $this->observaciones;
     }
 }

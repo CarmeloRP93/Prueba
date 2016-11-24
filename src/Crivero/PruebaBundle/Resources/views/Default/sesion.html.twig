@@ -3,12 +3,12 @@
         {% if sesion.cliente!=null %}
         {%    set nombre = sesion.cliente %}
         {% endif %}
-{% block title %}Vista de {{nombre}} {% endblock %}
+{% block title %}Vista de {{sesion.nombre}} {% endblock %}
 {% block contenido %}
     <div class="text-center">
         <h3>
             Sesion {{sesion.id}}
-            <small class="text-muted">{{nombre}}</small>
+            <small class="text-muted">{{sesion.nombre}}</small>
         </h3>
     </div>
     
@@ -19,12 +19,12 @@
   
     {% if sesion.estado == "pendiente" %}
         <div class="accionesesion text-center" style="margin-left: 18px; margin-right: 18px;">
-            <button style="height: 30px; width: 250px;" class="btn btn-success col-sm-3 col-sm-offset-3">Aceptar Solicitud</button>
+            <a href="{{path('crivero_prueba_aceptarSesion', {id: sesion.id})}}" class="btn btn-success col-sm-3 col-sm-offset-3" style="height: 30px; width: 250px;">Aceptar Solicitud</a>
             <button style="height: 30px; width: 250px;" class="btn btn-danger col-sm-3 col-sm-offset-1">Rechazar Solicitud </button>
         </div>
     {% else %}
         <div class="text-center">
-            <button style="height: 30px; width: 600px;" class="btn btn-success">Validada</button>
+            <button style="height: 30px; width: 600px;" class="btn btn-danger">Cancelar</button>
         </div>
     {% endif %}
         
@@ -33,11 +33,15 @@
                         <h4>Monitor:</h4> <p>{{sesion.monitor}}</p>
                         <h4>Ejercicios:</h4> <p>{{sesion.ejercicios}}</p>
                         <h4>Repeticiones:</h4> <p>{{sesion.repeticiones}} por ejercicio</p>
+                        <h4>Nº de participantes:</h4> <p>{{sesion.nClientes}}</p>
+                        
                     </div>
                     <div id="colder" class="col-md-4">
                         <h4>Tiempo estimado:</h4> <p>{{sesion.duracion}} minutos</p>
                         <h4>Descanso entre ejercicios:</h4> <p>{{sesion.descanso}} minutos</p>
                         <h4>Objetivo:</h4> <p>{{sesion.objetivo}}</p>
+                        <h4>Límite de participantes:</h4> <p>{{sesion.lClientes}}</p>
+                    </div>
                     </div>
            </div>
     </div>

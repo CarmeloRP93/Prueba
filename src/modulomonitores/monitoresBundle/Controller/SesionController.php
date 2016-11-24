@@ -41,7 +41,8 @@ class SesionController extends Controller {
       if($form->isValid())
       {
         $sesion->setEstado("pendiente");        
-        $sesion->setEstadoCliente("no disponible");        
+        $sesion->setEstadoCliente("no disponible");
+        $sesion->setnClientes(0);
         $em=$this->getDoctrine()->getManager();
         $em->persist($sesion);
         $em->flush();

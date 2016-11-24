@@ -84,6 +84,9 @@ class ClienteController extends Controller
             return $this->redirect($this->generateUrl('crivero_prueba_clientes'));
         }
     }
+    public function homeAction() {
+        return $this->render('CriveroPruebaBundle:Default:home.html.twig');
+    }
    
     
 }

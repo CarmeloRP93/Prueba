@@ -23,7 +23,9 @@ class SesionesType extends AbstractType
             ->add('repeticiones', 'integer')
             ->add('duracion', 'integer')
             ->add('descanso', 'integer')
+            ->add('lClientes', 'integer')
             ->add('objetivo', 'text')
+            ->add('observaciones', 'text')
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;
     }

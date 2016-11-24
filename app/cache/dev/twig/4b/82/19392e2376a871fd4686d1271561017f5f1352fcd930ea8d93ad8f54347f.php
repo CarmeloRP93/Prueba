@@ -18,11 +18,9 @@ class __TwigTemplate_4b8219392e2376a871fd4686d1271561017f5f1352fcd930ea8d93ad8f5
         }
 
         $this->blocks = array(
-            'title' => array($this, 'block_title'),
-            'stylesheets' => array($this, 'block_stylesheets'),
-            'header' => array($this, 'block_header'),
             'navegation' => array($this, 'block_navegation'),
-            'contenido' => array($this, 'block_contenido'),
+            'title' => array($this, 'block_title'),
+            'body' => array($this, 'block_body'),
         );
     }
 
@@ -37,68 +35,62 @@ class __TwigTemplate_4b8219392e2376a871fd4686d1271561017f5f1352fcd930ea8d93ad8f5
     }
 
     // line 3
-    public function block_title($context, array $blocks = array())
-    {
-        echo " Vista de Admin ";
-    }
-
-    // line 4
-    public function block_stylesheets($context, array $blocks = array())
-    {
-        // line 5
-        echo "    <link href=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("css/login.css"), "html", null, true);
-        echo "\" type=\"text/css\" rel=\"stylesheet\">
-";
-    }
-
-    // line 7
-    public function block_header($context, array $blocks = array())
-    {
-    }
-
-    // line 8
     public function block_navegation($context, array $blocks = array())
     {
     }
 
-    // line 9
-    public function block_contenido($context, array $blocks = array())
+    // line 4
+    public function block_title($context, array $blocks = array())
     {
+        echo "Welcome!!";
+    }
+
+    // line 5
+    public function block_body($context, array $blocks = array())
+    {
+        // line 6
+        echo " <div class=\"container\" >
+        <h2 class=\"text-center\">
+            ";
+        // line 8
+        echo "Welcome";
+        echo "
+             :
+            ";
         // line 10
-        echo "    <div class=\"container\">
-
-        <div id=\"login-form\">
-
-            <h3>Login</h3>
-
-            <fieldset>
-
-                <form action=\"javascript:void(0);\" method=\"get\">
-
-                    <input type=\"email\" required value=\"Email\" onBlur=\"if (this.value == '')
-                                this.value = 'Email'\" onFocus=\"if (this.value == 'Email')
-                                            this.value = ''\"> <!-- JS because of IE support; better: placeholder=\"Email\" -->
-
-                    <input type=\"password\" required value=\"Password\" onBlur=\"if (this.value == '')
-                                this.value = 'Password'\" onFocus=\"if (this.value == 'Password')
-                                            this.value = ''\"> <!-- JS because of IE support; better: placeholder=\"Password\" -->
-
-                    <input type=\"submit\" value=\"Login\">
-
-                    <footer class=\"clearfix\">
-
-                        <p><span class=\"info\">?</span><a href=\"#\">Forgot Password</a></p>
-
-                    </footer>
-
-                </form>
-
-            </fieldset>
-
-        </div> <!-- end login-form -->
-    </div>
-
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "nombre", array()), "html", null, true);
+        echo "
+        </h2>
+ </div>
+        ";
+        // line 13
+        if (($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 1)) {
+            // line 14
+            echo "            <form id=\"formu\" action=\"";
+            echo $this->env->getExtension('routing')->getPath("crivero_prueba_clientes");
+            echo "\" method=\"post\">
+            </form>
+        ";
+        } elseif (($this->getAttribute($this->getAttribute(        // line 16
+(isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 2)) {
+            // line 17
+            echo "            <form id=\"formu\" action=\"";
+            echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_reservasClientes");
+            echo "\" method=\"post\">
+            </form>
+        ";
+        } else {
+            // line 20
+            echo "            <form id=\"formu\" action=\"";
+            echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_sesionesMonitores");
+            echo "\" method=\"post\">
+            </form>
+        ";
+        }
+        // line 23
+        echo "        <script type=\"text/javascript\">
+            setTimeout(function(){document.getElementById(\"formu\").submit();}, 5000); 
+        </script>
 ";
     }
 
@@ -114,6 +106,6 @@ class __TwigTemplate_4b8219392e2376a871fd4686d1271561017f5f1352fcd930ea8d93ad8f5
 
     public function getDebugInfo()
     {
-        return array (  69 => 10,  66 => 9,  61 => 8,  56 => 7,  49 => 5,  46 => 4,  40 => 3,  11 => 1,);
+        return array (  91 => 23,  84 => 20,  77 => 17,  75 => 16,  69 => 14,  67 => 13,  61 => 10,  56 => 8,  52 => 6,  49 => 5,  43 => 4,  38 => 3,  11 => 1,);
     }
 }

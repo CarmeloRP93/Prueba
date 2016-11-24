@@ -16,11 +16,11 @@
 
                 <br>{% if cancha.disponibilidad == "disponible" %}
                       <div class="text-center">
-                        <button class="btn btn-primary">Reservar</button>
+                        <button class="btn btn-success">{{cancha.disponibilidad}}</button>
                       </div>
                       {% else %}
                       <div class="text-center">
-                        <button class="btn btn-danger">Reservada</button>
+                        <button class="btn btn-danger">{{cancha.disponibilidad}}</button>
                       </div>
                 {% endif %}
             </div><br>

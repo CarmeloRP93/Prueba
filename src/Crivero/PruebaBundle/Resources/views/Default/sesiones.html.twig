@@ -7,11 +7,11 @@
 
     <h1>Listado de Sesiones</h1>
     {% for sesion in sesiones %}
-        {%    set nombre = sesion.nombre %}
         {% if sesion.cliente!=null %}
-        {%    set nombre = sesion.cliente %}
+            <a href="{{url('crivero_prueba_sesion', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{ sesion.id }}: {{ sesion.cliente }}/{{ sesion.nombre }} - {{ sesion.estado}} </a>
+        {% else %}
+            <a href="{{url('crivero_prueba_sesion', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{sesion.id}}:  {{sesion.nombre}} - {{ sesion.estado }}</a>
         {% endif %}
-        <a href="{{url('crivero_prueba_sesion', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{sesion.id}}:  {{nombre}} - {{ sesion.estado }}</a>
     {% endfor %}
 
 {% endblock %}
