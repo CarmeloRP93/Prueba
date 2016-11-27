@@ -1882,7 +1882,7 @@ class appDevDebugProjectContainer extends Container
 
         $i = new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $d, '/login', false);
 
-        return $this->services['security.firewall.map.context.default'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('security.user.provider.concrete.our_db_provider')), 'default', $b, $c), 2 => $g, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($a, $f, $this->get('security.authentication.session_strategy'), $d, 'default', $h, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $d, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $b), array('check_path' => '/login_check', 'username_parameter' => '_nombre', 'password_parameter' => '_password', 'use_forward' => false, 'require_previous_session' => true, 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $b, $c), 4 => new \Symfony\Component\Security\Http\Firewall\BasicAuthenticationListener($a, $f, 'default', $i, $b), 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '58374a86e82d2', $b), 6 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $d, 'default', $i, NULL, NULL, $b));
+        return $this->services['security.firewall.map.context.default'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('security.user.provider.concrete.our_db_provider')), 'default', $b, $c), 2 => $g, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($a, $f, $this->get('security.authentication.session_strategy'), $d, 'default', $h, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $d, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $b), array('check_path' => '/login_check', 'username_parameter' => '_nombre', 'password_parameter' => '_password', 'use_forward' => false, 'require_previous_session' => true, 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $b, $c), 4 => new \Symfony\Component\Security\Http\Firewall\BasicAuthenticationListener($a, $f, 'default', $i, $b), 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '583aceb3183e3', $b), 6 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $d, 'default', $i, NULL, NULL, $b));
     }
 
     /**
@@ -3225,7 +3225,37 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['security.access_map'] = $instance = new \Symfony\Component\Security\Http\AccessMap();
 
-        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/demo/secured/hello/admin/'), array(0 => 'ROLE_ADMIN'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/login'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/$'), array(0 => 'IS_AUTHENTICATED_FULLY'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/home'), array(0 => 'ROLE_ADMIN', 1 => 'ROLE_CLIENTE', 2 => 'ROLE_MONITOR'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/reservasClientes'), array(0 => 'ROLE_CLIENTE'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/reservaClientes'), array(0 => 'ROLE_CLIENTE'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/canchasClientes'), array(0 => 'ROLE_CLIENTE'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/canchaClientes'), array(0 => 'ROLE_CLIENTE'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/torneosClientes'), array(0 => 'ROLE_CLIENTE'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/torneoClientes'), array(0 => 'ROLE_CLIENTE'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/sesionesClientes'), array(0 => 'ROLE_CLIENTE'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/sesionClientes'), array(0 => 'ROLE_CLIENTE'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/sesionesMonitores'), array(0 => 'ROLE_MONITOR'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/sesionMonitores'), array(0 => 'ROLE_MONITOR'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/sesionesDedicadas'), array(0 => 'ROLE_MONITOR'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/sesionDedicada'), array(0 => 'ROLE_MONITOR'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/nuevaSesion'), array(0 => 'ROLE_MONITOR'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/crearSesion'), array(0 => 'ROLE_MONITOR'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/clientes'), array(0 => 'ROLE_ADMIN'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/cliente'), array(0 => 'ROLE_ADMIN'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/monitores'), array(0 => 'ROLE_ADMIN'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/monitor'), array(0 => 'ROLE_ADMIN'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/canchas'), array(0 => 'ROLE_ADMIN'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/cancha'), array(0 => 'ROLE_ADMIN'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/sesiones'), array(0 => 'ROLE_ADMIN'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/sesion'), array(0 => 'ROLE_ADMIN'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/torneos'), array(0 => 'ROLE_ADMIN'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/torneo'), array(0 => 'ROLE_ADMIN'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/nuevo'), array(0 => 'ROLE_ADMIN'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/crear'), array(0 => 'ROLE_ADMIN'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/eliminar'), array(0 => 'ROLE_ADMIN'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/aceptarSesion'), array(0 => 'ROLE_ADMIN'), NULL);
 
         return $instance;
     }
@@ -3249,7 +3279,7 @@ class appDevDebugProjectContainer extends Container
 
         $c = new \Symfony\Component\Security\Core\User\UserChecker();
 
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $c, 'default', $b, true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('58374a86e82d2'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $c, 'secured_area', $b, true)), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $c, 'default', $b, true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('583aceb3183e3'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $c, 'secured_area', $b, true)), true);
 
         $instance->setEventDispatcher($this->get('event_dispatcher'));
 

@@ -57,42 +57,42 @@ class __TwigTemplate_aa8fe6ed1c9e6996d7e4104fe7a3494018cc8f5a3ff681428ae7c7de4d7
         // line 11
         echo "
     <div class=\"container\">
-  <form action=\"";
+        <form action=\"";
         // line 13
         echo $this->env->getExtension('routing')->getPath("crivero_prueba_login_check");
         echo "\" method=\"post\" class=\"form-signin\">
-   <h2 class=\"form-signin-heading\">Inicio de Sesión</h2>
+         <h2 class=\"form-signin-heading\">Inicio de Sesión</h2>
 
-          ";
+                ";
         // line 16
         if ((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error"))) {
             // line 17
-            echo "            <div class=\"text-danger\">
-                <p>
-                    <h4>
-                        ";
+            echo "                  <div class=\"text-danger\">
+                      <p>
+                          <h4>
+                              ";
             // line 20
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans($this->getAttribute((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error")), "messageKey", array()), $this->getAttribute((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error")), "messageData", array()), "security"), "html", null, true);
             echo "
-                    </h4>
-                </p>
-            </div>
-            ";
+                          </h4>
+                      </p>
+                  </div>
+                  ";
         }
         // line 25
         echo "
-      <label for=\"username\" class=\"sr-only\">Usuario:</label>
-      <input type=\"text\" id=\"username\" class=\"form-control\" name=\"_nombre\" value=\"";
+            <label for=\"username\" class=\"sr-only\">Usuario:</label>
+            <input type=\"text\" id=\"username\" class=\"form-control\" name=\"_nombre\" value=\"";
         // line 27
         echo twig_escape_filter($this->env, (isset($context["last_username"]) ? $context["last_username"] : $this->getContext($context, "last_username")), "html", null, true);
         echo "\" placeholder=\"\" required autofocus />
 
-      <label for=\"password\" class=\"sr-only\">Password:</label>
-      <input type=\"password\" id=\"password\" class=\"form-control\" name=\"_password\" placeholder=\"\" required />
-                    <input type=\"hidden\" name=\"_target_path\" value=\"crivero_prueba_home\" />
+            <label for=\"password\" class=\"sr-only\">Password:</label>
+            <input type=\"password\" id=\"password\" class=\"form-control\" name=\"_password\" placeholder=\"\" required />
+                          <input type=\"hidden\" name=\"_target_path\" value=\"crivero_prueba_home\" />
 
-      <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">Entrar</button>
-  </form>
+            <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">Entrar</button>
+        </form>
     </div> <!-- /container -->
 ";
     }

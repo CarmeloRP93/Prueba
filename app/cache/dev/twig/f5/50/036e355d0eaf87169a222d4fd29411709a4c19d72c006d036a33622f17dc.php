@@ -171,7 +171,7 @@ class __TwigTemplate_f550036e355d0eaf87169a222d4fd29411709a4c19d72c006d036a33622
         echo "</span>
                 </div>
                 
-                <div class=\"form-group\">
+                <div class=\"form-group\" style=\"display:none;\">
                     <p>Limite de clientes</p>
                     ";
         // line 59

@@ -42,7 +42,7 @@ class __TwigTemplate_4b8219392e2376a871fd4686d1271561017f5f1352fcd930ea8d93ad8f5
     // line 4
     public function block_title($context, array $blocks = array())
     {
-        echo "Welcome!!";
+        echo "Home";
     }
 
     // line 5
@@ -51,46 +51,60 @@ class __TwigTemplate_4b8219392e2376a871fd4686d1271561017f5f1352fcd930ea8d93ad8f5
         // line 6
         echo " <div class=\"container\" >
         <h2 class=\"text-center\">
+            Bienvenido
             ";
-        // line 8
-        echo "Welcome";
-        echo "
-             :
+        // line 9
+        if (($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 1)) {
+            // line 10
+            echo "                administrador
             ";
-        // line 10
+        } elseif (($this->getAttribute($this->getAttribute(        // line 11
+(isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 2)) {
+            // line 12
+            echo "                cliente
+            ";
+        } else {
+            // line 14
+            echo "                monitor    
+            ";
+        }
+        // line 16
+        echo "            :
+            ";
+        // line 17
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "nombre", array()), "html", null, true);
         echo "
         </h2>
  </div>
-        ";
-        // line 13
+            ";
+        // line 20
         if (($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 1)) {
-            // line 14
-            echo "            <form id=\"formu\" action=\"";
+            // line 21
+            echo "                <form id=\"formu\" action=\"";
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_clientes");
             echo "\" method=\"post\">
-            </form>
-        ";
-        } elseif (($this->getAttribute($this->getAttribute(        // line 16
+                </form>
+            ";
+        } elseif (($this->getAttribute($this->getAttribute(        // line 23
 (isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 2)) {
-            // line 17
-            echo "            <form id=\"formu\" action=\"";
+            // line 24
+            echo "                <form id=\"formu\" action=\"";
             echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_reservasClientes");
             echo "\" method=\"post\">
-            </form>
-        ";
+                </form>
+            ";
         } else {
-            // line 20
-            echo "            <form id=\"formu\" action=\"";
+            // line 27
+            echo "                <form id=\"formu\" action=\"";
             echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_sesionesMonitores");
             echo "\" method=\"post\">
-            </form>
-        ";
+                </form>
+            ";
         }
-        // line 23
-        echo "        <script type=\"text/javascript\">
-            setTimeout(function(){document.getElementById(\"formu\").submit();}, 5000); 
-        </script>
+        // line 30
+        echo "            <script type=\"text/javascript\">
+                setTimeout(function(){document.getElementById(\"formu\").submit();}, 3000); 
+            </script>
 ";
     }
 
@@ -106,6 +120,6 @@ class __TwigTemplate_4b8219392e2376a871fd4686d1271561017f5f1352fcd930ea8d93ad8f5
 
     public function getDebugInfo()
     {
-        return array (  91 => 23,  84 => 20,  77 => 17,  75 => 16,  69 => 14,  67 => 13,  61 => 10,  56 => 8,  52 => 6,  49 => 5,  43 => 4,  38 => 3,  11 => 1,);
+        return array (  105 => 30,  98 => 27,  91 => 24,  89 => 23,  83 => 21,  81 => 20,  75 => 17,  72 => 16,  68 => 14,  64 => 12,  62 => 11,  59 => 10,  57 => 9,  52 => 6,  49 => 5,  43 => 4,  38 => 3,  11 => 1,);
     }
 }

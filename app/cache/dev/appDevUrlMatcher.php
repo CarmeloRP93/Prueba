@@ -161,45 +161,43 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/crearSesion')) {
-            // modulomonitores_monitores_crearSesion
-            if ($pathinfo === '/crearSesion') {
-                if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
-                    $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
-                    goto not_modulomonitores_monitores_crearSesion;
+        if (0 === strpos($pathinfo, '/c')) {
+            if (0 === strpos($pathinfo, '/crearSesion')) {
+                // modulomonitores_monitores_crearSesion
+                if ($pathinfo === '/crearSesion') {
+                    if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                        goto not_modulomonitores_monitores_crearSesion;
+                    }
+
+                    return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::crearSesionAction',  '_route' => 'modulomonitores_monitores_crearSesion',);
+                }
+                not_modulomonitores_monitores_crearSesion:
+
+                // modulomonitores_monitores_crearSesionDedicada
+                if ($pathinfo === '/crearSesionDedicada') {
+                    if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                        goto not_modulomonitores_monitores_crearSesionDedicada;
+                    }
+
+                    return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::crearSesionDedicadaAction',  '_route' => 'modulomonitores_monitores_crearSesionDedicada',);
+                }
+                not_modulomonitores_monitores_crearSesionDedicada:
+
+            }
+
+            if (0 === strpos($pathinfo, '/cancha')) {
+                // moduloclientes_cliente_canchasClientes
+                if ($pathinfo === '/canchasClientes') {
+                    return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::canchasClientesAction',  '_route' => 'moduloclientes_cliente_canchasClientes',);
                 }
 
-                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::crearSesionAction',  '_route' => 'modulomonitores_monitores_crearSesion',);
-            }
-            not_modulomonitores_monitores_crearSesion:
-
-            // modulomonitores_monitores_crearSesionDedicada
-            if ($pathinfo === '/crearSesionDedicada') {
-                if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
-                    $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
-                    goto not_modulomonitores_monitores_crearSesionDedicada;
+                // moduloclientes_cliente_canchaClientes
+                if (0 === strpos($pathinfo, '/canchaClientes') && preg_match('#^/canchaClientes/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_canchaClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::canchaClientesAction',));
                 }
 
-                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::crearSesionDedicadaAction',  '_route' => 'modulomonitores_monitores_crearSesionDedicada',);
-            }
-            not_modulomonitores_monitores_crearSesionDedicada:
-
-        }
-
-        // moduloclientes_cliente_homeClientes
-        if ($pathinfo === '/homeClientes') {
-            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\HomeController::homeClientesAction',  '_route' => 'moduloclientes_cliente_homeClientes',);
-        }
-
-        if (0 === strpos($pathinfo, '/cancha')) {
-            // moduloclientes_cliente_canchasClientes
-            if ($pathinfo === '/canchasClientes') {
-                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::canchasClientesAction',  '_route' => 'moduloclientes_cliente_canchasClientes',);
-            }
-
-            // moduloclientes_cliente_canchaClientes
-            if (0 === strpos($pathinfo, '/canchaClientes') && preg_match('#^/canchaClientes/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_canchaClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::canchaClientesAction',));
             }
 
         }
