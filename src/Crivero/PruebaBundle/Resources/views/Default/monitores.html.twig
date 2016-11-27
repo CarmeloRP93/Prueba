@@ -1,19 +1,46 @@
-{# empty Twig template #}
-{# empty Twig template #}
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 
 {% block title %} Monitores {% endblock %}
 
 {% block contenido %}
-
-<h1>Monitores</h1>
-{% for usuario in usuarios %}
-    {% if usuario.tipo==3 %}
-        <a href="{{url('crivero_prueba_monitor', {'id': usuario.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ usuario.nombre }} </a>
-    {% endif %}
-{% endfor %}
- <div class="nuevoUsuario">
-        <a href="{{path('crivero_prueba_nuevo')}}" class="btn btn-success" style="height: 30px; width: 150px;">Nuevo Usuario <span class="glyphicon glyphicon-plus"></span></a>
+    <div class="container">
+        <h1 class="text-center">Monitores</h1>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo electrónico</th>
+                        <th>Creado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usuario in usuarios %}
+                        <tr>
+                            {% if usuario.tipo == 3 %}
+                                <td>{{usuario.nombre}}</td>
+                                <td>{{usuario.email}}</td>
+                                <td>{{usuario.registro|date('d/m/Y H:i')}}</td>
+                                <td class="actions">
+                                    <a href="{{ path('crivero_prueba_monitor', { id: usuario.id }) }}" class="btn btn-sm btn-info">
+                                        Ver
+                                    </a>
+                                    <a href="{{ path('crivero_prueba_editar', { id: usuario.id }) }}" class="btn btn-sm btn-primary">
+                                        Editar
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                        Eliminar
+                                    </a>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="nuevoUsuario">
+            <a href="{{path('crivero_prueba_nuevo')}}" class="btn btn-success" style="height: 30px; width: 150px;">Nuevo Usuario <span class="glyphicon glyphicon-plus"></span></a>
+        </div>
     </div>
-
 {% endblock %}

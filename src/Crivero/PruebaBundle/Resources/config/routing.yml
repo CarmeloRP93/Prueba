@@ -1,6 +1,6 @@
 crivero_prueba_home:
     pattern:  /home
-    defaults: { _controller: CriveroPruebaBundle:Cliente:home }
+    defaults: { _controller: CriveroPruebaBundle:Usuario:home }
     
 crivero_prueba_login:
     pattern:  /login
@@ -15,47 +15,42 @@ crivero_prueba_logout:
     
 crivero_prueba_clientes:
     pattern:  /clientes
-    defaults: { _controller: CriveroPruebaBundle:Cliente:clientes }
+    defaults: { _controller: CriveroPruebaBundle:Usuario:clientes }
     
 crivero_prueba_monitores:
     pattern:  /monitores
-    defaults: { _controller: CriveroPruebaBundle:Monitor:monitores }
+    defaults: { _controller: CriveroPruebaBundle:Usuario:monitores }
     
 crivero_prueba_cliente:
     pattern:  /cliente/{id}
-    defaults: { _controller: CriveroPruebaBundle:Cliente:cliente }
+    defaults: { _controller: CriveroPruebaBundle:Usuario:cliente }
 
 crivero_prueba_nuevo:
     pattern:  /nuevo
-    defaults: { _controller: CriveroPruebaBundle:Cliente:nuevo }
+    defaults: { _controller: CriveroPruebaBundle:Usuario:nuevo }
 
 crivero_prueba_crear:
     pattern:  /crear
-    defaults: { _controller: CriveroPruebaBundle:Cliente:crear }
+    defaults: { _controller: CriveroPruebaBundle:Usuario:crear }
     requirements:
         _method:  POST|GET
 
 crivero_prueba_editar:
     pattern:  /editar/{id}
-    defaults: { _controller: CriveroPruebaBundle:Cliente:editar }
+    defaults: { _controller: CriveroPruebaBundle:Usuario:editar }
 
 crivero_prueba_actualizar:
     pattern:  /actualizar/{id}
-    defaults: { _controller: CriveroPruebaBundle:Cliente:actualizar }
+    defaults: { _controller: CriveroPruebaBundle:Usuario:actualizar }
 
 crivero_prueba_eliminar:
     pattern:  /eliminar/{id}
-    defaults: { _controller: CriveroPruebaBundle:Cliente:eliminar }
-    methods: [POST, DELETE]
-
-crivero_prueba_eliminarMonitor:
-    pattern:  /eliminarMonitor/{id}
-    defaults: { _controller: CriveroPruebaBundle:Monitor:eliminarMonitor }
+    defaults: { _controller: CriveroPruebaBundle:Usuario:eliminar }
     methods: [POST, DELETE]
     
 crivero_prueba_monitor:
     pattern:  /monitor/{id}
-    defaults: { _controller: CriveroPruebaBundle:Monitor:monitor }
+    defaults: { _controller: CriveroPruebaBundle:Usuario:monitor }
     
 crivero_prueba_canchas:
     pattern:  /canchas

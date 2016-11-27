@@ -9,23 +9,35 @@ use Symfony\Component\Form\FormError;
 use Crivero\PruebaBundle\Entity\Usuarios;
 use Crivero\PruebaBundle\Form\UsuariosType;
 
-class ClienteController extends Controller
-{
+class UsuarioController extends Controller {
     
-    public function clientesAction()
-    {
+    public function clientesAction() {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $usuarios=$repository->findAll();
        return $this->render('CriveroPruebaBundle:Default:clientes.html.twig', array("usuarios"=>$usuarios));
     }
     
-    public function clienteAction($id)
-    {
+    public function clienteAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $cliente=$repository->find($id);
         
         $deleteForm = $this->createDeleteForm($cliente);
         return $this->render('CriveroPruebaBundle:Default:cliente.html.twig', array("cliente"=>$cliente, 'delete_form'=>
+            $deleteForm->createView()));
+    }
+    
+     public function monitoresAction() {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $usuarios=$repository->findAll();
+       return $this->render('CriveroPruebaBundle:Default:monitores.html.twig', array("usuarios"=>$usuarios));
+    }
+    
+    public function monitorAction($id) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $monitor=$repository->find($id);
+        
+        $deleteForm = $this->createDeleteForm($monitor);
+       return $this->render('CriveroPruebaBundle:Default:monitor.html.twig', array("monitor"=>$monitor,  'delete_form'=>
             $deleteForm->createView()));
     }
     
@@ -41,8 +53,7 @@ class ClienteController extends Controller
       $form = $this->createCreateForm($usuario);
       $form->handleRequest($request);
       
-      if($form->isValid())
-      {
+      if($form->isValid()) {
         $password = $form->get('password')->getData();
         if (!empty($password)) {
             $encoded= password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
@@ -54,7 +65,7 @@ class ClienteController extends Controller
             
             if ($form->get('tipo')->getData() != 3) {
                 return $this->redirect($this->generateUrl('crivero_prueba_clientes'));  
-            }else{
+            } else {
                 return $this->redirect($this->generateUrl('crivero_prueba_monitores'));  
             }
         } else {
@@ -86,13 +97,18 @@ class ClienteController extends Controller
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()) {
+            $tipo = $usuario->getTipo();
             $em->remove($usuario);
             $em->flush();
             
-            return $this->redirect($this->generateUrl('crivero_prueba_clientes'));
+            if ($tipo != 3) {
+                return $this->redirect($this->generateUrl('crivero_prueba_clientes'));  
+            }else{
+                return $this->redirect($this->generateUrl('crivero_prueba_monitores'));  
+            }
         }
     }
-    
+      
     public function editarAction($id) {
         $em = $this->getDoctrine()->getManager();
         $usuario= $this->findUser($id, $em);

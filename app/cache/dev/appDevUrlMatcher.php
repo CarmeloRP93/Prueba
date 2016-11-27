@@ -243,7 +243,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         // crivero_prueba_home
         if ($pathinfo === '/home') {
-            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ClienteController::homeAction',  '_route' => 'crivero_prueba_home',);
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::homeAction',  '_route' => 'crivero_prueba_home',);
         }
 
         if (0 === strpos($pathinfo, '/log')) {
@@ -269,22 +269,22 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         // crivero_prueba_clientes
         if ($pathinfo === '/clientes') {
-            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ClienteController::clientesAction',  '_route' => 'crivero_prueba_clientes',);
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::clientesAction',  '_route' => 'crivero_prueba_clientes',);
         }
 
         // crivero_prueba_monitores
         if ($pathinfo === '/monitores') {
-            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MonitorController::monitoresAction',  '_route' => 'crivero_prueba_monitores',);
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::monitoresAction',  '_route' => 'crivero_prueba_monitores',);
         }
 
         // crivero_prueba_cliente
         if (0 === strpos($pathinfo, '/cliente') && preg_match('#^/cliente/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cliente')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ClienteController::clienteAction',));
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cliente')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::clienteAction',));
         }
 
         // crivero_prueba_nuevo
         if ($pathinfo === '/nuevo') {
-            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ClienteController::nuevoAction',  '_route' => 'crivero_prueba_nuevo',);
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::nuevoAction',  '_route' => 'crivero_prueba_nuevo',);
         }
 
         // crivero_prueba_crear
@@ -294,48 +294,34 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 goto not_crivero_prueba_crear;
             }
 
-            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ClienteController::crearAction',  '_route' => 'crivero_prueba_crear',);
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::crearAction',  '_route' => 'crivero_prueba_crear',);
         }
         not_crivero_prueba_crear:
 
         // crivero_prueba_editar
         if (0 === strpos($pathinfo, '/editar') && preg_match('#^/editar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_editar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ClienteController::editarAction',));
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_editar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::editarAction',));
         }
 
         // crivero_prueba_actualizar
         if (0 === strpos($pathinfo, '/actualizar') && preg_match('#^/actualizar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_actualizar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ClienteController::actualizarAction',));
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_actualizar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::actualizarAction',));
         }
 
-        if (0 === strpos($pathinfo, '/eliminar')) {
-            // crivero_prueba_eliminar
-            if (preg_match('#^/eliminar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
-                    $allow = array_merge($allow, array('POST', 'DELETE'));
-                    goto not_crivero_prueba_eliminar;
-                }
-
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_eliminar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ClienteController::eliminarAction',));
+        // crivero_prueba_eliminar
+        if (0 === strpos($pathinfo, '/eliminar') && preg_match('#^/eliminar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                $allow = array_merge($allow, array('POST', 'DELETE'));
+                goto not_crivero_prueba_eliminar;
             }
-            not_crivero_prueba_eliminar:
 
-            // crivero_prueba_eliminarMonitor
-            if (0 === strpos($pathinfo, '/eliminarMonitor') && preg_match('#^/eliminarMonitor/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
-                    $allow = array_merge($allow, array('POST', 'DELETE'));
-                    goto not_crivero_prueba_eliminarMonitor;
-                }
-
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_eliminarMonitor')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MonitorController::eliminarMonitorAction',));
-            }
-            not_crivero_prueba_eliminarMonitor:
-
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_eliminar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::eliminarAction',));
         }
+        not_crivero_prueba_eliminar:
 
         // crivero_prueba_monitor
         if (0 === strpos($pathinfo, '/monitor') && preg_match('#^/monitor/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_monitor')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MonitorController::monitorAction',));
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_monitor')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::monitorAction',));
         }
 
         if (0 === strpos($pathinfo, '/cancha')) {
