@@ -110,9 +110,11 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
         // line 41
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_sesiones");
         echo "\">S.Generales</a></li>
-";
-        // line 43
-        echo "                            </ul>
+                              <li><a href=\"";
+        // line 42
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_dedicadas");
+        echo "\">S.Dedicadas</a></li>
+                            </ul>
                      </li>
                 </ul>
                 
@@ -178,6 +180,6 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
 
     public function getDebugInfo()
     {
-        return array (  166 => 67,  163 => 66,  155 => 68,  153 => 66,  149 => 64,  146 => 63,  133 => 53,  127 => 50,  123 => 48,  121 => 47,  115 => 43,  111 => 41,  104 => 37,  100 => 36,  94 => 33,  90 => 32,  68 => 12,  65 => 11,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
+        return array (  168 => 67,  165 => 66,  157 => 68,  155 => 66,  151 => 64,  148 => 63,  135 => 53,  129 => 50,  125 => 48,  123 => 47,  115 => 42,  111 => 41,  104 => 37,  100 => 36,  94 => 33,  90 => 32,  68 => 12,  65 => 11,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
     }
 }

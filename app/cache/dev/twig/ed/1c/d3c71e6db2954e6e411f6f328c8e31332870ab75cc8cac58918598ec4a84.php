@@ -36,7 +36,7 @@ class __TwigTemplate_ed1cd3c71e6db2954e6e411f6f328c8e31332870ab75cc8cac58918598e
     // line 3
     public function block_title($context, array $blocks = array())
     {
-        echo "Vista de ";
+        echo " ";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "nombre", array()), "html", null, true);
         echo " ";
     }

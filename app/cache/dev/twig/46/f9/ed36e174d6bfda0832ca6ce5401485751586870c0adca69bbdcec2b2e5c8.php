@@ -36,7 +36,7 @@ class __TwigTemplate_46f9ed36e174d6bfda0832ca6ce5401485751586870c0adca69bbdcec2b
     // line 3
     public function block_title($context, array $blocks = array())
     {
-        echo " Vista de Torneos ";
+        echo " Torneos ";
     }
 
     // line 5
@@ -44,7 +44,7 @@ class __TwigTemplate_46f9ed36e174d6bfda0832ca6ce5401485751586870c0adca69bbdcec2b
     {
         // line 6
         echo "
-<h1>Listado de Torneos</h1>
+<h1>Torneos</h1>
 ";
         // line 8
         $context['_parent'] = (array) $context;

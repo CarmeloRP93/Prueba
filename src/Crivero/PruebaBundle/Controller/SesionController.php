@@ -15,6 +15,12 @@ class SesionController extends Controller {
         $sesiones = $repository->findAll();
         return $this->render('CriveroPruebaBundle:Default:sesiones.html.twig', array("sesiones" => $sesiones));
     }
+    
+    public function dedicadasAction() {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesiones = $repository->findAll();
+        return $this->render('CriveroPruebaBundle:Default:sesionesDedicadas.html.twig', array("sesiones" => $sesiones));
+    }
 
     public function sesionAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");

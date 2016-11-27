@@ -36,7 +36,7 @@ class __TwigTemplate_85d586aae8bcd99c6df6b49cb6b4337730e64bdca97afccf2dd311ec62f
     // line 5
     public function block_title($context, array $blocks = array())
     {
-        echo " Vista de Monitores ";
+        echo " Monitores ";
     }
 
     // line 7
@@ -44,7 +44,7 @@ class __TwigTemplate_85d586aae8bcd99c6df6b49cb6b4337730e64bdca97afccf2dd311ec62f
     {
         // line 8
         echo "
-<h1>Listado de Monitores</h1>
+<h1>Monitores</h1>
 ";
         // line 10
         $context['_parent'] = (array) $context;

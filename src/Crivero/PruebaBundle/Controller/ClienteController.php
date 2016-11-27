@@ -44,18 +44,21 @@ class ClienteController extends Controller
       if($form->isValid())
       {
         $password = $form->get('password')->getData();
-        $encoded= password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
-        $usuario->setPassword($encoded);
-          
-        $em=$this->getDoctrine()->getManager();
-        $em->persist($usuario);
-        $em->flush();
+        if (!empty($password)) {
+            $encoded= password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+            $usuario->setPassword($encoded);
         
-        $tipo = $form->get('tipo')->getData();
-        if ($tipo != 3) {
-            return $this->redirect($this->generateUrl('crivero_prueba_clientes'));  
-        }else{
-            return $this->redirect($this->generateUrl('crivero_prueba_monitores'));  
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($usuario);
+            $em->flush();
+            
+            if ($form->get('tipo')->getData() != 3) {
+                return $this->redirect($this->generateUrl('crivero_prueba_clientes'));  
+            }else{
+                return $this->redirect($this->generateUrl('crivero_prueba_monitores'));  
+            }
+        } else {
+            $form->get('password')->addError(new FormError('Rellene el campo, gracias'));
         }
       }
       return $this->render('CriveroPruebaBundle:Default:nuevo.html.twig', array('form' => $form->createView()));
@@ -77,7 +80,7 @@ class ClienteController extends Controller
     
     public function eliminarAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
-        $usuario= $em->getRepository('CriveroPruebaBundle:Usuarios')->find($id);
+        $usuario= $this->findUser($id, $em);
         
         $form = $this->createDeleteForm($usuario);
         $form->handleRequest($request);
@@ -89,9 +92,68 @@ class ClienteController extends Controller
             return $this->redirect($this->generateUrl('crivero_prueba_clientes'));
         }
     }
+    
+    public function editarAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $usuario= $this->findUser($id, $em);
+        
+        $form = $this->createEditForm($usuario);
+        return $this->render('CriveroPruebaBundle:Default:editar.html.twig', array('usuario' => $usuario, 
+                             'form' => $form->createView()));
+    }
+    
+     public function actualizarAction($id, Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $usuario= $this->findUser($id, $em);
+        
+        $form = $this->createEditForm($usuario);
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid()) {
+            $password = $form->get('password')->getData();
+            if (!empty($password)) {
+                $encoded= password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+                $usuario->setPassword($encoded);
+            } else {
+                $recoverPass = $this->recoverPass($id);
+                $usuario->setPassword($recoverPass[0]['password']);
+            }
+            $em->flush();
+            return $this->redirect($this->generateUrl('crivero_prueba_editar', array('id' => $usuario->getId())));
+        }
+        return $this->render('CriveroPruebaBundle:Default:editar.html.twig', array('usuario' => $usuario, 'form' => $form->createView()));
+    }
+    
+    public function createEditForm(Usuarios $entity) {
+          $form = $this->createForm(new UsuariosType(), $entity, array(
+            'action' => $this->generateUrl('crivero_prueba_actualizar', array('id' => $entity->getId())),
+            'method' => 'PUT')); 
+          return $form;        
+    }
+    
+     private function recoverPass($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT u.password
+            FROM CriveroPruebaBundle:Usuarios u
+            WHERE u.id = :id'    
+        )->setParameter('id', $id);
+        
+        $currentPass = $query->getResult();
+        return $currentPass;
+    }
+    
     public function homeAction() {
         return $this->render('CriveroPruebaBundle:Default:home.html.twig');
     }
-   
+    
+    private function findUser($id, \Doctrine\ORM\EntityManager $em) {
+        $usuario= $em->getRepository('CriveroPruebaBundle:Usuarios')->find($id);
+        if (!$usuario) {
+            throw $this->createNotFoundException('Usuario no encontrado');
+        }
+        return $usuario;
+    }
     
 }

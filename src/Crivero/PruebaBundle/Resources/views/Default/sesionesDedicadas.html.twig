@@ -1,0 +1,15 @@
+{# empty Twig template #}
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
+
+{% block title %} Sesiones Dedicadas{% endblock %}
+
+{% block contenido %}
+
+    <h1>Sesiones Dedicadas</h1>
+    {% for sesion in sesiones %}
+        {% if sesion.cliente != "normal" %}
+            <a href="{{url('crivero_prueba_sesion', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{sesion.id}}:  {{sesion.cliente}}/{{sesion.nombre}} - {{ sesion.estado }}</a>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}

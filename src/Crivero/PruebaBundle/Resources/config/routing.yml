@@ -35,6 +35,14 @@ crivero_prueba_crear:
     requirements:
         _method:  POST|GET
 
+crivero_prueba_editar:
+    pattern:  /editar/{id}
+    defaults: { _controller: CriveroPruebaBundle:Cliente:editar }
+
+crivero_prueba_actualizar:
+    pattern:  /actualizar/{id}
+    defaults: { _controller: CriveroPruebaBundle:Cliente:actualizar }
+
 crivero_prueba_eliminar:
     pattern:  /eliminar/{id}
     defaults: { _controller: CriveroPruebaBundle:Cliente:eliminar }
@@ -68,6 +76,10 @@ crivero_prueba_torneo:
 crivero_prueba_sesiones:
     pattern:  /sesiones
     defaults: { _controller: CriveroPruebaBundle:Sesion:sesiones }
+
+crivero_prueba_dedicadas:
+    pattern:  /dedicadas
+    defaults: { _controller: CriveroPruebaBundle:Sesion:dedicadas }
 
 crivero_prueba_sesion:
     pattern:  /sesion/{id}

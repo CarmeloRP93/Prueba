@@ -65,6 +65,7 @@ security:
         - { path: ^/cancha, roles: ROLE_ADMIN }
         - { path: ^/sesiones, roles: ROLE_ADMIN }
         - { path: ^/sesion, roles: ROLE_ADMIN }
+        - { path: ^/dedicadas, roles: ROLE_ADMIN }
         - { path: ^/torneos, roles: ROLE_ADMIN }
         - { path: ^/torneo, roles: ROLE_ADMIN }
         - { path: ^/nuevo, roles: ROLE_ADMIN }

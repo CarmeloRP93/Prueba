@@ -298,6 +298,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_crivero_prueba_crear:
 
+        // crivero_prueba_editar
+        if (0 === strpos($pathinfo, '/editar') && preg_match('#^/editar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_editar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ClienteController::editarAction',));
+        }
+
+        // crivero_prueba_actualizar
+        if (0 === strpos($pathinfo, '/actualizar') && preg_match('#^/actualizar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_actualizar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ClienteController::actualizarAction',));
+        }
+
         if (0 === strpos($pathinfo, '/eliminar')) {
             // crivero_prueba_eliminar
             if (preg_match('#^/eliminar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
@@ -354,17 +364,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/sesion')) {
-            // crivero_prueba_sesiones
-            if ($pathinfo === '/sesiones') {
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::sesionesAction',  '_route' => 'crivero_prueba_sesiones',);
-            }
+        // crivero_prueba_sesiones
+        if ($pathinfo === '/sesiones') {
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::sesionesAction',  '_route' => 'crivero_prueba_sesiones',);
+        }
 
-            // crivero_prueba_sesion
-            if (preg_match('#^/sesion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_sesion')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::sesionAction',));
-            }
+        // crivero_prueba_dedicadas
+        if ($pathinfo === '/dedicadas') {
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::dedicadasAction',  '_route' => 'crivero_prueba_dedicadas',);
+        }
 
+        // crivero_prueba_sesion
+        if (0 === strpos($pathinfo, '/sesion') && preg_match('#^/sesion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_sesion')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::sesionAction',));
         }
 
         // crivero_prueba_aceptarSesion

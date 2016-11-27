@@ -36,7 +36,7 @@ class __TwigTemplate_6fe83b972abb4793cd49d2aad863166b9c3531263d8575c667bdf691973
     // line 3
     public function block_title($context, array $blocks = array())
     {
-        echo " Vista de nuevo usuario ";
+        echo " Nuevo usuario ";
     }
 
     // line 5

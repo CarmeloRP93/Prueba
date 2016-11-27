@@ -1,15 +1,12 @@
-{# empty Twig template #}
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 
-{% block title %} Vista de Sesiones {% endblock %}
+{% block title %} Sesiones Generales {% endblock %}
 
 {% block contenido %}
 
-    <h1>Listado de Sesiones</h1>
+    <h1>Sesiones Generales</h1>
     {% for sesion in sesiones %}
-        {% if sesion.cliente!=null %}
-            <a href="{{url('crivero_prueba_sesion', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{ sesion.id }}: {{ sesion.cliente }}/{{ sesion.nombre }} - {{ sesion.estado}} </a>
-        {% else %}
+        {% if sesion.cliente == "normal" %}
             <a href="{{url('crivero_prueba_sesion', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{sesion.id}}:  {{sesion.nombre}} - {{ sesion.estado }}</a>
         {% endif %}
     {% endfor %}

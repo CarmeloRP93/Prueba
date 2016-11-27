@@ -1,11 +1,11 @@
 {# empty Twig template #}
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 
-{% block title %} Vista de Canchas {% endblock %}
+{% block title %} Canchas {% endblock %}
              
 {% block contenido %}
 
-<h1>Listado de Canchas</h1>
+<h1>Canchas</h1>
 {% for cancha in canchas %}
     <a href="{{url('crivero_prueba_cancha', {'id': cancha.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ cancha.tipo }} - {{ cancha.disponibilidad}} </a>
 {% endfor %}
