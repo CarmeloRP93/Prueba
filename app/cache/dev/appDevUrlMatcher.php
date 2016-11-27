@@ -148,21 +148,43 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // modulomonitores_monitores_nuevaSesion
-        if ($pathinfo === '/nuevaSesion') {
-            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::nuevaSesionAction',  '_route' => 'modulomonitores_monitores_nuevaSesion',);
-        }
-
-        // modulomonitores_monitores_crearSesion
-        if ($pathinfo === '/crearSesion') {
-            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
-                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
-                goto not_modulomonitores_monitores_crearSesion;
+        if (0 === strpos($pathinfo, '/nuevaSesion')) {
+            // modulomonitores_monitores_nuevaSesion
+            if ($pathinfo === '/nuevaSesion') {
+                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::nuevaSesionAction',  '_route' => 'modulomonitores_monitores_nuevaSesion',);
             }
 
-            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::crearSesionAction',  '_route' => 'modulomonitores_monitores_crearSesion',);
+            // modulomonitores_monitores_nuevaSesionDedicada
+            if ($pathinfo === '/nuevaSesionDedicada') {
+                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::nuevaSesionDedicadaAction',  '_route' => 'modulomonitores_monitores_nuevaSesionDedicada',);
+            }
+
         }
-        not_modulomonitores_monitores_crearSesion:
+
+        if (0 === strpos($pathinfo, '/crearSesion')) {
+            // modulomonitores_monitores_crearSesion
+            if ($pathinfo === '/crearSesion') {
+                if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                    goto not_modulomonitores_monitores_crearSesion;
+                }
+
+                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::crearSesionAction',  '_route' => 'modulomonitores_monitores_crearSesion',);
+            }
+            not_modulomonitores_monitores_crearSesion:
+
+            // modulomonitores_monitores_crearSesionDedicada
+            if ($pathinfo === '/crearSesionDedicada') {
+                if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                    goto not_modulomonitores_monitores_crearSesionDedicada;
+                }
+
+                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::crearSesionDedicadaAction',  '_route' => 'modulomonitores_monitores_crearSesionDedicada',);
+            }
+            not_modulomonitores_monitores_crearSesionDedicada:
+
+        }
 
         // moduloclientes_cliente_homeClientes
         if ($pathinfo === '/homeClientes') {
@@ -221,17 +243,9 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/h')) {
-            // crivero_prueba_homepage
-            if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello(?:/(?P<name>[^/]++))?$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_homepage')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\HomeController::indexAction',  'name' => 'Pablo',));
-            }
-
-            // crivero_prueba_home
-            if ($pathinfo === '/home') {
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ClienteController::homeAction',  '_route' => 'crivero_prueba_home',);
-            }
-
+        // crivero_prueba_home
+        if ($pathinfo === '/home') {
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ClienteController::homeAction',  '_route' => 'crivero_prueba_home',);
         }
 
         if (0 === strpos($pathinfo, '/log')) {
@@ -365,6 +379,44 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_aceptarSesion')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::aceptarSesionAction',));
         }
         not_crivero_prueba_aceptarSesion:
+
+        if (0 === strpos($pathinfo, '/cancelar')) {
+            // crivero_prueba_cancelar
+            if (preg_match('#^/cancelar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+                    goto not_crivero_prueba_cancelar;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancelar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::cancelarAction',));
+            }
+            not_crivero_prueba_cancelar:
+
+            // crivero_prueba_cancelarSesion
+            if (0 === strpos($pathinfo, '/cancelarSesion') && preg_match('#^/cancelarSesion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancelarSesion')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::cancelarSesionAction',));
+            }
+
+        }
+
+        if (0 === strpos($pathinfo, '/rechazar')) {
+            // crivero_prueba_rechazar
+            if (preg_match('#^/rechazar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+                    goto not_crivero_prueba_rechazar;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_rechazar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::rechazarAction',));
+            }
+            not_crivero_prueba_rechazar:
+
+            // crivero_prueba_rechazarSesion
+            if (0 === strpos($pathinfo, '/rechazarSesion') && preg_match('#^/rechazarSesion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_rechazarSesion')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::rechazarSesionAction',));
+            }
+
+        }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }

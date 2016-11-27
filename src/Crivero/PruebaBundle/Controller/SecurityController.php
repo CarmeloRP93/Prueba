@@ -1,9 +1,7 @@
 <?php
 namespace Crivero\PruebaBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
-use Crivero\PruebaBundle\Entity\Usuarios;
 class SecurityController extends Controller {
     public function loginAction() {
 

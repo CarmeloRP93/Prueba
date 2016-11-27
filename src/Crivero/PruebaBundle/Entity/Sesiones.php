@@ -33,7 +33,7 @@ class Sesiones
     /**
      * @var string
      *
-     * @ORM\Column(name="cliente", type="string", length=200, nullable=true)
+     * @ORM\Column(name="cliente", type="string", length=200)
      */
     private $cliente;
     

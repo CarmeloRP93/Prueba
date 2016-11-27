@@ -64,7 +64,7 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
         foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
             // line 8
             echo "        ";
-            if (($this->getAttribute($context["sesion"], "cliente", array()) == null)) {
+            if (($this->getAttribute($context["sesion"], "cliente", array()) == "normal")) {
                 // line 9
                 echo "        <a href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_sesionMonitores", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);

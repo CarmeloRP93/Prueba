@@ -61,73 +61,76 @@ class __TwigTemplate_99d232fbed775b95743b0e57556ded2f357aa18cebb2f9ba58905559508
         echo "</small>
         </h3>
     </div>
-    
+
     <div id=\"sesiondat\">
         <div id=\"sesionfot\" style=\"margin-top: 14px;\">
             <img src=\"";
         // line 13
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/abdd.jpg"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "imagen", array())), "html", null, true);
         echo "\" class=\"img-responsive center-block\" />        
         </div>
-  
+
         ";
         // line 16
         if (($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()) == "validada")) {
             // line 17
-            echo "        <div class=\"accionesesion text-center\" style=\"margin-left: 30px; margin-right: 10px;\">
-            <button style=\"height: 30px; width: 250px;\" class=\"btn btn-success col-sm-3 col-sm-offset-3\">Modificar sesion</button>
-            <button style=\"height: 30px; width: 250px;\" class=\"btn btn-danger col-sm-3 col-sm-offset-1\">Eliminar sesion </button>
-        </div>
-    ";
-        } else {
+            echo "            <div class=\"accionesesion text-center\" style=\"margin-left: 30px; margin-right: 10px;\">
+                <button style=\"height: 30px; width: 250px;\" class=\"btn btn-success col-sm-3 col-sm-offset-3\">Modificar sesion</button>
+                <button style=\"height: 30px; width: 250px;\" class=\"btn btn-danger col-sm-3 col-sm-offset-1\">Eliminar sesion </button>
+            </div>
+        ";
+        } elseif (($this->getAttribute(        // line 21
+(isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()) == "cancelada")) {
             // line 22
-            echo "        <div class=\"text-center\">
-            <button style=\"height: 30px; width: 600px;\" class=\"btn btn-warning\">Sin validar</button>
-        </div>
-    ";
+            echo "            <div class=\"text-center\">
+                <button style=\"height: 30px; width: 600px;\" class=\"btn btn-danger\" disabled=\"disabled\">Cancelada</button>
+                <h4>Motivos:</h4> <p>";
+            // line 24
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "observaciones", array()), "html", null, true);
+            echo "</p>
+            </div>
+        ";
+        } else {
+            // line 27
+            echo "            <div class=\"text-center\">
+                <button style=\"height: 30px; width: 600px;\" class=\"btn btn-warning\">Sin validar</button>
+            </div>
+        ";
         }
-        // line 26
-        echo "    
-           <div class=\"row\">
-                    <div id=\"colizq\" class=\"col-md-4 col-md-offset-3\" >
-                        <h4>Monitor:</h4> <p>";
-        // line 29
+        // line 31
+        echo "
+        <div class=\"row\">
+            <div id=\"colizq\" class=\"col-md-4 col-md-offset-3\" >
+                <h4>Monitor:</h4> <p>";
+        // line 34
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "monitor", array()), "html", null, true);
         echo "</p>
-                        <h4>Ejercicios:</h4> <p>";
-        // line 30
+                <h4>Ejercicios:</h4> <p>";
+        // line 35
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "ejercicios", array()), "html", null, true);
         echo "</p>
-                        <h4>Repeticiones:</h4> <p>";
-        // line 31
+                <h4>Repeticiones:</h4> <p>";
+        // line 36
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "repeticiones", array()), "html", null, true);
         echo " por ejercicio</p>
-                        <h4>Nº de participantes:</h4> <p>";
-        // line 32
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "nClientes", array()), "html", null, true);
-        echo "</p>
-                    </div>
-                    <div id=\"colder\" class=\"col-md-4\">
-                        <h4>Tiempo estimado:</h4> <p>";
-        // line 35
+            </div>
+            <div id=\"colder\" class=\"col-md-4\">
+                <h4>Tiempo estimado:</h4> <p>";
+        // line 39
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "duracion", array()), "html", null, true);
         echo " minutos</p>
-                        <h4>Descanso entre ejercicios:</h4> <p>";
-        // line 36
+                <h4>Descanso entre ejercicios:</h4> <p>";
+        // line 40
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "descanso", array()), "html", null, true);
         echo " minutos</p>
-                        <h4>Objetivo:</h4> <p>";
-        // line 37
+                <h4>Objetivo:</h4> <p>";
+        // line 41
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "objetivo", array()), "html", null, true);
         echo "</p>
-                        <h4>Límite de participantes:</h4> <p>";
-        // line 38
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "lClientes", array()), "html", null, true);
-        echo "</p>
-                    </div>
-           </div>
+            </div>
+        </div>
     </div>
-            
+
 ";
     }
 
@@ -143,6 +146,6 @@ class __TwigTemplate_99d232fbed775b95743b0e57556ded2f357aa18cebb2f9ba58905559508
 
     public function getDebugInfo()
     {
-        return array (  125 => 38,  121 => 37,  117 => 36,  113 => 35,  107 => 32,  103 => 31,  99 => 30,  95 => 29,  90 => 26,  84 => 22,  77 => 17,  75 => 16,  69 => 13,  60 => 7,  54 => 6,  50 => 4,  47 => 3,  37 => 2,  11 => 1,);
+        return array (  128 => 41,  124 => 40,  120 => 39,  114 => 36,  110 => 35,  106 => 34,  101 => 31,  95 => 27,  89 => 24,  85 => 22,  83 => 21,  77 => 17,  75 => 16,  69 => 13,  60 => 7,  54 => 6,  50 => 4,  47 => 3,  37 => 2,  11 => 1,);
     }
 }

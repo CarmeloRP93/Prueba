@@ -66,7 +66,7 @@ class __TwigTemplate_f367c17d08d0227d16ff617072669e20ddb4702ac4be675a8742177bf00
                 </div>
                 
                 
-                <div class=\"form-group\">
+                <div class=\"form-group\" style=\"display:none;\">
                     ";
         // line 16
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "cliente", array()), 'label');

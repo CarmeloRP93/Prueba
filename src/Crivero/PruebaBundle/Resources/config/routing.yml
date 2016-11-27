@@ -1,7 +1,3 @@
-crivero_prueba_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: CriveroPruebaBundle:Home:index, name: "Pablo" }
-    
 crivero_prueba_home:
     pattern:  /home
     defaults: { _controller: CriveroPruebaBundle:Cliente:home }
@@ -82,3 +78,19 @@ crivero_prueba_aceptarSesion:
     defaults: { _controller: CriveroPruebaBundle:Sesion:aceptarSesion }
     requirements:
         _method:  POST|PUT|GET
+crivero_prueba_cancelar:
+    pattern:  /cancelar/{id}
+    defaults: { _controller: CriveroPruebaBundle:Sesion:cancelar }
+    requirements:
+        _method:  POST|PUT|GET
+crivero_prueba_cancelarSesion:
+    pattern:  /cancelarSesion/{id}
+    defaults: { _controller: CriveroPruebaBundle:Sesion:cancelarSesion }
+crivero_prueba_rechazar:
+    pattern:  /rechazar/{id}
+    defaults: { _controller: CriveroPruebaBundle:Sesion:rechazar }
+    requirements:
+        _method:  POST|PUT|GET
+crivero_prueba_rechazarSesion:
+    pattern:  /rechazarSesion/{id}
+    defaults: { _controller: CriveroPruebaBundle:Sesion:rechazarSesion }

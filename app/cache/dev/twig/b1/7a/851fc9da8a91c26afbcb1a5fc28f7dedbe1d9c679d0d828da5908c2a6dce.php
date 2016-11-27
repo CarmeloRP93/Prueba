@@ -65,7 +65,7 @@ class __TwigTemplate_b17a851fc9da8a91c26afbcb1a5fc28f7dedbe1d9c679d0d828da5908c2
         foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
             // line 9
             echo "        ";
-            if (($this->getAttribute($context["sesion"], "cliente", array()) != null)) {
+            if (($this->getAttribute($context["sesion"], "cliente", array()) != "normal")) {
                 // line 10
                 echo "        <a href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_sesionDedicada", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
@@ -100,8 +100,8 @@ class __TwigTemplate_b17a851fc9da8a91c26afbcb1a5fc28f7dedbe1d9c679d0d828da5908c2
         echo "    <div class=\"accionesesion text-center\" style=\"margin-top:5px; margin-left: 5px\">
         <a href=\"";
         // line 14
-        echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_nuevaSesion");
-        echo "\" class=\"btn btn-success col-sm-1\" style=\"height: 30px; width: 150px;\">Nuevo sesion <span class=\"glyphicon glyphicon-plus\"></span></a>
+        echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_nuevaSesionDedicada");
+        echo "\" class=\"btn btn-success col-sm-1\" style=\"height: 30px; width: 200px;\">Nuevo sesion dedicada<span class=\"glyphicon glyphicon-plus\"></span></a>
     </div>
 ";
     }

@@ -21,8 +21,16 @@ modulomonitores_monitores_sesionDedicada:
 modulomonitores_monitores_nuevaSesion:
     pattern:  /nuevaSesion
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:nuevaSesion }
+modulomonitores_monitores_nuevaSesionDedicada:
+    pattern:  /nuevaSesionDedicada
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:nuevaSesionDedicada }
 modulomonitores_monitores_crearSesion:
     pattern:  /crearSesion
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:crearSesion }
+    requirements:
+        _method:  POST|GET
+modulomonitores_monitores_crearSesionDedicada:
+    pattern:  /crearSesionDedicada
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:crearSesionDedicada }
     requirements:
         _method:  POST|GET
