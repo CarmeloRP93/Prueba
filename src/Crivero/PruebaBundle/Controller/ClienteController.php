@@ -51,7 +51,12 @@ class ClienteController extends Controller
         $em->persist($usuario);
         $em->flush();
         
-        return $this->redirect($this->generateUrl('crivero_prueba_clientes'));
+        $tipo = $form->get('tipo')->getData();
+        if ($tipo != 3) {
+            return $this->redirect($this->generateUrl('crivero_prueba_clientes'));  
+        }else{
+            return $this->redirect($this->generateUrl('crivero_prueba_monitores'));  
+        }
       }
       return $this->render('CriveroPruebaBundle:Default:nuevo.html.twig', array('form' => $form->createView()));
     }

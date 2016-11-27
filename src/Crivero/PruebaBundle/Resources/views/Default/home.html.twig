@@ -1,26 +1,33 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 
 {% block navegation %}{% endblock %}
-{% block title %}Welcome!!{% endblock %}
+{% block title %}Home{% endblock %}
 {% block body %}
  <div class="container" >
         <h2 class="text-center">
-            {{ 'Welcome' }}
-             :
+            Bienvenido
+            {% if app.user.tipo == 1 %}
+                administrador
+            {% elseif app.user.tipo == 2 %}
+                cliente
+            {% else %}
+                monitor    
+            {% endif %}
+            :
             {{ app.user.nombre }}
         </h2>
  </div>
-        {% if app.user.tipo == 1 %}
-            <form id="formu" action="{{ path('crivero_prueba_clientes') }}" method="post">
-            </form>
-        {% elseif app.user.tipo == 2 %}
-            <form id="formu" action="{{ path('moduloclientes_cliente_reservasClientes') }}" method="post">
-            </form>
-        {% else %}
-            <form id="formu" action="{{ path('modulomonitores_monitores_sesionesMonitores') }}" method="post">
-            </form>
-        {% endif %}
-        <script type="text/javascript">
-            setTimeout(function(){document.getElementById("formu").submit();}, 5000); 
-        </script>
+            {% if app.user.tipo == 1 %}
+                <form id="formu" action="{{ path('crivero_prueba_clientes') }}" method="post">
+                </form>
+            {% elseif app.user.tipo == 2 %}
+                <form id="formu" action="{{ path('moduloclientes_cliente_reservasClientes') }}" method="post">
+                </form>
+            {% else %}
+                <form id="formu" action="{{ path('modulomonitores_monitores_sesionesMonitores') }}" method="post">
+                </form>
+            {% endif %}
+            <script type="text/javascript">
+                setTimeout(function(){document.getElementById("formu").submit();}, 3000); 
+            </script>
 {% endblock %}

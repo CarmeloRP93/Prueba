@@ -1,6 +1,3 @@
-moduloclientes_cliente_homeClientes:
-    pattern:  /homeClientes
-    defaults: { _controller: moduloclientesclienteBundle:Home:homeClientes }
 moduloclientes_cliente_canchasClientes:
     pattern:  /canchasClientes
     defaults: { _controller: moduloclientesclienteBundle:Cancha:canchasClientes }

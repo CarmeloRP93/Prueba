@@ -293,8 +293,10 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     {
         if ($this->getTipo() == 1) {
             return array('ROLE_ADMIN');
+        }else if($this->getTipo() == 2){
+            return array('ROLE_CLIENTE');
         }else{
-            return array('ROLE_USER');
+            return array('ROLE_MONITOR');
         }
     }
     

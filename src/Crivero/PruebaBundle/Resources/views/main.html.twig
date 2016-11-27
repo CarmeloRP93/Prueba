@@ -26,11 +26,22 @@
 
             <div class="collapse navbar-collapse navbar-ex1-collapse ">
                 <ul class="nav navbar-nav ">
-                    <li><a href="{{url('crivero_prueba_clientes')}}">Clientes</a></li>
-                    <li><a href="{{url('crivero_prueba_monitores')}}">Monitores</a></li>
+                    <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Usuarios <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                              <li><a href="{{url('crivero_prueba_clientes')}}">Clientes</a></li>
+                              <li><a href="{{url('crivero_prueba_monitores')}}">Monitores</a></li>
+                            </ul>
+                     </li>
                     <li><a href="{{url('crivero_prueba_canchas')}}">Canchas</a></li>
                     <li><a href="{{url('crivero_prueba_torneos')}}">Torneos</a></li>
-                    <li><a href="{{url('crivero_prueba_sesiones')}}">Sesiones</a></li>
+                     <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Sesiones <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                              <li><a href="{{url('crivero_prueba_sesiones')}}">S.Generales</a></li>
+{#                              <li><a href="{{url('crivero_prueba_sesionesDedicadas')}}">S.Dedicadas</a></li>#}
+                            </ul>
+                     </li>
                 </ul>
                 
                 {% if is_granted("IS_AUTHENTICATED_FULLY") %}
