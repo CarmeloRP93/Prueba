@@ -11,7 +11,8 @@ class TorneoController extends Controller
             array("matricula"=>2, "nombre"=>"Torneo 2", "estado"=>"Disponible","equipos"=>array("Equipo 1","Equipo 3")),
             array("matricula"=>3, "nombre"=>"Torneo 3", "estado"=>"Finalizado","equipos"=>array("Equipo 1","Equipo 3")),
             array("matricula"=>4, "nombre"=>"Torneo 4", "estado"=>"Finalizado","equipos"=>array("Equipo 2","Equipo 3")),
-            array("matricula"=>5, "nombre"=>"Torneo 5", "estado"=>"Inscripcion","equipos"=>array("Equipo 1", "Equipo 2","Equipo 3"))
+            array("matricula"=>5, "nombre"=>"Torneo 5", "estado"=>"Inscripcion","equipos"=>array("Equipo 1", "Equipo 2","Equipo 3")),
+            array("matricula"=>6, "nombre"=>"Torneo 6", "estado"=>"Disponible","equipos"=>array("Equipo 1","Equipo 3"))
         );
     
     public function torneosClientesAction()
