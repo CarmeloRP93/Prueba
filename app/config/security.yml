@@ -73,8 +73,6 @@ security:
         - { path: ^/crear, roles: ROLE_ADMIN }
         - { path: ^/eliminar, roles: ROLE_ADMIN }
         - { path: ^/aceptarSesion, roles: ROLE_ADMIN }
-        
-        
     
     encoders:
         Crivero\PruebaBundle\Entity\Usuarios:

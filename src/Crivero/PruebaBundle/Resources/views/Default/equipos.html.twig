@@ -1,0 +1,16 @@
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
+
+{% block title %} Vista de Equipos {% endblock %}
+
+{% block contenido %}
+<div id="buscador">
+    <form>
+        <input type="search" name="equipo" placeholder="Buscar equipo"/>
+    </form>
+</div>
+<h1>Listado de Equipos</h1>
+{% for equipo in equipos %}
+    <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{equipo.deporte}}-{{ equipo.nombre }} - Clasificación: {{equipo.clasificacion}}</a>
+{% endfor %}
+
+{% endblock %}

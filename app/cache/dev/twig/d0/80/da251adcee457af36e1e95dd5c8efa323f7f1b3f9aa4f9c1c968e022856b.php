@@ -50,7 +50,7 @@ class __TwigTemplate_d080da251adcee457af36e1e95dd5c8efa323f7f1b3f9aa4f9c1c968e02
         <h2>Detalles del Torneo</h2>
         ";
         // line 7
-        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estado", array()) == "Solicitud Presentada")) {
+        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estadoTorneo", array()) == "Solicitud Presentada")) {
             // line 8
             echo "            <button class=\"btn btn-default\">Aceptar Solicitud</button>
             <button class=\"btn btn-danger\">Rechazar Solicitud </button>
@@ -59,7 +59,7 @@ class __TwigTemplate_d080da251adcee457af36e1e95dd5c8efa323f7f1b3f9aa4f9c1c968e02
         // line 11
         echo "        ";
         $this->displayBlock('detalles', $context, $blocks);
-        // line 21
+        // line 18
         echo "    </div>
 ";
     }
@@ -69,28 +69,20 @@ class __TwigTemplate_d080da251adcee457af36e1e95dd5c8efa323f7f1b3f9aa4f9c1c968e02
     {
         // line 12
         echo "            ";
-        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estado", array()) == "Validado")) {
+        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estadoTorneo", array()) == "Validado")) {
             // line 13
             echo "                <h3>Ver información de equipos</h3>
-                ";
+                <p>";
             // line 14
-            $context['_parent'] = (array) $context;
-            $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "equipos", array()));
-            foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
-                // line 15
-                echo "                    <label class=\"control-label span7 text-left\">";
-                echo twig_escape_filter($this->env, $context["equipo"], "html", null, true);
-                echo "</label>
-                    <button class=\"btn btn-default\">Ver puesto</button>
-                    <button class=\"btn btn-danger\">Eliminar equipo</button><br>
-                ";
-            }
-            $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
-            $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 19
-            echo "            ";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "equipos", array()), "html", null, true);
+            echo "<p>
+                <a href=\"";
+            // line 15
+            echo $this->env->getExtension('routing')->getUrl("crivero_prueba_equipos");
+            echo "\">Ver los datos de los equipos</a>
+            ";
         }
+        // line 16
         echo " 
         ";
     }
@@ -107,6 +99,6 @@ class __TwigTemplate_d080da251adcee457af36e1e95dd5c8efa323f7f1b3f9aa4f9c1c968e02
 
     public function getDebugInfo()
     {
-        return array (  92 => 19,  81 => 15,  77 => 14,  74 => 13,  71 => 12,  68 => 11,  63 => 21,  60 => 11,  55 => 8,  53 => 7,  49 => 5,  46 => 4,  38 => 3,  11 => 1,);
+        return array (  86 => 16,  81 => 15,  77 => 14,  74 => 13,  71 => 12,  68 => 11,  63 => 18,  60 => 11,  55 => 8,  53 => 7,  49 => 5,  46 => 4,  38 => 3,  11 => 1,);
     }
 }

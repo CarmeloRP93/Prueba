@@ -136,7 +136,7 @@ class __TwigTemplate_c5e524f61bc739fcf473c444aa425f38188e79297cf2ffb5bfe0ccf1cc4
         // line 53
         echo "    </div>
     <div>
-        <ul>
+        <ul class=\"container text-center\">
             ";
         // line 56
         if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estado", array()) == "Finalizado")) {
@@ -151,12 +151,11 @@ class __TwigTemplate_c5e524f61bc739fcf473c444aa425f38188e79297cf2ffb5bfe0ccf1cc4
             foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
                 // line 59
                 echo "                    <div>
-                        <li>";
+                        <li class=\"control-label span7 text-left\">";
                 // line 60
                 echo twig_escape_filter($this->env, $context["equipo"], "html", null, true);
                 echo "
-                            <button>Posicion</button>
-                            <button>Datos del equipo</button>
+                            <button class=\"btn btn-default\">Datos del equipo</button>
                         </li>
                     </div>
                 ";
@@ -164,10 +163,10 @@ class __TwigTemplate_c5e524f61bc739fcf473c444aa425f38188e79297cf2ffb5bfe0ccf1cc4
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 66
+            // line 65
             echo "            ";
         }
-        // line 67
+        // line 66
         echo "        </ul>
     </div>
 ";
@@ -185,6 +184,6 @@ class __TwigTemplate_c5e524f61bc739fcf473c444aa425f38188e79297cf2ffb5bfe0ccf1cc4
 
     public function getDebugInfo()
     {
-        return array (  171 => 67,  168 => 66,  156 => 60,  153 => 59,  149 => 58,  144 => 57,  142 => 56,  137 => 53,  132 => 50,  123 => 47,  119 => 46,  115 => 45,  111 => 44,  107 => 43,  103 => 42,  96 => 40,  81 => 27,  78 => 26,  57 => 7,  55 => 6,  51 => 5,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  170 => 66,  167 => 65,  156 => 60,  153 => 59,  149 => 58,  144 => 57,  142 => 56,  137 => 53,  132 => 50,  123 => 47,  119 => 46,  115 => 45,  111 => 44,  107 => 43,  103 => 42,  96 => 40,  81 => 27,  78 => 26,  57 => 7,  55 => 6,  51 => 5,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

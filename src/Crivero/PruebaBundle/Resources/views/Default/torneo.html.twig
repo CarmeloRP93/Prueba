@@ -4,18 +4,15 @@
 {% block contenido %}
     <div class="container text-center">
         <h2>Detalles del Torneo</h2>
-        {% if torneo.estado == "Solicitud Presentada" %}
+        {% if torneo.estadoTorneo == "Solicitud Presentada" %}
             <button class="btn btn-default">Aceptar Solicitud</button>
             <button class="btn btn-danger">Rechazar Solicitud </button>
         {% endif %}
         {% block detalles %}
-            {% if torneo.estado == "Validado" %}
+            {% if torneo.estadoTorneo == "Validado" %}
                 <h3>Ver información de equipos</h3>
-                {% for equipo in torneo.equipos %}
-                    <label class="control-label span7 text-left">{{equipo}}</label>
-                    <button class="btn btn-default">Ver puesto</button>
-                    <button class="btn btn-danger">Eliminar equipo</button><br>
-                {% endfor %}
+                <p>{{torneo.equipos}}<p>
+                <a href="{{url('crivero_prueba_equipos')}}">Ver los datos de los equipos</a>
             {% endif %} 
         {% endblock %}
     </div>

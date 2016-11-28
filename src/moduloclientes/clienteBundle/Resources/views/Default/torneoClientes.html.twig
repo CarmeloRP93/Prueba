@@ -52,14 +52,13 @@
         {%endif%}
     </div>
     <div>
-        <ul>
+        <ul class="container text-center">
             {%if torneo.estado == "Finalizado" %}
                 <h3>Resumen del {{torneo.nombre}}</h3>
                 {% for equipo in torneo.equipos %}
                     <div>
-                        <li>{{equipo}}
-                            <button>Posicion</button>
-                            <button>Datos del equipo</button>
+                        <li class="control-label span7 text-left">{{equipo}}
+                            <button class="btn btn-default">Datos del equipo</button>
                         </li>
                     </div>
                 {% endfor %}
