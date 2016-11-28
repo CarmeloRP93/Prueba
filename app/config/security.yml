@@ -57,6 +57,7 @@ security:
         - { path: ^/sesionDedicada, roles: ROLE_MONITOR }
         - { path: ^/nuevaSesion, roles: ROLE_MONITOR }
         - { path: ^/crearSesion, roles: ROLE_MONITOR }
+        - { path: ^/eliminarSesion, roles: ROLE_MONITOR }
         - { path: ^/clientes, roles: ROLE_ADMIN }
         - { path: ^/cliente, roles: ROLE_ADMIN }
         - { path: ^/monitores, roles: ROLE_ADMIN }

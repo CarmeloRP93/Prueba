@@ -1,0 +1,7 @@
+{{ form_start(form, {'attr': {'id': id|default('form')}} ) }}
+
+    {{ form_widget(form) }}
+    <input type="submit" value="{{ 'Eliminar sesion' }}" class="btn btn-danger " style="height: 30px; width: 250px;" 
+           onclick="return confirm('¿Estas seguro?')" >
+
+{{ form_end(form) }}

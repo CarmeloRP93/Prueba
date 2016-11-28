@@ -21,6 +21,12 @@ modulomonitores_monitores_sesionDedicada:
 modulomonitores_monitores_nuevaSesion:
     pattern:  /nuevaSesion
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:nuevaSesion }
+modulomonitores_monitores_editarSesion:
+    pattern:  /editarSesion/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:editarSesion }
+modulomonitores_monitores_editarSesionDedicada:
+    pattern:  /editarSesionDedicada/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:editarSesionDedicada }
 modulomonitores_monitores_nuevaSesionDedicada:
     pattern:  /nuevaSesionDedicada
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:nuevaSesionDedicada }
@@ -29,8 +35,22 @@ modulomonitores_monitores_crearSesion:
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:crearSesion }
     requirements:
         _method:  POST|GET
+modulomonitores_monitores_editar:
+    pattern:  /editar/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:editar }
+    requirements:
+        _method:  POST|PUT|GET
+modulomonitores_monitores_editarDedicada:
+    pattern:  /editarDedicada/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:editarDedicada }
+    requirements:
+        _method:  POST|PUT|GET
 modulomonitores_monitores_crearSesionDedicada:
     pattern:  /crearSesionDedicada
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:crearSesionDedicada }
     requirements:
         _method:  POST|GET
+modulomonitores_monitores_eliminarSesion:
+    pattern:  /eliminarSesion/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:eliminarSesion}
+    methods: [POST, DELETE]

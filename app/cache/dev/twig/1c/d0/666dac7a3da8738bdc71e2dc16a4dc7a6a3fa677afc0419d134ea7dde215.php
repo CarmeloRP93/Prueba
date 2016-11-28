@@ -89,8 +89,13 @@ class __TwigTemplate_1cd0666dac7a3da8738bdc71e2dc16a4dc7a6a3fa677afc0419d134ea7d
 (isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()) == "rechazada")) {
             // line 26
             echo "            <div class=\"text-center\">
-                <button style=\"height: 30px; width: 300px;\" class=\"btn btn-primary col-sm-3 col-sm-offset-3\">Modificar sesion</button>
-                <button style=\"height: 30px; width: 300px;\" class=\"btn btn-danger col-sm-3 col-sm-offset-1\">Eliminar sesion</button>
+                <a href=\"";
+            // line 27
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_editarSesion", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array()))), "html", null, true);
+            echo "\" style=\"height: 30px; width: 250px; margin-right: 100px;\" class=\"btn btn-primary\">Modificar sesion</a> ";
+            echo twig_include($this->env, $context, "modulomonitoresmonitoresBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form"))));
+            echo "
+                
                 <h4>Motivos:</h4> <p>";
             // line 29
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "observaciones", array()), "html", null, true);
@@ -100,7 +105,7 @@ class __TwigTemplate_1cd0666dac7a3da8738bdc71e2dc16a4dc7a6a3fa677afc0419d134ea7d
         } else {
             // line 32
             echo "            <div class=\"text-center\">
-                <button style=\"height: 30px; width: 600px;\" class=\"btn btn-warning\">pendiente</button>
+                <button style=\"height: 30px; width: 600px;\" class=\"btn btn-warning\" disabled=\"disabled\">pendiente</button>
             </div>
         ";
         }
@@ -162,6 +167,6 @@ class __TwigTemplate_1cd0666dac7a3da8738bdc71e2dc16a4dc7a6a3fa677afc0419d134ea7d
 
     public function getDebugInfo()
     {
-        return array (  144 => 49,  140 => 48,  136 => 47,  132 => 46,  125 => 42,  121 => 41,  117 => 40,  113 => 39,  108 => 36,  102 => 32,  96 => 29,  91 => 26,  89 => 25,  84 => 23,  80 => 21,  78 => 20,  73 => 17,  71 => 16,  65 => 13,  56 => 7,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  149 => 49,  145 => 48,  141 => 47,  137 => 46,  130 => 42,  126 => 41,  122 => 40,  118 => 39,  113 => 36,  107 => 32,  101 => 29,  94 => 27,  91 => 26,  89 => 25,  84 => 23,  80 => 21,  78 => 20,  73 => 17,  71 => 16,  65 => 13,  56 => 7,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

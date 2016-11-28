@@ -24,13 +24,13 @@
             </div>
         {% elseif sesion.estado == "rechazada" %}
             <div class="text-center">
-                <button style="height: 30px; width: 300px;" class="btn btn-primary col-sm-3 col-sm-offset-3">Modificar sesion</button>
-                <button style="height: 30px; width: 300px;" class="btn btn-danger col-sm-3 col-sm-offset-1">Eliminar sesion</button>
+                <a href="{{path('modulomonitores_monitores_editarSesion', {id: sesion.id})}}" style="height: 30px; width: 250px; margin-right: 100px;" class="btn btn-primary">Modificar sesion</a> {{ include('modulomonitoresmonitoresBundle:Default:forms/form.html.twig', { form: delete_form })}}
+                
                 <h4>Motivos:</h4> <p>{{sesion.observaciones}}</p>
             </div>
         {% else %}
             <div class="text-center">
-                <button style="height: 30px; width: 600px;" class="btn btn-warning">pendiente</button>
+                <button style="height: 30px; width: 600px;" class="btn btn-warning" disabled="disabled">pendiente</button>
             </div>
         {% endif %}
 

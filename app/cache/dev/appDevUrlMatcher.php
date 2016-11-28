@@ -148,56 +148,96 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/nuevaSesion')) {
-            // modulomonitores_monitores_nuevaSesion
-            if ($pathinfo === '/nuevaSesion') {
-                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::nuevaSesionAction',  '_route' => 'modulomonitores_monitores_nuevaSesion',);
+        // modulomonitores_monitores_nuevaSesion
+        if ($pathinfo === '/nuevaSesion') {
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::nuevaSesionAction',  '_route' => 'modulomonitores_monitores_nuevaSesion',);
+        }
+
+        if (0 === strpos($pathinfo, '/editarSesion')) {
+            // modulomonitores_monitores_editarSesion
+            if (preg_match('#^/editarSesion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_editarSesion')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::editarSesionAction',));
             }
 
-            // modulomonitores_monitores_nuevaSesionDedicada
-            if ($pathinfo === '/nuevaSesionDedicada') {
-                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::nuevaSesionDedicadaAction',  '_route' => 'modulomonitores_monitores_nuevaSesionDedicada',);
+            // modulomonitores_monitores_editarSesionDedicada
+            if (0 === strpos($pathinfo, '/editarSesionDedicada') && preg_match('#^/editarSesionDedicada/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_editarSesionDedicada')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::editarSesionDedicadaAction',));
             }
 
         }
 
-        if (0 === strpos($pathinfo, '/c')) {
-            if (0 === strpos($pathinfo, '/crearSesion')) {
-                // modulomonitores_monitores_crearSesion
-                if ($pathinfo === '/crearSesion') {
-                    if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
-                        goto not_modulomonitores_monitores_crearSesion;
-                    }
+        // modulomonitores_monitores_nuevaSesionDedicada
+        if ($pathinfo === '/nuevaSesionDedicada') {
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::nuevaSesionDedicadaAction',  '_route' => 'modulomonitores_monitores_nuevaSesionDedicada',);
+        }
 
-                    return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::crearSesionAction',  '_route' => 'modulomonitores_monitores_crearSesion',);
-                }
-                not_modulomonitores_monitores_crearSesion:
-
-                // modulomonitores_monitores_crearSesionDedicada
-                if ($pathinfo === '/crearSesionDedicada') {
-                    if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
-                        goto not_modulomonitores_monitores_crearSesionDedicada;
-                    }
-
-                    return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::crearSesionDedicadaAction',  '_route' => 'modulomonitores_monitores_crearSesionDedicada',);
-                }
-                not_modulomonitores_monitores_crearSesionDedicada:
-
+        // modulomonitores_monitores_crearSesion
+        if ($pathinfo === '/crearSesion') {
+            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                goto not_modulomonitores_monitores_crearSesion;
             }
 
-            if (0 === strpos($pathinfo, '/cancha')) {
-                // moduloclientes_cliente_canchasClientes
-                if ($pathinfo === '/canchasClientes') {
-                    return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::canchasClientesAction',  '_route' => 'moduloclientes_cliente_canchasClientes',);
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::crearSesionAction',  '_route' => 'modulomonitores_monitores_crearSesion',);
+        }
+        not_modulomonitores_monitores_crearSesion:
+
+        if (0 === strpos($pathinfo, '/editar')) {
+            // modulomonitores_monitores_editar
+            if (preg_match('#^/editar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+                    goto not_modulomonitores_monitores_editar;
                 }
 
-                // moduloclientes_cliente_canchaClientes
-                if (0 === strpos($pathinfo, '/canchaClientes') && preg_match('#^/canchaClientes/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_canchaClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::canchaClientesAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_editar')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::editarAction',));
+            }
+            not_modulomonitores_monitores_editar:
+
+            // modulomonitores_monitores_editarDedicada
+            if (0 === strpos($pathinfo, '/editarDedicada') && preg_match('#^/editarDedicada/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+                    goto not_modulomonitores_monitores_editarDedicada;
                 }
 
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_editarDedicada')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::editarDedicadaAction',));
+            }
+            not_modulomonitores_monitores_editarDedicada:
+
+        }
+
+        // modulomonitores_monitores_crearSesionDedicada
+        if ($pathinfo === '/crearSesionDedicada') {
+            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                goto not_modulomonitores_monitores_crearSesionDedicada;
+            }
+
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::crearSesionDedicadaAction',  '_route' => 'modulomonitores_monitores_crearSesionDedicada',);
+        }
+        not_modulomonitores_monitores_crearSesionDedicada:
+
+        // modulomonitores_monitores_eliminarSesion
+        if (0 === strpos($pathinfo, '/eliminarSesion') && preg_match('#^/eliminarSesion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                $allow = array_merge($allow, array('POST', 'DELETE'));
+                goto not_modulomonitores_monitores_eliminarSesion;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_eliminarSesion')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::eliminarSesionAction',));
+        }
+        not_modulomonitores_monitores_eliminarSesion:
+
+        if (0 === strpos($pathinfo, '/cancha')) {
+            // moduloclientes_cliente_canchasClientes
+            if ($pathinfo === '/canchasClientes') {
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::canchasClientesAction',  '_route' => 'moduloclientes_cliente_canchasClientes',);
+            }
+
+            // moduloclientes_cliente_canchaClientes
+            if (0 === strpos($pathinfo, '/canchaClientes') && preg_match('#^/canchaClientes/(?P<matricula>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_canchaClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::canchaClientesAction',));
             }
 
         }

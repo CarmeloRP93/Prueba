@@ -17,10 +17,9 @@
             <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" />        
         </div>
 
-        {% if sesion.estado == "pendiente" %}
-            <div class="accionesesion text-center" style="margin-left: 18px; margin-right: 18px;">
-                <a href="{{path('crivero_prueba_aceptarSesion', {id: sesion.id})}}" class="btn btn-success col-sm-3 col-sm-offset-3" style="height: 30px; width: 250px;">Aceptar Solicitud</a>
-                <a href="{{path('crivero_prueba_rechazarSesion', {id: sesion.id})}}" class="btn btn-danger col-sm-3 col-sm-offset-1">Rechazar Solicitud </a>
+        {% if sesion.estado == "validada"%}
+            <div class="text-center">
+                <a href="{{path('crivero_prueba_cancelarSesion', {id: sesion.id})}}" style="height: 30px; width: 600px;" class="btn btn-danger">Cancelar</a>
             </div>
         {% elseif sesion.estado == "cancelada" %}
             <div class="text-center">
@@ -32,9 +31,10 @@
                 <button style="height: 30px; width: 600px;" class="btn btn-danger" disabled="disabled">Rechazada</button>
                 <h4>Motivos:</h4> <p>{{sesion.observaciones}}</p>
             </div>
-        {% else %}    
-            <div class="text-center">
-                <a href="{{path('crivero_prueba_cancelarSesion', {id: sesion.id})}}" style="height: 30px; width: 600px;" class="btn btn-danger">Cancelar</a>
+        {% else %}   
+            <div class="accionesesion text-center" style="margin-left: 18px; margin-right: 18px;">
+                <a href="{{path('crivero_prueba_aceptarSesion', {id: sesion.id})}}" class="btn btn-success col-sm-3 col-sm-offset-3" style="height: 30px; width: 250px;">Aceptar Solicitud</a>
+                <a href="{{path('crivero_prueba_rechazarSesion', {id: sesion.id})}}" class="btn btn-danger col-sm-3 col-sm-offset-1">Rechazar Solicitud </a>
             </div>
         {% endif %}
 
