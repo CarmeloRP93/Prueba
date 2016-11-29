@@ -49,8 +49,9 @@ class __TwigTemplate_045bfbf27b58efa41c9869fc776880484defeebaf3c6db40e2d2bfeac60
     </form>
 </div>
 <h1>Listado de Equipos</h1>
-";
-        // line 12
+    <h3>Fútbol</h3>
+    ";
+        // line 13
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["equipos"]) ? $context["equipos"] : $this->getContext($context, "equipos")));
         $context['loop'] = array(
@@ -67,19 +68,23 @@ class __TwigTemplate_045bfbf27b58efa41c9869fc776880484defeebaf3c6db40e2d2bfeac60
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
-            // line 13
-            echo "    <a href=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_equipo", array("id" => $this->getAttribute($context["equipo"], "id", array()))), "html", null, true);
-            echo "\" class=\"fila ";
-            echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
-            echo "\">";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "deporte", array()), "html", null, true);
-            echo "-";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "nombre", array()), "html", null, true);
-            echo " - Clasificación: ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "clasificacion", array()), "html", null, true);
-            echo "</a>
-";
+            // line 14
+            echo "        ";
+            if (($this->getAttribute($context["equipo"], "deporte", array()) == "Fútbol")) {
+                // line 15
+                echo "            <a href=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_equipo", array("id" => $this->getAttribute($context["equipo"], "id", array()))), "html", null, true);
+                echo "\" class=\"fila ";
+                echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
+                echo "\">Clasificación: ";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "clasificacion", array()), "html", null, true);
+                echo "º-Nombre del equipo";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "nombre", array()), "html", null, true);
+                echo "</a>
+        ";
+            }
+            // line 17
+            echo "    ";
             ++$context['loop']['index0'];
             ++$context['loop']['index'];
             $context['loop']['first'] = false;
@@ -92,9 +97,55 @@ class __TwigTemplate_045bfbf27b58efa41c9869fc776880484defeebaf3c6db40e2d2bfeac60
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 15
-        echo "
-";
+        // line 18
+        echo "    <h3>Baloncesto</h3>
+    ";
+        // line 19
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["equipos"]) ? $context["equipos"] : $this->getContext($context, "equipos")));
+        $context['loop'] = array(
+          'parent' => $context['_parent'],
+          'index0' => 0,
+          'index'  => 1,
+          'first'  => true,
+        );
+        if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
+            $length = count($context['_seq']);
+            $context['loop']['revindex0'] = $length - 1;
+            $context['loop']['revindex'] = $length;
+            $context['loop']['length'] = $length;
+            $context['loop']['last'] = 1 === $length;
+        }
+        foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
+            // line 20
+            echo "        ";
+            if (($this->getAttribute($context["equipo"], "deporte", array()) == "Baloncesto")) {
+                // line 21
+                echo "            <a href=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_equipo", array("id" => $this->getAttribute($context["equipo"], "id", array()))), "html", null, true);
+                echo "\" class=\"fila ";
+                echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
+                echo "\">Clasificación: ";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "clasificacion", array()), "html", null, true);
+                echo "º-Nombre del equipo:";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "nombre", array()), "html", null, true);
+                echo "</a>
+        ";
+            }
+            // line 23
+            echo "    ";
+            ++$context['loop']['index0'];
+            ++$context['loop']['index'];
+            $context['loop']['first'] = false;
+            if (isset($context['loop']['length'])) {
+                --$context['loop']['revindex0'];
+                --$context['loop']['revindex'];
+                $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+            }
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
     }
 
     public function getTemplateName()
@@ -109,6 +160,6 @@ class __TwigTemplate_045bfbf27b58efa41c9869fc776880484defeebaf3c6db40e2d2bfeac60
 
     public function getDebugInfo()
     {
-        return array (  96 => 15,  71 => 13,  54 => 12,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  136 => 23,  124 => 21,  121 => 20,  104 => 19,  101 => 18,  87 => 17,  75 => 15,  72 => 14,  55 => 13,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

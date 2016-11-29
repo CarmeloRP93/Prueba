@@ -9,8 +9,16 @@
     </form>
 </div>
 <h1>Listado de Equipos</h1>
-{% for equipo in equipos %}
-    <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{equipo.deporte}}-{{ equipo.nombre }} - Clasificación: {{equipo.clasificacion}}</a>
-{% endfor %}
-
+    <h3>Fútbol</h3>
+    {% for equipo in equipos %}
+        {%if equipo.deporte =='Fútbol'%}
+            <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Clasificación: {{equipo.clasificacion}}º-Nombre del equipo:{{ equipo.nombre }}</a>
+        {%endif%}
+    {% endfor %}
+    <h3>Baloncesto</h3>
+    {% for equipo in equipos %}
+        {%if equipo.deporte =='Baloncesto'%}
+            <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Clasificación: {{equipo.clasificacion}}º-Nombre del equipo:{{ equipo.nombre }}</a>
+        {%endif%}
+    {% endfor %}
 {% endblock %}

@@ -61,7 +61,7 @@ class __TwigTemplate_4a0e0e7059225acf6c4e4a94702cb70c2fa1e26393bd63ca72229bce0ec
     {
         // line 8
         echo "            ";
-        if (($this->getAttribute((isset($context["equipo"]) ? $context["equipo"] : $this->getContext($context, "equipo")), "deporte", array()) == "Futbol")) {
+        if (($this->getAttribute((isset($context["equipo"]) ? $context["equipo"] : $this->getContext($context, "equipo")), "deporte", array()) == "Fútbol")) {
             // line 9
             echo "                <h3>Ver información de los miembros</h3>
                 <p>";
