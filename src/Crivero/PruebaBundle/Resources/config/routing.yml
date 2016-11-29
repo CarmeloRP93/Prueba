@@ -65,8 +65,16 @@ crivero_prueba_torneos:
     defaults: { _controller: CriveroPruebaBundle:Torneo:torneos }
 
 crivero_prueba_torneo:
-    pattern:  /torneo/{matricula}
+    pattern:  /torneo/{id}
     defaults: { _controller: CriveroPruebaBundle:Torneo:torneo }
+
+crivero_prueba_equipos:
+    pattern:  /equipos
+    defaults: { _controller: CriveroPruebaBundle:Equipo:equipos }
+
+crivero_prueba_equipo:
+    pattern:  /equipo/{id}
+    defaults: { _controller: CriveroPruebaBundle:Equipo:equipo }
     
 crivero_prueba_sesiones:
     pattern:  /sesiones

@@ -65,15 +65,15 @@ class __TwigTemplate_46f9ed36e174d6bfda0832ca6ce5401485751586870c0adca69bbdcec2b
         foreach ($context['_seq'] as $context["_key"] => $context["torneo"]) {
             // line 9
             echo "    <a href=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_torneo", array("matricula" => $this->getAttribute($context["torneo"], "matricula", array()))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_torneo", array("id" => $this->getAttribute($context["torneo"], "id", array()))), "html", null, true);
             echo "\" class=\"fila ";
             echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
             echo "\"> ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["torneo"], "matricula", array()), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($context["torneo"], "id", array()), "html", null, true);
             echo " - ";
             echo twig_escape_filter($this->env, $this->getAttribute($context["torneo"], "nombre", array()), "html", null, true);
             echo " - ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["torneo"], "estado", array()), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($context["torneo"], "estadoTorneo", array()), "html", null, true);
             echo "</a>
 ";
             ++$context['loop']['index0'];

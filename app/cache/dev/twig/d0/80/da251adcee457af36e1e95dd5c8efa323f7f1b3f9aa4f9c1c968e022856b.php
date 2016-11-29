@@ -76,10 +76,10 @@ class __TwigTemplate_d080da251adcee457af36e1e95dd5c8efa323f7f1b3f9aa4f9c1c968e02
             // line 14
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "equipos", array()), "html", null, true);
             echo "<p>
-                <a href=\"";
+                    <a href=\"";
             // line 15
             echo $this->env->getExtension('routing')->getUrl("crivero_prueba_equipos");
-            echo "\">Ver los datos de los equipos</a>
+            echo "\">Ver los datos de los equipos</a><br>
             ";
         }
         // line 16
