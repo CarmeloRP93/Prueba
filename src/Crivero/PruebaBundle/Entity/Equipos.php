@@ -77,7 +77,12 @@ class Equipos
      */
     private $miembros;
 
-
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="puntuacion", type="integer")
+     */
+    private $puntuacion;
     /**
      * Get id
      *
@@ -292,5 +297,27 @@ class Equipos
     public function getMiembros()
     {
         return $this->miembros;
+    }
+    /**
+     * Set puntuacion
+     *
+     * @param integer $puntuacion
+     * @return Equipos
+     */
+    public function setPuntuacion($puntuacion)
+    {
+        $this->puntuacion = $puntuacion;
+
+        return $this;
+    }
+
+    /**
+     * Get puntuacion
+     *
+     * @return integer 
+     */
+    public function getPuntuacion()
+    {
+        return $this->puntuacion;
     }
 }

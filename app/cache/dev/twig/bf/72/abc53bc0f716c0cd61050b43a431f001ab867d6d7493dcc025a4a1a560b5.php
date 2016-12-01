@@ -7,12 +7,12 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
     {
         parent::__construct($env);
 
-        // line 2
+        // line 1
         try {
             $this->parent = $this->env->loadTemplate("moduloclientesclienteBundle::main.html.twig");
         } catch (Twig_Error_Loader $e) {
             $e->setTemplateFile($this->getTemplateName());
-            $e->setTemplateLine(2);
+            $e->setTemplateLine(1);
 
             throw $e;
         }
@@ -33,16 +33,16 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 4
+    // line 3
     public function block_title($context, array $blocks = array())
     {
         echo " Vista de Reservas ";
     }
 
-    // line 6
+    // line 5
     public function block_contenido($context, array $blocks = array())
     {
-        // line 7
+        // line 6
         echo "<div id=\"buscador\">
     <form>
         <input type=\"search\" name=\"reserva\" placeholder=\"Buscar reserva\"/>
@@ -50,7 +50,7 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
 </div>
 <h1>Listado de Reservas</h1>
 ";
-        // line 13
+        // line 12
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["reservas"]) ? $context["reservas"] : $this->getContext($context, "reservas")));
         $context['loop'] = array(
@@ -67,7 +67,7 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["reserva"]) {
-            // line 14
+            // line 13
             echo "    <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_reservaClientes", array("matricula" => $this->getAttribute($context["reserva"], "matricula", array()))), "html", null, true);
             echo "\" class=\"fila ";
@@ -90,7 +90,7 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['reserva'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 16
+        // line 15
         echo "
 ";
     }
@@ -107,6 +107,6 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
 
     public function getDebugInfo()
     {
-        return array (  94 => 16,  71 => 14,  54 => 13,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  94 => 15,  71 => 13,  54 => 12,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

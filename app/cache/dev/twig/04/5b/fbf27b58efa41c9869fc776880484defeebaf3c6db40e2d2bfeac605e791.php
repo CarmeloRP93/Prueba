@@ -78,7 +78,7 @@ class __TwigTemplate_045bfbf27b58efa41c9869fc776880484defeebaf3c6db40e2d2bfeac60
                 echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
                 echo "\">Clasificación: ";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "clasificacion", array()), "html", null, true);
-                echo "º-Nombre del equipo";
+                echo "º-Nombre del equipo:";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "nombre", array()), "html", null, true);
                 echo "</a>
         ";

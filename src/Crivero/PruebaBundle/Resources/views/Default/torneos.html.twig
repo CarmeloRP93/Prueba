@@ -3,10 +3,8 @@
 {% block title %} Torneos {% endblock %}
 
 {% block contenido %}
-
-<h1>Torneos</h1>
-{% for torneo in torneos %}
-    <a href="{{url('crivero_prueba_torneo', {'id': torneo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ torneo.id }} - {{ torneo.nombre }} - {{torneo.estadoTorneo}}</a>
-{% endfor %}
-
+    <h1>Torneos</h1>
+    {% for torneo in torneos %}
+       <a href="{{url('crivero_prueba_torneo', {'id': torneo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ torneo.id }} - {{ torneo.nombre }} - {{torneo.estadoTorneo}}</a>
+    {% endfor %}
 {% endblock %}

@@ -56,13 +56,6 @@ class Torneos
      */
     private $fechaFinalizacion;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="equipos", type="string", length=255, nullable=true)
-     */
-    private $equipos;
-
 
     /**
      * Get id
@@ -211,27 +204,5 @@ class Torneos
     {
         return $this->torneos;
     }
-    
-    /**
-     * Set equipos
-     *
-     * @param string $equipos
-     * @return Torneos
-     */
-    public function setEquipos($equipos)
-    {
-        $this->equipos = $equipos;
- 
-        return $this;
-    }
- 
-    /**
-     * Get equipos
-     *
-     * @return string 
-     */
-    public function getEquipos()
-    {
-        return $this->equipos;
-    }
+
 }

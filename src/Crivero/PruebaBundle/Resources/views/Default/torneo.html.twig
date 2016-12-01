@@ -8,12 +8,46 @@
             <button class="btn btn-default">Aceptar Solicitud</button>
             <button class="btn btn-danger">Rechazar Solicitud </button>
         {% endif %}
-        {% block detalles %}
+        {#{% block detalles %}
             {% if torneo.estadoTorneo == "Validado" %}
-                <h3>Ver información de equipos</h3>
-                <p>{{torneo.equipos}}<p>
-                    <a href="{{url('crivero_prueba_equipos')}}">Ver los datos de los equipos</a><br>
+                <h1>Equipos</h1>
+                    {% for equipo in equipos %}
+                        {%if equipo.idTorneo ==torneo.id%}
+                            <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Clasificación: {{equipo.clasificacion}}º-Nombre del equipo:{{ equipo.nombre }}-Puntos:{{equipo.puntuacion}}</a>
+                        {%endif%}
+                    {% endfor %}
             {% endif %} 
-        {% endblock %}
+        {% endblock %}#}
+        
+        {% if torneo.estadoTorneo == "Validado"%}
+            <h3>Insertar tabla de liga del deporte en cuestión (fútbol,baloncesto, tenis)</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th> Posición </th>
+                            <th> Equipo  </th>
+                            <th> Puntos   </th>
+                            <th> Victorias </th>
+                            <th> Derrotas </th>
+                            <th> Empates  </th>
+                        </tr>
+                    </thead>
+                    {% for equipo in equipos %}
+                        {%if equipo.idTorneo ==torneo.id%}
+                        <tr>
+                            <td>  {{equipo.clasificacion}}º  </td>
+                            <td>  <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}">{{equipo.nombre}}</a> </td>
+                            <td>   {{equipo.puntuacion}}   </td>
+                            <td>   {{equipo.victorias}}   </td>
+                            <td>   {{equipo.derrotas}}   </td>
+                            <td>   {{equipo.empates}}   </td>
+                        </tr>
+                        {%endif%}
+                    {%endfor%}
+                </table>
+            </div>
+        {%endif%}
+        
     </div>
 {% endblock %}

@@ -20,7 +20,6 @@ class __TwigTemplate_d080da251adcee457af36e1e95dd5c8efa323f7f1b3f9aa4f9c1c968e02
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'contenido' => array($this, 'block_contenido'),
-            'detalles' => array($this, 'block_detalles'),
         );
     }
 
@@ -58,33 +57,79 @@ class __TwigTemplate_d080da251adcee457af36e1e95dd5c8efa323f7f1b3f9aa4f9c1c968e02
         }
         // line 11
         echo "        ";
-        $this->displayBlock('detalles', $context, $blocks);
-        // line 18
-        echo "    </div>
-";
-    }
-
-    // line 11
-    public function block_detalles($context, array $blocks = array())
-    {
-        // line 12
-        echo "            ";
-        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estadoTorneo", array()) == "Validado")) {
-            // line 13
-            echo "                <h3>Ver información de equipos</h3>
-                <p>";
-            // line 14
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "equipos", array()), "html", null, true);
-            echo "<p>
-                    <a href=\"";
-            // line 15
-            echo $this->env->getExtension('routing')->getUrl("crivero_prueba_equipos");
-            echo "\">Ver los datos de los equipos</a><br>
-            ";
-        }
-        // line 16
-        echo " 
+        // line 21
+        echo "        
         ";
+        // line 22
+        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estadoTorneo", array()) == "Validado")) {
+            // line 23
+            echo "            <h3>Insertar tabla de liga del deporte en cuestión (fútbol,baloncesto, tenis)</h3>
+            <div class=\"table-responsive\">
+                <table class=\"table table-bordered\">
+                    <thead>
+                        <tr>
+                            <th> Posición </th>
+                            <th> Equipo  </th>
+                            <th> Puntos   </th>
+                            <th> Victorias </th>
+                            <th> Derrotas </th>
+                            <th> Empates  </th>
+                        </tr>
+                    </thead>
+                    ";
+            // line 36
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["equipos"]) ? $context["equipos"] : $this->getContext($context, "equipos")));
+            foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
+                // line 37
+                echo "                        ";
+                if (($this->getAttribute($context["equipo"], "idTorneo", array()) == $this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "id", array()))) {
+                    // line 38
+                    echo "                        <tr>
+                            <td>  ";
+                    // line 39
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "clasificacion", array()), "html", null, true);
+                    echo "º  </td>
+                            <td>  <a href=\"";
+                    // line 40
+                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_equipo", array("id" => $this->getAttribute($context["equipo"], "id", array()))), "html", null, true);
+                    echo "\">";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "nombre", array()), "html", null, true);
+                    echo "</a> </td>
+                            <td>   ";
+                    // line 41
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "puntuacion", array()), "html", null, true);
+                    echo "   </td>
+                            <td>   ";
+                    // line 42
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "victorias", array()), "html", null, true);
+                    echo "   </td>
+                            <td>   ";
+                    // line 43
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "derrotas", array()), "html", null, true);
+                    echo "   </td>
+                            <td>   ";
+                    // line 44
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "empates", array()), "html", null, true);
+                    echo "   </td>
+                        </tr>
+                        ";
+                }
+                // line 47
+                echo "                    ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 48
+            echo "                </table>
+            </div>
+        ";
+        }
+        // line 51
+        echo "        
+    </div>
+";
     }
 
     public function getTemplateName()
@@ -99,6 +144,6 @@ class __TwigTemplate_d080da251adcee457af36e1e95dd5c8efa323f7f1b3f9aa4f9c1c968e02
 
     public function getDebugInfo()
     {
-        return array (  86 => 16,  81 => 15,  77 => 14,  74 => 13,  71 => 12,  68 => 11,  63 => 18,  60 => 11,  55 => 8,  53 => 7,  49 => 5,  46 => 4,  38 => 3,  11 => 1,);
+        return array (  130 => 51,  125 => 48,  119 => 47,  113 => 44,  109 => 43,  105 => 42,  101 => 41,  95 => 40,  91 => 39,  88 => 38,  85 => 37,  81 => 36,  66 => 23,  64 => 22,  61 => 21,  59 => 11,  54 => 8,  52 => 7,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }
