@@ -36,7 +36,7 @@ class __TwigTemplate_f550036e355d0eaf87169a222d4fd29411709a4c19d72c006d036a33622
     // line 2
     public function block_title($context, array $blocks = array())
     {
-        echo "Vista de nueva sesion";
+        echo "Vista de nueva sesion dedicada";
     }
 
     // line 3

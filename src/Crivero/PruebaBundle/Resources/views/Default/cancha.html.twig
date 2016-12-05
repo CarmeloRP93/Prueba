@@ -1,5 +1,5 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
-{% block title %}Vista de {{cancha.tipo}} {% endblock %}
+{% block title %} {{cancha.tipo}} {% endblock %}
 {% block contenido %}
      <div class="container text-center">
         <h3>Detalles de Cancha</h3>
@@ -14,7 +14,7 @@
             <div class="text-center">
                 <img src="{{ asset(cancha.imagen) }}" width="180px" class="img-rounded"/><br>
 
-                <br>{% if cancha.disponibilidad == "disponible" %}
+                <br>{% if cancha.disponibilidad == "Disponible" %}
                       <div class="text-center">
                         <button class="btn btn-success">{{cancha.disponibilidad}}</button>
                       </div>

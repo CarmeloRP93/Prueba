@@ -43,61 +43,74 @@ class __TwigTemplate_a0c60bfe9ca827f10280489ed88f876776fe8cdf3231b8b8214e55b42a0
     public function block_contenido($context, array $blocks = array())
     {
         // line 7
-        echo "
-    <h1>Sesiones Dedicadas</h1>
-    ";
-        // line 9
+        echo "    <div class=\"container\">
+        <h2 class=\"text-center\">Sesiones Dedicadas</h2>
+        <table class=\"table table-hover\">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                    <th>Monitor</th>
+                    <th>Cliente</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                ";
+        // line 20
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["sesiones"]) ? $context["sesiones"] : $this->getContext($context, "sesiones")));
-        $context['loop'] = array(
-          'parent' => $context['_parent'],
-          'index0' => 0,
-          'index'  => 1,
-          'first'  => true,
-        );
-        if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
-            $length = count($context['_seq']);
-            $context['loop']['revindex0'] = $length - 1;
-            $context['loop']['revindex'] = $length;
-            $context['loop']['length'] = $length;
-            $context['loop']['last'] = 1 === $length;
-        }
         foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
-            // line 10
-            echo "        ";
+            // line 21
+            echo "                    ";
             if (($this->getAttribute($context["sesion"], "cliente", array()) != "normal")) {
-                // line 11
-                echo "            <a href=\"";
-                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("crivero_prueba_sesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
-                echo "\" class=\"fila ";
-                echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
-                echo "\"> Sesion ";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "id", array()), "html", null, true);
-                echo ":  ";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "cliente", array()), "html", null, true);
-                echo "/";
+                // line 22
+                echo "                        <tr>
+                            <td>";
+                // line 23
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
-                echo " - ";
+                echo "</td>
+                            <td>";
+                // line 24
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "estado", array()), "html", null, true);
-                echo "</a>
-        ";
+                echo "</td>
+                            <td>";
+                // line 25
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "monitor", array()), "html", null, true);
+                echo "</td>
+                            <td>";
+                // line 26
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "cliente", array()), "html", null, true);
+                echo "</td>
+
+                            <td class=\"actions\">
+                                <a href=\"";
+                // line 29
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_sesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
+                echo "\" class=\"btn btn-sm btn-info\">
+                                    Ver
+                                </a>
+                                <a href=\"#\" class=\"btn btn-sm btn-primary\">
+                                    Editar
+                                </a>
+                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
+                                    Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    ";
             }
-            // line 13
-            echo "    ";
-            ++$context['loop']['index0'];
-            ++$context['loop']['index'];
-            $context['loop']['first'] = false;
-            if (isset($context['loop']['length'])) {
-                --$context['loop']['revindex0'];
-                --$context['loop']['revindex'];
-                $context['loop']['last'] = 0 === $context['loop']['revindex0'];
-            }
+            // line 40
+            echo "   
+            ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 14
-        echo "
+        // line 42
+        echo "            </tbody>
+        </table>
+    </div>
 ";
     }
 
@@ -113,6 +126,6 @@ class __TwigTemplate_a0c60bfe9ca827f10280489ed88f876776fe8cdf3231b8b8214e55b42a0
 
     public function getDebugInfo()
     {
-        return array (  100 => 14,  86 => 13,  70 => 11,  67 => 10,  50 => 9,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  111 => 42,  104 => 40,  89 => 29,  83 => 26,  79 => 25,  75 => 24,  71 => 23,  68 => 22,  65 => 21,  61 => 20,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
     }
 }

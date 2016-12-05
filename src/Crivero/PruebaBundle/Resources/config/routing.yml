@@ -35,9 +35,9 @@ crivero_prueba_crear:
     requirements:
         _method:  POST|GET
 
-crivero_prueba_editar:
-    pattern:  /editar/{id}
-    defaults: { _controller: CriveroPruebaBundle:Usuario:editar }
+crivero_prueba_editarUsuario:
+    pattern:  /editarUsuario/{id}
+    defaults: { _controller: CriveroPruebaBundle:Usuario:editarUsuario }
 
 crivero_prueba_actualizar:
     pattern:  /actualizar/{id}

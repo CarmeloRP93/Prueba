@@ -36,7 +36,7 @@ class __TwigTemplate_8577c42927d1617caba1c63a0118b6175f8449d00ca9553eec1156a0333
     // line 2
     public function block_title($context, array $blocks = array())
     {
-        echo "Vista de ";
+        echo " ";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "tipo", array()), "html", null, true);
         echo " ";
     }
@@ -66,16 +66,22 @@ class __TwigTemplate_8577c42927d1617caba1c63a0118b6175f8449d00ca9553eec1156a0333
 
                 <br>";
         // line 17
-        if (($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()) == "disponible")) {
+        if (($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()) == "Disponible")) {
             // line 18
             echo "                      <div class=\"text-center\">
-                        <button class=\"btn btn-primary\">Reservar</button>
+                        <button class=\"btn btn-success\">";
+            // line 19
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()), "html", null, true);
+            echo "</button>
                       </div>
                       ";
         } else {
             // line 22
             echo "                      <div class=\"text-center\">
-                        <button class=\"btn btn-danger\">Reservada</button>
+                        <button class=\"btn btn-danger\">";
+            // line 23
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()), "html", null, true);
+            echo "</button>
                       </div>
                 ";
         }
@@ -122,6 +128,6 @@ class __TwigTemplate_8577c42927d1617caba1c63a0118b6175f8449d00ca9553eec1156a0333
 
     public function getDebugInfo()
     {
-        return array (  100 => 38,  92 => 33,  83 => 26,  77 => 22,  71 => 18,  69 => 17,  64 => 15,  55 => 9,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  106 => 38,  98 => 33,  89 => 26,  83 => 23,  80 => 22,  74 => 19,  71 => 18,  69 => 17,  64 => 15,  55 => 9,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

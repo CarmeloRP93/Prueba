@@ -39,40 +39,42 @@ security:
             #http_basic:
             #    realm: "Secured Demo Area"
 
-#    access_control:
-#        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/$, roles: IS_AUTHENTICATED_FULLY }
-#        - { path: ^/home, roles: [ROLE_ADMIN, ROLE_CLIENTE, ROLE_MONITOR] }
-#        - { path: ^/reservasClientes, roles: ROLE_CLIENTE }
-#        - { path: ^/reservaClientes, roles: ROLE_CLIENTE }
-#        - { path: ^/canchasClientes, roles: ROLE_CLIENTE }
-#        - { path: ^/canchaClientes, roles: ROLE_CLIENTE }
-#        - { path: ^/torneosClientes, roles: ROLE_CLIENTE }
-#        - { path: ^/torneoClientes, roles: ROLE_CLIENTE }
-#        - { path: ^/sesionesClientes, roles: ROLE_CLIENTE }
-#        - { path: ^/sesionClientes, roles: ROLE_CLIENTE }
-#        - { path: ^/sesionesMonitores, roles: ROLE_MONITOR }
-#        - { path: ^/sesionMonitores, roles: ROLE_MONITOR }
-#        - { path: ^/sesionesDedicadas, roles: ROLE_MONITOR }
-#        - { path: ^/sesionDedicada, roles: ROLE_MONITOR }
-#        - { path: ^/nuevaSesion, roles: ROLE_MONITOR }
-#        - { path: ^/crearSesion, roles: ROLE_MONITOR }
-#        - { path: ^/eliminarSesion, roles: ROLE_MONITOR }
-#        - { path: ^/clientes, roles: ROLE_ADMIN }
-#        - { path: ^/cliente, roles: ROLE_ADMIN }
-#        - { path: ^/monitores, roles: ROLE_ADMIN }
-#        - { path: ^/monitor, roles: ROLE_ADMIN }
-#        - { path: ^/canchas, roles: ROLE_ADMIN }
-#        - { path: ^/cancha, roles: ROLE_ADMIN }
-#        - { path: ^/sesiones, roles: ROLE_ADMIN }
-#        - { path: ^/sesion, roles: ROLE_ADMIN }
-#        - { path: ^/dedicadas, roles: ROLE_ADMIN }
-#        - { path: ^/torneos, roles: ROLE_ADMIN }
-#        - { path: ^/torneo, roles: ROLE_ADMIN }
-#        - { path: ^/nuevo, roles: ROLE_ADMIN }
-#        - { path: ^/crear, roles: ROLE_ADMIN }
-#        - { path: ^/eliminar, roles: ROLE_ADMIN }
-#        - { path: ^/aceptarSesion, roles: ROLE_ADMIN }
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/$, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/home, roles: [ROLE_ADMIN, ROLE_CLIENTE, ROLE_MONITOR] }
+        - { path: ^/reservasClientes, roles: ROLE_CLIENTE }
+        - { path: ^/reservaClientes, roles: ROLE_CLIENTE }
+        - { path: ^/canchasClientes, roles: ROLE_CLIENTE }
+        - { path: ^/canchaClientes, roles: ROLE_CLIENTE }
+        - { path: ^/torneosClientes, roles: ROLE_CLIENTE }
+        - { path: ^/torneoClientes, roles: ROLE_CLIENTE }
+        - { path: ^/sesionesClientes, roles: ROLE_CLIENTE }
+        - { path: ^/sesionClientes, roles: ROLE_CLIENTE }
+        - { path: ^/sesionesMonitores, roles: ROLE_MONITOR }
+        - { path: ^/sesionMonitores, roles: ROLE_MONITOR }
+        - { path: ^/sesionesDedicadas, roles: ROLE_MONITOR }
+        - { path: ^/sesionDedicada, roles: ROLE_MONITOR }
+        - { path: ^/nuevaSesion, roles: ROLE_MONITOR }
+        - { path: ^/crearSesion, roles: ROLE_MONITOR }
+        - { path: ^/eliminarSesion, roles: ROLE_MONITOR }
+        - { path: ^/clientes, roles: ROLE_ADMIN }
+        - { path: ^/cliente, roles: ROLE_ADMIN }
+        - { path: ^/monitores, roles: ROLE_ADMIN }
+        - { path: ^/monitor, roles: ROLE_ADMIN }
+        - { path: ^/canchas, roles: ROLE_ADMIN }
+        - { path: ^/cancha, roles: ROLE_ADMIN }
+        - { path: ^/sesiones, roles: ROLE_ADMIN }
+        - { path: ^/sesion, roles: ROLE_ADMIN }
+        - { path: ^/dedicadas, roles: ROLE_ADMIN }
+        - { path: ^/torneos, roles: ROLE_ADMIN }
+        - { path: ^/torneo, roles: ROLE_ADMIN }
+        - { path: ^/nuevo, roles: ROLE_ADMIN }
+        - { path: ^/crear, roles: ROLE_ADMIN }
+        - { path: ^/eliminar, roles: ROLE_ADMIN }
+        - { path: ^/aceptarSesion, roles: ROLE_ADMIN }
+#        - { path: ^/editarUsuario, roles: ROLE_ADMIN }
+#        - { path: ^/actualizar, roles: ROLE_ADMIN }
     
     encoders:
         Crivero\PruebaBundle\Entity\Usuarios:

@@ -109,7 +109,7 @@ class UsuarioController extends Controller {
         }
     }
       
-    public function editarAction($id) {
+    public function editarUsuarioAction($id) {
         $em = $this->getDoctrine()->getManager();
         $usuario= $this->findUser($id, $em);
         
@@ -135,7 +135,7 @@ class UsuarioController extends Controller {
                 $usuario->setPassword($recoverPass[0]['password']);
             }
             $em->flush();
-            return $this->redirect($this->generateUrl('crivero_prueba_editar', array('id' => $usuario->getId())));
+            return $this->redirect($this->generateUrl('crivero_prueba_editarUsuario', array('id' => $usuario->getId())));
         }
         return $this->render('CriveroPruebaBundle:Default:editar.html.twig', array('usuario' => $usuario, 'form' => $form->createView()));
     }

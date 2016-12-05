@@ -87,7 +87,7 @@ class __TwigTemplate_85d586aae8bcd99c6df6b49cb6b4337730e64bdca97afccf2dd311ec62f
                                     </a>
                                     <a href=\"";
                 // line 29
-                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_editar", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_editarUsuario", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-primary\">
                                         Editar
                                     </a>

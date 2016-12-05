@@ -3,12 +3,42 @@
 {% block title %} Sesiones Generales {% endblock %}
 
 {% block contenido %}
+    <div class="container">
+        <h2 class="text-center">Sesiones Generales</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                    <th>Monitor</th>
+                    <th>Participantes</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sesion in sesiones %}
+                    {% if sesion.cliente == "normal" %}
+                        <tr>
+                            <td>{{sesion.nombre}}</td>
+                            <td>{{sesion.estado}}</td>
+                            <td>{{sesion.monitor}}</td>
+                            <td>{{sesion.nClientes}}/{{sesion.lClientes}}</td>
 
-    <h1>Sesiones Generales</h1>
-    {% for sesion in sesiones %}
-        {% if sesion.cliente == "normal" %}
-            <a href="{{url('crivero_prueba_sesion', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{sesion.id}}:  {{sesion.nombre}} - {{ sesion.estado }}</a>
-        {% endif %}
-    {% endfor %}
-
+                            <td class="actions">
+                                <a href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}" class="btn btn-sm btn-info">
+                                    Ver
+                                </a>
+                                <a href="#" class="btn btn-sm btn-primary">
+                                    Editar
+                                </a>
+                                <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                    Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    {% endif %}   
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

@@ -2,12 +2,40 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 
 {% block title %} Canchas {% endblock %}
-             
+
 {% block contenido %}
-
-<h1>Canchas</h1>
-{% for cancha in canchas %}
-    <a href="{{url('crivero_prueba_cancha', {'id': cancha.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ cancha.tipo }} - {{ cancha.disponibilidad}} </a>
-{% endfor %}
-
+    <div class="container">
+        <h1 class="text-center">Canchas</h1>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Estado</th>
+                        <th>Horario</th>
+                        <th>Valoracion</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cancha in canchas %}
+                        <tr>
+                            <td>{{cancha.tipo}}</td>
+                            <td>{{cancha.disponibilidad}}</td>
+                            <td>{{cancha.horario}}</td>
+                            <td>{{cancha.valoracion}}</td>
+                            <td class="actions">
+                                <a href="{{ path('crivero_prueba_cancha', { id: cancha.id }) }}" class="btn btn-sm btn-info">
+                                    Ver
+                                </a>
+                                <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                    Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %} 
