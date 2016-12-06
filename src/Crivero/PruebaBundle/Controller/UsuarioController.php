@@ -63,11 +63,8 @@ class UsuarioController extends Controller {
             $em->persist($usuario);
             $em->flush();
             
-            if ($form->get('tipo')->getData() != 3) {
-                return $this->redirect($this->generateUrl('crivero_prueba_clientes'));  
-            } else {
-                return $this->redirect($this->generateUrl('crivero_prueba_monitores'));  
-            }
+            $tipo = $form->get('tipo')->getData();
+            return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitores')):$this->redirect($this->generateUrl('crivero_prueba_clientes'));
         } else {
             $form->get('password')->addError(new FormError('Rellene el campo, gracias'));
         }
@@ -101,11 +98,7 @@ class UsuarioController extends Controller {
             $em->remove($usuario);
             $em->flush();
             
-            if ($tipo != 3) {
-                return $this->redirect($this->generateUrl('crivero_prueba_clientes'));  
-            }else{
-                return $this->redirect($this->generateUrl('crivero_prueba_monitores'));  
-            }
+            return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitores')):$this->redirect($this->generateUrl('crivero_prueba_clientes'));
         }
     }
       
@@ -135,7 +128,8 @@ class UsuarioController extends Controller {
                 $usuario->setPassword($recoverPass[0]['password']);
             }
             $em->flush();
-            return $this->redirect($this->generateUrl('crivero_prueba_editarUsuario', array('id' => $usuario->getId())));
+            $tipo = $form->get('tipo')->getData();
+            return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitores')):$this->redirect($this->generateUrl('crivero_prueba_clientes'));
         }
         return $this->render('CriveroPruebaBundle:Default:editar.html.twig', array('usuario' => $usuario, 'form' => $form->createView()));
     }

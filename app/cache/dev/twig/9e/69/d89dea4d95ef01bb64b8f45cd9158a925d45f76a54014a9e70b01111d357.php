@@ -79,7 +79,7 @@ class __TwigTemplate_9e69d89dea4d95ef01bb64b8f45cd9158a925d45f76a54014a9e70b0111
                             <td>";
             // line 26
             echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "valoracion", array()), "html", null, true);
-            echo "</td>
+            echo "/5.0</td>
                             <td class=\"actions\">
                                 <a href=\"";
             // line 28
