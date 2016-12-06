@@ -3,14 +3,45 @@
 {% block title %} Torneos {% endblock %}
 
 {% block contenido %}
-    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-        <div class="panel panel-default">
-            <div class="panel-heading text-center">
-                <h1>Torneos</h1>
-            </div>
-            {% for torneo in torneos %}
-                <a href="{{url('crivero_prueba_torneo', {'id': torneo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ torneo.id }} - {{ torneo.nombre }} - {{torneo.estadoTorneo}}</a>
-            {% endfor %}
+    <div class="container">
+        <h1 class="text-center">Torneos</h1>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Deporte</th>
+                        <th>Estado Torneo</th>
+                        <th>Fecha inicio</th>
+                        <th>Fecha finalización</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for torneo in torneos %}
+                        <tr>
+                            <td>{{torneo.nombre}}</td>
+                            <td>{{torneo.deporte}}</td>
+                            <td>{{torneo.estadoTorneo}}</td>
+                            <td>{{torneo.fechaInicio|date('d/m/Y H:i')}}</td>
+                            <td>{{torneo.fechaFinalizacion|date('d/m/Y H:i')}}</td>
+                            <td class="actions">
+                                <a href="{{ path('crivero_prueba_torneo', { id: torneo.id }) }}" class="btn btn-sm btn-info">
+                                    Ver
+                                </a>
+                                {#<a href="{{ path('crivero_prueba_editarTorneo', { id: torneo.id }) }}" class="btn btn-sm btn-primary">
+                                    Editar
+                                </a>#}
+                                <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                    Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
+       {# <div class="nuevoTorneo">
+            <a href="{{path('crivero_prueba_nuevoTorneo')}}" class="btn btn-success" style="height: 30px; width: 150px;">Nuevo Torneo <span class="glyphicon glyphicon-plus"></span></a>
+        </div>#}
     </div>
 {% endblock %}

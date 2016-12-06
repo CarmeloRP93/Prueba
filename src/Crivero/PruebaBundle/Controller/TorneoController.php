@@ -17,8 +17,11 @@ class TorneoController extends Controller
     {
       $repositoryTorneo = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Torneos");
       $torneo=$repositoryTorneo->find($id);
-      $repositoryEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
-      $equipos=$repositoryEquipos->findAll();
+      $em = $this->getDoctrine()->getManager();
+      $query2 = $em->createQuery('SELECT equipos
+            FROM CriveroPruebaBundle:Equipos equipos
+            ORDER BY equipos.clasificacion ASC');
+      $equipos=$query2->getResult(); 
       return $this->render('CriveroPruebaBundle:Default:torneo.html.twig', array("torneo"=>$torneo,"equipos"=>$equipos));
     }   
 }

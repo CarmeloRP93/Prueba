@@ -20,7 +20,7 @@
         {% endblock %}#}
         
         {% if torneo.estadoTorneo == "Validado"%}
-            <h3>Insertar tabla de liga del deporte en cuestión (fútbol,baloncesto, tenis)</h3>
+            <h3>{{torneo.deporte}}</h3>
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
@@ -37,7 +37,18 @@
                         {%if equipo.idTorneo ==torneo.id%}
                         <tr>
                             <td>  {{equipo.clasificacion}}º  </td>
-                            <td>  <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}">{{equipo.nombre}}</a> </td>
+                            <td class="actions">
+                                <p>{{equipo.nombre}}</p>
+                                <a href="{{ path('crivero_prueba_equipo', { id: equipo.id }) }}" class="btn btn-sm btn-info">
+                                    Ver
+                                </a>
+                                {#<a href="{{ path('crivero_prueba_editarEquipo', { id: equipo.id }) }}" class="btn btn-sm btn-primary">
+                                    Editar
+                                </a>#}
+                                <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                    Eliminar
+                                </a>
+                            </td>
                             <td>   {{equipo.puntuacion}}   </td>
                             <td>   {{equipo.victorias}}   </td>
                             <td>   {{equipo.derrotas}}   </td>
