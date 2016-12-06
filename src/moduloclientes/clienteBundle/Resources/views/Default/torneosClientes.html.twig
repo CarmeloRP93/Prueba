@@ -2,29 +2,31 @@
 
 {% block title %} Vista de Torneos {% endblock %}             
 {% block contenido %}
-    <h1>Listado de mis Torneos</h1>
-    <ul>
-        <p>En inscripción: </p>
-        {% for torneo in torneos %}
-            {% if torneo.estado == "Inscripcion" %}
-                <li><a href="{{url('moduloclientes_cliente_torneoClientes', {'matricula': torneo.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ torneo.nombre }}</a></li>
-                {%endif%}
-            {% endfor %}
-    </ul>
-    <ul>
-        <p>En curso: </p>
-        {% for torneo in torneos %}
-            {% if torneo.estado == "Disponible" %}
-                <li><a href="{{url('moduloclientes_cliente_torneoClientes', {'matricula': torneo.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ torneo.nombre }}</a></li>
-                {%endif%}
-            {% endfor %}
-    </ul>
-    <ul>
-        <p>Finalizado: </p>
-        {% for torneo in torneos %}
-            {%if torneo.estado == "Finalizado" %}
-                <li><a href="{{url('moduloclientes_cliente_torneoClientes', {'matricula': torneo.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ torneo.nombre }}</a></li>
-                {%endif%}
-            {% endfor %}
-    </ul>
+    <div class="container">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h3>Listado de mis Torneos</h3>
+                </div>
+                <label class="label label-default">En inscripción: </label>
+                {% for torneo in torneos %}
+                    {% if torneo.estado == "Inscripcion" %}
+                        <a href="{{url('moduloclientes_cliente_torneoClientes', {'matricula': torneo.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ torneo.nombre }}</a>
+                    {%endif%}
+                {% endfor %}
+                <label class="label label-success">En curso: </label>
+                {% for torneo in torneos %}
+                    {% if torneo.estado == "Disponible" %}
+                        <a href="{{url('moduloclientes_cliente_torneoClientes', {'matricula': torneo.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ torneo.nombre }}</a>
+                    {%endif%}
+                {% endfor %}
+                <label class="label label-danger">Finalizado: </label>
+                {% for torneo in torneos %}
+                    {%if torneo.estado == "Finalizado" %}
+                        <a href="{{url('moduloclientes_cliente_torneoClientes', {'matricula': torneo.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ torneo.nombre }}</a>
+                    {%endif%}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -43,11 +43,15 @@ class __TwigTemplate_9ef89e4e91a2dca22d0a695d618549d37bedb0bd4a5617d91745c74980e
     public function block_contenido($context, array $blocks = array())
     {
         // line 5
-        echo "    <h1>Listado de mis Torneos</h1>
-    <ul>
-        <p>En inscripción: </p>
-        ";
-        // line 8
+        echo "    <div class=\"container\">
+        <div class=\"col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4\">
+            <div class=\"panel panel-default\">
+                <div class=\"panel-heading text-center\">
+                    <h3>Listado de mis Torneos</h3>
+                </div>
+                <label class=\"label label-default\">En inscripción: </label>
+                ";
+        // line 12
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["torneos"]) ? $context["torneos"] : $this->getContext($context, "torneos")));
         $context['loop'] = array(
@@ -64,21 +68,21 @@ class __TwigTemplate_9ef89e4e91a2dca22d0a695d618549d37bedb0bd4a5617d91745c74980e
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["torneo"]) {
-            // line 9
-            echo "            ";
+            // line 13
+            echo "                    ";
             if (($this->getAttribute($context["torneo"], "estado", array()) == "Inscripcion")) {
-                // line 10
-                echo "                <li><a href=\"";
+                // line 14
+                echo "                        <a href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_torneoClientes", array("matricula" => $this->getAttribute($context["torneo"], "matricula", array()))), "html", null, true);
                 echo "\" class=\"fila ";
                 echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
                 echo "\">";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["torneo"], "nombre", array()), "html", null, true);
-                echo "</a></li>
-                ";
+                echo "</a>
+                    ";
             }
-            // line 12
-            echo "            ";
+            // line 16
+            echo "                ";
             ++$context['loop']['index0'];
             ++$context['loop']['index'];
             $context['loop']['first'] = false;
@@ -91,12 +95,10 @@ class __TwigTemplate_9ef89e4e91a2dca22d0a695d618549d37bedb0bd4a5617d91745c74980e
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['torneo'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 13
-        echo "    </ul>
-    <ul>
-        <p>En curso: </p>
-        ";
-        // line 16
+        // line 17
+        echo "                <label class=\"label label-success\">En curso: </label>
+                ";
+        // line 18
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["torneos"]) ? $context["torneos"] : $this->getContext($context, "torneos")));
         $context['loop'] = array(
@@ -113,21 +115,21 @@ class __TwigTemplate_9ef89e4e91a2dca22d0a695d618549d37bedb0bd4a5617d91745c74980e
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["torneo"]) {
-            // line 17
-            echo "            ";
+            // line 19
+            echo "                    ";
             if (($this->getAttribute($context["torneo"], "estado", array()) == "Disponible")) {
-                // line 18
-                echo "                <li><a href=\"";
+                // line 20
+                echo "                        <a href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_torneoClientes", array("matricula" => $this->getAttribute($context["torneo"], "matricula", array()))), "html", null, true);
                 echo "\" class=\"fila ";
                 echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
                 echo "\">";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["torneo"], "nombre", array()), "html", null, true);
-                echo "</a></li>
-                ";
+                echo "</a>
+                    ";
             }
-            // line 20
-            echo "            ";
+            // line 22
+            echo "                ";
             ++$context['loop']['index0'];
             ++$context['loop']['index'];
             $context['loop']['first'] = false;
@@ -140,11 +142,9 @@ class __TwigTemplate_9ef89e4e91a2dca22d0a695d618549d37bedb0bd4a5617d91745c74980e
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['torneo'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 21
-        echo "    </ul>
-    <ul>
-        <p>Finalizado: </p>
-        ";
+        // line 23
+        echo "                <label class=\"label label-danger\">Finalizado: </label>
+                ";
         // line 24
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["torneos"]) ? $context["torneos"] : $this->getContext($context, "torneos")));
@@ -163,20 +163,20 @@ class __TwigTemplate_9ef89e4e91a2dca22d0a695d618549d37bedb0bd4a5617d91745c74980e
         }
         foreach ($context['_seq'] as $context["_key"] => $context["torneo"]) {
             // line 25
-            echo "            ";
+            echo "                    ";
             if (($this->getAttribute($context["torneo"], "estado", array()) == "Finalizado")) {
                 // line 26
-                echo "                <li><a href=\"";
+                echo "                        <a href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_torneoClientes", array("matricula" => $this->getAttribute($context["torneo"], "matricula", array()))), "html", null, true);
                 echo "\" class=\"fila ";
                 echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
                 echo "\">";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["torneo"], "nombre", array()), "html", null, true);
-                echo "</a></li>
-                ";
+                echo "</a>
+                    ";
             }
             // line 28
-            echo "            ";
+            echo "                ";
             ++$context['loop']['index0'];
             ++$context['loop']['index'];
             $context['loop']['first'] = false;
@@ -190,7 +190,9 @@ class __TwigTemplate_9ef89e4e91a2dca22d0a695d618549d37bedb0bd4a5617d91745c74980e
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['torneo'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 29
-        echo "    </ul>
+        echo "            </div>
+        </div>
+    </div>
 ";
     }
 
@@ -206,6 +208,6 @@ class __TwigTemplate_9ef89e4e91a2dca22d0a695d618549d37bedb0bd4a5617d91745c74980e
 
     public function getDebugInfo()
     {
-        return array (  193 => 29,  179 => 28,  169 => 26,  166 => 25,  149 => 24,  144 => 21,  130 => 20,  120 => 18,  117 => 17,  100 => 16,  95 => 13,  81 => 12,  71 => 10,  68 => 9,  51 => 8,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
+        return array (  193 => 29,  179 => 28,  169 => 26,  166 => 25,  149 => 24,  146 => 23,  132 => 22,  122 => 20,  119 => 19,  102 => 18,  99 => 17,  85 => 16,  75 => 14,  72 => 13,  55 => 12,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
     }
 }

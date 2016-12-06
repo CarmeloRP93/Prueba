@@ -43,14 +43,18 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
     public function block_contenido($context, array $blocks = array())
     {
         // line 6
-        echo "<div id=\"buscador\">
-    <form>
-        <input type=\"search\" name=\"reserva\" placeholder=\"Buscar reserva\"/>
-    </form>
-</div>
-<h1>Listado de Reservas</h1>
-";
-        // line 12
+        echo "    <div class=\"col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4\">
+        <div class=\"panel panel-default\">
+            <div class=\"panel-heading text-center\">
+                <h3>Listado de Reservas</h3>
+                <div id=\"buscador\">
+                    <form>
+                        <input type=\"search\" name=\"reserva\" placeholder=\"Buscar reserva\"/>
+                    </form>
+                </div><br><br>
+            </div>
+            ";
+        // line 16
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["reservas"]) ? $context["reservas"] : $this->getContext($context, "reservas")));
         $context['loop'] = array(
@@ -67,8 +71,8 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["reserva"]) {
-            // line 13
-            echo "    <a href=\"";
+            // line 17
+            echo "                <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_reservaClientes", array("matricula" => $this->getAttribute($context["reserva"], "matricula", array()))), "html", null, true);
             echo "\" class=\"fila ";
             echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
@@ -77,7 +81,7 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
             echo " - ";
             echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "nombre", array()), "html", null, true);
             echo " </a>
-";
+            ";
             ++$context['loop']['index0'];
             ++$context['loop']['index'];
             $context['loop']['first'] = false;
@@ -90,8 +94,9 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['reserva'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 15
-        echo "
+        // line 19
+        echo "        </div>
+    </div>
 ";
     }
 
@@ -107,6 +112,6 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
 
     public function getDebugInfo()
     {
-        return array (  94 => 15,  71 => 13,  54 => 12,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  98 => 19,  75 => 17,  58 => 16,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

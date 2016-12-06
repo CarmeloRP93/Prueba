@@ -2,11 +2,21 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
 
 {% block title %} Vista de entrenamiento {% endblock %}
-               
-{% block contenido %}
-<h1>Listado de entrenamiento</h1>
-{% for sesion in sesiones %}
-    <a href="{{url('moduloclientes_cliente_sesionClientes', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{sesion.id}}: {{ sesion.nombre }} - {{ sesion.estadoCliente}} </a>
-{% endfor %}
 
+{% block contenido %}
+    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <h3>Listado de entrenamiento</h3>
+            </div>
+            {% for sesion in sesiones %}
+                <a href="{{url('moduloclientes_cliente_sesionClientes', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{sesion.id}}: {{ sesion.nombre }} - {{ sesion.estadoCliente}} </a>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
+
+
+
+
+

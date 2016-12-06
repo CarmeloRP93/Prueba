@@ -4,14 +4,14 @@
 {% block title %} Vista de Canchas {% endblock %}
              
 {% block contenido %}
-<div id="buscador">
-    <form>
-        <input type="search" name="cancha" placeholder="Buscar cancha"/>
-    </form>
-</div>
-<h1>Listado de Canchas</h1>
-{% for cancha in canchas %}
-    <a href="{{url('moduloclientes_cliente_canchaClientes', {'matricula': cancha.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ cancha.matricula }} - {{ cancha.nombre }} - {{ cancha.disponibilidad}} </a>
-{% endfor %}
-
+    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <h3>Listado de Canchas</h3>
+            </div>
+            {% for cancha in canchas %}
+                 <a href="{{url('moduloclientes_cliente_canchaClientes', {'matricula': cancha.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ cancha.matricula }} - {{ cancha.nombre }} - {{ cancha.disponibilidad}} </a>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
