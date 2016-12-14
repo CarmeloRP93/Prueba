@@ -49,8 +49,14 @@ class __TwigTemplate_9e69d89dea4d95ef01bb64b8f45cd9158a925d45f76a54014a9e70b0111
             <table class=\"table table-hover\">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Estado</th>
+                        <th>";
+        // line 13
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre", "c.tipo");
+        echo "</th>
+                        <th>";
+        // line 14
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Estado", "c.disponibilidad");
+        echo "</th>
                         <th>Horario</th>
                         <th>Valoracion</th>
                         <th>Acciones</th>
@@ -60,7 +66,7 @@ class __TwigTemplate_9e69d89dea4d95ef01bb64b8f45cd9158a925d45f76a54014a9e70b0111
                     ";
         // line 21
         $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["canchas"]) ? $context["canchas"] : $this->getContext($context, "canchas")));
+        $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         foreach ($context['_seq'] as $context["_key"] => $context["cancha"]) {
             // line 22
             echo "                        <tr>
@@ -101,6 +107,12 @@ class __TwigTemplate_9e69d89dea4d95ef01bb64b8f45cd9158a925d45f76a54014a9e70b0111
         echo "                </tbody>
             </table>
         </div>
+        <div class=\"navigation\">
+            ";
+        // line 41
+        echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
+        echo "
+        </div>
     </div>
 ";
     }
@@ -117,6 +129,6 @@ class __TwigTemplate_9e69d89dea4d95ef01bb64b8f45cd9158a925d45f76a54014a9e70b0111
 
     public function getDebugInfo()
     {
-        return array (  101 => 37,  86 => 28,  81 => 26,  77 => 25,  73 => 24,  69 => 23,  66 => 22,  62 => 21,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  113 => 41,  107 => 37,  92 => 28,  87 => 26,  83 => 25,  79 => 24,  75 => 23,  72 => 22,  68 => 21,  58 => 14,  54 => 13,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
     }
 }

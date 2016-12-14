@@ -3,16 +3,21 @@
 namespace Crivero\PruebaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-//use Crivero\PruebaBundle\Entity\Canchas;
+use Symfony\Component\HttpFoundation\Request;
 class CanchaController extends Controller
 {
     
      
-    public function canchasAction()
-    {
-         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
-        $canchas=$repository->findAll();
-       return $this->render('CriveroPruebaBundle:Default:canchas.html.twig', array("canchas"=>$canchas));
+    public function canchasAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT c FROM CriveroPruebaBundle:Canchas c";
+        $canchas = $em->createQuery($dql);
+        
+         $paginator = $this->get('knp_paginator');
+         $pagination = $paginator->paginate(
+                $canchas, $request->query->getInt('page', 1),
+                5);
+       return $this->render('CriveroPruebaBundle:Default:canchas.html.twig', array("pagination"=>$pagination));
     }
     
     public function canchaAction($id)

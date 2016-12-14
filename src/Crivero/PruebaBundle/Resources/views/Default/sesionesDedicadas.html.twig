@@ -6,19 +6,19 @@
 {% block contenido %}
     <div class="container">
         <h2 class="text-center">Sesiones Dedicadas</h2>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Estado</th>
-                    <th>Monitor</th>
-                    <th>Cliente</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for sesion in sesiones %}
-                    {% if sesion.cliente != "normal" %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>{{ knp_pagination_sortable(pagination, 'Nombre', 's.nombre') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Estado', 's.estado') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Monitor', 's.monitor') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Cliente', 's.cliente') }}</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sesion in pagination %}
                         <tr>
                             <td>{{sesion.nombre}}</td>
                             <td>{{sesion.estado}}</td>
@@ -37,9 +37,12 @@
                                 </a>
                             </td>
                         </tr>
-                    {% endif %}   
-            {% endfor %}
-            </tbody>
-        </table>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
     </div>
 {% endblock %}

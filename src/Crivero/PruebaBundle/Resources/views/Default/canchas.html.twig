@@ -10,15 +10,15 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Estado</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'c.tipo') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Estado', 'c.disponibilidad') }}</th>
                         <th>Horario</th>
                         <th>Valoracion</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for cancha in canchas %}
+                    {% for cancha in pagination %}
                         <tr>
                             <td>{{cancha.tipo}}</td>
                             <td>{{cancha.disponibilidad}}</td>
@@ -36,6 +36,9 @@
                     {% endfor %}
                 </tbody>
             </table>
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
         </div>
     </div>
 {% endblock %} 

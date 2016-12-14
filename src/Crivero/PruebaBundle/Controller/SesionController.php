@@ -10,16 +10,28 @@ use Symfony\Component\Form\FormError;
 
 class SesionController extends Controller {
 
-    public function sesionesAction() {
-        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        $sesiones = $repository->findAll();
-        return $this->render('CriveroPruebaBundle:Default:sesiones.html.twig', array("sesiones" => $sesiones));
+    public function sesionesAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.cliente='normal'";
+        $sesiones = $em->createQuery($dql);
+        
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $sesiones, $request->query->getInt('page', 1),
+                3);
+        return $this->render('CriveroPruebaBundle:Default:sesiones.html.twig', array("pagination" => $pagination));
     }
     
-    public function dedicadasAction() {
-        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        $sesiones = $repository->findAll();
-        return $this->render('CriveroPruebaBundle:Default:sesionesDedicadas.html.twig', array("sesiones" => $sesiones));
+    public function dedicadasAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.cliente!='normal'";
+        $sesiones = $em->createQuery($dql);
+        
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $sesiones, $request->query->getInt('page', 1),
+                3);
+        return $this->render('CriveroPruebaBundle:Default:sesionesDedicadas.html.twig', array("pagination" => $pagination));
     }
 
     public function sesionAction($id) {

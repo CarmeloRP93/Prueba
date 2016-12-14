@@ -11,10 +11,17 @@ use Crivero\PruebaBundle\Form\UsuariosType;
 
 class UsuarioController extends Controller {
     
-    public function clientesAction() {
-        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
-        $usuarios=$repository->findAll();
-       return $this->render('CriveroPruebaBundle:Default:clientes.html.twig', array("usuarios"=>$usuarios));
+    public function clientesAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=2";
+        $usuarios = $em->createQuery($dql);
+        
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $usuarios, $request->query->getInt('page', 1),
+                5);
+        
+       return $this->render('CriveroPruebaBundle:Default:clientes.html.twig', array("pagination"=>$pagination));
     }
     
     public function clienteAction($id) {
@@ -26,10 +33,16 @@ class UsuarioController extends Controller {
             $deleteForm->createView()));
     }
     
-     public function monitoresAction() {
-        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
-        $usuarios=$repository->findAll();
-       return $this->render('CriveroPruebaBundle:Default:monitores.html.twig', array("usuarios"=>$usuarios));
+     public function monitoresAction(Request $request) {
+         $em = $this->getDoctrine()->getManager();
+         $dql = "SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=3";
+         $usuarios = $em->createQuery($dql);
+        
+         $paginator = $this->get('knp_paginator');
+         $pagination = $paginator->paginate(
+                $usuarios, $request->query->getInt('page', 1),
+                5);
+       return $this->render('CriveroPruebaBundle:Default:monitores.html.twig', array("pagination"=>$pagination));
     }
     
     public function monitorAction($id) {
@@ -63,6 +76,7 @@ class UsuarioController extends Controller {
             $em->persist($usuario);
             $em->flush();
             
+            $request->getSession()->getFlashBag()->add('mensaje', 'El usuario ha sido creado con éxito.');
             $tipo = $form->get('tipo')->getData();
             return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitores')):$this->redirect($this->generateUrl('crivero_prueba_clientes'));
         } else {
@@ -98,6 +112,7 @@ class UsuarioController extends Controller {
             $em->remove($usuario);
             $em->flush();
             
+            $request->getSession()->getFlashBag()->add('mensaje', 'El usuario ha sido eliminado con éxito.');
             return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitores')):$this->redirect($this->generateUrl('crivero_prueba_clientes'));
         }
     }
@@ -128,6 +143,8 @@ class UsuarioController extends Controller {
                 $usuario->setPassword($recoverPass[0]['password']);
             }
             $em->flush();
+            
+            $request->getSession()->getFlashBag()->add('mensaje', 'El usuario ha sido modificado correctamente.');
             $tipo = $form->get('tipo')->getData();
             return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitores')):$this->redirect($this->generateUrl('crivero_prueba_clientes'));
         }
