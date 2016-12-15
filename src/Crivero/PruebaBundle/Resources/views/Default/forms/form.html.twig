@@ -1,15 +1,16 @@
 {{ form_start(form, {'attr': {'id': id|default('form')}} ) }}
 
     {{ form_widget(form) }}
-    <input type="button" value="{{ 'Eliminar usuario' }}" class="btn btn-danger" 
-           onclick="confirmarEliminar()" >
+    {% if with_submit is not defined or with_submit == true %}
+        <input type="button" value="{{ 'Eliminar usuario' }}" class="btn btn-danger" 
+               onclick="confirmarEliminar()" >
+    {% endif %}
 
 {{ form_end(form) }}
 
 <script>
     function confirmarEliminar() {
-        var mensaje = '¿Estas seguro?';
-        bootbox.confirm (mensaje, function(result) {
+        bootbox.confirm ('¿Estas seguro?', function(result) {
            if (result === true) {
                document.getElementById("form").submit();
            } 

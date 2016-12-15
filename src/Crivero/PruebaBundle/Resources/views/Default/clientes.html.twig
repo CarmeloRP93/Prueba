@@ -3,6 +3,13 @@
 {% block title %} Clientes {% endblock %}
 
 {% block contenido %}
+    
+    <div class="progress no-border hidden" id="delete-progress" style="margin-top: -20px">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div> 
+
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class="container">
         <h1 class="text-center">Clientes</h1>
@@ -20,21 +27,21 @@
                 <tbody>
 
                     {% for usuario in pagination %}
-                        <tr>
-                                <td>{{usuario.nombre}}</td>
-                                <td>{{usuario.email}}</td>
-                                <td>{{usuario.registro|date('d/m/Y H:i')}}</td>
-                                <td class="actions">
-                                    <a href="{{ path('crivero_prueba_cliente', { id: usuario.id }) }}" class="btn btn-sm btn-info">
-                                        Ver
-                                    </a>
-                                    <a href="{{ path('crivero_prueba_editarUsuario', { id: usuario.id }) }}" class="btn btn-sm btn-primary">
-                                        Editar
-                                    </a>
-                                    <a href="#" class="btn btn-sm btn-danger btn-delete">
-                                        Eliminar
-                                    </a>
-                                </td>
+                        <tr data-id="{{ usuario.id }}">
+                            <td>{{usuario.nombre}}</td>
+                            <td>{{usuario.email}}</td>
+                            <td>{{usuario.registro|date('d/m/Y H:i')}}</td>
+                            <td class="actions">
+                                <a href="{{ path('crivero_prueba_cliente', { id: usuario.id }) }}" class="btn btn-sm btn-info">
+                                    Ver
+                                </a>
+                                <a href="{{ path('crivero_prueba_editarUsuario', { id: usuario.id }) }}" class="btn btn-sm btn-primary">
+                                    Editar
+                                </a>
+                                <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                    Eliminar
+                                </a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -50,4 +57,10 @@
         </div>
     </div>
 
+    {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form_ajax, id: "form-delete", with_submit: false })}}
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/criveroprueba/js/delete-user.js') }}"></script>
 {% endblock %}

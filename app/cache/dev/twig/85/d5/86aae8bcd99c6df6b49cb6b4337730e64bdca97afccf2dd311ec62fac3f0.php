@@ -20,6 +20,7 @@ class __TwigTemplate_85d586aae8bcd99c6df6b49cb6b4337730e64bdca97afccf2dd311ec62f
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'contenido' => array($this, 'block_contenido'),
+            'javascripts' => array($this, 'block_javascripts'),
         );
     }
 
@@ -43,7 +44,15 @@ class __TwigTemplate_85d586aae8bcd99c6df6b49cb6b4337730e64bdca97afccf2dd311ec62f
     public function block_contenido($context, array $blocks = array())
     {
         // line 6
-        echo "    ";
+        echo "    
+    <div class=\"progress no-border hidden\" id=\"delete-progress\" style=\"margin-top: -20px\">
+        <div class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"45\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 100%\">
+            <span class=\"sr-only\">Loading...</span>
+        </div>
+    </div> 
+    
+    ";
+        // line 13
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:messages/success.html.twig");
         echo "
     <div class=\"container\">
@@ -53,15 +62,15 @@ class __TwigTemplate_85d586aae8bcd99c6df6b49cb6b4337730e64bdca97afccf2dd311ec62f
                 <thead>
                     <tr>
                         <th>";
-        // line 13
+        // line 20
         echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre", "u.nombre");
         echo "</th>
                         <th>";
-        // line 14
+        // line 21
         echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Correo electrónico", "u.email");
         echo "</th>
                         <th>";
-        // line 15
+        // line 22
         echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Creado", "u.registro");
         echo "</th>
                         <th>Acciones</th>
@@ -69,33 +78,35 @@ class __TwigTemplate_85d586aae8bcd99c6df6b49cb6b4337730e64bdca97afccf2dd311ec62f
                 </thead>
                 <tbody>
                     ";
-        // line 20
+        // line 27
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         foreach ($context['_seq'] as $context["_key"] => $context["usuario"]) {
-            // line 21
-            echo "                        <tr>
+            // line 28
+            echo "                        <tr data-id=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "id", array()), "html", null, true);
+            echo "\">
                                 <td>";
-            // line 22
+            // line 29
             echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "nombre", array()), "html", null, true);
             echo "</td>
                                 <td>";
-            // line 23
+            // line 30
             echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "email", array()), "html", null, true);
             echo "</td>
                                 <td>";
-            // line 24
+            // line 31
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["usuario"], "registro", array()), "d/m/Y H:i"), "html", null, true);
             echo "</td>
                                 <td class=\"actions\">
                                     <a href=\"";
-            // line 26
+            // line 33
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_monitor", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-info\">
                                         Ver
                                     </a>
                                     <a href=\"";
-            // line 29
+            // line 36
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_editarUsuario", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-primary\">
                                         Editar
@@ -110,23 +121,43 @@ class __TwigTemplate_85d586aae8bcd99c6df6b49cb6b4337730e64bdca97afccf2dd311ec62f
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['usuario'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 38
+        // line 45
         echo "                </tbody>
             </table>
         </div>
         <div class=\"navigation\">
             ";
-        // line 42
+        // line 49
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
         </div>
         <div class=\"nuevoUsuario text-center\">
             <a href=\"";
-        // line 45
+        // line 52
         echo $this->env->getExtension('routing')->getPath("crivero_prueba_nuevo");
         echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\"><span class=\"glyphicon glyphicon-plus\"></span> Nuevo Usuario</a>
         </div>
     </div>
+            
+    ";
+        // line 56
+        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "id" => "form-delete", "with_submit" => false));
+        echo "
+    
+";
+    }
+
+    // line 59
+    public function block_javascripts($context, array $blocks = array())
+    {
+        // line 60
+        echo "    ";
+        $this->displayParentBlock("javascripts", $context, $blocks);
+        echo "
+    <script src=\"";
+        // line 61
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/criveroprueba/js/delete-user.js"), "html", null, true);
+        echo "\"></script>
 ";
     }
 
@@ -142,6 +173,6 @@ class __TwigTemplate_85d586aae8bcd99c6df6b49cb6b4337730e64bdca97afccf2dd311ec62f
 
     public function getDebugInfo()
     {
-        return array (  126 => 45,  120 => 42,  114 => 38,  99 => 29,  93 => 26,  88 => 24,  84 => 23,  80 => 22,  77 => 21,  73 => 20,  65 => 15,  61 => 14,  57 => 13,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  159 => 61,  154 => 60,  151 => 59,  144 => 56,  137 => 52,  131 => 49,  125 => 45,  110 => 36,  104 => 33,  99 => 31,  95 => 30,  91 => 29,  86 => 28,  82 => 27,  74 => 22,  70 => 21,  66 => 20,  56 => 13,  47 => 6,  44 => 5,  38 => 3,  11 => 1,);
     }
 }

@@ -23,21 +23,26 @@ class __TwigTemplate_3bddeff0ccb739486b463191cd86a9d592d5701ec315f6bbfb47c3b4cdc
         // line 3
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'widget');
         echo "
-    <input type=\"button\" value=\"";
+    ";
         // line 4
-        echo "Eliminar usuario";
-        echo "\" class=\"btn btn-danger\" 
-           onclick=\"confirmarEliminar()\" >
-
+        if (( !array_key_exists("with_submit", $context) || ((isset($context["with_submit"]) ? $context["with_submit"] : $this->getContext($context, "with_submit")) == true))) {
+            // line 5
+            echo "        <input type=\"button\" value=\"";
+            echo "Eliminar usuario";
+            echo "\" class=\"btn btn-danger\" 
+               onclick=\"confirmarEliminar()\" >
+    ";
+        }
+        // line 8
+        echo "
 ";
-        // line 7
+        // line 9
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
 
 <script>
     function confirmarEliminar() {
-        var mensaje = '¿Estas seguro?';
-        bootbox.confirm (mensaje, function(result) {
+        bootbox.confirm ('¿Estas seguro?', function(result) {
            if (result === true) {
                document.getElementById(\"form\").submit();
            } 
@@ -59,6 +64,6 @@ class __TwigTemplate_3bddeff0ccb739486b463191cd86a9d592d5701ec315f6bbfb47c3b4cdc
 
     public function getDebugInfo()
     {
-        return array (  34 => 7,  28 => 4,  24 => 3,  19 => 1,);
+        return array (  40 => 9,  37 => 8,  30 => 5,  28 => 4,  24 => 3,  19 => 1,);
     }
 }

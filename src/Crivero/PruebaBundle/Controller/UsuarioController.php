@@ -21,14 +21,17 @@ class UsuarioController extends Controller {
                 $usuarios, $request->query->getInt('page', 1),
                 5);
         
-       return $this->render('CriveroPruebaBundle:Default:clientes.html.twig', array("pagination"=>$pagination));
+       $deleteFormAjax = $this->createCustomForm(':USER_ID', 'DELETE', 'crivero_prueba_eliminar');
+        
+       return $this->render('CriveroPruebaBundle:Default:clientes.html.twig', array("pagination"=>$pagination, 
+           "delete_form_ajax"=>$deleteFormAjax->createView()));
     }
     
     public function clienteAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $cliente=$repository->find($id);
         
-        $deleteForm = $this->createDeleteForm($cliente);
+        $deleteForm = $this->createCustomForm($cliente->getId(), 'DELETE', 'crivero_prueba_eliminar');
         return $this->render('CriveroPruebaBundle:Default:cliente.html.twig', array("cliente"=>$cliente, 'delete_form'=>
             $deleteForm->createView()));
     }
@@ -42,14 +45,17 @@ class UsuarioController extends Controller {
          $pagination = $paginator->paginate(
                 $usuarios, $request->query->getInt('page', 1),
                 5);
-       return $this->render('CriveroPruebaBundle:Default:monitores.html.twig', array("pagination"=>$pagination));
+         
+         $deleteFormAjax = $this->createCustomForm(':USER_ID', 'DELETE', 'crivero_prueba_eliminar');
+         return $this->render('CriveroPruebaBundle:Default:monitores.html.twig', array("pagination"=>$pagination,
+              "delete_form_ajax"=>$deleteFormAjax->createView()));
     }
     
     public function monitorAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $monitor=$repository->find($id);
         
-        $deleteForm = $this->createDeleteForm($monitor);
+        $deleteForm = $this->createCustomForm($monitor->getId(), 'DELETE', 'crivero_prueba_eliminar');
        return $this->render('CriveroPruebaBundle:Default:monitor.html.twig', array("monitor"=>$monitor,  'delete_form'=>
             $deleteForm->createView()));
     }
@@ -94,27 +100,38 @@ class UsuarioController extends Controller {
         return $form;
     }
     
-    private function createDeleteForm($usuario) {
-        return $this->createFormBuilder()->setAction($this->generateUrl('crivero_prueba_eliminar', array('id' => $usuario->getId())))
-            ->setMethod('DELETE')
-             ->getForm();
-    }
-    
     public function eliminarAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
         $usuario= $this->findUser($id, $em);
         
-        $form = $this->createDeleteForm($usuario);
+        $form = $this->createCustomForm($usuario->getId(), 'DELETE', 'crivero_prueba_eliminar');
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()) {
             $tipo = $usuario->getTipo();
-            $em->remove($usuario);
-            $em->flush();
+            if ($request->isXmlHttpRequest()) {
+                $res = $this->deleteUser($em, $usuario);
+                
+                return new Response(
+                    json_encode(array('removed' => $res['removed'], 'message' => $res['message'])),
+                    200,
+                    array('Content-Type' => 'application/json')
+                );
+            }
             
-            $request->getSession()->getFlashBag()->add('mensaje', 'El usuario ha sido eliminado con éxito.');
+            $res = $this->deleteUser($em, $usuario);
+            $request->getSession()->getFlashBag()->add('mensaje', $res['message']);
             return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitores')):$this->redirect($this->generateUrl('crivero_prueba_clientes'));
         }
+    }
+    
+    private function deleteUser($em, $usuario) {
+        $em->remove($usuario);
+        $em->flush();
+        
+        $message = 'El usuario ha sido eliminado con éxito.';
+        $remove = 1;
+        return array('removed' => $remove, 'message' => $message);
     }
       
     public function editarUsuarioAction($id) {
@@ -181,6 +198,13 @@ class UsuarioController extends Controller {
             throw $this->createNotFoundException('Usuario no encontrado');
         }
         return $usuario;
+    }
+    
+    private function createCustomForm($id, $method, $route) {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl($route, array('id' => $id)))
+            ->setMethod($method)
+            ->getForm();
     }
     
 }

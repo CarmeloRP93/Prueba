@@ -16,13 +16,26 @@ class __TwigTemplate_4f487e4d60eed834550ca411b660691a63523e31d7a62b921901493dc9f
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
+        if ( !array_key_exists("flashMessage", $context)) {
+            // line 2
+            echo "\t<div class=\"alert alert-success hidden\" id=\"message\" style=\"margin-top: -20px\" role=\"alert\">
+\t\t<div class=\"container\">
+\t\t\t<span id=\"user-message\"></span>
+\t\t</div>
+\t</div>
+";
+        }
+        // line 8
+        echo "
+";
+        // line 9
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session", array()), "flashbag", array()), "get", array(0 => "mensaje"), "method"));
         foreach ($context['_seq'] as $context["_key"] => $context["flashMessage"]) {
-            // line 2
+            // line 10
             echo "\t<div class=\"alert alert-success\" style=\"margin-top: -20px\" role=\"alert\">
 \t\t<div class=\"container\"> ";
-            // line 3
+            // line 11
             echo twig_escape_filter($this->env, $context["flashMessage"], "html", null, true);
             echo " </div>
 \t</div>
@@ -45,6 +58,6 @@ class __TwigTemplate_4f487e4d60eed834550ca411b660691a63523e31d7a62b921901493dc9f
 
     public function getDebugInfo()
     {
-        return array (  26 => 3,  23 => 2,  19 => 1,);
+        return array (  39 => 11,  36 => 10,  32 => 9,  29 => 8,  21 => 2,  19 => 1,);
     }
 }
