@@ -1,12 +1,7 @@
 {% extends '::base.html.twig' %}
 {% block title %} Vista desde main {% endblock %}
-{% block stylesheets %}
-    <link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet">
-{% endblock %}
 
-{% block header %}
-
-{% endblock %}
+{% block header %}{% endblock %}
 
 {% block navegation %}
  <nav class="navbar navbar-default" role="navigation">
@@ -41,7 +36,7 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Nombre, sesion...">
                     </div>
-                    <button type="submit" class="btn btn-default">Buscar</button>
+                    <button type="submit" class="btn btn-default" style="margin-bottom: 0px">Buscar</button>
                 </form>
             </div>
         </nav>

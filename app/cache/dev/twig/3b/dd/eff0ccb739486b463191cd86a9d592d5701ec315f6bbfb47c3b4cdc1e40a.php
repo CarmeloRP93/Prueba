@@ -23,16 +23,27 @@ class __TwigTemplate_3bddeff0ccb739486b463191cd86a9d592d5701ec315f6bbfb47c3b4cdc
         // line 3
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'widget');
         echo "
-    <input type=\"submit\" value=\"";
+    <input type=\"button\" value=\"";
         // line 4
         echo "Eliminar usuario";
         echo "\" class=\"btn btn-danger\" 
-           onclick=\"return confirm('¿Estas seguro?')\" >
+           onclick=\"confirmarEliminar()\" >
 
 ";
         // line 7
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
+
+<script>
+    function confirmarEliminar() {
+        var mensaje = '¿Estas seguro?';
+        bootbox.confirm (mensaje, function(result) {
+           if (result === true) {
+               document.getElementById(\"form\").submit();
+           } 
+        });
+    }
+</script>
 ";
     }
 

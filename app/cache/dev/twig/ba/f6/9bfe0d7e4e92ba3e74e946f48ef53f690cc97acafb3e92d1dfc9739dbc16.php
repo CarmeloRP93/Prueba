@@ -127,7 +127,7 @@ class __TwigTemplate_baf69bfe0d7e4e92ba3e74e946f48ef53f690cc97acafb3e92d1dfc9739
                 <a href=\"";
         // line 48
         echo $this->env->getExtension('routing')->getPath("crivero_prueba_nuevo");
-        echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\"><span class=\"glyphicon glyphicon-plus\"></span> Nuevo Usuario</a>
+        echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\"> Nuevo Usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
             </div>
         </div>
     </div>

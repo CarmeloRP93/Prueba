@@ -19,7 +19,6 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 
         $this->blocks = array(
             'title' => array($this, 'block_title'),
-            'stylesheets' => array($this, 'block_stylesheets'),
             'header' => array($this, 'block_header'),
             'navegation' => array($this, 'block_navegation'),
             'body' => array($this, 'block_body'),
@@ -43,28 +42,15 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
         echo " Vista desde main ";
     }
 
-    // line 3
-    public function block_stylesheets($context, array $blocks = array())
-    {
-        // line 4
-        echo "    <link href=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("css/main.css"), "html", null, true);
-        echo "\" type=\"text/css\" rel=\"stylesheet\">
-";
-    }
-
-    // line 7
+    // line 4
     public function block_header($context, array $blocks = array())
     {
-        // line 8
-        echo "
-";
     }
 
-    // line 11
+    // line 6
     public function block_navegation($context, array $blocks = array())
     {
-        // line 12
+        // line 7
         echo " <nav class=\"navbar navbar-default\" role=\"navigation\">
             <!-- El logotipo y el icono que despliega el menú se agrupan
                  para mostrarlos mejor en los dispositivos móviles -->
@@ -83,29 +69,29 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
             <div class=\"collapse navbar-collapse navbar-ex1-collapse\">
                 <ul class=\"nav navbar-nav\">
                     <li><a href=\"";
-        // line 29
+        // line 24
         echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_sesionesMonitores");
         echo "\">Sesiones</a></li>
                     <li><a href=\"";
-        // line 30
+        // line 25
         echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_sesionesDedicadas");
         echo "\">Sesiones dedicadas</a></li>
                 </ul>
                 
                  ";
-        // line 33
+        // line 28
         if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_FULLY")) {
-            // line 34
+            // line 29
             echo "                    <ul class=\"nav navbar-nav navbar-right\">
                        <li><a href = #>Perfil</a></li>
                        <li><a href=\"";
-            // line 36
+            // line 31
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
             echo "\">Logout</a></li>
                    </ul>
                 ";
         }
-        // line 39
+        // line 34
         echo "
                 <form class=\"navbar-form navbar-center\" role=\"search\">
                     <div class=\"form-group\">
@@ -118,16 +104,16 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 ";
     }
 
-    // line 49
+    // line 44
     public function block_body($context, array $blocks = array())
     {
-        // line 50
+        // line 45
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 52
+        // line 47
         $this->displayBlock('contenido', $context, $blocks);
-        // line 54
+        // line 49
         echo "        </div>
 
     </div>
@@ -135,10 +121,10 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 ";
     }
 
-    // line 52
+    // line 47
     public function block_contenido($context, array $blocks = array())
     {
-        // line 53
+        // line 48
         echo "            ";
     }
 
@@ -154,6 +140,6 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 
     public function getDebugInfo()
     {
-        return array (  142 => 53,  139 => 52,  131 => 54,  129 => 52,  125 => 50,  122 => 49,  109 => 39,  103 => 36,  99 => 34,  97 => 33,  91 => 30,  87 => 29,  68 => 12,  65 => 11,  60 => 8,  57 => 7,  50 => 4,  47 => 3,  41 => 2,  11 => 1,);
+        return array (  128 => 48,  125 => 47,  117 => 49,  115 => 47,  111 => 45,  108 => 44,  95 => 34,  89 => 31,  85 => 29,  83 => 28,  77 => 25,  73 => 24,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
     }
 }
