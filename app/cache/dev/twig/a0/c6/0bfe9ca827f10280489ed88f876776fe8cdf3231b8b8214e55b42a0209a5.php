@@ -80,10 +80,10 @@ class __TwigTemplate_a0c60bfe9ca827f10280489ed88f876776fe8cdf3231b8b8214e55b42a0
             // line 23
             echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
             echo "</td>
-                            <td>";
+                            <td><strong>";
             // line 24
             echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "estado", array()), "html", null, true);
-            echo "</td>
+            echo "</strong></td>
                             <td>";
             // line 25
             echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "monitor", array()), "html", null, true);
@@ -100,26 +100,39 @@ class __TwigTemplate_a0c60bfe9ca827f10280489ed88f876776fe8cdf3231b8b8214e55b42a0
             echo "\" class=\"btn btn-sm btn-info\">
                                     Ver
                                 </a>
-                                <a href=\"#\" class=\"btn btn-sm btn-primary\">
-                                    Editar
-                                </a>
-                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
-                                    Eliminar
-                                </a>
-                            </td>
+                                ";
+            // line 32
+            if (($this->getAttribute($context["sesion"], "estado", array()) == "pendiente")) {
+                // line 33
+                echo "                                    <a href=\"#\" class=\"btn btn-sm btn-success\">
+                                        Aceptar
+                                    </a>
+                                    <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
+                                        Rechazar
+                                    </a>
+                                ";
+            } else {
+                // line 40
+                echo "                                    <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
+                                        Cancelar
+                                    </a>
+                                ";
+            }
+            // line 44
+            echo "                            </td>
                         </tr>
                     ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 41
+        // line 47
         echo "                </tbody>
             </table>
         </div>
         <div class=\"navigation\">
             ";
-        // line 45
+        // line 51
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
         </div>
@@ -139,6 +152,6 @@ class __TwigTemplate_a0c60bfe9ca827f10280489ed88f876776fe8cdf3231b8b8214e55b42a0
 
     public function getDebugInfo()
     {
-        return array (  123 => 45,  117 => 41,  99 => 29,  93 => 26,  89 => 25,  85 => 24,  81 => 23,  78 => 22,  74 => 21,  66 => 16,  62 => 15,  58 => 14,  54 => 13,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  136 => 51,  130 => 47,  122 => 44,  116 => 40,  107 => 33,  105 => 32,  99 => 29,  93 => 26,  89 => 25,  85 => 24,  81 => 23,  78 => 22,  74 => 21,  66 => 16,  62 => 15,  58 => 14,  54 => 13,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
     }
 }

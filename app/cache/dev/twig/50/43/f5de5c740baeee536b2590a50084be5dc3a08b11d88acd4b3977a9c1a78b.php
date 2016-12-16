@@ -97,7 +97,7 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
                     <div class=\"form-group\">
                         <input type=\"text\" class=\"form-control\" placeholder=\"Nombre, sesion...\">
                     </div>
-                    <button type=\"submit\" class=\"btn btn-default\">Buscar</button>
+                    <button type=\"submit\" class=\"btn btn-default\" style=\"margin-bottom: 0px\">Buscar</button>
                 </form>
             </div>
         </nav>

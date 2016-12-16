@@ -20,7 +20,7 @@
                     {% for sesion in pagination %}
                         <tr>
                             <td>{{sesion.nombre}}</td>
-                            <td>{{sesion.estado}}</td>
+                            <td><strong>{{sesion.estado}}</strong></td>
                             <td>{{sesion.monitor}}</td>
                             <td>{{sesion.nClientes}}/{{sesion.lClientes}}</td>
 
@@ -28,12 +28,18 @@
                                 <a href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}" class="btn btn-sm btn-info">
                                     Ver
                                 </a>
-                                <a href="#" class="btn btn-sm btn-primary">
-                                    Editar
-                                </a>
-                                <a href="#" class="btn btn-sm btn-danger btn-delete">
-                                    Eliminar
-                                </a>
+                                {% if sesion.estado == 'pendiente' %}
+                                    <a href="#" class="btn btn-sm btn-success">
+                                        Aceptar
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                        Rechazar
+                                    </a>
+                                {% else %}
+                                    <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                        Cancelar
+                                    </a>
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}

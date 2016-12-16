@@ -59,7 +59,7 @@ class SesionController extends Controller {
         $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
 
         if (!$sesion) {
-            throw $this->createNotFoundException("no encontrado");
+            throw $this->createNotFoundException("No encontrado");
         }
         $form = $this->createCancelForm($sesion);
         return $this->render('CriveroPruebaBundle:Default:cancelarSesion.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));

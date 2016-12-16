@@ -57,8 +57,14 @@ class __TwigTemplate_9e69d89dea4d95ef01bb64b8f45cd9158a925d45f76a54014a9e70b0111
         // line 14
         echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Estado", "c.disponibilidad");
         echo "</th>
-                        <th>Horario</th>
-                        <th>Valoracion</th>
+                        <th>";
+        // line 15
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Horario", "c.horario");
+        echo "</th>
+                        <th>";
+        // line 16
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Valoracion", "c.valoracion");
+        echo "</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -74,10 +80,10 @@ class __TwigTemplate_9e69d89dea4d95ef01bb64b8f45cd9158a925d45f76a54014a9e70b0111
             // line 23
             echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "tipo", array()), "html", null, true);
             echo "</td>
-                            <td>";
+                            <td><strong>";
             // line 24
             echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
-            echo "</td>
+            echo "</strong></td>
                             <td>";
             // line 25
             echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "horario", array()), "html", null, true);
@@ -93,9 +99,10 @@ class __TwigTemplate_9e69d89dea4d95ef01bb64b8f45cd9158a925d45f76a54014a9e70b0111
             echo "\" class=\"btn btn-sm btn-info\">
                                     Ver
                                 </a>
-                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
-                                    Eliminar
+                                <a href=\"#\" class=\"btn btn-sm btn-primary\">
+                                    Editar
                                 </a>
+                                
                             </td>
                         </tr>
                     ";
@@ -103,13 +110,13 @@ class __TwigTemplate_9e69d89dea4d95ef01bb64b8f45cd9158a925d45f76a54014a9e70b0111
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cancha'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 37
+        // line 38
         echo "                </tbody>
             </table>
         </div>
         <div class=\"navigation\">
             ";
-        // line 41
+        // line 42
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
         </div>
@@ -129,6 +136,6 @@ class __TwigTemplate_9e69d89dea4d95ef01bb64b8f45cd9158a925d45f76a54014a9e70b0111
 
     public function getDebugInfo()
     {
-        return array (  113 => 41,  107 => 37,  92 => 28,  87 => 26,  83 => 25,  79 => 24,  75 => 23,  72 => 22,  68 => 21,  58 => 14,  54 => 13,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  120 => 42,  114 => 38,  98 => 28,  93 => 26,  89 => 25,  85 => 24,  81 => 23,  78 => 22,  74 => 21,  66 => 16,  62 => 15,  58 => 14,  54 => 13,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
     }
 }
