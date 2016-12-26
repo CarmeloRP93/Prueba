@@ -1,55 +1,56 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
-{% block title %}Vista de {{reserva.nombre}} {% endblock %}
+
+{% block title %}Vista de la reserva de {#{{usuario.nombre}}#} {% endblock %}
 {% block contenido %}
-      <div class="container text-center">
+    <div class="container text-center">
         <h3>Detalles de Reserva</h3>
-    </div>
-        
-         <div class="text-center">
-           <h4>Nombre de la cancha</h4>
-        </div>
+        <h3>{{cancha.tipo}}<h3>
+                </div>
 
-        <div class="col-md-6 col-xs-12">
+                <div class="text-center">
+                    <h4>Nombre de la cancha</h4>
+                </div>
 
-            <div class="text-center">
-                <img src="{{ asset('images/cancha_de_marmolejo.jpg') }}" width="180px" class="img-rounded"/><br>
+                <div class="col-md-6 col-xs-12">
 
-                
-                <br>
-                      <div class="text-center">
-                        <button class="btn btn-danger">Cancelar</button>
-                      </div>
-                      
-            </div><br>
+                    <div class="text-center">
+                        <img src="{{ asset('images/cancha_de_marmolejo.jpg') }}" width="180px" class="img-rounded"/><br>
 
-        </div>
 
-        <div class="col-md-6 col-xs-12">
-            <div class="text-center">
-                <label class="control-label span7 text-left">Día: </label>
-                <label class="control-label span7 text-right">15/11/2016 </label>
-            </div>
-            
-            <div class="text-center">
-                <label class="control-label span7 text-left">Horario: </label>
-                <label class="control-label span7 text-right">15:00 - 18:30 </label>
-            </div>
+                        <br>
+                        <div class="text-center">
+                            <button class="btn btn-danger">Cancelar</button>
+                        </div>
 
-            <div class="text-center">
-                <label class="control-label span7 text-left">Dimensiones: </label>
-                <label class="control-label span7 text-right">100 m2</label>
-            </div>
+                    </div><br>
 
-            <div class="text-center">
-                <label class="control-label span7 text-left">Valoracion: </label>
-                <label class=" text-right">5.0/5.0</label>
-            </div>
+                </div>
 
-            <div class="text-center">
-                <label class="control-label span7 text-left">Dirección: </label>
-                <label class="control-label span7 text-right">Calle Desengaño, 21</label>
-            </div><br>
+                <div class="col-md-6 col-xs-12">
+                    <div class="text-center">
+                        <label class="control-label span7 text-left">Día: </label>
+                        <label class="control-label span7 text-right">15/11/2016 </label>
+                    </div>
 
-    </div>
-    
-{% endblock %}
+                    <div class="text-center">
+                        <label class="control-label span7 text-left">Horario: </label>
+                        <label class="control-label span7 text-right">15:00 - 18:30 </label>
+                    </div>
+
+                    <div class="text-center">
+                        <label class="control-label span7 text-left">Dimensiones: </label>
+                        <label class="control-label span7 text-right">100 m2</label>
+                    </div>
+
+                    <div class="text-center">
+                        <label class="control-label span7 text-left">Valoracion: </label>
+                        <label class=" text-right">5.0/5.0</label>
+                    </div>
+
+                    <div class="text-center">
+                        <label class="control-label span7 text-left">Dirección: </label>
+                        <label class="control-label span7 text-right">Calle Desengaño, 21</label>
+                    </div><br>
+
+                </div>
+            {% endblock %}

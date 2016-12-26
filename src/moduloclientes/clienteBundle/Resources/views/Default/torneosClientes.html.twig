@@ -10,20 +10,20 @@
                 </div>
                 <label class="label label-default">En inscripción: </label>
                 {% for torneo in torneos %}
-                    {% if torneo.estado == "Inscripcion" %}
-                        <a href="{{url('moduloclientes_cliente_torneoClientes', {'matricula': torneo.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ torneo.nombre }}</a>
+                    {% if torneo.estadoTorneo == "Solicitud Presentada" %}
+                        <a href="{{url('moduloclientes_cliente_torneoClientes', {'id': torneo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ torneo.nombre }}</a>
                     {%endif%}
                 {% endfor %}
                 <label class="label label-success">En curso: </label>
                 {% for torneo in torneos %}
-                    {% if torneo.estado == "Disponible" %}
-                        <a href="{{url('moduloclientes_cliente_torneoClientes', {'matricula': torneo.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ torneo.nombre }}</a>
+                    {% if torneo.estadoTorneo == "Validado" %}
+                        <a href="{{url('moduloclientes_cliente_torneoClientes', {'id': torneo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ torneo.nombre }}</a>
                     {%endif%}
                 {% endfor %}
                 <label class="label label-danger">Finalizado: </label>
                 {% for torneo in torneos %}
-                    {%if torneo.estado == "Finalizado" %}
-                        <a href="{{url('moduloclientes_cliente_torneoClientes', {'matricula': torneo.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ torneo.nombre }}</a>
+                    {%if torneo.estadoTorneo == "Finalizado" %}
+                        <a href="{{url('moduloclientes_cliente_torneoClientes', {'id': torneo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ torneo.nombre }}</a>
                     {%endif%}
                 {% endfor %}
             </div>

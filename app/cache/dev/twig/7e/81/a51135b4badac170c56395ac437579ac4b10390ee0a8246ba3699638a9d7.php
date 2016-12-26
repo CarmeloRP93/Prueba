@@ -111,7 +111,7 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
                     <div class=\"form-group\">
                         <input type=\"text\" class=\"form-control\" placeholder=\"Nombre, cancha...\">
                     </div>
-                    <button type=\"submit\" class=\"btn btn-default\">Buscar</button>
+                    <button type=\"submit\" class=\"btn btn-default\" style=\"margin-bottom: 0px\">Buscar</button>
  
                 </form>
             </div>

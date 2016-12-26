@@ -73,13 +73,13 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
         foreach ($context['_seq'] as $context["_key"] => $context["reserva"]) {
             // line 17
             echo "                <a href=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_reservaClientes", array("matricula" => $this->getAttribute($context["reserva"], "matricula", array()))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_reservaClientes", array("id" => $this->getAttribute($context["reserva"], "id", array()))), "html", null, true);
             echo "\" class=\"fila ";
             echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
             echo "\"> ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "matricula", array()), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "id", array()), "html", null, true);
             echo " - ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "nombre", array()), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "id", array()), "html", null, true);
             echo " </a>
             ";
             ++$context['loop']['index0'];
@@ -96,6 +96,10 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 19
         echo "        </div>
+        
+";
+        // line 62
+        echo "        
     </div>
 ";
     }
@@ -112,6 +116,6 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
 
     public function getDebugInfo()
     {
-        return array (  98 => 19,  75 => 17,  58 => 16,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  102 => 62,  98 => 19,  75 => 17,  58 => 16,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

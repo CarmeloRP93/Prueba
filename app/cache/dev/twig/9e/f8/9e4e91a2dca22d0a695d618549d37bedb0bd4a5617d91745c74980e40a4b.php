@@ -70,10 +70,10 @@ class __TwigTemplate_9ef89e4e91a2dca22d0a695d618549d37bedb0bd4a5617d91745c74980e
         foreach ($context['_seq'] as $context["_key"] => $context["torneo"]) {
             // line 13
             echo "                    ";
-            if (($this->getAttribute($context["torneo"], "estado", array()) == "Inscripcion")) {
+            if (($this->getAttribute($context["torneo"], "estadoTorneo", array()) == "Solicitud Presentada")) {
                 // line 14
                 echo "                        <a href=\"";
-                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_torneoClientes", array("matricula" => $this->getAttribute($context["torneo"], "matricula", array()))), "html", null, true);
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_torneoClientes", array("id" => $this->getAttribute($context["torneo"], "id", array()))), "html", null, true);
                 echo "\" class=\"fila ";
                 echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
                 echo "\">";
@@ -117,10 +117,10 @@ class __TwigTemplate_9ef89e4e91a2dca22d0a695d618549d37bedb0bd4a5617d91745c74980e
         foreach ($context['_seq'] as $context["_key"] => $context["torneo"]) {
             // line 19
             echo "                    ";
-            if (($this->getAttribute($context["torneo"], "estado", array()) == "Disponible")) {
+            if (($this->getAttribute($context["torneo"], "estadoTorneo", array()) == "Validado")) {
                 // line 20
                 echo "                        <a href=\"";
-                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_torneoClientes", array("matricula" => $this->getAttribute($context["torneo"], "matricula", array()))), "html", null, true);
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_torneoClientes", array("id" => $this->getAttribute($context["torneo"], "id", array()))), "html", null, true);
                 echo "\" class=\"fila ";
                 echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
                 echo "\">";
@@ -164,10 +164,10 @@ class __TwigTemplate_9ef89e4e91a2dca22d0a695d618549d37bedb0bd4a5617d91745c74980e
         foreach ($context['_seq'] as $context["_key"] => $context["torneo"]) {
             // line 25
             echo "                    ";
-            if (($this->getAttribute($context["torneo"], "estado", array()) == "Finalizado")) {
+            if (($this->getAttribute($context["torneo"], "estadoTorneo", array()) == "Finalizado")) {
                 // line 26
                 echo "                        <a href=\"";
-                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_torneoClientes", array("matricula" => $this->getAttribute($context["torneo"], "matricula", array()))), "html", null, true);
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_torneoClientes", array("id" => $this->getAttribute($context["torneo"], "id", array()))), "html", null, true);
                 echo "\" class=\"fila ";
                 echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
                 echo "\">";

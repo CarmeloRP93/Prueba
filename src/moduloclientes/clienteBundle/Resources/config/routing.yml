@@ -2,19 +2,19 @@ moduloclientes_cliente_canchasClientes:
     pattern:  /canchasClientes
     defaults: { _controller: moduloclientesclienteBundle:Cancha:canchasClientes }
 moduloclientes_cliente_canchaClientes:
-    pattern:  /canchaClientes/{matricula}
+    pattern:  /canchaClientes/{id}
     defaults: { _controller: moduloclientesclienteBundle:Cancha:canchaClientes }
 moduloclientes_cliente_reservasClientes:
     pattern:  /reservasClientes
     defaults: { _controller: moduloclientesclienteBundle:Reserva:reservasClientes }
 moduloclientes_cliente_reservaClientes:
-    pattern:  /reservaClientes/{matricula}
+    pattern:  /reservaClientes/{id}
     defaults: { _controller: moduloclientesclienteBundle:Reserva:reservaClientes }
 moduloclientes_cliente_torneosClientes:
     pattern:  /torneosClientes
     defaults: { _controller: moduloclientesclienteBundle:Torneo:torneosClientes }
 moduloclientes_cliente_torneoClientes:
-    pattern:  /torneoClientes/{matricula}
+    pattern:  /torneoClientes/{id}
     defaults: { _controller: moduloclientesclienteBundle:Torneo:torneoClientes }
 moduloclientes_cliente_sesionesClientes:
     pattern:  /sesionesClientes
