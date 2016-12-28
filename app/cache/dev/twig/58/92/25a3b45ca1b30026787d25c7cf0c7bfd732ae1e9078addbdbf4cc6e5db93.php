@@ -68,13 +68,13 @@ class __TwigTemplate_589225a3b45ca1b30026787d25c7cf0c7bfd732ae1e9078addbdbf4cc6e
         foreach ($context['_seq'] as $context["_key"] => $context["cancha"]) {
             // line 13
             echo "                 <a href=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_canchaClientes", array("matricula" => $this->getAttribute($context["cancha"], "matricula", array()))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_canchaClientes", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
             echo "\" class=\"fila ";
             echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
             echo "\"> ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "matricula", array()), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "id", array()), "html", null, true);
             echo " - ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "nombre", array()), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "tipo", array()), "html", null, true);
             echo " - ";
             echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
             echo " </a>

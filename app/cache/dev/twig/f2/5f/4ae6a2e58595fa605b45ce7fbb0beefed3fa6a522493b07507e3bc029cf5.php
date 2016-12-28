@@ -37,7 +37,7 @@ class __TwigTemplate_f25f4ae6a2e58595fa605b45ce7fbb0beefed3fa6a522493b07507e3bc0
     public function block_title($context, array $blocks = array())
     {
         echo "Vista de ";
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "nombre", array()), "html", null, true);
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "tipo", array()), "html", null, true);
         echo " ";
     }
 

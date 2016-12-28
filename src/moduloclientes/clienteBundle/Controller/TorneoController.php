@@ -13,7 +13,9 @@ class TorneoController extends Controller {
     }
 
     public function torneoClientesAction($id) {
-        return $this->render('moduloclientesclienteBundle:Default:torneoClientes.html.twig', array("torneo" => $id));
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Torneos");
+        $torneo = $repository->find($id);
+        return $this->render('moduloclientesclienteBundle:Default:torneoClientes.html.twig', array("torneo" => $torneo));
     }
 
 }

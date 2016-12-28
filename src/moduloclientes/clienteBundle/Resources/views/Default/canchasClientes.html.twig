@@ -10,7 +10,7 @@
                 <h3>Listado de Canchas</h3>
             </div>
             {% for cancha in canchas %}
-                 <a href="{{url('moduloclientes_cliente_canchaClientes', {'matricula': cancha.matricula})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ cancha.matricula }} - {{ cancha.nombre }} - {{ cancha.disponibilidad}} </a>
+                 <a href="{{url('moduloclientes_cliente_canchaClientes', {'id': cancha.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ cancha.id }} - {{ cancha.tipo }} - {{ cancha.disponibilidad}} </a>
             {% endfor %}
         </div>
     </div>

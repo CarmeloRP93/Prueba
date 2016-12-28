@@ -14,7 +14,7 @@
                 </div><br><br>
             </div>
             {% for reserva in reservas %}
-                <a href="{{url('moduloclientes_cliente_reservaClientes', {'id': reserva.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ reserva.id }} - {{ reserva.id }} </a>
+                <a href="{{url('moduloclientes_cliente_reservaClientes', {'id': reserva.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ reserva.id }} - {{ reserva.idCliente }} </a>
             {% endfor %}
         </div>
         

@@ -40,22 +40,26 @@ class ReservaController extends Controller {
     public function reservaClientesAction($id) {
         $repositoryReserva = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas");
         $reserva = $repositoryReserva->find($id);
-
-        $em = $this->getDoctrine()->getManager();
-        $query2 = $em->createQuery('SELECT usuarios, reservas
-            FROM CriveroPruebaBundle:Usuarios usuarios, CriveroPruebaBundle:Reservas reservas
-            WHERE usuarios.id = reservas.id');
-
-        $usuario = $query2->getResult();
+        $canchaId = $reserva -> getIdCancha();
         
-        $em2 = $this->getDoctrine()->getManager();
-        $query3 = $em2->createQuery('SELECT canchas, reservas
-            FROM CriveroPruebaBundle:Canchas canchas, CriveroPruebaBundle:Reservas reservas
-            WHERE canchas.id = reservas.id');
-
-        $cancha = $query3->getResult();
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
+        $cancha = $repository->find($canchaId);
         
-        return $this->render('moduloclientesclienteBundle:Default:reservaClientes.html.twig', array("reserva" => $reserva, "cancha" => $cancha, "usuario" => $usuario));
+//        $em = $this->getDoctrine()->getManager();
+//        $query2 = $em->createQuery('SELECT usuarios, reservas
+//            FROM CriveroPruebaBundle:Usuarios usuarios, CriveroPruebaBundle:Reservas reservas
+//            WHERE usuarios.id = reservas.id');
+//
+//        $usuario = $query2->getResult();
+//        
+//        $em2 = $this->getDoctrine()->getManager();
+//        $query3 = $em2->createQuery('SELECT canchas, reservas
+//            FROM CriveroPruebaBundle:Canchas canchas, CriveroPruebaBundle:Reservas reservas
+//            WHERE canchas.id = reservas.id');
+//
+//        $cancha = $query3->getResult();
+        
+        return $this->render('moduloclientesclienteBundle:Default:reservaClientes.html.twig', array("reserva" => $reserva, "cancha" => $cancha));
     }
 
 }

@@ -52,7 +52,7 @@ class __TwigTemplate_c5e524f61bc739fcf473c444aa425f38188e79297cf2ffb5bfe0ccf1cc4
         echo "</h1>
         ";
         // line 6
-        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estado", array()) == "Inscripcion")) {
+        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estadoTorneo", array()) == "Solicitud Presentada")) {
             // line 7
             echo "            <form class=\"form-horizontal\">
                 <div class=\"row container-fluid\">
@@ -76,7 +76,7 @@ class __TwigTemplate_c5e524f61bc739fcf473c444aa425f38188e79297cf2ffb5bfe0ccf1cc4
         }
         // line 26
         echo "        ";
-        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estado", array()) == "Disponible")) {
+        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estadoTorneo", array()) == "Validado")) {
             // line 27
             echo "            <h3>Insertar tabla de liga del deporte en cuestión (fútbol,baloncesto, tenis)</h3>
             <div class=\"table-responsive\">
@@ -139,7 +139,7 @@ class __TwigTemplate_c5e524f61bc739fcf473c444aa425f38188e79297cf2ffb5bfe0ccf1cc4
         <ul class=\"container text-center\">
             ";
         // line 56
-        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estado", array()) == "Finalizado")) {
+        if (($this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "estadoTorneo", array()) == "Finalizado")) {
             // line 57
             echo "                <h3>Resumen del ";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["torneo"]) ? $context["torneo"] : $this->getContext($context, "torneo")), "nombre", array()), "html", null, true);

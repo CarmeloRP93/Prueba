@@ -79,7 +79,7 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
             echo "\"> ";
             echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "id", array()), "html", null, true);
             echo " - ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "id", array()), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "idCliente", array()), "html", null, true);
             echo " </a>
             ";
             ++$context['loop']['index0'];
