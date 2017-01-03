@@ -183,4 +183,8 @@ class Reservas
         return $this->fechaFinalizacion;
     }
     
+    public function __toString() {
+        return $this->idCancha;
+    }
+    
 }

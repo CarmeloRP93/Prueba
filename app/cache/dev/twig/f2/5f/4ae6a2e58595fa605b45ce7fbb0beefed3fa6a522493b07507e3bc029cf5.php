@@ -67,7 +67,10 @@ class __TwigTemplate_f25f4ae6a2e58595fa605b45ce7fbb0beefed3fa6a522493b07507e3bc0
         if (($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()) == "Disponible")) {
             // line 19
             echo "                      <div class=\"text-center\">
-                        <button class=\"btn btn-primary\">Reservar</button>
+                        <a href=\"";
+            // line 20
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_nuevaReserva", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
+            echo "\" class=\"btn btn-primary\" style=\"height: 30px; width: 150px;\"> Reservar </a>
                       </div>
                       ";
         } else {
@@ -125,6 +128,6 @@ class __TwigTemplate_f25f4ae6a2e58595fa605b45ce7fbb0beefed3fa6a522493b07507e3bc0
 
     public function getDebugInfo()
     {
-        return array (  81 => 27,  75 => 23,  69 => 19,  67 => 18,  62 => 16,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  84 => 27,  78 => 23,  72 => 20,  69 => 19,  67 => 18,  62 => 16,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

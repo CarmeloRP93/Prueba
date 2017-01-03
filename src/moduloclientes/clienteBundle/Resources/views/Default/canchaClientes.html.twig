@@ -17,7 +17,7 @@
 
                 <br>{% if cancha.disponibilidad == "Disponible" %}
                       <div class="text-center">
-                        <button class="btn btn-primary">Reservar</button>
+                        <a href="{{path('moduloclientes_cliente_nuevaReserva', {'id': cancha.id})}}" class="btn btn-primary" style="height: 30px; width: 150px;"> Reservar </a>
                       </div>
                       {% else %}
                       <div class="text-center">

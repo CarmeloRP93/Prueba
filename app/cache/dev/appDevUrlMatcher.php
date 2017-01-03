@@ -281,6 +281,22 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // moduloclientes_cliente_nuevaReserva
+        if (0 === strpos($pathinfo, '/nuevaReserva') && preg_match('#^/nuevaReserva/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_nuevaReserva')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::nuevaReservaAction',));
+        }
+
+        // moduloclientes_cliente_crearReserva
+        if ($pathinfo === '/crearReserva') {
+            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                goto not_moduloclientes_cliente_crearReserva;
+            }
+
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::crearReservaAction',  '_route' => 'moduloclientes_cliente_crearReserva',);
+        }
+        not_moduloclientes_cliente_crearReserva:
+
         // crivero_prueba_home
         if ($pathinfo === '/home') {
             return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::homeAction',  '_route' => 'crivero_prueba_home',);

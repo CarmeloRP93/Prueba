@@ -22,3 +22,14 @@ moduloclientes_cliente_sesionesClientes:
 moduloclientes_cliente_sesionClientes:
     pattern:  /sesionClientes/{id}
     defaults: { _controller: moduloclientesclienteBundle:Sesion:sesionClientes }
+
+moduloclientes_cliente_nuevaReserva:
+    pattern:  /nuevaReserva/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Reserva:nuevaReserva }
+    
+moduloclientes_cliente_crearReserva:
+    pattern:  /crearReserva
+    defaults: { _controller: moduloclientesclienteBundle:Reserva:crearReserva }
+    requirements:
+        _method:  POST|GET
+    

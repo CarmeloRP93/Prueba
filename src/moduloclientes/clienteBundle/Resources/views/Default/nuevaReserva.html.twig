@@ -1,0 +1,34 @@
+{% extends 'moduloclientesclienteBundle::main.html.twig' %}
+
+{% block title %} Nueva Reserva {% endblock %}
+
+{% block contenido %}
+    <div class="container">
+        <h2>Nueva Reserva</h2>
+        {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+
+        <div class="form-group">
+            {{ form_widget(form.idCancha, {'value' : id } ) }}
+            <span class="text-danger">{{ form_errors(form.idCancha) }}</span>
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(form.fechaInicio) }}
+            {{ form_widget(form.fechaInicio, { 'attr' : {'class' : 'form-control'} }) }}
+            <span class="text-danger">{{ form_errors(form.fechaInicio) }}</span>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.fechaFinalizacion) }}
+            {{ form_widget(form.fechaFinalizacion, { 'attr' : {'class' : 'form-control'} }) }}
+            <span class="text-danger">{{ form_errors(form.fechaFinalizacion) }}</span>
+        </div>
+
+      
+        <p>
+            {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
+        </p>                
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
