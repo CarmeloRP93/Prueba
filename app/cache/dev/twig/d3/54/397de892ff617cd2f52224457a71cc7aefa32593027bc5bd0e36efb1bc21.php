@@ -60,7 +60,7 @@ class __TwigTemplate_d354397de892ff617cd2f52224457a71cc7aefa32593027bc5bd0e36efb
         echo "        ";
         $this->displayBlock('javascripts', $context, $blocks);
         // line 30
-        echo "    </body>
+        echo "</body>
 </html>
 ";
     }
