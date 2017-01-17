@@ -23,7 +23,7 @@
                 <label class="label label-danger">Finalizado: </label>
                 {% for competicion in competiciones %}
                     {% if competicion.estadoCompeticion == "Finalizado" %}
-{#                        <a href="{{url('moduloclientes_cliente_competicionClientes', {'id': competicion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ competicion.nombre }}</a>#}
+                        <a href="{{url('moduloclientes_cliente_competicionClientes', {'id': competicion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ competicion.nombre }}</a>
                     {%endif%}
                 {% endfor %}
             </div>
