@@ -7,66 +7,66 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Equipos
  *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\EquiposRepository")
+ * @ORM\Table(name="equipos")
+ * @ORM\Entity
  */
 class Equipos
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="idTorneo", type="integer")
+     * @ORM\Column(name="idCompeticion", type="integer", nullable=false)
      */
-    private $idTorneo;
+    private $idCompeticion;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=255)
+     * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
      */
     private $nombre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="deporte", type="string", length=255)
+     * @ORM\Column(name="deporte", type="string", length=255, nullable=false)
      */
     private $deporte;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="victorias", type="integer")
+     * @ORM\Column(name="victorias", type="integer", nullable=false)
      */
     private $victorias;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="empates", type="integer")
+     * @ORM\Column(name="empates", type="integer", nullable=false)
      */
     private $empates;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="derrotas", type="integer")
+     * @ORM\Column(name="derrotas", type="integer", nullable=false)
      */
     private $derrotas;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="clasificacion", type="integer")
+     * @ORM\Column(name="clasificacion", type="integer", nullable=false)
      */
     private $clasificacion;
 
@@ -80,9 +80,12 @@ class Equipos
     /**
      * @var integer
      *
-     * @ORM\Column(name="puntuacion", type="integer")
+     * @ORM\Column(name="puntuacion", type="integer", nullable=false)
      */
     private $puntuacion;
+
+
+
     /**
      * Get id
      *
@@ -94,26 +97,26 @@ class Equipos
     }
 
     /**
-     * Set idTorneo
+     * Set idCompeticion
      *
-     * @param integer $idTorneo
+     * @param integer $idCompeticion
      * @return Equipos
      */
-    public function setIdTorneo($idTorneo)
+    public function setIdCompeticion($idCompeticion)
     {
-        $this->idTorneo = $idTorneo;
+        $this->idCompeticion = $idCompeticion;
 
         return $this;
     }
 
     /**
-     * Get idTorneo
+     * Get idCompeticion
      *
      * @return integer 
      */
-    public function getIdTorneo()
+    public function getIdCompeticion()
     {
-        return $this->idTorneo;
+        return $this->idCompeticion;
     }
 
     /**
@@ -255,28 +258,6 @@ class Equipos
     }
 
     /**
-     * Set equipos
-     *
-     * @param string $equipos
-     * @return Equipos
-     */
-    public function setEquipos($equipos)
-    {
-        $this->equipos = $equipos;
- 
-        return $this;
-    }
- 
-    /**
-     * Get equipos
-     *
-     * @return string 
-     */
-    public function getEquipos()
-    {
-        return $this->equipos;
-    }
-    /**
      * Set miembros
      *
      * @param string $miembros
@@ -285,10 +266,10 @@ class Equipos
     public function setMiembros($miembros)
     {
         $this->miembros = $miembros;
- 
+
         return $this;
     }
- 
+
     /**
      * Get miembros
      *
@@ -298,6 +279,7 @@ class Equipos
     {
         return $this->miembros;
     }
+
     /**
      * Set puntuacion
      *

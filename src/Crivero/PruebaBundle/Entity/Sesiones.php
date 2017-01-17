@@ -3,138 +3,129 @@
 namespace Crivero\PruebaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Sesiones
  *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\SesionesRepository")
+ * @ORM\Table(name="sesiones")
+ * @ORM\Entity
  */
 class Sesiones
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="monitor", type="string", length=200)
-     * @Assert\NotBlank()
+     * @ORM\Column(name="monitor", type="string", length=200, nullable=false)
      */
     private $monitor;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="cliente", type="string", length=200)
+     * @ORM\Column(name="cliente", type="string", length=200, nullable=false)
      */
     private $cliente;
-    
+
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=200)
-     * @Assert\NotBlank()
+     * @ORM\Column(name="nombre", type="string", length=200, nullable=false)
      */
     private $nombre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="imagen", type="string", length=255)
-     * @Assert\NotBlank()
+     * @ORM\Column(name="imagen", type="string", length=255, nullable=false)
      */
     private $imagen;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ejercicios", type="string", length=255)
-     * @Assert\NotBlank()
+     * @ORM\Column(name="ejercicios", type="string", length=255, nullable=false)
      */
     private $ejercicios;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="repeticiones", type="integer")
-     * @Assert\NotBlank()
+     * @ORM\Column(name="repeticiones", type="integer", nullable=false)
      */
     private $repeticiones;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="duracion", type="integer")
-     * @Assert\NotBlank()
+     * @ORM\Column(name="duracion", type="integer", nullable=false)
      */
     private $duracion;
-  
+
     /**
      * @var integer
      *
-     * @ORM\Column(name="descanso", type="integer")
-     * @Assert\NotBlank()
+     * @ORM\Column(name="descanso", type="integer", nullable=false)
      */
     private $descanso;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="estado", type="string", length=200)
+     * @ORM\Column(name="estado", type="string", length=200, nullable=false)
      */
     private $estado;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="estadoCliente", type="string", length=200)
-     */
-    private $estadoCliente;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="objetivo", type="string", length=255)
-     * @Assert\NotBlank()
-     */
-    private $objetivo;
-    
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="nClientes", type="integer")
-     */
-    private $nClientes;
-    
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="lClientes", type="integer")
-     * @Assert\NotBlank()
-     */
-    private $lClientes;
 
     /**
-     * Get id
+     * @var string
      *
-     * @return integer 
+     * @ORM\Column(name="estadoCliente", type="string", length=200, nullable=false)
      */
-    
+    private $estadocliente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="objetivo", type="string", length=255, nullable=false)
+     */
+    private $objetivo;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nClientes", type="integer", nullable=false)
+     */
+    private $nclientes;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="lClientes", type="integer", nullable=false)
+     */
+    private $lclientes;
+
     /**
      * @var string
      *
      * @ORM\Column(name="observaciones", type="string", length=255, nullable=true)
      */
     private $observaciones;
-    
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
     public function getId()
     {
         return $this->id;
@@ -162,7 +153,7 @@ class Sesiones
     {
         return $this->monitor;
     }
-    
+
     /**
      * Set cliente
      *
@@ -185,7 +176,7 @@ class Sesiones
     {
         return $this->cliente;
     }
-    
+
     /**
      * Set nombre
      *
@@ -300,6 +291,7 @@ class Sesiones
     {
         return $this->duracion;
     }
+
     /**
      * Set descanso
      *
@@ -345,30 +337,30 @@ class Sesiones
     {
         return $this->estado;
     }
-    
+
     /**
-     * Set estadoCliente
+     * Set estadocliente
      *
-     * @param string $estadoCliente
+     * @param string $estadocliente
      * @return Sesiones
      */
-    public function setEstadoCliente($estadoCliente)
+    public function setEstadocliente($estadocliente)
     {
-        $this->estadoCliente = $estadoCliente;
+        $this->estadocliente = $estadocliente;
 
         return $this;
     }
 
     /**
-     * Get estadoCliente
+     * Get estadocliente
      *
      * @return string 
      */
-    public function getEstadoCliente()
+    public function getEstadocliente()
     {
-        return $this->estadoCliente;
+        return $this->estadocliente;
     }
-    
+
     /**
      * Set objetivo
      *
@@ -391,53 +383,53 @@ class Sesiones
     {
         return $this->objetivo;
     }
-    
+
     /**
-     * Set nClientes
+     * Set nclientes
      *
-     * @param integer $nClientes
+     * @param integer $nclientes
      * @return Sesiones
      */
-    public function setNClientes($nClientes)
+    public function setNclientes($nclientes)
     {
-        $this->nClientes = $nClientes;
+        $this->nclientes = $nclientes;
 
         return $this;
     }
 
     /**
-     * Get nClientes
+     * Get nclientes
      *
      * @return integer 
      */
-    public function getNClientes()
+    public function getNclientes()
     {
-        return $this->nClientes;
+        return $this->nclientes;
     }
-    
+
     /**
-     * Set lClientes
+     * Set lclientes
      *
-     * @param integer $lClientes
+     * @param integer $lclientes
      * @return Sesiones
      */
-    public function setLClientes($lClientes)
+    public function setLclientes($lclientes)
     {
-        $this->lClientes = $lClientes;
+        $this->lclientes = $lclientes;
 
         return $this;
     }
 
     /**
-     * Get lClientes
+     * Get lclientes
      *
      * @return integer 
      */
-    public function getLClientes()
+    public function getLclientes()
     {
-        return $this->lClientes;
+        return $this->lclientes;
     }
-    
+
     /**
      * Set observaciones
      *

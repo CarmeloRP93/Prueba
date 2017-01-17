@@ -1,187 +1,101 @@
 <?php
+
 namespace Crivero\PruebaBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\AdvancedUserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * Usuarios
  *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\UsuariosRepository")
- * @UniqueEntity("nombre")
- * @UniqueEntity("email")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Table(name="usuarios")
+ * @ORM\Entity
  */
-class Usuarios implements AdvancedUserInterface, \Serializable
+class Usuarios
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
- 
+
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=200)
-     * @Assert\NotBlank()
+     * @ORM\Column(name="nombre", type="string", length=200, nullable=false)
      */
     private $nombre;
- 
+
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255)
+     * @ORM\Column(name="password", type="string", length=255, nullable=false)
      */
     private $password;
-    
+
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=200)
-     * @Assert\NotBlank()
-     * @Assert\Email()
+     * @ORM\Column(name="email", type="string", length=200, nullable=false)
      */
     private $email;
+
     /**
      * @var integer
      *
-     * @ORM\Column(name="tipo", type="integer")
-     * @Assert\NotBlank()
-     * @Assert\Choice(choices = {1, 2, 3})
+     * @ORM\Column(name="tipo", type="integer", nullable=false)
      */
     private $tipo;
+
     /**
      * @var string
      *
-     * @ORM\Column(name="telefono", type="string", length=200)
-     * @Assert\NotBlank()
+     * @ORM\Column(name="telefono", type="string", length=200, nullable=false)
      */
     private $telefono;
+
     /**
      * @var string
      *
-     * @ORM\Column(name="fNacimiento", type="string", length=200)
-     * @Assert\NotBlank()
+     * @ORM\Column(name="fNacimiento", type="string", length=200, nullable=false)
      */
-    private $fNacimiento;
- 
+    private $fnacimiento;
+
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="registro", type="datetime")
+     * @ORM\Column(name="registro", type="datetime", nullable=false)
      */
     private $registro;
- 
+
     /**
      * @var string
      *
      * @ORM\Column(name="reservas", type="string", length=255, nullable=true)
      */
     private $reservas;
- 
+
     /**
      * @var string
      *
      * @ORM\Column(name="sesiones", type="string", length=255, nullable=true)
      */
     private $sesiones;
- 
+
+
+
     /**
-     * Set fNacimiento
+     * Get id
      *
-     * @param string $fNacimiento
-     * @return Usuarios
+     * @return integer 
      */
-    public function setFNacimiento($fNacimiento)
-    {
-        $this->fNacimiento = $fNacimiento;
- 
-        return $this;
-    }
- 
-    /**
-     * Get fNacimiento
-     *
-     * @return string 
-     */
-    public function getFNacimiento()
-    {
-        return $this->fNacimiento;
-    }
- 
-    /**
-     * @ORM\PrePersist
-     */
-    public function setRegistro()
-    {
-        $this->registro = new \DateTime();
-    }
- 
-    /**
-     * Get registro
-     *
-     * @return \DateTime 
-     */
-    public function getRegistro()
-    {
-        return $this->registro;
-    }
- 
-    /**
-     * Set reservas
-     *
-     * @param string $reservas
-     * @return Usuarios
-     */
-    public function setReservas($reservas)
-    {
-        $this->reservas = $reservas;
- 
-        return $this;
-    }
- 
-    /**
-     * Get reservas
-     *
-     * @return string 
-     */
-    public function getReservas()
-    {
-        return $this->reservas;
-    }
- 
-    /**
-     * Set sesiones
-     *
-     * @param string $sesiones
-     * @return Usuarios
-     */
-    public function setSesiones($sesiones)
-    {
-        $this->sesiones = $sesiones;
- 
-        return $this;
-    }
- 
-    /**
-     * Get sesiones
-     *
-     * @return string 
-     */
-    public function getSesiones()
-    {
-        return $this->sesiones;
-    }
-   
     public function getId()
     {
         return $this->id;
     }
+
     /**
      * Set nombre
      *
@@ -191,8 +105,10 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+
         return $this;
     }
+
     /**
      * Get nombre
      *
@@ -202,7 +118,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     {
         return $this->nombre;
     }
-    
+
     /**
      * Set password
      *
@@ -211,9 +127,11 @@ class Usuarios implements AdvancedUserInterface, \Serializable
      */
     public function setPassword($password)
     {
-        $this->password= $password;
+        $this->password = $password;
+
         return $this;
     }
+
     /**
      * Get password
      *
@@ -223,7 +141,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     {
         return $this->password;
     }
-    
+
     /**
      * Set email
      *
@@ -233,8 +151,10 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
+
     /**
      * Get email
      *
@@ -244,6 +164,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     {
         return $this->email;
     }
+
     /**
      * Set tipo
      *
@@ -253,8 +174,10 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     public function setTipo($tipo)
     {
         $this->tipo = $tipo;
+
         return $this;
     }
+
     /**
      * Get tipo
      *
@@ -264,6 +187,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     {
         return $this->tipo;
     }
+
     /**
      * Set telefono
      *
@@ -273,8 +197,10 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     public function setTelefono($telefono)
     {
         $this->telefono = $telefono;
+
         return $this;
     }
+
     /**
      * Get telefono
      *
@@ -284,59 +210,96 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     {
         return $this->telefono;
     }
-    public function eraseCredentials() {
-        
-    }
-    
-    public function getRoles()
+
+    /**
+     * Set fnacimiento
+     *
+     * @param string $fnacimiento
+     * @return Usuarios
+     */
+    public function setFnacimiento($fnacimiento)
     {
-        if ($this->getTipo() == 1) {
-            return array('ROLE_ADMIN');
-        }else if($this->getTipo() == 2){
-            return array('ROLE_CLIENTE');
-        }else{
-            return array('ROLE_MONITOR');
-        }
+        $this->fnacimiento = $fnacimiento;
+
+        return $this;
     }
-    
-    public function getSalt() {
-        return null;
-    }
-    public function getUsername() {
-        return $this->nombre;
-    }
-    public function isAccountNonExpired() {
-        return true;
-    }
-    public function isCredentialsNonExpired() {
-        return true;
-    }
-   
-    public function isAccountNonLocked()
+
+    /**
+     * Get fnacimiento
+     *
+     * @return string 
+     */
+    public function getFnacimiento()
     {
-        return true;
+        return $this->fnacimiento;
     }
-    
-    public function isEnabled() {
-        return true;
+
+    /**
+     * Set registro
+     *
+     * @param \DateTime $registro
+     * @return Usuarios
+     */
+    public function setRegistro($registro)
+    {
+        $this->registro = $registro;
+
+        return $this;
     }
-    
-    public function serialize() {
-         return serialize(array(
-            $this->id,
-            $this->nombre,
-            $this->password
-        ));
+
+    /**
+     * Get registro
+     *
+     * @return \DateTime 
+     */
+    public function getRegistro()
+    {
+        return $this->registro;
     }
-    
-    /* @see \Serializable::unserialize() */
-    public function unserialize($serialized) {
-         list (
-            $this->id,
-            $this->nombre,
-            $this->password
-        ) = unserialize($serialized);
+
+    /**
+     * Set reservas
+     *
+     * @param string $reservas
+     * @return Usuarios
+     */
+    public function setReservas($reservas)
+    {
+        $this->reservas = $reservas;
+
+        return $this;
     }
-    
-    
+
+    /**
+     * Get reservas
+     *
+     * @return string 
+     */
+    public function getReservas()
+    {
+        return $this->reservas;
+    }
+
+    /**
+     * Set sesiones
+     *
+     * @param string $sesiones
+     * @return Usuarios
+     */
+    public function setSesiones($sesiones)
+    {
+        $this->sesiones = $sesiones;
+
+        return $this;
+    }
+
+    /**
+     * Get sesiones
+     *
+     * @return string 
+     */
+    public function getSesiones()
+    {
+        return $this->sesiones;
+    }
 }

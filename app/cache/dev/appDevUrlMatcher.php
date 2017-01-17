@@ -380,28 +380,31 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_monitor')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::monitorAction',));
         }
 
-        if (0 === strpos($pathinfo, '/cancha')) {
-            // crivero_prueba_canchas
-            if ($pathinfo === '/canchas') {
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::canchasAction',  '_route' => 'crivero_prueba_canchas',);
+        if (0 === strpos($pathinfo, '/c')) {
+            if (0 === strpos($pathinfo, '/cancha')) {
+                // crivero_prueba_canchas
+                if ($pathinfo === '/canchas') {
+                    return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::canchasAction',  '_route' => 'crivero_prueba_canchas',);
+                }
+
+                // crivero_prueba_cancha
+                if (preg_match('#^/cancha/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::canchaAction',));
+                }
+
             }
 
-            // crivero_prueba_cancha
-            if (preg_match('#^/cancha/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::canchaAction',));
-            }
+            if (0 === strpos($pathinfo, '/competicion')) {
+                // crivero_prueba_competiciones
+                if ($pathinfo === '/competiciones') {
+                    return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CompeticionController::competicionesAction',  '_route' => 'crivero_prueba_competiciones',);
+                }
 
-        }
+                // crivero_prueba_competicion
+                if (preg_match('#^/competicion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_competicion')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CompeticionController::competicionAction',));
+                }
 
-        if (0 === strpos($pathinfo, '/torneo')) {
-            // crivero_prueba_torneos
-            if ($pathinfo === '/torneos') {
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\TorneoController::torneosAction',  '_route' => 'crivero_prueba_torneos',);
-            }
-
-            // crivero_prueba_torneo
-            if (preg_match('#^/torneo/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_torneo')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\TorneoController::torneoAction',));
             }
 
         }

@@ -1,62 +1,63 @@
 <?php
- 
+
 namespace Crivero\PruebaBundle\Entity;
- 
+
 use Doctrine\ORM\Mapping as ORM;
- 
+
 /**
  * Canchas
  *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\CanchasRepository")
+ * @ORM\Table(name="canchas")
+ * @ORM\Entity
  */
 class Canchas
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
- 
+
     /**
      * @var string
      *
-     * @ORM\Column(name="tipo", type="string", length=200)
+     * @ORM\Column(name="tipo", type="string", length=200, nullable=false)
      */
     private $tipo;
- 
+
     /**
      * @var string
      *
-     * @ORM\Column(name="horario", type="string", length=200)
+     * @ORM\Column(name="horario", type="string", length=200, nullable=false)
      */
     private $horario;
- 
+
     /**
      * @var float
      *
-     * @ORM\Column(name="valoracion", type="float")
+     * @ORM\Column(name="valoracion", type="float", precision=10, scale=0, nullable=false)
      */
     private $valoracion;
- 
+
     /**
      * @var string
      *
-     * @ORM\Column(name="disponibilidad", type="string", length=200)
+     * @ORM\Column(name="disponibilidad", type="string", length=200, nullable=false)
      */
     private $disponibilidad;
- 
+
     /**
      * @var string
      *
-     * @ORM\Column(name="imagen", type="string", length=255)
+     * @ORM\Column(name="imagen", type="string", length=255, nullable=false)
      */
     private $imagen;
- 
- 
+
+
+
     /**
      * Get id
      *
@@ -66,7 +67,7 @@ class Canchas
     {
         return $this->id;
     }
- 
+
     /**
      * Set tipo
      *
@@ -76,10 +77,10 @@ class Canchas
     public function setTipo($tipo)
     {
         $this->tipo = $tipo;
- 
+
         return $this;
     }
- 
+
     /**
      * Get tipo
      *
@@ -89,7 +90,7 @@ class Canchas
     {
         return $this->tipo;
     }
- 
+
     /**
      * Set horario
      *
@@ -99,10 +100,10 @@ class Canchas
     public function setHorario($horario)
     {
         $this->horario = $horario;
- 
+
         return $this;
     }
- 
+
     /**
      * Get horario
      *
@@ -112,7 +113,7 @@ class Canchas
     {
         return $this->horario;
     }
- 
+
     /**
      * Set valoracion
      *
@@ -122,10 +123,10 @@ class Canchas
     public function setValoracion($valoracion)
     {
         $this->valoracion = $valoracion;
- 
+
         return $this;
     }
- 
+
     /**
      * Get valoracion
      *
@@ -135,7 +136,7 @@ class Canchas
     {
         return $this->valoracion;
     }
- 
+
     /**
      * Set disponibilidad
      *
@@ -145,10 +146,10 @@ class Canchas
     public function setDisponibilidad($disponibilidad)
     {
         $this->disponibilidad = $disponibilidad;
- 
+
         return $this;
     }
- 
+
     /**
      * Get disponibilidad
      *
@@ -158,7 +159,7 @@ class Canchas
     {
         return $this->disponibilidad;
     }
- 
+
     /**
      * Set imagen
      *
@@ -168,10 +169,10 @@ class Canchas
     public function setImagen($imagen)
     {
         $this->imagen = $imagen;
- 
+
         return $this;
     }
- 
+
     /**
      * Get imagen
      *

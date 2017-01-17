@@ -87,8 +87,8 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
         echo "\">Canchas</a></li>
                     <li><a href=\"";
         // line 32
-        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_torneos");
-        echo "\">Torneos</a></li>
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_competiciones");
+        echo "\">Competiciones</a></li>
                      <li class=\"dropdown\">
                             <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Sesiones <b class=\"caret\"></b></a>
                             <ul class=\"dropdown-menu\">

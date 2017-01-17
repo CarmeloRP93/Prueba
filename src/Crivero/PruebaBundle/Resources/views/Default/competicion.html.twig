@@ -1,10 +1,10 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 
-{% block title %}Vista de {{torneo.nombre}} {% endblock %}
+{% block title %}Vista de {{competicion.nombre}} {% endblock %}
 {% block contenido %}
     <div class="container text-center">
-        <h2>Detalles del Torneo</h2>
-        {% if torneo.estadoTorneo == "Solicitud Presentada" %}
+        <h2>Detalles de la competicion</h2>
+        {% if competicion.estadoCompeticion == "Solicitud Presentada" %}
             <button class="btn btn-default">Aceptar Solicitud</button>
             <button class="btn btn-danger">Rechazar Solicitud </button>
         {% endif %}
@@ -19,8 +19,8 @@
             {% endif %} 
         {% endblock %}#}
         
-        {% if torneo.estadoTorneo == "Validado"%}
-            <h3>{{torneo.deporte}}</h3>
+        {% if competicion.estadoCompeticion == "Validado"%}
+            <h3>{{competicion.deporte}}</h3>
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
@@ -34,7 +34,7 @@
                         </tr>
                     </thead>
                     {% for equipo in equipos %}
-                        {%if equipo.idTorneo ==torneo.id%}
+                        {%if equipo.idCompeticion ==competicion.id%}
                         <tr>
                             <td>  {{equipo.clasificacion}}º  </td>
                             <td class="actions">
