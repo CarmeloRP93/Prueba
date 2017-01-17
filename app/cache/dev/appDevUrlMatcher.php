@@ -255,15 +255,15 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/torneo')) {
-            // moduloclientes_cliente_torneosClientes
-            if ($pathinfo === '/torneosClientes') {
-                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\TorneoController::torneosClientesAction',  '_route' => 'moduloclientes_cliente_torneosClientes',);
+        if (0 === strpos($pathinfo, '/competicion')) {
+            // moduloclientes_cliente_competicionesClientes
+            if ($pathinfo === '/competicionesClientes') {
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CompeticionController::competicionesClientesAction',  '_route' => 'moduloclientes_cliente_competicionesClientes',);
             }
 
-            // moduloclientes_cliente_torneoClientes
-            if (0 === strpos($pathinfo, '/torneoClientes') && preg_match('#^/torneoClientes/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_torneoClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\TorneoController::torneoClientesAction',));
+            // moduloclientes_cliente_competicionClientes
+            if (0 === strpos($pathinfo, '/competicionClientes') && preg_match('#^/competicionClientes/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_competicionClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CompeticionController::competicionClientesAction',));
             }
 
         }

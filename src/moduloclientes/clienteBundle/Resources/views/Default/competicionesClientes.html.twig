@@ -1,0 +1,32 @@
+{% extends 'moduloclientesclienteBundle::main.html.twig' %}
+
+{% block title %} Vista de Competiciones {% endblock %}             
+{% block contenido %}
+    <div class="container">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h3>Listado de mis Competiciones</h3>
+                </div>
+                <label class="label label-default">En inscripción: </label>
+                {% for competicion in competiciones %}
+                    {% if competicion.estadoCompeticion == "Solicitud Presentada" %}
+                        <a href="{{url('moduloclientes_cliente_competicionClientes', {'id': competicion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ competicion.nombre }}</a>
+                    {%endif%}
+                {% endfor %}
+                <label class="label label-success">En curso: </label>
+                {% for competicion in competiciones %}
+                    {% if competicion.estadoCompeticion == "Validado" %}
+                        <a href="{{url('moduloclientes_cliente_competicionClientes', {'id': competicion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ competicion.nombre }}</a>
+                    {%endif%}
+                {% endfor %}
+                <label class="label label-danger">Finalizado: </label>
+                {% for competicion in competiciones %}
+                    {% if competicion.estadoCompeticion == "Finalizado" %}
+{#                        <a href="{{url('moduloclientes_cliente_competicionClientes', {'id': competicion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ competicion.nombre }}</a>#}
+                    {%endif%}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

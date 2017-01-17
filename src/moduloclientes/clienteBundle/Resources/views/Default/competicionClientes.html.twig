@@ -1,9 +1,9 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
-{% block title %}Vista de {{torneo.nombre}} {% endblock %}
+{% block title %}Vista de {{competicion.nombre}} {% endblock %}
 {% block contenido %}
     <div class="container">
-        <h1>Detalles del {{torneo.nombre}}</h1>
-        {% if torneo.estadoTorneo == "Solicitud Presentada"%}
+        <h1>Detalles del {{competicion.nombre}}</h1>
+        {% if competicion.estadoCompeticion == "Solicitud Presentada"%}
             <form class="form-horizontal">
                 <div class="row container-fluid">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -23,7 +23,7 @@
                 </div>
             </form>
         {%endif%}
-        {% if torneo.estadoTorneo == "Validado"%}
+        {% if competicion.estadoCompeticion == "Validado"%}
             <h3>Insertar tabla de liga del deporte en cuestión (fútbol,baloncesto, tenis)</h3>
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -53,15 +53,9 @@
     </div>
     <div>
         <ul class="container text-center">
-            {%if torneo.estadoTorneo == "Finalizado" %}
-                <h3>Resumen del {{torneo.nombre}}</h3>
-                {% for equipo in torneo.equipos %}
-                    <div>
-                        <li class="control-label span7 text-left">{{equipo}}
-                            <button class="btn btn-default">Datos del equipo</button>
-                        </li>
-                    </div>
-                {% endfor %}
+            {%if competicion.estadoCompeticion == "Finalizado" %}
+                <h3>Resumen del {{competicion.nombre}}</h3>
+                <p>Equipos</p>
             {%endif%}
         </ul>
     </div>

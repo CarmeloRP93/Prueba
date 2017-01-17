@@ -10,12 +10,14 @@ moduloclientes_cliente_reservasClientes:
 moduloclientes_cliente_reservaClientes:
     pattern:  /reservaClientes/{id}
     defaults: { _controller: moduloclientesclienteBundle:Reserva:reservaClientes }
-moduloclientes_cliente_torneosClientes:
-    pattern:  /torneosClientes
-    defaults: { _controller: moduloclientesclienteBundle:Torneo:torneosClientes }
-moduloclientes_cliente_torneoClientes:
-    pattern:  /torneoClientes/{id}
-    defaults: { _controller: moduloclientesclienteBundle:Torneo:torneoClientes }
+    
+moduloclientes_cliente_competicionesClientes:
+    pattern:  /competicionesClientes
+    defaults: { _controller: moduloclientesclienteBundle:Competicion:competicionesClientes }
+moduloclientes_cliente_competicionClientes:
+    pattern:  /competicionClientes/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Competicion:competicionClientes }
+    
 moduloclientes_cliente_sesionesClientes:
     pattern:  /sesionesClientes
     defaults: { _controller: moduloclientesclienteBundle:Sesion:sesionesClientes }

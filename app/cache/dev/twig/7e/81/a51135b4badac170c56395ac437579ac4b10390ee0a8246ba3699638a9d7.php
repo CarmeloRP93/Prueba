@@ -78,12 +78,12 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
         echo "\">Canchas</a></li>
                     
                     <li class=\"dropdown\">
-                            <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Torneos <b class=\"caret\"></b></a>
+                            <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Competiciones <b class=\"caret\"></b></a>
                             <ul class=\"dropdown-menu\">
                               <li><a href=\"";
         // line 30
-        echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_torneosClientes");
-        echo "\"> Mis torneos </a></li>
+        echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_competicionesClientes");
+        echo "\"> Mis competiciones </a></li>
                             </ul>
                      </li>
                     <li><a href=\"";
