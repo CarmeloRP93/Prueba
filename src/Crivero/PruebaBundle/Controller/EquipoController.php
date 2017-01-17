@@ -15,9 +15,12 @@ class EquipoController extends Controller
     
     public function equipoAction($id)
     {
-        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
-        $equipo=$repository->find($id);
-       return $this->render('CriveroPruebaBundle:Default:equipo.html.twig', array("equipo"=>$equipo));
-    }
-    
+      $repositoryEquipo = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
+      $equipo=$repositoryEquipo->find($id);
+      $em = $this->getDoctrine()->getManager();
+      $query2 = $em->createQuery('SELECT jugadores
+            FROM CriveroPruebaBundle:Jugadores jugadores');
+      $jugadores=$query2->getResult(); 
+      return $this->render('CriveroPruebaBundle:Default:equipo.html.twig', array("equipo"=>$equipo,"jugadores"=>$jugadores));
+    } 
 }

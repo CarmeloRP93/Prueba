@@ -3,12 +3,31 @@
 {% block title %}Vista de {{equipo.nombre}} {% endblock %}
 {% block contenido %}
     <div class="container text-center">
-        <h2>Detalles del Equipo</h2>
-        {% block detalles %}
-            {% if equipo.deporte == "Fútbol" %}
-                <h3>Ver información de los miembros</h3>
-                <p>{{equipo.miembros}}</p>
-            {% endif %} 
-        {% endblock %}
+        <h1>Deporte: {{equipo.deporte}}</h1>
+        <h2>Detalles del Equipo. {{equipo.nombre}}</h2>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th> Nombre </th>
+                            <th> Primer Apellido  </th>
+                            <th> Segundo Apellido  </th>
+                            <th> Dorsal </th>
+                            <th> Incidencia </th>
+                        </tr>
+                    </thead>
+                    {% for jugador in jugadores %}
+                        {% if equipo.id == jugador.idEquipo%}
+                        <tr>
+                            <td>  {{jugador.nombre}}  </td>
+                            <td>{{jugador.primerApellido}} </td>
+                            <td>   {{jugador.segundoApellido}}   </td>
+                            <td>   {{jugador.Dorsal}}   </td>
+                            <td>   {{jugador.incidencia}}   </td>
+                        </tr>
+                        {%endif%}
+                    {%endfor%}
+                </table>
+            </div>
     </div>
 {% endblock %}

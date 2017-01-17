@@ -69,14 +69,7 @@ class Equipos
      * @ORM\Column(name="clasificacion", type="integer", nullable=false)
      */
     private $clasificacion;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="miembros", type="string", length=255, nullable=true)
-     */
-    private $miembros;
-
+    
     /**
      * @var integer
      *
@@ -256,30 +249,7 @@ class Equipos
     {
         return $this->clasificacion;
     }
-
-    /**
-     * Set miembros
-     *
-     * @param string $miembros
-     * @return Equipos
-     */
-    public function setMiembros($miembros)
-    {
-        $this->miembros = $miembros;
-
-        return $this;
-    }
-
-    /**
-     * Get miembros
-     *
-     * @return string 
-     */
-    public function getMiembros()
-    {
-        return $this->miembros;
-    }
-
+    
     /**
      * Set puntuacion
      *
