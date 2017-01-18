@@ -6,8 +6,12 @@
     <h1>Información detallada de: {{jugador.nombre}} {{jugador.primerApellido}} {{jugador.segundoApellido}}</h1>
     <ul>
         <li>Nº de Dorsal : {{jugador.dorsal}}</li>
-        <li>Equipo al que pertenece: nombre del equipo</li>
-        <li>Competición que participa: nombre de la competición</li>
+        {%for equipo in equipos if equipo.id == jugador.idEquipo %}
+            <li>Equipo al que pertenece: {{equipo.nombre}}</li>
+            {%for competicion in competiciones if equipo.idCompeticion == competicion.id%}
+                <li>Competición en la que participa: {{competicion.nombre}}</li>
+            {%endfor%}
+        {%endfor%}
         <li>Nº de partidos en los que su equipo ha disputado:</li>
         <li>Incidencias:{{jugador.incidencia}}</li>
     </ul>

@@ -8,14 +8,20 @@ class JugadorController extends Controller
 {     
     public function jugadoresAction()
     {
-       $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Jugadores");
-       $jugadores=$repository->findAll();
-       return $this->render('CriveroPruebaBundle:Default:jugadores.html.twig', array("jugadores"=>$jugadores));
+       $RepositorioJugadores = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Jugadores");
+       $jugadores=$RepositorioJugadores->findAll();
+       $RepositorioEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
+       $equipos=$RepositorioEquipos->findAll();
+       return $this->render('CriveroPruebaBundle:Default:jugadores.html.twig', array("jugadores"=>$jugadores,"equipos"=>$equipos));
     }
     
     public function jugadorAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Jugadores");
         $jugador = $repository->find($id);
-        return $this->render('CriveroPruebaBundle:Default:jugador.html.twig', array("jugador"=>$jugador));
+        $RepositorioEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
+        $equipos=$RepositorioEquipos->findAll();
+        $RepositorioCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
+        $competiciones=$RepositorioCompeticiones->findAll();
+        return $this->render('CriveroPruebaBundle:Default:jugador.html.twig', array("jugador"=>$jugador,"equipos"=>$equipos,"competiciones"=>$competiciones));
     } 
 }
