@@ -268,6 +268,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        if (0 === strpos($pathinfo, '/equipo')) {
+            // moduloclientes_cliente_equiposClientes
+            if ($pathinfo === '/equiposClientes') {
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::equiposClientesAction',  '_route' => 'moduloclientes_cliente_equiposClientes',);
+            }
+
+            // moduloclientes_cliente_equipoClientes
+            if (0 === strpos($pathinfo, '/equipoClientes') && preg_match('#^/equipoClientes/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_equipoClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::equipoClientesAction',));
+            }
+
+        }
+
         if (0 === strpos($pathinfo, '/sesion')) {
             // moduloclientes_cliente_sesionesClientes
             if ($pathinfo === '/sesionesClientes') {

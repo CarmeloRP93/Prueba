@@ -60,6 +60,9 @@ crivero_prueba_cancha:
     pattern:  /cancha/{id}
     defaults: { _controller: CriveroPruebaBundle:Cancha:cancha }
     
+#-------------------------------------------------------------------------------
+#Competiciones, equipos y jugadores
+
 crivero_prueba_competiciones:
     pattern:  /competiciones
     defaults: { _controller: CriveroPruebaBundle:Competicion:competiciones }
@@ -83,6 +86,7 @@ crivero_prueba_jugadores:
 crivero_prueba_jugador:
     pattern:  /jugador/{id}
     defaults: { _controller: CriveroPruebaBundle:Jugador:jugador}
+#--------------------------------------------------------------------------------    
     
 crivero_prueba_sesiones:
     pattern:  /sesiones

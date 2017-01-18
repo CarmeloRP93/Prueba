@@ -17,5 +17,4 @@ class CompeticionController extends Controller {
         $competicion = $repository->find($id);
         return $this->render('moduloclientesclienteBundle:Default:competicionClientes.html.twig', array("competicion" => $competicion));
     }
-
 }
