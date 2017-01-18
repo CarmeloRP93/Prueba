@@ -12,7 +12,9 @@
                 <li>Competición en la que participa: {{competicion.nombre}}</li>
             {%endfor%}
         {%endfor%}
-        <li>Nº de partidos en los que su equipo ha disputado:</li>
+        {%for equipo in equipos if equipo.id == jugador.idEquipo %}
+            <li>Nº de partidos en los que su equipo ha disputado:{{equipo.victorias + equipo.empates + equipo.derrotas}}</li>
+        {%endfor%}
         <li>Incidencias:{{jugador.incidencia}}</li>
     </ul>
 {% endblock %}

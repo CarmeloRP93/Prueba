@@ -91,9 +91,23 @@ class __TwigTemplate_575eb84decd2adc0bf09aea79291c9a99e74ec66649665d4951e8b321f0
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 15
-        echo "        <li>Nº de partidos en los que su equipo ha disputado:</li>
-        <li>Incidencias:";
-        // line 16
+        echo "        ";
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["equipos"]) ? $context["equipos"] : $this->getContext($context, "equipos")));
+        foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
+            if (($this->getAttribute($context["equipo"], "id", array()) == $this->getAttribute((isset($context["jugador"]) ? $context["jugador"] : $this->getContext($context, "jugador")), "idEquipo", array()))) {
+                // line 16
+                echo "            <li>Nº de partidos en los que su equipo ha disputado:";
+                echo twig_escape_filter($this->env, (($this->getAttribute($context["equipo"], "victorias", array()) + $this->getAttribute($context["equipo"], "empates", array())) + $this->getAttribute($context["equipo"], "derrotas", array())), "html", null, true);
+                echo "</li>
+        ";
+            }
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 18
+        echo "        <li>Incidencias:";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["jugador"]) ? $context["jugador"] : $this->getContext($context, "jugador")), "incidencia", array()), "html", null, true);
         echo "</li>
     </ul>
@@ -112,6 +126,6 @@ class __TwigTemplate_575eb84decd2adc0bf09aea79291c9a99e74ec66649665d4951e8b321f0
 
     public function getDebugInfo()
     {
-        return array (  97 => 16,  94 => 15,  87 => 14,  77 => 12,  72 => 11,  67 => 10,  62 => 9,  58 => 8,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
+        return array (  110 => 18,  100 => 16,  94 => 15,  87 => 14,  77 => 12,  72 => 11,  67 => 10,  62 => 9,  58 => 8,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
     }
 }
