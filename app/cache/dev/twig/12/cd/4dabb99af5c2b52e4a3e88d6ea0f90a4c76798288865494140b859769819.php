@@ -52,9 +52,9 @@ class __TwigTemplate_12cd4dabb99af5c2b52e4a3e88d6ea0f90a4c76798288865494140b8597
                         <th>Nombre</th>
                         <th>Deporte</th>
                         <th>Estado Competicion</th>
+                        <th>Tipo competicion</th>
                         <th>Fecha inicio</th>
                         <th>Fecha finalización</th>
-                        <th>Tipo competicion</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -1,0 +1,14 @@
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
+
+{% block title %} Vista de {{jugador.nombre}} {% endblock %}
+
+{% block contenido %}
+    <h1>Información detallada de: {{jugador.nombre}} {{jugador.primerApellido}} {{jugador.segundoApellido}}</h1>
+    <ul>
+        <li>Nº de Dorsal : {{jugador.dorsal}}</li>
+        <li>Equipo al que pertenece: nombre del equipo</li>
+        <li>Competición que participa: nombre de la competición</li>
+        <li>Nº de partidos en los que su equipo ha disputado:</li>
+        <li>Incidencias:{{jugador.incidencia}}</li>
+    </ul>
+{% endblock %}

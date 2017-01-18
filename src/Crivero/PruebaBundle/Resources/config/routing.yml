@@ -76,6 +76,14 @@ crivero_prueba_equipo:
     pattern:  /equipo/{id}
     defaults: { _controller: CriveroPruebaBundle:Equipo:equipo }
     
+crivero_prueba_jugadores:
+    pattern:  /jugadores
+    defaults: { _controller: CriveroPruebaBundle:Jugador:jugadores }
+
+crivero_prueba_jugador:
+    pattern:  /jugador/{id}
+    defaults: { _controller: CriveroPruebaBundle:Jugador:jugador}
+    
 crivero_prueba_sesiones:
     pattern:  /sesiones
     defaults: { _controller: CriveroPruebaBundle:Sesion:sesiones }

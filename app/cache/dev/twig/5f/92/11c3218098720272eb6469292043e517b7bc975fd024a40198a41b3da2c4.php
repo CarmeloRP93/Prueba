@@ -85,19 +85,32 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
         // line 31
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_canchas");
         echo "\">Canchas</a></li>
-                    <li><a href=\"";
-        // line 32
+                    <li class=\"dropdown\">
+                            <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Competiciones <b class=\"caret\"></b></a>
+                            <ul class=\"dropdown-menu\">
+                              <li><a href=\"";
+        // line 35
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_competiciones");
-        echo "\">Competiciones</a></li>
+        echo "\">Competiciones </a></li>
+                              <li><a href=\"";
+        // line 36
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_equipos");
+        echo "\">Equipos</a></li>
+                              <li><a href=\"";
+        // line 37
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_jugadores");
+        echo "\">Jugadores</a></li>
+                            </ul>
+                     </li>
                      <li class=\"dropdown\">
                             <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Sesiones <b class=\"caret\"></b></a>
                             <ul class=\"dropdown-menu\">
                               <li><a href=\"";
-        // line 36
+        // line 43
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_sesiones");
         echo "\">S.Generales</a></li>
                               <li><a href=\"";
-        // line 37
+        // line 44
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_dedicadas");
         echo "\">S.Dedicadas</a></li>
                             </ul>
@@ -105,19 +118,19 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
                 </ul>
                 
                 ";
-        // line 42
+        // line 49
         if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_FULLY")) {
-            // line 43
+            // line 50
             echo "                    <ul class=\"nav navbar-nav navbar-right\">
                         <li><a href = #>Perfil</a></li>
                         <li><a href=\"";
-            // line 45
+            // line 52
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
             echo "\">Logout</a></li>
                     </ul>
                 ";
         }
-        // line 48
+        // line 55
         echo "
                 <form class=\"navbar-form navbar-center\" role=\"search\">
                     <div class=\"form-group\">
@@ -130,16 +143,16 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
 ";
     }
 
-    // line 58
+    // line 65
     public function block_body($context, array $blocks = array())
     {
-        // line 59
+        // line 66
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 61
+        // line 68
         $this->displayBlock('contenido', $context, $blocks);
-        // line 63
+        // line 70
         echo "        </div>
 
     </div>
@@ -147,10 +160,10 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
 ";
     }
 
-    // line 61
+    // line 68
     public function block_contenido($context, array $blocks = array())
     {
-        // line 62
+        // line 69
         echo "            ";
     }
 
@@ -166,6 +179,6 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
 
     public function getDebugInfo()
     {
-        return array (  154 => 62,  151 => 61,  143 => 63,  141 => 61,  137 => 59,  134 => 58,  121 => 48,  115 => 45,  111 => 43,  109 => 42,  101 => 37,  97 => 36,  90 => 32,  86 => 31,  80 => 28,  76 => 27,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
+        return array (  167 => 69,  164 => 68,  156 => 70,  154 => 68,  150 => 66,  147 => 65,  134 => 55,  128 => 52,  124 => 50,  122 => 49,  114 => 44,  110 => 43,  101 => 37,  97 => 36,  93 => 35,  86 => 31,  80 => 28,  76 => 27,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
     }
 }

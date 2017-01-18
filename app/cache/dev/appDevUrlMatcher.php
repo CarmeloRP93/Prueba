@@ -422,6 +422,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        if (0 === strpos($pathinfo, '/jugador')) {
+            // crivero_prueba_jugadores
+            if ($pathinfo === '/jugadores') {
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\JugadorController::jugadoresAction',  '_route' => 'crivero_prueba_jugadores',);
+            }
+
+            // crivero_prueba_jugador
+            if (preg_match('#^/jugador/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_jugador')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\JugadorController::jugadorAction',));
+            }
+
+        }
+
         // crivero_prueba_sesiones
         if ($pathinfo === '/sesiones') {
             return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::sesionesAction',  '_route' => 'crivero_prueba_sesiones',);
