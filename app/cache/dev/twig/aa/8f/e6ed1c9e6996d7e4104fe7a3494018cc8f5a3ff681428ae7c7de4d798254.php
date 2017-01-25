@@ -61,7 +61,7 @@ class __TwigTemplate_aa8fe6ed1c9e6996d7e4104fe7a3494018cc8f5a3ff681428ae7c7de4d7
         // line 13
         echo $this->env->getExtension('routing')->getPath("crivero_prueba_login_check");
         echo "\" method=\"post\" class=\"form-signin\">
-         <h2 class=\"form-signin-heading\">Inicio de Sesión</h2>
+         <h2 class=\"form-signin-heading\">Inicia de Sesión</h2>
 
                 ";
         // line 16

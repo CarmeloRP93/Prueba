@@ -7,179 +7,177 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Reservas
  *
- * @ORM\Table(name="reservas")
- * @ORM\Entity
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\ReservasRepository")
  */
-class Reservas
-{
+class Reservas {
+
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="idCliente", type="integer", nullable=false)
+     * @ORM\Column(name="idCliente", type="integer")
      */
-    private $idcliente;
+    private $idCliente;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="idCancha", type="integer", nullable=false)
+     * @ORM\Column(name="idCancha", type="integer")
      */
-    private $idcancha;
+    private $idCancha;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="estadoReserva", type="string", length=255, nullable=false)
+     * @ORM\Column(name="estadoReserva", type="string", length=255)
      */
-    private $estadoreserva;
+    private $estadoReserva;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaInicio", type="datetime", nullable=false)
+     * @ORM\Column(name="fechaInicio", type="datetime")
      */
-    private $fechainicio;
+    private $fechaInicio;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaFinalizacion", type="datetime", nullable=false)
+     * @ORM\Column(name="fechaFinalizacion", type="datetime")
      */
-    private $fechafinalizacion;
+    private $fechaFinalizacion;
 
-
+    public function __construct() {
+        $this->fechaInicio = new \DateTime();
+        //$this->fechaInicio->format(("Y-m-d")." HH:30");
+        $this->fechaFinalizacion = new \DateTime();
+    }
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
     /**
-     * Set idcliente
-     *
-     * @param integer $idcliente
-     * @return Reservas
-     */
-    public function setIdcliente($idcliente)
-    {
-        $this->idcliente = $idcliente;
-
-        return $this;
-    }
-
-    /**
-     * Get idcliente
+     * Get idCliente
      *
      * @return integer 
      */
-    public function getIdcliente()
-    {
-        return $this->idcliente;
+    public function getIdCliente() {
+        return $this->idCliente;
     }
 
     /**
-     * Set idcancha
-     *
-     * @param integer $idcancha
-     * @return Reservas
-     */
-    public function setIdcancha($idcancha)
-    {
-        $this->idcancha = $idcancha;
-
-        return $this;
-    }
-
-    /**
-     * Get idcancha
+     * Get idCancha
      *
      * @return integer 
      */
-    public function getIdcancha()
-    {
-        return $this->idcancha;
+    public function getIdCancha() {
+        return $this->idCancha;
     }
 
     /**
-     * Set estadoreserva
+     * Set idCliente
      *
-     * @param string $estadoreserva
+     * @param integer $idCliente
      * @return Reservas
      */
-    public function setEstadoreserva($estadoreserva)
-    {
-        $this->estadoreserva = $estadoreserva;
+    public function setIdCliente($idCliente) {
+        $this->idCliente = $idCliente;
 
         return $this;
     }
 
     /**
-     * Get estadoreserva
+     * Set idCancha
+     *
+     * @param integer $idCancha
+     * @return Reservas
+     */
+    public function setIdCancha($idCancha) {
+        $this->idCancha = $idCancha;
+
+        return $this;
+    }
+
+    /**
+     * Set estadoReserva
+     *
+     * @param string $estadoReserva
+     * @return Reservas
+     */
+    public function setEstadoReserva($estadoReserva) {
+        $this->estadoReserva = $estadoReserva;
+
+        return $this;
+    }
+
+    /**
+     * Get estadoReserva
      *
      * @return string 
      */
-    public function getEstadoreserva()
-    {
-        return $this->estadoreserva;
+    public function getEstadoReserva() {
+        return $this->estadoReserva;
     }
 
     /**
-     * Set fechainicio
+     * Set fechaInicio
      *
-     * @param \DateTime $fechainicio
+     * @param \DateTime $fechaInicio
      * @return Reservas
      */
-    public function setFechainicio($fechainicio)
-    {
-        $this->fechainicio = $fechainicio;
+    public function setFechaInicio($fechaInicio) {
+        $this->fechaInicio = $fechaInicio;
 
         return $this;
     }
 
     /**
-     * Get fechainicio
+     * Get fechaInicio
      *
      * @return \DateTime 
      */
-    public function getFechainicio()
-    {
-        return $this->fechainicio;
+    public function getFechaInicio() {
+        return $this->fechaInicio;
     }
 
     /**
-     * Set fechafinalizacion
+     * Set fechaFinalizacion
      *
-     * @param \DateTime $fechafinalizacion
+     * @param \DateTime $fechaFinalizacion
      * @return Reservas
      */
-    public function setFechafinalizacion($fechafinalizacion)
-    {
-        $this->fechafinalizacion = $fechafinalizacion;
+    public function setFechaFinalizacion($fechaFinalizacion) {
+        $this->fechaFinalizacion = $fechaFinalizacion;
 
         return $this;
     }
 
     /**
-     * Get fechafinalizacion
+     * Get fechaFinalizacion
      *
      * @return \DateTime 
      */
-    public function getFechafinalizacion()
-    {
-        return $this->fechafinalizacion;
+    public function getFechaFinalizacion() {
+        return $this->fechaFinalizacion;
     }
+
+    public function __toString() {
+        return $this->idCancha;
+    }
+
 }

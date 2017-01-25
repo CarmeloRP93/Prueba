@@ -1,252 +1,127 @@
 <?php
-
 namespace Crivero\PruebaBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * Usuarios
  *
- * @ORM\Table(name="usuarios")
- * @ORM\Entity
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\UsuariosRepository")
+ * @UniqueEntity("nombre")
+ * @UniqueEntity("email")
+ * @ORM\HasLifecycleCallbacks()
  */
-class Usuarios
+class Usuarios implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+ 
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=200, nullable=false)
+     * @ORM\Column(name="nombre", type="string", length=200)
+     * @Assert\NotBlank()
      */
     private $nombre;
-
+ 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255, nullable=false)
+     * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
-
+    
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=200, nullable=false)
+     * @ORM\Column(name="email", type="string", length=200)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $email;
-
     /**
      * @var integer
      *
-     * @ORM\Column(name="tipo", type="integer", nullable=false)
+     * @ORM\Column(name="tipo", type="integer")
+     * @Assert\NotBlank()
+     * @Assert\Choice(choices = {1, 2, 3})
      */
     private $tipo;
-
     /**
      * @var string
      *
-     * @ORM\Column(name="telefono", type="string", length=200, nullable=false)
+     * @ORM\Column(name="telefono", type="string", length=200)
+     * @Assert\NotBlank()
      */
     private $telefono;
-
     /**
      * @var string
      *
-     * @ORM\Column(name="fNacimiento", type="string", length=200, nullable=false)
+     * @ORM\Column(name="fNacimiento", type="string", length=200)
+     * @Assert\NotBlank()
      */
-    private $fnacimiento;
-
+    private $fNacimiento;
+ 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="registro", type="datetime", nullable=false)
+     * @ORM\Column(name="registro", type="datetime")
      */
     private $registro;
-
+ 
     /**
      * @var string
      *
      * @ORM\Column(name="reservas", type="string", length=255, nullable=true)
      */
     private $reservas;
-
+ 
     /**
      * @var string
      *
      * @ORM\Column(name="sesiones", type="string", length=255, nullable=true)
      */
     private $sesiones;
-
-
-
+ 
     /**
-     * Get id
+     * Set fNacimiento
      *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set nombre
-     *
-     * @param string $nombre
+     * @param string $fNacimiento
      * @return Usuarios
      */
-    public function setNombre($nombre)
+    public function setFNacimiento($fNacimiento)
     {
-        $this->nombre = $nombre;
-
+        $this->fNacimiento = $fNacimiento;
+ 
         return $this;
     }
-
+ 
     /**
-     * Get nombre
+     * Get fNacimiento
      *
      * @return string 
      */
-    public function getNombre()
+    public function getFNacimiento()
     {
-        return $this->nombre;
+        return $this->fNacimiento;
     }
-
+ 
     /**
-     * Set password
-     *
-     * @param string $password
-     * @return Usuarios
+     * @ORM\PrePersist
      */
-    public function setPassword($password)
+    public function setRegistro()
     {
-        $this->password = $password;
-
-        return $this;
+        $this->registro = new \DateTime();
     }
-
-    /**
-     * Get password
-     *
-     * @return string 
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     * @return Usuarios
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set tipo
-     *
-     * @param integer $tipo
-     * @return Usuarios
-     */
-    public function setTipo($tipo)
-    {
-        $this->tipo = $tipo;
-
-        return $this;
-    }
-
-    /**
-     * Get tipo
-     *
-     * @return integer 
-     */
-    public function getTipo()
-    {
-        return $this->tipo;
-    }
-
-    /**
-     * Set telefono
-     *
-     * @param string $telefono
-     * @return Usuarios
-     */
-    public function setTelefono($telefono)
-    {
-        $this->telefono = $telefono;
-
-        return $this;
-    }
-
-    /**
-     * Get telefono
-     *
-     * @return string 
-     */
-    public function getTelefono()
-    {
-        return $this->telefono;
-    }
-
-    /**
-     * Set fnacimiento
-     *
-     * @param string $fnacimiento
-     * @return Usuarios
-     */
-    public function setFnacimiento($fnacimiento)
-    {
-        $this->fnacimiento = $fnacimiento;
-
-        return $this;
-    }
-
-    /**
-     * Get fnacimiento
-     *
-     * @return string 
-     */
-    public function getFnacimiento()
-    {
-        return $this->fnacimiento;
-    }
-
-    /**
-     * Set registro
-     *
-     * @param \DateTime $registro
-     * @return Usuarios
-     */
-    public function setRegistro($registro)
-    {
-        $this->registro = $registro;
-
-        return $this;
-    }
-
+ 
     /**
      * Get registro
      *
@@ -256,7 +131,7 @@ class Usuarios
     {
         return $this->registro;
     }
-
+ 
     /**
      * Set reservas
      *
@@ -266,10 +141,10 @@ class Usuarios
     public function setReservas($reservas)
     {
         $this->reservas = $reservas;
-
+ 
         return $this;
     }
-
+ 
     /**
      * Get reservas
      *
@@ -279,7 +154,7 @@ class Usuarios
     {
         return $this->reservas;
     }
-
+ 
     /**
      * Set sesiones
      *
@@ -289,10 +164,10 @@ class Usuarios
     public function setSesiones($sesiones)
     {
         $this->sesiones = $sesiones;
-
+ 
         return $this;
     }
-
+ 
     /**
      * Get sesiones
      *
@@ -302,4 +177,166 @@ class Usuarios
     {
         return $this->sesiones;
     }
+   
+    public function getId()
+    {
+        return $this->id;
+    }
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     * @return Usuarios
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+        return $this;
+    }
+    /**
+     * Get nombre
+     *
+     * @return string 
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+    
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return Usuarios
+     */
+    public function setPassword($password)
+    {
+        $this->password= $password;
+        return $this;
+    }
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+    
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Usuarios
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        return $this;
+    }
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    /**
+     * Set tipo
+     *
+     * @param integer $tipo
+     * @return Usuarios
+     */
+    public function setTipo($tipo)
+    {
+        $this->tipo = $tipo;
+        return $this;
+    }
+    /**
+     * Get tipo
+     *
+     * @return integer 
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+    /**
+     * Set telefono
+     *
+     * @param string $telefono
+     * @return Usuarios
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+        return $this;
+    }
+    /**
+     * Get telefono
+     *
+     * @return string 
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+    public function eraseCredentials() {
+        
+    }
+    
+    public function getRoles()
+    {
+        if ($this->getTipo() == 1) {
+            return array('ROLE_ADMIN');
+        }else if($this->getTipo() == 2){
+            return array('ROLE_CLIENTE');
+        }else{
+            return array('ROLE_MONITOR');
+        }
+    }
+    
+    public function getSalt() {
+        return null;
+    }
+    public function getUsername() {
+        return $this->nombre;
+    }
+    public function isAccountNonExpired() {
+        return true;
+    }
+    public function isCredentialsNonExpired() {
+        return true;
+    }
+   
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+    
+    public function isEnabled() {
+        return true;
+    }
+    
+    public function serialize() {
+         return serialize(array(
+            $this->id,
+            $this->nombre,
+            $this->password
+        ));
+    }
+    
+    /* @see \Serializable::unserialize() */
+    public function unserialize($serialized) {
+         list (
+            $this->id,
+            $this->nombre,
+            $this->password
+        ) = unserialize($serialized);
+    }
+    
+    
 }

@@ -16,8 +16,8 @@ class ReservasType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
         ->add('idCancha', 'hidden')              
-        ->add('fechaInicio',        'datetime', array('date_widget' => "single_text", 'time_widget' => "single_text"))
-        ->add('fechaFinalizacion',  'datetime', array('date_widget' => "single_text", 'time_widget' => "single_text"))
+        ->add('fechaInicio',        'datetime', array('date_widget' => "single_text", 'time_widget' => "choice", "minutes"=> array(0,30)))
+        ->add('fechaFinalizacion',  'datetime', array('date_widget' => "single_text", 'time_widget' => "choice", "minutes"=> array(0,30)))
         ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         //->add('fechaInicio',        'datetime', array('date_widget' => "single_text", 'input' => 'datetime', 'minutes' => array(0,30)))                
                 ;
