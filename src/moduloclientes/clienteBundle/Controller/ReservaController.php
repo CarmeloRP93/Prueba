@@ -54,8 +54,13 @@ class ReservaController extends Controller {
         if ($form->isValid()) {
             $idCliente = $this->getUser()->getId();
             $reserva->setIdCliente($idCliente);
+            $cliente = $this->getUser()->getUsername();
+            $reserva->setCliente($cliente);
+            
             $idCancha = $form->get('idCancha')->getData();
             $reserva->setIdCancha($idCancha);
+            $cancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas")->find($idCancha);
+            $reserva->setCancha($cancha->getTipo());
             $reserva->setEstadoReserva("Reservado");
             
             $em = $this->getDoctrine()->getManager();

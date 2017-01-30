@@ -27,6 +27,13 @@ class Reservas {
      * @ORM\Column(name="idCliente", type="integer")
      */
     private $idCliente;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cliente", type="string", length=255)
+     */
+    private $cliente;
 
     /**
      * @var integer
@@ -35,6 +42,13 @@ class Reservas {
      */
     private $idCancha;
 
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="cancha", type="string", length=255)
+     */
+    private $cancha;
+    
     /**
      * @var string
      *
@@ -134,6 +148,46 @@ class Reservas {
         return $this->estadoReserva;
     }
 
+    /**
+     * Set cliente
+     *
+     * @param string $cliente
+     * @return Reservas
+     */
+    public function setCliente($cliente) {
+        $this->cliente = $cliente;
+        return $this;
+    }
+
+    /**
+     * Get cliente
+     *
+     * @return string 
+     */
+    public function getCliente() {
+        return $this->cliente;
+    }
+    
+    /**
+     * Set cancha
+     *
+     * @param string $cancha
+     * @return Reservas
+     */
+    public function setCancha($cancha) {
+        $this->cancha = $cancha;
+        return $this;
+    }
+
+    /**
+     * Get cancha
+     *
+     * @return string 
+     */
+    public function getCancha() {
+        return $this->cancha;
+    }
+    
     /**
      * Set fechaInicio
      *

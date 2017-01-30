@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 class CanchaController extends Controller
 {
     
-     
     public function canchasAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $dql = "SELECT c FROM CriveroPruebaBundle:Canchas c";
