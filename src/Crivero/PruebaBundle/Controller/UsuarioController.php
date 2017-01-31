@@ -12,9 +12,8 @@ use Crivero\PruebaBundle\Form\UsuariosType;
 class UsuarioController extends Controller {
     
     public function clientesAction(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $dql = "SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=2";
-        $usuarios = $em->createQuery($dql);
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $usuarios= $repository->getClientes();
         
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -37,9 +36,8 @@ class UsuarioController extends Controller {
     }
     
      public function monitoresAction(Request $request) {
-         $em = $this->getDoctrine()->getManager();
-         $dql = "SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=3";
-         $usuarios = $em->createQuery($dql);
+         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+         $usuarios= $repository->getMonitores();
         
          $paginator = $this->get('knp_paginator');
          $pagination = $paginator->paginate(
@@ -175,16 +173,9 @@ class UsuarioController extends Controller {
           return $form;        
     }
     
-     private function recoverPass($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-            'SELECT u.password
-            FROM CriveroPruebaBundle:Usuarios u
-            WHERE u.id = :id'    
-        )->setParameter('id', $id);
-        
-        $currentPass = $query->getResult();
+    private function recoverPass($id) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $currentPass = $repository->recuperarPass($id);
         return $currentPass;
     }
     

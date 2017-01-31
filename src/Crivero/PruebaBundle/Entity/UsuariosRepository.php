@@ -12,4 +12,22 @@ use Doctrine\ORM\EntityRepository;
  */
 class UsuariosRepository extends EntityRepository
 {
+    public function getClientes(){
+        return $this->getEntityManager()
+            ->createQuery('SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=2')
+            ->getResult();
+    }
+    
+    public function getMonitores(){
+        return $this->getEntityManager()
+            ->createQuery('SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=3')
+            ->getResult();
+    }
+    
+    public function recuperarPass($id){
+        return $this->getEntityManager()
+        ->createQuery('SELECT u.password FROM CriveroPruebaBundle:Usuarios u WHERE u.id = :id')
+        ->setParameter('id', $id)
+        ->getResult();
+    }
 }
