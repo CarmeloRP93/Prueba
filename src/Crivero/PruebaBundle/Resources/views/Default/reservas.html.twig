@@ -20,14 +20,11 @@
                 <tbody>
                     {% for reserva in pagination %}
                         <tr>
-                            <td>{{reserva.cliente}}</td>
-                            <td><strong>{{reserva.cancha}}</strong></td>
+                            <td><a href="{{ path('crivero_prueba_cliente', { id: reserva.idCliente }) }}" style="color: #000" >{{reserva.cliente}}</a></td>
+                            <td><strong><a href="{{ path('crivero_prueba_cancha', { id: reserva.idCancha }) }}" style="color: #000">{{reserva.cancha}}</a></strong></td>
                             <td>{{reserva.fechaInicio|date('d/m/Y H:i')}}</td>
                             <td>{{reserva.fechaFinalizacion|date('d/m/Y H:i')}}</td>
                             <td class="actions">
-                                <a href="{{ path('crivero_prueba_cancha', { id: reserva.idCancha }) }}" class="btn btn-sm btn-info">
-                                    Ver
-                                </a>
                                 <a href="#" class="btn btn-sm btn-danger">
                                     Cancelar
                                 </a>
