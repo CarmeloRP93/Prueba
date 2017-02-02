@@ -95,7 +95,7 @@ class __TwigTemplate_32c10f3a652722fc4ec08e3fe498d6fadba6a8d77f1d4bb624f9d0d431f
                             <td class=\"actions\">
                                 <a href=\"";
             // line 28
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha", array("id" => $this->getAttribute($context["reserva"], "id", array()))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha", array("id" => $this->getAttribute($context["reserva"], "idCancha", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-info\">
                                     Ver
                                 </a>

@@ -4,6 +4,7 @@
 {% block title %} Canchas {% endblock %}
 
 {% block contenido %}
+    {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class="container">
         <h1 class="text-center">Canchas</h1>
         <div class="table-responsive">
@@ -28,7 +29,7 @@
                                 <a href="{{ path('crivero_prueba_cancha', { id: cancha.id }) }}" class="btn btn-sm btn-info">
                                     Ver
                                 </a>
-                                <a href="#" class="btn btn-sm btn-primary">
+                                <a href="{{ path('crivero_prueba_cancha_editar', { id: cancha.id }) }}" class="btn btn-sm btn-primary">
                                     Editar
                                 </a>
                                 

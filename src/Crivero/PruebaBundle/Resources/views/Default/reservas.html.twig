@@ -25,7 +25,7 @@
                             <td>{{reserva.fechaInicio|date('d/m/Y H:i')}}</td>
                             <td>{{reserva.fechaFinalizacion|date('d/m/Y H:i')}}</td>
                             <td class="actions">
-                                <a href="{{ path('crivero_prueba_cancha', { id: reserva.id }) }}" class="btn btn-sm btn-info">
+                                <a href="{{ path('crivero_prueba_cancha', { id: reserva.idCancha }) }}" class="btn btn-sm btn-info">
                                     Ver
                                 </a>
                                 <a href="#" class="btn btn-sm btn-danger">

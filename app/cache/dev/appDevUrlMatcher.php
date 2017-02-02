@@ -404,6 +404,30 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::canchaAction',));
             }
 
+            // crivero_prueba_cancha_editar
+            if (0 === strpos($pathinfo, '/cancha/editar') && preg_match('#^/cancha/editar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_editar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::editarAction',));
+            }
+
+            if (0 === strpos($pathinfo, '/cancha/actualizar')) {
+                // crivero_prueba_cancha_actualizar
+                if (preg_match('#^/cancha/actualizar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
+                        $allow = array_merge($allow, array('POST', 'PUT'));
+                        goto not_crivero_prueba_cancha_actualizar;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_actualizar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::actualizarAction',));
+                }
+                not_crivero_prueba_cancha_actualizar:
+
+                // crivero_prueba_cancha_redirect_editar
+                if (preg_match('#^/cancha/actualizar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_redirect_editar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::editarAction',  'path' => '/cancha/editar/{id}',  'permanent' => true,));
+                }
+
+            }
+
         }
 
         // crivero_prueba_reservas
