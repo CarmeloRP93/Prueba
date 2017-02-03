@@ -25,11 +25,15 @@
                                 <a  href="{{ path('crivero_prueba_cliente', { id: reserva.id }) }}" class="btn btn-danger">
                                     Cancelada(pulsa para descartar reserva)
                                 </a>
+                                {% if reserva.motivos != null %}
+                                    <div >
+                                        <h4>Motivos:</h4>
+                                        <p>{{reserva.motivos}}</p>
+                                    </div>
+                                {% endif %}
                             {% endif %}
                         </div>
-
                     </div><br>
-
                 </div>
 
                 <div class="col-md-6 col-xs-12">
@@ -59,4 +63,5 @@
                     </div><br>
 
                 </div>
+
             {% endblock %}

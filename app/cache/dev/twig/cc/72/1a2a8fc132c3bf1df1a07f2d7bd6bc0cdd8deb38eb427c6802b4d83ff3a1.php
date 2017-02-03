@@ -81,13 +81,25 @@ class __TwigTemplate_cc721a2a8fc132c3bf1df1a07f2d7bd6bc0cdd8deb38eb427c6802b4d83
             echo "\" class=\"btn btn-danger\">
                                     Cancelada(pulsa para descartar reserva)
                                 </a>
-                            ";
+                                ";
+            // line 28
+            if (($this->getAttribute((isset($context["reserva"]) ? $context["reserva"] : $this->getContext($context, "reserva")), "motivos", array()) != null)) {
+                // line 29
+                echo "                                    <div >
+                                        <h4>Motivos:</h4>
+                                        <p>";
+                // line 31
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["reserva"]) ? $context["reserva"] : $this->getContext($context, "reserva")), "motivos", array()), "html", null, true);
+                echo "</p>
+                                    </div>
+                                ";
+            }
+            // line 34
+            echo "                            ";
         }
-        // line 29
+        // line 35
         echo "                        </div>
-
                     </div><br>
-
                 </div>
 
                 <div class=\"col-md-6 col-xs-12\">
@@ -117,6 +129,7 @@ class __TwigTemplate_cc721a2a8fc132c3bf1df1a07f2d7bd6bc0cdd8deb38eb427c6802b4d83
                     </div><br>
 
                 </div>
+
             ";
     }
 
@@ -132,6 +145,6 @@ class __TwigTemplate_cc721a2a8fc132c3bf1df1a07f2d7bd6bc0cdd8deb38eb427c6802b4d83
 
     public function getDebugInfo()
     {
-        return array (  87 => 29,  79 => 25,  75 => 23,  73 => 22,  65 => 17,  52 => 7,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  101 => 35,  98 => 34,  92 => 31,  88 => 29,  86 => 28,  79 => 25,  75 => 23,  73 => 22,  65 => 17,  52 => 7,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }

@@ -9,6 +9,7 @@ $(document).ready(function() {
         var data = form.serialize();
          
         bootbox.confirm('¿Estas seguro?', function(res) {
+            
             if(res === true) {
                 $('#delete-progress').removeClass('hidden');
                 
