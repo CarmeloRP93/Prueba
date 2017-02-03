@@ -69,6 +69,13 @@ class Reservas {
      * @ORM\Column(name="fechaFinalizacion", type="datetime")
      */
     private $fechaFinalizacion;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="motivos", type="string", length=255, nullable=true)
+     */
+    private $motivos;
 
     public function __construct() {
         $this->fechaInicio = new \DateTime();
@@ -228,6 +235,29 @@ class Reservas {
      */
     public function getFechaFinalizacion() {
         return $this->fechaFinalizacion;
+    }
+    
+    /**
+     * Get motivos
+     *
+     * @return string 
+     */
+    public function getMotivos()
+    {
+        return $this->motivos;
+    }
+    
+    /**
+     * Set motivos
+     *
+     * @param string $motivos
+     * @return Reservas
+     */
+    public function setMotivos($motivos)
+    {
+        $this->motivos = $motivos;
+
+        return $this;
     }
 
     public function __toString() {

@@ -36,7 +36,7 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
     // line 3
     public function block_title($context, array $blocks = array())
     {
-        echo " Vista de Reservas ";
+        echo " Reservas ";
     }
 
     // line 5
@@ -46,7 +46,7 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
         echo "    <div class=\"col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4\">
         <div class=\"panel panel-default\">
             <div class=\"panel-heading text-center\">
-                <h3>Listado de Reservas</h3>
+                <h3>Reservas</h3>
                 <div id=\"buscador\">
                     <form>
                         <input type=\"search\" name=\"reserva\" placeholder=\"Buscar reserva\"/>
@@ -80,7 +80,9 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
             echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "id", array()), "html", null, true);
             echo " - ";
             echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "idCliente", array()), "html", null, true);
-            echo " </a>
+            echo " - ";
+            echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "estadoReserva", array()), "html", null, true);
+            echo "</a>
             ";
             ++$context['loop']['index0'];
             ++$context['loop']['index'];
@@ -117,6 +119,6 @@ class __TwigTemplate_bf72abc53bc0f716c0cd61050b43a431f001ab867d6d7493dcc025a4a1a
 
     public function getDebugInfo()
     {
-        return array (  103 => 63,  98 => 19,  75 => 17,  58 => 16,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  105 => 63,  100 => 19,  75 => 17,  58 => 16,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

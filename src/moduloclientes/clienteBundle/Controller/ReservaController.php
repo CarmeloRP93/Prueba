@@ -15,8 +15,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class ReservaController extends Controller {
 
     public function reservasClientesAction() {
-        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas");
-        $reservas = $repository->findAll();
+        $em = $this->getDoctrine()->getManager();
+        $usuarioId = $this->getUser()->getId();
+        $dql = 'SELECT r FROM CriveroPruebaBundle:Reservas r WHERE r.idCliente = :id';
+        $reservas = $em->createQuery($dql)->setParameter('id', $usuarioId)->getResult();
         return $this->render('moduloclientesclienteBundle:Default:reservasClientes.html.twig', array("reservas" => $reservas));
     }
 

@@ -36,7 +36,8 @@ class __TwigTemplate_cc721a2a8fc132c3bf1df1a07f2d7bd6bc0cdd8deb38eb427c6802b4d83
     // line 3
     public function block_title($context, array $blocks = array())
     {
-        echo "Vista de la reserva de ";
+        echo "Reserva de ";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["reserva"]) ? $context["reserva"] : $this->getContext($context, "reserva")), "cancha", array()), "html", null, true);
         echo " ";
     }
 
@@ -48,7 +49,7 @@ class __TwigTemplate_cc721a2a8fc132c3bf1df1a07f2d7bd6bc0cdd8deb38eb427c6802b4d83
         <h3>Detalles de Reserva</h3>
         <h3>";
         // line 7
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "tipo", array()), "html", null, true);
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["reserva"]) ? $context["reserva"] : $this->getContext($context, "reserva")), "cancha", array()), "html", null, true);
         echo "<h3>
                 </div>
 
@@ -67,8 +68,23 @@ class __TwigTemplate_cc721a2a8fc132c3bf1df1a07f2d7bd6bc0cdd8deb38eb427c6802b4d83
 
                         <br>
                         <div class=\"text-center\">
-                            <button class=\"btn btn-danger\">Cancelar</button>
-                        </div>
+                            ";
+        // line 22
+        if (($this->getAttribute((isset($context["reserva"]) ? $context["reserva"] : $this->getContext($context, "reserva")), "estadoReserva", array()) == "Reservado")) {
+            // line 23
+            echo "                                <button class=\"btn btn-warning\">Cancelar</button>
+                            ";
+        } else {
+            // line 25
+            echo "                                <a  href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute((isset($context["reserva"]) ? $context["reserva"] : $this->getContext($context, "reserva")), "id", array()))), "html", null, true);
+            echo "\" class=\"btn btn-danger\">
+                                    Cancelada(pulsa para descartar reserva)
+                                </a>
+                            ";
+        }
+        // line 29
+        echo "                        </div>
 
                     </div><br>
 
@@ -116,6 +132,6 @@ class __TwigTemplate_cc721a2a8fc132c3bf1df1a07f2d7bd6bc0cdd8deb38eb427c6802b4d83
 
     public function getDebugInfo()
     {
-        return array (  64 => 17,  51 => 7,  47 => 5,  44 => 4,  37 => 3,  11 => 1,);
+        return array (  87 => 29,  79 => 25,  75 => 23,  73 => 22,  65 => 17,  52 => 7,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }

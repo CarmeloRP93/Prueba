@@ -80,6 +80,16 @@ crivero_prueba_reservas:
     pattern:  /reservas
     defaults: { _controller: CriveroPruebaBundle:Reserva:reservas }
     
+crivero_prueba_reserva_cancelar:
+    pattern:  /reserva/cancelar/{id}
+    defaults: { _controller: CriveroPruebaBundle:Reserva:cancelar }
+        
+crivero_prueba_reserva_cancelando:        
+    pattern:  /reserva/cancelando/{id}
+    defaults: { _controller: CriveroPruebaBundle:Reserva:cancelando }
+    requirements:
+        _method:  POST|PUT|GET
+    
 #-------------------------------------------------------------------------------
 #Competiciones, equipos y jugadores
 
@@ -125,19 +135,23 @@ crivero_prueba_aceptarSesion:
     defaults: { _controller: CriveroPruebaBundle:Sesion:aceptarSesion }
     requirements:
         _method:  POST|PUT|GET
+        
 crivero_prueba_cancelar:
     pattern:  /cancelar/{id}
     defaults: { _controller: CriveroPruebaBundle:Sesion:cancelar }
     requirements:
         _method:  POST|PUT|GET
+        
 crivero_prueba_cancelarSesion:
     pattern:  /cancelarSesion/{id}
     defaults: { _controller: CriveroPruebaBundle:Sesion:cancelarSesion }
+    
 crivero_prueba_rechazar:
     pattern:  /rechazar/{id}
     defaults: { _controller: CriveroPruebaBundle:Sesion:rechazar }
     requirements:
         _method:  POST|PUT|GET
+        
 crivero_prueba_rechazarSesion:
     pattern:  /rechazarSesion/{id}
     defaults: { _controller: CriveroPruebaBundle:Sesion:rechazarSesion }

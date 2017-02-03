@@ -4,6 +4,7 @@
 {% block title %} Reservas {% endblock %}
 
 {% block contenido %}
+    {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class="container">
         <h1 class="text-center">Reservas</h1>
         <div class="table-responsive">
@@ -25,10 +26,9 @@
                             <td>{{reserva.fechaInicio|date('d/m/Y H:i')}}</td>
                             <td>{{reserva.fechaFinalizacion|date('d/m/Y H:i')}}</td>
                             <td class="actions">
-                                <a href="#" class="btn btn-sm btn-danger">
+                                <a href="{{path('crivero_prueba_reserva_cancelar', {id: reserva.id})}}" class="btn btn-sm btn-danger">
                                     Cancelar
                                 </a>
-                                
                             </td>
                         </tr>
                     {% endfor %}

@@ -18,6 +18,7 @@ class ReservasType extends AbstractType {
         ->add('idCancha', 'hidden')              
         ->add('fechaInicio',        'datetime', array('date_widget' => "single_text", 'time_widget' => "choice", "minutes"=> array(0,30)))
         ->add('fechaFinalizacion',  'datetime', array('date_widget' => "single_text", 'time_widget' => "choice", "minutes"=> array(0,30)))
+        ->add('motivos', 'textarea')              
         ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         //->add('fechaInicio',        'datetime', array('date_widget' => "single_text", 'input' => 'datetime', 'minutes' => array(0,30)))                
                 ;

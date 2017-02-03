@@ -166,6 +166,41 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        if (0 === strpos($pathinfo, '/solElim')) {
+            // modulomonitores_monitores_solEliminarSesion
+            if (0 === strpos($pathinfo, '/solEliminarSesion') && preg_match('#^/solEliminarSesion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_solEliminarSesion')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::solEliminarSesionAction',));
+            }
+
+            // modulomonitores_monitores_solElimSe
+            if (0 === strpos($pathinfo, '/solElimSe') && preg_match('#^/solElimSe/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+                    goto not_modulomonitores_monitores_solElimSe;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_solElimSe')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::solElimSeAction',));
+            }
+            not_modulomonitores_monitores_solElimSe:
+
+            // modulomonitores_monitores_solEliminarSesionDedicada
+            if (0 === strpos($pathinfo, '/solEliminarSesionDedicada') && preg_match('#^/solEliminarSesionDedicada/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_solEliminarSesionDedicada')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DedicadaController::solEliminarSesionDedicadaAction',));
+            }
+
+            // modulomonitores_monitores_solElimSeDe
+            if (0 === strpos($pathinfo, '/solElimSeDe') && preg_match('#^/solElimSeDe/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+                    goto not_modulomonitores_monitores_solElimSeDe;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_solElimSeDe')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DedicadaController::solElimSeDeAction',));
+            }
+            not_modulomonitores_monitores_solElimSeDe:
+
+        }
+
         // modulomonitores_monitores_nuevaSesionDedicada
         if ($pathinfo === '/nuevaSesionDedicada') {
             return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::nuevaSesionDedicadaAction',  '_route' => 'modulomonitores_monitores_nuevaSesionDedicada',);
@@ -218,16 +253,30 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_modulomonitores_monitores_crearSesionDedicada:
 
-        // modulomonitores_monitores_eliminarSesion
-        if (0 === strpos($pathinfo, '/eliminarSesion') && preg_match('#^/eliminarSesion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
-                $allow = array_merge($allow, array('POST', 'DELETE'));
-                goto not_modulomonitores_monitores_eliminarSesion;
-            }
+        if (0 === strpos($pathinfo, '/eliminarSesion')) {
+            // modulomonitores_monitores_eliminarSesion
+            if (preg_match('#^/eliminarSesion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                    $allow = array_merge($allow, array('POST', 'DELETE'));
+                    goto not_modulomonitores_monitores_eliminarSesion;
+                }
 
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_eliminarSesion')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::eliminarSesionAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_eliminarSesion')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::eliminarSesionAction',));
+            }
+            not_modulomonitores_monitores_eliminarSesion:
+
+            // modulomonitores_monitores_eliminarSesionDedicada
+            if (0 === strpos($pathinfo, '/eliminarSesionDedicada') && preg_match('#^/eliminarSesionDedicada/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                    $allow = array_merge($allow, array('POST', 'DELETE'));
+                    goto not_modulomonitores_monitores_eliminarSesionDedicada;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_eliminarSesionDedicada')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DedicadaController::eliminarSesionDedicadaAction',));
+            }
+            not_modulomonitores_monitores_eliminarSesionDedicada:
+
         }
-        not_modulomonitores_monitores_eliminarSesion:
 
         if (0 === strpos($pathinfo, '/cancha')) {
             // moduloclientes_cliente_canchasClientes
@@ -430,9 +479,31 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // crivero_prueba_reservas
-        if ($pathinfo === '/reservas') {
-            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ReservaController::reservasAction',  '_route' => 'crivero_prueba_reservas',);
+        if (0 === strpos($pathinfo, '/reserva')) {
+            // crivero_prueba_reservas
+            if ($pathinfo === '/reservas') {
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ReservaController::reservasAction',  '_route' => 'crivero_prueba_reservas',);
+            }
+
+            if (0 === strpos($pathinfo, '/reserva/cancela')) {
+                // crivero_prueba_reserva_cancelar
+                if (0 === strpos($pathinfo, '/reserva/cancelar') && preg_match('#^/reserva/cancelar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_reserva_cancelar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ReservaController::cancelarAction',));
+                }
+
+                // crivero_prueba_reserva_cancelando
+                if (0 === strpos($pathinfo, '/reserva/cancelando') && preg_match('#^/reserva/cancelando/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+                        goto not_crivero_prueba_reserva_cancelando;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_reserva_cancelando')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ReservaController::cancelandoAction',));
+                }
+                not_crivero_prueba_reserva_cancelando:
+
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/competicion')) {
