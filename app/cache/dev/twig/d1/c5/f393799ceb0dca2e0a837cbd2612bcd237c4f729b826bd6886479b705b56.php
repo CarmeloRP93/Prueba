@@ -9,7 +9,7 @@ class __TwigTemplate_d1c5f393799ceb0dca2e0a837cbd2612bcd237c4f729b826bd6886479b7
 
         // line 1
         try {
-            $this->parent = $this->env->loadTemplate("modulomonitoresmonitoresBundle::main.html.twig");
+            $this->parent = $this->env->loadTemplate("CriveroPruebaBundle::main.html.twig");
         } catch (Twig_Error_Loader $e) {
             $e->setTemplateFile($this->getTemplateName());
             $e->setTemplateLine(1);
@@ -25,7 +25,7 @@ class __TwigTemplate_d1c5f393799ceb0dca2e0a837cbd2612bcd237c4f729b826bd6886479b7
 
     protected function doGetParent(array $context)
     {
-        return "modulomonitoresmonitoresBundle::main.html.twig";
+        return "CriveroPruebaBundle::main.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())

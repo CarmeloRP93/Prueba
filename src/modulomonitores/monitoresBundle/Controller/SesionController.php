@@ -69,11 +69,15 @@ class SesionController extends Controller {
             $sesion->setEstadoCliente("no disponible");
             $sesion->setnClientes(0);
             $sesion->setCliente("normal");
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($sesion);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('modulomonitores_monitores_sesionesMonitores'));
+            $lClientes = $form->get('lClientes')->getData();
+            if ($lClientes != null) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($sesion);
+                $em->flush();
+                return $this->redirect($this->generateUrl('modulomonitores_monitores_sesionesMonitores'));
+            } else {
+                $form->get('lClientes')->addError(new FormError('Rellene el campo gracias'));
+            }
         }
         return $this->render('modulomonitoresmonitoresBundle:Default:nuevaSesion.html.twig', array('form' => $form->createView()));
     }
@@ -192,4 +196,47 @@ class SesionController extends Controller {
         return $this->render('modulomonitoresmonitoresBundle:Default:editarSesionDedicada.html.twig', array('form' => $form->createView()));
     }
 
+    
+    public function solEliminarSesionAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
+
+        if (!$sesion) {
+            throw $this->createNotFoundException("no encontrado");
+        }
+        $form = $this->createSolEliminarSesionForm($sesion);
+        return $this->render('modulomonitoresmonitoresBundle:Default:solEliminarSesion.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
+    }
+
+    private function createSolEliminarSesionForm(Sesiones $entity) {
+        $form = $this->createForm(new SesionesType(), $entity, array(
+            'action' => $this->generateUrl('modulomonitores_monitores_solElimSe', array('id' => $entity->getId())),
+            'method' => 'PUT'
+        ));
+        return $form;
+    }
+
+    public function solElimSeAction($id, Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
+        if (!$sesion) {
+            throw $this->createNotFoundException("no encontrado");
+        }
+        $form = $this->createSolEliminarSesionForm($sesion);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $sesion->setEstado("solEliminar");
+            $sesion->setEstadoCliente("solEliminar");
+            $motivos = $form->get('motivos')->getData();
+            if ($motivos != null) {
+                $em->flush();
+                return $this->redirect($this->generateUrl('modulomonitores_monitores_sesionesMonitores', array('id' => $sesion->getId())));
+            } else {
+                $form->get('motivos')->addError(new FormError('Rellene el campo gracias'));
+            }
+        }
+        return $this->render('modulomonitoresmonitoresBundle:Default:solEliminarSesion.html.twig', array('form' => $form->createView()));
+    }
+    
+    
 }

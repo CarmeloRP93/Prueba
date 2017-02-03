@@ -25,7 +25,7 @@ class __TwigTemplate_c9bc9e98cbcaaa812d4fe30bc5f439394bcacabf937cbf07b34d396d8ce
         echo "
     <input type=\"submit\" value=\"";
         // line 4
-        echo "Eliminar sesion";
+        echo "Eliminar";
         echo "\" class=\"btn btn-danger \" style=\"height: 30px; width: 250px;\" 
            onclick=\"return confirm('¿Estas seguro?')\" >
 

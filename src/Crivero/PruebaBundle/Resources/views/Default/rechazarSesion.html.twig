@@ -1,4 +1,4 @@
-{% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
 {% block title %}Vista de rechazar sesion{% endblock %}
 {% block contenido %}
 <h2>Rechazar sesion</h2>
@@ -70,6 +70,12 @@
                     {{ form_label(form.observaciones) }}
                     {{ form_widget(form.observaciones, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Motivos de cancelación'} }) }}
                     <span class="text-danger">{{ form_errors(form.observaciones) }}</span>
+                </div>
+                
+                <div class="form-group" style="display:none;">
+                    {{ form_label(form.motivos) }}
+                    {{ form_widget(form.motivos, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Motivos de cancelación'} }) }}
+                    <span class="text-danger">{{ form_errors(form.motivos) }}</span>
                 </div>
 
 		    <p>

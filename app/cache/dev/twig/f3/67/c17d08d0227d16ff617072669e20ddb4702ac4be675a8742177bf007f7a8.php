@@ -212,16 +212,30 @@ class __TwigTemplate_f367c17d08d0227d16ff617072669e20ddb4702ac4be675a8742177bf00
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "observaciones", array()), 'errors');
         echo "</span>
                 </div>
+                <div class=\"form-group\" style=\"display:none;\">
+                    ";
+        // line 75
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "motivos", array()), 'label');
+        echo "
+                    ";
+        // line 76
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "motivos", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Motivos de cancelación")));
+        echo "
+                    <span class=\"text-danger\">";
+        // line 77
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "motivos", array()), 'errors');
+        echo "</span>
+                </div>
 
 \t\t    <p>
 \t\t        ";
-        // line 76
+        // line 81
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
 \t\t    </p>                
                     
                 ";
-        // line 79
+        // line 84
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
 ";
@@ -239,6 +253,6 @@ class __TwigTemplate_f367c17d08d0227d16ff617072669e20ddb4702ac4be675a8742177bf00
 
     public function getDebugInfo()
     {
-        return array (  225 => 79,  219 => 76,  212 => 72,  208 => 71,  204 => 70,  197 => 66,  193 => 65,  189 => 64,  182 => 60,  178 => 59,  170 => 54,  166 => 53,  162 => 52,  155 => 48,  151 => 47,  147 => 46,  140 => 42,  136 => 41,  132 => 40,  125 => 36,  121 => 35,  117 => 34,  110 => 30,  106 => 29,  102 => 28,  95 => 24,  91 => 23,  87 => 22,  80 => 18,  76 => 17,  72 => 16,  64 => 11,  60 => 10,  56 => 9,  50 => 6,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  239 => 84,  233 => 81,  226 => 77,  222 => 76,  218 => 75,  212 => 72,  208 => 71,  204 => 70,  197 => 66,  193 => 65,  189 => 64,  182 => 60,  178 => 59,  170 => 54,  166 => 53,  162 => 52,  155 => 48,  151 => 47,  147 => 46,  140 => 42,  136 => 41,  132 => 40,  125 => 36,  121 => 35,  117 => 34,  110 => 30,  106 => 29,  102 => 28,  95 => 24,  91 => 23,  87 => 22,  80 => 18,  76 => 17,  72 => 16,  64 => 11,  60 => 10,  56 => 9,  50 => 6,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

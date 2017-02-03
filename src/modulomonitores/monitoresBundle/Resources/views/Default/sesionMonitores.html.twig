@@ -14,9 +14,14 @@
         </div>
 
         {% if sesion.estado == "validada" %}
-            <div class="accionesesion text-center" style="margin-left: 30px; margin-right: 10px;">
-                <button style="height: 30px; width: 250px;" class="btn btn-danger col-sm-3 col-sm-offset-1">Solicitar eliminar sesion </button>
+            <div class="accionesesion text-center">
+                <a href="{{path('modulomonitores_monitores_solEliminarSesion', {id: sesion.id})}}" style="height: 30px; width: 600px;" class="btn btn-danger">Solicitar eliminar sesion</a> 
             </div>
+        {% elseif sesion.estado == "solEliminar" %}
+            <div class="text-center">
+                <button style="height: 30px; width: 600px;" class="btn btn-danger" disabled="disabled">Solicitud de eliminacion enviada</button>
+                <h4>Motivos:</h4> <p>{{sesion.motivos}}</p>
+            </div>    
         {% elseif sesion.estado == "cancelada" %}
             <div class="text-center">
                 <button style="height: 30px; width: 600px;" class="btn btn-danger" disabled="disabled">Cancelada</button>
@@ -24,7 +29,8 @@
             </div>
         {% elseif sesion.estado == "rechazada" %}
             <div class="text-center">
-                <a href="{{path('modulomonitores_monitores_editarSesion', {id: sesion.id})}}" style="height: 30px; width: 250px; margin-right: 100px;" class="btn btn-primary">Modificar sesion</a> {{ include('modulomonitoresmonitoresBundle:Default:forms/form.html.twig', { form: delete_form })}}
+                <a href="{{path('modulomonitores_monitores_editarSesion', {id: sesion.id})}}" style="height: 30px; width: 250px;" class="btn btn-primary">Modificar sesion</a> 
+                {{ include('modulomonitoresmonitoresBundle:Default:forms/form.html.twig', { form: delete_form })}}
                 
                 <h4>Motivos:</h4> <p>{{sesion.observaciones}}</p>
             </div>

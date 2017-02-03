@@ -27,6 +27,22 @@ modulomonitores_monitores_editarSesion:
 modulomonitores_monitores_editarSesionDedicada:
     pattern:  /editarSesionDedicada/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:editarSesionDedicada }
+modulomonitores_monitores_solEliminarSesion:
+    pattern:  /solEliminarSesion/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:solEliminarSesion }    
+modulomonitores_monitores_solElimSe:
+    pattern:  /solElimSe/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:solElimSe }
+    requirements:
+        _method:  POST|PUT|GET  
+modulomonitores_monitores_solEliminarSesionDedicada:
+    pattern:  /solEliminarSesionDedicada/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:solEliminarSesionDedicada }    
+modulomonitores_monitores_solElimSeDe:
+    pattern:  /solElimSeDe/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:solElimSeDe }
+    requirements:
+        _method:  POST|PUT|GET  
 modulomonitores_monitores_nuevaSesionDedicada:
     pattern:  /nuevaSesionDedicada
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:nuevaSesionDedicada }
@@ -53,4 +69,8 @@ modulomonitores_monitores_crearSesionDedicada:
 modulomonitores_monitores_eliminarSesion:
     pattern:  /eliminarSesion/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:eliminarSesion}
+    methods: [POST, DELETE]
+modulomonitores_monitores_eliminarSesionDedicada:
+    pattern:  /eliminarSesionDedicada/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:eliminarSesionDedicada}
     methods: [POST, DELETE]
