@@ -45,13 +45,16 @@ class __TwigTemplate_8577c42927d1617caba1c63a0118b6175f8449d00ca9553eec1156a0333
     public function block_contenido($context, array $blocks = array())
     {
         // line 4
-        echo "     <div class=\"container text-center\">
+        echo "    ";
+        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:messages/success.html.twig");
+        echo "
+     <div class=\"container text-center\">
         <h3>Detalles de Cancha</h3>
     </div>
         
          <div class=\"text-center\">
            <h4>";
-        // line 9
+        // line 10
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "tipo", array()), "html", null, true);
         echo "</h4>
         </div>
@@ -60,32 +63,32 @@ class __TwigTemplate_8577c42927d1617caba1c63a0118b6175f8449d00ca9553eec1156a0333
 
             <div class=\"text-center\">
                 <img src=\"";
-        // line 15
+        // line 16
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "imagen", array())), "html", null, true);
         echo "\" width=\"180px\" class=\"img-rounded\"/><br>
 
                 <br>";
-        // line 17
+        // line 18
         if (($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()) == "Disponible")) {
-            // line 18
+            // line 19
             echo "                      <div class=\"text-center\">
                         <button class=\"btn btn-success\">";
-            // line 19
+            // line 20
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()), "html", null, true);
             echo "</button>
                       </div>
                       ";
         } else {
-            // line 22
+            // line 23
             echo "                      <div class=\"text-center\">
                         <button class=\"btn btn-danger\">";
-            // line 23
+            // line 24
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()), "html", null, true);
             echo "</button>
                       </div>
                 ";
         }
-        // line 26
+        // line 27
         echo "            </div><br>
 
         </div>
@@ -94,7 +97,7 @@ class __TwigTemplate_8577c42927d1617caba1c63a0118b6175f8449d00ca9553eec1156a0333
             <div class=\"text-center\">
                 <label class=\"control-label span7 text-left\">Horario: </label>
                 <label class=\"control-label span7 text-right\">";
-        // line 33
+        // line 34
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "horario", array()), "html", null, true);
         echo " </label>
             </div>
@@ -102,14 +105,14 @@ class __TwigTemplate_8577c42927d1617caba1c63a0118b6175f8449d00ca9553eec1156a0333
             <div class=\"text-center\">
                 <label class=\"control-label span7 text-left\">Valoracion: </label>
                 <label class=\" text-right\">";
-        // line 38
+        // line 39
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "valoracion", array()), "html", null, true);
         echo "</label>
             </div><br>
 
             <div class=\"text-center\">
               <a href=\"";
-        // line 42
+        // line 43
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha_editar", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
         echo "\" class=\"btn btn-primary\">Editar info</a>
             </div>
@@ -131,6 +134,6 @@ class __TwigTemplate_8577c42927d1617caba1c63a0118b6175f8449d00ca9553eec1156a0333
 
     public function getDebugInfo()
     {
-        return array (  113 => 42,  106 => 38,  98 => 33,  89 => 26,  83 => 23,  80 => 22,  74 => 19,  71 => 18,  69 => 17,  64 => 15,  55 => 9,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  116 => 43,  109 => 39,  101 => 34,  92 => 27,  86 => 24,  83 => 23,  77 => 20,  74 => 19,  72 => 18,  67 => 16,  58 => 10,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

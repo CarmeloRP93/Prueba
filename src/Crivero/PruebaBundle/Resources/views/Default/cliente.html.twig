@@ -28,9 +28,11 @@
                                     {% for reserva in reservas %}
                                         <li>
                                             <div class="acciones">
-                                                <button>Cancelar</button>
+                                                <a href="{{path('crivero_prueba_reserva_cancelar', {id: reserva.id})}}" class="btn btn-sm btn-warning">
+                                                    Cancelar
+                                                </a>
                                             </div>
-                                            <p>{{reserva.cancha}} - {{reserva.fechaInicio|date('d/m/Y')}}</p>
+                                            <p>{{reserva.cancha}}: {{reserva.fechaInicio|date('d/m H:i')}} - {{reserva.fechaFinalizacion|date('H:i')}}</p>
                                         </li>
                                     {% endfor %}
                                 </ul>
@@ -41,7 +43,6 @@
                             <div>
                                 <h4>Sesiones: </h4> 
                                 <ul id="sesiones">
-                                    {% set sesiones=cliente.sesiones|split('**') %}
                                     {% for i in 0..sesiones %}
                                         <li>
                                             <div class="acciones">

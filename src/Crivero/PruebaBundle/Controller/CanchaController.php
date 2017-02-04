@@ -54,7 +54,7 @@ class CanchaController extends Controller
             $em->flush();
             
             $request->getSession()->getFlashBag()->add('mensaje', 'La cancha ha sido modificada correctamente.');
-            return $this->redirect($this->generateUrl('crivero_prueba_canchas'));
+            return $this->redirect($this->generateUrl('crivero_prueba_cancha', array('id' => $id)));
         }
         return $this->render('CriveroPruebaBundle:Default:editarCancha.html.twig', array('cancha' => $cancha, 'form' => $form->createView()));
     }

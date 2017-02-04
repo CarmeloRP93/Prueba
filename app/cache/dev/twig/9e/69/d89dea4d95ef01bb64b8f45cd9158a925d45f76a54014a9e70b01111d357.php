@@ -43,9 +43,7 @@ class __TwigTemplate_9e69d89dea4d95ef01bb64b8f45cd9158a925d45f76a54014a9e70b0111
     public function block_contenido($context, array $blocks = array())
     {
         // line 7
-        echo "    ";
-        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:messages/success.html.twig");
-        echo "
+        echo "    
     <div class=\"container\">
         <h1 class=\"text-center\">Canchas</h1>
         <div class=\"table-responsive\">
@@ -142,6 +140,6 @@ class __TwigTemplate_9e69d89dea4d95ef01bb64b8f45cd9158a925d45f76a54014a9e70b0111
 
     public function getDebugInfo()
     {
-        return array (  126 => 43,  120 => 39,  107 => 32,  101 => 29,  96 => 27,  92 => 26,  88 => 25,  84 => 24,  81 => 23,  77 => 22,  69 => 17,  65 => 16,  61 => 15,  57 => 14,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  124 => 43,  118 => 39,  105 => 32,  99 => 29,  94 => 27,  90 => 26,  86 => 25,  82 => 24,  79 => 23,  75 => 22,  67 => 17,  63 => 16,  59 => 15,  55 => 14,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
     }
 }

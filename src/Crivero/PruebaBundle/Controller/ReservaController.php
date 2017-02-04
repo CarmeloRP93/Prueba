@@ -24,7 +24,7 @@ class ReservaController extends Controller {
     
     public function cancelarAction($id) {
         $em = $this->getDoctrine()->getManager();
-        $reserva= $this->findReserva($id, $em);
+        $reserva= $this->findEntity($id, $em, 'CriveroPruebaBundle:Reservas');
 
         $form = $this->createCancelForm($reserva);
         return $this->render('CriveroPruebaBundle:Default:cancelarReserva.html.twig', array('reserva' => $reserva, 'form' => $form->createView()));
@@ -40,7 +40,8 @@ class ReservaController extends Controller {
     
     public function cancelandoAction($id, Request $request) {
         $em = $this->getDoctrine()->getManager();
-        $reserva = $this->findReserva($id, $em);
+        $reserva = $this->findEntity($id, $em, 'CriveroPruebaBundle:Reservas');
+        $usuario = $this->findEntity($reserva->getIdCliente(), $em, 'CriveroPruebaBundle:Usuarios');
         $form = $this->createCancelForm($reserva);
         $form->handleRequest($request);
         
@@ -48,6 +49,17 @@ class ReservaController extends Controller {
             $reserva->setEstadoReserva("Cancelada");
             $motivos = $form->get('motivos')->getData();
             if ($motivos != null) {
+                $em->persist($reserva);
+                $em->flush();
+                
+                $pos = strpos($usuario->getReservas(), strval($id));
+                $len = strlen(strval($id));
+                if ($pos > 0) {
+                    $usuario->setReservas(substr($usuario->getReservas(), 0, $pos-1) . substr($usuario->getReservas(), $pos+$len));
+                } else {
+                    $usuario->setReservas(substr($usuario->getReservas(), $pos+($len+1)));
+                }
+                $em->persist($usuario);
                 $em->flush();
                 $request->getSession()->getFlashBag()->add('mensaje', 'La reserva se canceló correctamente');
                 return $this->redirect($this->generateUrl('crivero_prueba_reservas'));
@@ -58,12 +70,12 @@ class ReservaController extends Controller {
         return $this->render('CriveroPruebaBundle:Default:cancelarReserva.html.twig', array('form' => $form->createView()));
     }
     
-    private function findReserva($id, \Doctrine\ORM\EntityManager $em) {
-        $reserva= $em->getRepository('CriveroPruebaBundle:Reservas')->find($id);
-        if (!$reserva) {
-            throw $this->createNotFoundException('Reserva no encontrada');
+    private function findEntity($id, \Doctrine\ORM\EntityManager $em, $repository) {
+        $entity= $em->getRepository($repository)->find($id);
+        if (!$entity) {
+            throw $this->createNotFoundException('Entidad no encontrada');
         }
-        return $reserva;
+        return $entity;
     }
     
 }
