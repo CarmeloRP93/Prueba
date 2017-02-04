@@ -1,6 +1,6 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 
-{% block title %}Vista de {{competicion.nombre}} {% endblock %}
+{% block title %} {{competicion.nombre}} {% endblock %}
 {% block contenido %}
     <div class="container text-center">
         <h2>Detalles de la competicion</h2>
@@ -18,7 +18,7 @@
                     {% endfor %}
             {% endif %} 
         {% endblock %}#}
-        
+
         {% if competicion.estadoCompeticion == "Validado"%}
             <h3>{{competicion.deporte}}</h3>
             <div class="table-responsive">
@@ -31,34 +31,32 @@
                             <th> Victorias </th>
                             <th> Derrotas </th>
                             <th> Empates  </th>
+                            <th> Acciones</th>
                         </tr>
                     </thead>
                     {% for equipo in equipos %}
                         {%if equipo.idCompeticion ==competicion.id%}
-                        <tr>
-                            <td>  {{equipo.clasificacion}}º  </td>
-                            <td class="actions">
-                                <p>{{equipo.nombre}}</p>
-                                <a href="{{ path('crivero_prueba_equipo', { id: equipo.id }) }}" class="btn btn-sm btn-info">
-                                    Ver
-                                </a>
-                                {#<a href="{{ path('crivero_prueba_editarEquipo', { id: equipo.id }) }}" class="btn btn-sm btn-primary">
-                                    Editar
-                                </a>#}
-                                <a href="#" class="btn btn-sm btn-danger btn-delete">
-                                    Eliminar
-                                </a>
-                            </td>
-                            <td>   {{equipo.puntuacion}}   </td>
-                            <td>   {{equipo.victorias}}   </td>
-                            <td>   {{equipo.derrotas}}   </td>
-                            <td>   {{equipo.empates}}   </td>
-                        </tr>
+                            <tr>
+                                <td>  {{equipo.clasificacion}}º  </td>
+                                <td>   {{equipo.nombre}}    </td>
+                                <td>   {{equipo.puntuacion}}   </td>
+                                <td>   {{equipo.victorias}}   </td>
+                                <td>   {{equipo.derrotas}}   </td>
+                                <td>   {{equipo.empates}}   </td>
+                                <td>    
+                                    <a href="{{ path('crivero_prueba_equipo', { id: equipo.id }) }}" class="btn btn-sm btn-info">
+                                        Ver
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                        Eliminar
+                                    </a>   
+                                </td>
+                            </tr>
                         {%endif%}
                     {%endfor%}
                 </table>
             </div>
         {%endif%}
-        
+
     </div>
 {% endblock %}

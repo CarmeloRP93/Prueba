@@ -14,47 +14,46 @@
                     </div>
                     <div class="usuardat text-center">
                         <button type="button" class="btn btn-primary">Enviar mensaje</button>
-                        <div id="resersiones">
-                            {% if cliente.reservas|length > 0 %}
-                                <div>
-                                    <h4>Reservas: </h4> 
-                                    <ul id="reservas">
-                                        {% set reservas=cliente.reservas|split('**') %}
-                                        {% for i in 0..reservas %}
-                                            <li>
-                                                <div class="acciones">
-                                                    <button>Modificar</button>
-                                                    <button>Cancelar</button>
-                                                </div>
-                                                <p>{{reservas[i]}}</p>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            {% endif %}
 
-                            {% if cliente.sesiones|length > 0 %}
-                                <div>
-                                    <h4>Sesiones: </h4> 
-                                    <ul id="sesiones">
-                                        {% set sesiones=cliente.sesiones|split('**') %}
-                                        {% for i in 0..sesiones %}
-                                            <li>
-                                                <div class="acciones">
-                                                    <button>Modificar</button>
-                                                    <button>Cancelar</button>
-                                                </div>
-                                                <p>{{sesiones[i]}}</p>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            {% endif %}
-                        </div>
-                        <h4>F.Nacimiento: </h4> <p>{{cliente.fNacimiento}}</p>
-                        <h4>Registro: </h4> <p>{{cliente.registro|date('d/m/Y H:i')}}</p>
-                        <h4>Telefono: </h4> <p>{{cliente.telefono}}</p>
                     </div>
+                    <h4>F.Nacimiento: </h4> <p>{{cliente.fNacimiento}}</p>
+                    <h4>Registro: </h4> <p>{{cliente.registro|date('d/m/Y H:i')}}</p>
+                    <h4>Telefono: </h4> <p>{{cliente.telefono}}</p>
+
+                    <div>
+                        {% if cliente.reservas != null %}
+                            <div>
+                                <h4>Reservas: </h4> 
+                                <ul id="reservas">
+                                    {% for reserva in reservas %}
+                                        <li>
+                                            <div class="acciones">
+                                                <button>Cancelar</button>
+                                            </div>
+                                            <p>{{reserva.cancha}} - {{reserva.fechaInicio|date('d/m/Y')}}</p>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+
+                        {% if cliente.sesiones != null %}
+                            <div>
+                                <h4>Sesiones: </h4> 
+                                <ul id="sesiones">
+                                    {% set sesiones=cliente.sesiones|split('**') %}
+                                    {% for i in 0..sesiones %}
+                                        <li>
+                                            <div class="acciones">
+                                                <button>Cancelar</button>
+                                            </div>
+                                            <p>{{sesiones[i]}}</p>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </div><br>
                     <div class="accionesExclus text-center">       
                         {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form })}}
                     </div>
@@ -62,4 +61,5 @@
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

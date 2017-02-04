@@ -108,7 +108,10 @@ class __TwigTemplate_8577c42927d1617caba1c63a0118b6175f8449d00ca9553eec1156a0333
             </div><br>
 
             <div class=\"text-center\">
-              <button class=\"btn btn-default\">Modificar</button>
+              <a href=\"";
+        // line 42
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha_editar", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
+        echo "\" class=\"btn btn-primary\">Editar info</a>
             </div>
 
 
@@ -128,6 +131,6 @@ class __TwigTemplate_8577c42927d1617caba1c63a0118b6175f8449d00ca9553eec1156a0333
 
     public function getDebugInfo()
     {
-        return array (  106 => 38,  98 => 33,  89 => 26,  83 => 23,  80 => 22,  74 => 19,  71 => 18,  69 => 17,  64 => 15,  55 => 9,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  113 => 42,  106 => 38,  98 => 33,  89 => 26,  83 => 23,  80 => 22,  74 => 19,  71 => 18,  69 => 17,  64 => 15,  55 => 9,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }
