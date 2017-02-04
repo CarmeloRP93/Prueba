@@ -80,14 +80,14 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="reservas", type="string", length=255, nullable=true)
+     * @ORM\Column(name="reservas", type="string", length=1000, nullable=true)
      */
     private $reservas;
  
     /**
      * @var string
      *
-     * @ORM\Column(name="sesiones", type="string", length=255, nullable=true)
+     * @ORM\Column(name="sesiones", type="string", length=1000, nullable=true)
      */
     private $sesiones;
  

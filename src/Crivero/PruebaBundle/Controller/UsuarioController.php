@@ -31,13 +31,18 @@ class UsuarioController extends Controller {
         $cliente=$repositoryUsuarios->find($id);
         $idReservas = explode('&', $cliente->getReservas());
         $repositoryReservas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas");
-        for ($i=0; $i<count($idReservas); $i++) {
-            $reservas[$i] = $repositoryReservas->find($idReservas[$i]);
-        }
+        $reservas = $this->formatoArrayIds($repositoryReservas,$idReservas);
       
         $deleteForm = $this->createCustomForm($cliente->getId(), 'DELETE', 'crivero_prueba_eliminar');
         return $this->render('CriveroPruebaBundle:Default:cliente.html.twig', array("cliente"=>$cliente, "reservas"=> $reservas, 'delete_form'=>
             $deleteForm->createView()));
+    }
+    
+    private function formatoArrayIds($repository,$array){
+        for ($i=0; $i<count($array); $i++) {
+            $resultado[$i] = $repository->find($array[$i]);
+        }
+        return $resultado;
     }
     
      public function monitoresAction(Request $request) {

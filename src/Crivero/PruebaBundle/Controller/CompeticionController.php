@@ -17,8 +17,8 @@ class CompeticionController extends Controller
     {
       $repositoryCompeticion = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
       $competicion=$repositoryCompeticion->find($id);
-      $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
-      $equipos=$repository->findAll();
+      $repositoryEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
+      $equipos=$repositoryEquipos->findAll();
       return $this->render('CriveroPruebaBundle:Default:competicion.html.twig', array("competicion"=>$competicion,"equipos"=>$equipos));
     }  
 }

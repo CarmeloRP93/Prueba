@@ -79,7 +79,7 @@ class __TwigTemplate_4a0e0e7059225acf6c4e4a94702cb70c2fa1e26393bd63ca72229bce0ec
                 // line 22
                 echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "nombre", array()), "html", null, true);
                 echo "  </td>
-                            <td>";
+                            <td> ";
                 // line 23
                 echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "primerApellido", array()), "html", null, true);
                 echo " </td>

@@ -34,10 +34,9 @@
                             <th> Acciones</th>
                         </tr>
                     </thead>
-                    {% for equipo in equipos %}
-                        {%if equipo.idCompeticion ==competicion.id%}
+                    {% for equipo in equipos if equipo.idCompeticion ==competicion.id %}
                             <tr>
-                                <td>  {{equipo.clasificacion}}º  </td>
+                                <td>   {{equipo.clasificacion}}º  </td>
                                 <td>   {{equipo.nombre}}    </td>
                                 <td>   {{equipo.puntuacion}}   </td>
                                 <td>   {{equipo.victorias}}   </td>
@@ -52,7 +51,6 @@
                                     </a>   
                                 </td>
                             </tr>
-                        {%endif%}
                     {%endfor%}
                 </table>
             </div>
