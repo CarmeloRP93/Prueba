@@ -122,38 +122,7 @@ class __TwigTemplate_ed1cd3c71e6db2954e6e411f6f328c8e31332870ab75cc8cac58918598e
         }
         // line 41
         echo "
-                        ";
-        // line 42
-        if (($this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "sesiones", array()) != null)) {
-            // line 43
-            echo "                            <div>
-                                <h4>Sesiones: </h4> 
-                                <ul id=\"sesiones\">
-                                    ";
-            // line 46
-            $context['_parent'] = (array) $context;
-            $context['_seq'] = twig_ensure_traversable(range(0, (isset($context["sesiones"]) ? $context["sesiones"] : $this->getContext($context, "sesiones"))));
-            foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-                // line 47
-                echo "                                        <li>
-                                            <div class=\"acciones\">
-                                                <button>Cancelar</button>
-                                            </div>
-                                            <p>";
-                // line 51
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesiones"]) ? $context["sesiones"] : $this->getContext($context, "sesiones")), $context["i"], array(), "array"), "html", null, true);
-                echo "</p>
-                                        </li>
-                                    ";
-            }
-            $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
-            $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 54
-            echo "                                </ul>
-                            </div>
-                        ";
-        }
+                  ";
         // line 57
         echo "                    </div><br>
                     <div class=\"accionesExclus text-center\">       
@@ -182,6 +151,6 @@ class __TwigTemplate_ed1cd3c71e6db2954e6e411f6f328c8e31332870ab75cc8cac58918598e
 
     public function getDebugInfo()
     {
-        return array (  162 => 59,  158 => 57,  153 => 54,  144 => 51,  138 => 47,  134 => 46,  129 => 43,  127 => 42,  124 => 41,  119 => 38,  106 => 35,  99 => 31,  95 => 29,  91 => 28,  86 => 25,  84 => 24,  78 => 21,  74 => 20,  70 => 19,  61 => 13,  54 => 9,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  131 => 59,  127 => 57,  124 => 41,  119 => 38,  106 => 35,  99 => 31,  95 => 29,  91 => 28,  86 => 25,  84 => 24,  78 => 21,  74 => 20,  70 => 19,  61 => 13,  54 => 9,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }

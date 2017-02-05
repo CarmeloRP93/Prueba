@@ -6,13 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Crivero\PruebaBundle\Entity\Canchas;
 use Crivero\PruebaBundle\Form\CanchasType;
-class CanchaController extends Controller
-{
+
+class CanchaController extends Controller {
     
     public function canchasAction(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $dql = "SELECT c FROM CriveroPruebaBundle:Canchas c";
-        $canchas = $em->createQuery($dql);
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
+        $canchas= $repository->getCanchas();
         
          $paginator = $this->get('knp_paginator');
          $pagination = $paginator->paginate(
@@ -29,7 +28,7 @@ class CanchaController extends Controller
     
     public function editarAction($id) {
         $em = $this->getDoctrine()->getManager();
-        $cancha= $this->findCancha($id, $em);
+        $cancha= $this->findEntity($id, $em, 'CriveroPruebaBundle:Canchas');
         
         $form = $this->createEditForm($cancha);
         return $this->render('CriveroPruebaBundle:Default:editarCancha.html.twig', array('cancha' => $cancha, 
@@ -45,7 +44,7 @@ class CanchaController extends Controller
     
     public function actualizarAction($id, Request $request) {
         $em = $this->getDoctrine()->getManager();
-        $cancha= $this->findCancha($id, $em);
+        $cancha= $this->findEntity($id, $em, 'CriveroPruebaBundle:Canchas');
         
         $form = $this->createEditForm($cancha);
         $form->handleRequest($request);
@@ -59,12 +58,11 @@ class CanchaController extends Controller
         return $this->render('CriveroPruebaBundle:Default:editarCancha.html.twig', array('cancha' => $cancha, 'form' => $form->createView()));
     }
     
-     private function findCancha($id, \Doctrine\ORM\EntityManager $em) {
-        $cancha= $em->getRepository('CriveroPruebaBundle:Canchas')->find($id);
+     private function findEntity($id, $em, $repository) {
+        $cancha = $em->getRepository($repository)->find($id);
         if (!$cancha) {
             throw $this->createNotFoundException('Cancha no encontrada');
         }
         return $cancha;
     }
-
 }

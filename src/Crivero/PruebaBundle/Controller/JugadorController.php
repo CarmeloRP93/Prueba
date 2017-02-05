@@ -4,10 +4,9 @@ namespace Crivero\PruebaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class JugadorController extends Controller
-{     
-    public function jugadoresAction()
-    {
+class JugadorController extends Controller {
+    
+    public function jugadoresAction() {
        $RepositorioJugadores = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Jugadores");
        $jugadores=$RepositorioJugadores->findAll();
        $RepositorioEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");

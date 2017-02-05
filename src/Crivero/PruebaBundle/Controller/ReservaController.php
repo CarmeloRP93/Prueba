@@ -11,9 +11,8 @@ use Symfony\Component\Form\FormError;
 class ReservaController extends Controller {
     
     public function ReservasAction(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $dql = "SELECT r FROM CriveroPruebaBundle:Reservas r WHERE r.estadoReserva='Reservado'";
-        $reservas = $em->createQuery($dql);
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas");
+        $reservas= $repository->getReservas();
         
          $paginator = $this->get('knp_paginator');
          $pagination = $paginator->paginate(
@@ -70,7 +69,7 @@ class ReservaController extends Controller {
         return $this->render('CriveroPruebaBundle:Default:cancelarReserva.html.twig', array('form' => $form->createView()));
     }
     
-    private function findEntity($id, \Doctrine\ORM\EntityManager $em, $repository) {
+    private function findEntity($id, $em, $repository) {
         $entity= $em->getRepository($repository)->find($id);
         if (!$entity) {
             throw $this->createNotFoundException('Entidad no encontrada');

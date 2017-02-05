@@ -4,13 +4,8 @@ namespace moduloclientes\clienteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Crivero\PruebaBundle\Entity\Reservas;
-use Crivero\PruebaBundle\Entity\Usuarios;
-use Crivero\PruebaBundle\Entity\Canchas;
 use Crivero\PruebaBundle\Form\ReservasType;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class ReservaController extends Controller {
 
