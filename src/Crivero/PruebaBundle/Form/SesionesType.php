@@ -15,7 +15,6 @@ class SesionesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('monitor', 'text')
             ->add('cliente', 'text')
             ->add('nombre', 'text')
             ->add('imagen', 'text')

@@ -19,8 +19,22 @@ class SesionController extends Controller {
     public function sesionMonitoresAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repository->find($id);
+        return $this->render('modulomonitoresmonitoresBundle:Default:sesionMonitores.html.twig', array("sesion" => $sesion));
+    }
+
+    public function misSesionesMonitoresAction() {
+        $em = $this->getDoctrine()->getManager();
+        $usuarioId = $this->getUser()->getId();
+        $dql = 'SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.idMonitor = :id';
+        $sesiones = $em->createQuery($dql)->setParameter('id', $usuarioId)->getResult();
+        return $this->render('modulomonitoresmonitoresBundle:Default:misSesionesMonitores.html.twig', array("sesiones" => $sesiones));
+    }
+
+    public function miSesionMonitoresAction($id) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesion = $repository->find($id);
         $deleteForm = $this->createDeleteForm($sesion);
-        return $this->render('modulomonitoresmonitoresBundle:Default:sesionMonitores.html.twig', array("sesion" => $sesion, 'delete_form' => $deleteForm->createView()));
+        return $this->render('modulomonitoresmonitoresBundle:Default:miSesionMonitores.html.twig', array("sesion" => $sesion, 'delete_form' => $deleteForm->createView()));
     }
 
     private function createDeleteForm($sesion) {
@@ -31,7 +45,7 @@ class SesionController extends Controller {
 
     public function eliminarSesionAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
-        $sesion=$em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
+        $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
 
         $form = $this->createDeleteForm($sesion);
         $form->handleRequest($request);
@@ -40,7 +54,7 @@ class SesionController extends Controller {
             $em->remove($sesion);
             $em->flush();
 
-                return $this->redirect($this->generateUrl('modulomonitores_monitores_sesionesMonitores'));
+            return $this->redirect($this->generateUrl('modulomonitores_monitores_sesionesMonitores'));
         }
     }
 
@@ -69,6 +83,8 @@ class SesionController extends Controller {
             $sesion->setEstadoCliente("no disponible");
             $sesion->setnClientes(0);
             $sesion->setCliente("normal");
+            $sesion->setIdMonitor($this->getUser()->getId());
+            $sesion->setMonitor($this->getUser()->getUsername());
             $lClientes = $form->get('lClientes')->getData();
             if ($lClientes != null) {
                 $em = $this->getDoctrine()->getManager();
@@ -142,6 +158,8 @@ class SesionController extends Controller {
             $sesion->setEstadoCliente("no disponible");
             $sesion->setnClientes(1);
             $sesion->setlClientes(1);
+            $sesion->setIdMonitor($this->getUser()->getId());
+            $sesion->setMonitor($this->getUser()->getUsername());
             $cliente = $form->get('cliente')->getData();
             if ($cliente != null) {
                 $em = $this->getDoctrine()->getManager();
@@ -196,7 +214,6 @@ class SesionController extends Controller {
         return $this->render('modulomonitoresmonitoresBundle:Default:editarSesionDedicada.html.twig', array('form' => $form->createView()));
     }
 
-    
     public function solEliminarSesionAction($id) {
         $em = $this->getDoctrine()->getManager();
         $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
@@ -237,6 +254,5 @@ class SesionController extends Controller {
         }
         return $this->render('modulomonitoresmonitoresBundle:Default:solEliminarSesion.html.twig', array('form' => $form->createView()));
     }
-    
-    
+
 }

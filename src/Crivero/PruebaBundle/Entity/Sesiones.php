@@ -22,11 +22,17 @@ class Sesiones
      */
     private $id;
 
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idMonitor", type="integer")
+     */
+    private $idMonitor;
     /**
      * @var string
      *
      * @ORM\Column(name="monitor", type="string", length=200)
-     * @Assert\NotBlank()
      */
     private $monitor;
 
@@ -490,5 +496,24 @@ class Sesiones
         return $this;
     }
 
+    /**
+     * Get idMonitor
+     *
+     * @return integer 
+     */
+    public function getIdMonitor() {
+        return $this->idMonitor;
+    }
     
+     /**
+     * Set idMonitor
+     *
+     * @param integer $idMonitor
+     * @return Sesiones
+     */
+    public function setIdMonitor($idMonitor) {
+        $this->idMonitor = $idMonitor;
+
+        return $this;
+    }
 }

@@ -22,6 +22,17 @@ class DedicadaController extends Controller {
          $deleteForm = $this->createDeleteFormDedicada($sesion);
         return $this->render('modulomonitoresmonitoresBundle:Default:sesionDedicada.html.twig', array("sesion" => $sesion, 'delete_form' => $deleteForm->createView()));
     }
+    public function misSesionesDedicadasAction() {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesiones = $repository->findAll();
+        return $this->render('modulomonitoresmonitoresBundle:Default:misSesionesDedicadas.html.twig', array("sesiones" => $sesiones));
+    }
+
+    public function miSesionDedicadaAction($id) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesion = $repository->find($id);
+        return $this->render('modulomonitoresmonitoresBundle:Default:miSesionDedicada.html.twig', array("sesion" => $sesion));
+    }
 
     private function createDeleteFormDedicada($sesion) {
         return $this->createFormBuilder()

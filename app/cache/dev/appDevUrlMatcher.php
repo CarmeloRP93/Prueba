@@ -148,6 +148,29 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        if (0 === strpos($pathinfo, '/mi')) {
+            // modulomonitores_monitores_misSesionesMonitores
+            if ($pathinfo === '/misSesionesMonitores') {
+                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::misSesionesMonitoresAction',  '_route' => 'modulomonitores_monitores_misSesionesMonitores',);
+            }
+
+            // modulomonitores_monitores_miSesionMonitores
+            if (0 === strpos($pathinfo, '/miSesionMonitores') && preg_match('#^/miSesionMonitores/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_miSesionMonitores')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::miSesionMonitoresAction',));
+            }
+
+            // modulomonitores_monitores_misSesionesDedicadas
+            if ($pathinfo === '/misSesionesDedicadas') {
+                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DedicadaController::misSesionesDedicadasAction',  '_route' => 'modulomonitores_monitores_misSesionesDedicadas',);
+            }
+
+            // modulomonitores_monitores_miSesionDedicada
+            if (0 === strpos($pathinfo, '/miSesionDedicada') && preg_match('#^/miSesionDedicada/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_miSesionDedicada')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DedicadaController::miSesionDedicadaAction',));
+            }
+
+        }
+
         // modulomonitores_monitores_nuevaSesion
         if ($pathinfo === '/nuevaSesion') {
             return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::nuevaSesionAction',  '_route' => 'modulomonitores_monitores_nuevaSesion',);

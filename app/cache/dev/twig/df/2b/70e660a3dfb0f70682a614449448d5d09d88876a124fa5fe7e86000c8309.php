@@ -94,13 +94,7 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 12
-        echo "    <div class=\"accionesesion text-center\" style=\"margin-top:5px; margin-left: 5px\">
-        <a href=\"";
-        // line 13
-        echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_nuevaSesion");
-        echo "\" class=\"btn btn-success col-sm-1\" style=\"height: 30px; width: 150px;\">Nuevo sesion <span class=\"glyphicon glyphicon-plus\"></span></a>
-    </div>
-    
+        echo "    
         
 ";
     }
@@ -117,6 +111,6 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
 
     public function getDebugInfo()
     {
-        return array (  100 => 13,  97 => 12,  83 => 11,  69 => 9,  66 => 8,  49 => 7,  46 => 6,  43 => 5,  37 => 4,  11 => 2,);
+        return array (  97 => 12,  83 => 11,  69 => 9,  66 => 8,  49 => 7,  46 => 6,  43 => 5,  37 => 4,  11 => 2,);
     }
 }

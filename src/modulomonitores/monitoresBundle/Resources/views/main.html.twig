@@ -4,42 +4,54 @@
 {% block header %}{% endblock %}
 
 {% block navegation %}
- <nav class="navbar navbar-default" role="navigation">
-            <!-- El logotipo y el icono que despliega el menú se agrupan
-                 para mostrarlos mejor en los dispositivos móviles -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Desplegar navegación</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Logotipo</a>
-            </div>
+    <nav class="navbar navbar-default" role="navigation">
+        <!-- El logotipo y el icono que despliega el menú se agrupan
+             para mostrarlos mejor en los dispositivos móviles -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Desplegar navegación</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Logotipo</a>
+        </div>
 
 
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="{{url('modulomonitores_monitores_sesionesMonitores')}}">Sesiones</a></li>
-                    <li><a href="{{url('modulomonitores_monitores_sesionesDedicadas')}}">Sesiones dedicadas</a></li>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">mis Sesiones <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('modulomonitores_monitores_misSesionesMonitores')}}">Mis sesiones</a></li>
+                        <li><a href="{{url('modulomonitores_monitores_misSesionesDedicadas')}}">Mis sesiones dedicadas</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Sesiones <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('modulomonitores_monitores_sesionesMonitores')}}">Sesiones</a></li>
+                        <li><a href="{{url('modulomonitores_monitores_sesionesDedicadas')}}">Sesiones dedicadas</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href = #>Perfil</a></li>
+                    <li><a href="{{path('crivero_prueba_logout')}}">Logout</a></li>
                 </ul>
-                
-                 {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-                    <ul class="nav navbar-nav navbar-right">
-                       <li><a href = #>Perfil</a></li>
-                       <li><a href="{{path('crivero_prueba_logout')}}">Logout</a></li>
-                   </ul>
-                {% endif %}
+            {% endif %}
 
-                <form class="navbar-form navbar-center" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nombre, sesion...">
-                    </div>
-                    <button type="submit" class="btn btn-default" style="margin-bottom: 0px">Buscar</button>
-                </form>
-            </div>
-        </nav>
+            <form class="navbar-form navbar-center" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Nombre, sesion...">
+                </div>
+                <button type="submit" class="btn btn-default" style="margin-bottom: 0px">Buscar</button>
+            </form>
+        </div>
+    </nav>
 {% endblock %}
 {% block body %}
     <div id="pagina" class="cfix">

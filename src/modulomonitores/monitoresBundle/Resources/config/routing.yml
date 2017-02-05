@@ -17,6 +17,21 @@ modulomonitores_monitores_sesionesDedicadas:
 modulomonitores_monitores_sesionDedicada:
     pattern:  /sesionDedicada/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:sesionDedicada } 
+modulomonitores_monitores_misSesionesMonitores:
+    pattern:  /misSesionesMonitores
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:misSesionesMonitores }
+    
+modulomonitores_monitores_miSesionMonitores:
+    pattern:  /miSesionMonitores/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:miSesionMonitores }    
+
+modulomonitores_monitores_misSesionesDedicadas:
+    pattern:  /misSesionesDedicadas
+    defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:misSesionesDedicadas }    
+    
+modulomonitores_monitores_miSesionDedicada:
+    pattern:  /miSesionDedicada/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:miSesionDedicada } 
     
 modulomonitores_monitores_nuevaSesion:
     pattern:  /nuevaSesion
