@@ -17,13 +17,13 @@ class CanchaController extends Controller {
          $pagination = $paginator->paginate(
                 $canchas, $request->query->getInt('page', 1),
                 5);
-       return $this->render('CriveroPruebaBundle:Default:canchas.html.twig', array("pagination"=>$pagination));
+       return $this->render('CriveroPruebaBundle:Canchas:canchas.html.twig', array("pagination"=>$pagination));
     }
     
     public function canchaAction($id) {
        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
        $cancha=$repository->find($id);
-       return $this->render('CriveroPruebaBundle:Default:cancha.html.twig', array("cancha"=>$cancha));
+       return $this->render('CriveroPruebaBundle:Canchas:cancha.html.twig', array("cancha"=>$cancha));
     }
     
     public function editarAction($id) {
@@ -31,7 +31,7 @@ class CanchaController extends Controller {
         $cancha= $this->findEntity($id, $em, 'CriveroPruebaBundle:Canchas');
         
         $form = $this->createEditForm($cancha);
-        return $this->render('CriveroPruebaBundle:Default:editarCancha.html.twig', array('cancha' => $cancha, 
+        return $this->render('CriveroPruebaBundle:Canchas:editarCancha.html.twig', array('cancha' => $cancha, 
                              'form' => $form->createView()));
     }
     
@@ -55,7 +55,7 @@ class CanchaController extends Controller {
             $request->getSession()->getFlashBag()->add('mensaje', 'La cancha ha sido modificada correctamente.');
             return $this->redirect($this->generateUrl('crivero_prueba_cancha', array('id' => $id)));
         }
-        return $this->render('CriveroPruebaBundle:Default:editarCancha.html.twig', array('cancha' => $cancha, 'form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Canchas:editarCancha.html.twig', array('cancha' => $cancha, 'form' => $form->createView()));
     }
     
      private function findEntity($id, $em, $repository) {

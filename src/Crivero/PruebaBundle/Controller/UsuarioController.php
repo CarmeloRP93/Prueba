@@ -21,7 +21,7 @@ class UsuarioController extends Controller {
                 5);
         
        $deleteFormAjax = $this->createCustomForm(':USER_ID', 'DELETE', 'crivero_prueba_eliminar');
-       return $this->render('CriveroPruebaBundle:Default:clientes.html.twig', array("pagination"=>$pagination, 
+       return $this->render('CriveroPruebaBundle:Usuarios:clientes.html.twig', array("pagination"=>$pagination, 
            "delete_form_ajax"=>$deleteFormAjax->createView()));
     }
     
@@ -34,7 +34,7 @@ class UsuarioController extends Controller {
         $reservasCliente = $this->getReservasCliente($repositoryReservas, $idsReservasCliente);
       
         $deleteForm = $this->createCustomForm($cliente->getId(), 'DELETE', 'crivero_prueba_eliminar');
-        return $this->render('CriveroPruebaBundle:Default:cliente.html.twig', array("cliente"=>$cliente, "reservas"=> $reservasCliente, 'delete_form'=>
+        return $this->render('CriveroPruebaBundle:Usuarios:cliente.html.twig', array("cliente"=>$cliente, "reservas"=> $reservasCliente, 'delete_form'=>
             $deleteForm->createView()));
     }
     
@@ -55,7 +55,7 @@ class UsuarioController extends Controller {
                 5);
          
          $deleteFormAjax = $this->createCustomForm(':USER_ID', 'DELETE', 'crivero_prueba_eliminar');
-         return $this->render('CriveroPruebaBundle:Default:monitores.html.twig', array("pagination"=>$pagination,
+         return $this->render('CriveroPruebaBundle:Usuarios:monitores.html.twig', array("pagination"=>$pagination,
               "delete_form_ajax"=>$deleteFormAjax->createView()));
     }
     
@@ -64,7 +64,7 @@ class UsuarioController extends Controller {
         $monitor=$repository->find($id);
         
         $deleteForm = $this->createCustomForm($monitor->getId(), 'DELETE', 'crivero_prueba_eliminar');
-        return $this->render('CriveroPruebaBundle:Default:monitor.html.twig', array("monitor"=>$monitor,  'delete_form'=>
+        return $this->render('CriveroPruebaBundle:Usuarios:monitor.html.twig', array("monitor"=>$monitor,  'delete_form'=>
             $deleteForm->createView()));
     }
     
@@ -72,7 +72,7 @@ class UsuarioController extends Controller {
       $usuario = new Usuarios();
       $form = $this->createCreateForm($usuario);
       
-      return $this->render('CriveroPruebaBundle:Default:nuevo.html.twig', array('form' => $form->createView()));
+      return $this->render('CriveroPruebaBundle:Usuarios:nuevo.html.twig', array('form' => $form->createView()));
     }
     
     public function crearAction(Request $request) {
@@ -97,7 +97,7 @@ class UsuarioController extends Controller {
             $form->get('password')->addError(new FormError('Rellene el campo, gracias'));
         }
       }
-      return $this->render('CriveroPruebaBundle:Default:nuevo.html.twig', array('form' => $form->createView()));
+      return $this->render('CriveroPruebaBundle:Usuarios:nuevo.html.twig', array('form' => $form->createView()));
     }
 
     private function createCreateForm(Usuarios $entity){
@@ -147,7 +147,7 @@ class UsuarioController extends Controller {
         $usuario= $this->findUser($id, $em);
         
         $form = $this->createEditForm($usuario);
-        return $this->render('CriveroPruebaBundle:Default:editar.html.twig', array('usuario' => $usuario, 
+        return $this->render('CriveroPruebaBundle:Usuarios:editar.html.twig', array('usuario' => $usuario, 
                              'form' => $form->createView()));
     }
     
@@ -173,7 +173,7 @@ class UsuarioController extends Controller {
             $tipo = $form->get('tipo')->getData();
             return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitores')):$this->redirect($this->generateUrl('crivero_prueba_clientes'));
         }
-        return $this->render('CriveroPruebaBundle:Default:editar.html.twig', array('usuario' => $usuario, 'form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Usuarios:editar.html.twig', array('usuario' => $usuario, 'form' => $form->createView()));
     }
     
     public function createEditForm(Usuarios $entity) {
@@ -190,7 +190,7 @@ class UsuarioController extends Controller {
     }
     
     public function homeAction() {
-        return $this->render('CriveroPruebaBundle:Default:home.html.twig');
+        return $this->render('CriveroPruebaBundle:Usuarios:home.html.twig');
     }
     
     private function findUser($id, $em) {

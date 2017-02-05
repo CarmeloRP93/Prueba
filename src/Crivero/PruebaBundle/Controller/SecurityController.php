@@ -18,7 +18,7 @@ class SecurityController extends Controller {
                 $error = $this->get('request')->getSession()->get(SecurityContext::AUTHENTICATION_ERROR);
             }
             $last_username = $this->get('request')->getSession()->get(SecurityContext::LAST_USERNAME);
-            return $this->render('CriveroPruebaBundle:Default:login.html.twig', array('error' => $error, 'last_username' => $last_username));       
+            return $this->render('CriveroPruebaBundle:Usuarios:login.html.twig', array('error' => $error, 'last_username' => $last_username));       
         }
     }
     
