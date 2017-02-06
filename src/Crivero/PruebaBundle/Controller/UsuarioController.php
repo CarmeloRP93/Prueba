@@ -28,21 +28,19 @@ class UsuarioController extends Controller {
     public function clienteAction($id) {
         $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $cliente = $repositoryUsuarios->find($id);
+
         $idsReservasCliente = explode('&', $cliente->getReservas());
-        
         $repositoryReservas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas");
-        $reservasCliente = $this->getReservasCliente($repositoryReservas, $idsReservasCliente);
+        $reservasCliente = $this->getArrayEntidades($repositoryReservas, $idsReservasCliente);
+        
+        $idsSesionesCliente = explode('&', $cliente->getSesiones());
+        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesionesCliente = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
       
         $deleteForm = $this->createCustomForm($cliente->getId(), 'DELETE', 'crivero_prueba_eliminar');
-        return $this->render('CriveroPruebaBundle:Usuarios:cliente.html.twig', array("cliente"=>$cliente, "reservas"=> $reservasCliente, 'delete_form'=>
-            $deleteForm->createView()));
-    }
-    
-    private function getReservasCliente($repository, $array){
-        for ($i=0; $i<count($array); $i++) {
-            $resultado[$i] = $repository->find($array[$i]);
-        }
-        return $resultado;
+        return $this->render('CriveroPruebaBundle:Usuarios:cliente.html.twig', array("cliente"=>$cliente, 
+                             "reservas"=> $reservasCliente, "sesiones" => $sesionesCliente,
+                             'delete_form'=> $deleteForm->createView()));
     }
     
      public function monitoresAction(Request $request) {
@@ -63,9 +61,13 @@ class UsuarioController extends Controller {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $monitor=$repository->find($id);
         
+        $idsSesionesMonitor = explode('&', $monitor->getSesiones());
+        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesionesMonitor = $this->getArrayEntidades($repositorySesiones, $idsSesionesMonitor);
+        
         $deleteForm = $this->createCustomForm($monitor->getId(), 'DELETE', 'crivero_prueba_eliminar');
-        return $this->render('CriveroPruebaBundle:Usuarios:monitor.html.twig', array("monitor"=>$monitor,  'delete_form'=>
-            $deleteForm->createView()));
+        return $this->render('CriveroPruebaBundle:Usuarios:monitor.html.twig', array("monitor"=>$monitor, "sesiones"=>$sesionesMonitor,
+                             'delete_form'=>$deleteForm->createView()));
     }
     
     public function nuevoAction() {
@@ -206,6 +208,13 @@ class UsuarioController extends Controller {
             ->setAction($this->generateUrl($route, array('id' => $id)))
             ->setMethod($method)
             ->getForm();
+    }
+    
+    private function getArrayEntidades($repository, $array){
+        for ($i=0; $i<count($array); $i++) {
+            $resultado[$i] = $repository->find($array[$i]);
+        }
+        return $resultado;
     }
     
 }

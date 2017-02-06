@@ -81,27 +81,36 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
         echo "\">Monitores</a></li>
                             </ul>
                      </li>
-                    <li><a href=\"";
-        // line 31
+                    <li class=\"dropdown\">
+                            <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Instalaciones <b class=\"caret\"></b></a>
+                            <ul class=\"dropdown-menu\">
+                                <li><a href=\"";
+        // line 34
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_canchas");
         echo "\">Canchas</a></li>
+                                <li><a href=\"";
+        // line 35
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_aulas");
+        echo "\">Aulas</a></li>
+                            </ul>
+                    </li>
                     <li><a href=\"";
-        // line 32
+        // line 38
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_reservas");
         echo "\">Reservas</a></li>
                     <li class=\"dropdown\">
                             <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Competiciones <b class=\"caret\"></b></a>
                             <ul class=\"dropdown-menu\">
                               <li><a href=\"";
-        // line 36
+        // line 42
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_competiciones");
         echo "\">Competiciones </a></li>
                               <li><a href=\"";
-        // line 37
+        // line 43
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_equipos");
         echo "\">Equipos</a></li>
                               <li><a href=\"";
-        // line 38
+        // line 44
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_jugadores");
         echo "\">Jugadores</a></li>
                             </ul>
@@ -110,11 +119,11 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
                             <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Sesiones <b class=\"caret\"></b></a>
                             <ul class=\"dropdown-menu\">
                               <li><a href=\"";
-        // line 44
+        // line 50
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_sesiones");
         echo "\">S.Generales</a></li>
                               <li><a href=\"";
-        // line 45
+        // line 51
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_dedicadas");
         echo "\">S.Dedicadas</a></li>
                             </ul>
@@ -122,19 +131,19 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
                 </ul>
                 
                 ";
-        // line 50
+        // line 56
         if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_FULLY")) {
-            // line 51
+            // line 57
             echo "                    <ul class=\"nav navbar-nav navbar-right\">
                         <li><a href = #>Perfil</a></li>
                         <li><a href=\"";
-            // line 53
+            // line 59
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
             echo "\">Logout</a></li>
                     </ul>
                 ";
         }
-        // line 56
+        // line 62
         echo "
                 <form class=\"navbar-form navbar-center\" role=\"search\">
                     <div class=\"form-group\">
@@ -147,16 +156,16 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
 ";
     }
 
-    // line 66
+    // line 72
     public function block_body($context, array $blocks = array())
     {
-        // line 67
+        // line 73
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 69
+        // line 75
         $this->displayBlock('contenido', $context, $blocks);
-        // line 71
+        // line 77
         echo "        </div>
 
     </div>
@@ -164,10 +173,10 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
 ";
     }
 
-    // line 69
+    // line 75
     public function block_contenido($context, array $blocks = array())
     {
-        // line 70
+        // line 76
         echo "            ";
     }
 
@@ -183,6 +192,6 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
 
     public function getDebugInfo()
     {
-        return array (  171 => 70,  168 => 69,  160 => 71,  158 => 69,  154 => 67,  151 => 66,  138 => 56,  132 => 53,  128 => 51,  126 => 50,  118 => 45,  114 => 44,  105 => 38,  101 => 37,  97 => 36,  90 => 32,  86 => 31,  80 => 28,  76 => 27,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
+        return array (  180 => 76,  177 => 75,  169 => 77,  167 => 75,  163 => 73,  160 => 72,  147 => 62,  141 => 59,  137 => 57,  135 => 56,  127 => 51,  123 => 50,  114 => 44,  110 => 43,  106 => 42,  99 => 38,  93 => 35,  89 => 34,  80 => 28,  76 => 27,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
     }
 }

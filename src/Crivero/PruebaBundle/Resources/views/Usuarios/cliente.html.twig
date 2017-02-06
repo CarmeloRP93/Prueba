@@ -39,21 +39,18 @@
                             </div>
                         {% endif %}
 
-                  {#      {% if cliente.sesiones != null %}
+                        {% if cliente.sesiones != null %}
                             <div>
                                 <h4>Sesiones: </h4> 
                                 <ul id="sesiones">
-                                    {% for i in 0..sesiones %}
+                                    {% for sesion in sesiones %}
                                         <li>
-                                            <div class="acciones">
-                                                <button>Cancelar</button>
-                                            </div>
-                                            <p>{{sesiones[i]}}</p>
+                                            <p>{{ sesion.nombre }} con {{sesion.monitor}} </p>
                                         </li>
                                     {% endfor %}
                                 </ul>
                             </div>
-                        {% endif %}#}
+                        {% endif %}
                     </div><br>
                     <div class="accionesExclus text-center">       
                         {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form })}}

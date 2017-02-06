@@ -1,0 +1,44 @@
+{# empty Twig template #}
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
+
+{% block title %} Aulas {% endblock %}
+
+{% block contenido %}
+    
+    <div class="container">
+        <h1 class="text-center">Aulas</h1>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'a.nombre') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Estado', 'a.disponibilidad') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Horario', 'a.horario') }}</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for aula in pagination %}
+                        <tr>
+                            <td>{{aula.nombre}}</td>
+                            <td><strong>{{aula.disponibilidad}}</strong></td>
+                            <td>{{aula.horario}}</td>
+                            <td class="actions">
+                              <a href="{{ path('crivero_prueba_aula', { id: aula.id }) }}" class="btn btn-sm btn-info">
+                                    Ver
+                                </a>
+                                {#<a href="{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}" class="btn btn-sm btn-primary">
+                                    Editar
+                                </a>#}
+                                
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+{% endblock %} 

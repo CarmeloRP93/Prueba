@@ -13,20 +13,15 @@
         </div>
         <div class="usuardat">
             <div id="resersiones">
-                {% if monitor.sesiones|length > 0 %}
+                {% if monitor.sesiones != null %}
                 <div>
                     <h4>Sesiones: </h4> 
                     <ul id="sesiones">
-                       {% set sesiones=monitor.sesiones|split('**') %}
-                            {% for i in 0..sesiones %}
-                        <li>
-                            <div class="acciones">
-                                <button>Modificar</button>
-                                <button>Cancelar</button>
-                            </div>
-                            <p>{{sesiones[i]}}</p>
-                        </li>
-                            {% endfor %}
+                        {% for sesion in sesiones %}
+                            <li>
+                                <p>Aula {{sesion.aula}} - {{sesion.nombre}}</p>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
                     {% endif %}

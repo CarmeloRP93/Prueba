@@ -60,6 +60,14 @@ crivero_prueba_cancha:
     pattern:  /cancha/{id}
     defaults: { _controller: CriveroPruebaBundle:Cancha:cancha }
 
+crivero_prueba_aulas:
+    pattern:  /aulas
+    defaults: { _controller: CriveroPruebaBundle:Aula:aulas }
+
+crivero_prueba_aula:
+    pattern:  /aula/{id}
+    defaults: { _controller: CriveroPruebaBundle:Aula:aula }
+
 crivero_prueba_cancha_editar:
     pattern:  /cancha/editar/{id}
     defaults: { _controller: CriveroPruebaBundle:Cancha:editar }

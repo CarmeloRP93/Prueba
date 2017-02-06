@@ -67,52 +67,47 @@ class __TwigTemplate_e034f6cae261413f62de8239e4e89d6b0dbbbf7afe27361f191dd12de83
             <div id=\"resersiones\">
                 ";
         // line 16
-        if ((twig_length_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "sesiones", array())) > 0)) {
+        if (($this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "sesiones", array()) != null)) {
             // line 17
             echo "                <div>
                     <h4>Sesiones: </h4> 
                     <ul id=\"sesiones\">
-                       ";
+                        ";
             // line 20
-            $context["sesiones"] = twig_split_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "sesiones", array()), "**");
-            // line 21
-            echo "                            ";
             $context['_parent'] = (array) $context;
-            $context['_seq'] = twig_ensure_traversable(range(0, (isset($context["sesiones"]) ? $context["sesiones"] : $this->getContext($context, "sesiones"))));
-            foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
+            $context['_seq'] = twig_ensure_traversable((isset($context["sesiones"]) ? $context["sesiones"] : $this->getContext($context, "sesiones")));
+            foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
+                // line 21
+                echo "                            <li>
+                                <p>Aula ";
                 // line 22
-                echo "                        <li>
-                            <div class=\"acciones\">
-                                <button>Modificar</button>
-                                <button>Cancelar</button>
-                            </div>
-                            <p>";
-                // line 27
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesiones"]) ? $context["sesiones"] : $this->getContext($context, "sesiones")), $context["i"], array(), "array"), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "aula", array()), "html", null, true);
+                echo " - ";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
                 echo "</p>
-                        </li>
-                            ";
+                            </li>
+                        ";
             }
             $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 30
+            // line 25
             echo "                    </ul>
                 </div>
                     ";
         }
-        // line 33
+        // line 28
         echo "            </div>
             <h4>F.Nacimiento: </h4> <p>";
-        // line 34
+        // line 29
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "fNacimiento", array()), "html", null, true);
         echo "</p>
             <h4>Registro: </h4> <p>";
-        // line 35
+        // line 30
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "registro", array()), "d/m/Y H:i"), "html", null, true);
         echo "</p>
             <h4>Telefono: </h4> <p>";
-        // line 36
+        // line 31
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "telefono", array()), "html", null, true);
         echo "</p>
         </div>
@@ -132,6 +127,6 @@ class __TwigTemplate_e034f6cae261413f62de8239e4e89d6b0dbbbf7afe27361f191dd12de83
 
     public function getDebugInfo()
     {
-        return array (  116 => 36,  112 => 35,  108 => 34,  105 => 33,  100 => 30,  91 => 27,  84 => 22,  79 => 21,  77 => 20,  72 => 17,  70 => 16,  63 => 12,  58 => 10,  53 => 8,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  111 => 31,  107 => 30,  103 => 29,  100 => 28,  95 => 25,  84 => 22,  81 => 21,  77 => 20,  72 => 17,  70 => 16,  63 => 12,  58 => 10,  53 => 8,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }

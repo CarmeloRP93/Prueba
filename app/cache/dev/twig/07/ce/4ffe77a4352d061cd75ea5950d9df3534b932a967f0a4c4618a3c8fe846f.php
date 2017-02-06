@@ -122,12 +122,42 @@ class __TwigTemplate_07ce4ffe77a4352d061cd75ea5950d9df3534b932a967f0a4c4618a3c8f
         }
         // line 41
         echo "
-                  ";
-        // line 57
+                        ";
+        // line 42
+        if (($this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "sesiones", array()) != null)) {
+            // line 43
+            echo "                            <div>
+                                <h4>Sesiones: </h4> 
+                                <ul id=\"sesiones\">
+                                    ";
+            // line 46
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["sesiones"]) ? $context["sesiones"] : $this->getContext($context, "sesiones")));
+            foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
+                // line 47
+                echo "                                        <li>
+                                            <p>";
+                // line 48
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
+                echo " con ";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "monitor", array()), "html", null, true);
+                echo " </p>
+                                        </li>
+                                    ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 51
+            echo "                                </ul>
+                            </div>
+                        ";
+        }
+        // line 54
         echo "                    </div><br>
                     <div class=\"accionesExclus text-center\">       
                         ";
-        // line 59
+        // line 56
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form"))));
         echo "
                     </div>
@@ -151,6 +181,6 @@ class __TwigTemplate_07ce4ffe77a4352d061cd75ea5950d9df3534b932a967f0a4c4618a3c8f
 
     public function getDebugInfo()
     {
-        return array (  131 => 59,  127 => 57,  124 => 41,  119 => 38,  106 => 35,  99 => 31,  95 => 29,  91 => 28,  86 => 25,  84 => 24,  78 => 21,  74 => 20,  70 => 19,  61 => 13,  54 => 9,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  161 => 56,  157 => 54,  152 => 51,  141 => 48,  138 => 47,  134 => 46,  129 => 43,  127 => 42,  124 => 41,  119 => 38,  106 => 35,  99 => 31,  95 => 29,  91 => 28,  86 => 25,  84 => 24,  78 => 21,  74 => 20,  70 => 19,  61 => 13,  54 => 9,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }

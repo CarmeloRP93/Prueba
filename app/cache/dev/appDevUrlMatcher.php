@@ -476,6 +476,22 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::canchaAction',));
             }
 
+        }
+
+        if (0 === strpos($pathinfo, '/aula')) {
+            // crivero_prueba_aulas
+            if ($pathinfo === '/aulas') {
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\AulaController::aulasAction',  '_route' => 'crivero_prueba_aulas',);
+            }
+
+            // crivero_prueba_aula
+            if (preg_match('#^/aula/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_aula')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\AulaController::aulaAction',));
+            }
+
+        }
+
+        if (0 === strpos($pathinfo, '/cancha')) {
             // crivero_prueba_cancha_editar
             if (0 === strpos($pathinfo, '/cancha/editar') && preg_match('#^/cancha/editar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_editar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::editarAction',));

@@ -1,0 +1,53 @@
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
+{% block title %} {{aula.nombre}} {% endblock %}
+{% block contenido %}
+    {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
+     <div class="container text-center">
+        <h3>Detalles de Aula</h3>
+    </div>
+        
+         <div class="text-center">
+           <h4>{{aula.nombre}}</h4>
+        </div>
+
+        <div class="col-md-6 col-xs-12">
+
+            <div class="text-center">
+{#                <img src="{{ asset(cancha.imagen) }}" width="180px" class="img-rounded"/><br>#}
+
+                <br>{% if aula.disponibilidad == "Disponible" %}
+                      <div class="text-center">
+                        <button class="btn btn-success">{{aula.disponibilidad}}</button>
+                      </div>
+                      {% else %}
+                      <div class="text-center">
+                        <button class="btn btn-danger">{{aula.disponibilidad}}</button>
+                      </div>
+                {% endif %}
+            </div><br>
+
+        </div>
+
+        <div class="col-md-6 col-xs-12">
+            <div class="text-center">
+                <label class="control-label span7 text-left">Horario: </label>
+                <label class="control-label span7 text-right">{{aula.horario}} </label>
+                
+                {% if aula.sesiones != null %}
+                        <div>
+                            <h4>Sesiones: </h4> 
+                                {% for sesion in sesiones %}
+                                        <p>{{ sesion.nombre }} con {{sesion.monitor}} </p>
+                                {% endfor %}
+                        </div>
+                {% endif %}
+            </div>
+            
+
+           {# <div class="text-center">
+              <a href="{{ path('crivero_prueba_cancha_editar', { id: cancha.id }) }}" class="btn btn-primary">Editar info</a>
+            </div>#}
+
+
+    </div>
+{% endblock %}

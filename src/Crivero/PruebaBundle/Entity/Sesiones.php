@@ -11,8 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\SesionesRepository")
  */
-class Sesiones
-{
+class Sesiones {
     /**
      * @var integer
      *
@@ -22,13 +21,26 @@ class Sesiones
      */
     private $id;
 
-    
     /**
      * @var integer
      *
      * @ORM\Column(name="idMonitor", type="integer")
      */
     private $idMonitor;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="aula", type="integer")
+     */
+    private $aula;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="idsClientes", type="string", length=1000, nullable=true)
+     */
+    private $idsClientes;
+    
     /**
      * @var string
      *
@@ -285,8 +297,7 @@ class Sesiones
      *
      * @return integer 
      */
-    public function getRepeticiones()
-    {
+    public function getRepeticiones() {
         return $this->repeticiones;
     }
 
@@ -296,8 +307,7 @@ class Sesiones
      * @param integer $duracion
      * @return Sesiones
      */
-    public function setDuracion($duracion)
-    {
+    public function setDuracion($duracion) {
         $this->duracion = $duracion;
 
         return $this;
@@ -308,8 +318,7 @@ class Sesiones
      *
      * @return integer 
      */
-    public function getDuracion()
-    {
+    public function getDuracion() {
         return $this->duracion;
     }
     /**
@@ -318,8 +327,7 @@ class Sesiones
      * @param integer $descanso
      * @return Sesiones
      */
-    public function setDescanso($descanso)
-    {
+    public function setDescanso($descanso) {
         $this->descanso = $descanso;
 
         return $this;
@@ -330,8 +338,7 @@ class Sesiones
      *
      * @return integer 
      */
-    public function getDescanso()
-    {
+    public function getDescanso() {
         return $this->descanso;
     }
 
@@ -341,8 +348,7 @@ class Sesiones
      * @param string $estado
      * @return Sesiones
      */
-    public function setEstado($estado)
-    {
+    public function setEstado($estado) {
         $this->estado = $estado;
 
         return $this;
@@ -353,8 +359,7 @@ class Sesiones
      *
      * @return string 
      */
-    public function getEstado()
-    {
+    public function getEstado() {
         return $this->estado;
     }
     
@@ -364,8 +369,7 @@ class Sesiones
      * @param string $estadoCliente
      * @return Sesiones
      */
-    public function setEstadoCliente($estadoCliente)
-    {
+    public function setEstadoCliente($estadoCliente) {
         $this->estadoCliente = $estadoCliente;
 
         return $this;
@@ -376,8 +380,7 @@ class Sesiones
      *
      * @return string 
      */
-    public function getEstadoCliente()
-    {
+    public function getEstadoCliente() {
         return $this->estadoCliente;
     }
     
@@ -387,8 +390,7 @@ class Sesiones
      * @param string $objetivo
      * @return Sesiones
      */
-    public function setObjetivo($objetivo)
-    {
+    public function setObjetivo($objetivo) {
         $this->objetivo = $objetivo;
 
         return $this;
@@ -399,8 +401,7 @@ class Sesiones
      *
      * @return string 
      */
-    public function getObjetivo()
-    {
+    public function getObjetivo() {
         return $this->objetivo;
     }
     
@@ -410,8 +411,7 @@ class Sesiones
      * @param integer $nClientes
      * @return Sesiones
      */
-    public function setNClientes($nClientes)
-    {
+    public function setNClientes($nClientes) {
         $this->nClientes = $nClientes;
 
         return $this;
@@ -422,8 +422,7 @@ class Sesiones
      *
      * @return integer 
      */
-    public function getNClientes()
-    {
+    public function getNClientes() {
         return $this->nClientes;
     }
     
@@ -433,8 +432,7 @@ class Sesiones
      * @param integer $lClientes
      * @return Sesiones
      */
-    public function setLClientes($lClientes)
-    {
+    public function setLClientes($lClientes) {
         $this->lClientes = $lClientes;
 
         return $this;
@@ -445,8 +443,7 @@ class Sesiones
      *
      * @return integer 
      */
-    public function getLClientes()
-    {
+    public function getLClientes() {
         return $this->lClientes;
     }
     
@@ -456,8 +453,7 @@ class Sesiones
      * @param string $observaciones
      * @return Sesiones
      */
-    public function setObservaciones($observaciones)
-    {
+    public function setObservaciones($observaciones) {
         $this->observaciones = $observaciones;
 
         return $this;
@@ -468,8 +464,7 @@ class Sesiones
      *
      * @return string 
      */
-    public function getObservaciones()
-    {
+    public function getObservaciones() {
         return $this->observaciones;
     }
     
@@ -478,8 +473,7 @@ class Sesiones
      *
      * @return string 
      */
-    public function getMotivos()
-    {
+    public function getMotivos() {
         return $this->motivos;
     }
     
@@ -489,8 +483,7 @@ class Sesiones
      * @param string $motivos
      * @return Sesiones
      */
-    public function setMotivos($motivos)
-    {
+    public function setMotivos($motivos) {
         $this->motivos = $motivos;
 
         return $this;
@@ -513,6 +506,48 @@ class Sesiones
      */
     public function setIdMonitor($idMonitor) {
         $this->idMonitor = $idMonitor;
+
+        return $this;
+    }
+    
+    /**
+     * Get Aula
+     *
+     * @return integer 
+     */
+    public function getAula() {
+        return $this->aula;
+    }
+    
+     /**
+     * Set Aula
+     *
+     * @param integer $aula
+     * @return Sesiones
+     */
+    public function setAula($aula) {
+        $this->aula = $aula;
+
+        return $this;
+    }
+    
+    /**
+     * Get idsClientes
+     *
+     * @return string 
+     */
+    public function getIdsClientes() {
+        return $this->idsClientes;
+    }
+    
+    /**
+     * Set idsClientes
+     *
+     * @param string $idsClientes
+     * @return Sesiones
+     */
+    public function setIdsClientes($idsClientes) {
+        $this->idsClientes = $idsClientes;
 
         return $this;
     }
