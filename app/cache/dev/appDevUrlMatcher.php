@@ -353,17 +353,33 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/sesion')) {
-            // moduloclientes_cliente_sesionesClientes
-            if ($pathinfo === '/sesionesClientes') {
-                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::sesionesClientesAction',  '_route' => 'moduloclientes_cliente_sesionesClientes',);
+        // moduloclientes_cliente_sesionesClientes
+        if ($pathinfo === '/sesionesClientes') {
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::sesionesClientesAction',  '_route' => 'moduloclientes_cliente_sesionesClientes',);
+        }
+
+        if (0 === strpos($pathinfo, '/pag')) {
+            // moduloclientes_cliente_pagoSesion
+            if ($pathinfo === '/pagoSesion') {
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::pagoSesionAction',  '_route' => 'moduloclientes_cliente_pagoSesion',);
             }
 
-            // moduloclientes_cliente_sesionClientes
-            if (0 === strpos($pathinfo, '/sesionClientes') && preg_match('#^/sesionClientes/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_sesionClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::sesionClientesAction',));
-            }
+            // moduloclientes_cliente_pagar
+            if ($pathinfo === '/pagar') {
+                if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                    goto not_moduloclientes_cliente_pagar;
+                }
 
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::pagarAction',  '_route' => 'moduloclientes_cliente_pagar',);
+            }
+            not_moduloclientes_cliente_pagar:
+
+        }
+
+        // moduloclientes_cliente_sesionClientes
+        if (0 === strpos($pathinfo, '/sesionClientes') && preg_match('#^/sesionClientes/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_sesionClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::sesionClientesAction',));
         }
 
         // moduloclientes_cliente_nuevaReserva

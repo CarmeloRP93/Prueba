@@ -4,52 +4,61 @@
 {% block header %}{% endblock %}
 
 {% block navegation %}
-        <nav class="navbar navbar-default" role="navigation">
-            <!-- El logotipo y el icono que despliega el menú se agrupan
-                 para mostrarlos mejor en los dispositivos móviles -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Desplegar navegación</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Logotipo</a>
-            </div>
+    <nav class="navbar navbar-default" role="navigation">
+        <!-- El logotipo y el icono que despliega el menú se agrupan
+             para mostrarlos mejor en los dispositivos móviles -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Desplegar navegación</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Logotipo</a>
+        </div>
 
 
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="{{url('moduloclientes_cliente_reservasClientes')}}">Reservas</a></li>
-                    <li><a href="{{url('moduloclientes_cliente_canchasClientes')}}">Canchas</a></li>
-                    
-                    <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Competiciones <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                              <li><a href="{{url('moduloclientes_cliente_competicionesClientes')}}"> Mis competiciones </a></li>
-                              <li><a href="{{url('moduloclientes_cliente_equiposClientes')}}"> Mis equipos </a></li>
-                            </ul>
-                     </li>
-                    <li><a href="{{url('moduloclientes_cliente_sesionesClientes')}}">Sesiones</a></li>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Reservas <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('moduloclientes_cliente_reservasClientes')}}">Mis reservas</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="{{url('moduloclientes_cliente_canchasClientes')}}">Canchas</a></li>
+
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Competiciones <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('moduloclientes_cliente_competicionesClientes')}}"> Mis competiciones </a></li>
+                        <li><a href="{{url('moduloclientes_cliente_equiposClientes')}}"> Mis equipos </a></li>
+                    </ul>
+                </li>
+
+                <li><a href="{{url('moduloclientes_cliente_sesionesClientes')}}">Sesiones</a></li>
+                <li><a href="{{url('moduloclientes_cliente_pagoSesion')}}">Pagar</a></li>
+            </ul>
+
+            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href = #>Perfil</a></li>
+                    <li><a href="{{path('crivero_prueba_logout')}}">Logout</a></li>
                 </ul>
-                
-                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-                    <ul class="nav navbar-nav navbar-right">
-                       <li><a href = #>Perfil</a></li>
-                       <li><a href="{{path('crivero_prueba_logout')}}">Logout</a></li>
-                   </ul>
-                {% endif %}
+            {% endif %}
 
-                <form class="navbar-form navbar-center" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nombre, cancha...">
-                    </div>
-                    <button type="submit" class="btn btn-default" style="margin-bottom: 0px">Buscar</button>
- 
-                </form>
-            </div>
-        </nav>
+            <form class="navbar-form navbar-center" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Nombre, cancha...">
+                </div>
+                <button type="submit" class="btn btn-default" style="margin-bottom: 0px">Buscar</button>
+
+            </form>
+        </div>
+    </nav>
 {% endblock %}
 {% block body %}
     <div id="pagina" class="cfix">

@@ -1,0 +1,46 @@
+{% extends 'moduloclientesclienteBundle::main.html.twig' %}
+
+{% block title %} Pago Sesion {% endblock %}
+
+{% block contenido %}
+    <div class="container">
+        <h2>Pago de la Sesión</h2>
+        {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+
+        <div class="hidden">
+            {{ form_label(form.idCliente) }}
+            {{ form_widget(form.idCliente, { 'attr' : {'class' : 'form-control'} }) }}
+            <span class="text-danger">{{ form_errors(form.idCliente) }}</span>
+        </div>
+
+        <div class="hidden">
+            {{ form_label(form.fechaPago) }}
+            {{ form_widget(form.fechaPago, {'attr': {'class': 'form-control'} }) }}
+            <span class="text-danger">{{ form_errors(form.fechaPago) }}</span>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.concepto) }}
+            {{ form_widget(form.concepto, {'attr': {'class': 'form-control', 'placeholder' : 'Concepto'}}) }}
+            <span class="text-danger">{{ form_errors(form.concepto) }}</span>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.tipoPago) }}
+            {{ form_widget(form.tipoPago, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Tipo de pago'} }) }}
+            <span class="text-danger">{{ form_errors(form.tipoPago) }}</span>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.cuantia) }}
+            {{ form_widget(form.cuantia, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Cantidad a pagar'} }) }}
+            <span class="text-danger">{{ form_errors(form.cuantia) }}</span>
+        </div>
+
+        <p>
+            {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
+        </p>                
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

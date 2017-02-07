@@ -32,6 +32,17 @@ moduloclientes_cliente_equipoClientes:
 moduloclientes_cliente_sesionesClientes:
     pattern:  /sesionesClientes
     defaults: { _controller: moduloclientesclienteBundle:Sesion:sesionesClientes }
+    
+moduloclientes_cliente_pagoSesion:
+    pattern:  /pagoSesion
+    defaults: { _controller: moduloclientesclienteBundle:Sesion:pagoSesion }
+    
+moduloclientes_cliente_pagar:
+    pattern:  /pagar
+    defaults: { _controller: moduloclientesclienteBundle:Sesion:pagar }
+    requirements:
+        _method:  POST|GET
+    
 moduloclientes_cliente_sesionClientes:
     pattern:  /sesionClientes/{id}
     defaults: { _controller: moduloclientesclienteBundle:Sesion:sesionClientes }

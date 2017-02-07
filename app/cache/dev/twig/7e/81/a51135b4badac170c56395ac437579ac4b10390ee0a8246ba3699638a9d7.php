@@ -51,88 +51,100 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
     public function block_navegation($context, array $blocks = array())
     {
         // line 7
-        echo "        <nav class=\"navbar navbar-default\" role=\"navigation\">
-            <!-- El logotipo y el icono que despliega el menú se agrupan
-                 para mostrarlos mejor en los dispositivos móviles -->
-            <div class=\"navbar-header\">
-                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\"
-                        data-target=\".navbar-ex1-collapse\">
-                    <span class=\"sr-only\">Desplegar navegación</span>
-                    <span class=\"icon-bar\"></span>
-                    <span class=\"icon-bar\"></span>
-                    <span class=\"icon-bar\"></span>
-                </button>
-                <a class=\"navbar-brand\" href=\"#\">Logotipo</a>
-            </div>
+        echo "    <nav class=\"navbar navbar-default\" role=\"navigation\">
+        <!-- El logotipo y el icono que despliega el menú se agrupan
+             para mostrarlos mejor en los dispositivos móviles -->
+        <div class=\"navbar-header\">
+            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\"
+                    data-target=\".navbar-ex1-collapse\">
+                <span class=\"sr-only\">Desplegar navegación</span>
+                <span class=\"icon-bar\"></span>
+                <span class=\"icon-bar\"></span>
+                <span class=\"icon-bar\"></span>
+            </button>
+            <a class=\"navbar-brand\" href=\"#\">Logotipo</a>
+        </div>
 
 
-            <div class=\"collapse navbar-collapse navbar-ex1-collapse\">
-                <ul class=\"nav navbar-nav\">
-                    <li><a href=\"";
-        // line 24
+        <div class=\"collapse navbar-collapse navbar-ex1-collapse\">
+            <ul class=\"nav navbar-nav\">
+
+                <li class=\"dropdown\">
+                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Reservas <b class=\"caret\"></b></a>
+                    <ul class=\"dropdown-menu\">
+                        <li><a href=\"";
+        // line 28
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_reservasClientes");
-        echo "\">Reservas</a></li>
-                    <li><a href=\"";
-        // line 25
+        echo "\">Mis reservas</a></li>
+                    </ul>
+                </li>
+
+                <li><a href=\"";
+        // line 32
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_canchasClientes");
         echo "\">Canchas</a></li>
-                    
-                    <li class=\"dropdown\">
-                            <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Competiciones <b class=\"caret\"></b></a>
-                            <ul class=\"dropdown-menu\">
-                              <li><a href=\"";
-        // line 30
+
+                <li class=\"dropdown\">
+                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Competiciones <b class=\"caret\"></b></a>
+                    <ul class=\"dropdown-menu\">
+                        <li><a href=\"";
+        // line 37
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_competicionesClientes");
         echo "\"> Mis competiciones </a></li>
-                              <li><a href=\"";
-        // line 31
+                        <li><a href=\"";
+        // line 38
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_equiposClientes");
         echo "\"> Mis equipos </a></li>
-                            </ul>
-                     </li>
-                    <li><a href=\"";
-        // line 34
+                    </ul>
+                </li>
+
+                <li><a href=\"";
+        // line 42
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_sesionesClientes");
         echo "\">Sesiones</a></li>
-                </ul>
-                
-                ";
-        // line 37
+                <li><a href=\"";
+        // line 43
+        echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_pagoSesion");
+        echo "\">Pagar</a></li>
+            </ul>
+
+            ";
+        // line 46
         if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_FULLY")) {
-            // line 38
-            echo "                    <ul class=\"nav navbar-nav navbar-right\">
-                       <li><a href = #>Perfil</a></li>
-                       <li><a href=\"";
-            // line 40
+            // line 47
+            echo "                <ul class=\"nav navbar-nav navbar-right\">
+                    <li><a href = #>Perfil</a></li>
+                    <li><a href=\"";
+            // line 49
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
             echo "\">Logout</a></li>
-                   </ul>
-                ";
+                </ul>
+            ";
         }
-        // line 43
+        // line 52
         echo "
-                <form class=\"navbar-form navbar-center\" role=\"search\">
-                    <div class=\"form-group\">
-                        <input type=\"text\" class=\"form-control\" placeholder=\"Nombre, cancha...\">
-                    </div>
-                    <button type=\"submit\" class=\"btn btn-default\" style=\"margin-bottom: 0px\">Buscar</button>
- 
-                </form>
-            </div>
-        </nav>
+            <form class=\"navbar-form navbar-center\" role=\"search\">
+                <div class=\"form-group\">
+                    <input type=\"text\" class=\"form-control\" placeholder=\"Nombre, cancha...\">
+                </div>
+                <button type=\"submit\" class=\"btn btn-default\" style=\"margin-bottom: 0px\">Buscar</button>
+
+            </form>
+        </div>
+    </nav>
 ";
     }
 
-    // line 54
+    // line 63
     public function block_body($context, array $blocks = array())
     {
-        // line 55
+        // line 64
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 57
+        // line 66
         $this->displayBlock('contenido', $context, $blocks);
-        // line 59
+        // line 68
         echo "        </div>
 
     </div>
@@ -140,10 +152,10 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
 ";
     }
 
-    // line 57
+    // line 66
     public function block_contenido($context, array $blocks = array())
     {
-        // line 58
+        // line 67
         echo "            ";
     }
 
@@ -159,6 +171,6 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
 
     public function getDebugInfo()
     {
-        return array (  147 => 58,  144 => 57,  136 => 59,  134 => 57,  130 => 55,  127 => 54,  113 => 43,  107 => 40,  103 => 38,  101 => 37,  95 => 34,  89 => 31,  85 => 30,  77 => 25,  73 => 24,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
+        return array (  159 => 67,  156 => 66,  148 => 68,  146 => 66,  142 => 64,  139 => 63,  125 => 52,  119 => 49,  115 => 47,  113 => 46,  107 => 43,  103 => 42,  96 => 38,  92 => 37,  84 => 32,  77 => 28,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
     }
 }
