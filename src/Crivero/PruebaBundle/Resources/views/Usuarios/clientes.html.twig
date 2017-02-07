@@ -30,13 +30,16 @@
                         <tr data-id="{{ usuario.id }}">
                             <td>{{usuario.nombre}}</td>
                             <td>{{usuario.email}}</td>
-                            <td>{{usuario.registro|date('d/m/Y H:i')}}</td>
+                            <td>{{usuario.registro|date('d/m/Y')}}</td>
                             <td class="actions">
                                 <a href="{{ path('crivero_prueba_cliente', { id: usuario.id }) }}" class="btn btn-sm btn-info">
                                     Ver
                                 </a>
                                 <a href="{{ path('crivero_prueba_editarUsuario', { id: usuario.id }) }}" class="btn btn-sm btn-primary">
                                     Editar
+                                </a>
+                                <a href="{{ path('crivero_prueba_usuario_pagos', { id: usuario.id }) }}" class="btn btn-sm btn-warning">
+                                    Pagos
                                 </a>
                                 <a href="#" class="btn btn-sm btn-danger btn-delete">
                                     Eliminar

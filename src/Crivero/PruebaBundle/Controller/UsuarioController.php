@@ -190,6 +190,17 @@ class UsuarioController extends Controller {
     public function homeAction() {
         return $this->render('CriveroPruebaBundle:Usuarios:home.html.twig');
     }
+    
+    public function pagosAction($id, Request $request) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Pagos");
+        $pagos = $repository->getPagos($id);
+        
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $pagos, $request->query->getInt('page', 1), 5);
+        return $this->render('CriveroPruebaBundle:Usuarios:pagos.html.twig', array('pagination'=>$pagination));
+        
+    }
 
     private function findUser($id, $em) {
         $usuario = $em->getRepository('CriveroPruebaBundle:Usuarios')->find($id);

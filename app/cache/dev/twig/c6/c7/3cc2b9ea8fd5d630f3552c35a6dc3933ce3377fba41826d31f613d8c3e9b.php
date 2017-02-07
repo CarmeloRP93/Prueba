@@ -98,7 +98,7 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
             echo "</td>
                             <td>";
             // line 33
-            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["usuario"], "registro", array()), "d/m/Y H:i"), "html", null, true);
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["usuario"], "registro", array()), "d/m/Y"), "html", null, true);
             echo "</td>
                             <td class=\"actions\">
                                 <a href=\"";
@@ -113,6 +113,12 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
             echo "\" class=\"btn btn-sm btn-primary\">
                                     Editar
                                 </a>
+                                <a href=\"";
+            // line 41
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_usuario_pagos", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
+            echo "\" class=\"btn btn-sm btn-warning\">
+                                    Pagos
+                                </a>
                                 <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
                                     Eliminar
                                 </a>
@@ -123,20 +129,20 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['usuario'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 47
+        // line 50
         echo "                </tbody>
             </table>
         </div>
         <div>
             <div class=\"navigation\">
                 ";
-        // line 52
+        // line 55
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
             </div>
             <div class=\"nuevoUsuario text-center\">
                 <a href=\"";
-        // line 55
+        // line 58
         echo $this->env->getExtension('routing')->getPath("crivero_prueba_nuevo");
         echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\"> Nuevo Usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
             </div>
@@ -144,22 +150,22 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
     </div>
 
     ";
-        // line 60
+        // line 63
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "id" => "form-delete", "with_submit" => false));
         echo "
 
 ";
     }
 
-    // line 63
+    // line 66
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 64
+        // line 67
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <script src=\"";
-        // line 65
+        // line 68
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/criveroprueba/js/delete-user.js"), "html", null, true);
         echo "\"></script>
 ";
@@ -177,6 +183,6 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
 
     public function getDebugInfo()
     {
-        return array (  163 => 65,  158 => 64,  155 => 63,  148 => 60,  140 => 55,  134 => 52,  127 => 47,  112 => 38,  106 => 35,  101 => 33,  97 => 32,  93 => 31,  88 => 30,  84 => 29,  75 => 23,  71 => 22,  67 => 21,  56 => 13,  47 => 6,  44 => 5,  38 => 3,  11 => 1,);
+        return array (  169 => 68,  164 => 67,  161 => 66,  154 => 63,  146 => 58,  140 => 55,  133 => 50,  118 => 41,  112 => 38,  106 => 35,  101 => 33,  97 => 32,  93 => 31,  88 => 30,  84 => 29,  75 => 23,  71 => 22,  67 => 21,  56 => 13,  47 => 6,  44 => 5,  38 => 3,  11 => 1,);
     }
 }

@@ -51,60 +51,44 @@ class __TwigTemplate_0a0d7c2b21bc3124710f155c13d1d9390dcacee1da8ee3c1ccdb269e091
         // line 6
         echo " <div class=\"container\" >
         <h2 class=\"text-center\">
-            Bienvenido
+            Bienvenido ";
+        // line 8
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "nombre", array()), "html", null, true);
+        echo "
             ";
         // line 9
         if (($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 1)) {
-            // line 10
-            echo "                administrador
-            ";
-        } elseif (($this->getAttribute($this->getAttribute(        // line 11
-(isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 2)) {
-            // line 12
-            echo "                cliente
-            ";
-        } else {
-            // line 14
-            echo "                monitor    
-            ";
-        }
-        // line 16
-        echo "            :
-            ";
-        // line 17
-        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "nombre", array()), "html", null, true);
-        echo "
-        </h2>
- </div>
-            ";
-        // line 20
-        if (($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 1)) {
-            // line 21
-            echo "                <form id=\"formu\" action=\"";
+            // line 11
+            echo "                    <form id=\"formu\" action=\"";
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_clientes");
             echo "\" method=\"post\">
-                </form>
-            ";
-        } elseif (($this->getAttribute($this->getAttribute(        // line 23
-(isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 2)) {
-            // line 24
+                    </form>
+";
+            // line 14
+            echo "            ";
+        } elseif (($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 2)) {
+            // line 15
             echo "                <form id=\"formu\" action=\"";
             echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_reservasClientes");
             echo "\" method=\"post\">
                 </form>
             ";
         } else {
-            // line 27
+            // line 18
             echo "                <form id=\"formu\" action=\"";
             echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_sesionesMonitores");
             echo "\" method=\"post\">
                 </form>
             ";
         }
-        // line 30
-        echo "            <script type=\"text/javascript\">
-                setTimeout(function(){document.getElementById(\"formu\").submit();}, 3000); 
-            </script>
+        // line 21
+        echo "            
+        </h2>
+ </div>
+            
+<script type=\"text/javascript\">
+    setTimeout(function(){document.getElementById(\"formu\").submit();}, 2000); 
+</script>
 ";
     }
 
@@ -120,6 +104,6 @@ class __TwigTemplate_0a0d7c2b21bc3124710f155c13d1d9390dcacee1da8ee3c1ccdb269e091
 
     public function getDebugInfo()
     {
-        return array (  105 => 30,  98 => 27,  91 => 24,  89 => 23,  83 => 21,  81 => 20,  75 => 17,  72 => 16,  68 => 14,  64 => 12,  62 => 11,  59 => 10,  57 => 9,  52 => 6,  49 => 5,  43 => 4,  38 => 3,  11 => 1,);
+        return array (  85 => 21,  78 => 18,  71 => 15,  68 => 14,  62 => 11,  60 => 9,  56 => 8,  52 => 6,  49 => 5,  43 => 4,  38 => 3,  11 => 1,);
     }
 }

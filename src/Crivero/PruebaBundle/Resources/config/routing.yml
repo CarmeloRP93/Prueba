@@ -97,6 +97,11 @@ crivero_prueba_reserva_cancelando:
     defaults: { _controller: CriveroPruebaBundle:Reserva:cancelando }
     requirements:
         _method:  POST|PUT|GET
+        
+crivero_prueba_usuario_pagos:
+    pattern:  /usuario/pagos/{id}
+    defaults: { _controller: CriveroPruebaBundle:Usuario:pagos }
+
     
 #-------------------------------------------------------------------------------
 #Competiciones, equipos y jugadores

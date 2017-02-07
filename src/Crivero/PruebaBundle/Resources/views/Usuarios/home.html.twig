@@ -5,21 +5,12 @@
 {% block body %}
  <div class="container" >
         <h2 class="text-center">
-            Bienvenido
+            Bienvenido {{ app.user.nombre }}
             {% if app.user.tipo == 1 %}
-                administrador
-            {% elseif app.user.tipo == 2 %}
-                cliente
-            {% else %}
-                monitor    
-            {% endif %}
-            :
-            {{ app.user.nombre }}
-        </h2>
- </div>
-            {% if app.user.tipo == 1 %}
-                <form id="formu" action="{{ path('crivero_prueba_clientes') }}" method="post">
-                </form>
+{#                {% if 'now'|date('d-m') == app.user.fechaPagar|date('d-m') || moroso == true %}#}
+                    <form id="formu" action="{{ path('crivero_prueba_clientes') }}" method="post">
+                    </form>
+{#                {% endif %}#}
             {% elseif app.user.tipo == 2 %}
                 <form id="formu" action="{{ path('moduloclientes_cliente_reservasClientes') }}" method="post">
                 </form>
@@ -27,7 +18,11 @@
                 <form id="formu" action="{{ path('modulomonitores_monitores_sesionesMonitores') }}" method="post">
                 </form>
             {% endif %}
-            <script type="text/javascript">
-                setTimeout(function(){document.getElementById("formu").submit();}, 3000); 
-            </script>
+            
+        </h2>
+ </div>
+            
+<script type="text/javascript">
+    setTimeout(function(){document.getElementById("formu").submit();}, 2000); 
+</script>
 {% endblock %}

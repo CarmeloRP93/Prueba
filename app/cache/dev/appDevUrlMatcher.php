@@ -554,6 +554,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // crivero_prueba_usuario_pagos
+        if (0 === strpos($pathinfo, '/usuario/pagos') && preg_match('#^/usuario/pagos/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_usuario_pagos')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::pagosAction',));
+        }
+
         if (0 === strpos($pathinfo, '/competicion')) {
             // crivero_prueba_competiciones
             if ($pathinfo === '/competiciones') {
