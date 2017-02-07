@@ -59,15 +59,7 @@ crivero_prueba_canchas:
 crivero_prueba_cancha:
     pattern:  /cancha/{id}
     defaults: { _controller: CriveroPruebaBundle:Cancha:cancha }
-
-crivero_prueba_aulas:
-    pattern:  /aulas
-    defaults: { _controller: CriveroPruebaBundle:Aula:aulas }
-
-crivero_prueba_aula:
-    pattern:  /aula/{id}
-    defaults: { _controller: CriveroPruebaBundle:Aula:aula }
-
+    
 crivero_prueba_cancha_editar:
     pattern:  /cancha/editar/{id}
     defaults: { _controller: CriveroPruebaBundle:Cancha:editar }
@@ -75,14 +67,22 @@ crivero_prueba_cancha_editar:
 crivero_prueba_cancha_actualizar:
     pattern:  /cancha/actualizar/{id}
     defaults: { _controller: CriveroPruebaBundle:Cancha:actualizar }
-    methods: [POST, PUT]
     
-crivero_prueba_cancha_redirect_editar:
-    path: /cancha/actualizar/{id}
-    defaults:  
-        _controller: CriveroPruebaBundle:Cancha:editar 
-        path: /cancha/editar/{id}
-        permanent: true    
+crivero_prueba_aulas:
+    pattern:  /aulas
+    defaults: { _controller: CriveroPruebaBundle:Aula:aulas }
+
+crivero_prueba_aula:
+    pattern:  /aula/{id}
+    defaults: { _controller: CriveroPruebaBundle:Aula:aula }
+    
+crivero_prueba_aula_editar:
+    pattern:  /aula/editar/{id}
+    defaults: { _controller: CriveroPruebaBundle:Aula:editar }
+    
+crivero_prueba_aula_actualizar:
+    pattern:  /aula/actualizar/{id}
+    defaults: { _controller: CriveroPruebaBundle:Aula:actualizar }
     
 crivero_prueba_reservas:
     pattern:  /reservas

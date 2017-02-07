@@ -492,6 +492,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::canchaAction',));
             }
 
+            // crivero_prueba_cancha_editar
+            if (0 === strpos($pathinfo, '/cancha/editar') && preg_match('#^/cancha/editar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_editar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::editarAction',));
+            }
+
+            // crivero_prueba_cancha_actualizar
+            if (0 === strpos($pathinfo, '/cancha/actualizar') && preg_match('#^/cancha/actualizar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_actualizar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::actualizarAction',));
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/aula')) {
@@ -505,31 +515,14 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_aula')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\AulaController::aulaAction',));
             }
 
-        }
-
-        if (0 === strpos($pathinfo, '/cancha')) {
-            // crivero_prueba_cancha_editar
-            if (0 === strpos($pathinfo, '/cancha/editar') && preg_match('#^/cancha/editar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_editar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::editarAction',));
+            // crivero_prueba_aula_editar
+            if (0 === strpos($pathinfo, '/aula/editar') && preg_match('#^/aula/editar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_aula_editar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\AulaController::editarAction',));
             }
 
-            if (0 === strpos($pathinfo, '/cancha/actualizar')) {
-                // crivero_prueba_cancha_actualizar
-                if (preg_match('#^/cancha/actualizar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
-                        $allow = array_merge($allow, array('POST', 'PUT'));
-                        goto not_crivero_prueba_cancha_actualizar;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_actualizar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::actualizarAction',));
-                }
-                not_crivero_prueba_cancha_actualizar:
-
-                // crivero_prueba_cancha_redirect_editar
-                if (preg_match('#^/cancha/actualizar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_redirect_editar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::editarAction',  'path' => '/cancha/editar/{id}',  'permanent' => true,));
-                }
-
+            // crivero_prueba_aula_actualizar
+            if (0 === strpos($pathinfo, '/aula/actualizar') && preg_match('#^/aula/actualizar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_aula_actualizar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\AulaController::actualizarAction',));
             }
 
         }

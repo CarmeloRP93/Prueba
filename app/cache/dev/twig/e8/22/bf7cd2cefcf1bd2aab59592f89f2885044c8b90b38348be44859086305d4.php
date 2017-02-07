@@ -92,9 +92,13 @@ class __TwigTemplate_e822bf7cd2cefcf1bd2aab59592f89f2885044c8b90b38348be44859086
             echo "\" class=\"btn btn-sm btn-info\">
                                     Ver
                                 </a>
-                                ";
-            // line 33
-            echo "                                
+                                <a href=\"";
+            // line 30
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_aula_editar", array("id" => $this->getAttribute($context["aula"], "id", array()))), "html", null, true);
+            echo "\" class=\"btn btn-sm btn-primary\">
+                                    Editar
+                                </a>
+                                
                             </td>
                         </tr>
                     ";
@@ -128,6 +132,6 @@ class __TwigTemplate_e822bf7cd2cefcf1bd2aab59592f89f2885044c8b90b38348be44859086
 
     public function getDebugInfo()
     {
-        return array (  112 => 41,  106 => 37,  97 => 33,  91 => 27,  86 => 25,  82 => 24,  78 => 23,  75 => 22,  71 => 21,  63 => 16,  59 => 15,  55 => 14,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  116 => 41,  110 => 37,  97 => 30,  91 => 27,  86 => 25,  82 => 24,  78 => 23,  75 => 22,  71 => 21,  63 => 16,  59 => 15,  55 => 14,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
     }
 }

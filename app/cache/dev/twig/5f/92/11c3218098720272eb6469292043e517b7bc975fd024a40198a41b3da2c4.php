@@ -135,7 +135,10 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
         if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_FULLY")) {
             // line 57
             echo "                    <ul class=\"nav navbar-nav navbar-right\">
-                        <li><a href = #>Perfil</a></li>
+                        <li><a href = \"";
+            // line 58
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_editarUsuario", array("id" => $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))), "html", null, true);
+            echo "\">Perfil</a></li>
                         <li><a href=\"";
             // line 59
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
@@ -192,6 +195,6 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
 
     public function getDebugInfo()
     {
-        return array (  180 => 76,  177 => 75,  169 => 77,  167 => 75,  163 => 73,  160 => 72,  147 => 62,  141 => 59,  137 => 57,  135 => 56,  127 => 51,  123 => 50,  114 => 44,  110 => 43,  106 => 42,  99 => 38,  93 => 35,  89 => 34,  80 => 28,  76 => 27,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
+        return array (  183 => 76,  180 => 75,  172 => 77,  170 => 75,  166 => 73,  163 => 72,  150 => 62,  144 => 59,  140 => 58,  137 => 57,  135 => 56,  127 => 51,  123 => 50,  114 => 44,  110 => 43,  106 => 42,  99 => 38,  93 => 35,  89 => 34,  80 => 28,  76 => 27,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
     }
 }

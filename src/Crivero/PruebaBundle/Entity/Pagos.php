@@ -3,6 +3,7 @@
 namespace Crivero\PruebaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Pagos
@@ -54,6 +55,7 @@ class Pagos
      * @var integer
      *
      * @ORM\Column(name="cuantia", type="integer")
+     * @Assert\NotBlank()
      */
     private $cuantia;
 

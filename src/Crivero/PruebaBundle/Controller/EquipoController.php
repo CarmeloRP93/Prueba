@@ -9,7 +9,7 @@ class EquipoController extends Controller {
     public function equiposAction() {
        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
        $equipos=$repository->findAll();
-       return $this->render('CriveroPruebaBundle:Default:equipos.html.twig', array("equipos"=>$equipos));
+       return $this->render('CriveroPruebaBundle:Competiciones:equipos.html.twig', array("equipos"=>$equipos));
     }
     
     public function equipoAction($id) {
@@ -17,6 +17,6 @@ class EquipoController extends Controller {
       $equipo=$repositoryEquipo->find($id);
       $repositoryJugadores = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Jugadores");
       $jugadores=$repositoryJugadores->findAll();
-      return $this->render('CriveroPruebaBundle:Default:equipo.html.twig', array("equipo"=>$equipo,"jugadores"=>$jugadores));
+      return $this->render('CriveroPruebaBundle:Competiciones:equipo.html.twig', array("equipo"=>$equipo,"jugadores"=>$jugadores));
     } 
 }

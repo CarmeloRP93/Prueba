@@ -11,7 +11,7 @@ class JugadorController extends Controller {
        $jugadores=$RepositorioJugadores->findAll();
        $RepositorioEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
        $equipos=$RepositorioEquipos->findAll();
-       return $this->render('CriveroPruebaBundle:Default:jugadores.html.twig', array("jugadores"=>$jugadores,"equipos"=>$equipos));
+       return $this->render('CriveroPruebaBundle:Competiciones:jugadores.html.twig', array("jugadores"=>$jugadores,"equipos"=>$equipos));
     }
     
     public function jugadorAction($id) {
@@ -21,6 +21,6 @@ class JugadorController extends Controller {
         $equipos=$RepositorioEquipos->findAll();
         $RepositorioCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
         $competiciones=$RepositorioCompeticiones->findAll();
-        return $this->render('CriveroPruebaBundle:Default:jugador.html.twig', array("jugador"=>$jugador,"equipos"=>$equipos,"competiciones"=>$competiciones));
+        return $this->render('CriveroPruebaBundle:Competiciones:jugador.html.twig', array("jugador"=>$jugador,"equipos"=>$equipos,"competiciones"=>$competiciones));
     } 
 }
