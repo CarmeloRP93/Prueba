@@ -40,6 +40,14 @@ class SesionController extends Controller {
     public function aceptarSesionAction($id) {
         $em = $this->getDoctrine()->getManager();
         $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
+        $monitor = $em->getRepository('CriveroPruebaBundle:Usuarios')->find($sesion->getIdMonitor());
+
+        if ($monitor->getSesiones() == null) {
+            $monitor->setSesiones($sesion->getId());
+        } else {
+            $aux = $monitor->getSesiones() . "&" . $sesion->getId();
+            $monitor->setReservas($aux);
+        }
         if (!$sesion) {
             throw $this->createNotFoundException("no encontrado");
         }
@@ -53,6 +61,7 @@ class SesionController extends Controller {
         $limite = date('t');
         $this->actualizarValores($hoy, $mes, $limite);
         for ($i = $hoy + 2; $i <= $limite; $i++) {
+
             $diaReserva = $this->getDoctrine()->getManager()
                     ->createQuery('SELECT h FROM CriveroPruebaBundle:HorariosAulas h WHERE h.aula = :aulaId AND h.fechaInicio = :dia')
                     ->setParameter('aulaId', $sesion->getAula())
@@ -60,6 +69,10 @@ class SesionController extends Controller {
                     ->getResult();
             if ($diaReserva[0]->getPeriodo() != null)
                 break;
+            if ($i == $limite) {
+                $i = 0;
+                $mes++;
+            }
         }
 
         $pos = strpos($diaReserva[0]->getPeriodo(), "&");
@@ -69,6 +82,8 @@ class SesionController extends Controller {
         $sesion->setHorario($fechaReserva);
 
         $em->persist($sesion);
+        $em->flush();
+        $em->persist($monitor);
         $em->flush();
         $em->persist($diaReserva[0]);
         $em->flush();
@@ -194,7 +209,8 @@ class SesionController extends Controller {
         ($pos > 0) ? $entity->setSesiones(substr($entity->getSesiones(), 0, $pos - 1) . substr($entity->getSesiones(), $pos + $cifra)) :
                         $entity->setSesiones(substr($entity->getSesiones(), $pos + ($cifra + 1)));
     }
-    private function actualizarValores($hoy, $mes, $limite){
+
+    private function actualizarValores($hoy, $mes, $limite) {
         if ($hoy > 28 && $limite == 30) {
             $mes++;
             $hoy = 1;
@@ -209,4 +225,5 @@ class SesionController extends Controller {
             $hoy = 1;
         }
     }
+
 }

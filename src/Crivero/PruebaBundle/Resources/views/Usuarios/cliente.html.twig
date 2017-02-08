@@ -45,7 +45,7 @@
                                 <ul id="sesiones">
                                     {% for sesion in sesiones %}
                                         <li>
-                                            <p>{{ sesion.nombre }} con {{sesion.monitor}} </p>
+                                            <p>Aula {{sesion.aula}} - {{sesion.nombre}} con {{sesion.monitor}} - {{sesion.horario}}</p>
                                         </li>
                                     {% endfor %}
                                 </ul>

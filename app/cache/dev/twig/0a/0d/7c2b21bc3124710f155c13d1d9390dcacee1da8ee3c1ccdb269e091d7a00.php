@@ -50,40 +50,36 @@ class __TwigTemplate_0a0d7c2b21bc3124710f155c13d1d9390dcacee1da8ee3c1ccdb269e091
     {
         // line 6
         echo " <div class=\"container\" >
-        <h2 class=\"text-center\">
-            Bienvenido ";
-        // line 8
-        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "nombre", array()), "html", null, true);
-        echo "
             ";
-        // line 9
+        // line 7
         if (($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 1)) {
-            // line 11
+            // line 9
             echo "                    <form id=\"formu\" action=\"";
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_clientes");
             echo "\" method=\"post\">
                     </form>
 ";
-            // line 14
+            // line 12
             echo "            ";
         } elseif (($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 2)) {
-            // line 15
+            // line 13
             echo "                <form id=\"formu\" action=\"";
             echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_reservasClientes");
             echo "\" method=\"post\">
                 </form>
             ";
         } else {
-            // line 18
+            // line 16
             echo "                <form id=\"formu\" action=\"";
             echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_sesionesMonitores");
             echo "\" method=\"post\">
                 </form>
             ";
         }
-        // line 21
-        echo "            
-        </h2>
+        // line 19
+        echo "            <img src=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/loading.gif"), "html", null, true);
+        echo "\" style=\"margin-left: 35%; margin-top: 15%\" />
  </div>
             
 <script type=\"text/javascript\">
@@ -104,6 +100,6 @@ class __TwigTemplate_0a0d7c2b21bc3124710f155c13d1d9390dcacee1da8ee3c1ccdb269e091
 
     public function getDebugInfo()
     {
-        return array (  85 => 21,  78 => 18,  71 => 15,  68 => 14,  62 => 11,  60 => 9,  56 => 8,  52 => 6,  49 => 5,  43 => 4,  38 => 3,  11 => 1,);
+        return array (  80 => 19,  73 => 16,  66 => 13,  63 => 12,  57 => 9,  55 => 7,  52 => 6,  49 => 5,  43 => 4,  38 => 3,  11 => 1,);
     }
 }
