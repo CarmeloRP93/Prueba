@@ -4,8 +4,6 @@
 {% block title %}Home{% endblock %}
 {% block body %}
  <div class="container" >
-        <h2 class="text-center">
-            Bienvenido {{ app.user.nombre }}
             {% if app.user.tipo == 1 %}
 {#                {% if 'now'|date('d-m') == app.user.fechaPagar|date('d-m') || moroso == true %}#}
                     <form id="formu" action="{{ path('crivero_prueba_clientes') }}" method="post">
@@ -18,8 +16,7 @@
                 <form id="formu" action="{{ path('modulomonitores_monitores_sesionesMonitores') }}" method="post">
                 </form>
             {% endif %}
-            
-        </h2>
+            <img src="{{ asset('images/loading.gif') }}" style="margin-left: 35%; margin-top: 15%" />
  </div>
             
 <script type="text/javascript">

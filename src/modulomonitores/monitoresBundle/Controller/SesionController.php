@@ -32,9 +32,11 @@ class SesionController extends Controller {
 
     public function miSesionMonitoresAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $sesion = $repository->find($id);
+        $aula = $repositoryAula->find($sesion->getAula());
         $deleteForm = $this->createDeleteForm($sesion);
-        return $this->render('modulomonitoresmonitoresBundle:Default:miSesionMonitores.html.twig', array("sesion" => $sesion, 'delete_form' => $deleteForm->createView()));
+        return $this->render('modulomonitoresmonitoresBundle:Default:miSesionMonitores.html.twig', array("sesion" => $sesion, "aula"=>$aula, 'delete_form' => $deleteForm->createView()));
     }
 
     private function createDeleteForm($sesion) {

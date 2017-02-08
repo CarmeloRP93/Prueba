@@ -56,12 +56,6 @@ class HorariosAulas
      */
     private $fechaInicio;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="fechaFinal", type="string", nullable=true)
-     */
-    private $fechaFinal;
 
 
     /**
@@ -187,28 +181,5 @@ class HorariosAulas
     public function getFechaInicio()
     {
         return $this->fechaInicio;
-    }
-
-    /**
-     * Set fechaFinal
-     *
-     * @param string $fechaFinal
-     * @return HorariosAulas
-     */
-    public function setFechaFinal($fechaFinal)
-    {
-        $this->fechaFinal = $fechaFinal;
-
-        return $this;
-    }
-
-    /**
-     * Get fechaFinal
-     *
-     * @return string 
-     */
-    public function getFechaFinal()
-    {
-        return $this->fechaFinal;
     }
 }

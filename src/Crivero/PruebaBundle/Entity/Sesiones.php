@@ -29,12 +29,6 @@ class Sesiones {
     private $idMonitor;
     
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="aula", type="integer")
-     */
-    private $aula;
-    /**
      * @var string
      *
      * @ORM\Column(name="idsClientes", type="string", length=1000, nullable=true)
@@ -86,6 +80,14 @@ class Sesiones {
      * @Assert\NotBlank()
      */
     private $repeticiones;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="aula", type="integer")
+     * @Assert\NotBlank()
+     */
+    private $aula;
 
     /**
      * @var integer
@@ -109,6 +111,13 @@ class Sesiones {
      * @ORM\Column(name="estado", type="string", length=200)
      */
     private $estado;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="horario", type="string", length=200, nullable=true)
+     */
+    private $horario;
     
     /**
      * @var string
@@ -185,6 +194,30 @@ class Sesiones {
     public function getMonitor()
     {
         return $this->monitor;
+    }
+    
+    
+    /**
+     * Set horario
+     *
+     * @param string $horario
+     * @return Sesiones
+     */
+    public function setHorario($horario)
+    {
+        $this->horario = $horario;
+
+        return $this;
+    }
+
+    /**
+     * Get horario
+     *
+     * @return string 
+     */
+    public function getHorario()
+    {
+        return $this->horario;
     }
     
     /**
@@ -300,7 +333,7 @@ class Sesiones {
     public function getRepeticiones() {
         return $this->repeticiones;
     }
-
+    
     /**
      * Set duracion
      *

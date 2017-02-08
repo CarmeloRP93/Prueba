@@ -61,6 +61,12 @@
                     <span class="text-danger">{{ form_errors(form.objetivo) }}</span>
                 </div>
                 
+                <div class="form-group">
+                    {{ form_label(form.aula) }}
+                    {{ form_widget(form.aula, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Motivos de cancelación'} }) }}
+                    <span class="text-danger">{{ form_errors(form.aula) }}</span>
+                </div>
+                
                 <div class="form-group" style="display:none;">
                     {{ form_label(form.observaciones) }}
                     {{ form_widget(form.observaciones, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Motivos de cancelación'} }) }}
