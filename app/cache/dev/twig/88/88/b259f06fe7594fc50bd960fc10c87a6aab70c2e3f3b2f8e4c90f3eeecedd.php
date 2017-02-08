@@ -115,6 +115,8 @@ class __TwigTemplate_8888b259f06fe7594fc50bd960fc10c87a6aab70c2e3f3b2f8e4c90f3ee
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
                 echo " con ";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "monitor", array()), "html", null, true);
+                echo " - ";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "horario", array()), "html", null, true);
                 echo " </p>
                             ";
             }
@@ -154,6 +156,6 @@ class __TwigTemplate_8888b259f06fe7594fc50bd960fc10c87a6aab70c2e3f3b2f8e4c90f3ee
 
     public function getDebugInfo()
     {
-        return array (  139 => 53,  129 => 44,  125 => 42,  114 => 40,  110 => 39,  106 => 37,  104 => 36,  99 => 34,  90 => 27,  84 => 24,  81 => 23,  75 => 20,  72 => 19,  70 => 18,  67 => 17,  58 => 10,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  141 => 53,  131 => 44,  127 => 42,  114 => 40,  110 => 39,  106 => 37,  104 => 36,  99 => 34,  90 => 27,  84 => 24,  81 => 23,  75 => 20,  72 => 19,  70 => 18,  67 => 17,  58 => 10,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

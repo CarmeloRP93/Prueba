@@ -70,8 +70,9 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
         // line 22
         echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Correo electrónico", "u.email");
         echo "</th>
+                        <th>Telefono</th>
                         <th>";
-        // line 23
+        // line 24
         echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Creado", "u.registro");
         echo "</th>
                         <th>Acciones</th>
@@ -80,41 +81,45 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
                 <tbody>
 
                     ";
-        // line 29
+        // line 30
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         foreach ($context['_seq'] as $context["_key"] => $context["usuario"]) {
-            // line 30
+            // line 31
             echo "                        <tr data-id=\"";
             echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "id", array()), "html", null, true);
             echo "\">
                             <td>";
-            // line 31
+            // line 32
             echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "nombre", array()), "html", null, true);
             echo "</td>
                             <td>";
-            // line 32
+            // line 33
             echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "email", array()), "html", null, true);
             echo "</td>
                             <td>";
-            // line 33
+            // line 34
+            echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "telefono", array()), "html", null, true);
+            echo "</td>
+                            <td>";
+            // line 35
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["usuario"], "registro", array()), "d/m/Y"), "html", null, true);
             echo "</td>
                             <td class=\"actions\">
                                 <a href=\"";
-            // line 35
+            // line 37
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-info\">
                                     Ver
                                 </a>
                                 <a href=\"";
-            // line 38
+            // line 40
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_editarUsuario", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-primary\">
                                     Editar
                                 </a>
                                 <a href=\"";
-            // line 41
+            // line 43
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_usuario_pagos", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-warning\">
                                     Pagos
@@ -129,20 +134,20 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['usuario'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 50
+        // line 52
         echo "                </tbody>
             </table>
         </div>
         <div>
             <div class=\"navigation\">
                 ";
-        // line 55
+        // line 57
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
             </div>
             <div class=\"nuevoUsuario text-center\">
                 <a href=\"";
-        // line 58
+        // line 60
         echo $this->env->getExtension('routing')->getPath("crivero_prueba_nuevo");
         echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\"> Nuevo Usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
             </div>
@@ -150,22 +155,22 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
     </div>
 
     ";
-        // line 63
+        // line 65
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "id" => "form-delete", "with_submit" => false));
         echo "
 
 ";
     }
 
-    // line 66
+    // line 68
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 67
+        // line 69
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <script src=\"";
-        // line 68
+        // line 70
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/criveroprueba/js/delete-user.js"), "html", null, true);
         echo "\"></script>
 ";
@@ -183,6 +188,6 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
 
     public function getDebugInfo()
     {
-        return array (  169 => 68,  164 => 67,  161 => 66,  154 => 63,  146 => 58,  140 => 55,  133 => 50,  118 => 41,  112 => 38,  106 => 35,  101 => 33,  97 => 32,  93 => 31,  88 => 30,  84 => 29,  75 => 23,  71 => 22,  67 => 21,  56 => 13,  47 => 6,  44 => 5,  38 => 3,  11 => 1,);
+        return array (  174 => 70,  169 => 69,  166 => 68,  159 => 65,  151 => 60,  145 => 57,  138 => 52,  123 => 43,  117 => 40,  111 => 37,  106 => 35,  102 => 34,  98 => 33,  94 => 32,  89 => 31,  85 => 30,  76 => 24,  71 => 22,  67 => 21,  56 => 13,  47 => 6,  44 => 5,  38 => 3,  11 => 1,);
     }
 }

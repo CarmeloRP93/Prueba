@@ -12,7 +12,7 @@ class ReservaController extends Controller {
     
     public function ReservasAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas");
-        $reservas= $repository->getReservas();
+        $reservas = $repository->getReservas();
         
          $paginator = $this->get('knp_paginator');
          $pagination = $paginator->paginate(
@@ -40,22 +40,18 @@ class ReservaController extends Controller {
     public function cancelandoAction($id, Request $request) {
         $em = $this->getDoctrine()->getManager();
         $reserva = $this->findEntity($id, $em, 'CriveroPruebaBundle:Reservas');
-        $usuario = $this->findEntity($reserva->getIdCliente(), $em, 'CriveroPruebaBundle:Usuarios');
         $form = $this->createCancelForm($reserva);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
             $reserva->setEstadoReserva("Cancelada");
             $motivos = $form->get('motivos')->getData();
+            
             if ($motivos != null) {
+                $usuario = $this->findEntity($reserva->getIdCliente(), $em, 'CriveroPruebaBundle:Usuarios');
+                $this->removeReservaId($usuario, $id);
+                
                 $em->persist($reserva);
-                $em->flush();
-                
-                $pos = strpos($usuario->getReservas(), strval($id));
-                $len = strlen(strval($id));
-                ($pos > 0) ? $usuario->setReservas(substr($usuario->getReservas(), 0, $pos-1) . substr($usuario->getReservas(), $pos+$len)):
-                             $usuario->setReservas(substr($usuario->getReservas(), $pos+($len+1)));
-                
                 $em->persist($usuario);
                 $em->flush();
                 $request->getSession()->getFlashBag()->add('mensaje', 'La reserva se canceló correctamente');
@@ -73,6 +69,13 @@ class ReservaController extends Controller {
             throw $this->createNotFoundException('Entidad no encontrada');
         }
         return $entity;
+    }
+    
+    private function removeReservaId($entity, $id) {
+        $pos = strpos($entity->getReservas(), strval($id));
+        $cifra = strlen(strval($id));
+        ($pos > 0) ? $entity->setSesiones(substr($entity->getReservas(), 0, $pos - 1) . substr($entity->getReservas(), $pos + $cifra)) :
+                        $entity->setSesiones(substr($entity->getReservas(), $pos + ($cifra + 1)));
     }
     
 }

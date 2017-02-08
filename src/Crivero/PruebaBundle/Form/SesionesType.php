@@ -23,9 +23,9 @@ class SesionesType extends AbstractType
             ->add('duracion', 'integer')
             ->add('descanso', 'integer')
             ->add('lClientes', 'integer')
-            ->add('objetivo', 'text')
-            ->add('observaciones', 'text')
-            ->add('motivos', 'text')
+            ->add('objetivo', 'textarea')
+            ->add('observaciones', 'textarea')
+            ->add('motivos', 'textarea')
             ->add('aula', 'choice', array('choices' => array(1 => 'Aula 01', 2 => 'Aula 02', 3 => 'Aula 03')))    
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;

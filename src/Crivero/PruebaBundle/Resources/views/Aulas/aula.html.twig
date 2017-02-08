@@ -37,7 +37,7 @@
                         <div>
                             <h4>Sesiones: </h4> 
                             {% for sesion in sesiones %}
-                                <p>{{ sesion.nombre }} con {{sesion.monitor}} </p>
+                                <p>{{ sesion.nombre }} con {{sesion.monitor}} - {{sesion.horario}} </p>
                             {% endfor %}
                         </div>
                     {% endif %}

@@ -5,6 +5,7 @@
 {% endif %}
 {% block title %}Vista de {{sesion.nombre}} {% endblock %}
 {% block contenido %}
+    {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class="text-center">
         <h3>
             Sesion {{sesion.id}}
