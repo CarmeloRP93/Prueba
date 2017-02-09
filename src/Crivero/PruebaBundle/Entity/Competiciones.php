@@ -62,6 +62,13 @@ class Competiciones
      * @ORM\Column(name="fechaFinalizacion", type="datetime", nullable=false)
      */
     private $fechafinalizacion;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="motivos", type="string", length=255, nullable=true)
+     */
+    private $motivos;
 
 
 
@@ -211,5 +218,25 @@ class Competiciones
     public function getFechafinalizacion()
     {
         return $this->fechafinalizacion;
+    }
+    
+    /**
+     * Get motivos
+     *
+     * @return string 
+     */
+    public function getMotivos() {
+        return $this->motivos;
+    }
+    
+    /**
+     * Set motivos
+     *
+     * @param string $motivos
+     * @return Competiciones
+     */
+    public function setMotivos($motivos) {
+        $this->motivos = $motivos;
+        return $this;
     }
 }

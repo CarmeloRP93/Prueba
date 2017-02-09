@@ -570,6 +570,39 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_competicion')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CompeticionController::competicionAction',));
             }
 
+            // crivero_prueba_competicion_validar
+            if (0 === strpos($pathinfo, '/competicion/validar') && preg_match('#^/competicion/validar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+                    goto not_crivero_prueba_competicion_validar;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_competicion_validar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CompeticionController::validarAction',));
+            }
+            not_crivero_prueba_competicion_validar:
+
+            // crivero_prueba_competicion_rechazar
+            if (0 === strpos($pathinfo, '/competicion/rechazar') && preg_match('#^/competicion/rechazar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+                    goto not_crivero_prueba_competicion_rechazar;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_competicion_rechazar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CompeticionController::rechazarAction',));
+            }
+            not_crivero_prueba_competicion_rechazar:
+
+            // crivero_prueba_competicion_cancelar
+            if (0 === strpos($pathinfo, '/competicion/cancelar') && preg_match('#^/competicion/cancelar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+                    goto not_crivero_prueba_competicion_cancelar;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_competicion_cancelar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CompeticionController::cancelarAction',));
+            }
+            not_crivero_prueba_competicion_cancelar:
+
         }
 
         if (0 === strpos($pathinfo, '/equipo')) {

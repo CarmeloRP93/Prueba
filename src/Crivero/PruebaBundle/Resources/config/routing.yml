@@ -113,7 +113,25 @@ crivero_prueba_competiciones:
 crivero_prueba_competicion:
     pattern:  /competicion/{id}
     defaults: { _controller: CriveroPruebaBundle:Competicion:competicion }
-
+    
+crivero_prueba_competicion_validar:
+    pattern:  /competicion/validar/{id}
+    defaults: { _controller: CriveroPruebaBundle:Competicion:validar }
+    requirements:
+        _method:  POST|PUT|GET
+        
+crivero_prueba_competicion_rechazar:
+    pattern:  /competicion/rechazar/{id}
+    defaults: { _controller: CriveroPruebaBundle:Competicion:rechazar }
+    requirements:
+        _method:  POST|PUT|GET
+        
+crivero_prueba_competicion_cancelar:
+    pattern:  /competicion/cancelar/{id}
+    defaults: { _controller: CriveroPruebaBundle:Competicion:cancelar }
+    requirements:
+        _method:  POST|PUT|GET
+    
 crivero_prueba_equipos:
     pattern:  /equipos
     defaults: { _controller: CriveroPruebaBundle:Equipo:equipos }

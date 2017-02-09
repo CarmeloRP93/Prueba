@@ -3,7 +3,7 @@
 {% block contenido %}
     <div class="container">
         <h1>Detalles del {{competicion.nombre}}</h1>
-        {% if competicion.estadoCompeticion == "Solicitud Presentada"%}
+        {% if competicion.estadoCompeticion == "Pendiente"%}
             <form class="form-horizontal">
                 <div class="row container-fluid">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -23,7 +23,7 @@
                 </div>
             </form>
         {%endif%}
-        {% if competicion.estadoCompeticion == "Validado"%}
+        {% if competicion.estadoCompeticion == "Jugandose"%}
             <h3>Insertar tabla de liga del deporte en cuestión (fútbol,baloncesto, tenis)</h3>
             <div class="table-responsive">
                 <table class="table table-bordered">

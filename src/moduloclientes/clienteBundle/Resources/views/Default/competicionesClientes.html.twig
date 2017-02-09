@@ -10,13 +10,13 @@
                 </div>
                 <label class="label label-default">En inscripción: </label>
                 {% for competicion in competiciones %}
-                    {% if competicion.estadoCompeticion == "Solicitud Presentada" %}
+                    {% if competicion.estadoCompeticion == "Pendiente" %}
                         <a href="{{url('moduloclientes_cliente_competicionClientes', {'id': competicion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ competicion.nombre }}</a>
                     {%endif%}
                 {% endfor %}
                 <label class="label label-success">En curso: </label>
                 {% for competicion in competiciones %}
-                    {% if competicion.estadoCompeticion == "Validado" %}
+                    {% if competicion.estadoCompeticion == "Jugandose" %}
                         <a href="{{url('moduloclientes_cliente_competicionClientes', {'id': competicion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ competicion.nombre }}</a>
                     {%endif%}
                 {% endfor %}
