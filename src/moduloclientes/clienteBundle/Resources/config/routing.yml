@@ -56,4 +56,11 @@ moduloclientes_cliente_crearReserva:
     defaults: { _controller: moduloclientesclienteBundle:Reserva:crearReserva }
     requirements:
         _method:  POST|GET
+        
+moduloclientes_cliente_sesionesClientes_apuntarse:
+    pattern:  /apuntarse/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Sesion:apuntarse }
     
+moduloclientes_cliente_misSesionesClientes:
+    pattern:  /misSesiones
+    defaults: { _controller: moduloclientesclienteBundle:Sesion:misSesiones }

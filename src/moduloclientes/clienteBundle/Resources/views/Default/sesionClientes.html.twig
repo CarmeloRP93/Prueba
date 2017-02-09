@@ -8,60 +8,16 @@
             <small class="text-muted">{{sesion.nombre}}</small>
         </h3>
     </div>
-    <div id="sesiondat">
+    <div id="sesiondat" class="container">
         <div id="sesionfot" style="margin-top: 14px;">
             <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" />        
         </div>
         {% if sesion.estadoCliente == "Disponible" %}
             <div class="accionesesion">
-                <a data-toggle="modal" data-target="#comprita" class="btn btn-primary text-center center-block" style="height: 30px; width: 600px;">Apuntarse <span class="glyphicon glyphicon-pencil"></span></a>
-                        <div class="modal fade" id="comprita">
-                            <div style="width: 35%" class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ><span class="glyphicon glyphicon-remove-sign"></span></button>
-                                        <h4 class="modal-title">Datos de compra</h4>
-                                    </div>
-                                    <div style="margin-left: 30px;" class="modal-body">
-                                        <form name="formulario" action="FrontController" method="GET">
-
-                                            <label>DNI</label>
-                                            <input style="margin-bottom: 14px; width: 200px;" required type="text" name="dni" maxlength="8" placeholder="Ej: 12345678" class="form-control">
-
-                                                    <div class="form-group">
-                                                        <label >Cupón</label>
-                                                        <input style="margin-bottom: 14px; width: 200px;"  type="text"  pattern="[A-Za-z]+"  name="cupon" placeholder="cupón" class="form-control" >
-                                                    </div>
-                                            <label for="email">Email</label>
-                                            <input style="margin-bottom: 14px; width: 350px" required type="email" class="form-control"  placeholder="Introduce tu email" name="email">
-
-                                            <div class="row">
-                                                    <div class="form-group">
-                                                        <label>Número de Tarjeta</label>
-                                                        <input style="margin-bottom: 14px; width: 350px;" required type="text" name="tarjeta" class="form-control" placeholder="16 dígitos" maxlength="16" >
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label >Código Tarjeta</label>
-                                                        <input style="margin-bottom: 14px; width: 50px;" required type="password" maxlength="3" name="cod" placeholder="***" class="form-control" >
-                                                    </div>
-                                            </div>                                            
-                                            <label>
-                                                <input style="margin-bottom: 14px;" required type="checkbox" value="" name="checkbox" >
-                                                He leido y acepto la <a href="http://es.jimdo.com/info/pol%C3%ADtica-de-privacidad/" target="_blank">politica de proteccion de datos</a>
-                                            </label>
-
-                                            <input type="hidden" name="command" value="ConfirmarCompra" ><br>
-                                            <button type="submit" name="boton" class="btn btn-primary">Confirmar</button>
-
-                                        </form>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <a href="{{path('moduloclientes_cliente_sesionesClientes_apuntarse', {id: sesion.id})}}" 
+                   class="btn btn-primary text-center center-block">Apuntarse <span class="glyphicon glyphicon-pencil"></span></a>
             </div>
-            
-            
+                    
         {% elseif sesion.estadoCliente == "Apuntado" %}
             <div class="accionesesion text-center" >
                 <button style="height: 30px; width: 600px;" class="btn btn-success">Apuntado</button>
@@ -86,6 +42,5 @@
             </div>
         </div>
     </div>
-    
-    
+      
 {% endblock %}

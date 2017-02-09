@@ -1,0 +1,28 @@
+{# empty Twig template #}
+{% extends 'moduloclientesclienteBundle::main.html.twig' %}
+
+{% block title %} Vista de entrenamiento {% endblock %}
+
+{% block contenido %}
+    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <h3>Mis sesiones</h3>
+            </div>
+            {% for sesion in sesiones %}
+                {% if (sesion.estado == 'Cancelada') %}
+                    {% set estado = 'Cancelada' %}
+                {% else %}
+                    {% set estado='Apuntado' %}
+                {% endif %}
+
+                <a href="{{url('moduloclientes_cliente_sesionClientes', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{sesion.id}}: {{ sesion.nombre }} - {{ estado }}</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+

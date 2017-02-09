@@ -13,9 +13,22 @@ use Symfony\Component\Form\FormError;
 class SesionController extends Controller {
 
     public function sesionesClientesAction() {
-        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        $sesiones = $repository->findAll();
-        return $this->render('moduloclientesclienteBundle:Default:sesionesClientes.html.twig', array("sesiones" => $sesiones));
+        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesiones = $repositorySesiones->findAll();
+        
+        foreach ($sesiones as $i=>$sesion) {
+            if (strpos($sesion->getIdsClientes(), strval($this->getUser()->getId())) === false) {
+                $resultado[$i] = $sesion;
+            }
+        }
+        return $this->render('moduloclientesclienteBundle:Default:sesionesClientes.html.twig', array("sesiones" => $resultado));
+    }
+
+    public function misSesionesAction() {
+        $idsSesionesCliente = explode('&', $this->getUser()->getSesiones());
+        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesiones = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
+        return $this->render('moduloclientesclienteBundle:Default:misSesiones.html.twig', array("sesiones" => $sesiones));
     }
 
     public function pagoSesionAction() {
@@ -44,7 +57,7 @@ class SesionController extends Controller {
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($pago);
-            $em->flush();        
+            $em->flush();
             $request->getSession()->getFlashBag()->add('mensaje', 'Pago realizado con éxito.');
             return $this->render('CriveroPruebaBundle:Usuarios:home.html.twig');
         }
@@ -55,6 +68,50 @@ class SesionController extends Controller {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repository->find($id);
         return $this->render('moduloclientesclienteBundle:Default:sesionClientes.html.twig', array("sesion" => $sesion));
+    }
+
+    public function apuntarseAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
+        $sumaCliente = $sesion->getNClientes();
+        $sumaCliente++;
+        $sesion->setNClientes($sumaCliente);
+        if ($sumaCliente == $sesion->getLClientes()) {
+            $sesion->setEstadoCliente("Completo");
+        }
+
+        if ($sesion->getIdsClientes() == null) {
+            $sesion->setIdsClientes($this->getUser()->getId());
+        } else {
+            $sesion->setIdsClientes($sesion->getIdsClientes() . '&' . $this->getUser()->getId());
+        }
+
+        $usuario = $this->findEntity($this->getUser()->getId(), $em, 'CriveroPruebaBundle:Usuarios');
+        if ($usuario->getSesiones() == null) {
+            $usuario->setSesiones($sesion->getId());
+        } else {
+            $usuario->setSesiones($usuario->getSesiones() . '&' . $sesion->getId());
+        }
+
+        $em->persist($usuario);
+        $em->persist($sesion);
+        $em->flush();
+        return $this->redirect($this->generateUrl('moduloclientes_cliente_sesionClientes', array('id' => $sesion->getId())));
+    }
+
+    private function findEntity($id, $em, $repository) {
+        $entity = $em->getRepository($repository)->find($id);
+        if (!$entity) {
+            throw $this->createNotFoundException('Entidad no encontrada');
+        }
+        return $entity;
+    }
+
+    private function getArrayEntidades($repository, $array) {
+        for ($i = 0; $i < count($array); $i++) {
+            $resultado[$i] = $repository->find($array[$i]);
+        }
+        return $resultado;
     }
 
 }

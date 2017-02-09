@@ -398,6 +398,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_moduloclientes_cliente_crearReserva:
 
+        // moduloclientes_cliente_sesionesClientes_apuntarse
+        if (0 === strpos($pathinfo, '/apuntarse') && preg_match('#^/apuntarse/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_sesionesClientes_apuntarse')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::apuntarseAction',));
+        }
+
+        // moduloclientes_cliente_misSesionesClientes
+        if ($pathinfo === '/misSesiones') {
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::misSesionesAction',  '_route' => 'moduloclientes_cliente_misSesionesClientes',);
+        }
+
         // crivero_prueba_home
         if ($pathinfo === '/home') {
             return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::homeAction',  '_route' => 'crivero_prueba_home',);

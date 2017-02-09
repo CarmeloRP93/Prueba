@@ -98,30 +98,39 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
                     </ul>
                 </li>
 
-                <li><a href=\"";
-        // line 42
+                <li class=\"dropdown\">
+                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Sesiones <b class=\"caret\"></b></a>
+                    <ul class=\"dropdown-menu\">
+                        <li><a href=\"";
+        // line 45
+        echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_misSesionesClientes");
+        echo "\"> Mis sesiones </a></li>
+                        <li><a href=\"";
+        // line 46
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_sesionesClientes");
-        echo "\">Sesiones</a></li>
+        echo "\">Sesiones</a></li>                    </ul>
+                </li>
+
                 <li><a href=\"";
-        // line 43
+        // line 49
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_pagoSesion");
         echo "\">Pagar</a></li>
             </ul>
 
             ";
-        // line 46
+        // line 52
         if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_FULLY")) {
-            // line 47
+            // line 53
             echo "                <ul class=\"nav navbar-nav navbar-right\">
                     <li><a href = #>Perfil</a></li>
                     <li><a href=\"";
-            // line 49
+            // line 55
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
             echo "\">Logout</a></li>
                 </ul>
             ";
         }
-        // line 52
+        // line 58
         echo "
             <form class=\"navbar-form navbar-center\" role=\"search\">
                 <div class=\"form-group\">
@@ -135,16 +144,16 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
 ";
     }
 
-    // line 63
+    // line 69
     public function block_body($context, array $blocks = array())
     {
-        // line 64
+        // line 70
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 66
+        // line 72
         $this->displayBlock('contenido', $context, $blocks);
-        // line 68
+        // line 74
         echo "        </div>
 
     </div>
@@ -152,10 +161,10 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
 ";
     }
 
-    // line 66
+    // line 72
     public function block_contenido($context, array $blocks = array())
     {
-        // line 67
+        // line 73
         echo "            ";
     }
 
@@ -171,6 +180,6 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
 
     public function getDebugInfo()
     {
-        return array (  159 => 67,  156 => 66,  148 => 68,  146 => 66,  142 => 64,  139 => 63,  125 => 52,  119 => 49,  115 => 47,  113 => 46,  107 => 43,  103 => 42,  96 => 38,  92 => 37,  84 => 32,  77 => 28,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
+        return array (  168 => 73,  165 => 72,  157 => 74,  155 => 72,  151 => 70,  148 => 69,  134 => 58,  128 => 55,  124 => 53,  122 => 52,  116 => 49,  110 => 46,  106 => 45,  96 => 38,  92 => 37,  84 => 32,  77 => 28,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
     }
 }
