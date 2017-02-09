@@ -112,9 +112,15 @@ class __TwigTemplate_93398c94027a555a153ec4fea2f3f8e01c2247ec4e0e453d7645cd83b4f
         echo "                </tbody>
             </table>
         </div>
-       ";
-        // line 48
-        echo "    </div>
+        <div class=\"nuevaCompeticion\">
+            <a href=\"";
+        // line 46
+        echo $this->env->getExtension('routing')->getPath("crivero_prueba_competicion_nueva");
+        echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">
+                Nueva Competicion 
+             <span class=\"glyphicon glyphicon-plus\"></span></a>
+        </div>
+    </div>
 ";
     }
 
@@ -130,6 +136,6 @@ class __TwigTemplate_93398c94027a555a153ec4fea2f3f8e01c2247ec4e0e453d7645cd83b4f
 
     public function getDebugInfo()
     {
-        return array (  117 => 48,  112 => 42,  101 => 36,  95 => 30,  90 => 28,  86 => 27,  82 => 26,  78 => 25,  74 => 24,  70 => 23,  67 => 22,  63 => 21,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  118 => 46,  112 => 42,  101 => 36,  95 => 30,  90 => 28,  86 => 27,  82 => 26,  78 => 25,  74 => 24,  70 => 23,  67 => 22,  63 => 21,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

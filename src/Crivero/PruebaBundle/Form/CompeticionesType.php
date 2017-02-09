@@ -18,15 +18,10 @@ class CompeticionesType extends AbstractType
             ->add('nombre')
             ->add('deporte','choice', array('choices' => array("Futbol"=>'Futbol',
                                                               "Baloncesto"=>'Baloncesto')))
-            ->add('estadocompeticion', 'choice', array('choices' => array("Pendiente" => 'Solicitud presentada', 
-                                                                          "Validado" => 'Validar',
-                                                                          "Jugandose" => 'Empezar competición',
-                                                                          "Finalizado" => 'Finalizar competición')))
             ->add('tipocompeticion','choice', array('choices' => array("Liga"=>'Liga',
                                                                        "Torneo"=>'Torneo')))
-            ->add('fechainicio')
-            ->add('fechafinalizacion')
-            ->add('motivos', 'textarea')
+            ->add('fechainicio','datetime')
+            ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;
     }
     

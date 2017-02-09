@@ -3,6 +3,9 @@
 namespace Crivero\PruebaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Crivero\PruebaBundle\Entity\Competiciones;
+use Crivero\PruebaBundle\Form\CompeticionesType;
+use Symfony\Component\HttpFoundation\Request;
 
 class CompeticionController extends Controller { 
     
@@ -45,6 +48,34 @@ class CompeticionController extends Controller {
         $em->persist($competicion);
         $em->flush();
         return $this->redirect($this->generateUrl('crivero_prueba_competiciones', array('id' => $competicion->getId())));
+    }
+    
+    public function nuevaAction() {
+        $competicion = new Competiciones();
+        $form = $this->createCreateForm($competicion);
+        return $this->render('CriveroPruebaBundle:Competiciones:nuevaCompeticion.html.twig', array('form' => $form->createView()));
+    }
+    
+    private function createCreateForm(Competiciones $entity) {
+        $form = $this->createForm(new CompeticionesType(), $entity, array(
+            'action' => $this->generateUrl('crivero_prueba_competicion_crear'),
+            'method' => 'POST'
+        ));
+        return $form;
+    }
+    
+    public function crearAction(Request $request) {
+        $competicion = new Competiciones();
+        $form = $this->createCreateForm($competicion);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $competicion->setEstadocompeticion("Validado");
+            $em->persist($competicion);
+            $em->flush();
+            return $this->redirect($this->generateUrl('crivero_prueba_competiciones'));
+        }
+        return $this->render('CriveroPruebaBundle:Competiciones:nuevaCompeticion.html.twig', array('form' => $form->createView()));
     }
     
     private function findEntity($id, $em, $repository) {

@@ -1,9 +1,8 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 
-{% block title %} {{competicion.nombre}} {% endblock %}
+{% block title %} Detalles de la competicion {% endblock %}
 {% block contenido %}
     <div class="container text-center">
-        <h2>Detalles de la competicion</h2>
         <h3>Deporte de la competición: {{competicion.deporte}}</h3>
         <h4>Tipo de la competición: {{competicion.tipoCompeticion}}</h4>
         {% if competicion.estadoCompeticion == "Pendiente" %}

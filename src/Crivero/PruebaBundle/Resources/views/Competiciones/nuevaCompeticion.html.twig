@@ -1,0 +1,40 @@
+{% extends 'CriveroPruebaBundle::main.html.twig'  %}
+
+{% block title %} Nueva Competicion {% endblock %}
+
+{% block contenido %}
+    <div class="container">
+        <h2>Nueva Competicion</h2>
+        {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+
+        <div class="form-group">
+            {{ form_label(form.nombre) }}
+            {{ form_widget(form.nombre, {'value' : form.nombre } ) }}
+            <span class="text-danger">{{ form_errors(form.nombre) }}</span>
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(form.deporte) }}
+            {{ form_widget(form.deporte, { 'attr' : {'class' : 'form-control'} }) }}
+            <span class="text-danger">{{ form_errors(form.deporte) }}</span>
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(form.tipocompeticion) }}
+            {{ form_widget(form.tipocompeticion, { 'attr' : {'class' : 'form-control'} }) }}
+            <span class="text-danger">{{ form_errors(form.tipocompeticion) }}</span>
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(form.fechainicio) }}
+            {{ form_widget(form.fechainicio, { 'attr' : {'class' : 'form-control'} }) }}
+            <span class="text-danger">{{ form_errors(form.fechainicio) }}</span>
+        </div>
+        
+        <p>
+            {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
+        </p>                
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

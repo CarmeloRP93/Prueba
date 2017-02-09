@@ -59,7 +59,7 @@ class Competiciones
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaFinalizacion", type="datetime", nullable=false)
+     * @ORM\Column(name="fechaFinalizacion", type="datetime", nullable=true)
      */
     private $fechafinalizacion;
     
@@ -69,8 +69,6 @@ class Competiciones
      * @ORM\Column(name="motivos", type="string", length=255, nullable=true)
      */
     private $motivos;
-
-
 
     /**
      * Get id

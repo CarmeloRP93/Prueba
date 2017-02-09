@@ -131,6 +131,16 @@ crivero_prueba_competicion_cancelar:
     defaults: { _controller: CriveroPruebaBundle:Competicion:cancelar }
     requirements:
         _method:  POST|PUT|GET
+        
+crivero_prueba_competicion_nueva:
+    pattern:  /nuevaCompeticion
+    defaults: { _controller: CriveroPruebaBundle:Competicion:nueva }
+    
+crivero_prueba_competicion_crear:
+    pattern:  /crearCompeticion
+    defaults: { _controller: CriveroPruebaBundle:Competicion:crear }
+    requirements:
+        _method:  POST|GET
     
 crivero_prueba_equipos:
     pattern:  /equipos
