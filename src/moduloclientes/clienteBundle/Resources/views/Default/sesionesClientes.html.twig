@@ -10,7 +10,9 @@
                 <h3>Listado de entrenamiento</h3>
             </div>
             {% for sesion in sesiones %}
-                <a href="{{url('moduloclientes_cliente_sesionClientes', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{sesion.id}}: {{ sesion.nombre }} - {{ sesion.estadoCliente}} </a>
+                {% if sesion.estadoCliente != 'Invalida' %}
+                    <a href="{{url('moduloclientes_cliente_sesionClientes', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{sesion.id}}: {{ sesion.nombre }} - {{ sesion.estadoCliente}} </a>
+                {% endif %}
             {% endfor %}
         </div>
     </div>

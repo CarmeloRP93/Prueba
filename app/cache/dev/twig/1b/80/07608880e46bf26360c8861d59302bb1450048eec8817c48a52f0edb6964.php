@@ -66,34 +66,35 @@ class __TwigTemplate_1b8007608880e46bf26360c8861d59302bb1450048eec8817c48a52f0ed
         </div>
         ";
         // line 15
-        if (($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estadoCliente", array()) == "Disponible")) {
+        if (($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estadoCliente", array()) == "disponible")) {
             // line 16
-            echo "            <div class=\"accionesesion\">
+            echo "            <div class=\"accionesesion text-center\">
                 <a href=\"";
             // line 17
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_sesionesClientes_apuntarse", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array()))), "html", null, true);
             echo "\" 
-                   class=\"btn btn-primary text-center center-block\">Apuntarse <span class=\"glyphicon glyphicon-pencil\"></span></a>
-            </div>
-                    
-        ";
-        } elseif (($this->getAttribute(        // line 21
-(isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estadoCliente", array()) == "Apuntado")) {
-            // line 22
-            echo "            <div class=\"accionesesion text-center\" >
-                <button style=\"height: 30px; width: 600px;\" class=\"btn btn-success\">Apuntado</button>
+                   class=\"btn btn-primary text-center center-block\" style=\"height: 30px; width: 600px;\">Apuntarse <span class=\"glyphicon glyphicon-pencil\"></span></a>
             </div>
 
         ";
-        } else {
+        } elseif (($this->getAttribute(        // line 21
+(isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estadoCliente", array()) == "completo")) {
+            // line 22
+            echo "            <div class=\"accionesesion text-center\">
+                <button class=\"btn btn-danger text-center center-block\" style=\"height: 30px; width: 600px;\" disabled=\"disabled\">Completo</button>
+            </div>
+
+        ";
+        } elseif (($this->getAttribute(        // line 26
+(isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estadoCliente", array()) == "cancelada")) {
             // line 27
             echo "            <div class=\"accionesesion text-center\">
-                <button style=\"height: 30px; width: 600px;\" class=\"btn btn-danger\">Completo</button>
+                <button class=\"btn btn-danger text-center center-block\" style=\"height: 30px; width: 600px;\" disabled=\"disabled\">Cancelada</button>
             </div>
         ";
         }
         // line 31
-        echo "        
+        echo "
         <div class=\"row\">
             <div id=\"colizq\" class=\"col-md-4 col-md-offset-3\" >
                 <h4>Monitor:</h4> <p>";
@@ -125,7 +126,7 @@ class __TwigTemplate_1b8007608880e46bf26360c8861d59302bb1450048eec8817c48a52f0ed
             </div>
         </div>
     </div>
-      
+
 ";
     }
 
@@ -141,6 +142,6 @@ class __TwigTemplate_1b8007608880e46bf26360c8861d59302bb1450048eec8817c48a52f0ed
 
     public function getDebugInfo()
     {
-        return array (  123 => 41,  119 => 40,  115 => 39,  109 => 36,  105 => 35,  101 => 34,  96 => 31,  90 => 27,  83 => 22,  81 => 21,  74 => 17,  71 => 16,  69 => 15,  64 => 13,  56 => 8,  52 => 7,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  124 => 41,  120 => 40,  116 => 39,  110 => 36,  106 => 35,  102 => 34,  97 => 31,  91 => 27,  89 => 26,  83 => 22,  81 => 21,  74 => 17,  71 => 16,  69 => 15,  64 => 13,  56 => 8,  52 => 7,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }

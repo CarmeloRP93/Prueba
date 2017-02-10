@@ -68,34 +68,40 @@ class __TwigTemplate_e3e387566231ae351f3e45e985b7082e6a6d86ae0afc13d8fff38445f6b
         foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
             // line 13
             echo "                ";
-            if (($this->getAttribute($context["sesion"], "estado", array()) == "Cancelada")) {
+            if (($context["sesion"] != null)) {
                 // line 14
                 echo "                    ";
-                $context["estado"] = "Cancelada";
-                // line 15
-                echo "                ";
-            } else {
-                // line 16
-                echo "                    ";
-                $context["estado"] = "Apuntado";
-                // line 17
-                echo "                ";
+                if (($this->getAttribute($context["sesion"], "estado", array()) == "cancelada")) {
+                    // line 15
+                    echo "                        ";
+                    $context["estado"] = "Cancelada";
+                    // line 16
+                    echo "                    ";
+                } else {
+                    // line 17
+                    echo "                        ";
+                    $context["estado"] = "Apuntado";
+                    // line 18
+                    echo "                    ";
+                }
+                // line 19
+                echo "
+                    <a href=\"";
+                // line 20
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_miSesionClientes", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
+                echo "\" class=\"fila ";
+                echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
+                echo "\"> Sesion ";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "id", array()), "html", null, true);
+                echo ": ";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
+                echo " - ";
+                echo twig_escape_filter($this->env, (isset($context["estado"]) ? $context["estado"] : $this->getContext($context, "estado")), "html", null, true);
+                echo "</a>
+                ";
             }
-            // line 18
-            echo "
-                <a href=\"";
-            // line 19
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_sesionClientes", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
-            echo "\" class=\"fila ";
-            echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
-            echo "\"> Sesion ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "id", array()), "html", null, true);
-            echo ": ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
-            echo " - ";
-            echo twig_escape_filter($this->env, (isset($context["estado"]) ? $context["estado"] : $this->getContext($context, "estado")), "html", null, true);
-            echo "</a>
-            ";
+            // line 22
+            echo "            ";
             ++$context['loop']['index0'];
             ++$context['loop']['index'];
             $context['loop']['first'] = false;
@@ -108,7 +114,7 @@ class __TwigTemplate_e3e387566231ae351f3e45e985b7082e6a6d86ae0afc13d8fff38445f6b
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 21
+        // line 23
         echo "        </div>
     </div>
 ";
@@ -126,6 +132,6 @@ class __TwigTemplate_e3e387566231ae351f3e45e985b7082e6a6d86ae0afc13d8fff38445f6b
 
     public function getDebugInfo()
     {
-        return array (  112 => 21,  88 => 19,  85 => 18,  82 => 17,  79 => 16,  76 => 15,  73 => 14,  70 => 13,  53 => 12,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  118 => 23,  104 => 22,  91 => 20,  88 => 19,  85 => 18,  82 => 17,  79 => 16,  76 => 15,  73 => 14,  70 => 13,  53 => 12,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
     }
 }

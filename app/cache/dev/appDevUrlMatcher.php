@@ -382,6 +382,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_sesionClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::sesionClientesAction',));
         }
 
+        // moduloclientes_cliente_miSesionClientes
+        if (0 === strpos($pathinfo, '/miSesionClientes') && preg_match('#^/miSesionClientes/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_miSesionClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::miSesionClientesAction',));
+        }
+
         // moduloclientes_cliente_nuevaReserva
         if (0 === strpos($pathinfo, '/nuevaReserva') && preg_match('#^/nuevaReserva/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_nuevaReserva')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::nuevaReservaAction',));
@@ -398,9 +403,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_moduloclientes_cliente_crearReserva:
 
-        // moduloclientes_cliente_sesionesClientes_apuntarse
-        if (0 === strpos($pathinfo, '/apuntarse') && preg_match('#^/apuntarse/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_sesionesClientes_apuntarse')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::apuntarseAction',));
+        if (0 === strpos($pathinfo, '/a')) {
+            // moduloclientes_cliente_sesionesClientes_apuntarse
+            if (0 === strpos($pathinfo, '/apuntarse') && preg_match('#^/apuntarse/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_sesionesClientes_apuntarse')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::apuntarseAction',));
+            }
+
+            // moduloclientes_cliente_sesionesClientes_abandonar
+            if (0 === strpos($pathinfo, '/abandonar') && preg_match('#^/abandonar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_sesionesClientes_abandonar')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::abandonarAction',));
+            }
+
         }
 
         // moduloclientes_cliente_misSesionesClientes

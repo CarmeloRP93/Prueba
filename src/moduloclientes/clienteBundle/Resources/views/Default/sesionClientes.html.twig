@@ -12,23 +12,23 @@
         <div id="sesionfot" style="margin-top: 14px;">
             <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" />        
         </div>
-        {% if sesion.estadoCliente == "Disponible" %}
-            <div class="accionesesion">
+        {% if sesion.estadoCliente == "disponible" %}
+            <div class="accionesesion text-center">
                 <a href="{{path('moduloclientes_cliente_sesionesClientes_apuntarse', {id: sesion.id})}}" 
-                   class="btn btn-primary text-center center-block">Apuntarse <span class="glyphicon glyphicon-pencil"></span></a>
-            </div>
-                    
-        {% elseif sesion.estadoCliente == "Apuntado" %}
-            <div class="accionesesion text-center" >
-                <button style="height: 30px; width: 600px;" class="btn btn-success">Apuntado</button>
+                   class="btn btn-primary text-center center-block" style="height: 30px; width: 600px;">Apuntarse <span class="glyphicon glyphicon-pencil"></span></a>
             </div>
 
-        {% else %}
+        {% elseif sesion.estadoCliente == "completo" %}
             <div class="accionesesion text-center">
-                <button style="height: 30px; width: 600px;" class="btn btn-danger">Completo</button>
+                <button class="btn btn-danger text-center center-block" style="height: 30px; width: 600px;" disabled="disabled">Completo</button>
+            </div>
+
+        {% elseif sesion.estadoCliente == "cancelada" %}
+            <div class="accionesesion text-center">
+                <button class="btn btn-danger text-center center-block" style="height: 30px; width: 600px;" disabled="disabled">Cancelada</button>
             </div>
         {% endif %}
-        
+
         <div class="row">
             <div id="colizq" class="col-md-4 col-md-offset-3" >
                 <h4>Monitor:</h4> <p>{{sesion.monitor}}</p>
@@ -42,5 +42,5 @@
             </div>
         </div>
     </div>
-      
+
 {% endblock %}

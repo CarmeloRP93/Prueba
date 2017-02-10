@@ -1,0 +1,35 @@
+{% extends 'moduloclientesclienteBundle::main.html.twig' %}
+
+{% block title %}Vista de {{sesion.nombre}} {% endblock %}
+{% block contenido %}
+    <div class="text-center">
+        <h3>
+            Sesion {{sesion.id}} 
+            <small class="text-muted">{{sesion.nombre}}</small>
+        </h3>
+    </div>
+    <div id="sesiondat" class="container">
+        <div id="sesionfot" style="margin-top: 14px;">
+            <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" />        
+        </div>
+
+        <div class="accionesesion">
+            <a href="{{path('moduloclientes_cliente_sesionesClientes_abandonar', {id: sesion.id})}}" 
+               class="btn btn-danger text-center center-block">Abandonar</a>
+        </div>
+
+        <div class="row">
+            <div id="colizq" class="col-md-4 col-md-offset-3" >
+                <h4>Monitor:</h4> <p>{{sesion.monitor}}</p>
+                <h4>Ejercicios:</h4> <p>{{sesion.ejercicios}}</p>
+                <h4>Repeticiones:</h4> <p>{{sesion.repeticiones}} por ejercicio</p>
+            </div>
+            <div id="colder" class="col-md-4">
+                <h4>Tiempo estimado:</h4> <p>{{sesion.duracion}} minutos</p>
+                <h4>Descanso entre ejercicios:</h4> <p>{{sesion.descanso}} minutos</p>
+                <h4>Objetivo:</h4> <p>{{sesion.objetivo}}</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

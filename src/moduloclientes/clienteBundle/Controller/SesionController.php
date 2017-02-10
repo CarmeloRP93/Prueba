@@ -15,8 +15,8 @@ class SesionController extends Controller {
     public function sesionesClientesAction() {
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesiones = $repositorySesiones->findAll();
-        
-        foreach ($sesiones as $i=>$sesion) {
+
+        foreach ($sesiones as $i => $sesion) {
             if (strpos($sesion->getIdsClientes(), strval($this->getUser()->getId())) === false) {
                 $resultado[$i] = $sesion;
             }
@@ -70,6 +70,12 @@ class SesionController extends Controller {
         return $this->render('moduloclientesclienteBundle:Default:sesionClientes.html.twig', array("sesion" => $sesion));
     }
 
+    public function miSesionClientesAction($id) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesion = $repository->find($id);
+        return $this->render('moduloclientesclienteBundle:Default:miSesionClientes.html.twig', array("sesion" => $sesion));
+    }
+
     public function apuntarseAction($id) {
         $em = $this->getDoctrine()->getManager();
         $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
@@ -96,7 +102,52 @@ class SesionController extends Controller {
         $em->persist($usuario);
         $em->persist($sesion);
         $em->flush();
-        return $this->redirect($this->generateUrl('moduloclientes_cliente_sesionClientes', array('id' => $sesion->getId())));
+        return $this->redirect($this->generateUrl('moduloclientes_cliente_misSesionesClientes'));
+    }
+
+    public function abandonarAction($id) {
+        $em = $this->getDoctrine()->getManager();
+
+        // Aquí eliminamos el cliente en la tabla sesiones
+        $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
+        $arrayClientes = explode('&', $sesion->getIdsClientes());
+        for ($i = 0; $i <= count($arrayClientes); $i++) {
+            if ($arrayClientes[$i] == $this->getUser()->getId()) {
+                $pos = $i;
+                break;
+            }
+        }
+        unset($arrayClientes[$pos]);
+        $arrayClientes1 = array_values($arrayClientes);
+        $sesion->setIdsClientes(implode($arrayClientes1, '&'));
+
+        // Aquí eliminamos la sesión en la tabla usuario
+        $usuario = $this->findEntity($this->getUser()->getId(), $em, 'CriveroPruebaBundle:Usuarios');
+        $arraySesiones = explode('&', $usuario->getSesiones());
+        for ($i = 0; $i <= count($arraySesiones); $i++) {
+            if ($arraySesiones[$i] == $id) {
+                $posS = $i;
+                break;
+            }
+        }
+        unset($arraySesiones[$posS]);
+        $arraySesiones1 = array_values($arraySesiones);
+        $usuario->setSesiones(implode($arraySesiones1, '&'));
+
+        // Aquí restamos la cantidad de clientes apuntados a la sesion y la eliminamos si el estado es cancelado
+        $restaCliente = $sesion->getNClientes();
+        $restaCliente--;
+        $sesion->setNClientes($restaCliente);
+
+        if ($restaCliente == 0 && $sesion->getEstado() == 'cancelada') {
+            $em->remove($sesion);
+        } else {
+            $em->persist($sesion);
+        }
+        
+        $em->persist($usuario);
+        $em->flush();
+        return $this->redirect($this->generateUrl('moduloclientes_cliente_misSesionesClientes'));
     }
 
     private function findEntity($id, $em, $repository) {
@@ -113,5 +164,4 @@ class SesionController extends Controller {
         }
         return $resultado;
     }
-
 }

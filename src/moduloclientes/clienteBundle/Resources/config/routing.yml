@@ -46,6 +46,10 @@ moduloclientes_cliente_pagar:
 moduloclientes_cliente_sesionClientes:
     pattern:  /sesionClientes/{id}
     defaults: { _controller: moduloclientesclienteBundle:Sesion:sesionClientes }
+    
+moduloclientes_cliente_miSesionClientes:
+    pattern:  /miSesionClientes/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Sesion:miSesionClientes }
 
 moduloclientes_cliente_nuevaReserva:
     pattern:  /nuevaReserva/{id}
@@ -60,6 +64,10 @@ moduloclientes_cliente_crearReserva:
 moduloclientes_cliente_sesionesClientes_apuntarse:
     pattern:  /apuntarse/{id}
     defaults: { _controller: moduloclientesclienteBundle:Sesion:apuntarse }
+    
+moduloclientes_cliente_sesionesClientes_abandonar:
+    pattern:  /abandonar/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Sesion:abandonar }
     
 moduloclientes_cliente_misSesionesClientes:
     pattern:  /misSesiones

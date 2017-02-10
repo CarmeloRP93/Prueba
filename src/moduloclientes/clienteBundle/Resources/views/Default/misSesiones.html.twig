@@ -10,13 +10,15 @@
                 <h3>Mis sesiones</h3>
             </div>
             {% for sesion in sesiones %}
-                {% if (sesion.estado == 'Cancelada') %}
-                    {% set estado = 'Cancelada' %}
-                {% else %}
-                    {% set estado='Apuntado' %}
-                {% endif %}
+                {% if (sesion != NULL) %}
+                    {% if (sesion.estado == 'cancelada') %}
+                        {% set estado = 'Cancelada' %}
+                    {% else %}
+                        {% set estado = 'Apuntado' %}
+                    {% endif %}
 
-                <a href="{{url('moduloclientes_cliente_sesionClientes', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{sesion.id}}: {{ sesion.nombre }} - {{ estado }}</a>
+                    <a href="{{url('moduloclientes_cliente_miSesionClientes', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{sesion.id}}: {{ sesion.nombre }} - {{ estado }}</a>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
