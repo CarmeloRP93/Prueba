@@ -117,7 +117,7 @@ class __TwigTemplate_f2fc1dc30a687a689908adaf033f3385e5e8ccb2ce92d74b121c8d276a3
         // line 50
         echo "
                 <fieldset>
-                    <input type=\"text\" id=\"username\" class=\"form-control\" name=\"_nombre\" value=\"";
+                    <input type=\"text\" id=\"username\" class=\"form-control\" name=\"_username\" value=\"";
         // line 52
         echo twig_escape_filter($this->env, (isset($context["last_username"]) ? $context["last_username"] : $this->getContext($context, "last_username")), "html", null, true);
         echo "\" placeholder=\"Usuario\" required autofocus />

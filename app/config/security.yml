@@ -9,7 +9,7 @@ security:
         our_db_provider:
             entity:
                 class: CriveroPruebaBundle:Usuarios
-                property: nombre
+                property: username
 
     firewalls:
         default:
@@ -19,7 +19,7 @@ security:
                     login_path: /login
                     check_path: /login_check
                     # field names for the username and password fields:
-                    username_parameter: _nombre
+                    username_parameter: _username
                     password_parameter: _password
                     # default_target_path: default_security_target
                     # always_use_default_target_path: true

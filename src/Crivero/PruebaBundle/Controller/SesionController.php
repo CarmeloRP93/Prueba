@@ -42,7 +42,6 @@ class SesionController extends Controller {
         $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
         $sesion->setEstado("validada");
         $sesion->setEstadoCliente("disponible");
-        if ($sesion->getIdsClientes() == null) $sesion->setIdsClientes($sesion->getIdMonitor());
         
         $monitor = $this->findEntity($sesion->getIdMonitor(), $em, 'CriveroPruebaBundle:Usuarios');
         ($monitor->getSesiones() == null) ? $monitor->setSesiones($sesion->getId()):

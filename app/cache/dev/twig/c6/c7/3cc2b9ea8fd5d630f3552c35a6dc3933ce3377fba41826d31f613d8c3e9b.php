@@ -64,13 +64,16 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
                     <tr>
                         <th>";
         // line 21
-        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre", "u.nombre");
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Usuario", "u.username");
         echo "</th>
                         <th>";
         // line 22
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre", "u.nombre");
+        echo "</th>
+                        <th>";
+        // line 23
         echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Correo electrónico", "u.email");
         echo "</th>
-                        <th>Telefono</th>
                         <th>";
         // line 24
         echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Creado", "u.registro");
@@ -91,15 +94,15 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
             echo "\">
                             <td>";
             // line 32
-            echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "nombre", array()), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "username", array()), "html", null, true);
             echo "</td>
                             <td>";
             // line 33
-            echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "email", array()), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "nombre", array()), "html", null, true);
             echo "</td>
                             <td>";
             // line 34
-            echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "telefono", array()), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "email", array()), "html", null, true);
             echo "</td>
                             <td>";
             // line 35
@@ -188,6 +191,6 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
 
     public function getDebugInfo()
     {
-        return array (  174 => 70,  169 => 69,  166 => 68,  159 => 65,  151 => 60,  145 => 57,  138 => 52,  123 => 43,  117 => 40,  111 => 37,  106 => 35,  102 => 34,  98 => 33,  94 => 32,  89 => 31,  85 => 30,  76 => 24,  71 => 22,  67 => 21,  56 => 13,  47 => 6,  44 => 5,  38 => 3,  11 => 1,);
+        return array (  177 => 70,  172 => 69,  169 => 68,  162 => 65,  154 => 60,  148 => 57,  141 => 52,  126 => 43,  120 => 40,  114 => 37,  109 => 35,  105 => 34,  101 => 33,  97 => 32,  92 => 31,  88 => 30,  79 => 24,  75 => 23,  71 => 22,  67 => 21,  56 => 13,  47 => 6,  44 => 5,  38 => 3,  11 => 1,);
     }
 }

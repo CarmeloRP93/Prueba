@@ -36,7 +36,7 @@
                                         Rechazar
                                     </a>
                                 {% elseif sesion.estado == 'validada' %}
-                                    <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                    <a href="{{path('crivero_prueba_cancelarSesion', {id: sesion.id})}}" class="btn btn-sm btn-danger btn-delete">
                                         Cancelar
                                     </a>
                                 {% endif %}

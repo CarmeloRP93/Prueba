@@ -9,7 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\UsuariosRepository")
- * @UniqueEntity("nombre")
+ * @UniqueEntity("username")
  * @UniqueEntity("email")
  * @ORM\HasLifecycleCallbacks()
  */
@@ -24,6 +24,14 @@ class Usuarios implements AdvancedUserInterface, \Serializable
      */
     private $id;
  
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=200, unique=true)
+     * @Assert\NotBlank()
+     */
+    private $username;
+    
     /**
      * @var string
      *
@@ -42,7 +50,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=200)
+     * @ORM\Column(name="email", type="string", length=200, unique=true)
      * @Assert\NotBlank()
      * @Assert\Email()
      */
@@ -235,6 +243,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
         $this->email = $email;
         return $this;
     }
+    
     /**
      * Get email
      *
@@ -299,11 +308,23 @@ class Usuarios implements AdvancedUserInterface, \Serializable
         }
     }
     
+     /**
+     * Set username
+     *
+     * @param string $username
+     * @return Usuarios
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+        return $this;
+    }
+    
     public function getSalt() {
         return null;
     }
     public function getUsername() {
-        return $this->nombre;
+        return $this->username;
     }
     public function isAccountNonExpired() {
         return true;
@@ -324,7 +345,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     public function serialize() {
          return serialize(array(
             $this->id,
-            $this->nombre,
+            $this->username,
             $this->password
         ));
     }
@@ -333,7 +354,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     public function unserialize($serialized) {
          list (
             $this->id,
-            $this->nombre,
+            $this->username,
             $this->password
         ) = unserialize($serialized);
     }

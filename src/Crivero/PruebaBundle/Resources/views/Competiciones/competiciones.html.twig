@@ -15,6 +15,7 @@
                         <th>Tipo competicion</th>
                         <th>Fecha inicio</th>
                         <th>Fecha finalización</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,8 +25,12 @@
                             <td>{{competicion.deporte}}</td>
                             <td>{{competicion.estadoCompeticion}}</td>
                             <td>{{competicion.tipoCompeticion}}</td>
-                            <td>{{competicion.fechaInicio|date('d/m/Y H:i')}}</td>
-                            <td>{{competicion.fechaFinalizacion|date('d/m/Y H:i')}}</td>
+                            <td><strong>{{competicion.fechaInicio|date('d/m/Y')}}</strong></td>
+                            {% if competicion.fechaFinalizacion != null %}
+                                <td><strong>{{competicion.fechaFinalizacion|date('d/m/Y')}}</strong></td>
+                                {% else %}
+                                <td><strong>No Consta</strong></td>
+                            {% endif %}
                             <td class="actions">
                                 <a href="{{ path('crivero_prueba_competicion', { id: competicion.id }) }}" class="btn btn-sm btn-info">
                                     Ver

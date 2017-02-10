@@ -1,19 +1,19 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 
-{% block title %} {{monitor.nombre}} {% endblock %}
+{% block title %} Monitor {{monitor.username}} {% endblock %}
 {% block contenido %}
     <div class="usuardesc">
         <div class="accionesExclus">
             <button>Enviar mensaje</button>
              <p>{{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form })}}</p>
         </div>
-        <h1>{{monitor.nombre}}</h1>
+        <h1>{{monitor.username}}</h1>
         <div class="usuarfot">
             <img src="{{ asset('images/no-image-found.png') }}" style="float: left; width: 100%;" />        
         </div>
         <div class="usuardat">
             <div id="resersiones">
-                {% if monitor.sesiones != null %}
+                {% if sesiones != null %}
                 <div>
                     <h4>Sesiones: </h4> 
                     <ul id="sesiones">
@@ -26,9 +26,10 @@
                 </div>
                     {% endif %}
             </div>
+            <h4>Nombre: </h4> <p>{{monitor.nombre}}</p>
             <h4>F.Nacimiento: </h4> <p>{{monitor.fNacimiento}}</p>
-            <h4>Registro: </h4> <p>{{monitor.registro|date('d/m/Y H:i')}}</p>
             <h4>Telefono: </h4> <p>{{monitor.telefono}}</p>
+            <h4>Registro: </h4> <p>{{monitor.registro|date('d/m/Y H:i')}}</p>
         </div>
     </div>
 {% endblock %}

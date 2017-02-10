@@ -50,16 +50,16 @@ class Competiciones
     private $tipocompeticion;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="fechaInicio", type="datetime", nullable=false)
+     * @ORM\Column(name="fechaInicio", type="date", nullable=false)
      */
     private $fechainicio;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="fechaFinalizacion", type="datetime", nullable=true)
+     * @ORM\Column(name="fechaFinalizacion", type="date", nullable=true)
      */
     private $fechafinalizacion;
     

@@ -116,7 +116,9 @@ class __TwigTemplate_db262f23e8a5b451e21ed1709a7ceea6b75e1aa3c8bf0acdca8e501d313
             } elseif (($this->getAttribute(            // line 38
 $context["sesion"], "estado", array()) == "validada")) {
                 // line 39
-                echo "                                    <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
+                echo "                                    <a href=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancelarSesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
+                echo "\" class=\"btn btn-sm btn-danger btn-delete\">
                                         Cancelar
                                     </a>
                                 ";
@@ -155,6 +157,6 @@ $context["sesion"], "estado", array()) == "validada")) {
 
     public function getDebugInfo()
     {
-        return array (  139 => 50,  133 => 46,  125 => 43,  119 => 39,  117 => 38,  109 => 32,  107 => 31,  101 => 28,  93 => 25,  89 => 24,  85 => 23,  81 => 22,  78 => 21,  74 => 20,  66 => 15,  62 => 14,  58 => 13,  54 => 12,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  141 => 50,  135 => 46,  127 => 43,  119 => 39,  117 => 38,  109 => 32,  107 => 31,  101 => 28,  93 => 25,  89 => 24,  85 => 23,  81 => 22,  78 => 21,  74 => 20,  66 => 15,  62 => 14,  58 => 13,  54 => 12,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

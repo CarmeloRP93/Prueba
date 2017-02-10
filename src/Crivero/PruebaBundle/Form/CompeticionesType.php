@@ -15,12 +15,12 @@ class CompeticionesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombre')
-            ->add('deporte','choice', array('choices' => array("Futbol"=>'Futbol',
-                                                              "Baloncesto"=>'Baloncesto')))
+            ->add('nombre', 'text')
+            ->add('deporte','choice', array('choices' => array("Futbol"=>'Futbol', "Baloncesto"=>'Baloncesto', 
+                                                               "Padel"=>'Padel', "Tenis"=>'Tenis')))
             ->add('tipocompeticion','choice', array('choices' => array("Liga"=>'Liga',
                                                                        "Torneo"=>'Torneo')))
-            ->add('fechainicio','datetime')
+            ->add('fechainicio','date', array('widget' => "single_text"))
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;
     }

@@ -18,9 +18,9 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th>{{ knp_pagination_sortable(pagination, 'Usuario', 'u.username') }}</th>
                         <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'u.nombre') }}</th>
                         <th>{{ knp_pagination_sortable(pagination, 'Correo electrónico', 'u.email') }}</th>
-                        <th>Telefono</th>
                         <th>{{ knp_pagination_sortable(pagination, 'Creado', 'u.registro') }}</th>
                         <th>Acciones</th>
                     </tr>
@@ -29,9 +29,9 @@
 
                     {% for usuario in pagination %}
                         <tr data-id="{{ usuario.id }}">
+                            <td>{{usuario.username}}</td>
                             <td>{{usuario.nombre}}</td>
                             <td>{{usuario.email}}</td>
-                            <td>{{usuario.telefono}}</td>
                             <td>{{usuario.registro|date('d/m/Y')}}</td>
                             <td class="actions">
                                 <a href="{{ path('crivero_prueba_cliente', { id: usuario.id }) }}" class="btn btn-sm btn-info">

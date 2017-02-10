@@ -48,136 +48,151 @@ class __TwigTemplate_02bcc152e86b5cf18d89cbe10259956bd429351fb6aed4320bb2ee494e0
         echo "
     <div class=\"container\">
 
-            <div class=\"col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4\">
-                <div class=\"panel panel-default\">
-                    <div class=\"panel-heading text-center\">
-                       ";
+        <div class=\"col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4\">
+            <div class=\"panel panel-default\">
+                <div class=\"panel-heading text-center\">
+                    ";
         // line 12
         echo ((($this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "id", array()) == $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))) ? ("<h3>Mi Perfil</h3>") : ("<h3>Editar Usuario</h3>"));
         echo " 
-                          
-                    </div>
-                    ";
+
+                </div>
+                ";
         // line 15
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("attr" => array("novalidate" => "novalidate", "role" => "form")));
         echo "
-                    <div class=\"panel-body\">
-                        <form role=\"form\">
-                            <div class=\"row\">
-                                <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
-                                    <div class=\"form-group\">
-                                        ";
+                <div class=\"panel-body\">
+                    <form role=\"form\">
+                        <div class=\"row\">
+                            <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
+                                <div class=\"form-group\">
+                                    ";
         // line 21
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'label');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "username", array()), 'label');
         echo "
-                                        ";
+                                    ";
         // line 22
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Escriba su nombre completo")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "username", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Escriba su nombre completo")));
         echo "
-                                        <span class=\"text-danger\">";
+                                    <span class=\"text-danger\">";
         // line 23
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'errors');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "username", array()), 'errors');
         echo "</span>
-                                    </div>
                                 </div>
-                                <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
-                                    <div class=\"form-group\">
-                                        ";
-        // line 28
+                                <div class=\"form-group\">
+                                    ";
+        // line 26
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "email", array()), 'label');
         echo "
-                                        ";
-        // line 29
+                                    ";
+        // line 27
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "email", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Escriba su email")));
         echo "
-                                        <span class=\"text-danger\">";
-        // line 30
+                                    <span class=\"text-danger\">";
+        // line 28
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "email", array()), 'errors');
         echo "</span>
-                                    </div>
                                 </div>
-                            </div>
 
-                            <div class=\"row\">
-                                <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
-                            <div class=\"form-group\">
-                                ";
-        // line 38
+                            </div>
+                            <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
+                                <div class=\"form-group\">
+                                    ";
+        // line 34
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'label');
+        echo "
+                                    ";
+        // line 35
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Escriba su nombre completo")));
+        echo "
+                                    <span class=\"text-danger\">";
+        // line 36
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'errors');
+        echo "</span>
+                                </div>
+                                <div class=\"form-group\">
+                                    ";
+        // line 39
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "password", array()), 'label');
         echo "
-                                ";
-        // line 39
+                                    ";
+        // line 40
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "password", array()), 'widget', array("attr" => array("class" => "form-control")));
         echo "
-                                <span class=\"text-danger\">";
-        // line 40
+                                    <span class=\"text-danger\">";
+        // line 41
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "password", array()), 'errors');
         echo "</span>
+                                </div>
                             </div>
+                        </div>
 
-                                    <div class=\"form-group\">
-                                        ";
-        // line 44
+                        <div class=\"row\">
+                            <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
+
+                                <div class=\"form-group\">
+                                    ";
+        // line 50
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fNacimiento", array()), 'label');
         echo "
-                                        ";
-        // line 45
+                                    ";
+        // line 51
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fNacimiento", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "--/--/----")));
         echo "
-                                        <span class=\"text-danger\">";
-        // line 46
+                                    <span class=\"text-danger\">";
+        // line 52
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fNacimiento", array()), 'errors');
         echo "</span>
-                                    </div>
-                                </div>
-                                <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
-                                    <div class=\"form-group\">
-                                        ";
-        // line 51
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "telefono", array()), 'label');
-        echo "
-                                        ";
-        // line 52
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "telefono", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Introduzca su número teléfono")));
-        echo "
-                                        <span class=\"text-danger\">";
-        // line 53
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "telefono", array()), 'errors');
-        echo "</span>
-                                    </div>
-                                </div>
-                                <div class=\"hidden\">
-                                    <div class=\"form-group\">
-                                        ";
-        // line 58
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "tipo", array()), 'label');
-        echo "
-                                        ";
-        // line 59
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "tipo", array()), 'widget', array("attr" => array("class" => "form-control")));
-        echo "
-                                        <span class=\"text-danger\">";
-        // line 60
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "tipo", array()), 'errors');
-        echo "</span>
-                                    </div>
                                 </div>
                             </div>
+                            <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
+                                <div class=\"form-group\">
+                                    ";
+        // line 57
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "telefono", array()), 'label');
+        echo "
+                                    ";
+        // line 58
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "telefono", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Introduzca su número teléfono")));
+        echo "
+                                    <span class=\"text-danger\">";
+        // line 59
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "telefono", array()), 'errors');
+        echo "</span>
+                                </div>
+                            </div>
+                            <div class=\"hidden\">
+                                <div class=\"form-group\">
+                                    ";
+        // line 64
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "tipo", array()), 'label');
+        echo "
+                                    ";
+        // line 65
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "tipo", array()), 'widget', array("attr" => array("class" => "form-control")));
+        echo "
+                                    <span class=\"text-danger\">";
+        // line 66
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "tipo", array()), 'errors');
+        echo "</span>
+                                </div>
+                            </div>
+                        </div>
 
-                        </form>
-                        <div class=\"text-center\">
-                            ";
-        // line 67
+                    </form>
+                    <div class=\"text-center\">
+                        ";
+        // line 73
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
-                        </div>
-                        ";
-        // line 69
+                    </div>
+                    ";
+        // line 75
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
-                    </div>
-                </div>               
-            </div>
+                </div>
+            </div>               
+        </div>
     </div>           
 
 ";
@@ -195,6 +210,6 @@ class __TwigTemplate_02bcc152e86b5cf18d89cbe10259956bd429351fb6aed4320bb2ee494e0
 
     public function getDebugInfo()
     {
-        return array (  176 => 69,  171 => 67,  161 => 60,  157 => 59,  153 => 58,  145 => 53,  141 => 52,  137 => 51,  129 => 46,  125 => 45,  121 => 44,  114 => 40,  110 => 39,  106 => 38,  95 => 30,  91 => 29,  87 => 28,  79 => 23,  75 => 22,  71 => 21,  62 => 15,  56 => 12,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
+        return array (  191 => 75,  186 => 73,  176 => 66,  172 => 65,  168 => 64,  160 => 59,  156 => 58,  152 => 57,  144 => 52,  140 => 51,  136 => 50,  124 => 41,  120 => 40,  116 => 39,  110 => 36,  106 => 35,  102 => 34,  93 => 28,  89 => 27,  85 => 26,  79 => 23,  75 => 22,  71 => 21,  62 => 15,  56 => 12,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
     }
 }

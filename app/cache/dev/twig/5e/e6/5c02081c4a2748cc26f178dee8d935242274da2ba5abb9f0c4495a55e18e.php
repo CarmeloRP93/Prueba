@@ -57,7 +57,7 @@ class __TwigTemplate_5ee65c02081c4a2748cc26f178dee8d935242274da2ba5abb9f0c4495a5
         echo "
             ";
         // line 12
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'widget', array("value" => $this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array())));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'widget', array("attr" => array("class" => "form-control")));
         echo "
             <span class=\"text-danger\">";
         // line 13
@@ -81,10 +81,7 @@ class __TwigTemplate_5ee65c02081c4a2748cc26f178dee8d935242274da2ba5abb9f0c4495a5
         </div>
         
         <div class=\"form-group\">
-            ";
-        // line 23
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "tipocompeticion", array()), 'label');
-        echo "
+            <label>Tipo Competicion:</label>
             ";
         // line 24
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "tipocompeticion", array()), 'widget', array("attr" => array("class" => "form-control")));
@@ -96,13 +93,10 @@ class __TwigTemplate_5ee65c02081c4a2748cc26f178dee8d935242274da2ba5abb9f0c4495a5
         </div>
         
         <div class=\"form-group\">
-            ";
-        // line 29
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fechainicio", array()), 'label');
-        echo "
+            <label>Fecha Inicio:</label><br>
             ";
         // line 30
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fechainicio", array()), 'widget', array("attr" => array("class" => "form-control")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fechainicio", array()), 'widget', array("attr" => array("class" => "")));
         echo "
             <span class=\"text-danger\">";
         // line 31
@@ -137,6 +131,6 @@ class __TwigTemplate_5ee65c02081c4a2748cc26f178dee8d935242274da2ba5abb9f0c4495a5
 
     public function getDebugInfo()
     {
-        return array (  122 => 38,  116 => 35,  109 => 31,  105 => 30,  101 => 29,  94 => 25,  90 => 24,  86 => 23,  79 => 19,  75 => 18,  71 => 17,  64 => 13,  60 => 12,  56 => 11,  50 => 8,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  116 => 38,  110 => 35,  103 => 31,  99 => 30,  91 => 25,  87 => 24,  79 => 19,  75 => 18,  71 => 17,  64 => 13,  60 => 12,  56 => 11,  50 => 8,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

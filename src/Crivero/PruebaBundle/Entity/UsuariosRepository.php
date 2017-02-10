@@ -18,9 +18,23 @@ class UsuariosRepository extends EntityRepository
             ->getResult();
     }
     
+    public function getReservasCliente($idCliente){
+        return $this->getEntityManager()
+            ->createQuery("SELECT r FROM CriveroPruebaBundle:Reservas r WHERE r.idCliente = :id AND r.estadoReserva = 'Reservado'")
+            ->setParameter('id', $idCliente)
+            ->getResult();
+    }
+    
     public function getMonitores(){
         return $this->getEntityManager()
             ->createQuery('SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=3')
+            ->getResult();
+    }
+    
+    public function getSesionesMonitor($idMonitor){
+        return $this->getEntityManager()
+            ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.idMonitor = :id AND s.estado = 'validada'")
+            ->setParameter('id', $idMonitor)
             ->getResult();
     }
     

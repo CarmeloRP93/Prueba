@@ -8,21 +8,26 @@
         {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
 
         <div class="form-group">
-            {{ form_label(form.nombre) }}
-            {{ form_widget(form.nombre, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba su nombre completo'} }) }}
+            {{ form_label(form.username) }}
+            {{ form_widget(form.username, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba nombre de usuario'} }) }}
+            <span class="text-danger">{{ form_errors(form.username) }}</span>
+        </div>
+        
+        <div class="form-group">
+            <label>Nombre y Apellidos</label>
+            {{ form_widget(form.nombre, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba nombre y apellidos'} }) }}
             <span class="text-danger">{{ form_errors(form.nombre) }}</span>
         </div>
 
-
         <div class="form-group">
             {{ form_label(form.email) }}
-            {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder' : 'Escriba su email'}}) }}
+            {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder' : 'Introduzca email'}}) }}
             <span class="text-danger">{{ form_errors(form.email) }}</span>
         </div>
 
         <div class="form-group">
             {{ form_label(form.password) }}
-            {{ form_widget(form.password, {'attr': {'class': 'form-control', 'placeholder' : 'Introduzca su password'}}) }}
+            {{ form_widget(form.password, {'attr': {'class': 'form-control', 'placeholder' : 'Introduzca password'}}) }}
             <span class="text-danger">{{ form_errors(form.password) }}</span>
         </div>
 
@@ -34,7 +39,7 @@
 
         <div class="form-group">
             {{ form_label(form.telefono) }}
-            {{ form_widget(form.telefono, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca su número teléfono'} }) }}
+            {{ form_widget(form.telefono, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Inserte número de teléfono'} }) }}
             <span class="text-danger">{{ form_errors(form.telefono) }}</span>
         </div>
 

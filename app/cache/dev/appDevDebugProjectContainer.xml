@@ -416,7 +416,7 @@
     <parameter key="assetic.write_to">C:\xampp\htdocs\Prueba\app/../web</parameter>
     <parameter key="assetic.variables" type="collection"/>
     <parameter key="assetic.java.bin">C:\ProgramData\Oracle\Java\javapath\java.EXE</parameter>
-    <parameter key="assetic.node.bin">/usr/bin/node</parameter>
+    <parameter key="assetic.node.bin">C:\Program Files\nodejs\\node.EXE</parameter>
     <parameter key="assetic.ruby.bin">/usr/bin/ruby</parameter>
     <parameter key="assetic.sass.bin">/usr/bin/sass</parameter>
     <parameter key="assetic.filter.cssrewrite.class">Assetic\Filter\CssRewriteFilter</parameter>
@@ -1666,7 +1666,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>589cc7769f918</argument>
+            <argument>589dd774d1eaf</argument>
           </service>
         </argument>
         <argument type="service">
@@ -1792,7 +1792,7 @@
     <service id="security.user.provider.concrete.our_db_provider" class="Symfony\Bridge\Doctrine\Security\User\EntityUserProvider" public="false">
       <argument type="service" id="doctrine"/>
       <argument>CriveroPruebaBundle:Usuarios</argument>
-      <argument>nombre</argument>
+      <argument>username</argument>
       <argument>null</argument>
     </service>
     <service id="security.firewall.map.context.default" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext">
@@ -1869,7 +1869,7 @@
             </argument>
             <argument type="collection">
               <argument key="check_path">/login_check</argument>
-              <argument key="username_parameter">_nombre</argument>
+              <argument key="username_parameter">_username</argument>
               <argument key="password_parameter">_password</argument>
               <argument key="use_forward">false</argument>
               <argument key="require_previous_session">true</argument>
@@ -1900,7 +1900,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>589cc7769f918</argument>
+            <argument>589dd774d1eaf</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
