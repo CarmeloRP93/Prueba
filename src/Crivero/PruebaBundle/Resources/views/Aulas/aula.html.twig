@@ -13,7 +13,7 @@
     <div class="col-md-6 col-xs-12">
 
         <div class="text-center">
-            {#                <img src="{{ asset(cancha.imagen) }}" width="180px" class="img-rounded"/><br>#}
+            <img src="{{ asset('images/' ~ aula.imagen) }}" style="width:250px; height: 150px"  class="img-rounded"/><br>
 
             <br>{% if aula.disponibilidad == "Disponible" %}
             <div class="text-center">
@@ -30,8 +30,8 @@
 
             <div class="col-md-6 col-xs-12">
                 <div class="text-center">
-                    <label class="control-label span7 text-left">Horario: </label>
-                    <label class="control-label span7 text-right">{{aula.horario}} </label>
+                    <h4>Horario: </h4>
+                    <p>{{aula.horario}} </p>
 
                     {% if aula.sesiones != null %}
                         <div>

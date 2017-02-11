@@ -47,7 +47,7 @@ class AulaController extends Controller {
     }
 
     public function createEditForm(Aulas $entity) {
-        $form = $this->createForm(new AulasType(), $entity, array(
+        $form = $this->createForm(new AulasType($entity->getId()), $entity, array(
             'action' => $this->generateUrl('crivero_prueba_aula_actualizar', array('id' => $entity->getId())),
             'method' => 'PUT'));
         return $form;

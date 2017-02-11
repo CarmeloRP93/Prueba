@@ -3,6 +3,7 @@
 namespace Crivero\PruebaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Competiciones
@@ -25,6 +26,7 @@ class Competiciones
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
+     * @Assert\NotBlank()
      */
     private $nombre;
 

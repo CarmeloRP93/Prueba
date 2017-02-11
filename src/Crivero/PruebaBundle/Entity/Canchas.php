@@ -58,8 +58,6 @@ class Canchas
      */
     private $imagen;
 
-
-
     /**
      * Get id
      *

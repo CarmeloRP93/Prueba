@@ -62,9 +62,11 @@ class __TwigTemplate_8888b259f06fe7594fc50bd960fc10c87a6aab70c2e3f3b2f8e4c90f3ee
     <div class=\"col-md-6 col-xs-12\">
 
         <div class=\"text-center\">
-            ";
-        // line 17
-        echo "
+            <img src=\"";
+        // line 16
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("images/" . $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "imagen", array()))), "html", null, true);
+        echo "\" style=\"width:250px; height: 150px\"  class=\"img-rounded\"/><br>
+
             <br>";
         // line 18
         if (($this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "disponibilidad", array()) == "Disponible")) {
@@ -93,11 +95,11 @@ class __TwigTemplate_8888b259f06fe7594fc50bd960fc10c87a6aab70c2e3f3b2f8e4c90f3ee
 
             <div class=\"col-md-6 col-xs-12\">
                 <div class=\"text-center\">
-                    <label class=\"control-label span7 text-left\">Horario: </label>
-                    <label class=\"control-label span7 text-right\">";
+                    <h4>Horario: </h4>
+                    <p>";
         // line 34
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "horario", array()), "html", null, true);
-        echo " </label>
+        echo " </p>
 
                     ";
         // line 36
@@ -156,6 +158,6 @@ class __TwigTemplate_8888b259f06fe7594fc50bd960fc10c87a6aab70c2e3f3b2f8e4c90f3ee
 
     public function getDebugInfo()
     {
-        return array (  141 => 53,  131 => 44,  127 => 42,  114 => 40,  110 => 39,  106 => 37,  104 => 36,  99 => 34,  90 => 27,  84 => 24,  81 => 23,  75 => 20,  72 => 19,  70 => 18,  67 => 17,  58 => 10,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  143 => 53,  133 => 44,  129 => 42,  116 => 40,  112 => 39,  108 => 37,  106 => 36,  101 => 34,  92 => 27,  86 => 24,  83 => 23,  77 => 20,  74 => 19,  72 => 18,  67 => 16,  58 => 10,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }
