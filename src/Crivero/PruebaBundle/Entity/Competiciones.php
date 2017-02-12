@@ -54,7 +54,7 @@ class Competiciones
     /**
      * @var \Date
      *
-     * @ORM\Column(name="fechaInicio", type="date", nullable=false)
+     * @ORM\Column(name="fechaInicio", type="date", nullable=true)
      */
     private $fechainicio;
 

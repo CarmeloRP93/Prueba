@@ -20,6 +20,16 @@ moduloclientes_cliente_competicionClientes:
     pattern:  /competicionClientes/{id}
     defaults: { _controller: moduloclientesclienteBundle:Competicion:competicionClientes }
     
+moduloclientes_cliente_competicion_nueva:
+    pattern:  /nuevaCompeticionCliente
+    defaults: { _controller: moduloclientesclienteBundle:Competicion:nueva }
+    
+moduloclientes_cliente_competicion_crear:
+    pattern:  /crearCompeticion
+    defaults: { _controller: moduloclientesclienteBundle:Competicion:crear }
+    requirements:
+        _method:  POST|GET
+    
 moduloclientes_cliente_equiposClientes:
     pattern:  /equiposClientes
     defaults: { _controller: moduloclientesclienteBundle:Equipo:equiposClientes }

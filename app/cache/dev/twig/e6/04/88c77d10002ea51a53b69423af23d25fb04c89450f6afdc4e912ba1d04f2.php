@@ -70,7 +70,7 @@ class __TwigTemplate_e60488c77d10002ea51a53b69423af23d25fb04c89450f6afdc4e912ba1
         foreach ($context['_seq'] as $context["_key"] => $context["competicion"]) {
             // line 13
             echo "                    ";
-            if (($this->getAttribute($context["competicion"], "estadoCompeticion", array()) == "Solicitud Presentada")) {
+            if (($this->getAttribute($context["competicion"], "estadoCompeticion", array()) == "Pendiente")) {
                 // line 14
                 echo "                        <a href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_competicionClientes", array("id" => $this->getAttribute($context["competicion"], "id", array()))), "html", null, true);
@@ -117,7 +117,7 @@ class __TwigTemplate_e60488c77d10002ea51a53b69423af23d25fb04c89450f6afdc4e912ba1
         foreach ($context['_seq'] as $context["_key"] => $context["competicion"]) {
             // line 19
             echo "                    ";
-            if (($this->getAttribute($context["competicion"], "estadoCompeticion", array()) == "Validado")) {
+            if (($this->getAttribute($context["competicion"], "estadoCompeticion", array()) == "Jugandose")) {
                 // line 20
                 echo "                        <a href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_competicionClientes", array("id" => $this->getAttribute($context["competicion"], "id", array()))), "html", null, true);
@@ -191,6 +191,14 @@ class __TwigTemplate_e60488c77d10002ea51a53b69423af23d25fb04c89450f6afdc4e912ba1
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 29
         echo "            </div>
+            <div class=\"nuevaCompeticion\">
+            <a href=\"";
+        // line 31
+        echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_competicion_nueva");
+        echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">
+                Nueva Competicion 
+             <span class=\"glyphicon glyphicon-plus\"></span></a>
+        </div>
         </div>
     </div>
 ";
@@ -208,6 +216,6 @@ class __TwigTemplate_e60488c77d10002ea51a53b69423af23d25fb04c89450f6afdc4e912ba1
 
     public function getDebugInfo()
     {
-        return array (  193 => 29,  179 => 28,  169 => 26,  166 => 25,  149 => 24,  146 => 23,  132 => 22,  122 => 20,  119 => 19,  102 => 18,  99 => 17,  85 => 16,  75 => 14,  72 => 13,  55 => 12,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
+        return array (  197 => 31,  193 => 29,  179 => 28,  169 => 26,  166 => 25,  149 => 24,  146 => 23,  132 => 22,  122 => 20,  119 => 19,  102 => 18,  99 => 17,  85 => 16,  75 => 14,  72 => 13,  55 => 12,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
     }
 }

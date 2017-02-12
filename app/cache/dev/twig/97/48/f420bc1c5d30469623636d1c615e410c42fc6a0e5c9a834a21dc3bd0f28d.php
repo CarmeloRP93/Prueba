@@ -52,7 +52,7 @@ class __TwigTemplate_9748f420bc1c5d30469623636d1c615e410c42fc6a0e5c9a834a21dc3bd
         echo "</h1>
         ";
         // line 6
-        if (($this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "estadoCompeticion", array()) == "Solicitud Presentada")) {
+        if (($this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "estadoCompeticion", array()) == "Pendiente")) {
             // line 7
             echo "            <form class=\"form-horizontal\">
                 <div class=\"row container-fluid\">
@@ -76,7 +76,7 @@ class __TwigTemplate_9748f420bc1c5d30469623636d1c615e410c42fc6a0e5c9a834a21dc3bd
         }
         // line 26
         echo "        ";
-        if (($this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "estadoCompeticion", array()) == "Validado")) {
+        if (($this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "estadoCompeticion", array()) == "Jugandose")) {
             // line 27
             echo "            <h3>Insertar tabla de liga del deporte en cuestión (fútbol,baloncesto, tenis)</h3>
             <div class=\"table-responsive\">
