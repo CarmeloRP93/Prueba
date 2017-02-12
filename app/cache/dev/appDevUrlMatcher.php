@@ -356,6 +356,22 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_moduloclientes_cliente_competicion_crear:
 
+        // moduloclientes_cliente_equipo_nuevo
+        if ($pathinfo === '/nuevoEquipoCliente') {
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::nuevoAction',  '_route' => 'moduloclientes_cliente_equipo_nuevo',);
+        }
+
+        // moduloclientes_cliente_equipo_crear
+        if ($pathinfo === '/crearEquipo') {
+            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                goto not_moduloclientes_cliente_equipo_crear;
+            }
+
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::crearAction',  '_route' => 'moduloclientes_cliente_equipo_crear',);
+        }
+        not_moduloclientes_cliente_equipo_crear:
+
         if (0 === strpos($pathinfo, '/equipo')) {
             // moduloclientes_cliente_equiposClientes
             if ($pathinfo === '/equiposClientes') {

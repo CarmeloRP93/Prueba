@@ -1,8 +1,40 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
 
-{% block title %} Vista de mis equipos {% endblock %}             
+{% block title %} Vista de Equipos {% endblock %}
 {% block contenido %}
-    {%for equipo in equipos if equipo%}
-        <a href="{{url('moduloclientes_cliente_equipoClientes', {'id': equipo.id})}}">{{equipo.nombre}}</a>
-    {%endfor%}
+<div id="buscador">
+    <form>
+        <input type="search" name="equipo" placeholder="Buscar equipo"/>
+    </form>
+</div>
+<div class="nuevaCompeticion">
+    <a href="{{path('moduloclientes_cliente_equipo_nuevo')}}" class="btn btn-success" style="height: 30px; width: 150px;">
+        Crear Equipo 
+     <span class="glyphicon glyphicon-plus"></span></a>
+</div>
+<h1>Listado de Equipos</h1>
+    <h3>Fútbol</h3>
+    {% for equipo in equipos %}
+        {%if equipo.deporte =='Fútbol'%}
+            <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>
+        {%endif%}
+    {% endfor %}
+    <h3>Baloncesto</h3>
+    {% for equipo in equipos %}
+        {%if equipo.deporte =='Baloncesto'%}
+            <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>
+        {%endif%}
+    {% endfor %}
+    <h3>Tenis</h3>
+    {% for equipo in equipos %}
+        {%if equipo.deporte =='Tenis'%}
+            <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>
+        {%endif%}
+    {% endfor %}
+    <h3>Padel</h3>
+    {% for equipo in equipos %}
+        {%if equipo.deporte =='Padel'%}
+            <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>
+        {%endif%}
+    {% endfor %}
 {% endblock %}

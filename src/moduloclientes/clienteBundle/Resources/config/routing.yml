@@ -29,6 +29,16 @@ moduloclientes_cliente_competicion_crear:
     defaults: { _controller: moduloclientesclienteBundle:Competicion:crear }
     requirements:
         _method:  POST|GET
+        
+moduloclientes_cliente_equipo_nuevo:
+    pattern:  /nuevoEquipoCliente
+    defaults: { _controller: moduloclientesclienteBundle:Equipo:nuevo }
+    
+moduloclientes_cliente_equipo_crear:
+    pattern:  /crearEquipo
+    defaults: { _controller: moduloclientesclienteBundle:Equipo:crear }
+    requirements:
+        _method:  POST|GET
     
 moduloclientes_cliente_equiposClientes:
     pattern:  /equiposClientes

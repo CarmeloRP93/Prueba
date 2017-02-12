@@ -192,13 +192,13 @@ class __TwigTemplate_e60488c77d10002ea51a53b69423af23d25fb04c89450f6afdc4e912ba1
         // line 29
         echo "            </div>
             <div class=\"nuevaCompeticion\">
-            <a href=\"";
+                <a href=\"";
         // line 31
         echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_competicion_nueva");
         echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">
-                Nueva Competicion 
-             <span class=\"glyphicon glyphicon-plus\"></span></a>
-        </div>
+                    Nueva Competicion 
+                 <span class=\"glyphicon glyphicon-plus\"></span></a>
+            </div>
         </div>
     </div>
 ";
