@@ -16,8 +16,8 @@ class EquipoController extends Controller {
     }
 
     public function equipoClientesAction($id) {
-        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
-        $equipo = $repository->find($id);
+        $repositoryEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
+        $equipo = $repositoryEquipos->find($id);
         $repositoryJugadores = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Jugadores");
         $jugadores = $repositoryJugadores->findAll();
         return $this->render('moduloclientesclienteBundle:Default:equipoClientes.html.twig', array("equipo" => $equipo, "jugadores"=>$jugadores));

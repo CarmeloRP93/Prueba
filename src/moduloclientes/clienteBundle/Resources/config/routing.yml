@@ -30,6 +30,14 @@ moduloclientes_cliente_competicion_crear:
     requirements:
         _method:  POST|GET
         
+moduloclientes_cliente_equiposClientes:
+    pattern:  /equiposClientes
+    defaults: { _controller: moduloclientesclienteBundle:Equipo:equiposClientes }
+    
+moduloclientes_cliente_equipoClientes:
+    pattern:  /equipoClientes/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Equipo:equipoClientes }
+    
 moduloclientes_cliente_equipo_nuevo:
     pattern:  /nuevoEquipoCliente
     defaults: { _controller: moduloclientesclienteBundle:Equipo:nuevo }
@@ -39,14 +47,16 @@ moduloclientes_cliente_equipo_crear:
     defaults: { _controller: moduloclientesclienteBundle:Equipo:crear }
     requirements:
         _method:  POST|GET
-    
-moduloclientes_cliente_equiposClientes:
-    pattern:  /equiposClientes
-    defaults: { _controller: moduloclientesclienteBundle:Equipo:equiposClientes }
-    
-moduloclientes_cliente_equipoClientes:
-    pattern:  /equipoClientes/{id}
-    defaults: { _controller: moduloclientesclienteBundle:Equipo:equipoClientes }
+        
+moduloclientes_cliente_jugador_nuevo:
+    pattern:  /nuevoJugadorCliente
+    defaults: { _controller: moduloclientesclienteBundle:Jugador:nuevo }
+            
+moduloclientes_cliente_jugador_crear:
+    pattern:  /crearJugador
+    defaults: { _controller: moduloclientesclienteBundle:Jugador:crear }
+    requirements:
+        _method:  POST|GET
 #-------------------------------------------------------------------------------------------
     
 moduloclientes_cliente_sesionesClientes:

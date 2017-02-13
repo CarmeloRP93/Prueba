@@ -1,0 +1,45 @@
+{% extends 'moduloclientesclienteBundle::main.html.twig' %}
+
+{% block title %} Nuevo Miembro del equipo {% endblock %}
+
+{% block contenido %}
+    <div class="container">
+        <h2>Nueva Jugador</h2>
+        {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+
+        <div class="form-group">
+            {{ form_label(form.nombre) }}
+            {{ form_widget(form.nombre, {'attr' : {'class' : 'form-control'}  } ) }}
+            <span class="text-danger">{{ form_errors(form.nombre) }}</span>
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(form.primerApellido) }}
+            {{ form_widget(form.primerApellido, {'attr' : {'class' : 'form-control'}  } ) }}
+            <span class="text-danger">{{ form_errors(form.primerApellido) }}</span>
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(form.segundoApellido) }}
+            {{ form_widget(form.segundoApellido, {'attr' : {'class' : 'form-control'}  } ) }}
+            <span class="text-danger">{{ form_errors(form.segundoApellido) }}</span>
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(form.dorsal) }}
+            {{ form_widget(form.dorsal, {'attr' : {'class' : 'form-control'}  } ) }}
+            <span class="text-danger">{{ form_errors(form.dorsal) }}</span>
+        </div>
+        
+        <div class="hidden">
+            {{ form_label(form.incidencia) }}
+            {{ form_widget(form.incidencia, {'attr' : {'class' : 'form-control'}  } ) }}
+            <span class="text-danger">{{ form_errors(form.incidencia) }}</span>
+        </div>
+        
+        <p>
+            {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
+        </p>                
+        {{ form_end(form) }}
+    </div>
+{% endblock %}{# empty Twig template #}
