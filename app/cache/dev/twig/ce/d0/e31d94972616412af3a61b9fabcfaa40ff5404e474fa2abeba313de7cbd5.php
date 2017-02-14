@@ -36,7 +36,7 @@ class __TwigTemplate_ced0e31d94972616412af3a61b9fabcfaa40ff5404e474fa2abeba313de
     // line 3
     public function block_title($context, array $blocks = array())
     {
-        echo " Nueva Equipo ";
+        echo " Nuevo Equipo ";
     }
 
     // line 5
@@ -49,44 +49,55 @@ class __TwigTemplate_ced0e31d94972616412af3a61b9fabcfaa40ff5404e474fa2abeba313de
         // line 8
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("attr" => array("novalidate" => "novalidate", "role" => "form")));
         echo "
-
+        
         <div class=\"form-group\">
             ";
         // line 11
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "idCompeticion", array()), 'widget', array("value" => (isset($context["id"]) ? $context["id"] : $this->getContext($context, "id"))));
+        echo "
+            <span class=\"text-danger\">";
+        // line 12
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "idCompeticion", array()), 'errors');
+        echo "</span>
+        </div>
+
+        <div class=\"form-group\">
+            ";
+        // line 16
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'label');
         echo "
             ";
-        // line 12
+        // line 17
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'widget', array("attr" => array("class" => "form-control")));
         echo "
             <span class=\"text-danger\">";
-        // line 13
+        // line 18
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'errors');
         echo "</span>
         </div>
         
         <div class=\"form-group\">
             ";
-        // line 17
+        // line 22
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "deporte", array()), 'label');
         echo "
             ";
-        // line 18
+        // line 23
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "deporte", array()), 'widget', array("attr" => array("class" => "form-control")));
         echo "
             <span class=\"text-danger\">";
-        // line 19
+        // line 24
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "deporte", array()), 'errors');
         echo "</span>
         </div>
         <p>
             ";
-        // line 22
+        // line 27
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
         </p>                
         ";
-        // line 24
+        // line 29
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
     </div>
@@ -105,6 +116,6 @@ class __TwigTemplate_ced0e31d94972616412af3a61b9fabcfaa40ff5404e474fa2abeba313de
 
     public function getDebugInfo()
     {
-        return array (  90 => 24,  85 => 22,  79 => 19,  75 => 18,  71 => 17,  64 => 13,  60 => 12,  56 => 11,  50 => 8,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  101 => 29,  96 => 27,  90 => 24,  86 => 23,  82 => 22,  75 => 18,  71 => 17,  67 => 16,  60 => 12,  56 => 11,  50 => 8,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

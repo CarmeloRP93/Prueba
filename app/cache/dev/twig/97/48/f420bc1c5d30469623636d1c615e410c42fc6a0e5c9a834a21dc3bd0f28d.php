@@ -46,14 +46,22 @@ class __TwigTemplate_9748f420bc1c5d30469623636d1c615e410c42fc6a0e5c9a834a21dc3bd
     {
         // line 4
         echo "    <div class=\"container\">
+        <div class=\"nuevoEquipo\">
+            <a href=\"";
+        // line 6
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_equipo_nuevo", array("id" => $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "id", array()))), "html", null, true);
+        echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">
+                Crear Equipo 
+             <span class=\"glyphicon glyphicon-plus\"></span></a>
+        </div>
         <h1>Detalles del ";
-        // line 5
+        // line 10
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "nombre", array()), "html", null, true);
         echo "</h1>
         ";
-        // line 6
+        // line 11
         if (($this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "estadoCompeticion", array()) == "Pendiente")) {
-            // line 7
+            // line 12
             echo "            <form class=\"form-horizontal\">
                 <div class=\"row container-fluid\">
                     <div class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6\">
@@ -74,10 +82,10 @@ class __TwigTemplate_9748f420bc1c5d30469623636d1c615e410c42fc6a0e5c9a834a21dc3bd
             </form>
         ";
         }
-        // line 26
+        // line 31
         echo "        ";
         if (($this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "estadoCompeticion", array()) == "Jugandose")) {
-            // line 27
+            // line 32
             echo "            <h3>Insertar tabla de liga del deporte en cuestión (fútbol,baloncesto, tenis)</h3>
             <div class=\"table-responsive\">
                 <table class=\"table table-bordered\">
@@ -92,34 +100,34 @@ class __TwigTemplate_9748f420bc1c5d30469623636d1c615e410c42fc6a0e5c9a834a21dc3bd
                         </tr>
                     </thead>
                     ";
-            // line 40
+            // line 45
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable(range(1, 16));
             foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
                 echo " 
                         <tr>
                             <td>  ";
-                // line 42
+                // line 47
                 echo twig_escape_filter($this->env, $context["i"], "html", null, true);
                 echo "º  </td>
                             <td>Equipo ";
-                // line 43
+                // line 48
                 echo twig_escape_filter($this->env, $context["i"], "html", null, true);
                 echo " </td>
                             <td>   ";
-                // line 44
+                // line 49
                 echo twig_escape_filter($this->env, ((15 * 3) - ($context["i"] * 2)), "html", null, true);
                 echo "   </td>
                             <td>   ";
-                // line 45
+                // line 50
                 echo twig_escape_filter($this->env, (16 - $context["i"]), "html", null, true);
                 echo "   </td>
                             <td>   ";
-                // line 46
+                // line 51
                 echo twig_escape_filter($this->env, ($context["i"] - 1), "html", null, true);
                 echo "   </td>
                             <td>   ";
-                // line 47
+                // line 52
                 echo 0;
                 echo "   </td>
                         </tr>
@@ -128,26 +136,26 @@ class __TwigTemplate_9748f420bc1c5d30469623636d1c615e410c42fc6a0e5c9a834a21dc3bd
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 50
+            // line 55
             echo "                </table>
             </div>
         ";
         }
-        // line 53
+        // line 58
         echo "    </div>
     <div>
         <ul class=\"container text-center\">
             ";
-        // line 56
+        // line 61
         if (($this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "estadoCompeticion", array()) == "Finalizado")) {
-            // line 57
+            // line 62
             echo "                <h3>Resumen del ";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "nombre", array()), "html", null, true);
             echo "</h3>
                 <p>Equipos</p>
             ";
         }
-        // line 60
+        // line 65
         echo "        </ul>
     </div>
 ";
@@ -165,6 +173,6 @@ class __TwigTemplate_9748f420bc1c5d30469623636d1c615e410c42fc6a0e5c9a834a21dc3bd
 
     public function getDebugInfo()
     {
-        return array (  151 => 60,  144 => 57,  142 => 56,  137 => 53,  132 => 50,  123 => 47,  119 => 46,  115 => 45,  111 => 44,  107 => 43,  103 => 42,  96 => 40,  81 => 27,  78 => 26,  57 => 7,  55 => 6,  51 => 5,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  159 => 65,  152 => 62,  150 => 61,  145 => 58,  140 => 55,  131 => 52,  127 => 51,  123 => 50,  119 => 49,  115 => 48,  111 => 47,  104 => 45,  89 => 32,  86 => 31,  65 => 12,  63 => 11,  59 => 10,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

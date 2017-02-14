@@ -39,7 +39,7 @@ moduloclientes_cliente_equipoClientes:
     defaults: { _controller: moduloclientesclienteBundle:Equipo:equipoClientes }
     
 moduloclientes_cliente_equipo_nuevo:
-    pattern:  /nuevoEquipoCliente
+    pattern:  /nuevoEquipoCliente/{id}
     defaults: { _controller: moduloclientesclienteBundle:Equipo:nuevo }
     
 moduloclientes_cliente_equipo_crear:

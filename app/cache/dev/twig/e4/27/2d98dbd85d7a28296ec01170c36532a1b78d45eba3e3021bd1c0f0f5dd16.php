@@ -43,9 +43,77 @@ class __TwigTemplate_e4272d98dbd85d7a28296ec01170c36532a1b78d45eba3e3021bd1c0f0f
     public function block_contenido($context, array $blocks = array())
     {
         // line 5
-        echo "    <h2>";
+        echo "    <div class=\"nuevoJugador\">
+        <a href=\"";
+        // line 6
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_jugador_nuevo", array("id" => $this->getAttribute((isset($context["equipo"]) ? $context["equipo"] : $this->getContext($context, "equipo")), "id", array()))), "html", null, true);
+        echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">
+            Añadir jugador 
+         <span class=\"glyphicon glyphicon-plus\"></span></a>
+    </div>
+    <div class=\"container text-center\">
+        <h1>Deporte: ";
+        // line 11
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["equipo"]) ? $context["equipo"] : $this->getContext($context, "equipo")), "deporte", array()), "html", null, true);
+        echo "</h1>
+        <h2>Detalles del Equipo. ";
+        // line 12
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["equipo"]) ? $context["equipo"] : $this->getContext($context, "equipo")), "nombre", array()), "html", null, true);
         echo "</h2>
+            <div class=\"table-responsive\">
+                <table class=\"table table-hover\">
+                    <thead>
+                        <tr>
+                            <th> Nombre </th>
+                            <th> Primer Apellido  </th>
+                            <th> Segundo Apellido  </th>
+                            <th> Dorsal </th>
+                            <th> Incidencia </th>
+                        </tr>
+                    </thead>
+                    ";
+        // line 24
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["jugadores"]) ? $context["jugadores"] : $this->getContext($context, "jugadores")));
+        foreach ($context['_seq'] as $context["_key"] => $context["jugador"]) {
+            // line 25
+            echo "                        ";
+            if (($this->getAttribute((isset($context["equipo"]) ? $context["equipo"] : $this->getContext($context, "equipo")), "id", array()) == $this->getAttribute($context["jugador"], "idEquipo", array()))) {
+                // line 26
+                echo "                        <tr>
+                            <td>  ";
+                // line 27
+                echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "nombre", array()), "html", null, true);
+                echo "  </td>
+                            <td> ";
+                // line 28
+                echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "primerApellido", array()), "html", null, true);
+                echo " </td>
+                            <td>   ";
+                // line 29
+                echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "segundoApellido", array()), "html", null, true);
+                echo "   </td>
+                            <td>   ";
+                // line 30
+                echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "Dorsal", array()), "html", null, true);
+                echo "   </td>
+                            <td>   ";
+                // line 31
+                echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "incidencia", array()), "html", null, true);
+                echo "   </td>
+                        </tr>
+                        ";
+            }
+            // line 34
+            echo "                    ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['jugador'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 35
+        echo "                </table>
+            </div>
+    </div>
 ";
     }
 
@@ -61,6 +129,6 @@ class __TwigTemplate_e4272d98dbd85d7a28296ec01170c36532a1b78d45eba3e3021bd1c0f0f
 
     public function getDebugInfo()
     {
-        return array (  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
+        return array (  114 => 35,  108 => 34,  102 => 31,  98 => 30,  94 => 29,  90 => 28,  86 => 27,  83 => 26,  80 => 25,  76 => 24,  61 => 12,  57 => 11,  49 => 6,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
     }
 }

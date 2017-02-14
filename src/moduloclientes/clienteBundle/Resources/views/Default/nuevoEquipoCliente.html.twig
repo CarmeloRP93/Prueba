@@ -7,10 +7,10 @@
         <h2>Nueva Equipo</h2>
         {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
         
-        {#<div class="form-group">
+        <div class="form-group">
             {{ form_widget(form.idCompeticion, {'value' : id } ) }}
             <span class="text-danger">{{ form_errors(form.idCompeticion) }}</span>
-        </div>#}
+        </div>
 
         <div class="form-group">
             {{ form_label(form.nombre) }}

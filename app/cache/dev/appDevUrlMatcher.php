@@ -370,8 +370,8 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // moduloclientes_cliente_equipo_nuevo
-        if ($pathinfo === '/nuevoEquipoCliente') {
-            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::nuevoAction',  '_route' => 'moduloclientes_cliente_equipo_nuevo',);
+        if (0 === strpos($pathinfo, '/nuevoEquipoCliente') && preg_match('#^/nuevoEquipoCliente/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_equipo_nuevo')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::nuevoAction',));
         }
 
         // moduloclientes_cliente_equipo_crear

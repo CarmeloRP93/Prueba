@@ -2,6 +2,11 @@
 {% block title %}Vista de {{competicion.nombre}} {% endblock %}
 {% block contenido %}
     <div class="container">
+        <div class="nuevoEquipo">
+            <a href="{{path('moduloclientes_cliente_equipo_nuevo',{'id':competicion.id})}}" class="btn btn-success" style="height: 30px; width: 150px;">
+                Crear Equipo 
+             <span class="glyphicon glyphicon-plus"></span></a>
+        </div>
         <h1>Detalles del {{competicion.nombre}}</h1>
         {% if competicion.estadoCompeticion == "Pendiente"%}
             <form class="form-horizontal">

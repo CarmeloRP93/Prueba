@@ -23,10 +23,10 @@ class EquipoController extends Controller {
         return $this->render('moduloclientesclienteBundle:Default:equipoClientes.html.twig', array("equipo" => $equipo, "jugadores"=>$jugadores));
     }
     
-    public function nuevoAction() {
+    public function nuevoAction($id) {
         $equipo = new Equipos();
         $form = $this->createCreateForm($equipo);
-        return $this->render('moduloclientesclienteBundle:Default:nuevoEquipoCliente.html.twig', array('form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Default:nuevoEquipoCliente.html.twig', array('form' => $form->createView(),'id'=>$id));
     }
     
     private function createCreateForm(Equipos $entity) {
@@ -45,7 +45,7 @@ class EquipoController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $equipo->setClasificacion(0);
             $equipo->setPuntuacion(0);
-            $equipo->setIdCompeticion(0);
+            $equipo->setIdCompeticion($form->get('idCompeticion')->getData());
             $equipo->setVictorias(0);
             $equipo->setEmpates(0);
             $equipo->setDerrotas(0);
