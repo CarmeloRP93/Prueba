@@ -49,7 +49,7 @@ moduloclientes_cliente_equipo_crear:
         _method:  POST|GET
         
 moduloclientes_cliente_jugador_nuevo:
-    pattern:  /nuevoJugadorCliente
+    pattern:  /nuevoJugadorCliente/{id}
     defaults: { _controller: moduloclientesclienteBundle:Jugador:nuevo }
             
 moduloclientes_cliente_jugador_crear:

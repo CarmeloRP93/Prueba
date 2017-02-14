@@ -15,6 +15,7 @@ class EquiposType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+//            ->add('idCompeticion', 'hidden')
             ->add('nombre', 'text')
             ->add('deporte','choice', array('choices' => array("Fútbol"=>'Fútbol', "Baloncesto"=>'Baloncesto', 
                                                                "Padel"=>'Padel', "Tenis"=>'Tenis')))

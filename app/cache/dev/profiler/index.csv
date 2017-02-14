@@ -13225,3 +13225,8 @@ e26445,::1,GET,http://localhost/Prueba/web/app_dev.php/competicionesClientes,148
 d4c796,::1,GET,http://localhost/Prueba/web/app_dev.php/competicionesClientes,1486938748,
 6efb45,::1,GET,http://localhost/Prueba/web/app_dev.php/equiposClientes,1486938752,
 0b5be4,::1,GET,http://localhost/Prueba/web/app_dev.php/nuevoEquipoCliente,1486938755,
+24c559,::1,GET,http://localhost/Prueba/web/app_dev.php/login,1487089767,
+ff7d0b,::1,GET,http://localhost/Prueba/web/app_dev.php/login,1487089821,
+7da9a6,::1,POST,http://localhost/Prueba/web/app_dev.php/login_check,1487089830,
+44dbdb,::1,GET,http://localhost/Prueba/web/app_dev.php/home,1487089831,
+9fa7ea,::1,POST,http://localhost/Prueba/web/app_dev.php/reservasClientes,1487089835,

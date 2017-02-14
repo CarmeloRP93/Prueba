@@ -3,7 +3,7 @@
 {% block title %} Vista de mis equipos {% endblock %}             
 {% block contenido %}
     <div class="nuevaCompeticion">
-        <a href="{{path('moduloclientes_cliente_jugador_nuevo')}}" class="btn btn-success" style="height: 30px; width: 150px;">
+        <a href="{{path('moduloclientes_cliente_jugador_nuevo',{'id': equipo.id})}}" class="btn btn-success" style="height: 30px; width: 150px;">
             Añadir jugador 
          <span class="glyphicon glyphicon-plus"></span></a>
     </div>

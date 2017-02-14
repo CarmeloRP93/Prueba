@@ -6,6 +6,11 @@
     <div class="container">
         <h2>Nueva Jugador</h2>
         {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+        
+        <div class="form-group">
+            {{ form_widget(form.idEquipo, {'value' : id } ) }}
+            <span class="text-danger">{{ form_errors(form.idEquipo) }}</span>
+        </div>
 
         <div class="form-group">
             {{ form_label(form.nombre) }}

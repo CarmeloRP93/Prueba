@@ -9,10 +9,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 class JugadorController extends Controller {
     
-      public function nuevoAction() {
+      public function nuevoAction($id) {
         $jugador = new Jugadores();
         $form = $this->createCreateForm($jugador);
-        return $this->render('moduloclientesclienteBundle:Default:nuevoJugadorCliente.html.twig', array('form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Default:nuevoJugadorCliente.html.twig', array('form' => $form->createView(),'id' => $id));
     }
     
     private function createCreateForm(Jugadores $entity) {
@@ -29,7 +29,7 @@ class JugadorController extends Controller {
         $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $jugador->setIdEquipo(0);
+            $jugador->setIdEquipo($form->get('idEquipo')->getData());
             $jugador->setIncidencia('Ninguna');
             $em->persist($jugador);
             $em->flush();

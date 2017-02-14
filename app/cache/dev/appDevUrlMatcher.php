@@ -356,6 +356,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_moduloclientes_cliente_competicion_crear:
 
+        if (0 === strpos($pathinfo, '/equipo')) {
+            // moduloclientes_cliente_equiposClientes
+            if ($pathinfo === '/equiposClientes') {
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::equiposClientesAction',  '_route' => 'moduloclientes_cliente_equiposClientes',);
+            }
+
+            // moduloclientes_cliente_equipoClientes
+            if (0 === strpos($pathinfo, '/equipoClientes') && preg_match('#^/equipoClientes/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_equipoClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::equipoClientesAction',));
+            }
+
+        }
+
         // moduloclientes_cliente_equipo_nuevo
         if ($pathinfo === '/nuevoEquipoCliente') {
             return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::nuevoAction',  '_route' => 'moduloclientes_cliente_equipo_nuevo',);
@@ -372,18 +385,21 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_moduloclientes_cliente_equipo_crear:
 
-        if (0 === strpos($pathinfo, '/equipo')) {
-            // moduloclientes_cliente_equiposClientes
-            if ($pathinfo === '/equiposClientes') {
-                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::equiposClientesAction',  '_route' => 'moduloclientes_cliente_equiposClientes',);
-            }
-
-            // moduloclientes_cliente_equipoClientes
-            if (0 === strpos($pathinfo, '/equipoClientes') && preg_match('#^/equipoClientes/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_equipoClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::equipoClientesAction',));
-            }
-
+        // moduloclientes_cliente_jugador_nuevo
+        if (0 === strpos($pathinfo, '/nuevoJugadorCliente') && preg_match('#^/nuevoJugadorCliente/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_jugador_nuevo')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\JugadorController::nuevoAction',));
         }
+
+        // moduloclientes_cliente_jugador_crear
+        if ($pathinfo === '/crearJugador') {
+            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                goto not_moduloclientes_cliente_jugador_crear;
+            }
+
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\JugadorController::crearAction',  '_route' => 'moduloclientes_cliente_jugador_crear',);
+        }
+        not_moduloclientes_cliente_jugador_crear:
 
         // moduloclientes_cliente_sesionesClientes
         if ($pathinfo === '/sesionesClientes') {

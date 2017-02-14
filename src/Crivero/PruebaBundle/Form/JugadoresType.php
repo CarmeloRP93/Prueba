@@ -15,6 +15,7 @@ class JugadoresType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('idEquipo','hidden')
             ->add('nombre','text')
             ->add('primerApellido','text')
             ->add('segundoApellido','text')
