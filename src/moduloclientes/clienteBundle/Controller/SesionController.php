@@ -15,14 +15,18 @@ class SesionController extends Controller {
     public function sesionesClientesAction() {
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesiones = $repositorySesiones->findAll();
-
+        $resultado = NULL;
         foreach ($sesiones as $i => $sesion) {
             if (strpos($sesion->getIdsClientes(), strval($this->getUser()->getId())) === false) {
                 $resultado[$i] = $sesion;
             }
         }
-        return $this->render('moduloclientesclienteBundle:Default:sesionesClientes.html.twig', array("sesiones" => $resultado));
+        if ($resultado != NULL) {
+            return $this->render('moduloclientesclienteBundle:Default:sesionesClientes.html.twig', array("sesiones" => $resultado));
+        }
+        return $this->render('moduloclientesclienteBundle:Default:sesionesClientes.html.twig', array("sesiones" => NULL));
     }
+
 
     public function misSesionesAction() {
         $idsSesionesCliente = explode('&', $this->getUser()->getSesiones());
