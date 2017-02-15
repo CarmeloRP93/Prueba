@@ -44,10 +44,10 @@ class ReservaController extends Controller {
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $reserva->setEstadoReserva("Cancelada");
             $motivos = $form->get('motivos')->getData();
             
             if ($motivos != null) {
+                $reserva->setEstadoReserva("Cancelada");
 //                $usuario = $this->findEntity($reserva->getIdCliente(), $em, 'CriveroPruebaBundle:Usuarios');
 //                $this->removeReservaId($usuario, $id);
                 
