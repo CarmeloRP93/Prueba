@@ -57,12 +57,19 @@ class SesionController extends Controller {
         $this->actualizarValores($hoy, $mes, $limite);
         $repositoryHorarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
         
+        $vuelta=0;
         for ($i = $hoy + 2; $i <= $limite; $i++) {
-            $diaReserva = $repositoryHorarios->getDiaReserva($sesion->getAula(), $i);
-            if ($diaReserva[0]->getPeriodo() != null) break;
+            //if ($i < $limite && $this->isWeekend($i, $mes)) continue;
+            if (!$this->isWeekend($i, $mes, $vuelta)) {
+                $diaReserva = $repositoryHorarios->getDiaReserva($sesion->getAula(), $i);
+                if ($diaReserva[0]->getPeriodo() != null) break;
+                $diaReserva[0]->setEstado("Completo");
+            } 
             if ($i == $limite) {
                 $i = 0;
+                if ($mes == 12) $mes = 0;
                 $mes++;
+                $vuelta=1;
             }
         }
         $fechaReserva = $this->findFechaReserva($diaReserva[0], $mes);
@@ -217,4 +224,11 @@ class SesionController extends Controller {
         $fechaReserva = $diaReserva->getFechaInicio() . "/" . $mes . " : " . $horaReserva;
         return $fechaReserva;
     }
+    
+    private function isWeekend($dia, $mes, $cambio) {
+        $fecha = date('Y')+$cambio . '-' . $mes . '-' . $dia;
+        $diaS = date('w', strtotime($fecha));
+        return ($diaS == 0 || $diaS == 6 );
+    }
+            
 }
