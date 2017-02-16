@@ -45,13 +45,6 @@ class HorariosAulas
     /**
      * @var integer
      *
-     * @ORM\Column(name="monitor", type="integer", nullable=true)
-     */
-    private $monitor;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="fechaInicio", type="integer")
      */
     private $fechaInicio;
@@ -135,29 +128,6 @@ class HorariosAulas
     public function getAula()
     {
         return $this->aula;
-    }
-
-    /**
-     * Set monitor
-     *
-     * @param integer $monitor
-     * @return HorariosAulas
-     */
-    public function setMonitor($monitor)
-    {
-        $this->monitor = $monitor;
-
-        return $this;
-    }
-
-    /**
-     * Get monitor
-     *
-     * @return integer 
-     */
-    public function getMonitor()
-    {
-        return $this->monitor;
     }
 
     /**

@@ -301,6 +301,31 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // modulomonitores_monitores_miperfilm
+        if ($pathinfo === '/monitor/perfil') {
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::miperfilmAction',  '_route' => 'modulomonitores_monitores_miperfilm',);
+        }
+
+        // modulomonitores_monitores_editarmiperfilm
+        if ($pathinfo === '/editarmiperfilm') {
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::editarmiperfilmAction',  '_route' => 'modulomonitores_monitores_editarmiperfilm',);
+        }
+
+        // modulomonitores_monitores_actualizarmiperfilm
+        if ($pathinfo === '/actualizarmiperfilm') {
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::actualizarmiperfilmAction',  '_route' => 'modulomonitores_monitores_actualizarmiperfilm',);
+        }
+
+        // modulomonitores_monitores_verParticipantes
+        if (0 === strpos($pathinfo, '/verParticipantes') && preg_match('#^/verParticipantes/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_verParticipantes')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::verParticipantesAction',));
+        }
+
+        // modulomonitores_monitores_participante
+        if (0 === strpos($pathinfo, '/participante') && preg_match('#^/participante/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_participante')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::participanteAction',));
+        }
+
         if (0 === strpos($pathinfo, '/cancha')) {
             // moduloclientes_cliente_canchasClientes
             if ($pathinfo === '/canchasClientes') {

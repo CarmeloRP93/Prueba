@@ -10,7 +10,7 @@
 
     <div id="sesiondat">
         <div id="sesionfot" style="margin-top: 14px;">
-            <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" />        
+            <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" style="width: 50%; margin-bottom: 1%" />        
         </div>
 
         {% if sesion.estado == "validada" %}
@@ -62,6 +62,9 @@
                 <h4>Objetivo:</h4> <p>{{sesion.objetivo}}</p>
                 <h4>Límite de participantes:</h4> <p>{{sesion.lClientes}}</p>
             </div>
+            {% if sesion.nClientes > 0 %}
+                <a href="{{path('modulomonitores_monitores_verParticipantes', {id: sesion.id})}}" style="height: 30px; width: 250px;" class="btn btn-primary">Ver participantes</a>
+            {% endif %}
         </div>
     </div>
 

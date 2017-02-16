@@ -20,8 +20,7 @@
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
-        "ircmaxell/password-compat": "~1.0.3",
-        "knplabs/knp-paginator-bundle": "^2.5"
+        "ircmaxell/password-compat": "~1.0.3"
     },
     "scripts": {
         "post-install-cmd": [

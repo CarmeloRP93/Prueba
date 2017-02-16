@@ -3,14 +3,15 @@
 
 {% block title %} Vista de sesiones dedicadas {% endblock %}            
 {% block contenido %}
-
-    <h1>Listado de sesiones de dedicadas</h1>
-    {% for sesion in sesiones %}
-        {% if sesion.cliente!="normal" %}
-        <a href="{{url('modulomonitores_monitores_miSesionDedicada', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{ sesion.id }}: {{ sesion.cliente }}/{{ sesion.nombre }} - {{ sesion.estado}} </a>
-    {% endif %}
-    {% endfor %}
-    <div class="accionesesion text-center" style="margin-top:5px; margin-left: 5px">
-        <a href="{{path('modulomonitores_monitores_nuevaSesionDedicada')}}" class="btn btn-success col-sm-1" style="height: 30px; width: 200px;">Nuevo sesion dedicada<span class="glyphicon glyphicon-plus"></span></a>
+    <div class="container">
+        <h1>Listado de sesiones de dedicadas</h1>
+        {% for sesion in sesiones %}
+            {% if sesion.cliente!="normal" %}
+                <a href="{{url('modulomonitores_monitores_miSesionDedicada', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{ sesion.id }}: {{ sesion.cliente }}/{{ sesion.nombre }} - {{ sesion.estado}} </a>
+            {% endif %}
+        {% endfor %}
+        <div class="accionesesion text-center" style="margin-top:5px; margin-left: 5px">
+            <a href="{{path('modulomonitores_monitores_nuevaSesionDedicada')}}" class="btn btn-success col-sm-1" style="height: 30px; width: 200px;">Nuevo sesion dedicada<span class="glyphicon glyphicon-plus"></span></a>
+        </div>
     </div>
 {% endblock %}
