@@ -12,8 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class EquiposRepository extends EntityRepository
 {
-    public function findAll()
+    public function findAllMisEquipos($idCliente)
     {
-        return $this->findBy(array(), array('clasificacion' => 'ASC'));
+        return $this->getEntityManager()
+            ->createQuery('SELECT equipos FROM CriveroPruebaBundle:Equipos equipos WHERE  equipos.idCliente = :idCliente')
+            ->setParameter('idCliente', $idCliente)
+            ->getResult();
     }
 }

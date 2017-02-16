@@ -11,7 +11,8 @@ class EquipoController extends Controller {
 
     public function equiposClientesAction() {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
-        $equipos = $repository->findAll();
+        $idCliente = $this->getUser()->getId();
+        $equipos = $repository->findAllMisEquipos($idCliente);
         return $this->render('moduloclientesclienteBundle:Competiciones:equiposClientes.html.twig', array("equipos" => $equipos));
     }
 
@@ -43,6 +44,7 @@ class EquipoController extends Controller {
         $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $equipo->setIdCliente($this->getUser()->getId());
             $equipo->setClasificacion(0);
             $equipo->setPuntuacion(0);
             $equipo->setIdCompeticion($form->get('idCompeticion')->getData());

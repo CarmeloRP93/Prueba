@@ -24,6 +24,13 @@ class Equipos
     /**
      * @var integer
      *
+     * @ORM\Column(name="idCliente", type="integer", nullable=false)
+     */
+    private $idCliente;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="idCompeticion", type="integer", nullable=false)
      */
     private $idCompeticion;
@@ -110,6 +117,29 @@ class Equipos
     public function getIdCompeticion()
     {
         return $this->idCompeticion;
+    }
+
+    /**
+     * Set idCliente
+     *
+     * @param integer $idCliente
+     * @return Equipos
+     */
+    public function setIdCliente($idCliente)
+    {
+        $this->idCliente = $idCliente;
+
+        return $this;
+    }
+
+    /**
+     * Get idCliente
+     *
+     * @return integer
+     */
+    public function getIdCliente()
+    {
+        return $this->idCliente;
     }
 
     /**
