@@ -102,3 +102,7 @@ moduloclientes_cliente_sesionesClientes_abandonar:
 moduloclientes_cliente_misSesionesClientes:
     pattern:  /misSesiones
     defaults: { _controller: moduloclientesclienteBundle:Sesion:misSesiones }
+    
+moduloclientes_cliente_miPerfil:
+    pattern:  /miPerfil/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Usuario:miPerfil }

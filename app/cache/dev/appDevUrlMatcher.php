@@ -489,9 +489,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // moduloclientes_cliente_misSesionesClientes
-        if ($pathinfo === '/misSesiones') {
-            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::misSesionesAction',  '_route' => 'moduloclientes_cliente_misSesionesClientes',);
+        if (0 === strpos($pathinfo, '/mi')) {
+            // moduloclientes_cliente_misSesionesClientes
+            if ($pathinfo === '/misSesiones') {
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::misSesionesAction',  '_route' => 'moduloclientes_cliente_misSesionesClientes',);
+            }
+
+            // moduloclientes_cliente_miPerfil
+            if (0 === strpos($pathinfo, '/miPerfil') && preg_match('#^/miPerfil/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_miPerfil')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\UsuarioController::miPerfilAction',));
+            }
+
         }
 
         // crivero_prueba_home

@@ -2,31 +2,16 @@
 {% block title %}Vista de {{competicion.nombre}} {% endblock %}
 {% block contenido %}
     <div class="container">
-        <div class="nuevoEquipo">
-            <a href="{{path('moduloclientes_cliente_equipo_nuevo',{'id':competicion.id})}}" class="btn btn-success" style="height: 30px; width: 150px;">
-                Crear Equipo 
-             <span class="glyphicon glyphicon-plus"></span></a>
-        </div>
         <h1>Detalles del {{competicion.nombre}}</h1>
-        {% if competicion.estadoCompeticion == "Pendiente"%}
-            <form class="form-horizontal">
-                <div class="row container-fluid">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <label class="control-label span7 text-left">Añadir miembros del equipo</label>
-                        <textarea class="form-control" rows="5"></textarea>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <label class="control-label span7 text-left">Delegado del equipo (Persona de contacto)</label>
-                        <input class="form-control" type="text" name="capitan"/><br>
-                        <label class="control-label span7 text-left">Nombre del equipo</label>
-                        <input class="form-control" type="text" name="capitan"/><br>
-                    </div>
 
-                    <div class="text-center">
-                        <button class="btn btn-primary">Registrar jugadores y equipo </button>
-                    </div>
-                </div>
-            </form>
+        {% if competicion.estadoCompeticion == "Validado"%}
+        <h3>Bienvenido a la {{competicion.nombre}}. Esta competicion es para aquellos que quieran apuntarse a jugar a {{competicion.deporte}}</h3>
+        <h4>Le fecha de comienzo es el {{competicion.fechaInicio|date('d/m/Y')}}. Después de esta fecha la fase de inscripción quedará cerrada.</h4>
+        <div class="nuevoEquipo">
+            <a href="{{path('moduloclientes_cliente_equipo_nuevo',{'id':competicion.id})}}" class="btn btn-success">
+                Crear Equipo 
+                <span class="glyphicon glyphicon-plus"></span></a>
+        </div>
         {%endif%}
         {% if competicion.estadoCompeticion == "Jugandose"%}
             <h3>Insertar tabla de liga del deporte en cuestión (fútbol,baloncesto, tenis)</h3>

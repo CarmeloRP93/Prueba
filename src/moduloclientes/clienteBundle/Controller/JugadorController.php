@@ -12,7 +12,7 @@ class JugadorController extends Controller {
       public function nuevoAction($id) {
         $jugador = new Jugadores();
         $form = $this->createCreateForm($jugador);
-        return $this->render('moduloclientesclienteBundle:Default:nuevoJugadorCliente.html.twig', array('form' => $form->createView(),'id' => $id));
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevoJugadorCliente.html.twig', array('form' => $form->createView(),'id' => $id));
     }
     
     private function createCreateForm(Jugadores $entity) {
@@ -35,7 +35,7 @@ class JugadorController extends Controller {
             $em->flush();
             return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));
         }
-        return $this->render('moduloclientesclienteBundle:Default:nuevoJugadorCliente.html.twig', array('form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevoJugadorCliente.html.twig', array('form' => $form->createView()));
     }
     
 //    Los siguientes métodos jugadoresAction y jugadorAction estan cogidos de Crivero

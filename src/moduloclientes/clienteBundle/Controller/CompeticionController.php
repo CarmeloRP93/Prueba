@@ -12,19 +12,19 @@ class CompeticionController extends Controller {
     public function competicionesClientesAction() {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
         $competiciones = $repository->findAll();
-        return $this->render('moduloclientesclienteBundle:Default:competicionesClientes.html.twig', array("competiciones" => $competiciones));
+        return $this->render('moduloclientesclienteBundle:Competiciones:competicionesClientes.html.twig', array("competiciones" => $competiciones));
     }
 
     public function competicionClientesAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
         $competicion = $repository->find($id);
-        return $this->render('moduloclientesclienteBundle:Default:competicionClientes.html.twig', array("competicion" => $competicion));
+        return $this->render('moduloclientesclienteBundle:Competiciones:competicionClientes.html.twig', array("competicion" => $competicion));
     }
     
     public function nuevaAction() {
         $competicion = new Competiciones();
         $form = $this->createCreateForm($competicion);
-        return $this->render('moduloclientesclienteBundle:Default:nuevaCompeticionClientes.html.twig', array('form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevaCompeticionClientes.html.twig', array('form' => $form->createView()));
     }
     
     private function createCreateForm(Competiciones $entity) {
@@ -46,6 +46,6 @@ class CompeticionController extends Controller {
             $em->flush();
             return $this->redirect($this->generateUrl('moduloclientes_cliente_competicionesClientes'));
         }
-        return $this->render('moduloclientesclienteBundle:Default:nuevaCompeticionClientes.html.twig', array('form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevaCompeticionClientes.html.twig', array('form' => $form->createView()));
     }
 }

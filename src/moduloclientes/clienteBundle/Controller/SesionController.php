@@ -22,9 +22,9 @@ class SesionController extends Controller {
             }
         }
         if ($resultado != NULL) {
-            return $this->render('moduloclientesclienteBundle:Default:sesionesClientes.html.twig', array("sesiones" => $resultado));
+            return $this->render('moduloclientesclienteBundle:Sesiones:sesionesClientes.html.twig', array("sesiones" => $resultado));
         }
-        return $this->render('moduloclientesclienteBundle:Default:sesionesClientes.html.twig', array("sesiones" => NULL));
+        return $this->render('moduloclientesclienteBundle:Sesiones:sesionesClientes.html.twig', array("sesiones" => NULL));
     }
 
 
@@ -32,13 +32,13 @@ class SesionController extends Controller {
         $idsSesionesCliente = explode('&', $this->getUser()->getSesiones());
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesiones = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
-        return $this->render('moduloclientesclienteBundle:Default:misSesiones.html.twig', array("sesiones" => $sesiones));
+        return $this->render('moduloclientesclienteBundle:Sesiones:misSesiones.html.twig', array("sesiones" => $sesiones));
     }
 
     public function pagoSesionAction() {
         $pago = new Pagos();
         $form = $this->createCreateForm($pago);
-        return $this->render('moduloclientesclienteBundle:Default:pagoSesion.html.twig', array('form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Sesiones:pagoSesion.html.twig', array('form' => $form->createView()));
     }
 
     private function createCreateForm(Pagos $entity) {
@@ -65,19 +65,19 @@ class SesionController extends Controller {
             $request->getSession()->getFlashBag()->add('mensaje', 'Pago realizado con éxito.');
             return $this->render('CriveroPruebaBundle:Usuarios:home.html.twig');
         }
-        return $this->render('moduloclientesclienteBundle:Default:pagoSesion.html.twig', array('form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Sesiones:pagoSesion.html.twig', array('form' => $form->createView()));
     }
 
     public function sesionClientesAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repository->find($id);
-        return $this->render('moduloclientesclienteBundle:Default:sesionClientes.html.twig', array("sesion" => $sesion));
+        return $this->render('moduloclientesclienteBundle:Sesiones:sesionClientes.html.twig', array("sesion" => $sesion));
     }
 
     public function miSesionClientesAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repository->find($id);
-        return $this->render('moduloclientesclienteBundle:Default:miSesionClientes.html.twig', array("sesion" => $sesion));
+        return $this->render('moduloclientesclienteBundle:Sesiones:miSesionClientes.html.twig', array("sesion" => $sesion));
     }
 
     public function apuntarseAction($id) {

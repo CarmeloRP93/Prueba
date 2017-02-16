@@ -14,7 +14,7 @@ class ReservaController extends Controller {
         $usuarioId = $this->getUser()->getId();
         $dql = 'SELECT r FROM CriveroPruebaBundle:Reservas r WHERE r.idCliente = :id';
         $reservas = $em->createQuery($dql)->setParameter('id', $usuarioId)->getResult();
-        return $this->render('moduloclientesclienteBundle:Default:reservasClientes.html.twig', array("reservas" => $reservas));
+        return $this->render('moduloclientesclienteBundle:Reservas:reservasClientes.html.twig', array("reservas" => $reservas));
     }
 
     public function reservaClientesAction($id) {
@@ -25,14 +25,14 @@ class ReservaController extends Controller {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
         $cancha = $repository->find($canchaId);
 
-        return $this->render('moduloclientesclienteBundle:Default:reservaClientes.html.twig', array("reserva" => $reserva, "cancha" => $cancha));
+        return $this->render('moduloclientesclienteBundle:Reservas:reservaClientes.html.twig', array("reserva" => $reserva, "cancha" => $cancha));
     }
 
     public function nuevaReservaAction($id) {
         $reserva = new Reservas();
         $form = $this->createCreateForm($reserva);
 
-        return $this->render('moduloclientesclienteBundle:Default:nuevaReserva.html.twig', array('form' => $form->createView(), 'id' => $id));
+        return $this->render('moduloclientesclienteBundle:Reservas:nuevaReserva.html.twig', array('form' => $form->createView(), 'id' => $id));
     }
 
     private function createCreateForm(Reservas $entity) {
@@ -77,7 +77,7 @@ class ReservaController extends Controller {
             return $this->redirect($this->generateUrl('moduloclientes_cliente_canchasClientes'));
         }
 
-        return $this->render('moduloclientesclienteBundle:Default:nuevaReserva.html.twig', array('form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Reservas:nuevaReserva.html.twig', array('form' => $form->createView()));
     }
 
 }

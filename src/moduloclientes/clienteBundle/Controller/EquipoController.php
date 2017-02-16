@@ -12,7 +12,7 @@ class EquipoController extends Controller {
     public function equiposClientesAction() {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
         $equipos = $repository->findAll();
-        return $this->render('moduloclientesclienteBundle:Default:equiposClientes.html.twig', array("equipos" => $equipos));
+        return $this->render('moduloclientesclienteBundle:Competiciones:equiposClientes.html.twig', array("equipos" => $equipos));
     }
 
     public function equipoClientesAction($id) {
@@ -20,13 +20,13 @@ class EquipoController extends Controller {
         $equipo = $repositoryEquipos->find($id);
         $repositoryJugadores = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Jugadores");
         $jugadores = $repositoryJugadores->findAll();
-        return $this->render('moduloclientesclienteBundle:Default:equipoClientes.html.twig', array("equipo" => $equipo, "jugadores"=>$jugadores));
+        return $this->render('moduloclientesclienteBundle:Competiciones:equipoClientes.html.twig', array("equipo" => $equipo, "jugadores"=>$jugadores));
     }
     
     public function nuevoAction($id) {
         $equipo = new Equipos();
         $form = $this->createCreateForm($equipo);
-        return $this->render('moduloclientesclienteBundle:Default:nuevoEquipoCliente.html.twig', array('form' => $form->createView(),'id'=>$id));
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevoEquipoCliente.html.twig', array('form' => $form->createView(),'id'=>$id));
     }
     
     private function createCreateForm(Equipos $entity) {
@@ -53,6 +53,6 @@ class EquipoController extends Controller {
             $em->flush();
             return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));
         }
-        return $this->render('moduloclientesclienteBundle:Default:nuevaEquipoCliente.html.twig', array('form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevaEquipoCliente.html.twig', array('form' => $form->createView()));
     }
 }

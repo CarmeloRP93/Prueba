@@ -9,13 +9,13 @@ class CanchaController extends Controller {
     public function canchasClientesAction() {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
         $canchas = $repository->findAll();
-        return $this->render('moduloclientesclienteBundle:Default:canchasClientes.html.twig', array("canchas" => $canchas));
+        return $this->render('moduloclientesclienteBundle:Canchas:canchasClientes.html.twig', array("canchas" => $canchas));
     }
 
     public function canchaClientesAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
         $cancha = $repository->find($id);
-        return $this->render('moduloclientesclienteBundle:Default:canchaClientes.html.twig', array("cancha" => $cancha));
+        return $this->render('moduloclientesclienteBundle:Canchas:canchaClientes.html.twig', array("cancha" => $cancha));
     }
 
 }
