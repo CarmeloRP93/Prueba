@@ -19,4 +19,9 @@ class EquiposRepository extends EntityRepository
             ->setParameter('idCliente', $idCliente)
             ->getResult();
     }
+
+    public function findAll()
+    {
+        return $this->findBy(array(), array('clasificacion' => 'ASC'));
+    }
 }
