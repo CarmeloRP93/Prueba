@@ -89,3 +89,21 @@ modulomonitores_monitores_eliminarSesionDedicada:
     pattern:  /eliminarSesionDedicada/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:eliminarSesionDedicada}
     methods: [POST, DELETE]
+modulomonitores_monitores_miperfilm:
+    pattern:  /monitor/perfil
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:miperfilm}
+    
+modulomonitores_monitores_editarmiperfilm:
+    pattern:  /editarmiperfilm
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:editarmiperfilm }
+
+modulomonitores_monitores_actualizarmiperfilm:
+    pattern:  /actualizarmiperfilm
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:actualizarmiperfilm }
+    
+modulomonitores_monitores_verParticipantes:
+    pattern:  /verParticipantes/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:verParticipantes }
+modulomonitores_monitores_participante:
+    pattern:  /participante/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:participante }

@@ -39,7 +39,7 @@
 
             {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href = #>Perfil</a></li>
+                    <li><a href = "{{url('modulomonitores_monitores_miperfilm')}}">Perfil</a></li>
                     <li><a href="{{path('crivero_prueba_logout')}}">Logout</a></li>
                 </ul>
             {% endif %}

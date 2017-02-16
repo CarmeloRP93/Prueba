@@ -1,0 +1,39 @@
+{% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
+
+{% block title %} Cliente {{cliente.username}} {% endblock %}
+{% block contenido %}
+    <div class="usuardesc container">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h3>{{cliente.username}}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="usuarfot">
+                        <img src="{{ asset('images/no-image-found.png') }}" style="float: left; width: 120%;" />        
+                    </div>
+                    <h4>Nombre: </h4> <p>{{cliente.nombre}}</p>
+                    <h4>F.Nacimiento: </h4> <p>{{cliente.fNacimiento}}</p>
+                    <h4>Telefono: </h4> <p>{{cliente.telefono}}</p>
+                    <h4>Correo: </h4> <p>{{cliente.email}}</p>
+
+                    <div>
+                        {% if cliente.sesiones != null %}
+                            <div>
+                                <h4>Sesiones: </h4> 
+                                <ul id="sesiones">
+                                    {% for sesion in sesiones %}
+                                        <li>
+                                            <p>Aula {{sesion.aula}} - {{sesion.nombre}} con {{sesion.monitor}} - {{sesion.horario}}</p>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </div><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

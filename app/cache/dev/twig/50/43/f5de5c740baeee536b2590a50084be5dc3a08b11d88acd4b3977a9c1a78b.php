@@ -101,7 +101,10 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
         if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_FULLY")) {
             // line 41
             echo "                <ul class=\"nav navbar-nav navbar-right\">
-                    <li><a href = #>Perfil</a></li>
+                    <li><a href = \"";
+            // line 42
+            echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_miperfilm");
+            echo "\">Perfil</a></li>
                     <li><a href=\"";
             // line 43
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
@@ -158,6 +161,6 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 
     public function getDebugInfo()
     {
-        return array (  146 => 60,  143 => 59,  135 => 61,  133 => 59,  129 => 57,  126 => 56,  113 => 46,  107 => 43,  103 => 41,  101 => 40,  93 => 35,  89 => 34,  80 => 28,  76 => 27,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
+        return array (  149 => 60,  146 => 59,  138 => 61,  136 => 59,  132 => 57,  129 => 56,  116 => 46,  110 => 43,  106 => 42,  103 => 41,  101 => 40,  93 => 35,  89 => 34,  80 => 28,  76 => 27,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
     }
 }

@@ -4,6 +4,8 @@ namespace modulomonitores\monitoresBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Crivero\PruebaBundle\Entity\Sesiones;
+use Crivero\PruebaBundle\Entity\Usuarios;
+use Crivero\PruebaBundle\Form\UsuariosType;
 use Crivero\PruebaBundle\Form\SesionesType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormError;
@@ -85,6 +87,7 @@ class SesionController extends Controller {
             $sesion->setEstadoCliente("no disponible");
             $sesion->setnClientes(0);
             $sesion->setCliente("normal");
+            $sesion->setImagen("images/".mt_rand(1,5)."m.jpg");
             $sesion->setIdMonitor($this->getUser()->getId());
             $sesion->setMonitor($this->getUser()->getUsername());
             $lClientes = $form->get('lClientes')->getData();
@@ -92,7 +95,7 @@ class SesionController extends Controller {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($sesion);
                 $em->flush();
-                return $this->redirect($this->generateUrl('modulomonitores_monitores_sesionesMonitores'));
+                return $this->redirect($this->generateUrl('modulomonitores_monitores_MisSesionesMonitores'));
             } else {
                 $form->get('lClientes')->addError(new FormError('Rellene el campo gracias'));
             }
@@ -167,7 +170,7 @@ class SesionController extends Controller {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($sesion);
                 $em->flush();
-                return $this->redirect($this->generateUrl('modulomonitores_monitores_sesionesDedicadas'));
+                return $this->redirect($this->generateUrl('modulomonitores_monitores_MisSesionesDedicadas'));
             } else {
                 $form->get('cliente')->addError(new FormError('Rellene el campo gracias'));
             }
@@ -256,5 +259,99 @@ class SesionController extends Controller {
         }
         return $this->render('modulomonitoresmonitoresBundle:Default:solEliminarSesion.html.twig', array('form' => $form->createView()));
     }
+    
+    public function miperfilmAction() {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $monitor = $repository->find($this->getUser()->getId());
+        return $this->render('modulomonitoresmonitoresBundle:Default:miperfilm.html.twig', array("monitor" => $monitor));
+    }
+    
+    
+     public function editarmiperfilmAction() {
+        $em = $this->getDoctrine()->getManager();
+        $usuario = $this->findUser($this->getUser()->getId(), $em);
 
+        $form = $this->createEditpmForm($usuario);
+        return $this->render('modulomonitoresmonitoresBundle:Default:editarmiperfilm.html.twig', array('usuario' => $usuario,
+                    'form' => $form->createView()));
+    }
+
+    public function actualizarmiperfilmAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $usuario = $this->findUser($this->getUser()->getId(), $em);
+
+        $form = $this->createEditpmForm($usuario);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $password = $form->get('password')->getData();
+            if (!empty($password)) {
+                $encoded = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+                $usuario->setPassword($encoded);
+            } else {
+                $recoverPass = $this->recoverPass($this->getUser()->getId());
+                $usuario->setPassword($recoverPass[0]['password']);
+            }
+            $em->flush();
+            return $this->redirect($this->generateUrl('modulomonitores_monitores_miperfilm'));
+        }
+        return $this->render('modulomonitoresmonitoresBundle:Default:editarmiperfilm.html.twig', array('usuario' => $usuario,
+                    'form' => $form->createView()));
+    }
+    
+    private function findUser($id, $em) {
+        $usuario = $em->getRepository('CriveroPruebaBundle:Usuarios')->find($id);
+        if (!$usuario) {
+            throw $this->createNotFoundException('Usuario no encontrado');
+        }
+        return $usuario;
+    }
+
+    public function createEditpmForm(Usuarios $entity) {
+        $form = $this->createForm(new UsuariosType(), $entity, array(
+            'action' => $this->generateUrl('modulomonitores_monitores_actualizarmiperfilm', array('id' => $entity->getId())),
+            'method' => 'PUT'));
+        return $form;
+    }
+
+    private function recoverPass($id) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $currentPass = $repository->recuperarPass($id);
+        return $currentPass;
+    }
+    
+    public function verParticipantesAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
+        $arrayClientes = explode('&', $sesion->getIdsClientes());
+        $repositoryu = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        for ($i = 0; $i < count($arrayClientes); $i++) {
+            $clientes[$i] = $repositoryu->find($arrayClientes[$i]);
+        }
+        return $this->render('modulomonitoresmonitoresBundle:Default:participantes.html.twig', array("clientes" => $clientes));
+    }
+    private function findEntity($id, $em, $repository) {
+        $entity = $em->getRepository($repository)->find($id);
+        if (!$entity) {
+            throw $this->createNotFoundException('Entidad no encontrada');
+        }
+        return $entity;
+    }
+    public function participanteAction($id) {
+        $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $cliente = $repositoryUsuarios->find($id);
+
+        $idsSesionesCliente = explode('&', $cliente->getSesiones());
+        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesionesCliente = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
+
+        return $this->render('modulomonitoresmonitoresBundle:Default:participante.html.twig', array("cliente" => $cliente,
+                     "sesiones" => $sesionesCliente,));
+    }
+    private function getArrayEntidades($repository, $array) {
+        for ($i = 0; $i < count($array); $i++) {
+            $resultado[$i] = $repository->find($array[$i]);
+        }
+        return $resultado;
+    }
 }
