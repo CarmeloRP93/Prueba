@@ -416,7 +416,7 @@
     <parameter key="assetic.write_to">C:\xampp\htdocs\Prueba\app/../web</parameter>
     <parameter key="assetic.variables" type="collection"/>
     <parameter key="assetic.java.bin">C:\ProgramData\Oracle\Java\javapath\java.EXE</parameter>
-    <parameter key="assetic.node.bin">/usr/bin/node</parameter>
+    <parameter key="assetic.node.bin">C:\Program Files\nodejs\\node.EXE</parameter>
     <parameter key="assetic.ruby.bin">/usr/bin/ruby</parameter>
     <parameter key="assetic.sass.bin">/usr/bin/sass</parameter>
     <parameter key="assetic.filter.cssrewrite.class">Assetic\Filter\CssRewriteFilter</parameter>
@@ -1666,7 +1666,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>58a4d4dd6a7cc</argument>
+            <argument>58a5f2c681a42</argument>
           </service>
         </argument>
         <argument type="service">
@@ -1900,7 +1900,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>58a4d4dd6a7cc</argument>
+            <argument>58a5f2c681a42</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>

@@ -123,7 +123,7 @@ class __TwigTemplate_93398c94027a555a153ec4fea2f3f8e01c2247ec4e0e453d7645cd83b4f
         echo "                </tbody>
             </table>
         </div>
-        <div class=\"nuevaCompeticion\">
+        <div class=\"nueva\">
             <a href=\"";
         // line 51
         echo $this->env->getExtension('routing')->getPath("crivero_prueba_competicion_nueva");

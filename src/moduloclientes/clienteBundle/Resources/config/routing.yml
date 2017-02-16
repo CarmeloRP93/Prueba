@@ -21,11 +21,11 @@ moduloclientes_cliente_competicionClientes:
     defaults: { _controller: moduloclientesclienteBundle:Competicion:competicionClientes }
     
 moduloclientes_cliente_competicion_nueva:
-    pattern:  /nuevaCompeticionCliente
+    pattern:  /nuevaCompeticionClientes
     defaults: { _controller: moduloclientesclienteBundle:Competicion:nueva }
     
 moduloclientes_cliente_competicion_crear:
-    pattern:  /crearCompeticion
+    pattern:  /crearCompeticionClientes
     defaults: { _controller: moduloclientesclienteBundle:Competicion:crear }
     requirements:
         _method:  POST|GET
