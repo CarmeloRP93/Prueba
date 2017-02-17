@@ -84,14 +84,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
      * @ORM\Column(name="registro", type="datetime")
      */
     private $registro;
- 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="reservas", type="string", length=1000, nullable=true)
-     */
-    private $reservas;
- 
+  
     /**
      * @var string
      *
@@ -138,29 +131,6 @@ class Usuarios implements AdvancedUserInterface, \Serializable
     public function getRegistro()
     {
         return $this->registro;
-    }
- 
-    /**
-     * Set reservas
-     *
-     * @param string $reservas
-     * @return Usuarios
-     */
-    public function setReservas($reservas)
-    {
-        $this->reservas = $reservas;
- 
-        return $this;
-    }
- 
-    /**
-     * Get reservas
-     *
-     * @return string 
-     */
-    public function getReservas()
-    {
-        return $this->reservas;
     }
  
     /**

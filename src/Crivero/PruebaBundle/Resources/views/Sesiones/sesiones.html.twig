@@ -29,10 +29,10 @@
                                     Ver
                                 </a>
                                 {% if sesion.estado == 'pendiente' %}
-                                    <a href="#" class="btn btn-sm btn-success">
+                                    <a href="{{path('crivero_prueba_aceptarSesion', {id: sesion.id})}}" class="btn btn-sm btn-success">
                                         Aceptar
                                     </a>
-                                    <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                    <a href="{{path('crivero_prueba_rechazarSesion', {id: sesion.id})}}" class="btn btn-sm btn-danger btn-delete">
                                         Rechazar
                                     </a>
                                 {% elseif sesion.estado == 'validada' %}

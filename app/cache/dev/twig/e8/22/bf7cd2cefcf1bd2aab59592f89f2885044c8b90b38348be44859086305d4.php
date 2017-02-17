@@ -77,23 +77,34 @@ class __TwigTemplate_e822bf7cd2cefcf1bd2aab59592f89f2885044c8b90b38348be44859086
             // line 23
             echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "nombre", array()), "html", null, true);
             echo "</td>
-                            <td><strong>";
-            // line 24
-            echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "disponibilidad", array()), "html", null, true);
-            echo "</strong></td>
                             <td>";
-            // line 25
+            // line 24
+            if ((((isset($context["hoy"]) ? $context["hoy"] : $this->getContext($context, "hoy")) == 0) || ((isset($context["hoy"]) ? $context["hoy"] : $this->getContext($context, "hoy")) == 6))) {
+                // line 25
+                echo "                                <strong>No disponible</strong>
+                                ";
+            } else {
+                // line 27
+                echo "                                    <strong>";
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["estados"]) ? $context["estados"] : $this->getContext($context, "estados")), ($this->getAttribute($context["aula"], "id", array()) - 1), array(), "array"), "estado", array()), "html", null, true);
+                echo "</strong>
+                                ";
+            }
+            // line 28
+            echo "</td>
+                            <td>";
+            // line 29
             echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "horario", array()), "html", null, true);
             echo "</td>
                             <td class=\"actions\">
                               <a href=\"";
-            // line 27
+            // line 31
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_aula", array("id" => $this->getAttribute($context["aula"], "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-info\">
                                     Ver
                                 </a>
                                 <a href=\"";
-            // line 30
+            // line 34
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_aula_editar", array("id" => $this->getAttribute($context["aula"], "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-primary\">
                                     Editar
@@ -106,13 +117,13 @@ class __TwigTemplate_e822bf7cd2cefcf1bd2aab59592f89f2885044c8b90b38348be44859086
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['aula'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 37
+        // line 41
         echo "                </tbody>
             </table>
         </div>
         <div class=\"navigation\">
             ";
-        // line 41
+        // line 45
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
         </div>
@@ -132,6 +143,6 @@ class __TwigTemplate_e822bf7cd2cefcf1bd2aab59592f89f2885044c8b90b38348be44859086
 
     public function getDebugInfo()
     {
-        return array (  116 => 41,  110 => 37,  97 => 30,  91 => 27,  86 => 25,  82 => 24,  78 => 23,  75 => 22,  71 => 21,  63 => 16,  59 => 15,  55 => 14,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  127 => 45,  121 => 41,  108 => 34,  102 => 31,  97 => 29,  94 => 28,  88 => 27,  84 => 25,  82 => 24,  78 => 23,  75 => 22,  71 => 21,  63 => 16,  59 => 15,  55 => 14,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
     }
 }

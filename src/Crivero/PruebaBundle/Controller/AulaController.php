@@ -12,11 +12,16 @@ class AulaController extends Controller {
     public function aulasAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $aulas = $repository->getAulas();
+        $repositoryHorarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
+        $hoy = date('j');
+        $nombreHoy = date('w');
+        $estados = $repositoryHorarios->getEstadosAulas($hoy); 
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $aulas, $request->query->getInt('page', 1), 5);
-        return $this->render('CriveroPruebaBundle:Aulas:aulas.html.twig', array("pagination" => $pagination));
+        return $this->render('CriveroPruebaBundle:Aulas:aulas.html.twig', array("pagination" => $pagination, 
+                             "estados" => $estados, "hoy" => $nombreHoy));
     }
 
     public function aulaAction($id) {

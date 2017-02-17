@@ -48,11 +48,8 @@ class ReservaController extends Controller {
             
             if ($motivos != null) {
                 $reserva->setEstadoReserva("Cancelada");
-//                $usuario = $this->findEntity($reserva->getIdCliente(), $em, 'CriveroPruebaBundle:Usuarios');
-//                $this->removeReservaId($usuario, $id);
                 
                 $em->persist($reserva);
-//                $em->persist($usuario);
                 $em->flush();
                 $request->getSession()->getFlashBag()->add('mensaje', 'La reserva se canceló correctamente');
                 return $this->redirect($this->generateUrl('crivero_prueba_reservas'));
@@ -71,11 +68,5 @@ class ReservaController extends Controller {
         return $entity;
     }
     
-    private function removeReservaId($entity, $id) {
-        $pos = strpos($entity->getReservas(), strval($id));
-        $cifra = strlen(strval($id));
-        ($pos > 0) ? $entity->setSesiones(substr($entity->getReservas(), 0, $pos - 1) . substr($entity->getReservas(), $pos + $cifra)) :
-                        $entity->setSesiones(substr($entity->getReservas(), $pos + ($cifra + 1)));
-    }
     
 }

@@ -19,4 +19,11 @@ class HorariosAulasRepository extends EntityRepository {
                     ->setParameter('dia', $dia)
                     ->getResult();
     }
+    
+    public function getEstadosAulas($dia) {
+        return $this->getEntityManager()
+                 ->createQuery('SELECT h.estado FROM CriveroPruebaBundle:HorariosAulas h WHERE h.fechaInicio = :dia')
+                 ->setParameter('dia', $dia)
+                 ->getResult();
+    }
 }
