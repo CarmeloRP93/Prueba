@@ -106,3 +106,13 @@ moduloclientes_cliente_misSesionesClientes:
 moduloclientes_cliente_miPerfil:
     pattern:  /miPerfil/{id}
     defaults: { _controller: moduloclientesclienteBundle:Usuario:miPerfil }
+    
+moduloclientes_cliente_escribirSugerencia:
+    pattern:  /escribirSugerencia/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Cancha:escribirSugerencia }
+
+moduloclientes_cliente_añadirSugerencia:
+    pattern:  /añadirSugerencia/
+    defaults: { _controller: moduloclientesclienteBundle:Cancha:añadirSugerencia }
+    requirements:
+        _method:  POST|PUT|GET

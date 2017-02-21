@@ -1,0 +1,34 @@
+{% extends 'moduloclientesclienteBundle::main.html.twig' %}
+{% block title %}Vista de escribir sugerencia {% endblock %}
+{% block contenido %}
+    <div class="container">
+        <h1>Escribir sugerencia</h1>   
+    </div>
+
+    {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+
+    <div class="form-group container">
+        {{ form_label(form.destinoComentario) }}
+        {{ form_widget(form.destinoComentario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Destino'} }) }}
+        <span class="text-danger">{{ form_errors(form.destinoComentario) }}</span>
+    </div>
+
+    <div class="form-group container">
+        {{ form_label(form.tipoComentario) }}
+        {{ form_widget(form.tipoComentario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba el tipo de sugerencia'} }) }}
+        <span class="text-danger">{{ form_errors(form.tipoComentario) }}</span>
+    </div>
+
+    <div class="form-group container">
+        {{ form_label(form.descripcion) }}
+        {{ form_widget(form.descripcion, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba la descripción'} }) }}
+        <span class="text-danger">{{ form_errors(form.descripcion) }}</span>
+    </div>
+
+    <div class="form-group container"><p>
+            {{ form_widget(form.enviar, {'label' : 'enviar', 'attr': {'class': 'btn btn-success'}}) }}
+        </p></div>     
+
+    {{ form_end(form) }}
+
+{% endblock %}

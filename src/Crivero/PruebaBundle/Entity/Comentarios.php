@@ -3,12 +3,15 @@
 namespace Crivero\PruebaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * Comentarios
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\ComentariosRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Comentarios
 {
@@ -32,6 +35,7 @@ class Comentarios
      * @var string
      *
      * @ORM\Column(name="destinoComentario", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $destinoComentario;
 
@@ -39,6 +43,7 @@ class Comentarios
      * @var string
      *
      * @ORM\Column(name="descripcion", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $descripcion;
 
