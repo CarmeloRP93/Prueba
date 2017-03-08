@@ -82,7 +82,7 @@ class __TwigTemplate_292b8aff0ca87db287d617efa601c648c962a27653f69103d6dd80667a8
         }
         // line 21
         echo "         ";
-        if (($this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "estadoCompeticion", array()) == "Validada")) {
+        if (($this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "estadoCompeticion", array()) == "Validado")) {
             // line 22
             echo "             <div class=\"table-responsive\">
                 <table class=\"table table-bordered\">
@@ -99,12 +99,12 @@ class __TwigTemplate_292b8aff0ca87db287d617efa601c648c962a27653f69103d6dd80667a8
             foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
                 if (($this->getAttribute($context["equipo"], "idCompeticion", array()) == $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "id", array()))) {
                     // line 31
-                    echo "                 <tr>           
+                    echo "                 <tr>
                     <td>   ";
                     // line 32
                     echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "nombre", array()), "html", null, true);
                     echo "    </td>
-                    <td>    
+                    <td>
                         <a href=\"";
                     // line 34
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_equipo", array("id" => $this->getAttribute($context["equipo"], "id", array()))), "html", null, true);
@@ -113,7 +113,7 @@ class __TwigTemplate_292b8aff0ca87db287d617efa601c648c962a27653f69103d6dd80667a8
                         </a>
                         <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
                             Eliminar
-                        </a>   
+                        </a>
                     </td>
                 </tr>
              ";
@@ -179,7 +179,7 @@ class __TwigTemplate_292b8aff0ca87db287d617efa601c648c962a27653f69103d6dd80667a8
                     // line 68
                     echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "empates", array()), "html", null, true);
                     echo "   </td>
-                                <td>    
+                                <td>
                                     <a href=\"";
                     // line 70
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_equipo", array("id" => $this->getAttribute($context["equipo"], "id", array()))), "html", null, true);
@@ -188,7 +188,7 @@ class __TwigTemplate_292b8aff0ca87db287d617efa601c648c962a27653f69103d6dd80667a8
                                     </a>
                                     <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
                                         Eliminar
-                                    </a>   
+                                    </a>
                                 </td>
                             </tr>
                     ";

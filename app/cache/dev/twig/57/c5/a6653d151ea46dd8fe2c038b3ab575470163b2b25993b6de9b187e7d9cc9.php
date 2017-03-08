@@ -98,14 +98,14 @@ class __TwigTemplate_57c5a6653d151ea46dd8fe2c038b3ab575470163b2b25993b6de9b187e7
             foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
                 // line 31
                 echo "                        <tr>
-                            <td>  ";
+                            <td>   ";
                 // line 32
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "clasificacion", array()), "html", null, true);
                 echo "º  </td>
-                            <td>";
+                            <td>   ";
                 // line 33
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "nombre", array()), "html", null, true);
-                echo " </td>
+                echo "           </td>
                             <td>   ";
                 // line 34
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "puntuacion", array()), "html", null, true);

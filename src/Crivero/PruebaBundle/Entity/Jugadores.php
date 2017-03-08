@@ -52,7 +52,7 @@ class Jugadores
     /**
      * @var integer
      *
-     * @ORM\Column(name="dorsal", type="integer")
+     * @ORM\Column(name="dorsal", type="integer", nullable=true)
      */
     private $dorsal;
 

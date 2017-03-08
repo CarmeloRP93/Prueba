@@ -48,6 +48,7 @@ class EquipoController extends Controller {
             $equipo->setClasificacion(0);
             $equipo->setPuntuacion(0);
             $equipo->setIdCompeticion($form->get('idCompeticion')->getData());
+//            $equipo->setDeporte($form->get('deporte')->getData());
             $equipo->setVictorias(0);
             $equipo->setEmpates(0);
             $equipo->setDerrotas(0);

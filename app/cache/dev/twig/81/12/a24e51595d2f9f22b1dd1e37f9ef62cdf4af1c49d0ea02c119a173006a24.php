@@ -75,7 +75,7 @@ class __TwigTemplate_8112a24e51595d2f9f22b1dd1e37f9ef62cdf4af1c49d0ea02c119a1730
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'errors');
         echo "</span>
         </div>
-        
+
         <div class=\"form-group\">
             ";
         // line 22
@@ -90,14 +90,23 @@ class __TwigTemplate_8112a24e51595d2f9f22b1dd1e37f9ef62cdf4af1c49d0ea02c119a1730
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "deporte", array()), 'errors');
         echo "</span>
         </div>
-        <p>
+
+        ";
+        // line 28
+        echo "            ";
+        // line 29
+        echo "            ";
+        // line 30
+        echo "        ";
+        // line 31
+        echo "        <p>
             ";
-        // line 27
+        // line 32
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
         </p>                
         ";
-        // line 29
+        // line 34
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
     </div>
@@ -116,6 +125,6 @@ class __TwigTemplate_8112a24e51595d2f9f22b1dd1e37f9ef62cdf4af1c49d0ea02c119a1730
 
     public function getDebugInfo()
     {
-        return array (  101 => 29,  96 => 27,  90 => 24,  86 => 23,  82 => 22,  75 => 18,  71 => 17,  67 => 16,  60 => 12,  56 => 11,  50 => 8,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  110 => 34,  105 => 32,  102 => 31,  100 => 30,  98 => 29,  96 => 28,  90 => 24,  86 => 23,  82 => 22,  75 => 18,  71 => 17,  67 => 16,  60 => 12,  56 => 11,  50 => 8,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

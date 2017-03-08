@@ -18,9 +18,9 @@
                 Validar
             </a>
          {% endif %}
-         {% if competicion.estadoCompeticion == "Validada" %}
-             <div class="table-responsive">
-                <table class="table table-bordered">
+         {% if competicion.estadoCompeticion == "Validado" %}
+             <table class="table-responsive">
+                <div class="table table-bordered">
                     <thead>
                         <tr>
                             <th> Equipos inscritos por el momento  </th>
@@ -28,15 +28,15 @@
                         </tr>
                     </thead>
              {% for equipo in equipos if equipo.idCompeticion ==competicion.id %}
-                 <tr>           
+                 <tr>
                     <td>   {{equipo.nombre}}    </td>
-                    <td>    
+                    <td>
                         <a href="{{ path('crivero_prueba_equipo', { id: equipo.id }) }}" class="btn btn-sm btn-info">
                             Ver
                         </a>
                         <a href="#" class="btn btn-sm btn-danger btn-delete">
                             Eliminar
-                        </a>   
+                        </a>
                     </td>
                 </tr>
              {%endfor%}
@@ -66,19 +66,18 @@
                                 <td>   {{equipo.victorias}}   </td>
                                 <td>   {{equipo.derrotas}}   </td>
                                 <td>   {{equipo.empates}}   </td>
-                                <td>    
+                                <td>
                                     <a href="{{ path('crivero_prueba_equipo', { id: equipo.id }) }}" class="btn btn-sm btn-info">
                                         Ver
                                     </a>
                                     <a href="#" class="btn btn-sm btn-danger btn-delete">
                                         Eliminar
-                                    </a>   
+                                    </a>
                                 </td>
                             </tr>
                     {%endfor%}
                 </table>
             </div>
         {%endif%}
-
     </div>
 {% endblock %}
