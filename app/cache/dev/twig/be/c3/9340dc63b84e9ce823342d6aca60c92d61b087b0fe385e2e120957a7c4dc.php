@@ -91,26 +91,25 @@ class __TwigTemplate_bec39340dc63b84e9ce823342d6aca60c92d61b087b0fe385e2e120957a
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "tipocompeticion", array()), 'errors');
         echo "</span>
         </div>
-        
-        <div class=\"hidden\">
+        <div class=\"form-group\">
             <label>Fecha Inicio:</label><br>
             ";
-        // line 30
+        // line 29
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fechainicio", array()), 'widget', array("attr" => array("class" => "")));
         echo "
             <span class=\"text-danger\">";
-        // line 31
+        // line 30
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fechainicio", array()), 'errors');
         echo "</span>
         </div>
         <p>
             ";
-        // line 34
+        // line 33
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
         </p>                
         ";
-        // line 36
+        // line 35
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
     </div>
@@ -129,6 +128,6 @@ class __TwigTemplate_bec39340dc63b84e9ce823342d6aca60c92d61b087b0fe385e2e120957a
 
     public function getDebugInfo()
     {
-        return array (  114 => 36,  109 => 34,  103 => 31,  99 => 30,  91 => 25,  87 => 24,  79 => 19,  75 => 18,  71 => 17,  64 => 13,  60 => 12,  56 => 11,  50 => 8,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  113 => 35,  108 => 33,  102 => 30,  98 => 29,  91 => 25,  87 => 24,  79 => 19,  75 => 18,  71 => 17,  64 => 13,  60 => 12,  56 => 11,  50 => 8,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }
