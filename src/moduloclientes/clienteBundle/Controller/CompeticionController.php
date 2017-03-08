@@ -10,15 +10,17 @@ use Symfony\Component\HttpFoundation\Request;
 class CompeticionController extends Controller {
 
     public function competicionesClientesAction() {
-        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
-        $competiciones = $repository->findAll();
+        $repositoryCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
+        $competiciones = $repositoryCompeticiones->findAll();
         return $this->render('moduloclientesclienteBundle:Competiciones:competicionesClientes.html.twig', array("competiciones" => $competiciones));
     }
 
     public function competicionClientesAction($id) {
-        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
-        $competicion = $repository->find($id);
-        return $this->render('moduloclientesclienteBundle:Competiciones:competicionClientes.html.twig', array("competicion" => $competicion));
+        $repositoryCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
+        $competicion = $repositoryCompeticiones->find($id);
+        $repositoryEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
+        $equipos = $repositoryEquipos ->getEquiposCompeticion($id);
+        return $this->render('moduloclientesclienteBundle:Competiciones:competicionClientes.html.twig', array("competicion" => $competicion, "equipos"=>$equipos));
     }
     
     public function nuevaAction() {

@@ -27,14 +27,14 @@
                             <th> Empates  </th>
                         </tr>
                     </thead>
-                    {%for i in 1..16%} 
+                    {%for equipo in equipos%}
                         <tr>
-                            <td>  {{i}}º  </td>
-                            <td>Equipo {{i}} </td>
-                            <td>   {{(15*3)-(i*2)}}   </td>
-                            <td>   {{(16-i)}}   </td>
-                            <td>   {{i-1}}   </td>
-                            <td>   {{0}}   </td>
+                            <td>  {{equipo.clasificacion}}º  </td>
+                            <td>{{equipo.nombre}} </td>
+                            <td>   {{equipo.puntuacion}}   </td>
+                            <td>   {{equipo.victorias}}   </td>
+                            <td>   {{equipo.derrotas}}  </td>
+                            <td>   {{equipo.empates}}   </td>
                         </tr>
                     {%endfor%}
                 </table>
