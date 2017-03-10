@@ -6,35 +6,41 @@
 {% block contenido %}
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class="container">
-        <h1 class="text-center">Reservas</h1>
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>{{ knp_pagination_sortable(pagination, 'Cliente', 'r.cliente') }}</th>
-                        <th>{{ knp_pagination_sortable(pagination, 'Cancha', 'r.cancha') }}</th>
-                        <th>{{ knp_pagination_sortable(pagination, 'Inicio', 'r.fechaInicio') }}</th>
-                        <th>{{ knp_pagination_sortable(pagination, 'Final', 'r.fechaFinalizacion') }}</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for reserva in pagination %}
+            <div class="page-header "> 
+                <h1 class="text-center">Reservas</h1>
+            </div>
+        {% if not pagination|length %}
+            <h2>No se encontraron reservas con esos parámetros de búsqueda.</h2>
+        {% else %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <td><a href="{{ path('crivero_prueba_cliente', { id: reserva.idCliente }) }}" style="color: #000" >{{reserva.cliente}}</a></td>
-                            <td><strong><a href="{{ path('crivero_prueba_cancha', { id: reserva.idCancha }) }}" style="color: #000">{{reserva.cancha}}</a></strong></td>
-                            <td>{{reserva.fechaInicio|date('d/m/Y H:i')}}</td>
-                            <td>{{reserva.fechaFinalizacion|date('d/m/Y H:i')}}</td>
-                            <td class="actions">
-                                <a href="{{path('crivero_prueba_reserva_cancelar', {id: reserva.id})}}" class="btn btn-sm btn-danger">
-                                    Cancelar
-                                </a>
-                            </td>
+                            <th>{{ knp_pagination_sortable(pagination, 'Cliente', 'r.cliente') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Cancha', 'r.cancha') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Inicio', 'r.fechaInicio') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Final', 'r.fechaFinalizacion') }}</th>
+                            <th>Acciones</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        {% for reserva in pagination %}
+                            <tr>
+                                <td><a href="{{ path('crivero_prueba_cliente', { id: reserva.idCliente }) }}" style="color: #000" >{{reserva.cliente}}</a></td>
+                                <td><strong><a href="{{ path('crivero_prueba_cancha', { id: reserva.idCancha }) }}" style="color: #000">{{reserva.cancha}}</a></strong></td>
+                                <td>{{reserva.fechaInicio|date('d/m/Y H:i')}}</td>
+                                <td>{{reserva.fechaFinalizacion|date('d/m/Y H:i')}}</td>
+                                <td class="actions">
+                                    <a href="{{path('crivero_prueba_reserva_cancelar', {id: reserva.id})}}" class="btn btn-sm btn-danger">
+                                        Cancelar
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
         <div class="navigation">
             {{ knp_pagination_render(pagination) }}
         </div>

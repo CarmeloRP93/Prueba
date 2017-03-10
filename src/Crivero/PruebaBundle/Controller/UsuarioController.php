@@ -13,11 +13,14 @@ class UsuarioController extends Controller {
 
     public function clientesAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
-        $usuarios = $repository->getClientes();
+
+        $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $usuarios = $repository->searchClientes($searchQuery):
+                                 $usuarios = $repository->getClientes();
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $usuarios, $request->query->getInt('page', 1), 5);
+                $usuarios, $request->query->getInt('page', 1), 4);
 
         $deleteFormAjax = $this->createCustomForm(':USER_ID', 'DELETE', 'crivero_prueba_eliminar');
         return $this->render('CriveroPruebaBundle:Usuarios:clientes.html.twig', array("pagination" => $pagination,
@@ -41,11 +44,14 @@ class UsuarioController extends Controller {
 
     public function monitoresAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
-        $usuarios = $repository->getMonitores();
-
+        
+        $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $usuarios = $repository->searchMonitores($searchQuery):
+                                 $usuarios = $repository->getMonitores();
+        
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $usuarios, $request->query->getInt('page', 1), 5);
+                $usuarios, $request->query->getInt('page', 1), 4);
 
         $deleteFormAjax = $this->createCustomForm(':USER_ID', 'DELETE', 'crivero_prueba_eliminar');
         return $this->render('CriveroPruebaBundle:Usuarios:monitores.html.twig', array("pagination" => $pagination,
@@ -191,7 +197,7 @@ class UsuarioController extends Controller {
         
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $pagos, $request->query->getInt('page', 1), 5);
+                $pagos, $request->query->getInt('page', 1), 7);
         return $this->render('CriveroPruebaBundle:Usuarios:pagos.html.twig', array('pagination'=>$pagination));
         
     }

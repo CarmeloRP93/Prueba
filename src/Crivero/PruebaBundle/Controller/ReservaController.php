@@ -12,7 +12,10 @@ class ReservaController extends Controller {
     
     public function ReservasAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas");
-        $reservas = $repository->getReservas();
+        
+        $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $reservas = $repository->searchReservas($searchQuery):
+                                 $reservas = $repository->getReservas();
         
          $paginator = $this->get('knp_paginator');
          $pagination = $paginator->paginate(
