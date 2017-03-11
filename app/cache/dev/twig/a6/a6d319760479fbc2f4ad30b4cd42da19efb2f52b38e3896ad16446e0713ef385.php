@@ -37,25 +37,27 @@ class __TwigTemplate_bd836247b6f6afaaaf5dced2008e4e84da67145010b8d58f9850b2e605f
         // line 7
         echo "    
     <div class=\"container\">
-        <h1 class=\"text-center\">Canchas</h1>
+        <div class=\"page-header\">
+            <h1 class=\"text-center\">Canchas</h1>
+        </div>
         <div class=\"table-responsive\">
             <table class=\"table table-hover\">
                 <thead>
                     <tr>
                         <th>";
-        // line 14
+        // line 16
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre", "c.tipo");
         echo "</th>
                         <th>";
-        // line 15
+        // line 17
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Estado", "c.disponibilidad");
         echo "</th>
                         <th>";
-        // line 16
+        // line 18
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Horario", "c.horario");
         echo "</th>
                         <th>";
-        // line 17
+        // line 19
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Valoracion", "c.valoracion");
         echo "</th>
                         <th>Acciones</th>
@@ -63,37 +65,37 @@ class __TwigTemplate_bd836247b6f6afaaaf5dced2008e4e84da67145010b8d58f9850b2e605f
                 </thead>
                 <tbody>
                     ";
-        // line 22
+        // line 24
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         foreach ($context['_seq'] as $context["_key"] => $context["cancha"]) {
-            // line 23
+            // line 25
             echo "                        <tr>
                             <td>";
-            // line 24
+            // line 26
             echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "tipo", array()), "html", null, true);
             echo "</td>
                             <td><strong>";
-            // line 25
+            // line 27
             echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
             echo "</strong></td>
                             <td>";
-            // line 26
+            // line 28
             echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "horario", array()), "html", null, true);
             echo "</td>
                             <td>";
-            // line 27
+            // line 29
             echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "valoracion", array()), "html", null, true);
             echo "/5.0</td>
                             <td class=\"actions\">
                                 <a href=\"";
-            // line 29
+            // line 31
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_cancha", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-info\">
                                     Ver
                                 </a>
                                 <a href=\"";
-            // line 32
+            // line 34
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_cancha_editar", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-primary\">
                                     Editar
@@ -106,13 +108,13 @@ class __TwigTemplate_bd836247b6f6afaaaf5dced2008e4e84da67145010b8d58f9850b2e605f
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cancha'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 39
+        // line 41
         echo "                </tbody>
             </table>
         </div>
         <div class=\"navigation\">
             ";
-        // line 43
+        // line 45
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
         </div>
@@ -132,7 +134,7 @@ class __TwigTemplate_bd836247b6f6afaaaf5dced2008e4e84da67145010b8d58f9850b2e605f
 
     public function getDebugInfo()
     {
-        return array (  116 => 43,  110 => 39,  97 => 32,  91 => 29,  86 => 27,  82 => 26,  78 => 25,  74 => 24,  71 => 23,  67 => 22,  59 => 17,  55 => 16,  51 => 15,  47 => 14,  38 => 7,  35 => 6,  29 => 4,  11 => 2,);
+        return array (  118 => 45,  112 => 41,  99 => 34,  93 => 31,  88 => 29,  84 => 28,  80 => 27,  76 => 26,  73 => 25,  69 => 24,  61 => 19,  57 => 18,  53 => 17,  49 => 16,  38 => 7,  35 => 6,  29 => 4,  11 => 2,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -153,7 +155,9 @@ class __TwigTemplate_bd836247b6f6afaaaf5dced2008e4e84da67145010b8d58f9850b2e605f
 {% block contenido %}
     
     <div class=\"container\">
-        <h1 class=\"text-center\">Canchas</h1>
+        <div class=\"page-header\">
+            <h1 class=\"text-center\">Canchas</h1>
+        </div>
         <div class=\"table-responsive\">
             <table class=\"table table-hover\">
                 <thead>

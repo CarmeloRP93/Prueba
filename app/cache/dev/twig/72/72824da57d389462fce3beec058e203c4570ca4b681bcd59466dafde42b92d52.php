@@ -146,17 +146,17 @@ class __TwigTemplate_bdf1832e2a431a4f02b47fdc455d46878e07ef4c275436e46b506df0b78
         }
         // line 60
         echo "        <div>
-            <div class=\"navigation\">
-                ";
-        // line 62
-        echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
-        echo "
-            </div>
             <div class=\"nuevoUsuario text-center\">
                 <a href=\"";
-        // line 65
+        // line 62
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_nuevo");
-        echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\"> Nuevo Usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
+        echo "\" class=\"btn btn-success\" style=\"width: 150px;\"> Nuevo Usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
+            </div>
+            <div class=\"navigation\">
+                ";
+        // line 65
+        echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
+        echo "
             </div>
         </div>
     </div>
@@ -268,11 +268,11 @@ class __TwigTemplate_bdf1832e2a431a4f02b47fdc455d46878e07ef4c275436e46b506df0b78
             </div>
         {% endif %}
         <div>
+            <div class=\"nuevoUsuario text-center\">
+                <a href=\"{{path('crivero_prueba_nuevo')}}\" class=\"btn btn-success\" style=\"width: 150px;\"> Nuevo Usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
+            </div>
             <div class=\"navigation\">
                 {{ knp_pagination_render(pagination) }}
-            </div>
-            <div class=\"nuevoUsuario text-center\">
-                <a href=\"{{path('crivero_prueba_nuevo')}}\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\"> Nuevo Usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
             </div>
         </div>
     </div>

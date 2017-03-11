@@ -1,3 +1,12 @@
+ .nuevoUsuario {
+    float:right;
+    margin-right: 120px;
+    margin-top: 12px    
+ }
+ 
+ .navigation {
+     margin-top: -12px;
+ }
 
 #pagina .fila{display: block; padding: 10px 20px;}
 #pagina .fila.par{background: #f5f5f5;}
@@ -172,6 +181,7 @@ html {
       -ms-text-size-adjust: 100%;
 }
 body {
+  padding-top: 80px;
   margin: 0;
 }
 article,
@@ -7025,3 +7035,4 @@ html {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+

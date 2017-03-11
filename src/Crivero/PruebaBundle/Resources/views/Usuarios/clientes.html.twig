@@ -58,11 +58,11 @@
             </div>
         {% endif %}
         <div>
+            <div class="nuevoUsuario text-center">
+                <a href="{{path('crivero_prueba_nuevo')}}" class="btn btn-success" style="width: 150px;"> Nuevo Usuario <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
             <div class="navigation">
                 {{ knp_pagination_render(pagination) }}
-            </div>
-            <div class="nuevoUsuario text-center">
-                <a href="{{path('crivero_prueba_nuevo')}}" class="btn btn-success" style="height: 30px; width: 150px;"> Nuevo Usuario <span class="glyphicon glyphicon-plus"></span></a>
             </div>
         </div>
     </div>

@@ -20,7 +20,7 @@ class UsuarioController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $usuarios, $request->query->getInt('page', 1), 4);
+                $usuarios, $request->query->getInt('page', 1), 5);
 
         $deleteFormAjax = $this->createCustomForm(':USER_ID', 'DELETE', 'crivero_prueba_eliminar');
         return $this->render('CriveroPruebaBundle:Usuarios:clientes.html.twig', array("pagination" => $pagination,
@@ -51,7 +51,7 @@ class UsuarioController extends Controller {
         
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $usuarios, $request->query->getInt('page', 1), 4);
+                $usuarios, $request->query->getInt('page', 1), 5);
 
         $deleteFormAjax = $this->createCustomForm(':USER_ID', 'DELETE', 'crivero_prueba_eliminar');
         return $this->render('CriveroPruebaBundle:Usuarios:monitores.html.twig', array("pagination" => $pagination,

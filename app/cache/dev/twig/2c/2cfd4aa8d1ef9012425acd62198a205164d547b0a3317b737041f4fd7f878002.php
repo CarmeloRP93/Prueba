@@ -139,37 +139,39 @@ class __TwigTemplate_30cd79c142442aeb9fc5e42d7d8be4bdb4389280f65bbc5213b83986c72
         ";
         }
         // line 57
-        echo "        <div class=\"navigation\">
-            ";
-        // line 58
+        echo "        <div>
+            <div class=\"nuevoUsuario text-center\" style=\"margin-right: 80px\">
+                <a href=\"";
+        // line 59
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_nuevo");
+        echo "\" class=\"btn btn-success\" style=\"width: 150px;\">Nuevo usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
+            </div>
+            <div class=\"navigation\">
+                ";
+        // line 62
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
-        </div>
-        <div class=\"nuevoUsuario text-center\">
-            <a href=\"";
-        // line 61
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_nuevo");
-        echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">Nuevo Usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
+            </div>
         </div>
     </div>
             
     ";
-        // line 65
+        // line 67
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "id" => "form-delete", "with_submit" => false));
         echo "
     
 ";
     }
 
-    // line 68
+    // line 70
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 69
+        // line 71
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <script src=\"";
-        // line 70
+        // line 72
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("bundles/criveroprueba/js/delete-user.js"), "html", null, true);
         echo "\"></script>
 ";
@@ -187,7 +189,7 @@ class __TwigTemplate_30cd79c142442aeb9fc5e42d7d8be4bdb4389280f65bbc5213b83986c72
 
     public function getDebugInfo()
     {
-        return array (  173 => 70,  168 => 69,  165 => 68,  158 => 65,  151 => 61,  145 => 58,  142 => 57,  136 => 53,  121 => 44,  115 => 41,  110 => 39,  106 => 38,  102 => 37,  98 => 36,  93 => 35,  89 => 34,  81 => 29,  77 => 28,  73 => 27,  69 => 26,  63 => 22,  59 => 20,  57 => 19,  48 => 13,  39 => 6,  36 => 5,  30 => 3,  11 => 1,);
+        return array (  175 => 72,  170 => 71,  167 => 70,  160 => 67,  152 => 62,  146 => 59,  142 => 57,  136 => 53,  121 => 44,  115 => 41,  110 => 39,  106 => 38,  102 => 37,  98 => 36,  93 => 35,  89 => 34,  81 => 29,  77 => 28,  73 => 27,  69 => 26,  63 => 22,  59 => 20,  57 => 19,  48 => 13,  39 => 6,  36 => 5,  30 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -256,11 +258,13 @@ class __TwigTemplate_30cd79c142442aeb9fc5e42d7d8be4bdb4389280f65bbc5213b83986c72
                 </table>
             </div>
         {% endif %}
-        <div class=\"navigation\">
-            {{ knp_pagination_render(pagination) }}
-        </div>
-        <div class=\"nuevoUsuario text-center\">
-            <a href=\"{{path('crivero_prueba_nuevo')}}\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">Nuevo Usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
+        <div>
+            <div class=\"nuevoUsuario text-center\" style=\"margin-right: 80px\">
+                <a href=\"{{path('crivero_prueba_nuevo')}}\" class=\"btn btn-success\" style=\"width: 150px;\">Nuevo usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
+            </div>
+            <div class=\"navigation\">
+                {{ knp_pagination_render(pagination) }}
+            </div>
         </div>
     </div>
             

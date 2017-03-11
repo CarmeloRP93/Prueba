@@ -43,7 +43,7 @@ class __TwigTemplate_169196c2e7f9a3000d28bc569cf2245be4ea9c71cf159a91e366c58df8f
     public function block_navegation($context, array $blocks = array())
     {
         // line 7
-        echo "        <nav class=\"navbar navbar-default\" role=\"navigation\">
+        echo "        <nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\" >
             <!-- El logotipo y el icono que despliega el menú se agrupan
                  para mostrarlos mejor en los dispositivos móviles -->
             <div class=\"navbar-header\">
@@ -58,7 +58,7 @@ class __TwigTemplate_169196c2e7f9a3000d28bc569cf2245be4ea9c71cf159a91e366c58df8f
             </div>
 
 
-            <div class=\"collapse navbar-collapse navbar-ex1-collapse \">
+            <div class=\"collapse navbar-collapse navbar-ex1-collapse \" >
                 <ul class=\"nav navbar-nav \">
                     <li class=\"dropdown\">
                             <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Usuarios <b class=\"caret\"></b></a>
@@ -134,7 +134,7 @@ class __TwigTemplate_169196c2e7f9a3000d28bc569cf2245be4ea9c71cf159a91e366c58df8f
                         <li><a href=\"";
             // line 59
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_logout");
-            echo "\">Logout</a></li>
+            echo "\" style=\"margin-right: 12px\">Logout</a></li>
                     </ul>
                 ";
         }
@@ -210,7 +210,7 @@ class __TwigTemplate_169196c2e7f9a3000d28bc569cf2245be4ea9c71cf159a91e366c58df8f
 {% block header %}{% endblock %}
 
 {% block navegation %}
-        <nav class=\"navbar navbar-default\" role=\"navigation\">
+        <nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\" >
             <!-- El logotipo y el icono que despliega el menú se agrupan
                  para mostrarlos mejor en los dispositivos móviles -->
             <div class=\"navbar-header\">
@@ -225,7 +225,7 @@ class __TwigTemplate_169196c2e7f9a3000d28bc569cf2245be4ea9c71cf159a91e366c58df8f
             </div>
 
 
-            <div class=\"collapse navbar-collapse navbar-ex1-collapse \">
+            <div class=\"collapse navbar-collapse navbar-ex1-collapse \" >
                 <ul class=\"nav navbar-nav \">
                     <li class=\"dropdown\">
                             <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Usuarios <b class=\"caret\"></b></a>
@@ -262,7 +262,7 @@ class __TwigTemplate_169196c2e7f9a3000d28bc569cf2245be4ea9c71cf159a91e366c58df8f
                 {% if is_granted(\"IS_AUTHENTICATED_FULLY\") %}
                     <ul class=\"nav navbar-nav navbar-right\">
                         <li><a href = \"{{path('crivero_prueba_editarUsuario', { id: app.user.id })}}\">Perfil</a></li>
-                        <li><a href=\"{{path('crivero_prueba_logout')}}\">Logout</a></li>
+                        <li><a href=\"{{path('crivero_prueba_logout')}}\" style=\"margin-right: 12px\">Logout</a></li>
                     </ul>
                 {% endif %}
 

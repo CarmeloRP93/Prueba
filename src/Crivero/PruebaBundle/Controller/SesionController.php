@@ -15,7 +15,7 @@ class SesionController extends Controller {
         $sesiones = $repository->getSesionesGenerales();
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $sesiones, $request->query->getInt('page', 1), 3);
+                $sesiones, $request->query->getInt('page', 1), 5);
         return $this->render('CriveroPruebaBundle:Sesiones:sesiones.html.twig', array("pagination" => $pagination));
     }
 
@@ -25,7 +25,7 @@ class SesionController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $sesiones, $request->query->getInt('page', 1), 3);
+                $sesiones, $request->query->getInt('page', 1), 5);
         return $this->render('CriveroPruebaBundle:Sesiones:sesionesDedicadas.html.twig', array("pagination" => $pagination));
     }
 
