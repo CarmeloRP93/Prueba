@@ -19,6 +19,7 @@ class CanchasType extends AbstractType
             ->add('horario')
             ->add('disponibilidad', 'choice', array('choices' => array("Disponible" => 'Disponible', "Reservada" => 'Reservada',
                                                                        "No disponible" => 'No disponible')))
+            ->add('imagen', 'file',  array('data_class' => null))
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;
     }

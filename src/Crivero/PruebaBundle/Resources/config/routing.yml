@@ -60,6 +60,16 @@ crivero_prueba_cancha:
     pattern:  /cancha/{id}
     defaults: { _controller: CriveroPruebaBundle:Cancha:cancha }
     
+crivero_prueba_cancha_nueva:
+    pattern:  /nuevaCancha
+    defaults: { _controller: CriveroPruebaBundle:Cancha:nuevaCancha }
+    
+crivero_prueba_cancha_crear:
+    pattern:  /crearCancha
+    defaults: { _controller: CriveroPruebaBundle:Cancha:crearCancha }
+    requirements:
+        _method:  POST|GET
+    
 crivero_prueba_cancha_editar:
     pattern:  /cancha/editar/{id}
     defaults: { _controller: CriveroPruebaBundle:Cancha:editar }

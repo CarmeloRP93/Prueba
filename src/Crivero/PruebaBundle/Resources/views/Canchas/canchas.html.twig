@@ -4,7 +4,7 @@
 {% block title %} Canchas {% endblock %}
 
 {% block contenido %}
-    
+    {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class="container">
         <div class="page-header">
             <h1 class="text-center">Canchas</h1>
@@ -42,8 +42,13 @@
                 </tbody>
             </table>
         </div>
-        <div class="navigation">
-            {{ knp_pagination_render(pagination) }}
+        <div>
+            <div class="nuevoUsuario text-center">
+                <a href="{{path('crivero_prueba_cancha_nueva')}}" class="btn btn-success" style="width: 150px;"> Nueva cancha <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
         </div>
     </div>
 {% endblock %} 

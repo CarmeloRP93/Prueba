@@ -55,8 +55,8 @@
                 
                 {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href = "{{path('crivero_prueba_editarUsuario', { id: app.user.id })}}">Perfil</a></li>
-                        <li><a href="{{path('crivero_prueba_logout')}}" style="margin-right: 12px">Logout</a></li>
+                        <li><a href = "{{path('crivero_prueba_editarUsuario', { id: app.user.id })}}"><img src="{{asset('images/user-128.png')}}" style="width: 50%;" /></a></li>
+                        <li><a href="{{path('crivero_prueba_logout')}}" style="margin-right: 12px"><img src="{{asset('images/logout-128.png')}}" style="width: 18px;" /></a></li>
                     </ul>
                 {% endif %}
 

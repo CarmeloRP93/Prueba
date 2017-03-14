@@ -4,12 +4,14 @@ namespace Crivero\PruebaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Canchas
  *
  * @ORM\Table(name="canchas")
  * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\CanchasRepository")
+ * @UniqueEntity("tipo")
  */
 class Canchas
 {

@@ -35,29 +35,32 @@ class __TwigTemplate_bd836247b6f6afaaaf5dced2008e4e84da67145010b8d58f9850b2e605f
     public function block_contenido($context, array $blocks = array())
     {
         // line 7
-        echo "    
+        echo "    ";
+        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:messages/success.html.twig");
+        echo "
     <div class=\"container\">
         <div class=\"page-header\">
             <h1 class=\"text-center\">Canchas</h1>
         </div>
+        
         <div class=\"table-responsive\">
             <table class=\"table table-hover\">
                 <thead>
                     <tr>
                         <th>";
-        // line 16
+        // line 17
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre", "c.tipo");
         echo "</th>
                         <th>";
-        // line 17
+        // line 18
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Estado", "c.disponibilidad");
         echo "</th>
                         <th>";
-        // line 18
+        // line 19
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Horario", "c.horario");
         echo "</th>
                         <th>";
-        // line 19
+        // line 20
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Valoracion", "c.valoracion");
         echo "</th>
                         <th>Acciones</th>
@@ -65,37 +68,37 @@ class __TwigTemplate_bd836247b6f6afaaaf5dced2008e4e84da67145010b8d58f9850b2e605f
                 </thead>
                 <tbody>
                     ";
-        // line 24
+        // line 25
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         foreach ($context['_seq'] as $context["_key"] => $context["cancha"]) {
-            // line 25
+            // line 26
             echo "                        <tr>
                             <td>";
-            // line 26
+            // line 27
             echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "tipo", array()), "html", null, true);
             echo "</td>
                             <td><strong>";
-            // line 27
+            // line 28
             echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
             echo "</strong></td>
                             <td>";
-            // line 28
+            // line 29
             echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "horario", array()), "html", null, true);
             echo "</td>
                             <td>";
-            // line 29
+            // line 30
             echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "valoracion", array()), "html", null, true);
             echo "/5.0</td>
                             <td class=\"actions\">
                                 <a href=\"";
-            // line 31
+            // line 32
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_cancha", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-info\">
                                     Ver
                                 </a>
                                 <a href=\"";
-            // line 34
+            // line 35
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_cancha_editar", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-primary\">
                                     Editar
@@ -108,15 +111,23 @@ class __TwigTemplate_bd836247b6f6afaaaf5dced2008e4e84da67145010b8d58f9850b2e605f
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cancha'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 41
+        // line 42
         echo "                </tbody>
             </table>
         </div>
-        <div class=\"navigation\">
-            ";
-        // line 45
+        <div>
+            <div class=\"nuevoUsuario text-center\">
+                <a href=\"";
+        // line 47
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_cancha_nueva");
+        echo "\" class=\"btn btn-success\" style=\"width: 150px;\"> Nueva cancha <span class=\"glyphicon glyphicon-plus\"></span></a>
+            </div>
+            <div class=\"navigation\">
+                ";
+        // line 50
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
+            </div>
         </div>
     </div>
 ";
@@ -134,7 +145,7 @@ class __TwigTemplate_bd836247b6f6afaaaf5dced2008e4e84da67145010b8d58f9850b2e605f
 
     public function getDebugInfo()
     {
-        return array (  118 => 45,  112 => 41,  99 => 34,  93 => 31,  88 => 29,  84 => 28,  80 => 27,  76 => 26,  73 => 25,  69 => 24,  61 => 19,  57 => 18,  53 => 17,  49 => 16,  38 => 7,  35 => 6,  29 => 4,  11 => 2,);
+        return array (  128 => 50,  122 => 47,  115 => 42,  102 => 35,  96 => 32,  91 => 30,  87 => 29,  83 => 28,  79 => 27,  76 => 26,  72 => 25,  64 => 20,  60 => 19,  56 => 18,  52 => 17,  38 => 7,  35 => 6,  29 => 4,  11 => 2,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -153,11 +164,12 @@ class __TwigTemplate_bd836247b6f6afaaaf5dced2008e4e84da67145010b8d58f9850b2e605f
 {% block title %} Canchas {% endblock %}
 
 {% block contenido %}
-    
+    {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class=\"container\">
         <div class=\"page-header\">
             <h1 class=\"text-center\">Canchas</h1>
         </div>
+        
         <div class=\"table-responsive\">
             <table class=\"table table-hover\">
                 <thead>
@@ -190,8 +202,13 @@ class __TwigTemplate_bd836247b6f6afaaaf5dced2008e4e84da67145010b8d58f9850b2e605f
                 </tbody>
             </table>
         </div>
-        <div class=\"navigation\">
-            {{ knp_pagination_render(pagination) }}
+        <div>
+            <div class=\"nuevoUsuario text-center\">
+                <a href=\"{{path('crivero_prueba_cancha_nueva')}}\" class=\"btn btn-success\" style=\"width: 150px;\"> Nueva cancha <span class=\"glyphicon glyphicon-plus\"></span></a>
+            </div>
+            <div class=\"navigation\">
+                {{ knp_pagination_render(pagination) }}
+            </div>
         </div>
     </div>
 {% endblock %} ", "CriveroPruebaBundle:Canchas:canchas.html.twig", "C:\\xampp\\htdocs\\Prueba\\src\\Crivero\\PruebaBundle/Resources/views/Canchas/canchas.html.twig");

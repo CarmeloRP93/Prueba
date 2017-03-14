@@ -616,14 +616,36 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::canchaAction',));
             }
 
-            // crivero_prueba_cancha_editar
-            if (0 === strpos($pathinfo, '/cancha/editar') && preg_match('#^/cancha/editar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_editar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::editarAction',));
-            }
+        }
 
-            // crivero_prueba_cancha_actualizar
-            if (0 === strpos($pathinfo, '/cancha/actualizar') && preg_match('#^/cancha/actualizar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_actualizar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::actualizarAction',));
+        // crivero_prueba_cancha_nueva
+        if ($pathinfo === '/nuevaCancha') {
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::nuevaCanchaAction',  '_route' => 'crivero_prueba_cancha_nueva',);
+        }
+
+        if (0 === strpos($pathinfo, '/c')) {
+            // crivero_prueba_cancha_crear
+            if ($pathinfo === '/crearCancha') {
+                if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                    goto not_crivero_prueba_cancha_crear;
+                }
+
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::crearCanchaAction',  '_route' => 'crivero_prueba_cancha_crear',);
+            }
+            not_crivero_prueba_cancha_crear:
+
+            if (0 === strpos($pathinfo, '/cancha')) {
+                // crivero_prueba_cancha_editar
+                if (0 === strpos($pathinfo, '/cancha/editar') && preg_match('#^/cancha/editar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_editar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::editarAction',));
+                }
+
+                // crivero_prueba_cancha_actualizar
+                if (0 === strpos($pathinfo, '/cancha/actualizar') && preg_match('#^/cancha/actualizar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_actualizar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::actualizarAction',));
+                }
+
             }
 
         }

@@ -130,11 +130,15 @@ class __TwigTemplate_169196c2e7f9a3000d28bc569cf2245be4ea9c71cf159a91e366c58df8f
                         <li><a href = \"";
             // line 58
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_editarUsuario", array("id" => $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))), "html", null, true);
-            echo "\">Perfil</a></li>
+            echo "\"><img src=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/user-128.png"), "html", null, true);
+            echo "\" style=\"width: 50%;\" /></a></li>
                         <li><a href=\"";
             // line 59
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_logout");
-            echo "\" style=\"margin-right: 12px\">Logout</a></li>
+            echo "\" style=\"margin-right: 12px\"><img src=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/logout-128.png"), "html", null, true);
+            echo "\" style=\"width: 18px;\" /></a></li>
                     </ul>
                 ";
         }
@@ -191,7 +195,7 @@ class __TwigTemplate_169196c2e7f9a3000d28bc569cf2245be4ea9c71cf159a91e366c58df8f
 
     public function getDebugInfo()
     {
-        return array (  179 => 77,  176 => 76,  168 => 78,  166 => 76,  162 => 74,  159 => 73,  147 => 65,  142 => 62,  136 => 59,  132 => 58,  129 => 57,  127 => 56,  119 => 51,  115 => 50,  106 => 44,  102 => 43,  98 => 42,  91 => 38,  85 => 35,  81 => 34,  72 => 28,  68 => 27,  46 => 7,  43 => 6,  38 => 4,  32 => 2,  11 => 1,);
+        return array (  183 => 77,  180 => 76,  172 => 78,  170 => 76,  166 => 74,  163 => 73,  151 => 65,  146 => 62,  138 => 59,  132 => 58,  129 => 57,  127 => 56,  119 => 51,  115 => 50,  106 => 44,  102 => 43,  98 => 42,  91 => 38,  85 => 35,  81 => 34,  72 => 28,  68 => 27,  46 => 7,  43 => 6,  38 => 4,  32 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -261,8 +265,8 @@ class __TwigTemplate_169196c2e7f9a3000d28bc569cf2245be4ea9c71cf159a91e366c58df8f
                 
                 {% if is_granted(\"IS_AUTHENTICATED_FULLY\") %}
                     <ul class=\"nav navbar-nav navbar-right\">
-                        <li><a href = \"{{path('crivero_prueba_editarUsuario', { id: app.user.id })}}\">Perfil</a></li>
-                        <li><a href=\"{{path('crivero_prueba_logout')}}\" style=\"margin-right: 12px\">Logout</a></li>
+                        <li><a href = \"{{path('crivero_prueba_editarUsuario', { id: app.user.id })}}\"><img src=\"{{asset('images/user-128.png')}}\" style=\"width: 50%;\" /></a></li>
+                        <li><a href=\"{{path('crivero_prueba_logout')}}\" style=\"margin-right: 12px\"><img src=\"{{asset('images/logout-128.png')}}\" style=\"width: 18px;\" /></a></li>
                     </ul>
                 {% endif %}
 
