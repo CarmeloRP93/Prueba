@@ -86,6 +86,16 @@ crivero_prueba_aula:
     pattern:  /aula/{id}
     defaults: { _controller: CriveroPruebaBundle:Aula:aula }
     
+crivero_prueba_aula_nueva:
+    pattern:  /nuevaAula
+    defaults: { _controller: CriveroPruebaBundle:Aula:nuevaAula }
+    
+crivero_prueba_aula_crear:
+    pattern:  /crearAula
+    defaults: { _controller: CriveroPruebaBundle:Aula:crearAula }
+    requirements:
+        _method:  POST|GET    
+    
 crivero_prueba_aula_editar:
     pattern:  /aula/editar/{id}
     defaults: { _controller: CriveroPruebaBundle:Aula:editar }

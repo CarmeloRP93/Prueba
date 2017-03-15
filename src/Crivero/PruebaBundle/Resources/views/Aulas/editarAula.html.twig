@@ -19,22 +19,32 @@
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <div class="form-group">
                                     {{ form_label(form.nombre) }}
-                                    {{ form_widget(form.nombre, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Nombre de cancha'} }) }}
+                                    {{ form_widget(form.nombre, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Nombre de aula'} }) }}
                                     <span class="text-danger">{{ form_errors(form.nombre) }}</span>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    {{ form_label(form.disponibilidad) }}
+                                    {{ form_widget(form.disponibilidad, { 'attr' : {'class' : 'form-control'} }) }}
+                                    <span class="text-danger">{{ form_errors(form.disponibilidad) }}</span>
+                                </div>
+
                                 <div class="form-group">
                                     {{ form_label(form.imagen) }}
-                                    {{ form_widget(form.imagen, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_widget(form.imagen) }}
+                                    <span class="text-danger">{{ form_errors(form.imagen) }}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    {{ form_label(form.horario) }}
+                                    {{ form_widget(form.horario, {'attr': {'class': 'form-control', 'placeholder' : '00:00 - 23:59'} }) }}
                                     <span class="text-danger">{{ form_errors(form.imagen) }}</span>
                                 </div>
                             </div>
                         </div>
-                                
+
                     </form>
                     <div class="text-center">
                         {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}

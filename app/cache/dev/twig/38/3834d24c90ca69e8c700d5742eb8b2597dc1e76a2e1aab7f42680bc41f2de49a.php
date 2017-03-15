@@ -35,7 +35,9 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
     public function block_contenido($context, array $blocks = array())
     {
         // line 7
-        echo "    
+        echo "    ";
+        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:messages/success.html.twig");
+        echo "
     <div class=\"container\">
         <div class=\"page-header\">
             <h1 class=\"text-center\">Aulas</h1>
@@ -79,13 +81,9 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
                 echo "                                <strong>No disponible</strong>
                                 ";
             } else {
-                // line 30
-                echo "                                    <strong>";
-                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["estados"]) ? $context["estados"] : $this->getContext($context, "estados")), ($this->getAttribute($context["aula"], "id", array()) - 1), array(), "array"), "estado", array()), "html", null, true);
-                echo "</strong>
-                                ";
+                // line 31
+                echo "                                ";
             }
-            // line 31
             echo "</td>
                             <td>";
             // line 32
@@ -116,11 +114,19 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
         echo "                </tbody>
             </table>
         </div>
-        <div class=\"navigation\">
-            ";
-        // line 48
+        <div>
+            <div class=\"nuevoUsuario text-center\">
+                    <a href=\"";
+        // line 49
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_aula_nueva");
+        echo "\" class=\"btn btn-success\" style=\"width: 150px;\"> Nueva aula <span class=\"glyphicon glyphicon-plus\"></span></a>
+            </div>
+            <div class=\"navigation\">
+                ";
+        // line 52
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
+            </div>
         </div>
     </div>
 ";
@@ -138,7 +144,7 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
 
     public function getDebugInfo()
     {
-        return array (  122 => 48,  116 => 44,  103 => 37,  97 => 34,  92 => 32,  89 => 31,  83 => 30,  79 => 28,  77 => 27,  73 => 26,  70 => 25,  66 => 24,  58 => 19,  54 => 18,  50 => 17,  38 => 7,  35 => 6,  29 => 4,  11 => 2,);
+        return array (  127 => 52,  121 => 49,  114 => 44,  101 => 37,  95 => 34,  90 => 32,  85 => 31,  81 => 28,  79 => 27,  75 => 26,  72 => 25,  68 => 24,  60 => 19,  56 => 18,  52 => 17,  38 => 7,  35 => 6,  29 => 4,  11 => 2,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -157,7 +163,7 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
 {% block title %} Aulas {% endblock %}
 
 {% block contenido %}
-    
+    {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class=\"container\">
         <div class=\"page-header\">
             <h1 class=\"text-center\">Aulas</h1>
@@ -180,7 +186,7 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
                             <td>{% if hoy == 0 or hoy == 6 %}
                                 <strong>No disponible</strong>
                                 {% else %}
-                                    <strong>{{ estados[aula.id-1].estado }}</strong>
+{#                                    <strong>{{ estados[aula.id-1].estado }}</strong>#}
                                 {% endif %}</td>
                             <td>{{aula.horario}}</td>
                             <td class=\"actions\">
@@ -197,8 +203,13 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
                 </tbody>
             </table>
         </div>
-        <div class=\"navigation\">
-            {{ knp_pagination_render(pagination) }}
+        <div>
+            <div class=\"nuevoUsuario text-center\">
+                    <a href=\"{{path('crivero_prueba_aula_nueva')}}\" class=\"btn btn-success\" style=\"width: 150px;\"> Nueva aula <span class=\"glyphicon glyphicon-plus\"></span></a>
+            </div>
+            <div class=\"navigation\">
+                {{ knp_pagination_render(pagination) }}
+            </div>
         </div>
     </div>
 {% endblock %} ", "CriveroPruebaBundle:Aulas:aulas.html.twig", "C:\\xampp\\htdocs\\Prueba\\src\\Crivero\\PruebaBundle/Resources/views/Aulas/aulas.html.twig");

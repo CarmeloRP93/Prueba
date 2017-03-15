@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="canchas")
  * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\CanchasRepository")
  * @UniqueEntity("tipo")
+ * @ORM\HasLifecycleCallbacks
  */
 class Canchas
 {

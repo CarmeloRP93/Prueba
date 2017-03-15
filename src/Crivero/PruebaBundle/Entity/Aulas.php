@@ -4,12 +4,15 @@ namespace Crivero\PruebaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Aulas
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\AulasRepository")
+ * @UniqueEntity("nombre")
+ * @ORM\HasLifecycleCallbacks
  */
 class Aulas
 {
@@ -33,6 +36,7 @@ class Aulas
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="horario", type="string", length=255)
      */
     private $horario;

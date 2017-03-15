@@ -4,7 +4,7 @@
 {% block title %} Aulas {% endblock %}
 
 {% block contenido %}
-    
+    {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class="container">
         <div class="page-header">
             <h1 class="text-center">Aulas</h1>
@@ -27,7 +27,7 @@
                             <td>{% if hoy == 0 or hoy == 6 %}
                                 <strong>No disponible</strong>
                                 {% else %}
-                                    <strong>{{ estados[aula.id-1].estado }}</strong>
+{#                                    <strong>{{ estados[aula.id-1].estado }}</strong>#}
                                 {% endif %}</td>
                             <td>{{aula.horario}}</td>
                             <td class="actions">
@@ -44,8 +44,13 @@
                 </tbody>
             </table>
         </div>
-        <div class="navigation">
-            {{ knp_pagination_render(pagination) }}
+        <div>
+            <div class="nuevoUsuario text-center">
+                    <a href="{{path('crivero_prueba_aula_nueva')}}" class="btn btn-success" style="width: 150px;"> Nueva aula <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
         </div>
     </div>
 {% endblock %} 

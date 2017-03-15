@@ -661,6 +661,25 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_aula')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\AulaController::aulaAction',));
             }
 
+        }
+
+        // crivero_prueba_aula_nueva
+        if ($pathinfo === '/nuevaAula') {
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\AulaController::nuevaAulaAction',  '_route' => 'crivero_prueba_aula_nueva',);
+        }
+
+        // crivero_prueba_aula_crear
+        if ($pathinfo === '/crearAula') {
+            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                goto not_crivero_prueba_aula_crear;
+            }
+
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\AulaController::crearAulaAction',  '_route' => 'crivero_prueba_aula_crear',);
+        }
+        not_crivero_prueba_aula_crear:
+
+        if (0 === strpos($pathinfo, '/aula')) {
             // crivero_prueba_aula_editar
             if (0 === strpos($pathinfo, '/aula/editar') && preg_match('#^/aula/editar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_aula_editar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\AulaController::editarAction',));

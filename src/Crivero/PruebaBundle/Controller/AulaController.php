@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Crivero\PruebaBundle\Entity\Aulas;
 use Crivero\PruebaBundle\Form\AulasType;
+use Symfony\Component\Form\FormError;
 
 class AulaController extends Controller {
 
@@ -33,6 +34,46 @@ class AulaController extends Controller {
         $sesionesAula = $this->getArrayEntidades($repositorySesiones, $idsSesionesAula);
 
         return $this->render('CriveroPruebaBundle:Aulas:aula.html.twig', array("aula" => $aula, "sesiones" => $sesionesAula));
+    }
+    
+    public function nuevaAulaAction() {
+        $aula = new Aulas();
+        $form = $this->createCreateForm($aula);
+
+        return $this->render('CriveroPruebaBundle:Aulas:nuevaAula.html.twig', array('form' => $form->createView()));
+    }
+    
+    private function createCreateForm(Aulas $entity) {
+        $form = $this->createForm(new AulasType(), $entity, array(
+            'action' => $this->generateUrl('crivero_prueba_aula_crear'),
+            'method' => 'POST'
+        ));
+        return $form;
+    }
+    
+    public function crearAulaAction(Request $request) {
+        $aula = new Aulas();
+        $form = $this->createCreateForm($aula);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->get('imagen')->getData() == null) {
+                $form->get('imagen')->addError(new FormError('Seleccione una imagen, gracias'));
+            } else {
+                $file = $form->get('imagen')->getData();
+                $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
+                $aula->setImagen($file->getClientOriginalName());
+                $em = $this->getDoctrine()->getManager();
+                
+                $em->persist($aula);
+                $em->flush();
+
+                $request->getSession()->getFlashBag()->add('mensaje', 'El aula ha sido creada con éxito.');
+                return $this->redirect($this->generateUrl('crivero_prueba_aulas'));
+            }
+        }
+        
+        return $this->render('CriveroPruebaBundle:Aulas:nuevaAula.html.twig', array('form' => $form->createView()));
     }
 
     private function getArrayEntidades($repository, $array) {
@@ -63,12 +104,20 @@ class AulaController extends Controller {
         $aula = $this->findAula($id, $em, 'CriveroPruebaBundle:Aulas');
 
         $form = $this->createEditForm($aula);
+        $originalImage = $aula->getImagen();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->flush();
+             if ($form->get('imagen')->getData() == null) {
+                $aula->setImagen($originalImage);
+            } else {
+                $file = $form->get('imagen')->getData();
+                $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
+                $aula->setImagen($file->getClientOriginalName());
+            }
 
-            $request->getSession()->getFlashBag()->add('mensaje', 'La aula ha sido modificada correctamente.');
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('mensaje', 'El aula ha sido modificada correctamente.');
             return $this->redirect($this->generateUrl('crivero_prueba_aula', array('id' => $id)));
         }
         return $this->render('CriveroPruebaBundle:Aulas:editarAula.html.twig', array('aula' => $aula, 'form' => $form->createView()));

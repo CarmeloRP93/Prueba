@@ -85,23 +85,24 @@ class CanchaController extends Controller {
     
     public function actualizarAction($id, Request $request) {
         $em = $this->getDoctrine()->getManager();
-        $cancha= $this->findEntity($id, $em, 'CriveroPruebaBundle:Canchas');
-        
+        $cancha = $this->findEntity($id, $em, 'CriveroPruebaBundle:Canchas');
+
         $form = $this->createEditForm($cancha);
+        $originalImage = $cancha->getImagen();
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()) {
             if ($form->get('imagen')->getData() == null) {
-                $form->get('imagen')->addError(new FormError('Seleccione una imagen, gracias'));
+                $cancha->setImagen($originalImage);
             } else {
                 $file = $form->get('imagen')->getData();
                 $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
                 $cancha->setImagen("images/" . $file->getClientOriginalName());
-                $em->flush();
-
-                $request->getSession()->getFlashBag()->add('mensaje', 'La cancha ha sido modificada correctamente.');
-                return $this->redirect($this->generateUrl('crivero_prueba_cancha', array('id' => $id)));
             }
+            
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('mensaje', 'La cancha ha sido modificada correctamente.');
+            return $this->redirect($this->generateUrl('crivero_prueba_cancha', array('id' => $id)));
         }
         return $this->render('CriveroPruebaBundle:Canchas:editarCancha.html.twig', array('cancha' => $cancha, 'form' => $form->createView()));
     }
