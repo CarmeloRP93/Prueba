@@ -5,6 +5,7 @@ namespace Crivero\PruebaBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Crivero\PruebaBundle\Entity\Aulas;
+use Crivero\PruebaBundle\Entity\HorariosAulas;
 use Crivero\PruebaBundle\Form\AulasType;
 use Symfony\Component\Form\FormError;
 
@@ -13,16 +14,15 @@ class AulaController extends Controller {
     public function aulasAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $aulas = $repository->getAulas();
-        $repositoryHorarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
-        $hoy = date('j');
-        $nombreHoy = date('w');
-        $estados = $repositoryHorarios->getEstadosAulas($hoy); 
+        //$repositoryHorarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
+        //$hoy = date('j');
+        //$nombreHoy = date('w');
+        //$estados = $repositoryHorarios->getEstadosAulas($hoy); 
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $aulas, $request->query->getInt('page', 1), 5);
-        return $this->render('CriveroPruebaBundle:Aulas:aulas.html.twig', array("pagination" => $pagination, 
-                             "estados" => $estados, "hoy" => $nombreHoy));
+        return $this->render('CriveroPruebaBundle:Aulas:aulas.html.twig', array("pagination" => $pagination));
     }
 
     public function aulaAction($id) {
@@ -66,6 +66,14 @@ class AulaController extends Controller {
                 $em = $this->getDoctrine()->getManager();
                 
                 $em->persist($aula);
+                $em->flush();
+                for ($i=1; $i <= 31; $i++) {
+                    $horario = new HorariosAulas();
+                    $horario->setPeriodo("09:00-10:00&10:00-11:00&11:00-12:00&");
+                    $horario->setAula($aula->getId());
+                    $horario->setFechaInicio($i);
+                    $em->persist($horario);
+                }
                 $em->flush();
 
                 $request->getSession()->getFlashBag()->add('mensaje', 'El aula ha sido creada con éxito.');

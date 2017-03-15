@@ -74,30 +74,24 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
             // line 26
             echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "nombre", array()), "html", null, true);
             echo "</td>
-                            <td>";
-            // line 27
-            if ((((isset($context["hoy"]) ? $context["hoy"] : $this->getContext($context, "hoy")) == 0) || ((isset($context["hoy"]) ? $context["hoy"] : $this->getContext($context, "hoy")) == 6))) {
-                // line 28
-                echo "                                <strong>No disponible</strong>
-                                ";
-            } else {
-                // line 31
-                echo "                                ";
-            }
-            echo "</td>
-                            <td>";
+                            ";
             // line 32
+            echo "                            <td><strong>";
+            echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "disponibilidad", array()), "html", null, true);
+            echo "</strong></td>
+                            <td>";
+            // line 33
             echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "horario", array()), "html", null, true);
             echo "</td>
                             <td class=\"actions\">
                               <a href=\"";
-            // line 34
+            // line 35
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_aula", array("id" => $this->getAttribute($context["aula"], "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-info\">
                                     Ver
                                 </a>
                                 <a href=\"";
-            // line 37
+            // line 38
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_aula_editar", array("id" => $this->getAttribute($context["aula"], "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-primary\">
                                     Editar
@@ -110,20 +104,20 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['aula'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 44
+        // line 45
         echo "                </tbody>
             </table>
         </div>
         <div>
             <div class=\"nuevoUsuario text-center\">
                     <a href=\"";
-        // line 49
+        // line 50
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_aula_nueva");
         echo "\" class=\"btn btn-success\" style=\"width: 150px;\"> Nueva aula <span class=\"glyphicon glyphicon-plus\"></span></a>
             </div>
             <div class=\"navigation\">
                 ";
-        // line 52
+        // line 53
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
             </div>
@@ -144,7 +138,7 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
 
     public function getDebugInfo()
     {
-        return array (  127 => 52,  121 => 49,  114 => 44,  101 => 37,  95 => 34,  90 => 32,  85 => 31,  81 => 28,  79 => 27,  75 => 26,  72 => 25,  68 => 24,  60 => 19,  56 => 18,  52 => 17,  38 => 7,  35 => 6,  29 => 4,  11 => 2,);
+        return array (  121 => 53,  115 => 50,  108 => 45,  95 => 38,  89 => 35,  84 => 33,  79 => 32,  75 => 26,  72 => 25,  68 => 24,  60 => 19,  56 => 18,  52 => 17,  38 => 7,  35 => 6,  29 => 4,  11 => 2,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -183,11 +177,12 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
                     {% for aula in pagination %}
                         <tr>
                             <td>{{aula.nombre}}</td>
-                            <td>{% if hoy == 0 or hoy == 6 %}
+                            {#<td>{% if hoy == 0 or hoy == 6 %}
                                 <strong>No disponible</strong>
                                 {% else %}
-{#                                    <strong>{{ estados[aula.id-1].estado }}</strong>#}
-                                {% endif %}</td>
+                                    <strong>{{ estados[aula.id-1].estado }}</strong>
+                                {% endif %}</td>#}
+                            <td><strong>{{aula.disponibilidad}}</strong></td>
                             <td>{{aula.horario}}</td>
                             <td class=\"actions\">
                               <a href=\"{{ path('crivero_prueba_aula', { id: aula.id }) }}\" class=\"btn btn-sm btn-info\">

@@ -65,7 +65,7 @@ class __TwigTemplate_de4df511cffbd6481de9a6e5b683a8cfabde0b030ac4e8aa2698c7857e1
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'errors');
         echo "</span>
                                 </div>
-                               
+
                                 <div class=\"form-group\">
                                     ";
         // line 27
@@ -80,7 +80,7 @@ class __TwigTemplate_de4df511cffbd6481de9a6e5b683a8cfabde0b030ac4e8aa2698c7857e1
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "disponibilidad", array()), 'errors');
         echo "</span>
                                 </div>
-                                
+
                                 <div class=\"form-group\">
                                     ";
         // line 33
@@ -98,7 +98,7 @@ class __TwigTemplate_de4df511cffbd6481de9a6e5b683a8cfabde0b030ac4e8aa2698c7857e1
                             </div>
 
                             <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
-                                 <div class=\"form-group\">
+                                <div class=\"form-group\">
                                     ";
         // line 41
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horario", array()), 'label');
@@ -114,7 +114,7 @@ class __TwigTemplate_de4df511cffbd6481de9a6e5b683a8cfabde0b030ac4e8aa2698c7857e1
                                 </div>
                             </div>
                         </div>
-                                
+
                     </form>
                     <div class=\"text-center\">
                         ";
@@ -183,13 +183,13 @@ class __TwigTemplate_de4df511cffbd6481de9a6e5b683a8cfabde0b030ac4e8aa2698c7857e1
                                     {{ form_widget(form.nombre, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Nombre de aula'} }) }}
                                     <span class=\"text-danger\">{{ form_errors(form.nombre) }}</span>
                                 </div>
-                               
+
                                 <div class=\"form-group\">
                                     {{ form_label(form.disponibilidad) }}
                                     {{ form_widget(form.disponibilidad, { 'attr' : {'class' : 'form-control'} }) }}
                                     <span class=\"text-danger\">{{ form_errors(form.disponibilidad) }}</span>
                                 </div>
-                                
+
                                 <div class=\"form-group\">
                                     {{ form_label(form.imagen) }}
                                     {{ form_widget(form.imagen) }}
@@ -198,14 +198,14 @@ class __TwigTemplate_de4df511cffbd6481de9a6e5b683a8cfabde0b030ac4e8aa2698c7857e1
                             </div>
 
                             <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
-                                 <div class=\"form-group\">
+                                <div class=\"form-group\">
                                     {{ form_label(form.horario) }}
                                     {{ form_widget(form.horario, { 'attr' : {'class' : 'form-control', 'placeholder' : '00:00 - 23:59' } }) }}
                                     <span class=\"text-danger\">{{ form_errors(form.horario) }}</span>
                                 </div>
                             </div>
                         </div>
-                                
+
                     </form>
                     <div class=\"text-center\">
                         {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}

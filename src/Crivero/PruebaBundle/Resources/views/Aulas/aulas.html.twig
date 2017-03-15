@@ -24,11 +24,12 @@
                     {% for aula in pagination %}
                         <tr>
                             <td>{{aula.nombre}}</td>
-                            <td>{% if hoy == 0 or hoy == 6 %}
+                            {#<td>{% if hoy == 0 or hoy == 6 %}
                                 <strong>No disponible</strong>
                                 {% else %}
-{#                                    <strong>{{ estados[aula.id-1].estado }}</strong>#}
-                                {% endif %}</td>
+                                    <strong>{{ estados[aula.id-1].estado }}</strong>
+                                {% endif %}</td>#}
+                            <td><strong>{{aula.disponibilidad}}</strong></td>
                             <td>{{aula.horario}}</td>
                             <td class="actions">
                               <a href="{{ path('crivero_prueba_aula', { id: aula.id }) }}" class="btn btn-sm btn-info">

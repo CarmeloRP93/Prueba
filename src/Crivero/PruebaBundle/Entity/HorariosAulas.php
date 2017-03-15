@@ -24,13 +24,6 @@ class HorariosAulas
     /**
      * @var string
      *
-     * @ORM\Column(name="estado", type="string", length=255)
-     */
-    private $estado;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="periodo", type="string", length=255)
      */
     private $periodo;
@@ -59,29 +52,6 @@ class HorariosAulas
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set estado
-     *
-     * @param string $estado
-     * @return HorariosAulas
-     */
-    public function setEstado($estado)
-    {
-        $this->estado = $estado;
-
-        return $this;
-    }
-
-    /**
-     * Get estado
-     *
-     * @return string 
-     */
-    public function getEstado()
-    {
-        return $this->estado;
     }
 
     /**

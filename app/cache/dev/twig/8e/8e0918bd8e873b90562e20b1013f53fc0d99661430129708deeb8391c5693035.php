@@ -71,7 +71,7 @@ class __TwigTemplate_827b8468ee3408b822888fec8051ed4a086f68031e571dc50b69368bf45
         echo "
                                     ";
         // line 28
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horario", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Horario de cancha")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horario", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "00:00 - 23:59")));
         echo "
                                     <span class=\"text-danger\">";
         // line 29
@@ -186,7 +186,7 @@ class __TwigTemplate_827b8468ee3408b822888fec8051ed4a086f68031e571dc50b69368bf45
                             <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
                                 <div class=\"form-group\">
                                     {{ form_label(form.horario) }}
-                                    {{ form_widget(form.horario, {'attr': {'class': 'form-control', 'placeholder' : 'Horario de cancha'}}) }}
+                                    {{ form_widget(form.horario, {'attr': {'class': 'form-control', 'placeholder' : '00:00 - 23:59'}}) }}
                                     <span class=\"text-danger\">{{ form_errors(form.horario) }}</span>
                                 </div>
                             </div>
