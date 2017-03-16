@@ -55,7 +55,6 @@ class CanchaController extends Controller {
                 return $this->redirect($this->generateUrl('crivero_prueba_canchas'));
             }
         }
-        
         return $this->render('CriveroPruebaBundle:Canchas:nuevaCancha.html.twig', array('form' => $form->createView()));
     }
     

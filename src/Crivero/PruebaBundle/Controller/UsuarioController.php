@@ -80,12 +80,12 @@ class UsuarioController extends Controller {
         $form = $this->createCreateForm($usuario);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
+//        $fecha = $form->get('fNacimiento')->getData();
             $password = $form->get('password')->getData();
             if (!empty($password)) {
                 $encoded = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
                 $usuario->setPassword($encoded);
-
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($usuario);
                 $em->flush();

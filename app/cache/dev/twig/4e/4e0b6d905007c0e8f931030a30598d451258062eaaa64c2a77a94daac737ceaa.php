@@ -121,7 +121,7 @@ class __TwigTemplate_7f6d93430bad044b71bc7c0d491c405289b6c81b8d2ccc388de870cfa5a
         echo "
             ";
         // line 42
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "telefono", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Inserte número de teléfono")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "telefono", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Inserte número de teléfono. Ej: 651-44-19-75")));
         echo "
             <span class=\"text-danger\">";
         // line 43
@@ -224,7 +224,7 @@ class __TwigTemplate_7f6d93430bad044b71bc7c0d491c405289b6c81b8d2ccc388de870cfa5a
 
         <div class=\"form-group\">
             {{ form_label(form.telefono) }}
-            {{ form_widget(form.telefono, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Inserte número de teléfono'} }) }}
+            {{ form_widget(form.telefono, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Inserte número de teléfono. Ej: 651-44-19-75'} }) }}
             <span class=\"text-danger\">{{ form_errors(form.telefono) }}</span>
         </div>
 

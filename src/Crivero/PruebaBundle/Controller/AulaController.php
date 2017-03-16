@@ -35,14 +35,14 @@ class AulaController extends Controller {
 
         return $this->render('CriveroPruebaBundle:Aulas:aula.html.twig', array("aula" => $aula, "sesiones" => $sesionesAula));
     }
-    
+
     public function nuevaAulaAction() {
         $aula = new Aulas();
         $form = $this->createCreateForm($aula);
 
         return $this->render('CriveroPruebaBundle:Aulas:nuevaAula.html.twig', array('form' => $form->createView()));
     }
-    
+
     private function createCreateForm(Aulas $entity) {
         $form = $this->createForm(new AulasType(), $entity, array(
             'action' => $this->generateUrl('crivero_prueba_aula_crear'),
@@ -50,7 +50,7 @@ class AulaController extends Controller {
         ));
         return $form;
     }
-    
+
     public function crearAulaAction(Request $request) {
         $aula = new Aulas();
         $form = $this->createCreateForm($aula);
@@ -63,24 +63,18 @@ class AulaController extends Controller {
                 $file = $form->get('imagen')->getData();
                 $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
                 $aula->setImagen($file->getClientOriginalName());
+
                 $em = $this->getDoctrine()->getManager();
-                
                 $em->persist($aula);
                 $em->flush();
-                for ($i=1; $i <= 31; $i++) {
-                    $horario = new HorariosAulas();
-                    $horario->setPeriodo("09:00-10:00&10:00-11:00&11:00-12:00&");
-                    $horario->setAula($aula->getId());
-                    $horario->setFechaInicio($i);
-                    $em->persist($horario);
-                }
-                $em->flush();
+
+                $this->setHorariosAula($aula->getId(), $em);
 
                 $request->getSession()->getFlashBag()->add('mensaje', 'El aula ha sido creada con éxito.');
                 return $this->redirect($this->generateUrl('crivero_prueba_aulas'));
             }
         }
-        
+
         return $this->render('CriveroPruebaBundle:Aulas:nuevaAula.html.twig', array('form' => $form->createView()));
     }
 
@@ -116,7 +110,7 @@ class AulaController extends Controller {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-             if ($form->get('imagen')->getData() == null) {
+            if ($form->get('imagen')->getData() == null) {
                 $aula->setImagen($originalImage);
             } else {
                 $file = $form->get('imagen')->getData();
@@ -137,6 +131,17 @@ class AulaController extends Controller {
             throw $this->createNotFoundException('Aula no encontrada');
         }
         return $aula;
+    }
+
+    private function setHorariosAula($aulaId, $em) {
+        for ($i = 1; $i <= 31; $i++) {
+            $horario = new HorariosAulas();
+            $horario->setPeriodo("09:00-10:00&10:00-11:00&11:00-12:00&");
+            $horario->setAula($aulaId);
+            $horario->setFechaInicio($i);
+            $em->persist($horario);
+        }
+        $em->flush();
     }
 
 }

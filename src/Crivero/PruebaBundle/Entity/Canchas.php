@@ -35,8 +35,12 @@ class Canchas
 
     /**
      * @var string
-     * @Assert\NotBlank()
      * @ORM\Column(name="horario", type="string", length=200, nullable=false)
+     * @Assert\NotBlank()
+     * @Assert\Regex(
+     *     pattern="/^(\d{2}:\d{2}) - (\d{2}:\d{2})$/",
+     *     message="Should be a time interval"
+     * )
      */
     private $horario;
 
