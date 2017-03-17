@@ -158,7 +158,7 @@ class __TwigTemplate_4f214dceab3fc597510642ac5828c0a040c94fcdc1eaee8e0817a5b9149
                     <div class=\"accionesExclus text-center\">       
                         ";
         // line 57
-        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form"))));
+        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form")), "nombre" => "Eliminar usuario"));
         echo "
                     </div>
                 </div>
@@ -250,7 +250,7 @@ class __TwigTemplate_4f214dceab3fc597510642ac5828c0a040c94fcdc1eaee8e0817a5b9149
                         {% endif %}
                     </div><br>
                     <div class=\"accionesExclus text-center\">       
-                        {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form })}}
+                        {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: \"Eliminar usuario\" })}}
                     </div>
                 </div>
             </div>

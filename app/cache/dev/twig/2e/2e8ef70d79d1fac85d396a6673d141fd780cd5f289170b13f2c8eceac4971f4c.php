@@ -109,7 +109,7 @@ class __TwigTemplate_f609dffb751599bb285482707aa6114f4c22970f26a725653141664a677
         echo "\" class=\"btn btn-primary\">Editar info</a>
               ";
         // line 44
-        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form"))));
+        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form")), "nombre" => "Eliminar cancha"));
         echo "
             </div>
 
@@ -186,7 +186,7 @@ class __TwigTemplate_f609dffb751599bb285482707aa6114f4c22970f26a725653141664a677
 
             <div class=\"text-center\">
               <a href=\"{{ path('crivero_prueba_cancha_editar', { id: cancha.id }) }}\" class=\"btn btn-primary\">Editar info</a>
-              {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form })}}
+              {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: \"Eliminar cancha\" })}}
             </div>
 
 

@@ -41,7 +41,7 @@
 
             <div class="text-center">
               <a href="{{ path('crivero_prueba_cancha_editar', { id: cancha.id }) }}" class="btn btn-primary">Editar info</a>
-              {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form })}}
+              {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar cancha" })}}
             </div>
 
 

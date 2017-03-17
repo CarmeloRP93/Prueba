@@ -22,9 +22,8 @@ $(document).ready(function() {
                         $('#message').removeClass('hidden');
                         $('#user-message').text(result.message);
                     }
-                }).fail(function(){
-                    alert('ERROR');
-                    row.show();
+                }).fail(function(xhr, status, error){
+                    alert(error);
                 });
             }
         });

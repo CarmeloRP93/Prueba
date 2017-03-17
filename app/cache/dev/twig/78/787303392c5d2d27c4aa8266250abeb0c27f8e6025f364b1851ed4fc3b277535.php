@@ -28,7 +28,7 @@ class __TwigTemplate_9906cf96730c17e4af8473af8e01e70f693e71e57e59794ddc45e60ccf9
         if (( !array_key_exists("with_submit", $context) || ((isset($context["with_submit"]) ? $context["with_submit"] : $this->getContext($context, "with_submit")) == true))) {
             // line 5
             echo "        <input type=\"button\" value=\"";
-            echo "Eliminar";
+            echo twig_escape_filter($this->env, (isset($context["nombre"]) ? $context["nombre"] : $this->getContext($context, "nombre")), "html", null, true);
             echo "\" class=\"btn btn-danger\" 
                onclick=\"confirmarEliminar()\" >
     ";
@@ -81,7 +81,7 @@ class __TwigTemplate_9906cf96730c17e4af8473af8e01e70f693e71e57e59794ddc45e60ccf9
 
     {{ form_widget(form) }}
     {% if with_submit is not defined or with_submit == true %}
-        <input type=\"button\" value=\"{{ 'Eliminar' }}\" class=\"btn btn-danger\" 
+        <input type=\"button\" value=\"{{ nombre }}\" class=\"btn btn-danger\" 
                onclick=\"confirmarEliminar()\" >
     {% endif %}
 
