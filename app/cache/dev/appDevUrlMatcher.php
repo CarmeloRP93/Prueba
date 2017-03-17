@@ -646,6 +646,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_actualizar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::actualizarAction',));
                 }
 
+                // crivero_prueba_cancha_eliminar
+                if (0 === strpos($pathinfo, '/cancha/eliminar') && preg_match('#^/cancha/eliminar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                        $allow = array_merge($allow, array('POST', 'DELETE'));
+                        goto not_crivero_prueba_cancha_eliminar;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_eliminar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::eliminarCanchaAction',));
+                }
+                not_crivero_prueba_cancha_eliminar:
+
             }
 
         }

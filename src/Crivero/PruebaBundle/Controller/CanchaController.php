@@ -14,17 +14,22 @@ class CanchaController extends Controller {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
         $canchas= $repository->getCanchas();
         
-         $paginator = $this->get('knp_paginator');
-         $pagination = $paginator->paginate(
-                $canchas, $request->query->getInt('page', 1),
-                5);
-       return $this->render('CriveroPruebaBundle:Canchas:canchas.html.twig', array("pagination"=>$pagination));
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $canchas, $request->query->getInt('page', 1), 5);
+        
+        $deleteFormAjax = $this->createCustomForm(':CANCHA_ID', 'DELETE', 'crivero_prueba_cancha_eliminar');
+        return $this->render('CriveroPruebaBundle:Canchas:canchas.html.twig', array("pagination"=>$pagination,
+                             "delete_form_ajax" => $deleteFormAjax->createView()));
     }
     
     public function canchaAction($id) {
        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
        $cancha=$repository->find($id);
-       return $this->render('CriveroPruebaBundle:Canchas:cancha.html.twig', array("cancha"=>$cancha));
+       
+       $deleteForm = $this->createCustomForm($cancha->getId(), 'DELETE', 'crivero_prueba_cancha_eliminar');
+       return $this->render('CriveroPruebaBundle:Canchas:cancha.html.twig', array("cancha"=>$cancha, 
+                                                                            "delete_form"=>$deleteForm->createView()));
     }
     
     public function nuevaCanchaAction() {
@@ -104,6 +109,44 @@ class CanchaController extends Controller {
             return $this->redirect($this->generateUrl('crivero_prueba_cancha', array('id' => $id)));
         }
         return $this->render('CriveroPruebaBundle:Canchas:editarCancha.html.twig', array('cancha' => $cancha, 'form' => $form->createView()));
+    }
+    
+    public function eliminarCanchaAction(Request $request, $id) {
+        $em = $this->getDoctrine()->getManager();
+        $cancha = $this->findEntity($id, $em, 'CriveroPruebaBundle:Canchas');
+
+        $form = $this->createCustomForm($cancha->getId(), 'DELETE', 'crivero_prueba_cancha_eliminar');
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($request->isXmlHttpRequest()) {
+                $res = $this->deleteCancha($em, $cancha);
+
+                return new Response(
+                        json_encode(array('removed' => $res['removed'], 'message' => $res['message'])), 200, array('Content-Type' => 'application/json')
+                );
+            }
+
+            $res = $this->deleteCancha($em, $cancha);
+            $request->getSession()->getFlashBag()->add('mensaje', $res['message']);
+            return $this->redirect($this->generateUrl('crivero_prueba_canchas'));
+        }
+    }
+    
+    private function deleteCancha($em, $cancha) {
+        $em->remove($cancha);
+        $em->flush();
+
+        $message = 'La cancha ha sido eliminada con éxito.';
+        $remove = 1;
+        return array('removed' => $remove, 'message' => $message);
+    }
+    
+    private function createCustomForm($id, $method, $route) {
+        return $this->createFormBuilder()
+                        ->setAction($this->generateUrl($route, array('id' => $id)))
+                        ->setMethod($method)
+                        ->getForm();
     }
     
      private function findEntity($id, $em, $repository) {

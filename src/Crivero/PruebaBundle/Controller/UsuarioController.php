@@ -24,7 +24,7 @@ class UsuarioController extends Controller {
 
         $deleteFormAjax = $this->createCustomForm(':USER_ID', 'DELETE', 'crivero_prueba_eliminar');
         return $this->render('CriveroPruebaBundle:Usuarios:clientes.html.twig', array("pagination" => $pagination,
-                    "delete_form_ajax" => $deleteFormAjax->createView()));
+                            "delete_form_ajax" => $deleteFormAjax->createView()));
     }
 
     public function clienteAction($id) {
@@ -38,8 +38,8 @@ class UsuarioController extends Controller {
 
         $deleteForm = $this->createCustomForm($cliente->getId(), 'DELETE', 'crivero_prueba_eliminar');
         return $this->render('CriveroPruebaBundle:Usuarios:cliente.html.twig', array("cliente" => $cliente,
-                    "reservas" => $reservasCliente, "sesiones" => $sesionesCliente,
-                    'delete_form' => $deleteForm->createView()));
+                            "reservas" => $reservasCliente, "sesiones" => $sesionesCliente,
+                            'delete_form' => $deleteForm->createView()));
     }
 
     public function monitoresAction(Request $request) {

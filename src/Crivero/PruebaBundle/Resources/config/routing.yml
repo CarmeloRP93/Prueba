@@ -78,6 +78,11 @@ crivero_prueba_cancha_actualizar:
     pattern:  /cancha/actualizar/{id}
     defaults: { _controller: CriveroPruebaBundle:Cancha:actualizar }
     
+crivero_prueba_cancha_eliminar:
+    pattern:  /cancha/eliminar/{id}
+    defaults: { _controller: CriveroPruebaBundle:Cancha:eliminarCancha }
+    methods: [POST, DELETE]
+    
 crivero_prueba_aulas:
     pattern:  /aulas
     defaults: { _controller: CriveroPruebaBundle:Aula:aulas }

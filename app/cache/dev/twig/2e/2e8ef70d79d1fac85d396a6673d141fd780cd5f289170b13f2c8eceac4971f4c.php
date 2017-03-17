@@ -107,6 +107,10 @@ class __TwigTemplate_f609dffb751599bb285482707aa6114f4c22970f26a725653141664a677
         // line 43
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_cancha_editar", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
         echo "\" class=\"btn btn-primary\">Editar info</a>
+              ";
+        // line 44
+        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form"))));
+        echo "
             </div>
 
 
@@ -126,7 +130,7 @@ class __TwigTemplate_f609dffb751599bb285482707aa6114f4c22970f26a725653141664a677
 
     public function getDebugInfo()
     {
-        return array (  108 => 43,  101 => 39,  93 => 34,  84 => 27,  78 => 24,  75 => 23,  69 => 20,  66 => 19,  64 => 18,  59 => 16,  50 => 10,  40 => 4,  37 => 3,  29 => 2,  11 => 1,);
+        return array (  112 => 44,  108 => 43,  101 => 39,  93 => 34,  84 => 27,  78 => 24,  75 => 23,  69 => 20,  66 => 19,  64 => 18,  59 => 16,  50 => 10,  40 => 4,  37 => 3,  29 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -182,6 +186,7 @@ class __TwigTemplate_f609dffb751599bb285482707aa6114f4c22970f26a725653141664a677
 
             <div class=\"text-center\">
               <a href=\"{{ path('crivero_prueba_cancha_editar', { id: cancha.id }) }}\" class=\"btn btn-primary\">Editar info</a>
+              {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form })}}
             </div>
 
 
