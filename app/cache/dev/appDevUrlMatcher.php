@@ -701,6 +701,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_aula_actualizar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\AulaController::actualizarAction',));
             }
 
+            // crivero_prueba_aula_eliminar
+            if (0 === strpos($pathinfo, '/aula/eliminar') && preg_match('#^/aula/eliminar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                    $allow = array_merge($allow, array('POST', 'DELETE'));
+                    goto not_crivero_prueba_aula_eliminar;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_aula_eliminar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\AulaController::eliminarAulaAction',));
+            }
+            not_crivero_prueba_aula_eliminar:
+
         }
 
         if (0 === strpos($pathinfo, '/reserva')) {

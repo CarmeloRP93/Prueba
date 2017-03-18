@@ -4,6 +4,7 @@ namespace Crivero\PruebaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Crivero\PruebaBundle\Entity\Aulas;
 use Crivero\PruebaBundle\Entity\HorariosAulas;
 use Crivero\PruebaBundle\Form\AulasType;
@@ -22,7 +23,10 @@ class AulaController extends Controller {
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $aulas, $request->query->getInt('page', 1), 5);
-        return $this->render('CriveroPruebaBundle:Aulas:aulas.html.twig', array("pagination" => $pagination));
+        
+        $deleteFormAjax = $this->createCustomForm(':AULA_ID', 'DELETE', 'crivero_prueba_aula_eliminar');
+        return $this->render('CriveroPruebaBundle:Aulas:aulas.html.twig', array("pagination" => $pagination,
+                                    "delete_form_ajax" => $deleteFormAjax->createView()));
     }
 
     public function aulaAction($id) {
@@ -32,8 +36,10 @@ class AulaController extends Controller {
         $idsSesionesAula = explode('&', $aula->getSesiones());
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesionesAula = $this->getArrayEntidades($repositorySesiones, $idsSesionesAula);
-
-        return $this->render('CriveroPruebaBundle:Aulas:aula.html.twig', array("aula" => $aula, "sesiones" => $sesionesAula));
+        
+        $deleteForm = $this->createCustomForm($aula->getId(), 'DELETE', 'crivero_prueba_aula_eliminar');
+        return $this->render('CriveroPruebaBundle:Aulas:aula.html.twig', array("aula" => $aula, 
+                                "sesiones" => $sesionesAula, "delete_form"=>$deleteForm->createView()));
     }
 
     public function nuevaAulaAction() {
@@ -123,6 +129,46 @@ class AulaController extends Controller {
             return $this->redirect($this->generateUrl('crivero_prueba_aula', array('id' => $id)));
         }
         return $this->render('CriveroPruebaBundle:Aulas:editarAula.html.twig', array('aula' => $aula, 'form' => $form->createView()));
+    }
+    
+    public function eliminarAulaAction(Request $request, $id) {
+        $em = $this->getDoctrine()->getManager();
+        $aula = $this->findAula($id, $em);
+
+        $form = $this->createCustomForm($aula->getId(), 'DELETE', 'crivero_prueba_aula_eliminar');
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($request->isXmlHttpRequest()) {
+                $res = $this->deleteAula($em, $aula);
+
+                return new Response(
+                        json_encode(array('removed' => $res['removed'], 'message' => $res['message'])), 200, array('Content-Type' => 'application/json')
+                );
+            }
+
+            $res = $this->deleteAula($em, $aula);
+            $request->getSession()->getFlashBag()->add('mensaje', $res['message']);
+            return $this->redirect($this->generateUrl('crivero_prueba_aulas'));
+        }
+    }
+    
+     private function deleteAula($em, $aula) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
+        $repository->removeHorariosAula($aula->getId());
+        $em->remove($aula);
+        $em->flush();
+
+        $message = 'El aula ha sido eliminada con éxito.';
+        $remove = 1;
+        return array('removed' => $remove, 'message' => $message);
+    }
+    
+    private function createCustomForm($id, $method, $route) {
+        return $this->createFormBuilder()
+                        ->setAction($this->generateUrl($route, array('id' => $id)))
+                        ->setMethod($method)
+                        ->getForm();
     }
 
     private function findAula($id, $em) {

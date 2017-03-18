@@ -4,71 +4,75 @@
 {% block header %}{% endblock %}
 
 {% block navegation %}
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" >
-            <!-- El logotipo y el icono que despliega el menú se agrupan
-                 para mostrarlos mejor en los dispositivos móviles -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Desplegar navegación</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Logotipo</a>
-            </div>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" >
+        <!-- El logotipo y el icono que despliega el menú se agrupan
+             para mostrarlos mejor en los dispositivos móviles -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Desplegar navegación</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Logotipo</a>
+        </div>
 
 
-            <div class="collapse navbar-collapse navbar-ex1-collapse " >
-                <ul class="nav navbar-nav ">
-                    <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Usuarios <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                              <li><a href="{{url('crivero_prueba_clientes')}}">Clientes</a></li>
-                              <li><a href="{{url('crivero_prueba_monitores')}}">Monitores</a></li>
-                            </ul>
-                     </li>
-                    <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Instalaciones <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{url('crivero_prueba_canchas')}}">Canchas</a></li>
-                                <li><a href="{{url('crivero_prueba_aulas')}}">Aulas</a></li>
-                            </ul>
-                    </li>
-                    <li><a href="{{url('crivero_prueba_reservas')}}">Reservas</a></li>
-                    <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Competiciones <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                              <li><a href="{{url('crivero_prueba_competiciones')}}">Competiciones </a></li>
-                              <li><a href="{{url('crivero_prueba_equipos')}}">Equipos</a></li>
-                              <li><a href="{{url('crivero_prueba_jugadores')}}">Jugadores</a></li>
-                            </ul>
-                     </li>
-                     <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Sesiones <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                              <li><a href="{{url('crivero_prueba_sesiones')}}">S.Generales</a></li>
-                              <li><a href="{{url('crivero_prueba_dedicadas')}}">S.Dedicadas</a></li>
-                            </ul>
-                     </li>
-                </ul>
-                
-                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href = "{{path('crivero_prueba_editarUsuario', { id: app.user.id })}}"><img src="{{asset('images/user-128.png')}}" style="width: 50%;" /></a></li>
-                        <li><a href="{{path('crivero_prueba_logout')}}" style="margin-right: 12px"><img src="{{asset('images/logout-128.png')}}" style="width: 18px;" /></a></li>
+        <div class="collapse navbar-collapse navbar-ex1-collapse " >
+            <ul class="nav navbar-nav ">
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Usuarios <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('crivero_prueba_clientes')}}">Clientes</a></li>
+                        <li><a href="{{url('crivero_prueba_monitores')}}">Monitores</a></li>
                     </ul>
-                {% endif %}
+                </li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Instalaciones <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('crivero_prueba_canchas')}}">Canchas</a></li>
+                        <li><a href="{{url('crivero_prueba_aulas')}}">Aulas</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{url('crivero_prueba_reservas')}}">Reservas</a></li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Competiciones <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('crivero_prueba_competiciones')}}">Competiciones </a></li>
+                        <li><a href="{{url('crivero_prueba_equipos')}}">Equipos</a></li>
+                        <li><a href="{{url('crivero_prueba_jugadores')}}">Jugadores</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Sesiones <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('crivero_prueba_sesiones')}}">S.Generales</a></li>
+                        <li><a href="{{url('crivero_prueba_dedicadas')}}">S.Dedicadas</a></li>
+                    </ul>
+                </li>
+            </ul>
 
-                <form method="GET" class="navbar-form navbar-center" role="search">
-                    <div class="form-group">
-                        <input type="text" name="query" class="form-control" value="{{app.request.get('query')}}" 
-                               placeholder="Buscar usuarios, reservas" required>
+            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href = "{{path('crivero_prueba_editarUsuario', { id: app.user.id })}}"><img src="{{asset('images/user-128.png')}}" style="width: 50%;" /></a></li>
+                    <li><a href="{{path('crivero_prueba_logout')}}" style="margin-right: 12px"><img src="{{asset('images/logout-128.png')}}" style="width: 18px;" /></a></li>
+                </ul>
+            {% endif %}
+
+            <form method="GET" class="navbar-form navbar-center" role="search">
+                <div class="input-group">
+                    <input type="text" name="query" class="form-control" value="{{app.request.get('query')}}" 
+                           placeholder="Buscar usuarios, reservas" required>
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default">
+                            <i class="glyphicon glyphicon-search"></i>    
+                        </button>
                     </div>
-                    <input type="submit" class="btn btn-default" value="Buscar">
-                </form>
-            </div>
-        </nav>
+                </div>
+            </form>
+        </div>
+    </nav>
 {% endblock %}
 {% block body %}
     <div id="pagina" class="cfix">

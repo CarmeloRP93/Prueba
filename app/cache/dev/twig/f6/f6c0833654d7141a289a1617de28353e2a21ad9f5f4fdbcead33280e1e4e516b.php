@@ -43,132 +43,136 @@ class __TwigTemplate_169196c2e7f9a3000d28bc569cf2245be4ea9c71cf159a91e366c58df8f
     public function block_navegation($context, array $blocks = array())
     {
         // line 7
-        echo "        <nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\" >
-            <!-- El logotipo y el icono que despliega el menú se agrupan
-                 para mostrarlos mejor en los dispositivos móviles -->
-            <div class=\"navbar-header\">
-                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\"
-                        data-target=\".navbar-ex1-collapse\">
-                    <span class=\"sr-only\">Desplegar navegación</span>
-                    <span class=\"icon-bar\"></span>
-                    <span class=\"icon-bar\"></span>
-                    <span class=\"icon-bar\"></span>
-                </button>
-                <a class=\"navbar-brand\" href=\"#\">Logotipo</a>
-            </div>
+        echo "    <nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\" >
+        <!-- El logotipo y el icono que despliega el menú se agrupan
+             para mostrarlos mejor en los dispositivos móviles -->
+        <div class=\"navbar-header\">
+            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\"
+                    data-target=\".navbar-ex1-collapse\">
+                <span class=\"sr-only\">Desplegar navegación</span>
+                <span class=\"icon-bar\"></span>
+                <span class=\"icon-bar\"></span>
+                <span class=\"icon-bar\"></span>
+            </button>
+            <a class=\"navbar-brand\" href=\"#\">Logotipo</a>
+        </div>
 
 
-            <div class=\"collapse navbar-collapse navbar-ex1-collapse \" >
-                <ul class=\"nav navbar-nav \">
-                    <li class=\"dropdown\">
-                            <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Usuarios <b class=\"caret\"></b></a>
-                            <ul class=\"dropdown-menu\">
-                              <li><a href=\"";
+        <div class=\"collapse navbar-collapse navbar-ex1-collapse \" >
+            <ul class=\"nav navbar-nav \">
+                <li class=\"dropdown\">
+                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Usuarios <b class=\"caret\"></b></a>
+                    <ul class=\"dropdown-menu\">
+                        <li><a href=\"";
         // line 27
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_clientes");
         echo "\">Clientes</a></li>
-                              <li><a href=\"";
+                        <li><a href=\"";
         // line 28
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_monitores");
         echo "\">Monitores</a></li>
-                            </ul>
-                     </li>
-                    <li class=\"dropdown\">
-                            <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Instalaciones <b class=\"caret\"></b></a>
-                            <ul class=\"dropdown-menu\">
-                                <li><a href=\"";
+                    </ul>
+                </li>
+                <li class=\"dropdown\">
+                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Instalaciones <b class=\"caret\"></b></a>
+                    <ul class=\"dropdown-menu\">
+                        <li><a href=\"";
         // line 34
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_canchas");
         echo "\">Canchas</a></li>
-                                <li><a href=\"";
+                        <li><a href=\"";
         // line 35
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_aulas");
         echo "\">Aulas</a></li>
-                            </ul>
-                    </li>
-                    <li><a href=\"";
+                    </ul>
+                </li>
+                <li><a href=\"";
         // line 38
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_reservas");
         echo "\">Reservas</a></li>
-                    <li class=\"dropdown\">
-                            <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Competiciones <b class=\"caret\"></b></a>
-                            <ul class=\"dropdown-menu\">
-                              <li><a href=\"";
+                <li class=\"dropdown\">
+                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Competiciones <b class=\"caret\"></b></a>
+                    <ul class=\"dropdown-menu\">
+                        <li><a href=\"";
         // line 42
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_competiciones");
         echo "\">Competiciones </a></li>
-                              <li><a href=\"";
+                        <li><a href=\"";
         // line 43
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_equipos");
         echo "\">Equipos</a></li>
-                              <li><a href=\"";
+                        <li><a href=\"";
         // line 44
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_jugadores");
         echo "\">Jugadores</a></li>
-                            </ul>
-                     </li>
-                     <li class=\"dropdown\">
-                            <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Sesiones <b class=\"caret\"></b></a>
-                            <ul class=\"dropdown-menu\">
-                              <li><a href=\"";
+                    </ul>
+                </li>
+                <li class=\"dropdown\">
+                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Sesiones <b class=\"caret\"></b></a>
+                    <ul class=\"dropdown-menu\">
+                        <li><a href=\"";
         // line 50
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_sesiones");
         echo "\">S.Generales</a></li>
-                              <li><a href=\"";
+                        <li><a href=\"";
         // line 51
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_dedicadas");
         echo "\">S.Dedicadas</a></li>
-                            </ul>
-                     </li>
-                </ul>
-                
-                ";
+                    </ul>
+                </li>
+            </ul>
+
+            ";
         // line 56
         if ($this->env->getExtension('Symfony\Bridge\Twig\Extension\SecurityExtension')->isGranted("IS_AUTHENTICATED_FULLY")) {
             // line 57
-            echo "                    <ul class=\"nav navbar-nav navbar-right\">
-                        <li><a href = \"";
+            echo "                <ul class=\"nav navbar-nav navbar-right\">
+                    <li><a href = \"";
             // line 58
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_editarUsuario", array("id" => $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))), "html", null, true);
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/user-128.png"), "html", null, true);
             echo "\" style=\"width: 50%;\" /></a></li>
-                        <li><a href=\"";
+                    <li><a href=\"";
             // line 59
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_logout");
             echo "\" style=\"margin-right: 12px\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/logout-128.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
-                    </ul>
-                ";
+                </ul>
+            ";
         }
         // line 62
         echo "
-                <form method=\"GET\" class=\"navbar-form navbar-center\" role=\"search\">
-                    <div class=\"form-group\">
-                        <input type=\"text\" name=\"query\" class=\"form-control\" value=\"";
+            <form method=\"GET\" class=\"navbar-form navbar-center\" role=\"search\">
+                <div class=\"input-group\">
+                    <input type=\"text\" name=\"query\" class=\"form-control\" value=\"";
         // line 65
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "get", array(0 => "query"), "method"), "html", null, true);
         echo "\" 
-                               placeholder=\"Buscar usuarios, reservas\" required>
+                           placeholder=\"Buscar usuarios, reservas\" required>
+                    <div class=\"input-group-btn\">
+                        <button type=\"submit\" class=\"btn btn-default\">
+                            <i class=\"glyphicon glyphicon-search\"></i>    
+                        </button>
                     </div>
-                    <input type=\"submit\" class=\"btn btn-default\" value=\"Buscar\">
-                </form>
-            </div>
-        </nav>
+                </div>
+            </form>
+        </div>
+    </nav>
 ";
     }
 
-    // line 73
+    // line 77
     public function block_body($context, array $blocks = array())
     {
-        // line 74
+        // line 78
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 76
+        // line 80
         $this->displayBlock('contenido', $context, $blocks);
-        // line 78
+        // line 82
         echo "        </div>
 
     </div>
@@ -176,10 +180,10 @@ class __TwigTemplate_169196c2e7f9a3000d28bc569cf2245be4ea9c71cf159a91e366c58df8f
 ";
     }
 
-    // line 76
+    // line 80
     public function block_contenido($context, array $blocks = array())
     {
-        // line 77
+        // line 81
         echo "            ";
     }
 
@@ -195,7 +199,7 @@ class __TwigTemplate_169196c2e7f9a3000d28bc569cf2245be4ea9c71cf159a91e366c58df8f
 
     public function getDebugInfo()
     {
-        return array (  183 => 77,  180 => 76,  172 => 78,  170 => 76,  166 => 74,  163 => 73,  151 => 65,  146 => 62,  138 => 59,  132 => 58,  129 => 57,  127 => 56,  119 => 51,  115 => 50,  106 => 44,  102 => 43,  98 => 42,  91 => 38,  85 => 35,  81 => 34,  72 => 28,  68 => 27,  46 => 7,  43 => 6,  38 => 4,  32 => 2,  11 => 1,);
+        return array (  187 => 81,  184 => 80,  176 => 82,  174 => 80,  170 => 78,  167 => 77,  151 => 65,  146 => 62,  138 => 59,  132 => 58,  129 => 57,  127 => 56,  119 => 51,  115 => 50,  106 => 44,  102 => 43,  98 => 42,  91 => 38,  85 => 35,  81 => 34,  72 => 28,  68 => 27,  46 => 7,  43 => 6,  38 => 4,  32 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -214,71 +218,75 @@ class __TwigTemplate_169196c2e7f9a3000d28bc569cf2245be4ea9c71cf159a91e366c58df8f
 {% block header %}{% endblock %}
 
 {% block navegation %}
-        <nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\" >
-            <!-- El logotipo y el icono que despliega el menú se agrupan
-                 para mostrarlos mejor en los dispositivos móviles -->
-            <div class=\"navbar-header\">
-                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\"
-                        data-target=\".navbar-ex1-collapse\">
-                    <span class=\"sr-only\">Desplegar navegación</span>
-                    <span class=\"icon-bar\"></span>
-                    <span class=\"icon-bar\"></span>
-                    <span class=\"icon-bar\"></span>
-                </button>
-                <a class=\"navbar-brand\" href=\"#\">Logotipo</a>
-            </div>
+    <nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\" >
+        <!-- El logotipo y el icono que despliega el menú se agrupan
+             para mostrarlos mejor en los dispositivos móviles -->
+        <div class=\"navbar-header\">
+            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\"
+                    data-target=\".navbar-ex1-collapse\">
+                <span class=\"sr-only\">Desplegar navegación</span>
+                <span class=\"icon-bar\"></span>
+                <span class=\"icon-bar\"></span>
+                <span class=\"icon-bar\"></span>
+            </button>
+            <a class=\"navbar-brand\" href=\"#\">Logotipo</a>
+        </div>
 
 
-            <div class=\"collapse navbar-collapse navbar-ex1-collapse \" >
-                <ul class=\"nav navbar-nav \">
-                    <li class=\"dropdown\">
-                            <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Usuarios <b class=\"caret\"></b></a>
-                            <ul class=\"dropdown-menu\">
-                              <li><a href=\"{{url('crivero_prueba_clientes')}}\">Clientes</a></li>
-                              <li><a href=\"{{url('crivero_prueba_monitores')}}\">Monitores</a></li>
-                            </ul>
-                     </li>
-                    <li class=\"dropdown\">
-                            <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Instalaciones <b class=\"caret\"></b></a>
-                            <ul class=\"dropdown-menu\">
-                                <li><a href=\"{{url('crivero_prueba_canchas')}}\">Canchas</a></li>
-                                <li><a href=\"{{url('crivero_prueba_aulas')}}\">Aulas</a></li>
-                            </ul>
-                    </li>
-                    <li><a href=\"{{url('crivero_prueba_reservas')}}\">Reservas</a></li>
-                    <li class=\"dropdown\">
-                            <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Competiciones <b class=\"caret\"></b></a>
-                            <ul class=\"dropdown-menu\">
-                              <li><a href=\"{{url('crivero_prueba_competiciones')}}\">Competiciones </a></li>
-                              <li><a href=\"{{url('crivero_prueba_equipos')}}\">Equipos</a></li>
-                              <li><a href=\"{{url('crivero_prueba_jugadores')}}\">Jugadores</a></li>
-                            </ul>
-                     </li>
-                     <li class=\"dropdown\">
-                            <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Sesiones <b class=\"caret\"></b></a>
-                            <ul class=\"dropdown-menu\">
-                              <li><a href=\"{{url('crivero_prueba_sesiones')}}\">S.Generales</a></li>
-                              <li><a href=\"{{url('crivero_prueba_dedicadas')}}\">S.Dedicadas</a></li>
-                            </ul>
-                     </li>
-                </ul>
-                
-                {% if is_granted(\"IS_AUTHENTICATED_FULLY\") %}
-                    <ul class=\"nav navbar-nav navbar-right\">
-                        <li><a href = \"{{path('crivero_prueba_editarUsuario', { id: app.user.id })}}\"><img src=\"{{asset('images/user-128.png')}}\" style=\"width: 50%;\" /></a></li>
-                        <li><a href=\"{{path('crivero_prueba_logout')}}\" style=\"margin-right: 12px\"><img src=\"{{asset('images/logout-128.png')}}\" style=\"width: 18px;\" /></a></li>
+        <div class=\"collapse navbar-collapse navbar-ex1-collapse \" >
+            <ul class=\"nav navbar-nav \">
+                <li class=\"dropdown\">
+                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Usuarios <b class=\"caret\"></b></a>
+                    <ul class=\"dropdown-menu\">
+                        <li><a href=\"{{url('crivero_prueba_clientes')}}\">Clientes</a></li>
+                        <li><a href=\"{{url('crivero_prueba_monitores')}}\">Monitores</a></li>
                     </ul>
-                {% endif %}
+                </li>
+                <li class=\"dropdown\">
+                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Instalaciones <b class=\"caret\"></b></a>
+                    <ul class=\"dropdown-menu\">
+                        <li><a href=\"{{url('crivero_prueba_canchas')}}\">Canchas</a></li>
+                        <li><a href=\"{{url('crivero_prueba_aulas')}}\">Aulas</a></li>
+                    </ul>
+                </li>
+                <li><a href=\"{{url('crivero_prueba_reservas')}}\">Reservas</a></li>
+                <li class=\"dropdown\">
+                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Competiciones <b class=\"caret\"></b></a>
+                    <ul class=\"dropdown-menu\">
+                        <li><a href=\"{{url('crivero_prueba_competiciones')}}\">Competiciones </a></li>
+                        <li><a href=\"{{url('crivero_prueba_equipos')}}\">Equipos</a></li>
+                        <li><a href=\"{{url('crivero_prueba_jugadores')}}\">Jugadores</a></li>
+                    </ul>
+                </li>
+                <li class=\"dropdown\">
+                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Sesiones <b class=\"caret\"></b></a>
+                    <ul class=\"dropdown-menu\">
+                        <li><a href=\"{{url('crivero_prueba_sesiones')}}\">S.Generales</a></li>
+                        <li><a href=\"{{url('crivero_prueba_dedicadas')}}\">S.Dedicadas</a></li>
+                    </ul>
+                </li>
+            </ul>
 
-                <form method=\"GET\" class=\"navbar-form navbar-center\" role=\"search\">
-                    <div class=\"form-group\">
-                        <input type=\"text\" name=\"query\" class=\"form-control\" value=\"{{app.request.get('query')}}\" 
-                               placeholder=\"Buscar usuarios, reservas\" required>
+            {% if is_granted(\"IS_AUTHENTICATED_FULLY\") %}
+                <ul class=\"nav navbar-nav navbar-right\">
+                    <li><a href = \"{{path('crivero_prueba_editarUsuario', { id: app.user.id })}}\"><img src=\"{{asset('images/user-128.png')}}\" style=\"width: 50%;\" /></a></li>
+                    <li><a href=\"{{path('crivero_prueba_logout')}}\" style=\"margin-right: 12px\"><img src=\"{{asset('images/logout-128.png')}}\" style=\"width: 18px;\" /></a></li>
+                </ul>
+            {% endif %}
+
+            <form method=\"GET\" class=\"navbar-form navbar-center\" role=\"search\">
+                <div class=\"input-group\">
+                    <input type=\"text\" name=\"query\" class=\"form-control\" value=\"{{app.request.get('query')}}\" 
+                           placeholder=\"Buscar usuarios, reservas\" required>
+                    <div class=\"input-group-btn\">
+                        <button type=\"submit\" class=\"btn btn-default\">
+                            <i class=\"glyphicon glyphicon-search\"></i>    
+                        </button>
                     </div>
-                    <input type=\"submit\" class=\"btn btn-default\" value=\"Buscar\">
-                </form>
-            </div>
-        </nav>
+                </div>
+            </form>
+        </div>
+    </nav>
 {% endblock %}
 {% block body %}
     <div id=\"pagina\" class=\"cfix\">

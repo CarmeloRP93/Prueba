@@ -41,16 +41,14 @@
                             {% endfor %}
                         </div>
                     {% endif %}
+                </div>
+
+                <div class="text-center">
                     <a href="{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}" class="btn btn-sm btn-primary">
                         Editar info
                     </a>
-                </div>
-
-
-                {# <div class="text-center">
-                   <a href="{{ path('crivero_prueba_cancha_editar', { id: cancha.id }) }}" class="btn btn-primary">Editar info</a>
-                 </div>#}
-
+                    {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar aula" })}}
+                 </div>
 
             </div>
-            {% endblock %}
+{% endblock %}

@@ -12,6 +12,7 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'contenido' => array($this, 'block_contenido'),
+            'javascripts' => array($this, 'block_javascripts'),
         );
     }
 
@@ -35,7 +36,15 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
     public function block_contenido($context, array $blocks = array())
     {
         // line 7
-        echo "    ";
+        echo "    
+    <div class=\"progress no-border hidden\" id=\"delete-progress\" style=\"margin-top: -20px\">
+        <div class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"45\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 100%\">
+            <span class=\"sr-only\">Loading...</span>
+        </div>
+    </div> 
+    
+    ";
+        // line 14
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:messages/success.html.twig");
         echo "
     <div class=\"container\">
@@ -48,15 +57,15 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
                 <thead>
                     <tr>
                         <th>";
-        // line 17
+        // line 24
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre", "a.nombre");
         echo "</th>
                         <th>";
-        // line 18
+        // line 25
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Estado", "a.disponibilidad");
         echo "</th>
                         <th>";
-        // line 19
+        // line 26
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Horario", "a.horario");
         echo "</th>
                         <th>Acciones</th>
@@ -64,39 +73,43 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
                 </thead>
                 <tbody>
                     ";
-        // line 24
+        // line 31
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         foreach ($context['_seq'] as $context["_key"] => $context["aula"]) {
-            // line 25
-            echo "                        <tr>
+            // line 32
+            echo "                        <tr data-id=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "id", array()), "html", null, true);
+            echo "\">
                             <td>";
-            // line 26
+            // line 33
             echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "nombre", array()), "html", null, true);
             echo "</td>
                             ";
-            // line 32
+            // line 39
             echo "                            <td><strong>";
             echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "disponibilidad", array()), "html", null, true);
             echo "</strong></td>
                             <td>";
-            // line 33
+            // line 40
             echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "horario", array()), "html", null, true);
             echo "</td>
                             <td class=\"actions\">
                               <a href=\"";
-            // line 35
+            // line 42
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_aula", array("id" => $this->getAttribute($context["aula"], "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-info\">
                                     Ver
                                 </a>
                                 <a href=\"";
-            // line 38
+            // line 45
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_aula_editar", array("id" => $this->getAttribute($context["aula"], "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-primary\">
                                     Editar
                                 </a>
-                                
+                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
+                                    Eliminar
+                                </a>
                             </td>
                         </tr>
                     ";
@@ -104,25 +117,45 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['aula'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 45
+        // line 54
         echo "                </tbody>
             </table>
         </div>
         <div>
             <div class=\"nuevoUsuario text-center\">
                     <a href=\"";
-        // line 50
+        // line 59
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_aula_nueva");
         echo "\" class=\"btn btn-success\" style=\"width: 150px;\"> Nueva aula <span class=\"glyphicon glyphicon-plus\"></span></a>
             </div>
             <div class=\"navigation\">
                 ";
-        // line 53
+        // line 62
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
             </div>
         </div>
     </div>
+                
+    ";
+        // line 67
+        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "id" => "form-delete", "with_submit" => false));
+        echo "
+    
+";
+    }
+
+    // line 70
+    public function block_javascripts($context, array $blocks = array())
+    {
+        // line 71
+        echo "    ";
+        $this->displayParentBlock("javascripts", $context, $blocks);
+        echo "
+    <script src=\"";
+        // line 72
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("bundles/criveroprueba/js/delete-aula.js"), "html", null, true);
+        echo "\"></script>
 ";
     }
 
@@ -138,7 +171,7 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
 
     public function getDebugInfo()
     {
-        return array (  121 => 53,  115 => 50,  108 => 45,  95 => 38,  89 => 35,  84 => 33,  79 => 32,  75 => 26,  72 => 25,  68 => 24,  60 => 19,  56 => 18,  52 => 17,  38 => 7,  35 => 6,  29 => 4,  11 => 2,);
+        return array (  157 => 72,  152 => 71,  149 => 70,  142 => 67,  134 => 62,  128 => 59,  121 => 54,  106 => 45,  100 => 42,  95 => 40,  90 => 39,  86 => 33,  81 => 32,  77 => 31,  69 => 26,  65 => 25,  61 => 24,  48 => 14,  39 => 7,  36 => 6,  30 => 4,  11 => 2,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -157,6 +190,13 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
 {% block title %} Aulas {% endblock %}
 
 {% block contenido %}
+    
+    <div class=\"progress no-border hidden\" id=\"delete-progress\" style=\"margin-top: -20px\">
+        <div class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"45\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 100%\">
+            <span class=\"sr-only\">Loading...</span>
+        </div>
+    </div> 
+    
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class=\"container\">
         <div class=\"page-header\">
@@ -175,7 +215,7 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
                 </thead>
                 <tbody>
                     {% for aula in pagination %}
-                        <tr>
+                        <tr data-id=\"{{ aula.id }}\">
                             <td>{{aula.nombre}}</td>
                             {#<td>{% if hoy == 0 or hoy == 6 %}
                                 <strong>No disponible</strong>
@@ -191,7 +231,9 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
                                 <a href=\"{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}\" class=\"btn btn-sm btn-primary\">
                                     Editar
                                 </a>
-                                
+                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
+                                    Eliminar
+                                </a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -207,6 +249,13 @@ class __TwigTemplate_6b7a87eab30219d8e04cc585db0b7f5193168cdfe81771906d56cb10ff6
             </div>
         </div>
     </div>
-{% endblock %} ", "CriveroPruebaBundle:Aulas:aulas.html.twig", "C:\\xampp\\htdocs\\Prueba\\src\\Crivero\\PruebaBundle/Resources/views/Aulas/aulas.html.twig");
+                
+    {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form_ajax, id: \"form-delete\", with_submit: false })}}
+    
+{% endblock %} 
+{% block javascripts %}
+    {{ parent() }}
+    <script src=\"{{ asset('bundles/criveroprueba/js/delete-aula.js') }}\"></script>
+{% endblock %}", "CriveroPruebaBundle:Aulas:aulas.html.twig", "C:\\xampp\\htdocs\\Prueba\\src\\Crivero\\PruebaBundle/Resources/views/Aulas/aulas.html.twig");
     }
 }

@@ -122,20 +122,23 @@ class __TwigTemplate_91aaf3250a47bd908dbb8169e4cb4c69b4e78ec644e6370c7849eca507d
                     ";
         }
         // line 44
-        echo "                    <a href=\"";
+        echo "                </div>
+
+                <div class=\"text-center\">
+                    <a href=\"";
+        // line 47
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_aula_editar", array("id" => $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "id", array()))), "html", null, true);
         echo "\" class=\"btn btn-sm btn-primary\">
                         Editar info
                     </a>
-                </div>
-
-
-                ";
-        // line 53
+                    ";
+        // line 50
+        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form")), "nombre" => "Eliminar aula"));
         echo "
+                 </div>
 
             </div>
-            ";
+";
     }
 
     public function getTemplateName()
@@ -150,7 +153,7 @@ class __TwigTemplate_91aaf3250a47bd908dbb8169e4cb4c69b4e78ec644e6370c7849eca507d
 
     public function getDebugInfo()
     {
-        return array (  135 => 53,  125 => 44,  121 => 42,  108 => 40,  104 => 39,  100 => 37,  98 => 36,  93 => 34,  84 => 27,  78 => 24,  75 => 23,  69 => 20,  66 => 19,  64 => 18,  59 => 16,  50 => 10,  40 => 4,  37 => 3,  29 => 2,  11 => 1,);
+        return array (  136 => 50,  130 => 47,  125 => 44,  121 => 42,  108 => 40,  104 => 39,  100 => 37,  98 => 36,  93 => 34,  84 => 27,  78 => 24,  75 => 23,  69 => 20,  66 => 19,  64 => 18,  59 => 16,  50 => 10,  40 => 4,  37 => 3,  29 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -206,18 +209,16 @@ class __TwigTemplate_91aaf3250a47bd908dbb8169e4cb4c69b4e78ec644e6370c7849eca507d
                             {% endfor %}
                         </div>
                     {% endif %}
+                </div>
+
+                <div class=\"text-center\">
                     <a href=\"{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}\" class=\"btn btn-sm btn-primary\">
                         Editar info
                     </a>
-                </div>
-
-
-                {# <div class=\"text-center\">
-                   <a href=\"{{ path('crivero_prueba_cancha_editar', { id: cancha.id }) }}\" class=\"btn btn-primary\">Editar info</a>
-                 </div>#}
-
+                    {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: \"Eliminar aula\" })}}
+                 </div>
 
             </div>
-            {% endblock %}", "CriveroPruebaBundle:Aulas:aula.html.twig", "C:\\xampp\\htdocs\\Prueba\\src\\Crivero\\PruebaBundle/Resources/views/Aulas/aula.html.twig");
+{% endblock %}", "CriveroPruebaBundle:Aulas:aula.html.twig", "C:\\xampp\\htdocs\\Prueba\\src\\Crivero\\PruebaBundle/Resources/views/Aulas/aula.html.twig");
     }
 }

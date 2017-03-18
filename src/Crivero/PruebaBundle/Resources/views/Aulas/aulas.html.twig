@@ -4,6 +4,13 @@
 {% block title %} Aulas {% endblock %}
 
 {% block contenido %}
+    
+    <div class="progress no-border hidden" id="delete-progress" style="margin-top: -20px">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div> 
+    
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class="container">
         <div class="page-header">
@@ -22,7 +29,7 @@
                 </thead>
                 <tbody>
                     {% for aula in pagination %}
-                        <tr>
+                        <tr data-id="{{ aula.id }}">
                             <td>{{aula.nombre}}</td>
                             {#<td>{% if hoy == 0 or hoy == 6 %}
                                 <strong>No disponible</strong>
@@ -38,7 +45,9 @@
                                 <a href="{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}" class="btn btn-sm btn-primary">
                                     Editar
                                 </a>
-                                
+                                <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                    Eliminar
+                                </a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -54,4 +63,11 @@
             </div>
         </div>
     </div>
+                
+    {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form_ajax, id: "form-delete", with_submit: false })}}
+    
 {% endblock %} 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/criveroprueba/js/delete-aula.js') }}"></script>
+{% endblock %}

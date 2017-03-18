@@ -109,6 +109,11 @@ crivero_prueba_aula_actualizar:
     pattern:  /aula/actualizar/{id}
     defaults: { _controller: CriveroPruebaBundle:Aula:actualizar }
     
+crivero_prueba_aula_eliminar:
+    pattern:  /aula/eliminar/{id}
+    defaults: { _controller: CriveroPruebaBundle:Aula:eliminarAula }
+    methods: [POST, DELETE]    
+    
 crivero_prueba_reservas:
     pattern:  /reservas
     defaults: { _controller: CriveroPruebaBundle:Reserva:reservas }
