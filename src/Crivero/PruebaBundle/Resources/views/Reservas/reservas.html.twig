@@ -10,7 +10,7 @@
                 <h1 class="t1">Reservas</h1>
             </div>
         {% if not pagination|length %}
-            <h2>No se encontraron reservas con esos parámetros de búsqueda.</h2>
+            <h2>No se encontraron reservas.</h2>
         {% else %}
             <div class="table-responsive">
                 <table class="table table-hover">
@@ -26,8 +26,8 @@
                     <tbody>
                         {% for reserva in pagination %}
                             <tr>
-                                <td><a href="{{ path('crivero_prueba_cliente', { id: reserva.idCliente }) }}" style="color: #000" >{{reserva.cliente}}</a></td>
-                                <td><strong><a href="{{ path('crivero_prueba_cancha', { id: reserva.idCancha }) }}" style="color: #000">{{reserva.cancha}}</a></strong></td>
+                                <td><strong><a class="atd" href="{{ path('crivero_prueba_cliente', { id: reserva.idCliente }) }}" >{{reserva.cliente}}</a></strong></td>
+                                <td><strong><a class="atd" href="{{ path('crivero_prueba_cancha', { id: reserva.idCancha }) }}" >{{reserva.cancha}}</a></strong></td>
                                 <td>{{reserva.fechaInicio|date('d/m/Y H:i')}}</td>
                                 <td>{{reserva.fechaFinalizacion|date('d/m/Y H:i')}}</td>
                                 <td class="actions">

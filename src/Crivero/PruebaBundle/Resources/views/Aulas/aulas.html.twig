@@ -16,48 +16,51 @@
         <div class="page-header">
             <h1 class="t1">Aulas</h1>
         </div>
-        
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'a.nombre') }}</th>
-                        <th>{{ knp_pagination_sortable(pagination, 'Estado', 'a.disponibilidad') }}</th>
-                        <th>{{ knp_pagination_sortable(pagination, 'Horario', 'a.horario') }}</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for aula in pagination %}
-                        <tr data-id="{{ aula.id }}">
-                            <td>{{aula.nombre}}</td>
-                            {#<td>{% if hoy == 0 or hoy == 6 %}
-                                <strong>No disponible</strong>
-                                {% else %}
-                                    <strong>{{ estados[aula.id-1].estado }}</strong>
-                                {% endif %}</td>#}
-                            <td><strong>{{aula.disponibilidad}}</strong></td>
-                            <td>{{aula.horario}}</td>
-                            <td class="actions">
-                              <a href="{{ path('crivero_prueba_aula', { id: aula.id }) }}" class="btn btn-sm btn-info">
-                                    Ver
-                                </a>
-                                <a href="{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}" class="btn btn-sm btn-primary">
-                                    Editar
-                                </a>
-                                <a href="#" class="btn btn-sm btn-danger btn-delete">
-                                    Eliminar
-                                </a>
-                            </td>
+        {% if not pagination|length %}
+            <h2>No se encontraron aulas.</h2>
+        {% else %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'a.nombre') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Estado', 'a.disponibilidad') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Horario', 'a.horario') }}</th>
+                            <th>Acciones</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div>
-            <div class="nuevoUsuario text-center">
-                    <a href="{{path('crivero_prueba_aula_nueva')}}" class="btn btn-success" style="width: 150px;"> Nueva aula <span class="glyphicon glyphicon-plus"></span></a>
+                    </thead>
+                    <tbody>
+                        {% for aula in pagination %}
+                            <tr data-id="{{ aula.id }}">
+                                <td>{{aula.nombre}}</td>
+                                {#<td>{% if hoy == 0 or hoy == 6 %}
+                                    <strong>No disponible</strong>
+                                    {% else %}
+                                        <strong>{{ estados[aula.id-1].estado }}</strong>
+                                    {% endif %}</td>#}
+                                <td><strong>{{aula.disponibilidad}}</strong></td>
+                                <td>{{aula.horario}}</td>
+                                <td class="actions">
+                                  <a href="{{ path('crivero_prueba_aula', { id: aula.id }) }}" class="btn btn-sm btn-info">
+                                        Ver
+                                    </a>
+                                    <a href="{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}" class="btn btn-sm btn-primary">
+                                        Editar
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                        Eliminar
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
+        {% endif %}
+        <div>
+            {#<div class="nuevoUsuario text-center">
+                    <a href="{{path('crivero_prueba_aula_nueva')}}" class="btn btn-success" style="width: 150px;"> Nueva aula <span class="glyphicon glyphicon-plus"></span></a>
+            </div>#}
             <div class="navigation">
                 {{ knp_pagination_render(pagination) }}
             </div>

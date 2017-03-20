@@ -26,6 +26,8 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{url('crivero_prueba_clientes')}}">Clientes</a></li>
                         <li><a href="{{url('crivero_prueba_monitores')}}">Monitores</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{url('crivero_prueba_nuevo')}}">Crear usuario</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -33,6 +35,14 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{url('crivero_prueba_canchas')}}">Canchas</a></li>
                         <li><a href="{{url('crivero_prueba_aulas')}}">Aulas</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Crear instalacion</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{url('crivero_prueba_cancha_nueva')}}">Crear cancha</a></li> 
+                                <li><a href="{{url('crivero_prueba_aula_nueva')}}">Crear aula</a></li> 
+                            </ul>
+                        </li>    
                     </ul>
                 </li>
                 <li><a href="{{url('crivero_prueba_reservas')}}">Reservas</a></li>
@@ -42,6 +52,8 @@
                         <li><a href="{{url('crivero_prueba_competiciones')}}">Competiciones </a></li>
                         <li><a href="{{url('crivero_prueba_equipos')}}">Equipos</a></li>
                         <li><a href="{{url('crivero_prueba_jugadores')}}">Jugadores</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{url('crivero_prueba_competicion_nueva')}}">Crear competición</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

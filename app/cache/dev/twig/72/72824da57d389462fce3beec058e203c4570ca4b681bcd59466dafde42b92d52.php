@@ -49,13 +49,13 @@ class __TwigTemplate_bdf1832e2a431a4f02b47fdc455d46878e07ef4c275436e46b506df0b78
         echo "
     <div class=\"container\">
         <div class=\"page-header\">
-            <h1 class=\"text-center\">Clientes</h1>
+            <h1 class=\"t1\">Clientes</h1>
         </div>
         ";
         // line 18
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
             // line 19
-            echo "            <h2>No se encontraron clientes con esos parámetros de búsqueda</h2>
+            echo "            <h2>No se encontraron clientes.</h2>
         ";
         } else {
             // line 21
@@ -110,20 +110,21 @@ class __TwigTemplate_bdf1832e2a431a4f02b47fdc455d46878e07ef4c275436e46b506df0b78
                 echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["usuario"], "registro", array()), "d/m/Y"), "html", null, true);
                 echo "</td>
                                 <td class=\"actions\">
+                                    
                                     <a href=\"";
-                // line 41
+                // line 42
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-info\">
                                         Ver
                                     </a>
                                     <a href=\"";
-                // line 44
+                // line 45
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_editarUsuario", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-primary\">
                                         Editar
                                     </a>
                                     <a href=\"";
-                // line 47
+                // line 48
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_usuario_pagos", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-warning\">
                                         Pagos
@@ -138,23 +139,19 @@ class __TwigTemplate_bdf1832e2a431a4f02b47fdc455d46878e07ef4c275436e46b506df0b78
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['usuario'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 56
+            // line 57
             echo "                    </tbody>
                 </table>
             </div>
         ";
         }
-        // line 60
+        // line 61
         echo "        <div>
-            <div class=\"nuevoUsuario text-center\">
-                <a href=\"";
-        // line 62
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_nuevo");
-        echo "\" class=\"btn btn-success\" style=\"width: 150px;\"> Nuevo Usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
-            </div>
-            <div class=\"navigation\">
-                ";
+            ";
         // line 65
+        echo "            <div class=\"navigation\">
+                ";
+        // line 66
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
             </div>
@@ -162,22 +159,22 @@ class __TwigTemplate_bdf1832e2a431a4f02b47fdc455d46878e07ef4c275436e46b506df0b78
     </div>
 
     ";
-        // line 70
+        // line 71
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "id" => "form-delete", "with_submit" => false));
         echo "
 
 ";
     }
 
-    // line 73
+    // line 74
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 74
+        // line 75
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <script src=\"";
-        // line 75
+        // line 76
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("bundles/criveroprueba/js/delete-user.js"), "html", null, true);
         echo "\"></script>
 ";
@@ -195,7 +192,7 @@ class __TwigTemplate_bdf1832e2a431a4f02b47fdc455d46878e07ef4c275436e46b506df0b78
 
     public function getDebugInfo()
     {
-        return array (  181 => 75,  176 => 74,  173 => 73,  166 => 70,  158 => 65,  152 => 62,  148 => 60,  142 => 56,  127 => 47,  121 => 44,  115 => 41,  110 => 39,  106 => 38,  102 => 37,  98 => 36,  93 => 35,  89 => 34,  80 => 28,  76 => 27,  72 => 26,  68 => 25,  62 => 21,  58 => 19,  56 => 18,  48 => 13,  39 => 6,  36 => 5,  30 => 3,  11 => 1,);
+        return array (  178 => 76,  173 => 75,  170 => 74,  163 => 71,  155 => 66,  152 => 65,  149 => 61,  143 => 57,  128 => 48,  122 => 45,  116 => 42,  110 => 39,  106 => 38,  102 => 37,  98 => 36,  93 => 35,  89 => 34,  80 => 28,  76 => 27,  72 => 26,  68 => 25,  62 => 21,  58 => 19,  56 => 18,  48 => 13,  39 => 6,  36 => 5,  30 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -223,10 +220,10 @@ class __TwigTemplate_bdf1832e2a431a4f02b47fdc455d46878e07ef4c275436e46b506df0b78
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class=\"container\">
         <div class=\"page-header\">
-            <h1 class=\"text-center\">Clientes</h1>
+            <h1 class=\"t1\">Clientes</h1>
         </div>
         {% if not pagination|length %}
-            <h2>No se encontraron clientes con esos parámetros de búsqueda</h2>
+            <h2>No se encontraron clientes.</h2>
         {% else %}
             <div class=\"table-responsive\">
                 <table class=\"table table-hover\">
@@ -248,6 +245,7 @@ class __TwigTemplate_bdf1832e2a431a4f02b47fdc455d46878e07ef4c275436e46b506df0b78
                                 <td>{{usuario.email}}</td>
                                 <td>{{usuario.registro|date('d/m/Y')}}</td>
                                 <td class=\"actions\">
+                                    
                                     <a href=\"{{ path('crivero_prueba_cliente', { id: usuario.id }) }}\" class=\"btn btn-sm btn-info\">
                                         Ver
                                     </a>
@@ -268,9 +266,9 @@ class __TwigTemplate_bdf1832e2a431a4f02b47fdc455d46878e07ef4c275436e46b506df0b78
             </div>
         {% endif %}
         <div>
-            <div class=\"nuevoUsuario text-center\">
+            {#<div class=\"nuevoUsuario text-center\">
                 <a href=\"{{path('crivero_prueba_nuevo')}}\" class=\"btn btn-success\" style=\"width: 150px;\"> Nuevo Usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
-            </div>
+            </div>#}
             <div class=\"navigation\">
                 {{ knp_pagination_render(pagination) }}
             </div>

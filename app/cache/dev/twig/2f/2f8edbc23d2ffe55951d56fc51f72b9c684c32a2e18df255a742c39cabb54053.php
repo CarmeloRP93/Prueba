@@ -25,7 +25,7 @@ class __TwigTemplate_776590c8f39d69ee2539b0a66933d978be56892589673d95b59100ef332
         echo "<!DOCTYPE html>
 <html>
     <head>
-        <meta charset=\"UTF-8\" />
+        <meta charset=\"UTF-8\">
         <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
         <title>";
         // line 6
@@ -39,25 +39,24 @@ class __TwigTemplate_776590c8f39d69ee2539b0a66933d978be56892589673d95b59100ef332
         // line 8
         $this->displayBlock('stylesheets', $context, $blocks);
         // line 12
-        echo "        
-        <div id=\"cabecera\">
-            ";
+        echo "
+    <div id=\"cabecera\">
+        ";
         // line 14
         $this->displayBlock('header', $context, $blocks);
         // line 16
-        echo "        </div>
-        
-            ";
+        echo "    </div>
+
+    ";
         // line 18
         $this->displayBlock('navegation', $context, $blocks);
         // line 20
-        echo "    </head>
-    <body>
-        ";
+        echo "</head>
+<body>
+";
         // line 22
         $this->displayBlock('body', $context, $blocks);
         // line 23
-        echo "        ";
         $this->displayBlock('javascripts', $context, $blocks);
         // line 30
         echo "</body>
@@ -78,7 +77,7 @@ class __TwigTemplate_776590c8f39d69ee2539b0a66933d978be56892589673d95b59100ef332
         echo "            <link href=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("css/main.css"), "html", null, true);
         echo "\" type=\"text/css\" rel=\"stylesheet\">
-";
+            ";
         // line 11
         echo "        ";
     }
@@ -87,14 +86,14 @@ class __TwigTemplate_776590c8f39d69ee2539b0a66933d978be56892589673d95b59100ef332
     public function block_header($context, array $blocks = array())
     {
         // line 15
-        echo "            ";
+        echo "        ";
     }
 
     // line 18
     public function block_navegation($context, array $blocks = array())
     {
         // line 19
-        echo "            ";
+        echo "    ";
     }
 
     // line 22
@@ -106,26 +105,26 @@ class __TwigTemplate_776590c8f39d69ee2539b0a66933d978be56892589673d95b59100ef332
     public function block_javascripts($context, array $blocks = array())
     {
         // line 24
-        echo "            <script src=\"";
+        echo "    <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"), "html", null, true);
         echo "\"></script>
-            <script src=\"";
+    <script src=\"";
         // line 25
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
-            <script src=\"";
+    <script src=\"";
         // line 26
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
-            <script src=\"";
+    <script src=\"";
         // line 27
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("js/bootstrap.js"), "html", null, true);
         echo "\"></script>
-            <script src=\"";
+    <script src=\"";
         // line 28
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("js/bootbox.min.js"), "html", null, true);
         echo "\"></script>
-        ";
+";
     }
 
     public function getTemplateName()
@@ -140,7 +139,7 @@ class __TwigTemplate_776590c8f39d69ee2539b0a66933d978be56892589673d95b59100ef332
 
     public function getDebugInfo()
     {
-        return array (  126 => 28,  122 => 27,  118 => 26,  114 => 25,  109 => 24,  106 => 23,  101 => 22,  97 => 19,  94 => 18,  90 => 15,  87 => 14,  83 => 11,  78 => 9,  75 => 8,  69 => 6,  63 => 30,  60 => 23,  58 => 22,  54 => 20,  52 => 18,  48 => 16,  46 => 14,  42 => 12,  40 => 8,  36 => 7,  32 => 6,  25 => 1,);
+        return array (  125 => 28,  121 => 27,  117 => 26,  113 => 25,  108 => 24,  105 => 23,  100 => 22,  96 => 19,  93 => 18,  89 => 15,  86 => 14,  82 => 11,  77 => 9,  74 => 8,  68 => 6,  62 => 30,  60 => 23,  58 => 22,  54 => 20,  52 => 18,  48 => 16,  46 => 14,  42 => 12,  40 => 8,  36 => 7,  32 => 6,  25 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -156,32 +155,32 @@ class __TwigTemplate_776590c8f39d69ee2539b0a66933d978be56892589673d95b59100ef332
         return new Twig_Source("<!DOCTYPE html>
 <html>
     <head>
-        <meta charset=\"UTF-8\" />
+        <meta charset=\"UTF-8\">
         <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel=\"icon\" type=\"image/x-icon\" href=\"{{ asset('favicon.ico') }}\" />
         {% block stylesheets %}
             <link href=\"{{ asset('css/main.css') }}\" type=\"text/css\" rel=\"stylesheet\">
-{#            <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css\" integrity=\"sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp\" crossorigin=\"anonymous\">#}
+            {#            <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css\" integrity=\"sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp\" crossorigin=\"anonymous\">#}
         {% endblock %}
-        
-        <div id=\"cabecera\">
-            {% block header %}
-            {% endblock %}
-        </div>
-        
-            {% block navegation %}
-            {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}
-            <script src=\"{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js') }}\"></script>
-            <script src=\"{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js') }}\"></script>
-            <script src=\"{{ asset('js/bootstrap.min.js') }}\"></script>
-            <script src=\"{{ asset('js/bootstrap.js') }}\"></script>
-            <script src=\"{{ asset('js/bootbox.min.js') }}\"></script>
+
+    <div id=\"cabecera\">
+        {% block header %}
         {% endblock %}
+    </div>
+
+    {% block navegation %}
+    {% endblock %}
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block javascripts %}
+    <script src=\"{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js') }}\"></script>
+    <script src=\"{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js') }}\"></script>
+    <script src=\"{{ asset('js/bootstrap.min.js') }}\"></script>
+    <script src=\"{{ asset('js/bootstrap.js') }}\"></script>
+    <script src=\"{{ asset('js/bootbox.min.js') }}\"></script>
+{% endblock %}
 </body>
 </html>
 ", "::base.html.twig", "C:\\xampp\\htdocs\\Prueba\\app/Resources\\views/base.html.twig");

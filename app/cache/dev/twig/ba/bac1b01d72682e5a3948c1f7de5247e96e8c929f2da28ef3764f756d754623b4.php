@@ -37,7 +37,7 @@ class __TwigTemplate_35d157f35d64a9faf79878ac48469a863c820cb7453864fa7e500b009ac
         // line 6
         echo "    <div class=\"container\">
         <div class=\"page-header\">
-            <h2 class=\"text-center\">Sesiones Generales</h2>
+            <h1 class=\"t1\">Sesiones Generales</h1>
         </div>
         
         <div class=\"table-responsive\">
@@ -177,7 +177,7 @@ $context["sesion"], "estado", array()) == "validada")) {
 {% block contenido %}
     <div class=\"container\">
         <div class=\"page-header\">
-            <h2 class=\"text-center\">Sesiones Generales</h2>
+            <h1 class=\"t1\">Sesiones Generales</h1>
         </div>
         
         <div class=\"table-responsive\">

@@ -40,13 +40,13 @@ class __TwigTemplate_859e2419ae069698f9b3e2baf04fab0ff1308efc9f2af5b5cf10a0f2fff
         echo "
     <div class=\"container\">
             <div class=\"page-header \"> 
-                <h1 class=\"text-center\">Reservas</h1>
+                <h1 class=\"t1\">Reservas</h1>
             </div>
         ";
         // line 12
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
             // line 13
-            echo "            <h2>No se encontraron reservas con esos parámetros de búsqueda.</h2>
+            echo "            <h2>No se encontraron reservas.</h2>
         ";
         } else {
             // line 15
@@ -81,16 +81,16 @@ class __TwigTemplate_859e2419ae069698f9b3e2baf04fab0ff1308efc9f2af5b5cf10a0f2fff
             foreach ($context['_seq'] as $context["_key"] => $context["reserva"]) {
                 // line 28
                 echo "                            <tr>
-                                <td><a href=\"";
+                                <td><strong><a class=\"atd\" href=\"";
                 // line 29
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute($context["reserva"], "idCliente", array()))), "html", null, true);
-                echo "\" style=\"color: #000\" >";
+                echo "\" >";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "cliente", array()), "html", null, true);
-                echo "</a></td>
-                                <td><strong><a href=\"";
+                echo "</a></strong></td>
+                                <td><strong><a class=\"atd\" href=\"";
                 // line 30
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_cancha", array("id" => $this->getAttribute($context["reserva"], "idCancha", array()))), "html", null, true);
-                echo "\" style=\"color: #000\">";
+                echo "\" >";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "cancha", array()), "html", null, true);
                 echo "</a></strong></td>
                                 <td>";
@@ -166,10 +166,10 @@ class __TwigTemplate_859e2419ae069698f9b3e2baf04fab0ff1308efc9f2af5b5cf10a0f2fff
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class=\"container\">
             <div class=\"page-header \"> 
-                <h1 class=\"text-center\">Reservas</h1>
+                <h1 class=\"t1\">Reservas</h1>
             </div>
         {% if not pagination|length %}
-            <h2>No se encontraron reservas con esos parámetros de búsqueda.</h2>
+            <h2>No se encontraron reservas.</h2>
         {% else %}
             <div class=\"table-responsive\">
                 <table class=\"table table-hover\">
@@ -185,8 +185,8 @@ class __TwigTemplate_859e2419ae069698f9b3e2baf04fab0ff1308efc9f2af5b5cf10a0f2fff
                     <tbody>
                         {% for reserva in pagination %}
                             <tr>
-                                <td><a href=\"{{ path('crivero_prueba_cliente', { id: reserva.idCliente }) }}\" style=\"color: #000\" >{{reserva.cliente}}</a></td>
-                                <td><strong><a href=\"{{ path('crivero_prueba_cancha', { id: reserva.idCancha }) }}\" style=\"color: #000\">{{reserva.cancha}}</a></strong></td>
+                                <td><strong><a class=\"atd\" href=\"{{ path('crivero_prueba_cliente', { id: reserva.idCliente }) }}\" >{{reserva.cliente}}</a></strong></td>
+                                <td><strong><a class=\"atd\" href=\"{{ path('crivero_prueba_cancha', { id: reserva.idCancha }) }}\" >{{reserva.cancha}}</a></strong></td>
                                 <td>{{reserva.fechaInicio|date('d/m/Y H:i')}}</td>
                                 <td>{{reserva.fechaFinalizacion|date('d/m/Y H:i')}}</td>
                                 <td class=\"actions\">

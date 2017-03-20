@@ -37,7 +37,7 @@ class __TwigTemplate_971cf7ae81f31c09ed14b9b79187b174915dd5e7801fce107041803efc9
         // line 7
         echo "    <div class=\"container\">
         <div class=\"page-header\">
-            <h2 class=\"text-center\">Sesiones Dedicadas</h2>
+            <h1 class=\"t1\">Sesiones Dedicadas</h1>
         </div>
         
         <div class=\"table-responsive\">
@@ -168,7 +168,7 @@ class __TwigTemplate_971cf7ae81f31c09ed14b9b79187b174915dd5e7801fce107041803efc9
 {% block contenido %}
     <div class=\"container\">
         <div class=\"page-header\">
-            <h2 class=\"text-center\">Sesiones Dedicadas</h2>
+            <h1 class=\"t1\">Sesiones Dedicadas</h1>
         </div>
         
         <div class=\"table-responsive\">

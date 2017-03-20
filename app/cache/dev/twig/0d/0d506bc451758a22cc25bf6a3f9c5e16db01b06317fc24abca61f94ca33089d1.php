@@ -37,7 +37,7 @@ class __TwigTemplate_f2b7cd08c4dc7c33e1c87fb7d27ead09e6fb680357e05de4e9caef31d7d
         // line 6
         echo "    <div class=\"container\">
         <div class=\"page-header\">
-            <h1 class=\"text-center\">Competiciones</h1>
+            <h1 class=\"t1\">Competiciones</h1>
         </div>
         
         <div class=\"table-responsive\">
@@ -118,15 +118,9 @@ class __TwigTemplate_f2b7cd08c4dc7c33e1c87fb7d27ead09e6fb680357e05de4e9caef31d7d
         echo "                </tbody>
             </table>
         </div>
-        <div class=\"nueva\">
-            <a href=\"";
-        // line 54
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_competicion_nueva");
-        echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">
-                Nueva Competicion 
-             <span class=\"glyphicon glyphicon-plus\"></span></a>
-        </div>
-    </div>
+        ";
+        // line 58
+        echo "    </div>
 ";
     }
 
@@ -142,7 +136,7 @@ class __TwigTemplate_f2b7cd08c4dc7c33e1c87fb7d27ead09e6fb680357e05de4e9caef31d7d
 
     public function getDebugInfo()
     {
-        return array (  124 => 54,  118 => 50,  107 => 44,  101 => 38,  98 => 37,  94 => 35,  88 => 33,  86 => 32,  82 => 31,  78 => 30,  74 => 29,  70 => 28,  66 => 27,  63 => 26,  59 => 25,  38 => 6,  35 => 5,  29 => 3,  11 => 1,);
+        return array (  123 => 58,  118 => 50,  107 => 44,  101 => 38,  98 => 37,  94 => 35,  88 => 33,  86 => 32,  82 => 31,  78 => 30,  74 => 29,  70 => 28,  66 => 27,  63 => 26,  59 => 25,  38 => 6,  35 => 5,  29 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -162,7 +156,7 @@ class __TwigTemplate_f2b7cd08c4dc7c33e1c87fb7d27ead09e6fb680357e05de4e9caef31d7d
 {% block contenido %}
     <div class=\"container\">
         <div class=\"page-header\">
-            <h1 class=\"text-center\">Competiciones</h1>
+            <h1 class=\"t1\">Competiciones</h1>
         </div>
         
         <div class=\"table-responsive\">
@@ -207,11 +201,11 @@ class __TwigTemplate_f2b7cd08c4dc7c33e1c87fb7d27ead09e6fb680357e05de4e9caef31d7d
                 </tbody>
             </table>
         </div>
-        <div class=\"nueva\">
+        {#<div class=\"nueva\">
             <a href=\"{{path('crivero_prueba_competicion_nueva')}}\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">
                 Nueva Competicion 
              <span class=\"glyphicon glyphicon-plus\"></span></a>
-        </div>
+        </div>#}
     </div>
 {% endblock %}", "CriveroPruebaBundle:Competiciones:competiciones.html.twig", "C:\\xampp\\htdocs\\Prueba\\src\\Crivero\\PruebaBundle/Resources/views/Competiciones/competiciones.html.twig");
     }

@@ -71,7 +71,7 @@ class __TwigTemplate_4f214dceab3fc597510642ac5828c0a040c94fcdc1eaee8e0817a5b9149
         echo "</p>
                     <h4>Registro: </h4> <p>";
         // line 22
-        echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "registro", array()), "d/m/Y H:i"), "html", null, true);
+        echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "registro", array()), "d/m/Y"), "html", null, true);
         echo "</p>
 
                     <div>
@@ -215,7 +215,7 @@ class __TwigTemplate_4f214dceab3fc597510642ac5828c0a040c94fcdc1eaee8e0817a5b9149
                     <h4>Nombre: </h4> <p>{{cliente.nombre}}</p>
                     <h4>F.Nacimiento: </h4> <p>{{cliente.fNacimiento}}</p>
                     <h4>Telefono: </h4> <p>{{cliente.telefono}}</p>
-                    <h4>Registro: </h4> <p>{{cliente.registro|date('d/m/Y H:i')}}</p>
+                    <h4>Registro: </h4> <p>{{cliente.registro|date('d/m/Y')}}</p>
 
                     <div>
                         {% if reservas != null %}

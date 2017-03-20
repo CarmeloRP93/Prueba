@@ -49,14 +49,14 @@ class __TwigTemplate_30cd79c142442aeb9fc5e42d7d8be4bdb4389280f65bbc5213b83986c72
         echo "
     <div class=\"container\">
         <div class=\"page-header\">
-            <h1 class=\"text-center\">Monitores</h1>
+            <h1 class=\"t1\">Monitores</h1>
         </div>
         
         ";
         // line 19
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
             // line 20
-            echo "            <h2>No se encontraron monitores con esos parámetros de búsqueda.</h2>
+            echo "            <h2>No se encontraron monitores.</h2>
         ";
         } else {
             // line 22
@@ -107,7 +107,7 @@ class __TwigTemplate_30cd79c142442aeb9fc5e42d7d8be4bdb4389280f65bbc5213b83986c72
                 echo "</td>
                                     <td>";
                 // line 39
-                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["usuario"], "registro", array()), "d/m/Y H:i"), "html", null, true);
+                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["usuario"], "registro", array()), "d/m/Y"), "html", null, true);
                 echo "</td>
                                     <td class=\"actions\">
                                         <a href=\"";
@@ -140,13 +140,9 @@ class __TwigTemplate_30cd79c142442aeb9fc5e42d7d8be4bdb4389280f65bbc5213b83986c72
         }
         // line 57
         echo "        <div>
-            <div class=\"nuevoUsuario text-center\" style=\"margin-right: 80px\">
-                <a href=\"";
-        // line 59
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_nuevo");
-        echo "\" class=\"btn btn-success\" style=\"width: 150px;\">Nuevo usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
-            </div>
-            <div class=\"navigation\">
+            ";
+        // line 61
+        echo "            <div class=\"navigation\">
                 ";
         // line 62
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
@@ -189,7 +185,7 @@ class __TwigTemplate_30cd79c142442aeb9fc5e42d7d8be4bdb4389280f65bbc5213b83986c72
 
     public function getDebugInfo()
     {
-        return array (  175 => 72,  170 => 71,  167 => 70,  160 => 67,  152 => 62,  146 => 59,  142 => 57,  136 => 53,  121 => 44,  115 => 41,  110 => 39,  106 => 38,  102 => 37,  98 => 36,  93 => 35,  89 => 34,  81 => 29,  77 => 28,  73 => 27,  69 => 26,  63 => 22,  59 => 20,  57 => 19,  48 => 13,  39 => 6,  36 => 5,  30 => 3,  11 => 1,);
+        return array (  171 => 72,  166 => 71,  163 => 70,  156 => 67,  148 => 62,  145 => 61,  142 => 57,  136 => 53,  121 => 44,  115 => 41,  110 => 39,  106 => 38,  102 => 37,  98 => 36,  93 => 35,  89 => 34,  81 => 29,  77 => 28,  73 => 27,  69 => 26,  63 => 22,  59 => 20,  57 => 19,  48 => 13,  39 => 6,  36 => 5,  30 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -217,11 +213,11 @@ class __TwigTemplate_30cd79c142442aeb9fc5e42d7d8be4bdb4389280f65bbc5213b83986c72
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class=\"container\">
         <div class=\"page-header\">
-            <h1 class=\"text-center\">Monitores</h1>
+            <h1 class=\"t1\">Monitores</h1>
         </div>
         
         {% if not pagination|length %}
-            <h2>No se encontraron monitores con esos parámetros de búsqueda.</h2>
+            <h2>No se encontraron monitores.</h2>
         {% else %}
             <div class=\"table-responsive\">
                 <table class=\"table table-hover\">
@@ -240,7 +236,7 @@ class __TwigTemplate_30cd79c142442aeb9fc5e42d7d8be4bdb4389280f65bbc5213b83986c72
                                     <td>{{usuario.username}}</td>
                                     <td>{{usuario.nombre}}</td>
                                     <td>{{usuario.email}}</td>
-                                    <td>{{usuario.registro|date('d/m/Y H:i')}}</td>
+                                    <td>{{usuario.registro|date('d/m/Y')}}</td>
                                     <td class=\"actions\">
                                         <a href=\"{{ path('crivero_prueba_monitor', { id: usuario.id }) }}\" class=\"btn btn-sm btn-info\">
                                             Ver
@@ -259,9 +255,9 @@ class __TwigTemplate_30cd79c142442aeb9fc5e42d7d8be4bdb4389280f65bbc5213b83986c72
             </div>
         {% endif %}
         <div>
-            <div class=\"nuevoUsuario text-center\" style=\"margin-right: 80px\">
+            {#<div class=\"nuevoUsuario text-center\" style=\"margin-right: 80px\">
                 <a href=\"{{path('crivero_prueba_nuevo')}}\" class=\"btn btn-success\" style=\"width: 150px;\">Nuevo usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
-            </div>
+            </div>#}
             <div class=\"navigation\">
                 {{ knp_pagination_render(pagination) }}
             </div>

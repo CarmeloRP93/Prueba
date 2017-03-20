@@ -17,7 +17,7 @@
         </div>
         
         {% if not pagination|length %}
-            <h2>No se encontraron monitores con esos parámetros de búsqueda.</h2>
+            <h2>No se encontraron monitores.</h2>
         {% else %}
             <div class="table-responsive">
                 <table class="table table-hover">
@@ -36,7 +36,7 @@
                                     <td>{{usuario.username}}</td>
                                     <td>{{usuario.nombre}}</td>
                                     <td>{{usuario.email}}</td>
-                                    <td>{{usuario.registro|date('d/m/Y H:i')}}</td>
+                                    <td>{{usuario.registro|date('d/m/Y')}}</td>
                                     <td class="actions">
                                         <a href="{{ path('crivero_prueba_monitor', { id: usuario.id }) }}" class="btn btn-sm btn-info">
                                             Ver
@@ -55,9 +55,9 @@
             </div>
         {% endif %}
         <div>
-            <div class="nuevoUsuario text-center" style="margin-right: 80px">
+            {#<div class="nuevoUsuario text-center" style="margin-right: 80px">
                 <a href="{{path('crivero_prueba_nuevo')}}" class="btn btn-success" style="width: 150px;">Nuevo usuario <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
+            </div>#}
             <div class="navigation">
                 {{ knp_pagination_render(pagination) }}
             </div>
