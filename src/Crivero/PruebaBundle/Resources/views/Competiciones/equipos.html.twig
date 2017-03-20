@@ -5,31 +5,25 @@
 {% block contenido %}
     <div class="container">
 
-        <div id="buscador">
+{#        <div id="buscador">
             <form>
                 <input type="search" name="equipo" placeholder="Buscar equipo"/>
             </form>
-        </div>
-        <h1>Listado de Equipos</h1>
-        <h3>Fútbol</h3>
+        </div>#}
+        <h1 class="t1">Listado de Equipos</h1>
+        <h3 class="t3">Fútbol</h3>
         {% for equipo in equipos %}
             {%if equipo.deporte =='Fútbol'%}
-                <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>
+                <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila">Nombre del equipo:{{ equipo.nombre }}</a>
             {%endif%}
         {% endfor %}
-        <h3>Baloncesto</h3>
-        {% for equipo in equipos %}
-            {%if equipo.deporte =='Baloncesto'%}
-                <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>
-            {%endif%}
-        {% endfor %}
-        <h3>Tenis</h3>
+        <h3 class="t3">Tenis</h3>
         {% for equipo in equipos %}
             {%if equipo.deporte =='Tenis'%}
                 <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>
             {%endif%}
         {% endfor %}
-        <h3>Padel</h3>
+        <h3 class="t3">Padel</h3>
         {% for equipo in equipos %}
             {%if equipo.deporte =='Padel'%}
                 <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>

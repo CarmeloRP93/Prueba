@@ -6,7 +6,7 @@
     <div class="container">
 
         <div class="page-header">
-            <h1 class="text-center"> Jugadores</h1>
+            <h1 class="t1"> Jugadores</h1>
         </div>
         
         <div class="table-responsive">
@@ -27,7 +27,7 @@
                             {% for equipo in equipos if equipo.id == jugador.idEquipo%}
                                 <td>{{equipo.nombre}}</td>
                             {%endfor%}
-                            <td>{{jugador.nombre}}</td>
+                            <td><p>{{jugador.nombre}}</p></td>
                             <td>{{jugador.primerApellido}}</td>
                             <td>{{jugador.segundoApellido}}</td>
                             <td>{{jugador.dorsal}}</td>
