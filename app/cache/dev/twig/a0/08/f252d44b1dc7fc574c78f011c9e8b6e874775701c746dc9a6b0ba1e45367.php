@@ -64,7 +64,7 @@ class __TwigTemplate_a008f252d44b1dc7fc574c78f011c9e8b6e874775701c746dc9a6b0ba1e
         // line 19
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
             // line 20
-            echo "            <h2>No se encontraron monitores con esos parámetros de búsqueda.</h2>
+            echo "            <h2>No se encontraron monitores.</h2>
         ";
         } else {
             // line 22
@@ -115,7 +115,7 @@ class __TwigTemplate_a008f252d44b1dc7fc574c78f011c9e8b6e874775701c746dc9a6b0ba1e
                 echo "</td>
                                     <td>";
                 // line 39
-                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["usuario"], "registro", array()), "d/m/Y H:i"), "html", null, true);
+                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["usuario"], "registro", array()), "d/m/Y"), "html", null, true);
                 echo "</td>
                                     <td class=\"actions\">
                                         <a href=\"";
@@ -148,13 +148,9 @@ class __TwigTemplate_a008f252d44b1dc7fc574c78f011c9e8b6e874775701c746dc9a6b0ba1e
         }
         // line 57
         echo "        <div>
-            <div class=\"nuevoUsuario text-center\" style=\"margin-right: 80px\">
-                <a href=\"";
-        // line 59
-        echo $this->env->getExtension('routing')->getPath("crivero_prueba_nuevo");
-        echo "\" class=\"btn btn-success\" style=\"width: 150px;\">Nuevo usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
-            </div>
-            <div class=\"navigation\">
+            ";
+        // line 61
+        echo "            <div class=\"navigation\">
                 ";
         // line 62
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
@@ -197,6 +193,6 @@ class __TwigTemplate_a008f252d44b1dc7fc574c78f011c9e8b6e874775701c746dc9a6b0ba1e
 
     public function getDebugInfo()
     {
-        return array (  183 => 72,  178 => 71,  175 => 70,  168 => 67,  160 => 62,  154 => 59,  150 => 57,  144 => 53,  129 => 44,  123 => 41,  118 => 39,  114 => 38,  110 => 37,  106 => 36,  101 => 35,  97 => 34,  89 => 29,  85 => 28,  81 => 27,  77 => 26,  71 => 22,  67 => 20,  65 => 19,  56 => 13,  47 => 6,  44 => 5,  38 => 3,  11 => 1,);
+        return array (  179 => 72,  174 => 71,  171 => 70,  164 => 67,  156 => 62,  153 => 61,  150 => 57,  144 => 53,  129 => 44,  123 => 41,  118 => 39,  114 => 38,  110 => 37,  106 => 36,  101 => 35,  97 => 34,  89 => 29,  85 => 28,  81 => 27,  77 => 26,  71 => 22,  67 => 20,  65 => 19,  56 => 13,  47 => 6,  44 => 5,  38 => 3,  11 => 1,);
     }
 }

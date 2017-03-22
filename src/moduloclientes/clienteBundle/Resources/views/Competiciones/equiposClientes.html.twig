@@ -3,35 +3,29 @@
 {% block title %} Vista de Equipos {% endblock %}
 {% block contenido %}
     <div class="container">
-        <div id="buscador">
-            <form>
-                <input type="search" name="equipo" placeholder="Buscar equipo"/>
-            </form>
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    {# <div id="buscador">
+                         <form>
+                             <input type="search" name="equipo" placeholder="Buscar equipo"/>
+                         </form>
+                     </div>#}
+                    <h1 class="t1">Listado de Equipos</h1>
+                </div>
+                <h3>Fútbol</h3>
+                {% for equipo in equipos %}
+                    {%if equipo.deporte =='Fútbol'%}
+                        <a href="{{url('moduloclientes_cliente_equipoClientes', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>
+                    {%endif%}
+                {% endfor %}
+                <h3>Padel</h3>
+                {% for equipo in equipos %}
+                    {%if equipo.deporte =='Padel'%}
+                        <a href="{{url('moduloclientes_cliente_equipoClientes', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>
+                    {%endif%}
+                {% endfor %}
+            </div>
         </div>
-        <h1>Listado de Equipos</h1>
-        <h3>Fútbol</h3>
-        {% for equipo in equipos %}
-            {%if equipo.deporte =='Fútbol'%}
-                <a href="{{url('moduloclientes_cliente_equipoClientes', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>
-            {%endif%}
-        {% endfor %}
-        <h3>Baloncesto</h3>
-        {% for equipo in equipos %}
-            {%if equipo.deporte =='Baloncesto'%}
-                <a href="{{url('moduloclientes_cliente_equipoClientes', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>
-            {%endif%}
-        {% endfor %}
-        <h3>Tenis</h3>
-        {% for equipo in equipos %}
-            {%if equipo.deporte =='Tenis'%}
-                <a href="{{url('moduloclientes_cliente_equipoClientes', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>
-            {%endif%}
-        {% endfor %}
-        <h3>Padel</h3>
-        {% for equipo in equipos %}
-            {%if equipo.deporte =='Padel'%}
-                <a href="{{url('moduloclientes_cliente_equipoClientes', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>
-            {%endif%}
-        {% endfor %}
     </div>
 {% endblock %}

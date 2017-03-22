@@ -3,12 +3,8 @@
 {% block title %}Reserva de {{reserva.cancha}} {% endblock %}
 {% block contenido %}
     <div class="container text-center">
-        <h3>Detalles de Reserva</h3>
-        <h3>{{reserva.cancha}}<h3>
-                </div>
-
-                <div class="text-center">
-                    <h4>Nombre de la cancha</h4>
+        <h1 class="t1">Detalles de Reserva</h1>
+        <h3 class="t3">{{reserva.cancha}}<h3>
                 </div>
 
                 <div class="col-md-6 col-xs-12">
@@ -20,7 +16,7 @@
                         <br>
                         <div class="text-center">
                             {% if reserva.estadoReserva == 'Reservado' %}
-                                <button class="btn btn-warning">Cancelar</button>
+                                <button class="btn btn-danger">Cancelar</button>
                             {% else %}
                                 <a  href="{{ path('crivero_prueba_cliente', { id: reserva.id }) }}" class="btn btn-danger">
                                     Cancelada(pulsa para descartar reserva)

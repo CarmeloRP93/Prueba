@@ -1,13 +1,8 @@
 {% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
 {% block title %}Vista de {{sesion.cliente}}/{{sesion.nombre}} {% endblock %}
 {% block contenido %}
-    <div class="text-center">
-        <h3>
-            Sesion {{sesion.id}}: {{sesion.cliente}}
-            <small class="text-muted">{{sesion.nombre}}</small>
-        </h3>
-    </div>
-
+    <h1 class="t1">{{sesion.id}}: {{sesion.cliente}}</h1>
+    <h3 class="t1">{{sesion.nombre}}</h3>
     <div id="sesiondat">
         <div id="sesionfot" style="margin-top: 14px;">
             <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" style="width: 50%; margin-bottom: 1%" />        

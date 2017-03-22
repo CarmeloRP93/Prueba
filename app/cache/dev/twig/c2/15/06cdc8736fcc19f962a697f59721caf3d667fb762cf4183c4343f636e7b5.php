@@ -54,7 +54,7 @@ class __TwigTemplate_c21506cdc8736fcc19f962a697f59721caf3d667fb762cf4183c4343f63
         // line 12
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
             // line 13
-            echo "            <h2>No se encontraron reservas con esos parámetros de búsqueda.</h2>
+            echo "            <h2>No se encontraron reservas.</h2>
         ";
         } else {
             // line 15
@@ -89,16 +89,16 @@ class __TwigTemplate_c21506cdc8736fcc19f962a697f59721caf3d667fb762cf4183c4343f63
             foreach ($context['_seq'] as $context["_key"] => $context["reserva"]) {
                 // line 28
                 echo "                            <tr>
-                                <td><a href=\"";
+                                <td><strong><a class=\"atd\" href=\"";
                 // line 29
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute($context["reserva"], "idCliente", array()))), "html", null, true);
-                echo "\" style=\"color: #000\" >";
+                echo "\" >";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "cliente", array()), "html", null, true);
-                echo "</a></td>
-                                <td><strong><a href=\"";
+                echo "</a></strong></td>
+                                <td><strong><a class=\"atd\" href=\"";
                 // line 30
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha", array("id" => $this->getAttribute($context["reserva"], "idCancha", array()))), "html", null, true);
-                echo "\" style=\"color: #000\">";
+                echo "\" >";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "cancha", array()), "html", null, true);
                 echo "</a></strong></td>
                                 <td>";

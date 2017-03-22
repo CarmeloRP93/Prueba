@@ -6,12 +6,12 @@
     <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
         <div class="panel panel-default">
             <div class="panel-heading text-center">
-                <h3>Reservas</h3>
-                <div id="buscador">
+                 <h1 class="t1">Reservas</h1>
+                {#<div id="buscador">
                     <form>
                         <input type="search" name="reserva" placeholder="Buscar reserva"/>
                     </form>
-                </div><br><br>
+                </div><br><br>#}
             </div>
             {% for reserva in reservas %}
                 <a href="{{url('moduloclientes_cliente_reservaClientes', {'id': reserva.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ reserva.id }} - {{ reserva.idCliente }} - {{ reserva.estadoReserva }}</a>

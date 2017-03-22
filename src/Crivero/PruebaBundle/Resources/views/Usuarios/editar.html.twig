@@ -3,13 +3,11 @@
 {% block title %} {{ (usuario.id == app.user.id) ?  'Mi Perfil' : 'Editar Usuario' }}  {% endblock %}
 
 {% block contenido %}
-
     <div class="container">
-
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">
-                    {{ (usuario.id == app.user.id) ?  '<h3>Mi Perfil</h3>'|raw : '<h3>Editar Usuario</h3>'|raw }} 
+                    {{ (usuario.id == app.user.id) ?  '<h3 class="t3">Mi Perfil</h3>'|raw : '<h3 class="t3">Editar Usuario</h3>'|raw }} 
 
                 </div>
                 {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}

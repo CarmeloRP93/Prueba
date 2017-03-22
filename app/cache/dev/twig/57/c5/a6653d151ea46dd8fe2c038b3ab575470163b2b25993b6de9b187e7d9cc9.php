@@ -46,7 +46,7 @@ class __TwigTemplate_57c5a6653d151ea46dd8fe2c038b3ab575470163b2b25993b6de9b187e7
     {
         // line 4
         echo "    <div class=\"container\">
-        <h1>Detalles del ";
+         <h1 class=\"t1\">Detalles del ";
         // line 5
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "nombre", array()), "html", null, true);
         echo "</h1>
@@ -55,7 +55,7 @@ class __TwigTemplate_57c5a6653d151ea46dd8fe2c038b3ab575470163b2b25993b6de9b187e7
         // line 7
         if (($this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "estadoCompeticion", array()) == "Validado")) {
             // line 8
-            echo "        <h3>Bienvenido a la ";
+            echo "         <h3 class=\"t3\">Bienvenido a la ";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "nombre", array()), "html", null, true);
             echo ". Esta competicion es para aquellos que quieran apuntarse a jugar a ";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "deporte", array()), "html", null, true);

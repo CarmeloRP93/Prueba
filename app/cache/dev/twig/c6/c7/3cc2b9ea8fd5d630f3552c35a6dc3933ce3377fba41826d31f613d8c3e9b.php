@@ -63,7 +63,7 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
         // line 18
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
             // line 19
-            echo "            <h2>No se encontraron clientes con esos parámetros de búsqueda</h2>
+            echo "            <h2>No se encontraron clientes.</h2>
         ";
         } else {
             // line 21
@@ -118,20 +118,21 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
                 echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["usuario"], "registro", array()), "d/m/Y"), "html", null, true);
                 echo "</td>
                                 <td class=\"actions\">
+                                    
                                     <a href=\"";
-                // line 41
+                // line 42
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-info\">
                                         Ver
                                     </a>
                                     <a href=\"";
-                // line 44
+                // line 45
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_editarUsuario", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-primary\">
                                         Editar
                                     </a>
                                     <a href=\"";
-                // line 47
+                // line 48
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_usuario_pagos", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-warning\">
                                         Pagos
@@ -146,23 +147,19 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['usuario'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 56
+            // line 57
             echo "                    </tbody>
                 </table>
             </div>
         ";
         }
-        // line 60
+        // line 61
         echo "        <div>
-            <div class=\"nuevoUsuario text-center\">
-                <a href=\"";
-        // line 62
-        echo $this->env->getExtension('routing')->getPath("crivero_prueba_nuevo");
-        echo "\" class=\"btn btn-success\" style=\"width: 150px;\"> Nuevo Usuario <span class=\"glyphicon glyphicon-plus\"></span></a>
-            </div>
-            <div class=\"navigation\">
-                ";
+            ";
         // line 65
+        echo "            <div class=\"navigation\">
+                ";
+        // line 66
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
             </div>
@@ -170,22 +167,22 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
     </div>
 
     ";
-        // line 70
+        // line 71
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "id" => "form-delete", "with_submit" => false));
         echo "
 
 ";
     }
 
-    // line 73
+    // line 74
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 74
+        // line 75
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <script src=\"";
-        // line 75
+        // line 76
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/criveroprueba/js/delete-user.js"), "html", null, true);
         echo "\"></script>
 ";
@@ -203,6 +200,6 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
 
     public function getDebugInfo()
     {
-        return array (  189 => 75,  184 => 74,  181 => 73,  174 => 70,  166 => 65,  160 => 62,  156 => 60,  150 => 56,  135 => 47,  129 => 44,  123 => 41,  118 => 39,  114 => 38,  110 => 37,  106 => 36,  101 => 35,  97 => 34,  88 => 28,  84 => 27,  80 => 26,  76 => 25,  70 => 21,  66 => 19,  64 => 18,  56 => 13,  47 => 6,  44 => 5,  38 => 3,  11 => 1,);
+        return array (  186 => 76,  181 => 75,  178 => 74,  171 => 71,  163 => 66,  160 => 65,  157 => 61,  151 => 57,  136 => 48,  130 => 45,  124 => 42,  118 => 39,  114 => 38,  110 => 37,  106 => 36,  101 => 35,  97 => 34,  88 => 28,  84 => 27,  80 => 26,  76 => 25,  70 => 21,  66 => 19,  64 => 18,  56 => 13,  47 => 6,  44 => 5,  38 => 3,  11 => 1,);
     }
 }

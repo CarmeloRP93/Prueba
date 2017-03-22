@@ -1,13 +1,8 @@
 {% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
 {% block title %}Vista de {{sesion.nombre}} {% endblock %}
 {% block contenido %}
-    <div class="text-center">
-        <h3>
-            Sesion {{sesion.id}}
-            <small class="text-muted">{{sesion.nombre}}</small>
-        </h3>
-    </div>
-
+    <h1 class="t1">Sesion {{sesion.id}}</h1>
+    <h3 class="t1">{{sesion.nombre}}</h3>
     <div id="sesiondat">
         <div id="sesionfot" style="margin-top: 14px;">
             <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" style="width: 50%; margin-bottom: 1%" />        
@@ -18,7 +13,6 @@
                 <h4>Ejercicios:</h4> <p>{{sesion.ejercicios}}</p>
                 <h4>Repeticiones:</h4> <p>{{sesion.repeticiones}} por ejercicio</p>
                 <h4>Nº de participantes:</h4> <p>{{sesion.nClientes}}</p>
-
             </div>
             <div id="colder" class="col-md-4">
                 <h4>Tiempo estimado:</h4> <p>{{sesion.duracion}} minutos</p>
@@ -28,5 +22,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

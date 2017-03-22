@@ -2,19 +2,27 @@
 
 {% block title %} {{monitor.nombre}} {% endblock %}
 {% block contenido %}
-    <div class="usuardesc">
-        <div class="accionesExclus">
-            <a href="{{path('modulomonitores_monitores_editarmiperfilm')}}" class="btn btn-primary">Editar perfil</a> 
-        </div>
-        <h1>Monitor: {{monitor.nombre}}</h1>
-        <div class="usuarfot">
-            <img src="{{ asset('images/no-image-found.png') }}" style="float: left; width: 100%;" />        
-        </div>
-        <div class="usuardat">
-            <h4>F.Nacimiento: </h4> <p>{{monitor.fNacimiento}}</p>
-            <h4>Correo electrónico: </h4> <p>{{monitor.email}}</p>
-            <h4>Registro: </h4> <p>{{monitor.registro|date('d/m/Y H:i')}}</p>
-            <h4>Telefono: </h4> <p>{{monitor.telefono}}</p>
+    <div class="container">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+            <div class="panel panel-default">
+{#                <div class="usuardesc">
+#}                    <div class="panel-heading text-center">
+                        <h3 class="t1">Monitor: {{monitor.nombre}}</h3>  
+                    </div>
+                    <div class="usuarfot">
+                        <img src="{{ asset('images/no-image-found.png') }}" style="float: left; width: 100%;" />        
+                    </div>
+{#                    <div class="usuardat">
+#}                      <h4>F.Nacimiento: </h4> <p>{{monitor.fNacimiento}}</p>
+                        <h4>Correo electrónico: </h4> <p>{{monitor.email}}</p>
+                        <h4>Registro: </h4> <p>{{monitor.registro|date('d/m/Y H:i')}}</p>
+                        <h4>Telefono: </h4> <p>{{monitor.telefono}}</p>
+{#                    </div>
+#}                    <div class="accionesExclus">
+                        <a href="{{path('modulomonitores_monitores_editarmiperfilm')}}" class="btn btn-primary">Editar perfil</a> 
+                    </div>
+{#                </div>
+#}            </div>
         </div>
     </div>
 {% endblock %}
