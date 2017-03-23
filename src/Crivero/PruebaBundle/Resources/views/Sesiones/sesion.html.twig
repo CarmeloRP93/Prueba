@@ -6,18 +6,13 @@
 {% block title %}Vista de {{sesion.nombre}} {% endblock %}
 {% block contenido %}
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
-    <div class="text-center">
-        <h3>
-            Sesion {{sesion.id}}
-            <small class="text-muted">{{sesion.nombre}}</small>
-        </h3>
-    </div>
+    <h1 class="t1">Sesion {{sesion.id}}</h1>
+    <h1 class="t1">{{sesion.nombre}}</h1>
 
-    <div id="sesiondat">
+    <div id="sesiondat" class="container">
         <div id="sesionfot" style="margin-top: 14px;">
-            <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" />        
+            <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" style="width: 50%; margin-bottom: 1%" />        
         </div>
-
         {% if sesion.estado == "validada"%}
             <div class="text-center">
                 <a href="{{path('crivero_prueba_cancelarSesion', {id: sesion.id})}}" style="height: 30px; width: 600px;" class="btn btn-danger">Cancelar</a>
@@ -32,12 +27,12 @@
             </div>
         {% elseif sesion.estado == "cancelada" %}
             <div class="text-center">
-                <button style="height: 30px; width: 600px;" class="btn btn-danger" disabled="disabled">Cancelada</button>
+                <button style="height: 30px; width: 400px;" class="btn btn-danger" disabled="disabled">Cancelada</button>
                 <h4>Motivos:</h4> <p>{{sesion.observaciones}}</p>
             </div>
         {% elseif sesion.estado == "rechazada" %}
             <div class="text-center">
-                <button style="height: 30px; width: 600px;" class="btn btn-danger" disabled="disabled">Rechazada</button>
+                <button style="height: 30px; width: 400px;" class="btn btn-danger" disabled="disabled">Rechazada</button>
                 <h4>Motivos:</h4> <p>{{sesion.observaciones}}</p>
             </div>
         {% else %}   

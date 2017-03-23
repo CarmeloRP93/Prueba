@@ -65,16 +65,7 @@ class ReservaController extends Controller {
             $em->persist($reserva);
             $em->flush();
 
-            if ($cliente->getReservas() == null) {
-                $cliente->setReservas($reserva->getId());
-            } else {
-                $reservas = $cliente->getReservas() . "&" . $reserva->getId();
-                $cliente->setReservas($reservas);
-            }
-            $em->persist($cliente);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('moduloclientes_cliente_canchasClientes'));
+            return $this->redirect($this->generateUrl('moduloclientes_cliente_reservasClientes'));
         }
 
         return $this->render('moduloclientesclienteBundle:Reservas:nuevaReserva.html.twig', array('form' => $form->createView()));

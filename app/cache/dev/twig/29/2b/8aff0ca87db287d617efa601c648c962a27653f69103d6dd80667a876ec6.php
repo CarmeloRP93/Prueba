@@ -84,8 +84,8 @@ class __TwigTemplate_292b8aff0ca87db287d617efa601c648c962a27653f69103d6dd80667a8
         echo "         ";
         if (($this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "estadoCompeticion", array()) == "Validado")) {
             // line 22
-            echo "             <div class=\"table-responsive\">
-                <table class=\"table table-bordered\">
+            echo "             <table class=\"table-responsive\">
+                <div class=\"table table-bordered\">
                     <thead>
                         <tr>
                             <th> Equipos inscritos por el momento  </th>
@@ -203,8 +203,7 @@ class __TwigTemplate_292b8aff0ca87db287d617efa601c648c962a27653f69103d6dd80667a8
         ";
         }
         // line 82
-        echo "
-    </div>
+        echo "    </div>
 ";
     }
 

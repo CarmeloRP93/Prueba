@@ -44,7 +44,7 @@ class __TwigTemplate_bec39340dc63b84e9ce823342d6aca60c92d61b087b0fe385e2e120957a
     {
         // line 6
         echo "    <div class=\"container\">
-        <h2>Nueva Competicion</h2>
+         <h1 class=\"t1\">Nueva Competicion</h1>
         ";
         // line 8
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("attr" => array("novalidate" => "novalidate", "role" => "form")));

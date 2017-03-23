@@ -2,27 +2,22 @@
 
 {% block title %} Vista de mis equipos {% endblock %}             
 {% block contenido %}
-    <div class="nuevoJugador">
-        <a href="{{path('moduloclientes_cliente_jugador_nuevo',{'id': equipo.id})}}" class="btn btn-success" style="height: 30px; width: 150px;">
-            Añadir jugador 
-         <span class="glyphicon glyphicon-plus"></span></a>
-    </div>
     <div class="container text-center">
-        <h1>Deporte: {{equipo.deporte}}</h1>
-        <h2>Detalles del Equipo. {{equipo.nombre}}</h2>
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th> Nombre </th>
-                            <th> Primer Apellido  </th>
-                            <th> Segundo Apellido  </th>
-                            <th> Dorsal </th>
-                            <th> Incidencia </th>
-                        </tr>
-                    </thead>
-                    {% for jugador in jugadores %}
-                        {% if equipo.id == jugador.idEquipo%}
+        <h1 class="t1">Deporte: {{equipo.deporte}}</h1>
+        <h2 class="t1">Detalles del Equipo. {{equipo.nombre}}</h2>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th> Nombre </th>
+                        <th> Primer Apellido  </th>
+                        <th> Segundo Apellido  </th>
+                        <th> Dorsal </th>
+                        <th> Incidencia </th>
+                    </tr>
+                </thead>
+                {% for jugador in jugadores %}
+                    {% if equipo.id == jugador.idEquipo%}
                         <tr>
                             <td>  {{jugador.nombre}}  </td>
                             <td> {{jugador.primerApellido}} </td>
@@ -30,9 +25,14 @@
                             <td>   {{jugador.Dorsal}}   </td>
                             <td>   {{jugador.incidencia}}   </td>
                         </tr>
-                        {%endif%}
-                    {%endfor%}
-                </table>
-            </div>
+                    {%endif%}
+                {%endfor%}
+            </table>
+        </div>
+        <div class="nuevoJugador">
+            <a href="{{path('moduloclientes_cliente_jugador_nuevo',{'id': equipo.id})}}" class="btn btn-success" style="height: 30px; width: 150px;">
+                Añadir jugador 
+                <span class="glyphicon glyphicon-plus"></span></a>
+        </div>
     </div>
 {% endblock %}
