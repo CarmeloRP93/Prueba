@@ -71,7 +71,7 @@ class __TwigTemplate_0a0d7c2b21bc3124710f155c13d1d9390dcacee1da8ee3c1ccdb269e091
         } else {
             // line 16
             echo "                <form id=\"formu\" action=\"";
-            echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_sesionesMonitores");
+            echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_misSesionesMonitores");
             echo "\" method=\"post\">
                 </form>
             ";

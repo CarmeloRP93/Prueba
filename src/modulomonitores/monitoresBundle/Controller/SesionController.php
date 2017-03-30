@@ -95,7 +95,7 @@ class SesionController extends Controller {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($sesion);
                 $em->flush();
-                return $this->redirect($this->generateUrl('modulomonitores_monitores_MisSesionesMonitores'));
+                return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionesMonitores'));
             } else {
                 $form->get('lClientes')->addError(new FormError('Rellene el campo gracias'));
             }
@@ -330,13 +330,7 @@ class SesionController extends Controller {
         }
         return $this->render('modulomonitoresmonitoresBundle:Default:participantes.html.twig', array("clientes" => $clientes));
     }
-    private function findEntity($id, $em, $repository) {
-        $entity = $em->getRepository($repository)->find($id);
-        if (!$entity) {
-            throw $this->createNotFoundException('Entidad no encontrada');
-        }
-        return $entity;
-    }
+    
     public function participanteAction($id) {
         $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $cliente = $repositoryUsuarios->find($id);
@@ -348,6 +342,32 @@ class SesionController extends Controller {
         return $this->render('modulomonitoresmonitoresBundle:Default:participante.html.twig', array("cliente" => $cliente,
                      "sesiones" => $sesionesCliente,));
     }
+    
+    
+    public function abandonarSesionAction($id) {
+        $em = $this->getDoctrine()->getManager();
+
+        $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
+       
+        $sesion->setIdMonitor(null);
+
+        if ($sesion->getNClientes() == 0 && $sesion->getEstado() == 'cancelada') {
+            $em->remove($sesion);
+        } else {
+            $em->persist($sesion);
+        }
+        
+        $em->flush();
+        return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionesMonitores'));
+    }
+    private function findEntity($id, $em, $repository) {
+        $entity = $em->getRepository($repository)->find($id);
+        if (!$entity) {
+            throw $this->createNotFoundException('Entidad no encontrada');
+        }
+        return $entity;
+    }
+    
     private function getArrayEntidades($repository, $array) {
         for ($i = 0; $i < count($array); $i++) {
             $resultado[$i] = $repository->find($array[$i]);

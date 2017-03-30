@@ -109,11 +109,12 @@ class SesionController extends Controller {
         $form = $this->createCancelForm($sesion);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $sesion->setEstado("cancelada");
-            $sesion->setEstadoCliente("cancelada");
+            
             $observaciones = $form->get('observaciones')->getData();
             
             if ($observaciones != null) {
+                $sesion->setEstado("cancelada");
+                $sesion->setEstadoCliente("cancelada");
                 $em->persist($sesion);
 
                 $this->removeSesionId($aula, $id);

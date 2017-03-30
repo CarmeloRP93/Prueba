@@ -107,3 +107,6 @@ modulomonitores_monitores_verParticipantes:
 modulomonitores_monitores_participante:
     pattern:  /participante/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:participante }
+modulomonitores_monitores_abandonarSesion:
+    pattern:  /abandonarSesion/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:abandonarSesion}

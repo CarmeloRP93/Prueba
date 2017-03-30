@@ -28,7 +28,7 @@
             </div>    
         {% elseif sesion.estado == "cancelada" %}
             <div class="text-center">
-                <button style="height: 30px; width: 600px;" class="btn btn-danger" disabled="disabled">Cancelada</button>
+                <a href="{{path('modulomonitores_monitores_abandonarSesion', {id: sesion.id})}}" style="height: 30px; width: 250px;" class="btn btn-danger">Abandonar</a>
                 <h4>Motivos:</h4> <p>{{sesion.observaciones}}</p>
             </div>
         {% elseif sesion.estado == "rechazada" %}

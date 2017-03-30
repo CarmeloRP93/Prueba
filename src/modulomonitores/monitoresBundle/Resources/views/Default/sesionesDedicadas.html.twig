@@ -6,9 +6,9 @@
     <div class="container">
         <h1 class="t1">Listado de sesiones de dedicadas</h1>
         {% for sesion in sesiones %}
-            {% if sesion.cliente!="normal" %}
+            {% if sesion.cliente!="normal" and sesion.estado == "validada"%}
                 <a href="{{url('modulomonitores_monitores_sesionDedicada', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{ sesion.id }}: {{ sesion.cliente }}/{{ sesion.nombre }} - {{ sesion.estado}} </a>
-            {% endif %}
+          {% endif %}
         {% endfor %}
     </div>
 {% endblock %}

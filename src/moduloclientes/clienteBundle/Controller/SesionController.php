@@ -143,7 +143,7 @@ class SesionController extends Controller {
         $restaCliente--;
         $sesion->setNClientes($restaCliente);
 
-        if ($restaCliente == 0 && $sesion->getEstado() == 'cancelada') {
+        if ($restaCliente == 0 && $sesion->getEstado() == 'cancelada' && $sesion->getIdMonitor() == null) {
             $em->remove($sesion);
         } else {
             $em->persist($sesion);
