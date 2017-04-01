@@ -114,7 +114,7 @@ class Sesiones {
     /**
      * @var string
      *
-     * @ORM\Column(name="horario", type="string", length=200, nullable=true)
+     * @ORM\Column(name="horario", type="string", length=2000, nullable=true)
      */
     private $horario;
     

@@ -50,36 +50,68 @@ class SesionController extends Controller {
         $hoy = date('j');
         $mes = date('m');
         $limite = date('t');
-        $this->actualizarValores($hoy, $mes, $limite);
+        $duracion = 15;
+        //$this->actualizarValores($hoy, $mes, $limite);
+            if ($hoy > 28 && $limite == 30) {
+            $mes++;
+            $hoy = 1;
+        } elseif ($hoy > 29 && $limite == 31) {
+            $mes++;
+            if ($mes == 13) {
+                $mes = 1;
+            }
+            $hoy = 1;
+        } elseif ($hoy > 26 && $mes == 02) {
+            $mes++;
+            $hoy = 1;
+        }
+        
         $repositoryHorarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
         
         $vuelta = 0;
         for ($i = $hoy + 2; $i <= $limite; $i++) {
             if (!$this->isWeekend($i, $mes, $vuelta)) {
                 $diaReserva = $repositoryHorarios->getDiaReserva($sesion->getAula(), $i);
-                if ($diaReserva[0]->getPeriodo() != null) break;
-                $diaReserva[0]->setEstado("Completo");
+                if ($diaReserva[0]->getPeriodo() != null) {
+                    $fechaReserva = $this->findFechaReserva($diaReserva[0], $mes);
+                    ($sesion->getHorario() == null) ? $horarioCompleto = $fechaReserva :
+                                                       $horarioCompleto = $sesion->getHorario() . "&" . $fechaReserva;
+                    $sesion->setHorario($horarioCompleto);
+                    $em->persist($diaReserva[0]);
+                    $duracion--;
+                    if ($duracion == 0) break;
+                    $i++;
+                }
             } 
-            if ($i == $limite) $this->updateMonth($i, $mes, $vuelta);
+            if ($i >= $limite) {
+               // $this->updateMonth($i, $mes, $vuelta, $limite);
+                $i = 0;
+                if ($mes == 12) {
+                    $mes = 0;
+                    $vuelta = 1;
+                }
+                $mes++;
+                $fecha = date('Y')+$vuelta . '-' . $mes . '-01';
+                $limite = date('t', strtotime($fecha));
+            }
         }
-        $fechaReserva = $this->findFechaReserva($diaReserva[0], $mes);
-        $sesion->setHorario($fechaReserva);
 
         $em->persist($sesion);
         $em->persist($aula);
-        $em->persist($diaReserva[0]);
         $em->flush();
         $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido aceptada con éxito');
         return $this->redirect($this->generateUrl('crivero_prueba_sesion', array('id' => $sesion->getId())));
     }
     
-    private function updateMonth($dia, $mes, $vuelta) {
-        $dia = 0;
+    private function updateMonth($i, $mes, $vuelta, $limite) {
+        $i = 0;
         if ($mes == 12) {
             $mes = 0;
             $vuelta = 1;
         }
         $mes++;
+        $fecha = date('Y')+$vuelta . '-' . $mes . '-01';
+        $limite = date('t', strtotime($fecha));
     }
 
     public function cancelarSesionAction($id) {

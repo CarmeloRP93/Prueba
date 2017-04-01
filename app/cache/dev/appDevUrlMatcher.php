@@ -326,6 +326,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_participante')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::participanteAction',));
         }
 
+        // modulomonitores_monitores_abandonarSesion
+        if (0 === strpos($pathinfo, '/abandonarSesion') && preg_match('#^/abandonarSesion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_abandonarSesion')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::abandonarSesionAction',));
+        }
+
         if (0 === strpos($pathinfo, '/cancha')) {
             // moduloclientes_cliente_canchasClientes
             if ($pathinfo === '/canchasClientes') {
@@ -466,13 +471,13 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // moduloclientes_cliente_crearReserva
-        if ($pathinfo === '/crearReserva') {
+        if (0 === strpos($pathinfo, '/crearReserva') && preg_match('#^/crearReserva/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
                 $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
                 goto not_moduloclientes_cliente_crearReserva;
             }
 
-            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::crearReservaAction',  '_route' => 'moduloclientes_cliente_crearReserva',);
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_crearReserva')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::crearReservaAction',));
         }
         not_moduloclientes_cliente_crearReserva:
 

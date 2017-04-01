@@ -30,22 +30,29 @@ class ReservaController extends Controller {
 
     public function nuevaReservaAction($id) {
         $reserva = new Reservas();
-        $form = $this->createCreateForm($reserva);
+      
+        $form = $this->createCreateForm($reserva, $id);
 
         return $this->render('moduloclientesclienteBundle:Reservas:nuevaReserva.html.twig', array('form' => $form->createView(), 'id' => $id));
     }
 
-    private function createCreateForm(Reservas $entity) {
-        $form = $this->createForm(new ReservasType(), $entity, array(
-            'action' => $this->generateUrl('moduloclientes_cliente_crearReserva'),
+    private function createCreateForm(Reservas $entity, $id) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosCanchas");
+        $dia = date('d'). '-' . date('m');
+        $horas = $repository->getHorario($id, $dia);
+        $horass = implode("", $horas[0]);
+        $horasss = explode("&", $horass);
+        $form = $this->createForm(new ReservasType($horasss), $entity, array(
+            'action' => $this->generateUrl('moduloclientes_cliente_crearReserva', array('id' => $id)),
             'method' => 'POST'
         ));
         return $form;
     }
 
-    public function crearReservaAction(Request $request) {
+    public function crearReservaAction($id, Request $request) {
         $reserva = new Reservas();
-        $form = $this->createCreateForm($reserva);
+        
+        $form = $this->createCreateForm($reserva, $id);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -60,6 +67,12 @@ class ReservaController extends Controller {
             $cancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas")->find($idCancha);
             $reserva->setCancha($cancha->getTipo());
             $reserva->setEstadoReserva("Reservado");
+            print_r($form->get('horario')->getData());
+            $horitas = "";
+            for($i = 0; $i < count($form->get('horario')->getData()); $i++) {
+                $horitas .= strval($form->get('horario')->getData()[$i]) . "&";
+            }
+            $reserva->setHorario($horitas);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($reserva);

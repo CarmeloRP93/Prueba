@@ -36,7 +36,7 @@ class __TwigTemplate_7f6d93430bad044b71bc7c0d491c405289b6c81b8d2ccc388de870cfa5a
     {
         // line 6
         echo "    <div class=\"container\">
-        <h2 class=\"t3\">Nuevo usuario</h2>
+        <h1 class=\"t1\">Nuevo usuario</h1>
         ";
         // line 8
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("attr" => array("novalidate" => "novalidate", "role" => "form")));
@@ -189,7 +189,7 @@ class __TwigTemplate_7f6d93430bad044b71bc7c0d491c405289b6c81b8d2ccc388de870cfa5a
 
 {% block contenido %}
     <div class=\"container\">
-        <h2 class=\"t3\">Nuevo usuario</h2>
+        <h1 class=\"t1\">Nuevo usuario</h1>
         {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
 
         <div class=\"form-group\">

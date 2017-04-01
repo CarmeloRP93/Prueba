@@ -63,7 +63,7 @@ class __TwigTemplate_b28a7e2f590cfe38ee7a87cd699643913b4c3ffd8505ceaea060c9ea9fa
         } else {
             // line 16
             echo "                <form id=\"formu\" action=\"";
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("modulomonitores_monitores_sesionesMonitores");
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("modulomonitores_monitores_misSesionesMonitores");
             echo "\" method=\"post\">
                 </form>
             ";
@@ -120,7 +120,7 @@ class __TwigTemplate_b28a7e2f590cfe38ee7a87cd699643913b4c3ffd8505ceaea060c9ea9fa
                 <form id=\"formu\" action=\"{{ path('moduloclientes_cliente_reservasClientes') }}\" method=\"post\">
                 </form>
             {% else %}
-                <form id=\"formu\" action=\"{{ path('modulomonitores_monitores_sesionesMonitores') }}\" method=\"post\">
+                <form id=\"formu\" action=\"{{ path('modulomonitores_monitores_misSesionesMonitores') }}\" method=\"post\">
                 </form>
             {% endif %}
             <img src=\"{{ asset('images/loading.gif') }}\" style=\"margin-left: 35%; margin-top: 15%\" />

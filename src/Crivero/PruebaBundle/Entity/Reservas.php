@@ -3,6 +3,7 @@
 namespace Crivero\PruebaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Reservas
@@ -57,9 +58,9 @@ class Reservas {
     private $estadoReserva;
 
     /**
-     * @var \DateTime
+     * @var Date
      *
-     * @ORM\Column(name="fechaInicio", type="datetime")
+     * @ORM\Column(name="fechaInicio", type="date")
      */
     private $fechaInicio;
 
@@ -71,6 +72,14 @@ class Reservas {
     private $fechaFinalizacion;
     
     /**
+     *
+     * @var string
+     * @ORM\Column(name="horario", type="string", length=255, nullable=true)
+     * @Assert\NotBlank()
+     */
+    private $horario;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="motivos", type="string", length=255, nullable=true)
@@ -78,7 +87,6 @@ class Reservas {
     private $motivos;
 
     public function __construct() {
-        $this->fechaInicio = new \DateTime();
         //$this->fechaInicio->format(("Y-m-d")." HH:30");
         $this->fechaFinalizacion = new \DateTime();
     }
@@ -167,6 +175,26 @@ class Reservas {
     }
 
     /**
+     * Get horario
+     *
+     * @return string 
+     */
+    public function getHorario() {
+        return $this->horario;
+    }
+    
+    /**
+     * Set horario
+     *
+     * @param string $horario
+     * @return Reservas
+     */
+    public function setHorario($horario) {
+        $this->horario = $horario;
+        return $this;
+    }
+
+    /**
      * Get cliente
      *
      * @return string 
@@ -198,7 +226,7 @@ class Reservas {
     /**
      * Set fechaInicio
      *
-     * @param \DateTime $fechaInicio
+     * @param Date $fechaInicio
      * @return Reservas
      */
     public function setFechaInicio($fechaInicio) {
@@ -210,7 +238,7 @@ class Reservas {
     /**
      * Get fechaInicio
      *
-     * @return \DateTime 
+     * @return Date 
      */
     public function getFechaInicio() {
         return $this->fechaInicio;

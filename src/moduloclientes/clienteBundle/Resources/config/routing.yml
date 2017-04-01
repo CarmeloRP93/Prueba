@@ -86,7 +86,7 @@ moduloclientes_cliente_nuevaReserva:
     defaults: { _controller: moduloclientesclienteBundle:Reserva:nuevaReserva }
     
 moduloclientes_cliente_crearReserva:
-    pattern:  /crearReserva
+    pattern:  /crearReserva/{id}
     defaults: { _controller: moduloclientesclienteBundle:Reserva:crearReserva }
     requirements:
         _method:  POST|GET
