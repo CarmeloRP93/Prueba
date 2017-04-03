@@ -70,7 +70,9 @@ class SesionController extends Controller {
     }
 
     private function createCreateForm(Sesiones $entity) {
-        $form = $this->createForm(new SesionesType(), $entity, array(
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+        $aulas = $repository->findAll();
+        $form = $this->createForm(new SesionesType($aulas), $entity, array(
             'action' => $this->generateUrl('modulomonitores_monitores_crearSesion'),
             'method' => 'POST'
         ));
@@ -90,6 +92,9 @@ class SesionController extends Controller {
             $sesion->setImagen("images/".mt_rand(1,5)."m.jpg");
             $sesion->setIdMonitor($this->getUser()->getId());
             $sesion->setMonitor($this->getUser()->getUsername());
+            if ($form->get('nSesiones')->getData() > 20) {
+                $form->get('nSesiones')->addError(new FormError('El límite son 20 sesiones'));
+            }
             $lClientes = $form->get('lClientes')->getData();
             if ($lClientes != null) {
                 $em = $this->getDoctrine()->getManager();
@@ -341,6 +346,14 @@ class SesionController extends Controller {
 
         return $this->render('modulomonitoresmonitoresBundle:Default:participante.html.twig', array("cliente" => $cliente,
                      "sesiones" => $sesionesCliente,));
+    }
+    
+    public function verHorarioAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
+        $horario = explode('&', $sesion->getHorario());
+        
+        return $this->render('modulomonitoresmonitoresBundle:Default:horario.html.twig', array("horario" => $horario, "id"=> $id));
     }
     
     

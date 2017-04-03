@@ -146,6 +146,14 @@ class Sesiones {
      * @ORM\Column(name="lClientes", type="integer")
      */
     private $lClientes;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nSesiones", type="integer")
+     * @Assert\NotBlank()
+     */
+    private $nSesiones;
 
     /**
      * @var string
@@ -582,5 +590,26 @@ class Sesiones {
         $this->idsClientes = $idsClientes;
 
         return $this;
+    }
+    
+    /**
+     * Set nSesiones
+     *
+     * @param integer $nSesiones
+     * @return Sesiones
+     */
+    public function setNSesiones($nSesiones) {
+        $this->nSesiones = $nSesiones;
+
+        return $this;
+    }
+
+    /**
+     * Get nSesiones
+     *
+     * @return integer 
+     */
+    public function getNSesiones() {
+        return $this->nSesiones;
     }
 }

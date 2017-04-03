@@ -18,7 +18,7 @@
                     <h4>Aula:</h4> <p>{{aula.nombre}}</p>
                 </div>
                 <div id="colder" class="col-md-4">
-                    <h4>Horario:</h4> <p>{{sesion.horario}} </p>
+                    <h4>Horario:</h4> <a href="{{path('modulomonitores_monitores_verHorario', {id: sesion.id})}}" style="height: 30px; width: 100px;" class="btn btn-primary">Ver Horario</a>
                 </div>
             </div>
         {% elseif sesion.estado == "solEliminar" %}

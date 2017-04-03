@@ -50,7 +50,7 @@ class SesionController extends Controller {
         $hoy = date('j');
         $mes = date('m');
         $limite = date('t');
-        $duracion = 15;
+        $duracion = $sesion->getNSesiones();
         //$this->actualizarValores($hoy, $mes, $limite);
             if ($hoy > 28 && $limite == 30) {
             $mes++;

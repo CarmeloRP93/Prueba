@@ -8,12 +8,19 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class SesionesType extends AbstractType
 {
+    private $aulas;
+    public function __construct(array $aulas) {
+        $this->aulas = $aulas;
+    }
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        for($i=0; $i < count($this->aulas); $i++){
+            $res[$i]= array($this->aulas[$i]->getId() => $this->aulas[$i]->getNombre());
+        }
         $builder
             ->add('cliente', 'text')
             ->add('nombre', 'text')
@@ -23,10 +30,11 @@ class SesionesType extends AbstractType
             ->add('duracion', 'integer')
             ->add('descanso', 'integer')
             ->add('lClientes', 'integer')
+            ->add('nSesiones', 'integer')
             ->add('objetivo', 'textarea')
             ->add('observaciones', 'textarea')
             ->add('motivos', 'textarea')
-            ->add('aula', 'choice', array('choices' => array(1 => 'Aula 01', 2 => 'Aula 02', 3 => 'Aula 03')))    
+            ->add('aula', 'choice', array('choices' => $res, 'expanded' => true))    
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;
     }

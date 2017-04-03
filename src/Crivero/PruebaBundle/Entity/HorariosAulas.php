@@ -24,7 +24,7 @@ class HorariosAulas
     /**
      * @var string
      *
-     * @ORM\Column(name="periodo", type="string", length=255)
+     * @ORM\Column(name="periodo", type="string", length=2000)
      */
     private $periodo;
 
