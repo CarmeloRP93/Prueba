@@ -36,7 +36,7 @@ class __TwigTemplate_fad4aef81396edbca761bf5762b40a8ac822fcfa45e53aa33797843865e
     {
         // line 6
         echo "    <div class=\"container\">
-         <h1 class=\"t1\">Nueva Reserva</h1>
+        <h1 class=\"t1\">Nueva Reserva</h1>
         ";
         // line 8
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("attr" => array("novalidate" => "novalidate", "role" => "form")));
@@ -52,7 +52,7 @@ class __TwigTemplate_fad4aef81396edbca761bf5762b40a8ac822fcfa45e53aa33797843865e
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "idCancha", array()), 'errors');
         echo "</span>
         </div>
-        
+
         <div class=\"form-group\">
             ";
         // line 16
@@ -68,18 +68,23 @@ class __TwigTemplate_fad4aef81396edbca761bf5762b40a8ac822fcfa45e53aa33797843865e
         echo "</span>
         </div>
 
-    
+        ";
+        // line 21
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horario", array()), 'row');
+        echo "
+        ";
+        // line 35
+        echo "
 
-      
         <p>
             ";
-        // line 25
+        // line 38
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
         </p>                
 
         ";
-        // line 28
+        // line 41
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
     </div>
@@ -98,7 +103,7 @@ class __TwigTemplate_fad4aef81396edbca761bf5762b40a8ac822fcfa45e53aa33797843865e
 
     public function getDebugInfo()
     {
-        return array (  83 => 28,  77 => 25,  67 => 18,  63 => 17,  59 => 16,  52 => 12,  48 => 11,  42 => 8,  38 => 6,  35 => 5,  29 => 3,  11 => 1,);
+        return array (  88 => 41,  82 => 38,  77 => 35,  73 => 21,  67 => 18,  63 => 17,  59 => 16,  52 => 12,  48 => 11,  42 => 8,  38 => 6,  35 => 5,  29 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -117,23 +122,36 @@ class __TwigTemplate_fad4aef81396edbca761bf5762b40a8ac822fcfa45e53aa33797843865e
 
 {% block contenido %}
     <div class=\"container\">
-         <h1 class=\"t1\">Nueva Reserva</h1>
+        <h1 class=\"t1\">Nueva Reserva</h1>
         {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
 
         <div class=\"form-group\">
             {{ form_widget(form.idCancha, {'value' : id } ) }}
             <span class=\"text-danger\">{{ form_errors(form.idCancha) }}</span>
         </div>
-        
+
         <div class=\"form-group\">
             {{ form_label(form.fechaInicio) }}
             {{ form_widget(form.fechaInicio, { 'attr' : {'class' : 'form-control'} }) }}
             <span class=\"text-danger\">{{ form_errors(form.fechaInicio) }}</span>
         </div>
 
-    
+        {{ form_row(form.horario) }}
+        {#<div class=\"form-group\">
+            {{ form_label(form.horario) }}
+            {{ form_errors(form.horario) }}
 
-      
+            <ul>
+                {% for horario in form.horario %}
+                    <li>
+                        {{ form_errors(horario) }}
+                        {{ form_widget(horario) }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>#}
+
+
         <p>
             {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
         </p>                

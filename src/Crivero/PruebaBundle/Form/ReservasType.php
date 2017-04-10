@@ -26,14 +26,12 @@ class ReservasType extends AbstractType {
         ->add('fechaInicio', 'date', array('widget' => "single_text"))
         ->add('horario', 'choice', array('choices' => $res, 'multiple' => true, 'expanded' => true))
         ->add('confirmar', 'submit', array('label' => 'Confirmar'));
-//        ->add('fechaFinalizacion',  'datetime', array('date_widget' => "single_text", 'time_widget' => "choice", "minutes"=> array(0,30)))
         //->add('fechaInicio',        'datetime', array('date_widget' => "single_text", 'input' => 'datetime', 'minutes' => array(0,30)))                
                 
-       
-             
             
     }
     
+
     /**
      * @param OptionsResolverInterface $resolver
      */
