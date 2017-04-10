@@ -3,8 +3,8 @@
 {% block title %} Detalles de la competicion {% endblock %}
 {% block contenido %}
     <div class="container text-center">
-        <h3>Deporte de la competición: {{competicion.deporte}}</h3>
-        <h4>Tipo de la competición: {{competicion.tipoCompeticion}}</h4>
+        <h1 class="t1">Deporte de la competición: {{competicion.deporte}}</h1>
+        <h3 class="t3">Tipo de la competición: {{competicion.tipoCompeticion}}</h3>
         {% if competicion.estadoCompeticion == "Pendiente" %}
             <a href="{{path('crivero_prueba_competicion_validar', {id: competicion.id})}}" class="btn btn-success">
                 Validar
@@ -23,7 +23,7 @@
                 <div class="table table-bordered">
                     <thead>
                         <tr>
-                            <th> Equipos inscritos por el momento  </th>
+                            <th> Equipos inscritos por el momento  |</th>
                             <th> Acciones</th>
                         </tr>
                     </thead>

@@ -85,6 +85,16 @@ moduloclientes_cliente_nuevaReserva:
     pattern:  /nuevaReserva/{id}
     defaults: { _controller: moduloclientesclienteBundle:Reserva:nuevaReserva }
     
+moduloclientes_cliente_elegirHora:
+    pattern:  /elegirHora/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Reserva:elegirHora }
+    
+moduloclientes_cliente_mostrarHoras:
+    pattern:  /mostrarHoras/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Reserva:mostrarHoras }
+    requirements:
+        _method:  POST|GET      
+        
 moduloclientes_cliente_crearReserva:
     pattern:  /crearReserva/{id}
     defaults: { _controller: moduloclientesclienteBundle:Reserva:crearReserva }

@@ -2,20 +2,17 @@
 
 {% block title %}Vista de {{sesion.nombre}} {% endblock %}
 {% block contenido %}
-    <div class="text-center">
-        <h3>
-            Sesion {{sesion.id}} 
-            <small class="text-muted">{{sesion.nombre}}</small>
-        </h3>
-    </div>
+    <h1 class="t1">Sesion {{sesion.id}}</h1>
+    <h3 class="t1">{{sesion.nombre}}</h3>    
+
     <div id="sesiondat" class="container">
         <div id="sesionfot" style="margin-top: 14px;">
-            <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" />        
+            <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" style="width: 50%; margin-bottom: 1%" />        
         </div>
 
         <div class="accionesesion">
             <a href="{{path('moduloclientes_cliente_sesionesClientes_abandonar', {id: sesion.id})}}" 
-               class="btn btn-danger text-center center-block">Abandonar</a>
+            class="btn btn-danger text-center center-block" style="height: 30px; width: 600px;">Abandonar</a>
         </div>
 
         <div class="row">
