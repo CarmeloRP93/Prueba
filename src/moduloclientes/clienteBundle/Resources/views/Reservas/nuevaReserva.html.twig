@@ -7,6 +7,10 @@
         <h1 class="t1">Nueva reserva</h1>
         {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
 
+        {% if mensaje != null  %}
+            <h3 class="t3">{{mensaje}}</h3>
+        {% endif %}
+
         <div class="form-group">
             {{ form_widget(form.idCancha, {'value' : id } ) }}
             <span class="text-danger">{{ form_errors(form.idCancha) }}</span>

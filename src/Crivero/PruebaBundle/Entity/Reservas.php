@@ -25,6 +25,7 @@ class Reservas {
     /**
      * @var integer
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="idCliente", type="integer")
      */
     private $idCliente;
@@ -61,6 +62,7 @@ class Reservas {
      * @var Date
      *
      * @ORM\Column(name="fechaInicio", type="date")
+     * @Assert\NotBlank()
      */
     private $fechaInicio;
 
@@ -75,7 +77,7 @@ class Reservas {
      *
      * @var string
      * @ORM\Column(name="horario", type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
+     *
      */
     private $horario;
     
