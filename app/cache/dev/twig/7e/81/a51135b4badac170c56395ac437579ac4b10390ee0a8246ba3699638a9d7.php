@@ -39,7 +39,7 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
     // line 2
     public function block_title($context, array $blocks = array())
     {
-        echo " Vista desde main ";
+        echo " Vista desde main";
     }
 
     // line 4
@@ -93,7 +93,7 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
                         <li><a href=\"";
         // line 37
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_competicionesClientes");
-        echo "\"> Mis competiciones </a></li>
+        echo "\">Competiciones </a></li>
                         <li><a href=\"";
         // line 38
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_equiposClientes");
@@ -102,7 +102,7 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
                 </li>
 
                 <li class=\"dropdown\">
-                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Sesiones <b class=\"caret\"></b></a>
+                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Sesiones<b class=\"caret\"></b></a>
                     <ul class=\"dropdown-menu\">
                         <li><a href=\"";
         // line 45

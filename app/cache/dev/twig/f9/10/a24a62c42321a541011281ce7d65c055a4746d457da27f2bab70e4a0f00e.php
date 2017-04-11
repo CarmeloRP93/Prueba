@@ -47,7 +47,7 @@ class __TwigTemplate_f910a24a62c42321a541011281ce7d65c055a4746d457da27f2bab70e4a
         <div class=\"col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4\">
             <div class=\"panel panel-default\">
                 <div class=\"panel-heading text-center\">
-                     <h1 class=\"t1\">Listado de mis competiciones</h1>
+                     <h1 class=\"t1\">Listado de competiciones </h1>
                 </div>
                 <label class=\"label label-default\">En inscripción: </label>
                 ";

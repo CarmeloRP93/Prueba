@@ -44,7 +44,7 @@ class __TwigTemplate_5ee65c02081c4a2748cc26f178dee8d935242274da2ba5abb9f0c4495a5
     {
         // line 6
         echo "    <div class=\"container\">
-        <h2>Nueva Competicion</h2>
+        <h1 class=\"t1\">Nueva Competicion</h1>
         ";
         // line 8
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("attr" => array("novalidate" => "novalidate", "role" => "form")));
@@ -96,7 +96,7 @@ class __TwigTemplate_5ee65c02081c4a2748cc26f178dee8d935242274da2ba5abb9f0c4495a5
             <label>Fecha Inicio:</label><br>
             ";
         // line 30
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fechainicio", array()), 'widget', array("attr" => array("class" => "")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fechainicio", array()), 'widget', array("attr" => array("class" => "form-control")));
         echo "
             <span class=\"text-danger\">";
         // line 31
