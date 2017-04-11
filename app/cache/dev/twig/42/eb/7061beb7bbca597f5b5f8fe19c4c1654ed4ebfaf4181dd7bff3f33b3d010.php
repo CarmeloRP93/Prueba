@@ -46,7 +46,7 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
         echo "    <div class=\"col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4\">
         <div class=\"panel panel-default\">
             <div class=\"panel-heading text-center\">
-                 <h1 class=\"t1\">Listado de Canchas</h1>
+                 <h1 class=\"t1\">Listado de canchas</h1>
             </div>
             ";
         // line 12

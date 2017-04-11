@@ -12,17 +12,7 @@ use Psr\Log\LoggerInterface;
  */
 class appDevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerator
 {
-    private static $declaredRoutes;
-
-    /**
-     * Constructor.
-     */
-    public function __construct(RequestContext $context, LoggerInterface $logger = null)
-    {
-        $this->context = $context;
-        $this->logger = $logger;
-        if (null === self::$declaredRoutes) {
-            self::$declaredRoutes = array(
+    private static $declaredRoutes = array(
         '_wdt' => array (  0 =>   array (    0 => 'token',  ),  1 =>   array (    '_controller' => 'web_profiler.controller.profiler:toolbarAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'token',    ),    1 =>     array (      0 => 'text',      1 => '/_wdt',    ),  ),  4 =>   array (  ),),
         '_profiler_home' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'web_profiler.controller.profiler:homeAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/_profiler/',    ),  ),  4 =>   array (  ),),
         '_profiler_search' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'web_profiler.controller.profiler:searchAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/_profiler/search',    ),  ),  4 =>   array (  ),),
@@ -67,6 +57,7 @@ class appDevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         'modulomonitores_monitores_verParticipantes' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::verParticipantesAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/verParticipantes',    ),  ),  4 =>   array (  ),),
         'modulomonitores_monitores_participante' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::participanteAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/participante',    ),  ),  4 =>   array (  ),),
         'modulomonitores_monitores_abandonarSesion' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::abandonarSesionAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/abandonarSesion',    ),  ),  4 =>   array (  ),),
+        'modulomonitores_monitores_verHorario' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::verHorarioAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/verHorario',    ),  ),  4 =>   array (  ),),
         'moduloclientes_cliente_canchasClientes' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::canchasClientesAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/canchasClientes',    ),  ),  4 =>   array (  ),),
         'moduloclientes_cliente_canchaClientes' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::canchaClientesAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/canchaClientes',    ),  ),  4 =>   array (  ),),
         'moduloclientes_cliente_reservasClientes' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::reservasClientesAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/reservasClientes',    ),  ),  4 =>   array (  ),),
@@ -87,6 +78,8 @@ class appDevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         'moduloclientes_cliente_sesionClientes' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::sesionClientesAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/sesionClientes',    ),  ),  4 =>   array (  ),),
         'moduloclientes_cliente_miSesionClientes' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::miSesionClientesAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/miSesionClientes',    ),  ),  4 =>   array (  ),),
         'moduloclientes_cliente_nuevaReserva' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::nuevaReservaAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/nuevaReserva',    ),  ),  4 =>   array (  ),),
+        'moduloclientes_cliente_elegirHora' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::elegirHoraAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/elegirHora',    ),  ),  4 =>   array (  ),),
+        'moduloclientes_cliente_mostrarHoras' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::mostrarHorasAction',  ),  2 =>   array (    '_method' => 'POST|GET',  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/mostrarHoras',    ),  ),  4 =>   array (  ),),
         'moduloclientes_cliente_crearReserva' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::crearReservaAction',  ),  2 =>   array (    '_method' => 'POST|GET',  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/crearReserva',    ),  ),  4 =>   array (  ),),
         'moduloclientes_cliente_sesionesClientes_apuntarse' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::apuntarseAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/apuntarse',    ),  ),  4 =>   array (  ),),
         'moduloclientes_cliente_sesionesClientes_abandonar' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::abandonarAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/abandonar',    ),  ),  4 =>   array (  ),),
@@ -145,7 +138,14 @@ class appDevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         'crivero_prueba_rechazar' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::rechazarAction',  ),  2 =>   array (    '_method' => 'POST|PUT|GET',  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/rechazar',    ),  ),  4 =>   array (  ),),
         'crivero_prueba_rechazarSesion' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::rechazarSesionAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/rechazarSesion',    ),  ),  4 =>   array (  ),),
     );
-        }
+
+    /**
+     * Constructor.
+     */
+    public function __construct(RequestContext $context, LoggerInterface $logger = null)
+    {
+        $this->context = $context;
+        $this->logger = $logger;
     }
 
     public function generate($name, $parameters = array(), $referenceType = self::ABSOLUTE_PATH)

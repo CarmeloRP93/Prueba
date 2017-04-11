@@ -331,6 +331,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_abandonarSesion')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::abandonarSesionAction',));
         }
 
+        // modulomonitores_monitores_verHorario
+        if (0 === strpos($pathinfo, '/verHorario') && preg_match('#^/verHorario/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_verHorario')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::verHorarioAction',));
+        }
+
         if (0 === strpos($pathinfo, '/cancha')) {
             // moduloclientes_cliente_canchasClientes
             if ($pathinfo === '/canchasClientes') {
@@ -469,6 +474,22 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         if (0 === strpos($pathinfo, '/nuevaReserva') && preg_match('#^/nuevaReserva/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_nuevaReserva')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::nuevaReservaAction',));
         }
+
+        // moduloclientes_cliente_elegirHora
+        if (0 === strpos($pathinfo, '/elegirHora') && preg_match('#^/elegirHora/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_elegirHora')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::elegirHoraAction',));
+        }
+
+        // moduloclientes_cliente_mostrarHoras
+        if (0 === strpos($pathinfo, '/mostrarHoras') && preg_match('#^/mostrarHoras/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                goto not_moduloclientes_cliente_mostrarHoras;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_mostrarHoras')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::mostrarHorasAction',));
+        }
+        not_moduloclientes_cliente_mostrarHoras:
 
         // moduloclientes_cliente_crearReserva
         if (0 === strpos($pathinfo, '/crearReserva') && preg_match('#^/crearReserva/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
