@@ -134,7 +134,15 @@ crivero_prueba_usuario_pagos:
 
     
 #-------------------------------------------------------------------------------
-#Competiciones, equipos y jugadores
+#Competiciones, equipos,partidos y jugadores
+
+crivero_prueba_partidos:
+    pattern:  /partidos
+    defaults: { _controller: CriveroPruebaBundle:Partido:partidos }
+
+crivero_prueba_partido:
+    pattern:  /partido/{id}
+    defaults: { _controller: CriveroPruebaBundle:Partido:partido }
 
 crivero_prueba_competiciones:
     pattern:  /competiciones

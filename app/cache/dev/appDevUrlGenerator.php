@@ -12,7 +12,17 @@ use Psr\Log\LoggerInterface;
  */
 class appDevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerator
 {
-    private static $declaredRoutes = array(
+    private static $declaredRoutes;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(RequestContext $context, LoggerInterface $logger = null)
+    {
+        $this->context = $context;
+        $this->logger = $logger;
+        if (null === self::$declaredRoutes) {
+            self::$declaredRoutes = array(
         '_wdt' => array (  0 =>   array (    0 => 'token',  ),  1 =>   array (    '_controller' => 'web_profiler.controller.profiler:toolbarAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'token',    ),    1 =>     array (      0 => 'text',      1 => '/_wdt',    ),  ),  4 =>   array (  ),),
         '_profiler_home' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'web_profiler.controller.profiler:homeAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/_profiler/',    ),  ),  4 =>   array (  ),),
         '_profiler_search' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'web_profiler.controller.profiler:searchAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/_profiler/search',    ),  ),  4 =>   array (  ),),
@@ -118,6 +128,8 @@ class appDevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         'crivero_prueba_reserva_cancelar' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\ReservaController::cancelarAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/reserva/cancelar',    ),  ),  4 =>   array (  ),),
         'crivero_prueba_reserva_cancelando' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\ReservaController::cancelandoAction',  ),  2 =>   array (    '_method' => 'POST|PUT|GET',  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/reserva/cancelando',    ),  ),  4 =>   array (  ),),
         'crivero_prueba_usuario_pagos' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::pagosAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/usuario/pagos',    ),  ),  4 =>   array (  ),),
+        'crivero_prueba_partidos' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\PartidoController::partidosAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/partidos',    ),  ),  4 =>   array (  ),),
+        'crivero_prueba_partido' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\PartidoController::partidoAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/partido',    ),  ),  4 =>   array (  ),),
         'crivero_prueba_competiciones' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\CompeticionController::competicionesAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/competiciones',    ),  ),  4 =>   array (  ),),
         'crivero_prueba_competicion' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\CompeticionController::competicionAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/competicion',    ),  ),  4 =>   array (  ),),
         'crivero_prueba_competicion_validar' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\CompeticionController::validarAction',  ),  2 =>   array (    '_method' => 'POST|PUT|GET',  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/competicion/validar',    ),  ),  4 =>   array (  ),),
@@ -138,14 +150,7 @@ class appDevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         'crivero_prueba_rechazar' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::rechazarAction',  ),  2 =>   array (    '_method' => 'POST|PUT|GET',  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/rechazar',    ),  ),  4 =>   array (  ),),
         'crivero_prueba_rechazarSesion' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::rechazarSesionAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/rechazarSesion',    ),  ),  4 =>   array (  ),),
     );
-
-    /**
-     * Constructor.
-     */
-    public function __construct(RequestContext $context, LoggerInterface $logger = null)
-    {
-        $this->context = $context;
-        $this->logger = $logger;
+        }
     }
 
     public function generate($name, $parameters = array(), $referenceType = self::ABSOLUTE_PATH)

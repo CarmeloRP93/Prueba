@@ -772,6 +772,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_usuario_pagos')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::pagosAction',));
         }
 
+        if (0 === strpos($pathinfo, '/partido')) {
+            // crivero_prueba_partidos
+            if ($pathinfo === '/partidos') {
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PartidoController::partidosAction',  '_route' => 'crivero_prueba_partidos',);
+            }
+
+            // crivero_prueba_partido
+            if (preg_match('#^/partido/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_partido')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PartidoController::partidoAction',));
+            }
+
+        }
+
         if (0 === strpos($pathinfo, '/competicion')) {
             // crivero_prueba_competiciones
             if ($pathinfo === '/competiciones') {
