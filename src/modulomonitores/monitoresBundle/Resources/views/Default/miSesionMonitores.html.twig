@@ -49,18 +49,19 @@
                 <h4>Monitor:</h4> <p>{{sesion.monitor}}</p>
                 <h4>Ejercicios:</h4> <p>{{sesion.ejercicios}}</p>
                 <h4>Repeticiones:</h4> <p>{{sesion.repeticiones}} por ejercicio</p>
-                <h4>Nº de participantes:</h4> <p>{{sesion.nClientes}}</p>
+                <h4>Límite de participantes:</h4> <p>{{sesion.lClientes}}</p>
 
             </div>
             <div id="colder" class="col-md-4">
                 <h4>Tiempo estimado:</h4> <p>{{sesion.duracion}} minutos</p>
                 <h4>Descanso entre ejercicios:</h4> <p>{{sesion.descanso}} minutos</p>
                 <h4>Objetivo:</h4> <p>{{sesion.objetivo}}</p>
-                <h4>Límite de participantes:</h4> <p>{{sesion.lClientes}}</p>
+                {% if sesion.nClientes > 0 %}
+                    <h4>Participantes:</h4> 
+                    <a href="{{path('modulomonitores_monitores_verParticipantes', {id: sesion.id})}}" style="height: 30px; width: 130px;" class="btn btn-primary">Ver participantes</a>
+                {% endif %}
             </div>
-            {% if sesion.nClientes > 0 %}
-                <a href="{{path('modulomonitores_monitores_verParticipantes', {id: sesion.id})}}" style="height: 30px; width: 250px;" class="btn btn-primary">Ver participantes</a>
-            {% endif %}
+
         </div>
     </div>
 

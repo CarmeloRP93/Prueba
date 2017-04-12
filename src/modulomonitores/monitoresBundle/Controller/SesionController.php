@@ -120,7 +120,9 @@ class SesionController extends Controller {
     }
 
     private function createEdiForm(Sesiones $entity) {
-        $form = $this->createForm(new SesionesType(), $entity, array(
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+        $aulas = $repository->findAll();
+        $form = $this->createForm(new SesionesType($aulas), $entity, array(
             'action' => $this->generateUrl('modulomonitores_monitores_editar', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));
@@ -139,7 +141,7 @@ class SesionController extends Controller {
             $sesion->setEstado("modificada");
             $sesion->setEstadoCliente("no disponible");
             $em->flush();
-            return $this->redirect($this->generateUrl('modulomonitores_monitores_sesionMonitores', array('id' => $sesion->getId())));
+            return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionMonitores', array('id' => $sesion->getId())));
         }
         return $this->render('modulomonitoresmonitoresBundle:Default:editarSesion.html.twig', array('form' => $form->createView()));
     }

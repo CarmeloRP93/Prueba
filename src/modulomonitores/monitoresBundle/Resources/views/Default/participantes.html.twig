@@ -3,8 +3,10 @@
 {% block title %} Vista de Participantes {% endblock %}
 {% block contenido %}
     <div class="container">
-        <h1>Listado de Participantes</h1>
+        <h1>Listado de Participantes: {{clientes|length}} </h1>
+        
         {% for cliente in clientes %}
+            
                 <a href="{{url('modulomonitores_monitores_participante', {'id': cliente.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Cliente {{cliente.id}}: {{ cliente.username }} - {{ cliente.nombre }}</a>
         {% endfor %}
     </div>
