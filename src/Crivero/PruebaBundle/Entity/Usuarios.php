@@ -80,7 +80,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
      * @ORM\Column(name="fNacimiento", type="string", length=200)
      * @Assert\NotBlank()
      * @Assert\Regex(
-     *     pattern="/^(\d{2})\/(\d{2})\/(\d{4})$/",
+     *     pattern="/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/",
      *     message="This is not a valid date."
      * )
      */

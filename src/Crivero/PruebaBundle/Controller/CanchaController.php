@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Crivero\PruebaBundle\Entity\Canchas;
 use Crivero\PruebaBundle\Form\CanchasType;
+use Crivero\PruebaBundle\Entity\HorariosCanchas;
+use Crivero\PruebaBundle\Entity\HorariosCanchasRepository;
 use Symfony\Component\Form\FormError;
 
 class CanchaController extends Controller {
@@ -56,6 +58,8 @@ class CanchaController extends Controller {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($cancha);
                 $em->flush();
+                
+                $this->setHorariosCancha($cancha->getId(), $em);
 
                 $request->getSession()->getFlashBag()->add('mensaje', 'La cancha ha sido creada con éxito.');
                 return $this->redirect($this->generateUrl('crivero_prueba_canchas'));
@@ -135,6 +139,8 @@ class CanchaController extends Controller {
     }
     
     private function deleteCancha($em, $cancha) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosCanchas");
+        $repository->removeHorariosCancha($cancha->getId());
         $em->remove($cancha);
         $em->flush();
 
@@ -156,5 +162,28 @@ class CanchaController extends Controller {
             throw $this->createNotFoundException('Cancha no encontrada');
         }
         return $cancha;
+    }
+    
+     private function setHorariosCancha($canchaId, $em) {
+        $cont = 1;
+        $mes = date('m');
+        $limite = date('t');
+        for ($i = date('d')+1; $cont <= 31; $i++) {
+            if ($i == $limite + 1) {
+                $i = 1;
+                if ($mes == 12) $mes = 0; 
+                ($mes <= date('n')) ? $mes = "0".($mes + 1) : $mes = $mes+1;
+                $limite = date('t', strtotime(date('Y')."-".$mes."-01"));
+            }
+            $horario = new HorariosCanchas();
+            $horario->setPeriodo("09:00-10:00&10:00-11:00&11:00-12:00&12:00-13:00&13:00-14:00&14:00-15:00&"
+                                 . "15:00-16:00&16:00-17:00&17:00-18:00&18:00-19:00&19:00-20:00&20:00-21:00&21:00-22:00");
+            $horario->setCancha($canchaId);
+            ($i <= 9) ? $dia = "0" . $i : $dia = $i;
+            $horario->setFechaInicio($dia . "-". $mes);
+            $em->persist($horario);
+            $cont++;
+        }
+        $em->flush();
     }
 }

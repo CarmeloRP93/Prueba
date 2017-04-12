@@ -27,5 +27,12 @@ class HorariosCanchasRepository extends EntityRepository {
                         ->setParameter('dia', $dia)
                         ->getResult();
     }
+    
+    public function removeHorariosCancha($cancha) {
+        $this->getEntityManager()
+                ->createQuery('DELETE FROM CriveroPruebaBundle:HorariosCanchas h WHERE h.cancha = :canchaId')
+                ->setParameter('canchaId', $cancha)
+                ->execute();
+    }
 
 }
