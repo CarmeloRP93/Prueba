@@ -18,8 +18,8 @@
                         <tr>
                             <th>{{ knp_pagination_sortable(pagination, 'Cliente', 'r.cliente') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'Cancha', 'r.cancha') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Inicio', 'r.fechaInicio') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Final', 'r.fechaFinalizacion') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Fecha', 'r.fechaInicio') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Horario', 'r.fechaFinalizacion') }}</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -28,8 +28,17 @@
                             <tr>
                                 <td><strong><a class="atd" href="{{ path('crivero_prueba_cliente', { id: reserva.idCliente }) }}" >{{reserva.cliente}}</a></strong></td>
                                 <td><strong><a class="atd" href="{{ path('crivero_prueba_cancha', { id: reserva.idCancha }) }}" >{{reserva.cancha}}</a></strong></td>
-                                <td>{{reserva.fechaInicio|date('d/m/Y H:i')}}</td>
-                                <td>{{reserva.fechaFinalizacion|date('d/m/Y H:i')}}</td>
+                                <td>{{reserva.fechaInicio|date('d/m/Y')}}</td>
+                                {% set horario = reserva.horario|split('&') %} 
+                                {% if horario|length > 2 %}
+                                    {% set horarioFinal1 = horario[0]|split('-') %} 
+                                    {% set horarioFinal2 = horario[horario|length - 2]|split('-') %} 
+                                    <td>{{horarioFinal1[0]}}-{{horarioFinal2[horarioFinal2|length - 1]}} </td>
+                                {% else %}
+                                    <td>{{horario[0]}}</td>
+                                {% endif %}
+                                
+{#                                <td>{{reserva.fechaFinalizacion|date('d/m/Y')}}</td>#}
                                 <td class="actions">
                                     <a href="{{path('crivero_prueba_reserva_cancelar', {id: reserva.id})}}" class="btn btn-sm btn-danger">
                                         Cancelar

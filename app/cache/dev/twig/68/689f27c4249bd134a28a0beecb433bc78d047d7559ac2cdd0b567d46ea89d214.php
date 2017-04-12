@@ -64,11 +64,11 @@ class __TwigTemplate_0d8e6ccc86611d8f2c6de5e564308ac6c6463c111bc8c041b7509480704
             echo "</th>
                             <th>";
             // line 21
-            echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Inicio", "r.fechaInicio");
+            echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Fecha", "r.fechaInicio");
             echo "</th>
                             <th>";
             // line 22
-            echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Final", "r.fechaFinalizacion");
+            echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Horario", "r.fechaFinalizacion");
             echo "</th>
                             <th>Acciones</th>
                         </tr>
@@ -95,15 +95,44 @@ class __TwigTemplate_0d8e6ccc86611d8f2c6de5e564308ac6c6463c111bc8c041b7509480704
                 echo "</a></strong></td>
                                 <td>";
                 // line 31
-                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["reserva"], "fechaInicio", array()), "d/m/Y H:i"), "html", null, true);
+                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["reserva"], "fechaInicio", array()), "d/m/Y"), "html", null, true);
                 echo "</td>
-                                <td>";
+                                ";
                 // line 32
-                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["reserva"], "fechaFinalizacion", array()), "d/m/Y H:i"), "html", null, true);
-                echo "</td>
-                                <td class=\"actions\">
+                $context["horario"] = twig_split_filter($this->env, $this->getAttribute($context["reserva"], "horario", array()), "&");
+                echo " 
+                                ";
+                // line 33
+                if ((twig_length_filter($this->env, (isset($context["horario"]) ? $context["horario"] : $this->getContext($context, "horario"))) > 2)) {
+                    // line 34
+                    echo "                                    ";
+                    $context["horarioFinal1"] = twig_split_filter($this->env, $this->getAttribute((isset($context["horario"]) ? $context["horario"] : $this->getContext($context, "horario")), 0, array(), "array"), "-");
+                    echo " 
+                                    ";
+                    // line 35
+                    $context["horarioFinal2"] = twig_split_filter($this->env, $this->getAttribute((isset($context["horario"]) ? $context["horario"] : $this->getContext($context, "horario")), (twig_length_filter($this->env, (isset($context["horario"]) ? $context["horario"] : $this->getContext($context, "horario"))) - 2), array(), "array"), "-");
+                    echo " 
+                                    <td>";
+                    // line 36
+                    echo twig_escape_filter($this->env, $this->getAttribute((isset($context["horarioFinal1"]) ? $context["horarioFinal1"] : $this->getContext($context, "horarioFinal1")), 0, array(), "array"), "html", null, true);
+                    echo "-";
+                    echo twig_escape_filter($this->env, $this->getAttribute((isset($context["horarioFinal2"]) ? $context["horarioFinal2"] : $this->getContext($context, "horarioFinal2")), (twig_length_filter($this->env, (isset($context["horarioFinal2"]) ? $context["horarioFinal2"] : $this->getContext($context, "horarioFinal2"))) - 1), array(), "array"), "html", null, true);
+                    echo " </td>
+                                ";
+                } else {
+                    // line 38
+                    echo "                                    <td>";
+                    echo twig_escape_filter($this->env, $this->getAttribute((isset($context["horario"]) ? $context["horario"] : $this->getContext($context, "horario")), 0, array(), "array"), "html", null, true);
+                    echo "</td>
+                                ";
+                }
+                // line 40
+                echo "                                
+";
+                // line 42
+                echo "                                <td class=\"actions\">
                                     <a href=\"";
-                // line 34
+                // line 43
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_reserva_cancelar", array("id" => $this->getAttribute($context["reserva"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-danger\">
                                         Cancelar
@@ -115,16 +144,16 @@ class __TwigTemplate_0d8e6ccc86611d8f2c6de5e564308ac6c6463c111bc8c041b7509480704
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['reserva'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 40
+            // line 49
             echo "                    </tbody>
                 </table>
             </div>
         ";
         }
-        // line 44
+        // line 53
         echo "        <div class=\"navigation\">
             ";
-        // line 45
+        // line 54
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
         </div>
@@ -144,7 +173,7 @@ class __TwigTemplate_0d8e6ccc86611d8f2c6de5e564308ac6c6463c111bc8c041b7509480704
 
     public function getDebugInfo()
     {
-        return array (  128 => 45,  125 => 44,  119 => 40,  107 => 34,  102 => 32,  98 => 31,  92 => 30,  86 => 29,  83 => 28,  79 => 27,  71 => 22,  67 => 21,  63 => 20,  59 => 19,  53 => 15,  49 => 13,  47 => 12,  38 => 7,  35 => 6,  29 => 4,  11 => 2,);
+        return array (  157 => 54,  154 => 53,  148 => 49,  136 => 43,  133 => 42,  130 => 40,  124 => 38,  117 => 36,  113 => 35,  108 => 34,  106 => 33,  102 => 32,  98 => 31,  92 => 30,  86 => 29,  83 => 28,  79 => 27,  71 => 22,  67 => 21,  63 => 20,  59 => 19,  53 => 15,  49 => 13,  47 => 12,  38 => 7,  35 => 6,  29 => 4,  11 => 2,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -177,8 +206,8 @@ class __TwigTemplate_0d8e6ccc86611d8f2c6de5e564308ac6c6463c111bc8c041b7509480704
                         <tr>
                             <th>{{ knp_pagination_sortable(pagination, 'Cliente', 'r.cliente') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'Cancha', 'r.cancha') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Inicio', 'r.fechaInicio') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Final', 'r.fechaFinalizacion') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Fecha', 'r.fechaInicio') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Horario', 'r.fechaFinalizacion') }}</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -187,8 +216,17 @@ class __TwigTemplate_0d8e6ccc86611d8f2c6de5e564308ac6c6463c111bc8c041b7509480704
                             <tr>
                                 <td><strong><a class=\"atd\" href=\"{{ path('crivero_prueba_cliente', { id: reserva.idCliente }) }}\" >{{reserva.cliente}}</a></strong></td>
                                 <td><strong><a class=\"atd\" href=\"{{ path('crivero_prueba_cancha', { id: reserva.idCancha }) }}\" >{{reserva.cancha}}</a></strong></td>
-                                <td>{{reserva.fechaInicio|date('d/m/Y H:i')}}</td>
-                                <td>{{reserva.fechaFinalizacion|date('d/m/Y H:i')}}</td>
+                                <td>{{reserva.fechaInicio|date('d/m/Y')}}</td>
+                                {% set horario = reserva.horario|split('&') %} 
+                                {% if horario|length > 2 %}
+                                    {% set horarioFinal1 = horario[0]|split('-') %} 
+                                    {% set horarioFinal2 = horario[horario|length - 2]|split('-') %} 
+                                    <td>{{horarioFinal1[0]}}-{{horarioFinal2[horarioFinal2|length - 1]}} </td>
+                                {% else %}
+                                    <td>{{horario[0]}}</td>
+                                {% endif %}
+                                
+{#                                <td>{{reserva.fechaFinalizacion|date('d/m/Y')}}</td>#}
                                 <td class=\"actions\">
                                     <a href=\"{{path('crivero_prueba_reserva_cancelar', {id: reserva.id})}}\" class=\"btn btn-sm btn-danger\">
                                         Cancelar

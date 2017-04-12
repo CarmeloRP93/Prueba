@@ -78,7 +78,7 @@ class __TwigTemplate_d226d518312c537300839a41c67beaea2ab7f36907d987ed5437484f4a9
                         <li><a href=\"";
         // line 30
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_nuevo");
-        echo "\">Crear usuario</a></li>
+        echo "\">Nuevo usuario</a></li>
                     </ul>
                 </li>
                 <li class=\"dropdown\">
@@ -94,16 +94,16 @@ class __TwigTemplate_d226d518312c537300839a41c67beaea2ab7f36907d987ed5437484f4a9
         echo "\">Aulas</a></li>
                         <li role=\"separator\" class=\"divider\"></li>
                         <li class=\"dropdown-submenu\">
-                            <a tabindex=\"-1\" href=\"#\">Crear instalacion</a>
+                            <a tabindex=\"-1\" href=\"#\">Nueva instalacion</a>
                             <ul class=\"dropdown-menu\">
                                 <li><a href=\"";
         // line 42
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_cancha_nueva");
-        echo "\">Crear cancha</a></li> 
+        echo "\">Nueva cancha</a></li> 
                                 <li><a href=\"";
         // line 43
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_aula_nueva");
-        echo "\">Crear aula</a></li> 
+        echo "\">Nueva aula</a></li> 
                             </ul>
                         </li>    
                     </ul>
@@ -272,7 +272,7 @@ class __TwigTemplate_d226d518312c537300839a41c67beaea2ab7f36907d987ed5437484f4a9
                         <li><a href=\"{{url('crivero_prueba_clientes')}}\">Clientes</a></li>
                         <li><a href=\"{{url('crivero_prueba_monitores')}}\">Monitores</a></li>
                         <li role=\"separator\" class=\"divider\"></li>
-                        <li><a href=\"{{url('crivero_prueba_nuevo')}}\">Crear usuario</a></li>
+                        <li><a href=\"{{url('crivero_prueba_nuevo')}}\">Nuevo usuario</a></li>
                     </ul>
                 </li>
                 <li class=\"dropdown\">
@@ -282,10 +282,10 @@ class __TwigTemplate_d226d518312c537300839a41c67beaea2ab7f36907d987ed5437484f4a9
                         <li><a href=\"{{url('crivero_prueba_aulas')}}\">Aulas</a></li>
                         <li role=\"separator\" class=\"divider\"></li>
                         <li class=\"dropdown-submenu\">
-                            <a tabindex=\"-1\" href=\"#\">Crear instalacion</a>
+                            <a tabindex=\"-1\" href=\"#\">Nueva instalacion</a>
                             <ul class=\"dropdown-menu\">
-                                <li><a href=\"{{url('crivero_prueba_cancha_nueva')}}\">Crear cancha</a></li> 
-                                <li><a href=\"{{url('crivero_prueba_aula_nueva')}}\">Crear aula</a></li> 
+                                <li><a href=\"{{url('crivero_prueba_cancha_nueva')}}\">Nueva cancha</a></li> 
+                                <li><a href=\"{{url('crivero_prueba_aula_nueva')}}\">Nueva aula</a></li> 
                             </ul>
                         </li>    
                     </ul>
