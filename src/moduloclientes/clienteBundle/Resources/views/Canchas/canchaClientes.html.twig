@@ -4,42 +4,42 @@
     <h1 class="t1">Detalles de la cancha</h1>   
     <div class="container text-center">
 
-    <div class="text-center">
-        <h3 class="t3">{{cancha.tipo}}</h3>
-    </div>
-
-    <div class="col-md-6 col-xs-12">
-
         <div class="text-center">
-            <img src="{{ asset('images/cancha_de_marmolejo.jpg') }}" width="180px" class="img-rounded"/><br>
+            <h3 class="t3">{{cancha.tipo}}</h3>
+        </div>
 
-            <br>{% if cancha.disponibilidad == "Disponible" %}
-            <div class="text-center">
-                <a href="{{path('moduloclientes_cliente_nuevaReserva', {'id': cancha.id})}}" class="btn btn-primary" style="height: 30px; width: 150px;"> Reservar </a>
-            </div>
-            {% else %}
+        <div class=" container row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="text-center">
-                    <button class="btn btn-danger">Reservada</button>
-                </div>
-                {% endif %}
+                    <img src="{{ asset(cancha.imagen) }}" width="180px" class="img-rounded"/><br>
+
+                    <br>{% if cancha.disponibilidad == "Disponible" %}
+                    <div class="text-center">
+                        <a href="{{path('moduloclientes_cliente_nuevaReserva', {'id': cancha.id})}}" class="btn btn-primary" style="height: 30px; width: 150px;"> Reservar </a>
+                    </div>
+                    {% else %}
+                        <div class="text-center">
+                            <button class="btn btn-danger">Reservada</button>
+                        </div>
+                        {% endif %}
                 </div><br>
 
             </div>
-
-            <div class="col-md-6 col-xs-12">
+                
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="text-center">
                     <label class="control-label span7 text-left">Horario: </label>
-                    <label class="control-label span7 text-right">15:00 - 18:30 </label>
+                    <label class="control-label span7 text-right">{{cancha.horario}}</label>
                 </div>
+
+                <div class="text-center">
+                    <label class="control-label span7 text-left">Deporte: </label>
+                    <label class=" text-right">{{cancha.deporte}}</label>
+                </div> 
 
                 <div class="text-center">
                     <label class="control-label span7 text-left">Dimensiones: </label>
-                    <label class="control-label span7 text-right">100 m2</label>
-                </div>
-
-                <div class="text-center">
-                    <label class="control-label span7 text-left">Mínimo de personas para jugar: </label>
-                    <label class="control-label span7 text-right">20</label>
+                    <label class="control-label span7 text-right">{{cancha.dimensiones}} m²</label>
                 </div>
 
                 <div class="text-center">
@@ -49,13 +49,42 @@
 
                 <div class="text-center">
                     <label class="control-label span7 text-left">Dirección: </label>
-                    <label class="control-label span7 text-right">Calle Desengaño, 21</label>
+                    <label class="control-label span7 text-right">{{cancha.direccion}}</label>
                 </div><br>
 
                 <div class="text-center">
                     <a href="{{path('moduloclientes_cliente_escribirSugerencia', {'id': cancha.id})}}" class="btn btn-primary" style="height: 30px; width: 150px;"> Escribir sugerencia </a>
                 </div><br>
-
             </div>
+        </div>
+            
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="t3 text-center">Horarios disponibles de la semana (implementar)</h3>               
+               <table class="table">
+                <thead>
+                  <tr>
+                    <th>Mañana</th>
+                    <th>Pasado mañana</th>
+                   </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Mark</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Jacob</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Larry</td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
 
-            {% endblock %}
+    </div>
+{% endblock %}

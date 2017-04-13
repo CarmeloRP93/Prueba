@@ -67,14 +67,6 @@ class Reservas {
     private $fechaInicio;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fechaFinalizacion", type="datetime")
-     */
-    private $fechaFinalizacion;
-    
-    /**
-     *
      * @var string
      * @ORM\Column(name="horario", type="string", length=255, nullable=true)
      *
@@ -246,27 +238,6 @@ class Reservas {
         return $this->fechaInicio;
     }
 
-    /**
-     * Set fechaFinalizacion
-     *
-     * @param \DateTime $fechaFinalizacion
-     * @return Reservas
-     */
-    public function setFechaFinalizacion($fechaFinalizacion) {
-        $this->fechaFinalizacion = $fechaFinalizacion;
-
-        return $this;
-    }
-
-    /**
-     * Get fechaFinalizacion
-     *
-     * @return \DateTime 
-     */
-    public function getFechaFinalizacion() {
-        return $this->fechaFinalizacion;
-    }
-    
     /**
      * Get motivos
      *

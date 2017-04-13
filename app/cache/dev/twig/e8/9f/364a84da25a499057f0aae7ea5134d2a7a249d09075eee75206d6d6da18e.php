@@ -48,58 +48,67 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
         echo "    <h1 class=\"t1\">Detalles de la cancha</h1>   
     <div class=\"container text-center\">
 
-    <div class=\"text-center\">
-        <h3 class=\"t3\">";
+        <div class=\"text-center\">
+            <h3 class=\"t3\">";
         // line 8
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "tipo", array()), "html", null, true);
         echo "</h3>
-    </div>
+        </div>
 
-    <div class=\"col-md-6 col-xs-12\">
-
-        <div class=\"text-center\">
-            <img src=\"";
+        <div class=\" container row\">
+            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">
+                <div class=\"text-center\">
+                    <img src=\"";
         // line 14
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/cancha_de_marmolejo.jpg"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "imagen", array())), "html", null, true);
         echo "\" width=\"180px\" class=\"img-rounded\"/><br>
 
-            <br>";
+                    <br>";
         // line 16
         if (($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()) == "Disponible")) {
             // line 17
-            echo "            <div class=\"text-center\">
-                <a href=\"";
+            echo "                    <div class=\"text-center\">
+                        <a href=\"";
             // line 18
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_nuevaReserva", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-primary\" style=\"height: 30px; width: 150px;\"> Reservar </a>
-            </div>
-            ";
+                    </div>
+                    ";
         } else {
             // line 21
-            echo "                <div class=\"text-center\">
-                    <button class=\"btn btn-danger\">Reservada</button>
-                </div>
-                ";
+            echo "                        <div class=\"text-center\">
+                            <button class=\"btn btn-danger\">Reservada</button>
+                        </div>
+                        ";
         }
         // line 25
         echo "                </div><br>
 
             </div>
-
-            <div class=\"col-md-6 col-xs-12\">
+                
+            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">
                 <div class=\"text-center\">
                     <label class=\"control-label span7 text-left\">Horario: </label>
-                    <label class=\"control-label span7 text-right\">15:00 - 18:30 </label>
+                    <label class=\"control-label span7 text-right\">";
+        // line 32
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "horario", array()), "html", null, true);
+        echo "</label>
                 </div>
+
+                <div class=\"text-center\">
+                    <label class=\"control-label span7 text-left\">Deporte: </label>
+                    <label class=\" text-right\">";
+        // line 37
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "deporte", array()), "html", null, true);
+        echo "</label>
+                </div> 
 
                 <div class=\"text-center\">
                     <label class=\"control-label span7 text-left\">Dimensiones: </label>
-                    <label class=\"control-label span7 text-right\">100 m2</label>
-                </div>
-
-                <div class=\"text-center\">
-                    <label class=\"control-label span7 text-left\">Mínimo de personas para jugar: </label>
-                    <label class=\"control-label span7 text-right\">20</label>
+                    <label class=\"control-label span7 text-right\">";
+        // line 42
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "dimensiones", array()), "html", null, true);
+        echo " m²</label>
                 </div>
 
                 <div class=\"text-center\">
@@ -109,7 +118,10 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
 
                 <div class=\"text-center\">
                     <label class=\"control-label span7 text-left\">Dirección: </label>
-                    <label class=\"control-label span7 text-right\">Calle Desengaño, 21</label>
+                    <label class=\"control-label span7 text-right\">";
+        // line 52
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "direccion", array()), "html", null, true);
+        echo "</label>
                 </div><br>
 
                 <div class=\"text-center\">
@@ -118,10 +130,39 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_escribirSugerencia", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
         echo "\" class=\"btn btn-primary\" style=\"height: 30px; width: 150px;\"> Escribir sugerencia </a>
                 </div><br>
-
             </div>
+        </div>
+            
+        <div class=\"row\">
+            <div class=\"col-md-12\">
+                <h3 class=\"t3 text-center\">Horarios disponibles de la semana (implementar)</h3>               
+               <table class=\"table\">
+                <thead>
+                  <tr>
+                    <th>Mañana</th>
+                    <th>Pasado mañana</th>
+                   </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Mark</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Jacob</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Larry</td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
 
-            ";
+    </div>
+";
     }
 
     public function getTemplateName()
@@ -136,6 +177,6 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
 
     public function getDebugInfo()
     {
-        return array (  118 => 56,  85 => 25,  79 => 21,  73 => 18,  70 => 17,  68 => 16,  63 => 14,  54 => 8,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  130 => 56,  123 => 52,  110 => 42,  102 => 37,  94 => 32,  85 => 25,  79 => 21,  73 => 18,  70 => 17,  68 => 16,  63 => 14,  54 => 8,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

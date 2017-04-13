@@ -548,6 +548,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_moduloclientes_cliente_aadirSugerencia:
 
+        // moduloclientes_cliente_cancelarReserva
+        if (0 === strpos($pathinfo, '/cancelarReserva') && preg_match('#^/cancelarReserva/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                $allow = array_merge($allow, array('POST', 'DELETE'));
+                goto not_moduloclientes_cliente_cancelarReserva;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_cancelarReserva')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::cancelarReservaAction',));
+        }
+        not_moduloclientes_cliente_cancelarReserva:
+
         // crivero_prueba_home
         if ($pathinfo === '/home') {
             return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::homeAction',  '_route' => 'crivero_prueba_home',);

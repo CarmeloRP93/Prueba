@@ -126,3 +126,9 @@ moduloclientes_cliente_añadirSugerencia:
     defaults: { _controller: moduloclientesclienteBundle:Cancha:añadirSugerencia }
     requirements:
         _method:  POST|PUT|GET
+        
+moduloclientes_cliente_cancelarReserva:
+    pattern:  /cancelarReserva/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Reserva:cancelarReserva }
+    methods: [POST, DELETE]
+    

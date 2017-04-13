@@ -46,7 +46,7 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
         echo "    <div class=\"col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4\">
         <div class=\"panel panel-default\">
             <div class=\"panel-heading text-center\">
-                 <h1 class=\"t1\">Listado de canchas</h1>
+                <h1 class=\"t1\">Listado de canchas</h1>
             </div>
             ";
         // line 12
@@ -67,18 +67,36 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
         }
         foreach ($context['_seq'] as $context["_key"] => $context["cancha"]) {
             // line 13
-            echo "                 <a href=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_canchaClientes", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
-            echo "\" class=\"fila ";
-            echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
-            echo "\"> ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "id", array()), "html", null, true);
-            echo " - ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "tipo", array()), "html", null, true);
-            echo " - ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
-            echo " </a>
-            ";
+            echo "                ";
+            if (($this->getAttribute($context["cancha"], "disponibilidad", array()) == "No disponible")) {
+                // line 14
+                echo "                    <a class=\"fila ";
+                echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
+                echo "\"> ";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "id", array()), "html", null, true);
+                echo " - ";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "tipo", array()), "html", null, true);
+                echo " - ";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
+                echo " </a>
+                ";
+            } else {
+                // line 16
+                echo "                    <a href=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_canchaClientes", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
+                echo "\" class=\"fila ";
+                echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
+                echo "\"> ";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "id", array()), "html", null, true);
+                echo " - ";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "tipo", array()), "html", null, true);
+                echo " - ";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
+                echo " </a>
+                ";
+            }
+            // line 18
+            echo "            ";
             ++$context['loop']['index0'];
             ++$context['loop']['index'];
             $context['loop']['first'] = false;
@@ -91,7 +109,7 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cancha'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 15
+        // line 19
         echo "        </div>
     </div>
 ";
@@ -109,6 +127,6 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
 
     public function getDebugInfo()
     {
-        return array (  95 => 15,  70 => 13,  53 => 12,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  113 => 19,  99 => 18,  85 => 16,  73 => 14,  70 => 13,  53 => 12,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
     }
 }

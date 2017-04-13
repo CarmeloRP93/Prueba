@@ -24,7 +24,8 @@ class ReservaController extends Controller {
         $canchaId = $reserva->getIdCancha();
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
         $cancha = $repository->find($canchaId);
-        return $this->render('moduloclientesclienteBundle:Reservas:reservaClientes.html.twig', array("reserva" => $reserva, "cancha" => $cancha));
+        $deleteForm = $this->createCustomForm($reserva->getId(), 'DELETE', 'moduloclientes_cliente_cancelarReserva');
+        return $this->render('moduloclientesclienteBundle:Reservas:reservaClientes.html.twig', array("reserva" => $reserva, "cancha" => $cancha, 'delete_form' => $deleteForm->createView()));
     }
 
     public function nuevaReservaAction($id) {
@@ -132,7 +133,7 @@ class ReservaController extends Controller {
             if ($fecha != null) {
                 $fecha = date_format($fecha, "d-m");
                 $horarioscancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Horarioscanchas")->getHorario($id, $fecha);
-                if ($horarioscancha[0]['periodo'] == null) {
+                if ($horarioscancha == array() || $horarioscancha[0]['periodo'] == null) {
                     $mensaje = 'No hay horas disponibles para la fecha seleccionada';
                     return $this->render('moduloclientesclienteBundle:Reservas:nuevaReserva.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => $mensaje));
                 }
@@ -144,4 +145,39 @@ class ReservaController extends Controller {
         return $this->render('moduloclientesclienteBundle:Reservas:nuevaReserva.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null));
     }
 
+    public function cancelarReservaAction(Request $request, $id) {
+        $em = $this->getDoctrine()->getManager();
+        $reserva = $this->findReserva($id, $em);
+
+        $form = $this->createCustomForm($reserva->getId(), 'DELETE', 'moduloclientes_cliente_cancelarReserva');
+        $form->handleRequest($request);
+
+        $res = $this->deleteReserva($em, $reserva);
+        $request->getSession()->getFlashBag()->add('mensaje', $res['message']);
+        return $this->redirect($this->generateUrl('moduloclientes_cliente_reservasClientes'));
+    }
+
+    private function deleteReserva($em, $reserva) {
+        $em->remove($reserva);
+        $em->flush();
+
+        $message = 'La reserva ha sido eliminada con éxito.';
+        $remove = 1;
+        return array('removed' => $remove, 'message' => $message);
+    }
+
+    private function findReserva($id, $em) {
+        $reserva = $em->getRepository('CriveroPruebaBundle:Reservas')->find($id);
+        if (!$reserva) {
+            throw $this->createNotFoundException('Reserva no encontrada');
+        }
+        return $reserva;
+    }
+
+    private function createCustomForm($id, $method, $route) {
+        return $this->createFormBuilder()
+                        ->setAction($this->generateUrl($route, array('id' => $id)))
+                        ->setMethod($method)
+                        ->getForm();
+    }
 }

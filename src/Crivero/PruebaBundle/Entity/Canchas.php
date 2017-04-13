@@ -14,8 +14,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity("tipo")
  * @ORM\HasLifecycleCallbacks
  */
-class Canchas
-{
+class Canchas {
+
     /**
      * @var integer
      *
@@ -66,12 +66,32 @@ class Canchas
     private $imagen;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="deporte", type="string", length=200, nullable=false)
+     */
+    private $deporte;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion", type="string", length=200, nullable=false)
+     */
+    private $direccion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dimensiones", type="string", length=200, nullable=false)
+     */
+    private $dimensiones;
+
+    /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -81,8 +101,7 @@ class Canchas
      * @param string $tipo
      * @return Canchas
      */
-    public function setTipo($tipo)
-    {
+    public function setTipo($tipo) {
         $this->tipo = $tipo;
 
         return $this;
@@ -93,8 +112,7 @@ class Canchas
      *
      * @return string 
      */
-    public function getTipo()
-    {
+    public function getTipo() {
         return $this->tipo;
     }
 
@@ -104,8 +122,7 @@ class Canchas
      * @param string $horario
      * @return Canchas
      */
-    public function setHorario($horario)
-    {
+    public function setHorario($horario) {
         $this->horario = $horario;
 
         return $this;
@@ -116,8 +133,7 @@ class Canchas
      *
      * @return string 
      */
-    public function getHorario()
-    {
+    public function getHorario() {
         return $this->horario;
     }
 
@@ -127,8 +143,7 @@ class Canchas
      * @param float $valoracion
      * @return Canchas
      */
-    public function setValoracion($valoracion)
-    {
+    public function setValoracion($valoracion) {
         $this->valoracion = $valoracion;
 
         return $this;
@@ -139,8 +154,7 @@ class Canchas
      *
      * @return float 
      */
-    public function getValoracion()
-    {
+    public function getValoracion() {
         return $this->valoracion;
     }
 
@@ -150,8 +164,7 @@ class Canchas
      * @param string $disponibilidad
      * @return Canchas
      */
-    public function setDisponibilidad($disponibilidad)
-    {
+    public function setDisponibilidad($disponibilidad) {
         $this->disponibilidad = $disponibilidad;
 
         return $this;
@@ -162,8 +175,7 @@ class Canchas
      *
      * @return string 
      */
-    public function getDisponibilidad()
-    {
+    public function getDisponibilidad() {
         return $this->disponibilidad;
     }
 
@@ -173,8 +185,7 @@ class Canchas
      * @param string $imagen
      * @return Canchas
      */
-    public function setImagen($imagen)
-    {
+    public function setImagen($imagen) {
         $this->imagen = $imagen;
 
         return $this;
@@ -185,8 +196,69 @@ class Canchas
      *
      * @return string 
      */
-    public function getImagen()
-    {
+    public function getImagen() {
         return $this->imagen;
     }
+
+    /**
+     * Set deporte
+     *
+     * @param string $deporte
+     * @return Canchas
+     */
+    public function setDeporte($deporte) {
+        $this->deporte = $deporte;
+
+        return $this;
+    }
+
+    /**
+     * Get deporte
+     *
+     * @return string 
+     */
+    public function getDeporte() {
+        return $this->deporte;
+    }
+
+    /**
+     * Set direccion
+     *
+     * @param string $direccion
+     * @return Canchas
+     */
+    public function setDireccion($direccion) {
+        $this->direccion = $direccion;
+        return $this;
+    }
+
+    /**
+     * Get direccion
+     *
+     * @return string 
+     */
+    public function getDireccion() {
+        return $this->direccion;
+    }
+
+    /**
+     * Set dimensiones
+     *
+     * @param string $dimensiones
+     * @return Canchas
+     */
+    public function setDimensiones($dimensiones) {
+        $this->dimensiones = $dimensiones;
+        return $this;
+    }
+
+    /**
+     * Get dimensiones
+     *
+     * @return string 
+     */
+    public function getDimensiones() {
+        return $this->dimensiones;
+    }
+
 }
