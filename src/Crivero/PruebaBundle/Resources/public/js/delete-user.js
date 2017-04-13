@@ -7,7 +7,7 @@ $(document).ready(function() {
         var form = $('#form-delete');
         var url = form.attr('action').replace(':USER_ID', id);
         var data = form.serialize();
-         
+        
         bootbox.confirm('¿Estas seguro?', function(res) {
             
             if(res === true) {

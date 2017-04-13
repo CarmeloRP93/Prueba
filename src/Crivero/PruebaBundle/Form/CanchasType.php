@@ -15,10 +15,16 @@ class CanchasType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('tipo')
-            ->add('horario')
+            ->add('tipo', 'text', array('label' => 'Nombre'))
+            ->add('deporte', 'choice', array('choices' => array("Fútbol" => 'Fútbol', 
+                                                                "Baloncesto" => 'Baloncesto',
+                                                                "Tenis" => 'Tenis',    
+                                                                "Padel" => 'Padel')))
             ->add('disponibilidad', 'choice', array('choices' => array("Disponible" => 'Disponible', 
                                                                        "No disponible" => 'No disponible')))
+            ->add('horario')
+            ->add('direccion', 'text')
+            ->add('dimensiones', 'integer', array('label' => 'dimensiones(m²)'))
             ->add('imagen', 'file',  array('data_class' => null))
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;

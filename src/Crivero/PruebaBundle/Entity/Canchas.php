@@ -38,7 +38,7 @@ class Canchas {
      * @ORM\Column(name="horario", type="string", length=200, nullable=false)
      * @Assert\NotBlank()
      * @Assert\Regex(
-     *     pattern="/^(\d{2}:\d{2}) - (\d{2}:\d{2})$/",
+     *     pattern="/^(\d{2}:\d{2})-(\d{2}:\d{2})$/",
      *     message="Should be a time interval"
      * )
      */
@@ -76,6 +76,7 @@ class Canchas {
      * @var string
      *
      * @ORM\Column(name="direccion", type="string", length=200, nullable=false)
+     * @Assert\NotBlank()
      */
     private $direccion;
 
@@ -83,6 +84,7 @@ class Canchas {
      * @var string
      *
      * @ORM\Column(name="dimensiones", type="string", length=200, nullable=false)
+     * @Assert\NotBlank()
      */
     private $dimensiones;
 
