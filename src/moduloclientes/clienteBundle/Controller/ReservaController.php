@@ -60,7 +60,7 @@ class ReservaController extends Controller {
     }
 
     public function crearReservaAction($id, Request $request) {
-        
+
         //Aquí cogemos la fecha de reserva que escogimos en la vista de nueva reserva, le damos el formato
         $reserva = new Reservas();
         $fechaTime = $this->getRequest()->query->get('fechaInicio') . '-' . date('Y');
@@ -78,13 +78,13 @@ class ReservaController extends Controller {
             $cancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas")->find($id);
             $reserva->setCancha($cancha->getTipo());
             $reserva->setEstadoReserva("Reservado");
-                  
+
             //Comprobamos si se ha seleccionado algún horario
             if (count($form->get('horario')->getData()) == 0) {
                 $form->get('horario')->addError(new FormError('Seleccione una o más opciones'));
                 return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id));
             }
-   
+
             //Concatenamos en horitas las horas seleccionadas en una string
             $horitas = "";
             for ($i = 0; $i < count($form->get('horario')->getData()); $i++) {
@@ -132,7 +132,7 @@ class ReservaController extends Controller {
             if ($fecha != null) {
                 $fecha = date_format($fecha, "d-m");
                 $horarioscancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Horarioscanchas")->getHorario($id, $fecha);
-                if ($horarioscancha == array()) {
+                if ($horarioscancha[0]['periodo'] == null) {
                     $mensaje = 'No hay horas disponibles para la fecha seleccionada';
                     return $this->render('moduloclientesclienteBundle:Reservas:nuevaReserva.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => $mensaje));
                 }
@@ -143,4 +143,5 @@ class ReservaController extends Controller {
         }
         return $this->render('moduloclientesclienteBundle:Reservas:nuevaReserva.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null));
     }
+
 }
