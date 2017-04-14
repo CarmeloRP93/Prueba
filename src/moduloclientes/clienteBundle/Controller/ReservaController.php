@@ -37,7 +37,7 @@ class ReservaController extends Controller {
     public function elegirHoraAction($id, $fecha) {
         $reserva = new Reservas();
         $form = $this->createCreateFormHora($reserva, $id, $fecha);
-        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id));
+        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null));
     }
 
     private function createCreateFormHora(Reservas $entity, $id, $fecha) {
@@ -83,12 +83,21 @@ class ReservaController extends Controller {
             //Comprobamos si se ha seleccionado algún horario
             if (count($form->get('horario')->getData()) == 0) {
                 $form->get('horario')->addError(new FormError('Seleccione una o más opciones'));
-                return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id));
+                return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null));
             }
 
             //Concatenamos en horitas las horas seleccionadas en una string
             $horitas = "";
             for ($i = 0; $i < count($form->get('horario')->getData()); $i++) {
+
+                //Esto es para comprobar que no se puedan escoger horas que no sean contiguas
+                if ($i != count($form->get('horario')->getData()) - 1) {
+                    if ((int) substr(strval($form->get('horario')->getData()[$i]), 0, 2) + 1 != (int) substr(strval($form->get('horario')->getData()[$i + 1]), 0, 2)) {
+                        $mensaje = 'Seleccione horas contiguas. Para escoger horas no contiguas realice distintas reservas';
+                        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => $mensaje));
+                    }
+                }
+
                 $horitas .= strval($form->get('horario')->getData()[$i]) . "&";
             }
 
@@ -121,7 +130,7 @@ class ReservaController extends Controller {
             return $this->redirect($this->generateUrl('moduloclientes_cliente_reservasClientes'));
         }
 
-        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id));
+        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null));
     }
 
     public function mostrarHorasAction($id, Request $request) {
@@ -153,21 +162,25 @@ class ReservaController extends Controller {
         $fechaReserva = date_format($reserva->getFechaInicio(), 'd-m');
         $idCancha = $reserva->getIdCancha();
         $horarioscancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Horarioscanchas")->getHorario($idCancha, $fechaReserva);
+        if ($horarioscancha[0]['periodo'] == null) {
+            $concatenado = substr($reserva->getHorario(), 0, -1);
+        } else {
 
-        //Cogemos el horario reservado y lo metemos en un vector para comparar con los no reservados
-        $horarioReservado = explode('&', $reserva->getHorario());
-        $horarioscancha2 = implode("", $horarioscancha[0]);
-        $horariosNoReservados = explode('&', $horarioscancha2);
-        $concatenado = '';
-        $flag = 0;
-        for ($i = 0; $i < count($horariosNoReservados); $i++) {
-            if ((int) substr($horariosNoReservados[$i], 0, 2) > (int) substr($horarioReservado[0], 0, 2) && $flag == 0) {
-                $concatenado .= $reserva->getHorario();
-                $flag = 1;
-            }
-            ($i == count($horariosNoReservados)-1) ? $concatenado .= $horariosNoReservados[$i]: $concatenado .= $horariosNoReservados[$i] . '&';
-            if ($i == count($horariosNoReservados)-1 && $flag == 0) {
-                $concatenado .= '&'.substr($reserva->getHorario(), 0, -1);
+            //Cogemos el horario reservado y lo metemos en un vector para comparar con los no reservados
+            $horarioReservado = explode('&', $reserva->getHorario());
+            $horarioscancha2 = implode("", $horarioscancha[0]);
+            $horariosNoReservados = explode('&', $horarioscancha2);
+            $concatenado = '';
+            $flag = 0;
+            for ($i = 0; $i < count($horariosNoReservados); $i++) {
+                if ((int) substr($horariosNoReservados[$i], 0, 2) > (int) substr($horarioReservado[0], 0, 2) && $flag == 0) {
+                    $concatenado .= $reserva->getHorario();
+                    $flag = 1;
+                }
+                ($i == count($horariosNoReservados) - 1) ? $concatenado .= $horariosNoReservados[$i] : $concatenado .= $horariosNoReservados[$i] . '&';
+                if ($i == count($horariosNoReservados) - 1 && $flag == 0) {
+                    $concatenado .= '&' . substr($reserva->getHorario(), 0, -1);
+                }
             }
         }
 

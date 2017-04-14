@@ -57,34 +57,24 @@
                 </div><br>
             </div>
         </div>
-            
+                
         <div class="row">
             <div class="col-md-12">
-                <h3 class="t3 text-center">Horarios disponibles de la semana (implementar)</h3>               
-               <table class="table">
-                <thead>
-                  <tr>
-                    <th>Mañana</th>
-                    <th>Pasado mañana</th>
-                   </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Larry</td>
-                    </tr>
-                </tbody>
-              </table>
+                <h3 class="t3 text-center">Horarios disponibles de los próximos 7 días</h3>               
+                <table class="table">
+                    <tbody>
+                        {% for horario in horarios  %}
+                            <tr>
+                                <th>Día {{ horario.fechaInicio|split('-')[0] }}</th>
+                                {% for horitas in horario.periodo|split('&')  %}
+                                    <td>{{ horitas }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
-
+                    
     </div>
 {% endblock %}

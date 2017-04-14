@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormError;
 
-
 class CanchaController extends Controller {
 
     public function canchasClientesAction() {
@@ -21,7 +20,14 @@ class CanchaController extends Controller {
     public function canchaClientesAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
         $cancha = $repository->find($id);
-        return $this->render('moduloclientesclienteBundle:Canchas:canchaClientes.html.twig', array("cancha" => $cancha));
+
+        $repositoryHorarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosCanchas");
+        for ($i = 1; $i < 8; $i++) {
+            $dia = date('d')+$i;
+            $diaMes = $dia.'-'.date('m');
+            $horarios[$i] = $repositoryHorarios->getInstancia($id, $diaMes)[0];
+        }
+        return $this->render('moduloclientesclienteBundle:Canchas:canchaClientes.html.twig', array("cancha" => $cancha, "horarios" => $horarios));
     }
 
     public function escribirSugerenciaAction($id) {

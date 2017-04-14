@@ -132,35 +132,50 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
                 </div><br>
             </div>
         </div>
-            
+                
         <div class=\"row\">
             <div class=\"col-md-12\">
-                <h3 class=\"t3 text-center\">Horarios disponibles de la semana (implementar)</h3>               
-               <table class=\"table\">
-                <thead>
-                  <tr>
-                    <th>Mañana</th>
-                    <th>Pasado mañana</th>
-                   </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Larry</td>
-                    </tr>
-                </tbody>
-              </table>
+                <h3 class=\"t3 text-center\">Horarios disponibles de los próximos 7 días</h3>               
+                <table class=\"table\">
+                    <tbody>
+                        ";
+        // line 66
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["horarios"]) ? $context["horarios"] : $this->getContext($context, "horarios")));
+        foreach ($context['_seq'] as $context["_key"] => $context["horario"]) {
+            // line 67
+            echo "                            <tr>
+                                <th>Día ";
+            // line 68
+            echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute($context["horario"], "fechaInicio", array()), "-"), 0, array(), "array"), "html", null, true);
+            echo "</th>
+                                ";
+            // line 69
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable(twig_split_filter($this->env, $this->getAttribute($context["horario"], "periodo", array()), "&"));
+            foreach ($context['_seq'] as $context["_key"] => $context["horitas"]) {
+                // line 70
+                echo "                                    <td>";
+                echo twig_escape_filter($this->env, $context["horitas"], "html", null, true);
+                echo "</td>
+                                ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['horitas'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 72
+            echo "                            </tr>
+                        ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['horario'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 74
+        echo "                    </tbody>
+                </table>
             </div>
         </div>
-
+                    
     </div>
 ";
     }
@@ -177,6 +192,6 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
 
     public function getDebugInfo()
     {
-        return array (  130 => 56,  123 => 52,  110 => 42,  102 => 37,  94 => 32,  85 => 25,  79 => 21,  73 => 18,  70 => 17,  68 => 16,  63 => 14,  54 => 8,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  174 => 74,  167 => 72,  158 => 70,  154 => 69,  150 => 68,  147 => 67,  143 => 66,  130 => 56,  123 => 52,  110 => 42,  102 => 37,  94 => 32,  85 => 25,  79 => 21,  73 => 18,  70 => 17,  68 => 16,  63 => 14,  54 => 8,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

@@ -23,11 +23,17 @@ class ReservasType extends AbstractType {
         for ($i = 0; $i < count($this->horas); $i++) {
             $res[$i] = array($this->horas[$i] => $this->horas[$i]);
         }
-        $builder
-                ->add('idCancha', 'hidden')
-                ->add('fechaInicio', 'date', array('widget' => "single_text"))
-                ->add('horario', 'choice', array('choices' => $res, 'multiple' => true, 'expanded' => true))
-                ->add('confirmar', 'submit', array('label' => 'Confirmar'));
+        if ($this->horas != array('Cancelar')) {
+            $builder
+                    ->add('idCancha', 'hidden')
+                    ->add('fechaInicio', 'date', array('widget' => "single_text"))
+                    ->add('horario', 'choice', array('choices' => $res, 'multiple' => true, 'expanded' => true))
+                    ->add('confirmar', 'submit', array('label' => 'Confirmar'));
+        }else{
+            $builder
+                    ->add('motivos', 'textarea')
+                    ->add('confirmar', 'submit', array('label' => 'Confirmar'));
+        }
     }
 
     /**

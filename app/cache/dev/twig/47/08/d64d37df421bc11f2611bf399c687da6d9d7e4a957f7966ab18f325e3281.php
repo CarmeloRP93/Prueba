@@ -54,7 +54,7 @@ class __TwigTemplate_4708d64d37df421bc11f2611bf399c687da6d9d7e4a957f7966ab18f325
         // line 10
         if (((isset($context["mensaje"]) ? $context["mensaje"] : $this->getContext($context, "mensaje")) != null)) {
             // line 11
-            echo "            <h3 class=\"t3\">";
+            echo "            <h3 class=\"terr\">";
             echo twig_escape_filter($this->env, (isset($context["mensaje"]) ? $context["mensaje"] : $this->getContext($context, "mensaje")), "html", null, true);
             echo "</h3>
         ";

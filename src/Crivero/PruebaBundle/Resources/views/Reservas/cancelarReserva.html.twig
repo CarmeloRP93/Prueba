@@ -6,18 +6,6 @@
 
         {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
 
-        <div class="hidden">
-            {{ form_label(form.fechaInicio) }}
-            {{ form_widget(form.fechaInicio, { 'attr' : {'class' : 'form-control'} }) }}
-            <span class="text-danger">{{ form_errors(form.fechaInicio) }}</span>
-        </div>
-
-        <div class="hidden">
-            {{ form_label(form.fechaFinalizacion) }}
-            {{ form_widget(form.fechaFinalizacion, {'attr': {'class': 'form-control'}}) }}
-            <span class="text-danger">{{ form_errors(form.fechaFinalizacion) }}</span>
-        </div>
-
         <div class="form-group">
             {{ form_label(form.motivos) }}
             {{ form_widget(form.motivos, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Motivos de cancelación'} }) }}
