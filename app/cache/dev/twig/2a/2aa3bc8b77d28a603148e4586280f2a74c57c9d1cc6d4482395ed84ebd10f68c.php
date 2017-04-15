@@ -158,14 +158,25 @@ class __TwigTemplate_d226d518312c537300839a41c67beaea2ab7f36907d987ed5437484f4a9
         if ($this->env->getExtension('Symfony\Bridge\Twig\Extension\SecurityExtension')->isGranted("IS_AUTHENTICATED_FULLY")) {
             // line 70
             echo "                <ul class=\"nav navbar-nav navbar-right\">
-                    <li><a href = \"";
+                    ";
             // line 71
+            if (($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "username", array()) == "director")) {
+                // line 72
+                echo "                        <li><a href = \"";
+                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_enviarMensaje");
+                echo "\">enviar mensaje</a></li>
+                    ";
+            }
+            // line 73
+            echo " 
+                    <li><a href = \"";
+            // line 74
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_editarUsuario", array("id" => $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))), "html", null, true);
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/user-128.png"), "html", null, true);
             echo "\" style=\"width: 50%;\" /></a></li>
                     <li><a href=\"";
-            // line 72
+            // line 75
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_logout");
             echo "\" style=\"margin-right: 12px\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/logout-128.png"), "html", null, true);
@@ -173,12 +184,12 @@ class __TwigTemplate_d226d518312c537300839a41c67beaea2ab7f36907d987ed5437484f4a9
                 </ul>
             ";
         }
-        // line 75
+        // line 78
         echo "
             <form method=\"GET\" class=\"navbar-form navbar-center\" role=\"search\">
                 <div class=\"input-group\">
                     <input type=\"text\" name=\"query\" class=\"form-control\" value=\"";
-        // line 78
+        // line 81
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "get", array(0 => "query"), "method"), "html", null, true);
         echo "\" 
                            placeholder=\"Buscar usuarios, reservas\" required>
@@ -194,16 +205,16 @@ class __TwigTemplate_d226d518312c537300839a41c67beaea2ab7f36907d987ed5437484f4a9
 ";
     }
 
-    // line 90
+    // line 93
     public function block_body($context, array $blocks = array())
     {
-        // line 91
+        // line 94
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 93
+        // line 96
         $this->displayBlock('contenido', $context, $blocks);
-        // line 95
+        // line 98
         echo "        </div>
 
     </div>
@@ -211,10 +222,10 @@ class __TwigTemplate_d226d518312c537300839a41c67beaea2ab7f36907d987ed5437484f4a9
 ";
     }
 
-    // line 93
+    // line 96
     public function block_contenido($context, array $blocks = array())
     {
-        // line 94
+        // line 97
         echo "            ";
     }
 
@@ -230,7 +241,7 @@ class __TwigTemplate_d226d518312c537300839a41c67beaea2ab7f36907d987ed5437484f4a9
 
     public function getDebugInfo()
     {
-        return array (  218 => 94,  215 => 93,  207 => 95,  205 => 93,  201 => 91,  198 => 90,  182 => 78,  177 => 75,  169 => 72,  163 => 71,  160 => 70,  158 => 69,  150 => 64,  146 => 63,  137 => 57,  132 => 55,  128 => 54,  124 => 53,  120 => 52,  113 => 48,  105 => 43,  101 => 42,  93 => 37,  89 => 36,  80 => 30,  75 => 28,  71 => 27,  59 => 18,  46 => 7,  43 => 6,  38 => 4,  32 => 2,  11 => 1,);
+        return array (  229 => 97,  226 => 96,  218 => 98,  216 => 96,  212 => 94,  209 => 93,  193 => 81,  188 => 78,  180 => 75,  174 => 74,  171 => 73,  165 => 72,  163 => 71,  160 => 70,  158 => 69,  150 => 64,  146 => 63,  137 => 57,  132 => 55,  128 => 54,  124 => 53,  120 => 52,  113 => 48,  105 => 43,  101 => 42,  93 => 37,  89 => 36,  80 => 30,  75 => 28,  71 => 27,  59 => 18,  46 => 7,  43 => 6,  38 => 4,  32 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -313,6 +324,9 @@ class __TwigTemplate_d226d518312c537300839a41c67beaea2ab7f36907d987ed5437484f4a9
 
             {% if is_granted(\"IS_AUTHENTICATED_FULLY\") %}
                 <ul class=\"nav navbar-nav navbar-right\">
+                    {% if app.user.username == 'director' %}
+                        <li><a href = \"{{url('crivero_prueba_enviarMensaje')}}\">enviar mensaje</a></li>
+                    {% endif %} 
                     <li><a href = \"{{path('crivero_prueba_editarUsuario', { id: app.user.id })}}\"><img src=\"{{asset('images/user-128.png')}}\" style=\"width: 50%;\" /></a></li>
                     <li><a href=\"{{path('crivero_prueba_logout')}}\" style=\"margin-right: 12px\"><img src=\"{{asset('images/logout-128.png')}}\" style=\"width: 18px;\" /></a></li>
                 </ul>

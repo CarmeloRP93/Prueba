@@ -948,6 +948,25 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        if (0 === strpos($pathinfo, '/envia')) {
+            // crivero_prueba_enviarMensaje
+            if ($pathinfo === '/enviarMensaje') {
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::enviarMensajeAction',  '_route' => 'crivero_prueba_enviarMensaje',);
+            }
+
+            // crivero_prueba_enviando
+            if ($pathinfo === '/enviando') {
+                if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                    goto not_crivero_prueba_enviando;
+                }
+
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::enviandoAction',  '_route' => 'crivero_prueba_enviando',);
+            }
+            not_crivero_prueba_enviando:
+
+        }
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }

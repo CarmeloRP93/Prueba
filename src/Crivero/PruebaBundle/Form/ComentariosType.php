@@ -15,10 +15,11 @@ class ComentariosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('tipoComentario', 'text')
-            ->add('destinoComentario', 'text' )
-            ->add('descripcion', 'text')
-            ->add('idCliente', 'hidden')
+            ->add('tipoComentario', 'hidden')
+            ->add('idRemitente', 'hidden')
+            ->add('destinatario', 'text' )
+            ->add('asunto', 'text')
+            ->add('descripcion', 'textarea')
             ->add('enviar', 'submit', array('label' => 'Enviar'))
         ;
     }

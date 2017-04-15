@@ -3,9 +3,9 @@
 namespace Crivero\PruebaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * Comentarios
  *
@@ -13,8 +13,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\ComentariosRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Comentarios
-{
+class Comentarios {
+
     /**
      * @var integer
      *
@@ -34,15 +34,23 @@ class Comentarios
     /**
      * @var string
      *
-     * @ORM\Column(name="destinoComentario", type="string", length=255)
+     * @ORM\Column(name="destinatario", type="string", length=255)
      * @Assert\NotBlank()
+     * @Assert\Email()
      */
-    private $destinoComentario;
+    private $destinatario;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="descripcion", type="string", length=255)
+     * @ORM\Column(name="asunto", type="string", length=255, nullable=true)
+     */
+    private $asunto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="string", length=10000)
      * @Assert\NotBlank()
      */
     private $descripcion;
@@ -50,18 +58,23 @@ class Comentarios
     /**
      * @var integer
      *
-     * @ORM\Column(name="idCliente", type="integer")
+     * @ORM\Column(name="idRemitente", type="integer")
      */
-    private $idCliente;
+    private $idRemitente;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idDestinatario", type="integer")
+     */
+    private $idDestinatario;
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -71,8 +84,7 @@ class Comentarios
      * @param string $tipoComentario
      * @return Comentarios
      */
-    public function setTipoComentario($tipoComentario)
-    {
+    public function setTipoComentario($tipoComentario) {
         $this->tipoComentario = $tipoComentario;
 
         return $this;
@@ -83,32 +95,48 @@ class Comentarios
      *
      * @return string 
      */
-    public function getTipoComentario()
-    {
+    public function getTipoComentario() {
         return $this->tipoComentario;
     }
 
     /**
-     * Set destinoComentario
+     * Set destinatario
      *
-     * @param string $destinoComentario
+     * @param string $destinatario
      * @return Comentarios
      */
-    public function setDestinoComentario($destinoComentario)
-    {
-        $this->destinoComentario = $destinoComentario;
-
+    public function setDestinatario($destinatario) {
+        $this->destinatario = $destinatario;
         return $this;
     }
 
     /**
-     * Get destinoComentario
+     * Get destinatario
      *
      * @return string 
      */
-    public function getDestinoComentario()
-    {
-        return $this->destinoComentario;
+    public function getDestinatario() {
+        return $this->destinatario;
+    }
+
+    /**
+     * Set asunto
+     *
+     * @param string $asunto
+     * @return Comentarios
+     */
+    public function setAsunto($asunto) {
+        $this->asunto = $asunto;
+        return $this;
+    }
+
+    /**
+     * Get asunto
+     *
+     * @return string 
+     */
+    public function getAsunto() {
+        return $this->asunto;
     }
 
     /**
@@ -117,10 +145,8 @@ class Comentarios
      * @param string $descripcion
      * @return Comentarios
      */
-    public function setDescripcion($descripcion)
-    {
+    public function setDescripcion($descripcion) {
         $this->descripcion = $descripcion;
-
         return $this;
     }
 
@@ -129,31 +155,48 @@ class Comentarios
      *
      * @return string 
      */
-    public function getDescripcion()
-    {
+    public function getDescripcion() {
         return $this->descripcion;
     }
 
     /**
-     * Set idCliente
+     * Set idRemitente
      *
-     * @param integer $idCliente
+     * @param integer $idRemitente
      * @return Comentarios
      */
-    public function setIdCliente($idCliente)
-    {
-        $this->idCliente = $idCliente;
-
+    public function setIdRemitente($idRemitente) {
+        $this->idRemitente = $idRemitente;
         return $this;
     }
 
     /**
-     * Get idCliente
+     * Get idRemitente
      *
      * @return integer 
      */
-    public function getIdCliente()
-    {
-        return $this->idCliente;
+    public function getIdRemitente() {
+        return $this->idRemitente;
     }
+
+    /**
+     * Set idDestinatario
+     *
+     * @param integer $idDestinatario
+     * @return Comentarios
+     */
+    public function setIdDestinatario($idDestinatario) {
+        $this->idDestinatario = $idDestinatario;
+        return $this;
+    }
+
+    /**
+     * Get idDestinatario
+     *
+     * @return integer 
+     */
+    public function getIdDestinatario() {
+        return $this->idDestinatario;
+    }
+
 }

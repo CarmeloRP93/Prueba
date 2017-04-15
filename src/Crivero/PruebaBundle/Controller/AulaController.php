@@ -14,7 +14,10 @@ class AulaController extends Controller {
 
     public function aulasAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
-        $aulas = $repository->getAulas();
+        
+        $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $aulas = $repository->searchAulas($searchQuery):
+                                 $aulas = $repository->getAulas();
         //$repositoryHorarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
         //$hoy = date('j');
         //$nombreHoy = date('w');

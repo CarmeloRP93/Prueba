@@ -15,7 +15,10 @@ class CanchaController extends Controller {
     
     public function canchasAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
-        $canchas= $repository->getCanchas();
+        
+        $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $canchas = $repository->searchCanchas($searchQuery):
+                                 $canchas = $repository->getCanchas();
         
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(

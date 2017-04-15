@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormError;
 use Crivero\PruebaBundle\Entity\Usuarios;
 use Crivero\PruebaBundle\Form\UsuariosType;
+use Crivero\PruebaBundle\Entity\Comentarios;
+use Crivero\PruebaBundle\Form\ComentariosType;
 
 class UsuarioController extends Controller {
 
@@ -15,8 +17,8 @@ class UsuarioController extends Controller {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
 
         $searchQuery = $request->get('query');
-        (!empty($searchQuery)) ? $usuarios = $repository->searchClientes($searchQuery):
-                                 $usuarios = $repository->getClientes();
+        (!empty($searchQuery)) ? $usuarios = $repository->searchClientes($searchQuery) :
+                        $usuarios = $repository->getClientes();
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -24,7 +26,7 @@ class UsuarioController extends Controller {
 
         $deleteFormAjax = $this->createCustomForm(':USER_ID', 'DELETE', 'crivero_prueba_eliminar');
         return $this->render('CriveroPruebaBundle:Usuarios:clientes.html.twig', array("pagination" => $pagination,
-                            "delete_form_ajax" => $deleteFormAjax->createView()));
+                    "delete_form_ajax" => $deleteFormAjax->createView()));
     }
 
     public function clienteAction($id) {
@@ -38,17 +40,17 @@ class UsuarioController extends Controller {
 
         $deleteForm = $this->createCustomForm($cliente->getId(), 'DELETE', 'crivero_prueba_eliminar');
         return $this->render('CriveroPruebaBundle:Usuarios:cliente.html.twig', array("cliente" => $cliente,
-                            "reservas" => $reservasCliente, "sesiones" => $sesionesCliente,
-                            'delete_form' => $deleteForm->createView()));
+                    "reservas" => $reservasCliente, "sesiones" => $sesionesCliente,
+                    'delete_form' => $deleteForm->createView()));
     }
 
     public function monitoresAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
-        
+
         $searchQuery = $request->get('query');
-        (!empty($searchQuery)) ? $usuarios = $repository->searchMonitores($searchQuery):
-                                 $usuarios = $repository->getMonitores();
-        
+        (!empty($searchQuery)) ? $usuarios = $repository->searchMonitores($searchQuery) :
+                        $usuarios = $repository->getMonitores();
+
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $usuarios, $request->query->getInt('page', 1), 5);
@@ -60,9 +62,9 @@ class UsuarioController extends Controller {
 
     public function monitorAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
-        $monitor = $repository->find($id); 
+        $monitor = $repository->find($id);
         $sesionesMonitor = $repository->getSesionesMonitor($id);
-        
+
         $deleteForm = $this->createCustomForm($monitor->getId(), 'DELETE', 'crivero_prueba_eliminar');
         return $this->render('CriveroPruebaBundle:Usuarios:monitor.html.twig', array("monitor" => $monitor, "sesiones" => $sesionesMonitor,
                     'delete_form' => $deleteForm->createView()));
@@ -171,7 +173,7 @@ class UsuarioController extends Controller {
             $tipo = $form->get('tipo')->getData();
             return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitores')) : $this->redirect($this->generateUrl('crivero_prueba_clientes'));
         }
-            return $this->render('CriveroPruebaBundle:Usuarios:editar.html.twig', array('usuario' => $usuario, 'form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Usuarios:editar.html.twig', array('usuario' => $usuario, 'form' => $form->createView()));
     }
 
     public function createEditForm(Usuarios $entity) {
@@ -190,16 +192,50 @@ class UsuarioController extends Controller {
     public function homeAction() {
         return $this->render('CriveroPruebaBundle:Usuarios:home.html.twig');
     }
-    
+
     public function pagosAction($id, Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Pagos");
         $pagos = $repository->getPagos($id);
-        
+
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $pagos, $request->query->getInt('page', 1), 7);
-        return $this->render('CriveroPruebaBundle:Usuarios:pagos.html.twig', array('pagination'=>$pagination));
-        
+        return $this->render('CriveroPruebaBundle:Usuarios:pagos.html.twig', array('pagination' => $pagination));
+    }
+
+    public function enviarMensajeAction() {
+        $comentario = new Comentarios();
+        $form = $this->createMessageForm($comentario);
+        return $this->render('CriveroPruebaBundle:Usuarios:nuevoMensaje.html.twig', array('form' => $form->createView()));
+    }
+
+    private function createMessageForm(Comentarios $entity) {
+        $form = $this->createForm(new ComentariosType(), $entity, array(
+            'action' => $this->generateUrl('crivero_prueba_enviando'),
+            'method' => 'POST'
+        ));
+        return $form;
+    }
+
+    public function enviandoAction(Request $request) {
+        $comentario = new Comentarios();
+        $form = $this->createMessageForm($comentario);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $repositoryUsuarios = $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+            $dest = $repositoryUsuarios->getDestinatario($form->get('destinatario')->getData());
+            if ($dest != null) {
+                $comentario->setIdDestinatario($dest[0]->getId());
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($comentario);
+                $em->flush();
+                return $this->redirect($this->generateUrl('crivero_prueba_clientes'));
+            } else {
+                $form->get('destinatario')->addError(new FormError('Este destinatario no existe.'));
+            }
+        }
+        return $this->render('CriveroPruebaBundle:Usuarios:nuevoMensaje.html.twig', array('form' => $form->createView()));
     }
 
     private function findUser($id, $em) {
