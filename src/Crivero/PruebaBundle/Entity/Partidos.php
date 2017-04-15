@@ -70,6 +70,13 @@ class Partidos
      */
     private $estadoPartido;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="arbitro", type="string", length=255)
+     */
+    private $arbitro;
+
 
     /**
      * Get id
@@ -240,5 +247,28 @@ class Partidos
     public function getEstadoPartido()
     {
         return $this->estadoPartido;
+    }
+
+    /**
+     * Set arbitro
+     *
+     * @param string $arbitro
+     * @return Partidos
+     */
+    public function setArbitro($arbitro)
+    {
+        $this->arbitro = $arbitro;
+
+        return $this;
+    }
+
+    /**
+     * Get arbitro
+     *
+     * @return string
+     */
+    public function getArbitro()
+    {
+        return $this->arbitro;
     }
 }

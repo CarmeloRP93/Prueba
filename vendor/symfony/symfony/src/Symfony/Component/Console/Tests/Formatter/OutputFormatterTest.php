@@ -28,7 +28,7 @@ class OutputFormatterTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('foo<bar', $formatter->format('foo\\<bar'));
         $this->assertEquals('<info>some info</info>', $formatter->format('\\<info>some info\\</info>'));
-        $this->assertEquals("\\<info>some info\\</info>", OutputFormatter::escape('<info>some info</info>'));
+        $this->assertEquals('\\<info>some info\\</info>', OutputFormatter::escape('<info>some info</info>'));
 
         $this->assertEquals(
             "\033[33mSymfony\\Component\\Console does work very well!\033[0m",
@@ -98,8 +98,8 @@ class OutputFormatterTest extends \PHPUnit_Framework_TestCase
         $formatter = new OutputFormatter(true);
 
         $this->assertEquals(
-            "(\033[32mz>=2.0,<a2.3\033[0m)",
-            $formatter->format('(<info>'.$formatter->escape('z>=2.0,<a2.3').'</info>)')
+            "(\033[32mz>=2.0,<<<a2.3\\\033[0m)",
+            $formatter->format('(<info>'.$formatter->escape('z>=2.0,<\\<<a2.3\\').'</info>)')
         );
 
         $this->assertEquals(
@@ -162,8 +162,16 @@ class OutputFormatterTest extends \PHPUnit_Framework_TestCase
     public function testFormatLongString()
     {
         $formatter = new OutputFormatter(true);
-        $long = str_repeat("\\", 14000);
+        $long = str_repeat('\\', 14000);
         $this->assertEquals("\033[37;41msome error\033[0m".$long, $formatter->format('<error>some error</error>'.$long));
+    }
+
+    public function testFormatToStringObject()
+    {
+        $formatter = new OutputFormatter(false);
+        $this->assertEquals(
+            'some info', $formatter->format(new TableCell())
+        );
     }
 
     public function testNotDecoratedFormatter()
@@ -212,7 +220,7 @@ class OutputFormatterTest extends \PHPUnit_Framework_TestCase
 \033[32m
 some text\033[0m
 EOF
-            , $formatter->format(<<<EOF
+            , $formatter->format(<<<'EOF'
 <info>
 some text</info>
 EOF
@@ -222,7 +230,7 @@ EOF
 \033[32msome text
 \033[0m
 EOF
-            , $formatter->format(<<<EOF
+            , $formatter->format(<<<'EOF'
 <info>some text
 </info>
 EOF
@@ -233,7 +241,7 @@ EOF
 some text
 \033[0m
 EOF
-            , $formatter->format(<<<EOF
+            , $formatter->format(<<<'EOF'
 <info>
 some text
 </info>
@@ -246,12 +254,20 @@ some text
 more text
 \033[0m
 EOF
-            , $formatter->format(<<<EOF
+            , $formatter->format(<<<'EOF'
 <info>
 some text
 more text
 </info>
 EOF
         ));
+    }
+}
+
+class TableCell
+{
+    public function __toString()
+    {
+        return '<info>some info</info>';
     }
 }

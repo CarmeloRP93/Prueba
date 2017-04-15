@@ -34,6 +34,10 @@ class ServerRunCommand extends ContainerAwareCommand
             return false;
         }
 
+        if (!class_exists('Symfony\Component\Process\Process')) {
+            return false;
+        }
+
         return parent::isEnabled();
     }
 
@@ -50,7 +54,7 @@ class ServerRunCommand extends ContainerAwareCommand
             ))
             ->setName('server:run')
             ->setDescription('Runs PHP built-in web server')
-            ->setHelp(<<<EOF
+            ->setHelp(<<<'EOF'
 The <info>%command.name%</info> runs PHP built-in web server:
 
   <info>%command.full_name%</info>
@@ -95,16 +99,29 @@ EOF
         }
 
         $env = $this->getContainer()->getParameter('kernel.environment');
+        $address = $input->getArgument('address');
+
+        if (false === strpos($address, ':')) {
+            $output->writeln('The address has to be of the form <comment>bind-address:port</comment>.');
+
+            return 1;
+        }
+
+        if ($this->isOtherServerProcessRunning($address)) {
+            $output->writeln(sprintf('<error>A process is already listening on http://%s.</error>', $address));
+
+            return 1;
+        }
 
         if ('prod' === $env) {
             $output->writeln('<error>Running PHP built-in server in production environment is NOT recommended!</error>');
         }
 
-        if (null === $builder = $this->createPhpProcessBuilder($input, $output, $env)) {
+        if (null === $builder = $this->createPhpProcessBuilder($output, $address, $input->getOption('router'), $env)) {
             return 1;
         }
 
-        $output->writeln(sprintf("Server running on <info>http://%s</info>\n", $input->getArgument('address')));
+        $output->writeln(sprintf("Server running on <info>http://%s</info>\n", $address));
         $output->writeln('Quit the server with CONTROL-C.');
 
         $builder->setWorkingDirectory($documentRoot);
@@ -127,9 +144,24 @@ EOF
         return $process->getExitCode();
     }
 
-    private function createPhpProcessBuilder(InputInterface $input, OutputInterface $output, $env)
+    private function isOtherServerProcessRunning($address)
     {
-        $router = $input->getOption('router') ?: $this
+        list($hostname, $port) = explode(':', $address);
+
+        $fp = @fsockopen($hostname, $port, $errno, $errstr, 5);
+
+        if (false !== $fp) {
+            fclose($fp);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private function createPhpProcessBuilder(OutputInterface $output, $address, $router, $env)
+    {
+        $router = $router ?: $this
             ->getContainer()
             ->get('kernel')
             ->locateResource(sprintf('@FrameworkBundle/Resources/config/router_%s.php', $env))
@@ -150,6 +182,6 @@ EOF
             return;
         }
 
-        return new ProcessBuilder(array($binary, '-S', $input->getArgument('address'), $router));
+        return new ProcessBuilder(array($binary, '-S', $address, $router));
     }
 }

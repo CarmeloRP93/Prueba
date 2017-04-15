@@ -18,15 +18,13 @@ use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 /**
  * Contains the properties of a constraint definition.
  *
- * A constraint can be defined on a class, an option or a getter method.
+ * A constraint can be defined on a class, a property or a getter method.
  * The Constraint class encapsulates all the configuration required for
- * validating this class, option or getter result successfully.
+ * validating this class, property or getter result successfully.
  *
  * Constraint instances are immutable and serializable.
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
- *
- * @api
  */
 abstract class Constraint
 {
@@ -82,8 +80,6 @@ abstract class Constraint
      * @throws ConstraintDefinitionException When you don't pass an associative
      *                                       array, but getDefaultOption() returns
      *                                       null
-     *
-     * @api
      */
     public function __construct($options = null)
     {
@@ -149,12 +145,10 @@ abstract class Constraint
      * Adds the given group if this constraint is in the Default group.
      *
      * @param string $group
-     *
-     * @api
      */
     public function addImplicitGroupName($group)
     {
-        if (in_array(Constraint::DEFAULT_GROUP, $this->groups) && !in_array($group, $this->groups)) {
+        if (in_array(self::DEFAULT_GROUP, $this->groups) && !in_array($group, $this->groups)) {
             $this->groups[] = $group;
         }
     }
@@ -167,8 +161,6 @@ abstract class Constraint
      * @return string
      *
      * @see __construct()
-     *
-     * @api
      */
     public function getDefaultOption()
     {
@@ -182,8 +174,6 @@ abstract class Constraint
      * @return array
      *
      * @see __construct()
-     *
-     * @api
      */
     public function getRequiredOptions()
     {
@@ -198,8 +188,6 @@ abstract class Constraint
      * behaviour.
      *
      * @return string
-     *
-     * @api
      */
     public function validatedBy()
     {
@@ -214,8 +202,6 @@ abstract class Constraint
      * Constraint::CLASS_CONSTRAINT and Constraint::PROPERTY_CONSTRAINT.
      *
      * @return string|array One or more constant values
-     *
-     * @api
      */
     public function getTargets()
     {
