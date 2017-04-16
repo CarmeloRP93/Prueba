@@ -10,10 +10,11 @@
                 </div>
                 <div class="panel-body">
                     <div class="usuarfot">
-                        <img src="{{ asset('images/no-image-found.png') }}" style="float: left; width: 120%;" />        
+                        <img src="{{ asset('images/' ~ cliente.imagen) }}" style="float: left; width: 120%;" />        
                     </div>
                     <div class="usuardat text-center">
                         <button type="button" class="btn btn-primary">Enviar mensaje</button>
+                        <a href = "{{path('crivero_prueba_editarUsuario', { id: cliente.id })}}" class="btn btn-sm btn-primary">Editar</a>
 
                     </div>
                     <h4>Nombre: </h4> <p>{{cliente.nombre}}</p>
@@ -53,9 +54,11 @@
                             </div>
                         {% endif %}
                     </div><br>
-                    <div class="accionesExclus text-center">       
-                        {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar usuario" })}}
-                    </div>
+                    {% if app.user.id != cliente.id %}
+                        <div class="accionesExclus text-center">       
+                            {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar usuario" })}}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

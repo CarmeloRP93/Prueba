@@ -16,10 +16,9 @@ class JugadoresType extends AbstractType
     {
         $builder
             ->add('idEquipo','hidden')
-            ->add('nombre','text')
-            ->add('primerApellido','text')
-            ->add('segundoApellido','text')
-            ->add('dorsal','number')
+            ->add('username','text', array('label' => 'Usuario'))
+            ->add('nombre','text', array('label' => 'Nombre y Apellidos'))
+            ->add('dorsal','integer')
             ->add('incidencia','text')
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;

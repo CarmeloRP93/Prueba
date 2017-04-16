@@ -65,6 +65,19 @@
                                 </div>
                             </div>
                         </div>
+                        {% if app.user.id == usuario.id %}
+                            <div class="form-group">
+                                {{ form_label(form.imagen) }}
+                                {{ form_widget(form.imagen) }}
+                                <span class="text-danger">{{ form_errors(form.imagen) }}</span>
+                            </div>
+                        {% else %}
+                            <div class="hidden">
+                                {{ form_label(form.imagen) }}
+                                {{ form_widget(form.imagen) }}
+                                <span class="text-danger">{{ form_errors(form.imagen) }}</span>
+                            </div>
+                        {% endif %}
 
                     </form>
                     <div class="text-center">

@@ -1,9 +1,12 @@
 <?php
+
 namespace Crivero\PruebaBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * Usuarios
  *
@@ -13,8 +16,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity("email")
  * @ORM\HasLifecycleCallbacks()
  */
-class Usuarios implements AdvancedUserInterface, \Serializable
-{
+class Usuarios implements AdvancedUserInterface, \Serializable {
+
     /**
      * @var integer
      *
@@ -23,7 +26,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
- 
+
     /**
      * @var string
      *
@@ -31,7 +34,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
      * @Assert\NotBlank()
      */
     private $username;
-    
+
     /**
      * @var string
      *
@@ -39,14 +42,14 @@ class Usuarios implements AdvancedUserInterface, \Serializable
      * @Assert\NotBlank()
      */
     private $nombre;
- 
+
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
-    
+
     /**
      * @var string
      *
@@ -55,6 +58,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
      * @Assert\Email()
      */
     private $email;
+
     /**
      * @var integer
      *
@@ -63,6 +67,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
      * @Assert\Choice(choices = {1, 2, 3})
      */
     private $tipo;
+
     /**
      * @var string
      *
@@ -74,6 +79,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable
      * )
      */
     private $telefono;
+
     /**
      * @var string
      *
@@ -85,257 +91,275 @@ class Usuarios implements AdvancedUserInterface, \Serializable
      * )
      */
     private $fNacimiento;
- 
+
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="registro", type="datetime")
      */
     private $registro;
-  
+
     /**
      * @var string
      *
      * @ORM\Column(name="sesiones", type="string", length=1000, nullable=true)
      */
     private $sesiones;
- 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="imagen", type="string", length=255, nullable=false)
+     */
+    private $imagen;
+
     /**
      * Set fNacimiento
      *
      * @param string $fNacimiento
      * @return Usuarios
      */
-    public function setFNacimiento($fNacimiento)
-    {
+    public function setFNacimiento($fNacimiento) {
         $this->fNacimiento = $fNacimiento;
- 
+
         return $this;
     }
- 
+
     /**
      * Get fNacimiento
      *
      * @return string 
      */
-    public function getFNacimiento()
-    {
+    public function getFNacimiento() {
         return $this->fNacimiento;
     }
- 
+
     /**
      * @ORM\PrePersist
      */
-    public function setRegistro()
-    {
+    public function setRegistro() {
         $this->registro = new \DateTime();
     }
- 
+
     /**
      * Get registro
      *
      * @return \DateTime 
      */
-    public function getRegistro()
-    {
+    public function getRegistro() {
         return $this->registro;
     }
- 
+
     /**
      * Set sesiones
      *
      * @param string $sesiones
      * @return Usuarios
      */
-    public function setSesiones($sesiones)
-    {
+    public function setSesiones($sesiones) {
         $this->sesiones = $sesiones;
- 
+
         return $this;
     }
- 
+
     /**
      * Get sesiones
      *
      * @return string 
      */
-    public function getSesiones()
-    {
+    public function getSesiones() {
         return $this->sesiones;
     }
-   
-    public function getId()
-    {
+
+    public function getId() {
         return $this->id;
     }
+
     /**
      * Set nombre
      *
      * @param string $nombre
      * @return Usuarios
      */
-    public function setNombre($nombre)
-    {
+    public function setNombre($nombre) {
         $this->nombre = $nombre;
         return $this;
     }
+
     /**
      * Get nombre
      *
      * @return string 
      */
-    public function getNombre()
-    {
+    public function getNombre() {
         return $this->nombre;
     }
-    
+
     /**
      * Set password
      *
      * @param string $password
      * @return Usuarios
      */
-    public function setPassword($password)
-    {
-        $this->password= $password;
+    public function setPassword($password) {
+        $this->password = $password;
         return $this;
     }
+
     /**
      * Get password
      *
      * @return string 
      */
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
-    
+
     /**
      * Set email
      *
      * @param string $email
      * @return Usuarios
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
         return $this;
     }
-    
+
     /**
      * Get email
      *
      * @return string 
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
+
     /**
      * Set tipo
      *
      * @param integer $tipo
      * @return Usuarios
      */
-    public function setTipo($tipo)
-    {
+    public function setTipo($tipo) {
         $this->tipo = $tipo;
         return $this;
     }
+
     /**
      * Get tipo
      *
      * @return integer 
      */
-    public function getTipo()
-    {
+    public function getTipo() {
         return $this->tipo;
     }
+
     /**
      * Set telefono
      *
      * @param string $telefono
      * @return Usuarios
      */
-    public function setTelefono($telefono)
-    {
+    public function setTelefono($telefono) {
         $this->telefono = $telefono;
         return $this;
     }
+
     /**
      * Get telefono
      *
      * @return string 
      */
-    public function getTelefono()
-    {
+    public function getTelefono() {
         return $this->telefono;
     }
+    
+    /**
+     * Set imagen
+     *
+     * @param string $imagen
+     * @return Canchas
+     */
+    public function setImagen($imagen) {
+        $this->imagen = $imagen;
+        return $this;
+    }
+
+    /**
+     * Get imagen
+     *
+     * @return string 
+     */
+    public function getImagen() {
+        return $this->imagen;
+    }
+
     public function eraseCredentials() {
         
     }
-    
-    public function getRoles()
-    {
+
+    public function getRoles() {
         if ($this->getTipo() == 1) {
             return array('ROLE_ADMIN');
-        }else if($this->getTipo() == 2){
+        } else if ($this->getTipo() == 2) {
             return array('ROLE_CLIENTE');
-        }else{
+        } else {
             return array('ROLE_MONITOR');
         }
     }
-    
-     /**
+
+    /**
      * Set username
      *
      * @param string $username
      * @return Usuarios
      */
-    public function setUsername($username)
-    {
+    public function setUsername($username) {
         $this->username = $username;
         return $this;
     }
-    
+
     public function getSalt() {
         return null;
     }
+
     public function getUsername() {
         return $this->username;
     }
+
     public function isAccountNonExpired() {
         return true;
     }
+
     public function isCredentialsNonExpired() {
         return true;
     }
-   
-    public function isAccountNonLocked()
-    {
+
+    public function isAccountNonLocked() {
         return true;
     }
-    
+
     public function isEnabled() {
         return true;
     }
-    
+
     public function serialize() {
-         return serialize(array(
+        return serialize(array(
             $this->id,
             $this->username,
             $this->password
         ));
     }
-    
+
     /* @see \Serializable::unserialize() */
+
     public function unserialize($serialized) {
-         list (
-            $this->id,
-            $this->username,
-            $this->password
-        ) = unserialize($serialized);
+        list (
+                $this->id,
+                $this->username,
+                $this->password
+                ) = unserialize($serialized);
     }
-    
-    
+
 }

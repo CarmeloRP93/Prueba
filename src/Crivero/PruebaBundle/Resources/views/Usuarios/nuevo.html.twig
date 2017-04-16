@@ -48,6 +48,12 @@
             {{ form_widget(form.tipo, {'attr': {'class': 'form-control'}}) }}
             <span class="text-danger">{{ form_errors(form.tipo) }}</span>
         </div>
+        
+        <div class="hidden">
+            {{ form_label(form.imagen) }}
+            {{ form_widget(form.imagen, {'attr': {'class': 'form-control'}}) }}
+            <span class="text-danger">{{ form_errors(form.imagen) }}</span>
+        </div>
         <p>
             {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
         </p>                

@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\JugadoresRepository")
  */
-class Jugadores
-{
+class Jugadores {
+
     /**
      * @var integer
      *
@@ -31,23 +31,16 @@ class Jugadores
     /**
      * @var string
      *
+     * @ORM\Column(name="username", type="string", length=255, nullable=true)
+     */
+    private $username;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="primerApellido", type="string", length=255)
-     */
-    private $primerApellido;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="segundoApellido", type="string", length=255)
-     */
-    private $segundoApellido;
 
     /**
      * @var integer
@@ -63,14 +56,12 @@ class Jugadores
      */
     private $incidencia;
 
-
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -80,8 +71,7 @@ class Jugadores
      * @param integer $idEquipo
      * @return Jugadores
      */
-    public function setIdEquipo($idEquipo)
-    {
+    public function setIdEquipo($idEquipo) {
         $this->idEquipo = $idEquipo;
 
         return $this;
@@ -92,8 +82,7 @@ class Jugadores
      *
      * @return integer 
      */
-    public function getIdEquipo()
-    {
+    public function getIdEquipo() {
         return $this->idEquipo;
     }
 
@@ -103,8 +92,7 @@ class Jugadores
      * @param string $nombre
      * @return Jugadores
      */
-    public function setNombre($nombre)
-    {
+    public function setNombre($nombre) {
         $this->nombre = $nombre;
 
         return $this;
@@ -115,55 +103,8 @@ class Jugadores
      *
      * @return string 
      */
-    public function getNombre()
-    {
+    public function getNombre() {
         return $this->nombre;
-    }
-
-    /**
-     * Set primerApellido
-     *
-     * @param string $primerApellido
-     * @return Jugadores
-     */
-    public function setPrimerApellido($primerApellido)
-    {
-        $this->primerApellido = $primerApellido;
-
-        return $this;
-    }
-
-    /**
-     * Get primerApellido
-     *
-     * @return string 
-     */
-    public function getPrimerApellido()
-    {
-        return $this->primerApellido;
-    }
-
-    /**
-     * Set segundoApellido
-     *
-     * @param string $segundoApellido
-     * @return Jugadores
-     */
-    public function setSegundoApellido($segundoApellido)
-    {
-        $this->segundoApellido = $segundoApellido;
-
-        return $this;
-    }
-
-    /**
-     * Get segundoApellido
-     *
-     * @return string 
-     */
-    public function getSegundoApellido()
-    {
-        return $this->segundoApellido;
     }
 
     /**
@@ -172,8 +113,7 @@ class Jugadores
      * @param integer $dorsal
      * @return Jugadores
      */
-    public function setDorsal($dorsal)
-    {
+    public function setDorsal($dorsal) {
         $this->dorsal = $dorsal;
 
         return $this;
@@ -184,9 +124,28 @@ class Jugadores
      *
      * @return integer 
      */
-    public function getDorsal()
-    {
+    public function getDorsal() {
         return $this->dorsal;
+    }
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     * @return Jugadores
+     */
+    public function setUsername($username) {
+        $this->username = $username;
+        return $this;
+    }
+    
+    /**
+     * Get username
+     *
+     * @return string 
+     */
+    public function getUsername() {
+        return $this->username;
     }
 
     /**
@@ -195,8 +154,7 @@ class Jugadores
      * @param string $incidencia
      * @return Jugadores
      */
-    public function setIncidencia($incidencia)
-    {
+    public function setIncidencia($incidencia) {
         $this->incidencia = $incidencia;
 
         return $this;
@@ -207,8 +165,8 @@ class Jugadores
      *
      * @return string 
      */
-    public function getIncidencia()
-    {
+    public function getIncidencia() {
         return $this->incidencia;
     }
+
 }

@@ -88,6 +88,7 @@ class UsuarioController extends Controller {
             if (!empty($password)) {
                 $encoded = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
                 $usuario->setPassword($encoded);
+                $usuario->setImagen("no-image-found.png");
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($usuario);
                 $em->flush();
@@ -156,6 +157,7 @@ class UsuarioController extends Controller {
         $usuario = $this->findUser($id, $em);
 
         $form = $this->createEditForm($usuario);
+        $originalImage = $usuario->getImagen();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -167,8 +169,15 @@ class UsuarioController extends Controller {
                 $recoverPass = $this->recoverPass($id);
                 $usuario->setPassword($recoverPass[0]['password']);
             }
+            
+            if ($form->get('imagen')->getData() != null) {
+                $file = $form->get('imagen')->getData();
+                $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
+                $usuario->setImagen($file->getClientOriginalName());
+            } else {
+                $usuario->setImagen($originalImage);
+            }
             $em->flush();
-
             $request->getSession()->getFlashBag()->add('mensaje', 'El usuario ha sido modificado correctamente.');
             $tipo = $form->get('tipo')->getData();
             return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitores')) : $this->redirect($this->generateUrl('crivero_prueba_clientes'));
