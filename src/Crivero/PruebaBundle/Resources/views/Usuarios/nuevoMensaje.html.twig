@@ -22,7 +22,7 @@
     
     <div class="form-group">
         {{ form_label(form.destinatario) }}
-        {{ form_widget(form.destinatario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ej: pedro@gmail.com'} }) }}
+        {{ form_widget(form.destinatario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ej: pedro@gmail.com'}, 'value' : destino }) }}
         <span class="text-danger">{{ form_errors(form.destinatario) }}</span>
     </div>
 

@@ -26,13 +26,6 @@ class UsuariosRepository extends EntityRepository {
                         ->getResult();
     }
 
-    public function getReservasCliente($idCliente) {
-        return $this->getEntityManager()
-                        ->createQuery("SELECT r FROM CriveroPruebaBundle:Reservas r WHERE r.idCliente = :id AND r.estadoReserva = 'Reservado'")
-                        ->setParameter('id', $idCliente)
-                        ->getResult();
-    }
-
     public function getMonitores() {
         return $this->getEntityManager()
                         ->createQuery('SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=3')

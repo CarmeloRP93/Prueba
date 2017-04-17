@@ -247,3 +247,11 @@ crivero_prueba_enviando:
     defaults: { _controller: CriveroPruebaBundle:Usuario:enviando }
     requirements:
         _method:  POST|GET
+        
+crivero_prueba_reservas_cliente:
+    pattern: /reservas/cliente/{id}
+    defaults: { _controller: CriveroPruebaBundle:Reserva:reservasCliente }
+
+crivero_prueba_cliente_sesiones:
+    pattern: /cliente/sesiones/{id}
+    defaults: { _controller: CriveroPruebaBundle:Usuario:sesionesCliente }

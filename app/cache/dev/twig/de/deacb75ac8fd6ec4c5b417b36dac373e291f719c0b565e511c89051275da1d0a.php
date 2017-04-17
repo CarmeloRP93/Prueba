@@ -74,7 +74,7 @@ class __TwigTemplate_deeadd19f741d6f8b99bcffe0845390e82b1634e1321281353e1e42fbd1
         echo "
         ";
         // line 25
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "destinatario", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Ej: pedro@gmail.com")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "destinatario", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Ej: pedro@gmail.com"), "value" => (isset($context["destino"]) ? $context["destino"] : $this->getContext($context, "destino"))));
         echo "
         <span class=\"text-danger\">";
         // line 26
@@ -176,7 +176,7 @@ class __TwigTemplate_deeadd19f741d6f8b99bcffe0845390e82b1634e1321281353e1e42fbd1
     
     <div class=\"form-group\">
         {{ form_label(form.destinatario) }}
-        {{ form_widget(form.destinatario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ej: pedro@gmail.com'} }) }}
+        {{ form_widget(form.destinatario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ej: pedro@gmail.com'}, 'value' : destino }) }}
         <span class=\"text-danger\">{{ form_errors(form.destinatario) }}</span>
     </div>
 

@@ -30,10 +30,11 @@ class UsuarioController extends Controller {
     }
 
     public function clienteAction($id) {
+        $repositoryReservas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas");
+        $reservasCliente = $repositoryReservas->getReservasCliente($id);
+
         $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $cliente = $repositoryUsuarios->find($id);
-        $reservasCliente = $repositoryUsuarios->getReservasCliente($id);
-
         $idsSesionesCliente = explode('&', $cliente->getSesiones());
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesionesCliente = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
@@ -214,8 +215,15 @@ class UsuarioController extends Controller {
 
     public function enviarMensajeAction() {
         $comentario = new Comentarios();
+        $referer = $this->getRequest()->headers->get('referer');
+        $destino = null;
+        if ($referer) {
+            //print_r(explode('/', $referer));
+            $id = explode('/', $referer)[7]; 
+            $destino = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($id)->getEmail();
+        }
         $form = $this->createMessageForm($comentario);
-        return $this->render('CriveroPruebaBundle:Usuarios:nuevoMensaje.html.twig', array('form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Usuarios:nuevoMensaje.html.twig', array('form' => $form->createView(), 'destino' => $destino));
     }
 
     private function createMessageForm(Comentarios $entity) {
@@ -244,9 +252,11 @@ class UsuarioController extends Controller {
                 $form->get('destinatario')->addError(new FormError('Este destinatario no existe.'));
             }
         }
-        return $this->render('CriveroPruebaBundle:Usuarios:nuevoMensaje.html.twig', array('form' => $form->createView()));
+        $destino = $form->get('destinatario')->getData();
+        return $this->render('CriveroPruebaBundle:Usuarios:nuevoMensaje.html.twig', array('form' => $form->createView(), 
+                                                                                           'destino' => $destino));
     }
-
+    
     private function findUser($id, $em) {
         $usuario = $em->getRepository('CriveroPruebaBundle:Usuarios')->find($id);
         if (!$usuario) {

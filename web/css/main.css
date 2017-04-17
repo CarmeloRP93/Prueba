@@ -8,6 +8,11 @@ body {
     margin-top: 12px    
 }
 
+.differentTable, .differentTable td{
+   display: table;
+   border-color: black;
+}
+
 .navigation {
     margin-top: -12px;
 }

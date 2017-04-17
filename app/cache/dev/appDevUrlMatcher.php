@@ -967,6 +967,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // crivero_prueba_reservas_cliente
+        if (0 === strpos($pathinfo, '/reservas/cliente') && preg_match('#^/reservas/cliente/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_reservas_cliente')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ReservaController::reservasClienteAction',));
+        }
+
+        // crivero_prueba_cliente_sesiones
+        if (0 === strpos($pathinfo, '/cliente/sesiones') && preg_match('#^/cliente/sesiones/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cliente_sesiones')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::sesionesClienteAction',));
+        }
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }

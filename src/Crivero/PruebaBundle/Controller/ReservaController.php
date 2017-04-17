@@ -22,6 +22,18 @@ class ReservaController extends Controller {
                 $reservas, $request->query->getInt('page', 1), 5);
         return $this->render('CriveroPruebaBundle:Reservas:reservas.html.twig', array("pagination" => $pagination));
     }
+    
+    public function reservasClienteAction($id, Request $request) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas");
+        $reservas = $repository->getReservasCliente($id);
+        
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $reservas, $request->query->getInt('page', 1), 5);
+
+        return $this->render('CriveroPruebaBundle:Reservas:reservasCliente.html.twig', array("pagination" => $pagination,
+                    ));
+    }
 
     public function cancelarAction($id) {
         $em = $this->getDoctrine()->getManager();
@@ -55,7 +67,10 @@ class ReservaController extends Controller {
                 $em->persist($reserva);
                 $em->flush();
                 $request->getSession()->getFlashBag()->add('mensaje', 'La reserva se canceló correctamente');
-                return $this->redirect($this->generateUrl('crivero_prueba_reservas'));
+                $referer = $this->getRequest()->headers->get('referer');
+                return (strpos($referer, 'cliente') === false) ? $this->redirect($this->generateUrl('crivero_prueba_reservas')):
+                                                    $this->redirect($this->generateUrl('crivero_prueba_reservas_cliente',
+                                                                                array('id' => $reserva->getIdCliente())));
             } else {
                 $form->get('motivos')->addError(new FormError('Rellene el campo gracias'));
             }

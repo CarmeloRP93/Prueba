@@ -13,7 +13,9 @@
                         <img src="{{ asset('images/' ~ cliente.imagen) }}" style="float: left; width: 120%;" />        
                     </div>
                     <div class="usuardat text-center">
-                        <button type="button" class="btn btn-primary">Enviar mensaje</button>
+                        <form action="{{ path('crivero_prueba_enviarMensaje') }}" method="post" class="form-signin">
+                            <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                        </form>
                         <a href = "{{path('crivero_prueba_editarUsuario', { id: cliente.id })}}" class="btn btn-sm btn-primary">Editar</a>
 
                     </div>
@@ -26,7 +28,10 @@
                         {% if reservas != null %}
                             <div>
                                 <h4>Reservas: </h4> 
-                                <ul id="reservas">
+                                <form action="{{ path('crivero_prueba_reservas_cliente', { id: cliente.id })}}" method="post" class="form-signin">
+                                    <button type="submit" class="btn btn-success">Ver reservas</button>
+                                </form>
+                           {#     <ul id="reservas">
                                     {% for reserva in reservas %}
                                         <li>
                                             <div class="acciones">
@@ -34,10 +39,10 @@
                                                     Cancelar
                                                 </a>
                                             </div>
-                                            <p>{{reserva.cancha}}: {{reserva.fechaInicio|date('d/m H:i')}} - {{reserva.fechaFinalizacion|date('H:i')}}</p>
+                                            <p>{{reserva.cancha}}: {{reserva.fechaInicio|date('d/m')}} - {{reserva.horario}}</p>
                                         </li>
                                     {% endfor %}
-                                </ul>
+                                </ul>#}
                             </div>
                         {% endif %}
 
