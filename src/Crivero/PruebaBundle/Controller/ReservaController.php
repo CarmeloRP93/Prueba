@@ -40,7 +40,9 @@ class ReservaController extends Controller {
         $reserva = $this->findEntity($id, $em, 'CriveroPruebaBundle:Reservas');
 
         $form = $this->createCancelForm($reserva);
-        return $this->render('CriveroPruebaBundle:Reservas:cancelarReserva.html.twig', array('reserva' => $reserva, 'form' => $form->createView()));
+        $referer = $this->getRequest()->headers->get('referer');
+        return $this->render('CriveroPruebaBundle:Reservas:cancelarReserva.html.twig', array('reserva' => $reserva, 
+                                                            'ref' => $referer, 'form' => $form->createView()));
     }
 
     private function createCancelForm(Reservas $entity) {
@@ -48,13 +50,13 @@ class ReservaController extends Controller {
             'action' => $this->generateUrl('crivero_prueba_reserva_cancelando', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));
-
         return $form;
     }
 
     public function cancelandoAction($id, Request $request) {
         $em = $this->getDoctrine()->getManager();
         $reserva = $this->findEntity($id, $em, 'CriveroPruebaBundle:Reservas');
+        $orig = $reserva->getCliente();
         $form = $this->createCancelForm($reserva);
         $form->handleRequest($request);
 
@@ -63,11 +65,12 @@ class ReservaController extends Controller {
 
             if ($motivos != null) {
                 $reserva->setEstadoReserva("Cancelada");
+                $reserva->setCliente($orig);
 
                 $em->persist($reserva);
                 $em->flush();
                 $request->getSession()->getFlashBag()->add('mensaje', 'La reserva se canceló correctamente');
-                $referer = $this->getRequest()->headers->get('referer');
+                $referer = $form->get('cliente')->getData();
                 return (strpos($referer, 'cliente') === false) ? $this->redirect($this->generateUrl('crivero_prueba_reservas')):
                                                     $this->redirect($this->generateUrl('crivero_prueba_reservas_cliente',
                                                                                 array('id' => $reserva->getIdCliente())));

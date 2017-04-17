@@ -223,7 +223,8 @@ class UsuarioController extends Controller {
             $destino = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($id)->getEmail();
         }
         $form = $this->createMessageForm($comentario);
-        return $this->render('CriveroPruebaBundle:Usuarios:nuevoMensaje.html.twig', array('form' => $form->createView(), 'destino' => $destino));
+        return $this->render('CriveroPruebaBundle:Usuarios:nuevoMensaje.html.twig', array('form' => $form->createView(),
+                                                                                          'destino' => $destino));
     }
 
     private function createMessageForm(Comentarios $entity) {
