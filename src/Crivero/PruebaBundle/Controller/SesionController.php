@@ -18,6 +18,42 @@ class SesionController extends Controller {
                 $sesiones, $request->query->getInt('page', 1), 5);
         return $this->render('CriveroPruebaBundle:Sesiones:sesiones.html.twig', array("pagination" => $pagination));
     }
+    
+    public function sesionesClienteAction($id, Request $request) {
+        $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $cliente = $repositoryUsuarios->find($id);
+        
+        $idsSesionesCliente = explode('&', $cliente->getSesiones());
+        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesiones = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
+        
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 5);
+
+        return $this->render('CriveroPruebaBundle:Sesiones:sesionesCliente.html.twig', array("pagination" => $pagination,
+                                                                    'username' => $cliente->getUsername(), 'cId' => $id));
+    }
+    
+    public function sesionesMonitorAction($id, Request $request) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesiones = $repository->getSesionesMonitor($id);
+        
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 5);
+
+        return $this->render('CriveroPruebaBundle:Sesiones:sesionesMonitor.html.twig', array("pagination" => $pagination,
+                                                                 'username' => $sesiones[0]->getMonitor(), 'mId' => $id));
+    }
+    
+    public function horariosSesionAction($id) {
+        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesion = $repositorySesiones->find($id);
+        $horarios = explode("&", $sesion->getHorario());
+        $aula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas")->find($sesion->getAula())->getNombre();
+        
+        return $this->render('CriveroPruebaBundle:Sesiones:horariosSesion.html.twig', array("sesion" => $sesion, 
+                                                                              "horarios" => $horarios, 'aula' => $aula));
+    }
 
     public function dedicadasAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
@@ -266,5 +302,4 @@ class SesionController extends Controller {
         $diaS = date('w', strtotime($fecha));
         return ($diaS == 0 || $diaS == 6 );
     }
-            
 }

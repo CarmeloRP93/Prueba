@@ -22,7 +22,10 @@
                     <h4>Aula:</h4> <p>{{aula.nombre}}</p>
                 </div>
                 <div id="colder" class="col-md-4">
-                    <h4>Horario:</h4> <p>{{sesion.horario}} </p>
+                    <h4>Horario:</h4> 
+                    <form action="{{ path('crivero_prueba_horarios_sesion', { id: sesion.id })}}" method="post" class="form-signin">
+                        <button type="submit" class="btn btn-sm btn-success" style="margin-bottom: 5px">Ver horarios</button>
+                    </form>
                 </div>
             </div>
         {% elseif sesion.estado == "cancelada" %}

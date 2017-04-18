@@ -140,15 +140,21 @@ class __TwigTemplate_2d18c6105ce550ef5259df46e985d54ef5130af56d7e4c9f292ff0bcf7b
             echo "                    </tbody>
                 </table>
             </div>
-                    <button class=\"btn btn-success\">Volver atrás</button>
+                
         ";
         }
         // line 51
-        echo "        <div class=\"navigation\" style=\"float: right\">
-            ";
+        echo "        <div>
+            <a class=\"btn btn-success\" href=\"";
         // line 52
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute($this->getAttribute((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), 0, array(), "array"), "idCliente", array()))), "html", null, true);
+        echo "\">Volver atrás</a>
+            <div class=\"navigation\" style=\"float: right\">
+                ";
+        // line 54
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
+            </div>
         </div>
     </div>
 ";
@@ -166,7 +172,7 @@ class __TwigTemplate_2d18c6105ce550ef5259df46e985d54ef5130af56d7e4c9f292ff0bcf7b
 
     public function getDebugInfo()
     {
-        return array (  150 => 52,  147 => 51,  140 => 46,  128 => 40,  124 => 38,  118 => 36,  111 => 34,  107 => 33,  102 => 32,  100 => 31,  96 => 30,  92 => 29,  86 => 28,  83 => 27,  79 => 26,  71 => 21,  67 => 20,  63 => 19,  57 => 15,  53 => 13,  51 => 12,  46 => 10,  39 => 7,  36 => 6,  29 => 4,  11 => 2,);
+        return array (  155 => 54,  150 => 52,  147 => 51,  140 => 46,  128 => 40,  124 => 38,  118 => 36,  111 => 34,  107 => 33,  102 => 32,  100 => 31,  96 => 30,  92 => 29,  86 => 28,  83 => 27,  79 => 26,  71 => 21,  67 => 20,  63 => 19,  57 => 15,  53 => 13,  51 => 12,  46 => 10,  39 => 7,  36 => 6,  29 => 4,  11 => 2,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -227,10 +233,13 @@ class __TwigTemplate_2d18c6105ce550ef5259df46e985d54ef5130af56d7e4c9f292ff0bcf7b
                     </tbody>
                 </table>
             </div>
-                    <button class=\"btn btn-success\">Volver atrás</button>
+                
         {% endif %}
-        <div class=\"navigation\" style=\"float: right\">
-            {{ knp_pagination_render(pagination) }}
+        <div>
+            <a class=\"btn btn-success\" href=\"{{ path('crivero_prueba_cliente', { id: pagination[0].idCliente }) }}\">Volver atrás</a>
+            <div class=\"navigation\" style=\"float: right\">
+                {{ knp_pagination_render(pagination) }}
+            </div>
         </div>
     </div>
 {% endblock %} ", "CriveroPruebaBundle:Reservas:reservasCliente.html.twig", "C:\\xampp\\htdocs\\Prueba\\src\\Crivero\\PruebaBundle/Resources/views/Reservas/reservasCliente.html.twig");

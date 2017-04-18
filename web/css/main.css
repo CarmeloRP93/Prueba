@@ -34,6 +34,7 @@ a{color: #5bc0de; text-decoration: none !important;}
 }
 
 td {
+    //padding-top: 17px !important;
     text-align: center;
     font-size: 15px;
     color: white;

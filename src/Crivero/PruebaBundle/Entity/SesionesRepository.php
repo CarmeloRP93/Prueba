@@ -11,16 +11,24 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class SesionesRepository extends EntityRepository {
-    
+
     public function getSesionesGenerales() {
-         return $this->getEntityManager()
-            ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.cliente='normal'")
-            ->getResult();
+        return $this->getEntityManager()
+                        ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.cliente='normal'")
+                        ->getResult();
     }
-    
+
     public function getSesionesDedicadas() {
-         return $this->getEntityManager()
-            ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.cliente!='normal'")
-            ->getResult();
+        return $this->getEntityManager()
+                        ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.cliente!='normal'")
+                        ->getResult();
     }
+
+    public function getSesionesMonitor($id) {
+        return $this->getEntityManager()
+                        ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.idMonitor = :monitor ")
+                        ->setParameter('monitor', $id)
+                        ->getResult();
+    }
+
 }

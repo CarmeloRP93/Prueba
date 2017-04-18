@@ -49,13 +49,16 @@
                         {% if cliente.sesiones != null %}
                             <div>
                                 <h4>Sesiones: </h4> 
-                                <ul id="sesiones">
+                                <form action="{{ path('crivero_prueba_sesiones_cliente', { id: cliente.id })}}" method="post" class="form-signin">
+                                    <button type="submit" class="btn btn-success">Ver sesiones</button>
+                                </form>
+                                {#<ul id="sesiones">
                                     {% for sesion in sesiones %}
                                         <li>
                                             <p>Aula {{sesion.aula}} - {{sesion.nombre}} con {{sesion.monitor}} - {{sesion.horario}}</p>
                                         </li>
                                     {% endfor %}
-                                </ul>
+                                </ul>#}
                             </div>
                         {% endif %}
                     </div><br>

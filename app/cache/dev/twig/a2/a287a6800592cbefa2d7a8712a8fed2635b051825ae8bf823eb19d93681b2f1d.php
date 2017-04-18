@@ -64,49 +64,33 @@ class __TwigTemplate_54872d101489ea665c4555f02d82fceb37d6a68b64cd80ec8945fde08f6
             // line 18
             echo "                        <div>
                             <h4>Sesiones: </h4> 
-                            <ul id=\"sesiones\">
-                                ";
-            // line 21
-            $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["sesiones"]) ? $context["sesiones"] : $this->getContext($context, "sesiones")));
-            foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
-                // line 22
-                echo "                                    <li>
-                                        <p>Aula ";
-                // line 23
-                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "aula", array()), "html", null, true);
-                echo " - ";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
-                echo " - ";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "horario", array()), "html", null, true);
-                echo "</p>
-                                    </li>
-                                ";
-            }
-            $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
-            $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 26
-            echo "                            </ul>
-                        </div>
+                            <form action=\"";
+            // line 20
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_sesiones_monitor", array("id" => $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "id", array()))), "html", null, true);
+            echo "\" method=\"post\" class=\"form-signin\">
+                                <button type=\"submit\" class=\"btn btn-success\">Ver sesiones</button>
+                            </form>
+                            ";
+            // line 30
+            echo "                        </div>
                     ";
         }
-        // line 29
+        // line 32
         echo "                </div>
                 <h4>Nombre: </h4> <p>";
-        // line 30
+        // line 33
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "nombre", array()), "html", null, true);
         echo "</p>
                 <h4>F.Nacimiento: </h4> <p>";
-        // line 31
+        // line 34
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "fNacimiento", array()), "html", null, true);
         echo "</p>
                 <h4>Telefono: </h4> <p>";
-        // line 32
+        // line 35
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "telefono", array()), "html", null, true);
         echo "</p>
                 <h4>Registro: </h4> <p>";
-        // line 33
+        // line 36
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "registro", array()), "d/m/Y"), "html", null, true);
         echo "</p>
             </div>
@@ -127,7 +111,7 @@ class __TwigTemplate_54872d101489ea665c4555f02d82fceb37d6a68b64cd80ec8945fde08f6
 
     public function getDebugInfo()
     {
-        return array (  110 => 33,  106 => 32,  102 => 31,  98 => 30,  95 => 29,  90 => 26,  77 => 23,  74 => 22,  70 => 21,  65 => 18,  63 => 17,  56 => 13,  51 => 11,  46 => 9,  40 => 5,  37 => 4,  29 => 3,  11 => 1,);
+        return array (  94 => 36,  90 => 35,  86 => 34,  82 => 33,  79 => 32,  75 => 30,  69 => 20,  65 => 18,  63 => 17,  56 => 13,  51 => 11,  46 => 9,  40 => 5,  37 => 4,  29 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -159,13 +143,16 @@ class __TwigTemplate_54872d101489ea665c4555f02d82fceb37d6a68b64cd80ec8945fde08f6
                     {% if sesiones != null %}
                         <div>
                             <h4>Sesiones: </h4> 
-                            <ul id=\"sesiones\">
+                            <form action=\"{{ path('crivero_prueba_sesiones_monitor', { id: monitor.id })}}\" method=\"post\" class=\"form-signin\">
+                                <button type=\"submit\" class=\"btn btn-success\">Ver sesiones</button>
+                            </form>
+                            {#<ul id=\"sesiones\">
                                 {% for sesion in sesiones %}
                                     <li>
                                         <p>Aula {{sesion.aula}} - {{sesion.nombre}} - {{sesion.horario}}</p>
                                     </li>
                                 {% endfor %}
-                            </ul>
+                            </ul>#}
                         </div>
                     {% endif %}
                 </div>

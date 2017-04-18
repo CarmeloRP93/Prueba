@@ -1,0 +1,40 @@
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
+
+{% block title %} Sesión {{ sesion.nombre }} - Horarios {% endblock %}
+
+{% block contenido %}
+    <div class="container">
+        <div class="page-header">
+            <h1 class="t1">Sesión {{ sesion.nombre }} - Horarios</h1>
+        </div>
+        <h4 class="t3">*Las sesiones se realizarán en el aula: {{aula}}</h4>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nº Sesión</th>
+                        <th>Dia y hora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set i = 1 %}
+                    {% for horario in horarios %}
+                        <tr>
+                            <td>{{i}}</td>
+                            <td>{{horario}}</td>
+                            {% set i = i + 1 %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+            {% if app.request.headers.get('referer') %}    
+                <a class="btn btn-success" href="{{ app.request.headers.get('referer') }}">Volver atrás</a>
+            {% else %}
+                <a class="btn btn-success" href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}">Volver atrás</a>
+            {% endif %}
+       {#<form action="{{ app.request.headers.get('referer') }}">        
+            <button type="submit" class="btn btn-success">Volver atrás</button>
+        </form>  #}
+    </div>
+{% endblock %}

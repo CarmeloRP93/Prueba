@@ -118,6 +118,10 @@ crivero_prueba_reservas:
     pattern:  /reservas
     defaults: { _controller: CriveroPruebaBundle:Reserva:reservas }
     
+crivero_prueba_reservas_cliente:
+    pattern: /cliente/{id}/reservas
+    defaults: { _controller: CriveroPruebaBundle:Reserva:reservasCliente }
+    
 crivero_prueba_reserva_cancelar:
     pattern:  /reserva/cancelar/{id}
     defaults: { _controller: CriveroPruebaBundle:Reserva:cancelar }
@@ -128,8 +132,8 @@ crivero_prueba_reserva_cancelando:
     requirements:
         _method:  POST|PUT|GET
         
-crivero_prueba_usuario_pagos:
-    pattern:  /usuario/pagos/{id}
+crivero_prueba_pagos_usuario:
+    pattern:  /pagos/usuario/{id}
     defaults: { _controller: CriveroPruebaBundle:Usuario:pagos }
 
     
@@ -204,10 +208,22 @@ crivero_prueba_sesiones:
 crivero_prueba_dedicadas:
     pattern:  /dedicadas
     defaults: { _controller: CriveroPruebaBundle:Sesion:dedicadas }
+    
+crivero_prueba_sesiones_cliente:
+    pattern: /cliente/{id}/sesiones
+    defaults: { _controller: CriveroPruebaBundle:Sesion:sesionesCliente }
+
+crivero_prueba_sesiones_monitor:
+    pattern: /monitor/{id}/sesiones
+    defaults: { _controller: CriveroPruebaBundle:Sesion:sesionesMonitor }
 
 crivero_prueba_sesion:
     pattern:  /sesion/{id}
     defaults: { _controller: CriveroPruebaBundle:Sesion:sesion }
+    
+crivero_prueba_horarios_sesion:
+    pattern: /sesion/{id}/horarios
+    defaults: { _controller: CriveroPruebaBundle:Sesion:horariosSesion }
     
 crivero_prueba_aceptarSesion:
     pattern:  /aceptarSesion/{id}
@@ -247,11 +263,3 @@ crivero_prueba_enviando:
     defaults: { _controller: CriveroPruebaBundle:Usuario:enviando }
     requirements:
         _method:  POST|GET
-        
-crivero_prueba_reservas_cliente:
-    pattern: /reservas/cliente/{id}
-    defaults: { _controller: CriveroPruebaBundle:Reserva:reservasCliente }
-
-crivero_prueba_cliente_sesiones:
-    pattern: /cliente/sesiones/{id}
-    defaults: { _controller: CriveroPruebaBundle:Usuario:sesionesCliente }

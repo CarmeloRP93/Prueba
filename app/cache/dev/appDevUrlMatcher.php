@@ -751,47 +751,52 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/reserva')) {
-            // crivero_prueba_reservas
-            if ($pathinfo === '/reservas') {
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ReservaController::reservasAction',  '_route' => 'crivero_prueba_reservas',);
+        // crivero_prueba_reservas
+        if ($pathinfo === '/reservas') {
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ReservaController::reservasAction',  '_route' => 'crivero_prueba_reservas',);
+        }
+
+        // crivero_prueba_reservas_cliente
+        if (0 === strpos($pathinfo, '/cliente') && preg_match('#^/cliente/(?P<id>[^/]++)/reservas$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_reservas_cliente')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ReservaController::reservasClienteAction',));
+        }
+
+        if (0 === strpos($pathinfo, '/reserva/cancela')) {
+            // crivero_prueba_reserva_cancelar
+            if (0 === strpos($pathinfo, '/reserva/cancelar') && preg_match('#^/reserva/cancelar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_reserva_cancelar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ReservaController::cancelarAction',));
             }
 
-            if (0 === strpos($pathinfo, '/reserva/cancela')) {
-                // crivero_prueba_reserva_cancelar
-                if (0 === strpos($pathinfo, '/reserva/cancelar') && preg_match('#^/reserva/cancelar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_reserva_cancelar')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ReservaController::cancelarAction',));
+            // crivero_prueba_reserva_cancelando
+            if (0 === strpos($pathinfo, '/reserva/cancelando') && preg_match('#^/reserva/cancelando/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+                    goto not_crivero_prueba_reserva_cancelando;
                 }
 
-                // crivero_prueba_reserva_cancelando
-                if (0 === strpos($pathinfo, '/reserva/cancelando') && preg_match('#^/reserva/cancelando/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
-                        $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
-                        goto not_crivero_prueba_reserva_cancelando;
-                    }
-
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_reserva_cancelando')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ReservaController::cancelandoAction',));
-                }
-                not_crivero_prueba_reserva_cancelando:
-
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_reserva_cancelando')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ReservaController::cancelandoAction',));
             }
+            not_crivero_prueba_reserva_cancelando:
 
         }
 
-        // crivero_prueba_usuario_pagos
-        if (0 === strpos($pathinfo, '/usuario/pagos') && preg_match('#^/usuario/pagos/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_usuario_pagos')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::pagosAction',));
-        }
-
-        if (0 === strpos($pathinfo, '/partido')) {
-            // crivero_prueba_partidos
-            if ($pathinfo === '/partidos') {
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PartidoController::partidosAction',  '_route' => 'crivero_prueba_partidos',);
+        if (0 === strpos($pathinfo, '/pa')) {
+            // crivero_prueba_pagos_usuario
+            if (0 === strpos($pathinfo, '/pagos/usuario') && preg_match('#^/pagos/usuario/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_pagos_usuario')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::pagosAction',));
             }
 
-            // crivero_prueba_partido
-            if (preg_match('#^/partido/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_partido')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PartidoController::partidoAction',));
+            if (0 === strpos($pathinfo, '/partido')) {
+                // crivero_prueba_partidos
+                if ($pathinfo === '/partidos') {
+                    return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PartidoController::partidosAction',  '_route' => 'crivero_prueba_partidos',);
+                }
+
+                // crivero_prueba_partido
+                if (preg_match('#^/partido/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_partido')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PartidoController::partidoAction',));
+                }
+
             }
 
         }
@@ -894,9 +899,27 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::dedicadasAction',  '_route' => 'crivero_prueba_dedicadas',);
         }
 
-        // crivero_prueba_sesion
-        if (0 === strpos($pathinfo, '/sesion') && preg_match('#^/sesion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_sesion')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::sesionAction',));
+        // crivero_prueba_sesiones_cliente
+        if (0 === strpos($pathinfo, '/cliente') && preg_match('#^/cliente/(?P<id>[^/]++)/sesiones$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_sesiones_cliente')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::sesionesClienteAction',));
+        }
+
+        // crivero_prueba_sesiones_monitor
+        if (0 === strpos($pathinfo, '/monitor') && preg_match('#^/monitor/(?P<id>[^/]++)/sesiones$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_sesiones_monitor')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::sesionesMonitorAction',));
+        }
+
+        if (0 === strpos($pathinfo, '/sesion')) {
+            // crivero_prueba_sesion
+            if (preg_match('#^/sesion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_sesion')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::sesionAction',));
+            }
+
+            // crivero_prueba_horarios_sesion
+            if (preg_match('#^/sesion/(?P<id>[^/]++)/horarios$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_horarios_sesion')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::horariosSesionAction',));
+            }
+
         }
 
         // crivero_prueba_aceptarSesion
@@ -965,16 +988,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
             not_crivero_prueba_enviando:
 
-        }
-
-        // crivero_prueba_reservas_cliente
-        if (0 === strpos($pathinfo, '/reservas/cliente') && preg_match('#^/reservas/cliente/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_reservas_cliente')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\ReservaController::reservasClienteAction',));
-        }
-
-        // crivero_prueba_cliente_sesiones
-        if (0 === strpos($pathinfo, '/cliente/sesiones') && preg_match('#^/cliente/sesiones/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cliente_sesiones')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::sesionesClienteAction',));
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

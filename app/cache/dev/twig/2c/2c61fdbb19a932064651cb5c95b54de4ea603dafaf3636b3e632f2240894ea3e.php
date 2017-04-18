@@ -125,7 +125,7 @@ class __TwigTemplate_519e52cfc81815e9d7d4c1bdee5bd5a59094ed8a9709f924a540b5d6d42
                                     </a>
                                     <a href=\"";
                 // line 48
-                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_usuario_pagos", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_pagos_usuario", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-warning\">
                                         Pagos
                                     </a>
@@ -252,7 +252,7 @@ class __TwigTemplate_519e52cfc81815e9d7d4c1bdee5bd5a59094ed8a9709f924a540b5d6d42
                                     <a href=\"{{ path('crivero_prueba_editarUsuario', { id: usuario.id }) }}\" class=\"btn btn-sm btn-primary\">
                                         Editar
                                     </a>
-                                    <a href=\"{{ path('crivero_prueba_usuario_pagos', { id: usuario.id }) }}\" class=\"btn btn-sm btn-warning\">
+                                    <a href=\"{{ path('crivero_prueba_pagos_usuario', { id: usuario.id }) }}\" class=\"btn btn-sm btn-warning\">
                                         Pagos
                                     </a>
                                     <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">

@@ -46,10 +46,13 @@
                     </tbody>
                 </table>
             </div>
-                    <button class="btn btn-success">Volver atrás</button>
+                
         {% endif %}
-        <div class="navigation" style="float: right">
-            {{ knp_pagination_render(pagination) }}
+        <div>
+            <a class="btn btn-success" href="{{ path('crivero_prueba_cliente', { id: pagination[0].idCliente }) }}">Volver atrás</a>
+            <div class="navigation" style="float: right">
+                {{ knp_pagination_render(pagination) }}
+            </div>
         </div>
     </div>
 {% endblock %} 
