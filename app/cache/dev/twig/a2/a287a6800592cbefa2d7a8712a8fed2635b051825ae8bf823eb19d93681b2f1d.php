@@ -40,57 +40,62 @@ class __TwigTemplate_54872d101489ea665c4555f02d82fceb37d6a68b64cd80ec8945fde08f6
         echo "    <div class=\"container\">
         <div class=\"usuardesc\">
             <div class=\"accionesExclus\">
-                <button type=\"button\" class=\"btn btn-primary\">Enviar mensaje</button>
+                <form action=\"";
+        // line 8
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_enviarMensaje");
+        echo "\" method=\"post\" class=\"\">
+                    <button style=\"padding-bottom: 26px\" type=\"submit\" class=\"btn btn-primary\">Enviar mensaje</button>
+                </form>
                 <p>";
-        // line 9
+        // line 11
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form")), "nombre" => "Eliminar usuario"));
         echo "</p>
             </div>
             <h1>";
-        // line 11
+        // line 13
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "username", array()), "html", null, true);
         echo "</h1>
             <div class=\"usuarfot\">
                 <img src=\"";
-        // line 13
+        // line 15
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl(("images/" . $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "imagen", array()))), "html", null, true);
         echo "\" style=\"float: left; width: 100%;\" />        
             </div>
             <div class=\"usuardat\">
                 <div id=\"resersiones\">
                     ";
-        // line 17
+        // line 19
         if (((isset($context["sesiones"]) ? $context["sesiones"] : $this->getContext($context, "sesiones")) != null)) {
-            // line 18
+            // line 20
             echo "                        <div>
                             <h4>Sesiones: </h4> 
                             <form action=\"";
-            // line 20
+            // line 22
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_sesiones_monitor", array("id" => $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "id", array()))), "html", null, true);
             echo "\" method=\"post\" class=\"form-signin\">
                                 <button type=\"submit\" class=\"btn btn-success\">Ver sesiones</button>
                             </form>
                             ";
-            // line 30
+            // line 32
             echo "                        </div>
                     ";
         }
-        // line 32
+        // line 34
         echo "                </div>
                 <h4>Nombre: </h4> <p>";
-        // line 33
+        // line 35
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "nombre", array()), "html", null, true);
         echo "</p>
                 <h4>F.Nacimiento: </h4> <p>";
-        // line 34
+        // line 36
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "fNacimiento", array()), "html", null, true);
         echo "</p>
                 <h4>Telefono: </h4> <p>";
-        // line 35
+        // line 37
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "telefono", array()), "html", null, true);
         echo "</p>
                 <h4>Registro: </h4> <p>";
-        // line 36
+        // line 38
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "registro", array()), "d/m/Y"), "html", null, true);
         echo "</p>
             </div>
@@ -111,7 +116,7 @@ class __TwigTemplate_54872d101489ea665c4555f02d82fceb37d6a68b64cd80ec8945fde08f6
 
     public function getDebugInfo()
     {
-        return array (  94 => 36,  90 => 35,  86 => 34,  82 => 33,  79 => 32,  75 => 30,  69 => 20,  65 => 18,  63 => 17,  56 => 13,  51 => 11,  46 => 9,  40 => 5,  37 => 4,  29 => 3,  11 => 1,);
+        return array (  99 => 38,  95 => 37,  91 => 36,  87 => 35,  84 => 34,  80 => 32,  74 => 22,  70 => 20,  68 => 19,  61 => 15,  56 => 13,  51 => 11,  45 => 8,  40 => 5,  37 => 4,  29 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -131,7 +136,9 @@ class __TwigTemplate_54872d101489ea665c4555f02d82fceb37d6a68b64cd80ec8945fde08f6
     <div class=\"container\">
         <div class=\"usuardesc\">
             <div class=\"accionesExclus\">
-                <button type=\"button\" class=\"btn btn-primary\">Enviar mensaje</button>
+                <form action=\"{{ path('crivero_prueba_enviarMensaje') }}\" method=\"post\" class=\"\">
+                    <button style=\"padding-bottom: 26px\" type=\"submit\" class=\"btn btn-primary\">Enviar mensaje</button>
+                </form>
                 <p>{{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: \"Eliminar usuario\" })}}</p>
             </div>
             <h1>{{monitor.username}}</h1>

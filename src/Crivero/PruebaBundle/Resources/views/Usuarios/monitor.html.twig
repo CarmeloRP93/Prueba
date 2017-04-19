@@ -5,7 +5,9 @@
     <div class="container">
         <div class="usuardesc">
             <div class="accionesExclus">
-                <button type="button" class="btn btn-primary">Enviar mensaje</button>
+                <form action="{{ path('crivero_prueba_enviarMensaje') }}" method="post" class="">
+                    <button style="padding-bottom: 26px" type="submit" class="btn btn-primary">Enviar mensaje</button>
+                </form>
                 <p>{{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar usuario" })}}</p>
             </div>
             <h1>{{monitor.username}}</h1>

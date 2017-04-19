@@ -12,9 +12,9 @@
             <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th>{{ knp_pagination_sortable(pagination, 'Sesion', 's.nombre') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Sesión', 's.nombre') }}</th>
                         <th>{{ knp_pagination_sortable(pagination, 'Estado', 's.estado') }}</th>
-                        <th>{{ knp_pagination_sortable(pagination, 'Monitor', 's.monitor') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Cliente/s', 's.monitor') }}</th>
                         <th>{{ knp_pagination_sortable(pagination, 'Participantes', 's.nClientes') }}</th>
                         <td><strong>Acciones</strong></td>
                     </tr>
@@ -24,7 +24,7 @@
                         <tr>
                             <td>{{sesion.nombre}}</td>
                             <td><strong>{{sesion.estado}}</strong></td>
-                            <td>{{sesion.monitor}}</td>
+                            <td>{{(sesion.cliente == 'normal' ? "Múltiples" : sesion.cliente)}}</td>
                             <td>{{sesion.nClientes}}/{{sesion.lClientes}}</td>
 
                             <td class="actions">

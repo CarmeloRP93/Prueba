@@ -51,7 +51,7 @@ class __TwigTemplate_b084bd12c3a07316ca569e4f85cfe0003cd03202472e22d5f81341fa66f
                     <tr>
                         <th>";
         // line 15
-        echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Sesion", "s.nombre");
+        echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Sesión", "s.nombre");
         echo "</th>
                         <th>";
         // line 16
@@ -59,7 +59,7 @@ class __TwigTemplate_b084bd12c3a07316ca569e4f85cfe0003cd03202472e22d5f81341fa66f
         echo "</th>
                         <th>";
         // line 17
-        echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Monitor", "s.monitor");
+        echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Cliente/s", "s.monitor");
         echo "</th>
                         <th>";
         // line 18
@@ -86,7 +86,7 @@ class __TwigTemplate_b084bd12c3a07316ca569e4f85cfe0003cd03202472e22d5f81341fa66f
             echo "</strong></td>
                             <td>";
             // line 27
-            echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "monitor", array()), "html", null, true);
+            echo twig_escape_filter($this->env, ((($this->getAttribute($context["sesion"], "cliente", array()) == "normal")) ? ("Múltiples") : ($this->getAttribute($context["sesion"], "cliente", array()))), "html", null, true);
             echo "</td>
                             <td>";
             // line 28
@@ -174,9 +174,9 @@ class __TwigTemplate_b084bd12c3a07316ca569e4f85cfe0003cd03202472e22d5f81341fa66f
             <table class=\"table table-hover table-bordered\">
                 <thead>
                     <tr>
-                        <th>{{ knp_pagination_sortable(pagination, 'Sesion', 's.nombre') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Sesión', 's.nombre') }}</th>
                         <th>{{ knp_pagination_sortable(pagination, 'Estado', 's.estado') }}</th>
-                        <th>{{ knp_pagination_sortable(pagination, 'Monitor', 's.monitor') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Cliente/s', 's.monitor') }}</th>
                         <th>{{ knp_pagination_sortable(pagination, 'Participantes', 's.nClientes') }}</th>
                         <td><strong>Acciones</strong></td>
                     </tr>
@@ -186,7 +186,7 @@ class __TwigTemplate_b084bd12c3a07316ca569e4f85cfe0003cd03202472e22d5f81341fa66f
                         <tr>
                             <td>{{sesion.nombre}}</td>
                             <td><strong>{{sesion.estado}}</strong></td>
-                            <td>{{sesion.monitor}}</td>
+                            <td>{{(sesion.cliente == 'normal' ? \"Múltiples\" : sesion.cliente)}}</td>
                             <td>{{sesion.nClientes}}/{{sesion.lClientes}}</td>
 
                             <td class=\"actions\">
