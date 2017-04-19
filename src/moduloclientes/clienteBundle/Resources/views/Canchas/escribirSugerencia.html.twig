@@ -9,7 +9,7 @@
 
     <div class="hidden">
         {{ form_label(form.destinatario) }}
-        {{ form_widget(form.destinatario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Destino'} }) }}
+        {{ form_widget(form.destinatario, {'value':admins[0].email, 'attr' : {'class' : 'form-control', 'placeholder' : 'Destino'} }) }}
         <span class="text-danger">{{ form_errors(form.destinatario) }}</span>
     </div>
 
@@ -18,11 +18,11 @@
         {{ form_widget(form.tipoComentario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba el tipo de sugerencia'} }) }}
         <span class="text-danger">{{ form_errors(form.tipoComentario) }}</span>
     </div> 
-    
+
     <div class="form-group container">
         {{ form_label(form.asunto) }}
-        {{ form_widget(form.asunto, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba el asunto'} }) }}
-        <span class="text-danger">{{ form_errors(form.descripcion) }}</span>
+        {{ form_widget(form.asunto, {'value':asunto, 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba el asunto'}}) }}
+        <span class="text-danger">{{ form_errors(form.asunto) }}</span>
     </div>
 
     <div class="form-group container">
@@ -31,7 +31,7 @@
         <span class="text-danger">{{ form_errors(form.descripcion) }}</span>
     </div>
 
-       <div class="form-group container"><p>
+    <div class="form-group container"><p>
             {{ form_widget(form.enviar, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
         </p></div>      
 

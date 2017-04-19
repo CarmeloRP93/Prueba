@@ -118,14 +118,14 @@ moduloclientes_cliente_miPerfil:
     defaults: { _controller: moduloclientesclienteBundle:Usuario:miPerfil }
     
 moduloclientes_cliente_escribirSugerencia:
-    pattern:  /escribirSugerencia/{id}
+    pattern:  /escribirSugerencia
     defaults: { _controller: moduloclientesclienteBundle:Cancha:escribirSugerencia }
 
 moduloclientes_cliente_añadirSugerencia:
-    pattern:  /añadirSugerencia/
+    pattern:  /añadirSugerencia
     defaults: { _controller: moduloclientesclienteBundle:Cancha:añadirSugerencia }
     requirements:
-        _method:  POST|PUT|GET
+        _method:  POST|GET
         
 moduloclientes_cliente_cancelarReserva:
     pattern:  /cancelarReserva/{id}

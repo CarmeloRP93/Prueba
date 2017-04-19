@@ -39,7 +39,7 @@ class UsuariosRepository extends EntityRepository {
                         ->setParameter('nombre', $searchQuery)
                         ->getResult();
     }
-    
+
     public function getSesionesMonitor($idMonitor) {
         return $this->getEntityManager()
                         ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.idMonitor = :id AND s.estado = 'validada'")
@@ -53,12 +53,18 @@ class UsuariosRepository extends EntityRepository {
                         ->setParameter('id', $id)
                         ->getResult();
     }
-    
+
     public function getDestinatario($email) {
         return $this->getEntityManager()
-            ->createQuery("SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.email = :email")
-            ->setParameter('email', $email)
-            ->getResult();
+                        ->createQuery("SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.email = :email")
+                        ->setParameter('email', $email)
+                        ->getResult();
+    }
+
+    public function getAdmin() {
+        return $this->getEntityManager()
+                        ->createQuery('SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=1')
+                        ->getResult();
     }
 
 }

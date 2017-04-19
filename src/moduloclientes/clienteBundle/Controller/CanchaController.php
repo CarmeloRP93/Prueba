@@ -30,10 +30,18 @@ class CanchaController extends Controller {
         return $this->render('moduloclientesclienteBundle:Canchas:canchaClientes.html.twig', array("cancha" => $cancha, "horarios" => $horarios));
     }
 
-    public function escribirSugerenciaAction($id) {
+    public function escribirSugerenciaAction() {
         $comentario = new Comentarios();
+        $referer = $this->getRequest()->headers->get('referer');
+        $asunto = null;
+        if ($referer) {
+            $id = explode('/', $referer)[7];
+            $asunto = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas")->find($id)->getTipo();
+        }
         $form = $this->createCreateForm($comentario);
-        return $this->render('moduloclientesclienteBundle:Canchas:escribirSugerencia.html.twig', array('form' => $form->createView()));
+        $admins = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->getAdmin();
+        return $this->render('moduloclientesclienteBundle:Canchas:escribirSugerencia.html.twig', array('form' => $form->createView(),
+                    'asunto' => $asunto, 'admins' => $admins));
     }
 
     public function añadirSugerenciaAction(Request $request) {
@@ -41,23 +49,24 @@ class CanchaController extends Controller {
         $form = $this->createCreateForm($comentario);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $cliente = $this->getUser();
             $idCliente = $cliente->getId();
             $comentario->setIdRemitente($idCliente);
 
-            $comentario->setDescripcion($form->get('descripcion')->getData());
-            $comentario->setAsunto($form->get('asunto')->getData());
+            $admins = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->getAdmin();
+            $comentario->setIdDestinatario($admins[0]->getId());
             $comentario->setTipoComentario('Sugerencia cancha');
-            $comentario->setDestinatario(1);
-            $comentario->setIdDestinatario(1);
             $em = $this->getDoctrine()->getManager();
             $em->persist($comentario);
             $em->flush();
             $request->getSession()->getFlashBag()->add('mensaje', 'Sugerencia enviada.');
             return $this->redirect($this->generateUrl('moduloclientes_cliente_canchasClientes'));
         }
-        return $this->redirect($this->generateUrl('moduloclientes_cliente_canchasClientes'));
+        $asunto = $form->get('asunto')->getData();
+        $admins = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->getAdmin();
+        return $this->render('moduloclientesclienteBundle:Canchas:escribirSugerencia.html.twig', array('form' => $form->createView(),
+                    'asunto' => $asunto, 'admins' => $admins));
     }
 
     private function createCreateForm(Comentarios $entity) {

@@ -529,19 +529,15 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // moduloclientes_cliente_escribirSugerencia
-        if (0 === strpos($pathinfo, '/escribirSugerencia') && preg_match('#^/escribirSugerencia/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_escribirSugerencia')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::escribirSugerenciaAction',));
+        if ($pathinfo === '/escribirSugerencia') {
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::escribirSugerenciaAction',  '_route' => 'moduloclientes_cliente_escribirSugerencia',);
         }
 
         // moduloclientes_cliente_añadirSugerencia
-        if (rtrim($pathinfo, '/') === '/añadirSugerencia') {
-            if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
-                $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+        if ($pathinfo === '/añadirSugerencia') {
+            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
                 goto not_moduloclientes_cliente_aadirSugerencia;
-            }
-
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'moduloclientes_cliente_añadirSugerencia');
             }
 
             return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::añadirSugerenciaAction',  '_route' => 'moduloclientes_cliente_añadirSugerencia',);
