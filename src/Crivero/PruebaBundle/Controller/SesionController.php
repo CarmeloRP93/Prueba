@@ -222,7 +222,9 @@ class SesionController extends Controller {
     }
 
     private function createRechForm(Sesiones $entity) {
-        $form = $this->createForm(new SesionesType(), $entity, array(
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+        $aulas = $repository->findAll();
+        $form = $this->createForm(new SesionesType($aulas), $entity, array(
             'action' => $this->generateUrl('crivero_prueba_rechazar', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));

@@ -140,6 +140,7 @@ class SesionController extends Controller {
         if ($form->isSubmitted() && $form->isValid()) {
             $sesion->setEstado("modificada");
             $sesion->setEstadoCliente("no disponible");
+            $sesion->setObservaciones("");
             $em->flush();
             return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionMonitores', array('id' => $sesion->getId())));
         }
