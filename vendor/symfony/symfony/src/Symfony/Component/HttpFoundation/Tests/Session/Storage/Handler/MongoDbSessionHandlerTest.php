@@ -15,8 +15,6 @@ use Symfony\Component\HttpFoundation\Session\Storage\Handler\MongoDbSessionHandl
 
 /**
  * @author Markus Bachmann <markus.bachmann@bachi.biz>
- * @requires extension mongo
- * @group time-sensitive
  */
 class MongoDbSessionHandlerTest extends \PHPUnit_Framework_TestCase
 {
@@ -29,12 +27,13 @@ class MongoDbSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        parent::setUp();
+        if (!extension_loaded('mongo')) {
+            $this->markTestSkipped('MongoDbSessionHandler requires the PHP "mongo" extension.');
+        }
 
-        $mongoClass = version_compare(phpversion('mongo'), '1.3.0', '<') ? 'Mongo' : 'MongoClient';
+        $mongoClass = (version_compare(phpversion('mongo'), '1.3.0', '<')) ? 'Mongo' : 'MongoClient';
 
         $this->mongo = $this->getMockBuilder($mongoClass)
-            ->disableOriginalConstructor()
             ->getMock();
 
         $this->options = array(
@@ -88,7 +87,7 @@ class MongoDbSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
         // defining the timeout before the actual method call
         // allows to test for "greater than" values in the $criteria
-        $testTimeout = time() + 1;
+        $testTimeout = time();
 
         $collection->expects($this->once())
             ->method('findOne')
@@ -203,8 +202,13 @@ class MongoDbSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
     private function createMongoCollectionMock()
     {
+        $mongoClient = $this->getMockBuilder('MongoClient')
+            ->getMock();
+        $mongoDb = $this->getMockBuilder('MongoDB')
+            ->setConstructorArgs(array($mongoClient, 'database-name'))
+            ->getMock();
         $collection = $this->getMockBuilder('MongoCollection')
-            ->disableOriginalConstructor()
+            ->setConstructorArgs(array($mongoDb, 'collection-name'))
             ->getMock();
 
         return $collection;

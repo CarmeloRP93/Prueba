@@ -19,12 +19,12 @@ if (!class_exists('Twig_Environment')) {
 } else {
     class StubFilesystemLoader extends \Twig_Loader_Filesystem
     {
-        protected function findTemplate($name, $throw = true)
+        protected function findTemplate($name)
         {
             // strip away bundle name
             $parts = explode(':', $name);
 
-            return parent::findTemplate(end($parts), $throw);
+            return parent::findTemplate(end($parts));
         }
     }
 }

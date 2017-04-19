@@ -13,7 +13,6 @@ namespace Assetic\Filter;
 
 use Assetic\Asset\AssetInterface;
 use Assetic\Exception\FilterException;
-use Assetic\Util\FilesystemUtils;
 
 /**
  * Runs assets through jpegtran.
@@ -87,7 +86,7 @@ class JpegtranFilter extends BaseProcessFilter
             $pb->add('-restart')->add($this->restart);
         }
 
-        $pb->add($input = FilesystemUtils::createTemporaryFile('jpegtran'));
+        $pb->add($input = tempnam(sys_get_temp_dir(), 'assetic_jpegtran'));
         file_put_contents($input, $asset->getContent());
 
         $proc = $pb->getProcess();

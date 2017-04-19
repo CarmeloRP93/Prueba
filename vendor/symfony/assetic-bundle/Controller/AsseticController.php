@@ -34,8 +34,9 @@ class AsseticController
     protected $enableProfiler;
     protected $profiler;
 
-    public function __construct(LazyAssetManager $am, CacheInterface $cache, $enableProfiler = false, Profiler $profiler = null)
+    public function __construct(Request $request, LazyAssetManager $am, CacheInterface $cache, $enableProfiler = false, Profiler $profiler = null)
     {
+        $this->request = $request;
         $this->am = $am;
         $this->cache = $cache;
         $this->enableProfiler = (boolean) $enableProfiler;
@@ -47,7 +48,7 @@ class AsseticController
         trigger_error(sprintf('%s is deprecated. The values of asset variables are retrieved from the request after the route matching.', __METHOD__), E_USER_DEPRECATED);
     }
 
-    public function render(Request $request, $name, $pos = null)
+    public function render($name, $pos = null)
     {
         if (!$this->enableProfiler && null !== $this->profiler) {
             $this->profiler->disable();
@@ -65,7 +66,7 @@ class AsseticController
         $response = $this->createResponse();
         $response->setExpires(new \DateTime());
 
-        $this->configureAssetValues($asset, $request);
+        $this->configureAssetValues($asset);
 
         // last-modified
         if (null !== $lastModified = $this->am->getLastModified($asset)) {
@@ -81,13 +82,11 @@ class AsseticController
             $response->setETag(md5(serialize($formula)));
         }
 
-        if ($response->isNotModified($request)) {
+        if ($response->isNotModified($this->request)) {
             return $response;
         }
 
-        $etagCacheKeyFilter = new AssetCacheKeyFilter($response->getEtag());
-
-        $response->setContent($this->cachifyAsset($asset)->dump($etagCacheKeyFilter));
+        $response->setContent($this->cachifyAsset($asset)->dump());
 
         return $response;
     }
@@ -102,10 +101,10 @@ class AsseticController
         return new AssetCache($asset, $this->cache);
     }
 
-    protected function configureAssetValues(AssetInterface $asset, Request $request)
+    protected function configureAssetValues(AssetInterface $asset)
     {
         if ($vars = $asset->getVars()) {
-            $asset->setValues(array_intersect_key($request->attributes->all(), array_flip($vars)));
+            $asset->setValues(array_intersect_key($this->request->attributes->all(), array_flip($vars)));
         }
 
         return $this;

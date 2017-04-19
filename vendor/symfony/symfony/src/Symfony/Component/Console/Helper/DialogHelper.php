@@ -11,7 +11,6 @@
 
 namespace Symfony\Component\Console\Helper;
 
-use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 
@@ -43,15 +42,11 @@ class DialogHelper extends Helper
      */
     public function select(OutputInterface $output, $question, $choices, $default = null, $attempts = false, $errorMessage = 'Value "%s" is invalid', $multiselect = false)
     {
-        if ($output instanceof ConsoleOutputInterface) {
-            $output = $output->getErrorOutput();
-        }
-
         $width = max(array_map('strlen', array_keys($choices)));
 
         $messages = (array) $question;
         foreach ($choices as $key => $value) {
-            $messages[] = sprintf("  [<info>%-{$width}s</info>] %s", $key, $value);
+            $messages[] = sprintf("  [<info>%-${width}s</info>] %s", $key, $value);
         }
 
         $output->writeln($messages);
@@ -76,7 +71,7 @@ class DialogHelper extends Helper
                 if (empty($choices[$value])) {
                     throw new \InvalidArgumentException(sprintf($errorMessage, $value));
                 }
-                $multiselectChoices[] = $value;
+                array_push($multiselectChoices, $value);
             }
 
             if ($multiselect) {
@@ -103,10 +98,6 @@ class DialogHelper extends Helper
      */
     public function ask(OutputInterface $output, $question, $default = null, array $autocomplete = null)
     {
-        if ($output instanceof ConsoleOutputInterface) {
-            $output = $output->getErrorOutput();
-        }
-
         $output->write($question);
 
         $inputStream = $this->inputStream ?: STDIN;
@@ -140,7 +131,7 @@ class DialogHelper extends Helper
                 // Backspace Character
                 if ("\177" === $c) {
                     if (0 === $numMatches && 0 !== $i) {
-                        --$i;
+                        $i--;
                         // Move cursor backwards
                         $output->write("\033[1D");
                     }
@@ -193,7 +184,7 @@ class DialogHelper extends Helper
                 } else {
                     $output->write($c);
                     $ret .= $c;
-                    ++$i;
+                    $i++;
 
                     $numMatches = 0;
                     $ofs = 0;
@@ -264,10 +255,6 @@ class DialogHelper extends Helper
      */
     public function askHiddenResponse(OutputInterface $output, $question, $fallback = true)
     {
-        if ($output instanceof ConsoleOutputInterface) {
-            $output = $output->getErrorOutput();
-        }
-
         if ('\\' === DIRECTORY_SEPARATOR) {
             $exe = __DIR__.'/../Resources/bin/hiddeninput.exe';
 
@@ -398,7 +385,7 @@ class DialogHelper extends Helper
     /**
      * Returns the helper's input stream.
      *
-     * @return resource|null The input stream or null if the default STDIN is used
+     * @return string
      */
     public function getInputStream()
     {
@@ -457,7 +444,7 @@ class DialogHelper extends Helper
      * @param callable        $interviewer A callable that will ask for a question and return the result
      * @param OutputInterface $output      An Output instance
      * @param callable        $validator   A PHP callback
-     * @param int|false       $attempts    Max number of times to ask before giving up; false will ask infinitely
+     * @param int|false       $attempts    Max number of times to ask before giving up ; false will ask infinitely
      *
      * @return string The validated response
      *
@@ -465,22 +452,18 @@ class DialogHelper extends Helper
      */
     private function validateAttempts($interviewer, OutputInterface $output, $validator, $attempts)
     {
-        if ($output instanceof ConsoleOutputInterface) {
-            $output = $output->getErrorOutput();
-        }
-
-        $e = null;
+        $error = null;
         while (false === $attempts || $attempts--) {
-            if (null !== $e) {
-                $output->writeln($this->getHelperSet()->get('formatter')->formatBlock($e->getMessage(), 'error'));
+            if (null !== $error) {
+                $output->writeln($this->getHelperSet()->get('formatter')->formatBlock($error->getMessage(), 'error'));
             }
 
             try {
                 return call_user_func($validator, $interviewer());
-            } catch (\Exception $e) {
+            } catch (\Exception $error) {
             }
         }
 
-        throw $e;
+        throw $error;
     }
 }

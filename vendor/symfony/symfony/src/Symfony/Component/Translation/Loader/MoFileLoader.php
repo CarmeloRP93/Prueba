@@ -66,10 +66,7 @@ class MoFileLoader extends ArrayLoader
         }
 
         $catalogue = parent::load($messages, $locale, $domain);
-
-        if (class_exists('Symfony\Component\Config\Resource\FileResource')) {
-            $catalogue->addResource(new FileResource($resource));
-        }
+        $catalogue->addResource(new FileResource($resource));
 
         return $catalogue;
     }
@@ -116,7 +113,7 @@ class MoFileLoader extends ArrayLoader
 
         $messages = array();
 
-        for ($i = 0; $i < $count; ++$i) {
+        for ($i = 0; $i < $count; $i++) {
             $singularId = $pluralId = null;
             $translated = null;
 

@@ -122,15 +122,7 @@ class NumberToLocalizedStringTransformer implements DataTransformerInterface
             $value = str_replace(',', $decSep, $value);
         }
 
-        if (false !== strpos($value, $decSep)) {
-            $type = \NumberFormatter::TYPE_DOUBLE;
-        } else {
-            $type = PHP_INT_SIZE === 8
-                ? \NumberFormatter::TYPE_INT64
-                : \NumberFormatter::TYPE_INT32;
-        }
-
-        $result = $formatter->parse($value, $type, $position);
+        $result = $formatter->parse($value, \NumberFormatter::TYPE_DOUBLE, $position);
 
         if (intl_is_failure($formatter->getErrorCode())) {
             throw new TransformationFailedException($formatter->getErrorMessage());
@@ -140,11 +132,7 @@ class NumberToLocalizedStringTransformer implements DataTransformerInterface
             throw new TransformationFailedException('I don\'t have a clear idea what infinity looks like');
         }
 
-        if (is_int($result) && $result === (int) $float = (float) $result) {
-            $result = $float;
-        }
-
-        if (function_exists('mb_detect_encoding') && false !== $encoding = mb_detect_encoding($value, null, true)) {
+        if (function_exists('mb_detect_encoding') && false !== $encoding = mb_detect_encoding($value)) {
             $length = mb_strlen($value, $encoding);
             $remainder = mb_substr($value, $position, $length, $encoding);
         } else {

@@ -62,7 +62,9 @@ class SessionHelper extends Helper
     }
 
     /**
-     * {@inheritdoc}
+     * Returns the canonical name of this helper.
+     *
+     * @return string The canonical name
      */
     public function getName()
     {

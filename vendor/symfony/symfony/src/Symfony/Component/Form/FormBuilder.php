@@ -62,7 +62,7 @@ class FormBuilder extends FormConfigBuilder implements \IteratorAggregate, FormB
             throw new BadMethodCallException('FormBuilder methods cannot be accessed anymore once the builder is turned into a FormConfigInterface instance.');
         }
 
-        if ($child instanceof FormBuilderInterface) {
+        if ($child instanceof self) {
             $this->children[$child->getName()] = $child;
 
             // In case an unresolved child with the same name exists
@@ -72,7 +72,7 @@ class FormBuilder extends FormConfigBuilder implements \IteratorAggregate, FormB
         }
 
         if (!is_string($child) && !is_int($child)) {
-            throw new UnexpectedTypeException($child, 'string, integer or Symfony\Component\Form\FormBuilderInterface');
+            throw new UnexpectedTypeException($child, 'string, integer or Symfony\Component\Form\FormBuilder');
         }
 
         if (null !== $type && !is_string($type) && !$type instanceof FormTypeInterface) {

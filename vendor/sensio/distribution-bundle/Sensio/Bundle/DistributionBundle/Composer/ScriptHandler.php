@@ -190,20 +190,14 @@ class ScriptHandler
 
         ClassCollectionLoader::load($classes, dirname($file), basename($file, '.php.cache'), false, false, '.php.cache');
 
-        file_put_contents($file, sprintf(<<<'EOF'
-<?php
+        file_put_contents($file, sprintf("<?php
 
-namespace {
-    error_reporting(error_reporting() & ~E_USER_DEPRECATED);
-    $loader = require_once __DIR__.'/autoload.php';
-}
+namespace { \$loader = require_once __DIR__.'/autoload.php'; }
 
 %s
 
-namespace { return $loader; }
-
-EOF
-            , substr(file_get_contents($file), 5)));
+namespace { return \$loader; }
+            ", substr(file_get_contents($file), 5)));
     }
 
     protected static function executeCommand(CommandEvent $event, $appDir, $cmd, $timeout = 300)

@@ -22,6 +22,8 @@ use Symfony\Component\HttpFoundation\Request;
  * the controller method arguments.
  *
  * @author Fabien Potencier <fabien@symfony.com>
+ *
+ * @api
  */
 class ControllerResolver implements ControllerResolverInterface
 {
@@ -49,6 +51,8 @@ class ControllerResolver implements ControllerResolverInterface
      *                    or false if this resolver is not able to determine the controller
      *
      * @throws \InvalidArgumentException|\LogicException If the controller can't be found
+     *
+     * @api
      */
     public function getController(Request $request)
     {
@@ -98,6 +102,8 @@ class ControllerResolver implements ControllerResolverInterface
      * @return array
      *
      * @throws \RuntimeException When value for argument given is not provided
+     *
+     * @api
      */
     public function getArguments(Request $request, $controller)
     {
@@ -119,11 +125,7 @@ class ControllerResolver implements ControllerResolverInterface
         $arguments = array();
         foreach ($parameters as $param) {
             if (array_key_exists($param->name, $attributes)) {
-                if (PHP_VERSION_ID >= 50600 && $param->isVariadic() && is_array($attributes[$param->name])) {
-                    $arguments = array_merge($arguments, array_values($attributes[$param->name]));
-                } else {
-                    $arguments[] = $attributes[$param->name];
-                }
+                $arguments[] = $attributes[$param->name];
             } elseif ($param->getClass() && $param->getClass()->isInstance($request)) {
                 $arguments[] = $request;
             } elseif ($param->isDefaultValueAvailable()) {
@@ -149,7 +151,7 @@ class ControllerResolver implements ControllerResolverInterface
      *
      * @param string $controller A Controller string
      *
-     * @return callable A PHP callable
+     * @return mixed A PHP callable
      *
      * @throws \InvalidArgumentException
      */

@@ -29,7 +29,7 @@ class LintCommand extends ContainerAwareCommand
             ->setName('twig:lint')
             ->setDescription('Lints a template and outputs encountered errors')
             ->addArgument('filename')
-            ->setHelp(<<<'EOF'
+            ->setHelp(<<<EOF
 The <info>%command.name%</info> command lints a template and outputs to stdout
 the first encountered syntax error.
 
@@ -110,7 +110,7 @@ EOF
 
     protected function renderException(OutputInterface $output, $template, \Twig_Error $exception, $file = null)
     {
-        $line = $exception->getTemplateLine();
+        $line =  $exception->getTemplateLine();
         $lines = $this->getContext($template, $line);
 
         if ($file) {
@@ -142,7 +142,7 @@ EOF
         $result = array();
         while ($position < $max) {
             $result[$position + 1] = $lines[$position];
-            ++$position;
+            $position++;
         }
 
         return $result;

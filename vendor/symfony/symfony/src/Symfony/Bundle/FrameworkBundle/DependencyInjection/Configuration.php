@@ -52,10 +52,6 @@ class Configuration implements ConfigurationInterface
                                 }
 
                                 if (false !== strpos($v, '/')) {
-                                    if ('0.0.0.0/0' === $v) {
-                                        return false;
-                                    }
-
                                     list($v, $mask) = explode('/', $v, 2);
 
                                     if (strcmp($mask, (int) $mask) || $mask < 1 || $mask > (false !== strpos($v, ':') ? 128 : 32)) {
@@ -73,7 +69,10 @@ class Configuration implements ConfigurationInterface
                 ->booleanNode('test')->end()
                 ->scalarNode('default_locale')->defaultValue('en')->end()
                 ->arrayNode('trusted_hosts')
-                    ->beforeNormalization()->ifString()->then(function ($v) { return array($v); })->end()
+                    ->beforeNormalization()
+                        ->ifTrue(function ($v) { return is_string($v); })
+                        ->then(function ($v) { return array($v); })
+                    ->end()
                     ->prototype('scalar')->end()
                 ->end()
             ->end()

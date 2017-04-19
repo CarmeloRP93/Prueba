@@ -71,7 +71,6 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->scalarNode('ruby')->defaultValue(function () use ($finder) { return $finder->find('ruby', '/usr/bin/ruby'); })->end()
                 ->scalarNode('sass')->defaultValue(function () use ($finder) { return $finder->find('sass', '/usr/bin/sass'); })->end()
-                ->scalarNode('reactjsx')->defaultValue(function () use ($finder) { return $finder->find('reactjsx', '/usr/bin/jsx'); })->end()
             ->end()
         ;
 
@@ -107,7 +106,6 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->arrayNode('bundles')
                     ->defaultValue($this->bundles)
-                    ->treatNullLike($this->bundles)
                     ->prototype('scalar')
                         ->validate()
                             ->ifNotInArray($this->bundles)

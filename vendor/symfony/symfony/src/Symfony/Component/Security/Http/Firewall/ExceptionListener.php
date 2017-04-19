@@ -46,9 +46,8 @@ class ExceptionListener
     private $errorPage;
     private $logger;
     private $httpUtils;
-    private $stateless;
 
-    public function __construct(SecurityContextInterface $context, AuthenticationTrustResolverInterface $trustResolver, HttpUtils $httpUtils, $providerKey, AuthenticationEntryPointInterface $authenticationEntryPoint = null, $errorPage = null, AccessDeniedHandlerInterface $accessDeniedHandler = null, LoggerInterface $logger = null, $stateless = false)
+    public function __construct(SecurityContextInterface $context, AuthenticationTrustResolverInterface $trustResolver, HttpUtils $httpUtils, $providerKey, AuthenticationEntryPointInterface $authenticationEntryPoint = null, $errorPage = null, AccessDeniedHandlerInterface $accessDeniedHandler = null, LoggerInterface $logger = null)
     {
         $this->context = $context;
         $this->accessDeniedHandler = $accessDeniedHandler;
@@ -58,7 +57,6 @@ class ExceptionListener
         $this->authenticationTrustResolver = $trustResolver;
         $this->errorPage = $errorPage;
         $this->logger = $logger;
-        $this->stateless = $stateless;
     }
 
     /**
@@ -180,9 +178,7 @@ class ExceptionListener
             $this->logger->debug('Calling Authentication entry point');
         }
 
-        if (!$this->stateless) {
-            $this->setTargetPath($request);
-        }
+        $this->setTargetPath($request);
 
         if ($authException instanceof AccountStatusException) {
             // remove the security token to prevent infinite redirect loops
@@ -198,7 +194,7 @@ class ExceptionListener
     protected function setTargetPath(Request $request)
     {
         // session isn't required when using HTTP basic authentication mechanism for example
-        if ($request->hasSession() && $request->isMethodSafe() && !$request->isXmlHttpRequest()) {
+        if ($request->hasSession() && $request->isMethodSafe()) {
             $request->getSession()->set('_security.'.$this->providerKey.'.target_path', $request->getUri());
         }
     }

@@ -104,7 +104,7 @@ class AclProvider implements AclProviderInterface
         $currentBatch = array();
         $oidLookup = array();
 
-        for ($i = 0, $c = count($oids); $i < $c; ++$i) {
+        for ($i = 0, $c = count($oids); $i < $c; $i++) {
             $oid = $oids[$i];
             $oidLookupKey = $oid->getIdentifier().$oid->getType();
             $oidLookup[$oidLookupKey] = $oid;
@@ -177,13 +177,13 @@ class AclProvider implements AclProviderInterface
             if ($currentBatchesCount > 0 && (self::MAX_BATCH_SIZE === $currentBatchesCount || ($i + 1) === $c)) {
                 try {
                     $loadedBatch = $this->lookupObjectIdentities($currentBatch, $sids, $oidLookup);
-                } catch (AclNotFoundException $e) {
+                } catch (AclNotFoundException $aclNotFoundexception) {
                     if ($result->count()) {
                         $partialResultException = new NotAllAclsFoundException('The provider could not find ACLs for all object identities.');
                         $partialResultException->setPartialResult($result);
                         throw $partialResultException;
                     } else {
-                        throw $e;
+                        throw $aclNotFoundexception;
                     }
                 }
                 foreach ($loadedBatch as $loadedOid) {
@@ -280,7 +280,7 @@ SELECTCLAUSE;
 
         $types = array();
         $count = count($batch);
-        for ($i = 0; $i < $count; ++$i) {
+        for ($i = 0; $i < $count; $i++) {
             if (!isset($types[$batch[$i]->getType()])) {
                 $types[$batch[$i]->getType()] = true;
 
@@ -295,7 +295,7 @@ SELECTCLAUSE;
 
         if (1 === count($types)) {
             $ids = array();
-            for ($i = 0; $i < $count; ++$i) {
+            for ($i = 0; $i < $count; $i++) {
                 $ids[] = $this->connection->quote($batch[$i]->getIdentifier());
             }
 
@@ -306,7 +306,7 @@ SELECTCLAUSE;
             );
         } else {
             $where = '(o.object_identifier = %s AND c.class_type = %s)';
-            for ($i = 0; $i < $count; ++$i) {
+            for ($i = 0; $i < $count; $i++) {
                 $sql .= sprintf(
                     $where,
                     $this->connection->quote($batch[$i]->getIdentifier()),
@@ -367,7 +367,7 @@ FINDCHILDREN;
      */
     protected function getSelectObjectIdentityIdSql(ObjectIdentityInterface $oid)
     {
-        $query = <<<'QUERY'
+        $query = <<<QUERY
             SELECT o.id
             FROM %s o
             INNER JOIN %s c ON c.id = o.class_id
@@ -571,7 +571,7 @@ QUERY;
                     $oidCache[$oidLookupKey] = new ObjectIdentity($objectIdentifier, $classType);
                 }
 
-                $acl = new Acl((int) $aclId, $oidCache[$oidLookupKey], $permissionGrantingStrategy, $emptyArray, (bool) $entriesInheriting);
+                $acl = new Acl((int) $aclId, $oidCache[$oidLookupKey], $permissionGrantingStrategy, $emptyArray, !!$entriesInheriting);
 
                 // keep a local, and global reference to this ACL
                 $loadedAcls[$classType][$objectIdentifier] = $acl;
@@ -613,9 +613,9 @@ QUERY;
                     }
 
                     if (null === $fieldName) {
-                        $loadedAces[$aceId] = new Entry((int) $aceId, $acl, $sids[$key], $grantingStrategy, (int) $mask, (bool) $granting, (bool) $auditFailure, (bool) $auditSuccess);
+                        $loadedAces[$aceId] = new Entry((int) $aceId, $acl, $sids[$key], $grantingStrategy, (int) $mask, !!$granting, !!$auditFailure, !!$auditSuccess);
                     } else {
-                        $loadedAces[$aceId] = new FieldEntry((int) $aceId, $acl, $fieldName, $sids[$key], $grantingStrategy, (int) $mask, (bool) $granting, (bool) $auditFailure, (bool) $auditSuccess);
+                        $loadedAces[$aceId] = new FieldEntry((int) $aceId, $acl, $fieldName, $sids[$key], $grantingStrategy, (int) $mask, !!$granting, !!$auditFailure, !!$auditSuccess);
                     }
                 }
                 $ace = $loadedAces[$aceId];

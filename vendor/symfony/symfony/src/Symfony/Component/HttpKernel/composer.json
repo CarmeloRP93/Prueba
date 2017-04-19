@@ -3,7 +3,7 @@
     "type": "library",
     "description": "Symfony HttpKernel Component",
     "keywords": [],
-    "homepage": "https://symfony.com",
+    "homepage": "http://symfony.com",
     "license": "MIT",
     "authors": [
         {
@@ -12,7 +12,7 @@
         },
         {
             "name": "Symfony Community",
-            "homepage": "https://symfony.com/contributors"
+            "homepage": "http://symfony.com/contributors"
         }
     ],
     "require": {
@@ -23,6 +23,7 @@
         "psr/log": "~1.0"
     },
     "require-dev": {
+        "symfony/phpunit-bridge": "~2.7",
         "symfony/browser-kit": "~2.3",
         "symfony/class-loader": "~2.1",
         "symfony/config": "~2.0,>=2.0.5",
@@ -45,10 +46,7 @@
         "symfony/finder": ""
     },
     "autoload": {
-        "psr-0": { "Symfony\\Component\\HttpKernel\\": "" },
-        "exclude-from-classmap": [
-            "/Tests/"
-        ]
+        "psr-0": { "Symfony\\Component\\HttpKernel\\": "" }
     },
     "target-dir": "Symfony/Component/HttpKernel",
     "minimum-stability": "dev",

@@ -17,8 +17,6 @@ use Symfony\Component\Stopwatch\StopwatchEvent;
  * StopwatchEventTest.
  *
  * @author Fabien Potencier <fabien@symfony.com>
- *
- * @group time-sensitive
  */
 class StopwatchEventTest extends \PHPUnit_Framework_TestCase
 {
@@ -121,12 +119,12 @@ class StopwatchEventTest extends \PHPUnit_Framework_TestCase
     public function testStartTime()
     {
         $event = new StopwatchEvent(microtime(true) * 1000);
-        $this->assertLessThanOrEqual(0.5, $event->getStartTime());
+        $this->assertTrue($event->getStartTime() < 0.5);
 
         $event = new StopwatchEvent(microtime(true) * 1000);
         $event->start();
         $event->stop();
-        $this->assertLessThanOrEqual(1, $event->getStartTime());
+        $this->assertTrue($event->getStartTime() < 1);
 
         $event = new StopwatchEvent(microtime(true) * 1000);
         $event->start();

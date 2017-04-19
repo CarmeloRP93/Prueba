@@ -11,8 +11,6 @@
 
 namespace Symfony\Component\Form\Extension\Csrf\CsrfProvider;
 
-use Symfony\Component\Security\Core\Util\StringUtils;
-
 /**
  * Default implementation of CsrfProviderInterface.
  *
@@ -56,17 +54,7 @@ class DefaultCsrfProvider implements CsrfProviderInterface
      */
     public function isCsrfTokenValid($intention, $token)
     {
-        $expectedToken = $this->generateCsrfToken($intention);
-
-        if (function_exists('hash_equals')) {
-            return hash_equals($expectedToken, $token);
-        }
-
-        if (class_exists('Symfony\Component\Security\Core\Util\StringUtils')) {
-            return StringUtils::equals($expectedToken, $token);
-        }
-
-        return $token === $expectedToken;
+        return $token === $this->generateCsrfToken($intention);
     }
 
     /**

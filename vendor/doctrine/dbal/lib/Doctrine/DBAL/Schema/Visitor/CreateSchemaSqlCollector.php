@@ -64,7 +64,7 @@ class CreateSchemaSqlCollector extends AbstractVisitor
 
         $this->createTableQueries[$namespace] = array_merge(
             $this->createTableQueries[$namespace],
-            (array) $this->platform->getCreateTableSQL($table)
+            $this->platform->getCreateTableSQL($table)
         );
     }
 

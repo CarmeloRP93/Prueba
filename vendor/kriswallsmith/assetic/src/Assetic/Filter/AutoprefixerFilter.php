@@ -13,7 +13,6 @@ namespace Assetic\Filter;
 
 use Assetic\Asset\AssetInterface;
 use Assetic\Exception\FilterException;
-use Assetic\Util\FilesystemUtils;
 
 /**
  * Parses CSS and adds vendor prefixes to rules using values from the Can I Use website
@@ -64,7 +63,7 @@ class AutoprefixerFilter extends BaseNodeFilter
             $pb->add('-b')->add(implode(',', $this->browsers));
         }
 
-        $output = FilesystemUtils::createTemporaryFile('autoprefixer');
+        $output = tempnam(sys_get_temp_dir(), 'assetic_autoprefixer');
         $pb->add('-o')->add($output);
 
         $proc = $pb->getProcess();
