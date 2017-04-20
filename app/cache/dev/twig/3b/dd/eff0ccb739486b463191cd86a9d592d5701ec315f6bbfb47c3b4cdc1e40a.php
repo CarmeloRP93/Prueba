@@ -40,6 +40,10 @@ class __TwigTemplate_3bddeff0ccb739486b463191cd86a9d592d5701ec315f6bbfb47c3b4cdc
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
 
+<script src=\"";
+        // line 11
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/bootbox.min.js"), "html", null, true);
+        echo "\"></script>
 <script>
     function confirmarEliminar() {
         bootbox.confirm ('¿Estas seguro?', function(result) {
@@ -64,6 +68,6 @@ class __TwigTemplate_3bddeff0ccb739486b463191cd86a9d592d5701ec315f6bbfb47c3b4cdc
 
     public function getDebugInfo()
     {
-        return array (  40 => 9,  37 => 8,  30 => 5,  28 => 4,  24 => 3,  19 => 1,);
+        return array (  45 => 11,  40 => 9,  37 => 8,  30 => 5,  28 => 4,  24 => 3,  19 => 1,);
     }
 }

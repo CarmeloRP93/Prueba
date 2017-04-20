@@ -17,6 +17,10 @@ body {
     margin-top: -12px;
 }
 
+.alinear {
+    display: inline;    
+}
+
 #pagina .fila{display: block; padding: 10px 20px;}
 #pagina .fila.par{background: #f5f5f5;}
 #pagina .fila:hover{background: #f2f2f2;}
@@ -87,7 +91,6 @@ a {
     font-size: 15px;
     color: black;
     letter-spacing: 0;
-    text-shadow: 1px 1px 0px #333;
     text-decoration: none;
 }
 

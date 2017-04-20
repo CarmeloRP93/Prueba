@@ -1,13 +1,13 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 
-{% block title %} {{ (usuario.id == app.user.id) ?  'Mi Perfil' : 'Editar Usuario' }}  {% endblock %}
+{% block title %} {{ (usuario.id == app.user.id) ?  'Mi Perfil' : 'Editar usuario' }}  {% endblock %}
 
 {% block contenido %}
     <div class="container">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">
-                    {{ (usuario.id == app.user.id) ?  '<h3 class="t3">Mi Perfil</h3>'|raw : '<h3 class="t3">Editar Usuario</h3>'|raw }} 
+                    {{ (usuario.id == app.user.id) ?  '<h3 class="t3">Mi Perfil</h3>'|raw : '<h3 class="t3">Editar usuario</h3>'|raw }} 
 
                 </div>
                 {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
@@ -79,9 +79,12 @@
                             </div>
                         {% endif %}
 
-                    </form>
+                    </form><br>
                     <div class="text-center">
                         {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
+                        <form class="alinear" action="{{ path('crivero_prueba_cliente', { id: usuario.id }) }}">
+                            <button type="submit" class="btn btn-danger" >Cancelar</button>
+                        </form>
                     </div>
                     {{ form_end(form) }}
                 </div>

@@ -12,7 +12,7 @@
             {{ form_widget(form.username, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba un username'} }) }}
             <span class="text-danger">{{ form_errors(form.username) }}</span>
         </div>
-        
+
         <div class="form-group">
             <label>Nombre y Apellidos</label>
             {{ form_widget(form.nombre, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba nombre y apellidos'} }) }}
@@ -48,15 +48,17 @@
             {{ form_widget(form.tipo, {'attr': {'class': 'form-control'}}) }}
             <span class="text-danger">{{ form_errors(form.tipo) }}</span>
         </div>
-        
+
         <div class="hidden">
             {{ form_label(form.imagen) }}
             {{ form_widget(form.imagen, {'attr': {'class': 'form-control'}}) }}
             <span class="text-danger">{{ form_errors(form.imagen) }}</span>
         </div>
-        <p>
-            {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
-        </p>                
+        
+        <div class="text-center">
+            {{ form_widget(form.confirmar, {'attr': {'class': 'btn btn-success'} }) }}
+            <a href="{{ url('crivero_prueba_clientes') }}" class="btn btn-danger">Cancelar</a>
+        </div>               
 
         {{ form_end(form) }}
     </div>

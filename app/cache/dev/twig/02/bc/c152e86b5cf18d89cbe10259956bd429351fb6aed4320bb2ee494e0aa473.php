@@ -37,7 +37,7 @@ class __TwigTemplate_02bcc152e86b5cf18d89cbe10259956bd429351fb6aed4320bb2ee494e0
     public function block_title($context, array $blocks = array())
     {
         echo " ";
-        echo ((($this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "id", array()) == $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))) ? ("Mi Perfil") : ("Editar Usuario"));
+        echo ((($this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "id", array()) == $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))) ? ("Mi Perfil") : ("Editar usuario"));
         echo "  ";
     }
 
@@ -51,7 +51,7 @@ class __TwigTemplate_02bcc152e86b5cf18d89cbe10259956bd429351fb6aed4320bb2ee494e0
                 <div class=\"panel-heading text-center\">
                     ";
         // line 10
-        echo ((($this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "id", array()) == $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))) ? ("<h3 class=\"t3\">Mi Perfil</h3>") : ("<h3 class=\"t3\">Editar Usuario</h3>"));
+        echo ((($this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "id", array()) == $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))) ? ("<h3 class=\"t3\">Mi Perfil</h3>") : ("<h3 class=\"t3\">Editar usuario</h3>"));
         echo " 
 
                 </div>
@@ -215,15 +215,21 @@ class __TwigTemplate_02bcc152e86b5cf18d89cbe10259956bd429351fb6aed4320bb2ee494e0
         }
         // line 81
         echo "
-                    </form>
+                    </form><br>
                     <div class=\"text-center\">
                         ";
         // line 84
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
+                        <form class=\"alinear\" action=\"";
+        // line 85
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "id", array()))), "html", null, true);
+        echo "\">
+                            <button type=\"submit\" class=\"btn btn-danger\" >Cancelar</button>
+                        </form>
                     </div>
                     ";
-        // line 86
+        // line 89
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
                 </div>
@@ -246,6 +252,6 @@ class __TwigTemplate_02bcc152e86b5cf18d89cbe10259956bd429351fb6aed4320bb2ee494e0
 
     public function getDebugInfo()
     {
-        return array (  227 => 86,  222 => 84,  217 => 81,  211 => 78,  207 => 77,  203 => 76,  200 => 75,  194 => 72,  190 => 71,  186 => 70,  183 => 69,  181 => 68,  174 => 64,  170 => 63,  166 => 62,  158 => 57,  154 => 56,  150 => 55,  142 => 50,  138 => 49,  134 => 48,  122 => 39,  118 => 38,  114 => 37,  108 => 34,  104 => 33,  100 => 32,  91 => 26,  87 => 25,  83 => 24,  77 => 21,  73 => 20,  69 => 19,  60 => 13,  54 => 10,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
+        return array (  233 => 89,  226 => 85,  222 => 84,  217 => 81,  211 => 78,  207 => 77,  203 => 76,  200 => 75,  194 => 72,  190 => 71,  186 => 70,  183 => 69,  181 => 68,  174 => 64,  170 => 63,  166 => 62,  158 => 57,  154 => 56,  150 => 55,  142 => 50,  138 => 49,  134 => 48,  122 => 39,  118 => 38,  114 => 37,  108 => 34,  104 => 33,  100 => 32,  91 => 26,  87 => 25,  83 => 24,  77 => 21,  73 => 20,  69 => 19,  60 => 13,  54 => 10,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
     }
 }
