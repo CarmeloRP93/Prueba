@@ -1,0 +1,29 @@
+{% extends 'moduloclientesclienteBundle::main.html.twig' %}
+{% block title %}Vista de valorar cancha {% endblock %}
+{% block contenido %}
+    <div class="container">
+        <h1 class="t1">Valorar cancha</h1>
+
+        {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+
+        <div class="hidden">
+            {{ form_label(form.idCancha) }}
+            {{ form_widget(form.idCancha, {'value':idCancha, 'attr' : {'class' : 'form-control', 'placeholder' : 'idCancha'} }) }}
+            <span class="text-danger">{{ form_errors(form.idCancha) }}</span>
+        </div>
+
+        <div class="form-group container">
+            {{ form_label(form.puntuacion) }}
+            {{ form_widget(form.puntuacion, { 'attr' : {'class' : 'form-control'} }) }}
+            <span class="text-danger">{{ form_errors(form.puntuacion) }}</span>
+        </div>
+
+        <div class="form-group container"><p>
+                {{ form_widget(form.enviar, {'label' : 'Enviar valoracion', 'attr': {'class': 'btn btn-success'}}) }}
+            </p></div>      
+
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}

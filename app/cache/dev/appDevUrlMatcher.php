@@ -555,6 +555,22 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_moduloclientes_cliente_cancelarReserva:
 
+        // moduloclientes_cliente_valorar
+        if (0 === strpos($pathinfo, '/valorar') && preg_match('#^/valorar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_valorar')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::valorarAction',));
+        }
+
+        // moduloclientes_cliente_añadirValoracion
+        if ($pathinfo === '/añadirValoracion') {
+            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                goto not_moduloclientes_cliente_aadirValoracion;
+            }
+
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::añadirValoracionAction',  '_route' => 'moduloclientes_cliente_añadirValoracion',);
+        }
+        not_moduloclientes_cliente_aadirValoracion:
+
         // crivero_prueba_home
         if ($pathinfo === '/home') {
             return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::homeAction',  '_route' => 'crivero_prueba_home',);

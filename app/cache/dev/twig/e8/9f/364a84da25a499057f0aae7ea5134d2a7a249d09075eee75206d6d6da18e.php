@@ -113,7 +113,10 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
 
                 <div class=\"text-center\">
                     <label class=\"control-label span7 text-left\">Valoracion: </label>
-                    <label class=\" text-right\">5.0</label>
+                    <label class=\" text-right\">";
+        // line 47
+        echo twig_escape_filter($this->env, twig_round($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "valoracion", array()), 0, "common"), "html", null, true);
+        echo "</label>
                 </div>
 
                 <div class=\"text-center\">
@@ -192,6 +195,6 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
 
     public function getDebugInfo()
     {
-        return array (  174 => 74,  167 => 72,  158 => 70,  154 => 69,  150 => 68,  147 => 67,  143 => 66,  130 => 56,  123 => 52,  110 => 42,  102 => 37,  94 => 32,  85 => 25,  79 => 21,  73 => 18,  70 => 17,  68 => 16,  63 => 14,  54 => 8,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  177 => 74,  170 => 72,  161 => 70,  157 => 69,  153 => 68,  150 => 67,  146 => 66,  133 => 56,  126 => 52,  118 => 47,  110 => 42,  102 => 37,  94 => 32,  85 => 25,  79 => 21,  73 => 18,  70 => 17,  68 => 16,  63 => 14,  54 => 8,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

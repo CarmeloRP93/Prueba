@@ -23,6 +23,7 @@ class CanchasType extends AbstractType
             ->add('disponibilidad', 'choice', array('choices' => array("Disponible" => 'Disponible', 
                                                                        "No disponible" => 'No disponible')))
             ->add('horario')
+//            ->add('valoracion')
             ->add('direccion', 'text')
             ->add('dimensiones', 'integer', array('label' => 'dimensiones(m²)'))
             ->add('imagen', 'file',  array('data_class' => null))

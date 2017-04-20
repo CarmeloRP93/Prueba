@@ -152,7 +152,10 @@ class __TwigTemplate_9f750e601dff22ac03890f9fa9e50f47cdb25f83f63fda30a5978ee53c1
 
                 <div class=\"text-center\">
                     <label class=\"control-label span7 text-left\">Valoracion: </label>
-                    <label class=\" text-right\">5.0</label>
+                    <label class=\" text-right\">";
+        // line 56
+        echo twig_escape_filter($this->env, twig_round($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "valoracion", array()), 0, "common"), "html", null, true);
+        echo "</label>
                 </div>
 
                 <div class=\"text-center\">
@@ -166,9 +169,10 @@ class __TwigTemplate_9f750e601dff22ac03890f9fa9e50f47cdb25f83f63fda30a5978ee53c1
                 <div class=\"text-center\">
                     <a href=\"";
         // line 65
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_escribirSugerencia", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_valorar", array("id" => $this->getAttribute((isset($context["reserva"]) ? $context["reserva"] : $this->getContext($context, "reserva")), "id", array()))), "html", null, true);
         echo "\" class=\"btn btn-primary\" style=\"height: 30px; width: 150px;\"> Valorar cancha </a>
                 </div><br>
+
             </div>
         </div>
     </div>
@@ -187,6 +191,6 @@ class __TwigTemplate_9f750e601dff22ac03890f9fa9e50f47cdb25f83f63fda30a5978ee53c1
 
     public function getDebugInfo()
     {
-        return array (  169 => 65,  162 => 61,  149 => 51,  141 => 46,  135 => 42,  129 => 40,  122 => 38,  118 => 37,  113 => 36,  111 => 35,  107 => 34,  103 => 33,  92 => 26,  86 => 23,  82 => 21,  80 => 20,  75 => 19,  69 => 17,  67 => 16,  60 => 12,  52 => 7,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  172 => 65,  165 => 61,  157 => 56,  149 => 51,  141 => 46,  135 => 42,  129 => 40,  122 => 38,  118 => 37,  113 => 36,  111 => 35,  107 => 34,  103 => 33,  92 => 26,  86 => 23,  82 => 21,  80 => 20,  75 => 19,  69 => 17,  67 => 16,  60 => 12,  52 => 7,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }
