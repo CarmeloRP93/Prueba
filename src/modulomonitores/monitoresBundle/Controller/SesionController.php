@@ -24,12 +24,15 @@ class SesionController extends Controller {
         return $this->render('modulomonitoresmonitoresBundle:Default:sesionMonitores.html.twig', array("sesion" => $sesion));
     }
 
-    public function misSesionesMonitoresAction() {
+    public function misSesionesMonitoresAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $usuarioId = $this->getUser()->getId();
         $dql = 'SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.idMonitor = :id';
         $sesiones = $em->createQuery($dql)->setParameter('id', $usuarioId)->getResult();
-        return $this->render('modulomonitoresmonitoresBundle:Default:misSesionesMonitores.html.twig', array("sesiones" => $sesiones));
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $sesiones, $request->query->getInt('page', 1), 5);
+        return $this->render('modulomonitoresmonitoresBundle:Default:misSesionesMonitores.html.twig', array("pagination" => $pagination));
     }
 
     public function miSesionMonitoresAction($id) {
@@ -38,7 +41,7 @@ class SesionController extends Controller {
         $sesion = $repository->find($id);
         $aula = $repositoryAula->find($sesion->getAula());
         $deleteForm = $this->createDeleteForm($sesion);
-        return $this->render('modulomonitoresmonitoresBundle:Default:miSesionMonitores.html.twig', array("sesion" => $sesion, "aula"=>$aula, 'delete_form' => $deleteForm->createView()));
+        return $this->render('modulomonitoresmonitoresBundle:Default:miSesionMonitores.html.twig', array("sesion" => $sesion, "aula" => $aula, 'delete_form' => $deleteForm->createView()));
     }
 
     private function createDeleteForm($sesion) {
@@ -57,8 +60,8 @@ class SesionController extends Controller {
         if ($form->isSubmitted() && $form->isValid()) {
             $em->remove($sesion);
             $em->flush();
-
-            return $this->redirect($this->generateUrl('modulomonitores_monitores_sesionesMonitores'));
+            $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido eliminada con éxito.');
+            return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionesMonitores'));
         }
     }
 
@@ -89,20 +92,22 @@ class SesionController extends Controller {
             $sesion->setEstadoCliente("no disponible");
             $sesion->setnClientes(0);
             $sesion->setCliente("normal");
-            $sesion->setImagen("images/".mt_rand(1,5)."m.jpg");
+            $sesion->setImagen("images/" . mt_rand(1, 5) . "m.jpg");
             $sesion->setIdMonitor($this->getUser()->getId());
             $sesion->setMonitor($this->getUser()->getUsername());
             if ($form->get('nSesiones')->getData() > 20) {
                 $form->get('nSesiones')->addError(new FormError('El límite son 20 sesiones'));
+                return $this->render('modulomonitoresmonitoresBundle:Default:nuevaSesion.html.twig', array('form' => $form->createView()));
             }
             $lClientes = $form->get('lClientes')->getData();
             if ($lClientes != null) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($sesion);
                 $em->flush();
+                $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido creado con éxito.');
                 return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionesMonitores'));
             } else {
-                $form->get('lClientes')->addError(new FormError('Rellene el campo gracias'));
+                $form->get('lClientes')->addError(new FormError('Introduzca un valor correcto'));
             }
         }
         return $this->render('modulomonitoresmonitoresBundle:Default:nuevaSesion.html.twig', array('form' => $form->createView()));
@@ -138,11 +143,23 @@ class SesionController extends Controller {
         $form = $this->createEdiForm($sesion);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $sesion->setEstado("modificada");
-            $sesion->setEstadoCliente("no disponible");
-            $sesion->setObservaciones("");
-            $em->flush();
-            return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionMonitores', array('id' => $sesion->getId())));
+            if ($form->get('nSesiones')->getData() > 20) {
+                $form->get('nSesiones')->addError(new FormError('El límite son 20 sesiones'));
+                return $this->render('modulomonitoresmonitoresBundle:Default:editarSesion.html.twig', array('form' => $form->createView()));
+            }
+            $lClientes = $form->get('lClientes')->getData();
+            if ($lClientes != null) {
+                $em = $this->getDoctrine()->getManager();
+                $sesion->setEstado("modificada");
+                $sesion->setEstadoCliente("no disponible");
+                $sesion->setObservaciones("");
+                $em->persist($sesion);
+                $em->flush();
+                $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido modificada con éxito.');
+                return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionesMonitores'));
+            } else {
+                $form->get('lClientes')->addError(new FormError('Introduzca un valor correcto'));
+            }
         }
         return $this->render('modulomonitoresmonitoresBundle:Default:editarSesion.html.twig', array('form' => $form->createView()));
     }
@@ -267,15 +284,14 @@ class SesionController extends Controller {
         }
         return $this->render('modulomonitoresmonitoresBundle:Default:solEliminarSesion.html.twig', array('form' => $form->createView()));
     }
-    
+
     public function miperfilmAction() {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $monitor = $repository->find($this->getUser()->getId());
         return $this->render('modulomonitoresmonitoresBundle:Default:miperfilm.html.twig', array("monitor" => $monitor));
     }
-    
-    
-     public function editarmiperfilmAction() {
+
+    public function editarmiperfilmAction() {
         $em = $this->getDoctrine()->getManager();
         $usuario = $this->findUser($this->getUser()->getId(), $em);
 
@@ -306,7 +322,7 @@ class SesionController extends Controller {
         return $this->render('modulomonitoresmonitoresBundle:Default:editarmiperfilm.html.twig', array('usuario' => $usuario,
                     'form' => $form->createView()));
     }
-    
+
     private function findUser($id, $em) {
         $usuario = $em->getRepository('CriveroPruebaBundle:Usuarios')->find($id);
         if (!$usuario) {
@@ -327,8 +343,8 @@ class SesionController extends Controller {
         $currentPass = $repository->recuperarPass($id);
         return $currentPass;
     }
-    
-    public function verParticipantesAction($id) {
+
+    public function verParticipantesAction($id, Request $request) {
         $em = $this->getDoctrine()->getManager();
         $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
         $arrayClientes = explode('&', $sesion->getIdsClientes());
@@ -336,35 +352,31 @@ class SesionController extends Controller {
         for ($i = 0; $i < count($arrayClientes); $i++) {
             $clientes[$i] = $repositoryu->find($arrayClientes[$i]);
         }
-        return $this->render('modulomonitoresmonitoresBundle:Default:participantes.html.twig', array("clientes" => $clientes));
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $clientes, $request->query->getInt('page', 1), 5);
+        return $this->render('modulomonitoresmonitoresBundle:Default:participantes.html.twig', array("pagination" => $pagination));
     }
-    
+
     public function participanteAction($id) {
         $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $cliente = $repositoryUsuarios->find($id);
-
-        $idsSesionesCliente = explode('&', $cliente->getSesiones());
-        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        $sesionesCliente = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
-
-        return $this->render('modulomonitoresmonitoresBundle:Default:participante.html.twig', array("cliente" => $cliente,
-                     "sesiones" => $sesionesCliente,));
+        return $this->render('modulomonitoresmonitoresBundle:Default:participante.html.twig', array("cliente" => $cliente));
     }
-    
+
     public function verHorarioAction($id) {
         $em = $this->getDoctrine()->getManager();
         $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
         $horario = explode('&', $sesion->getHorario());
-        
-        return $this->render('modulomonitoresmonitoresBundle:Default:horario.html.twig', array("horario" => $horario, "id"=> $id));
+
+        return $this->render('modulomonitoresmonitoresBundle:Default:horario.html.twig', array("horario" => $horario, "id" => $id));
     }
-    
-    
-    public function abandonarSesionAction($id) {
+
+    public function abandonarSesionAction($id, Request $request) {
         $em = $this->getDoctrine()->getManager();
 
         $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
-       
+
         $sesion->setIdMonitor(null);
 
         if ($sesion->getNClientes() == 0 && $sesion->getEstado() == 'cancelada') {
@@ -372,10 +384,12 @@ class SesionController extends Controller {
         } else {
             $em->persist($sesion);
         }
-        
+
         $em->flush();
+        $request->getSession()->getFlashBag()->add('mensaje', 'Has abanonado la sesión.');
         return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionesMonitores'));
     }
+
     private function findEntity($id, $em, $repository) {
         $entity = $em->getRepository($repository)->find($id);
         if (!$entity) {
@@ -383,11 +397,12 @@ class SesionController extends Controller {
         }
         return $entity;
     }
-    
+
     private function getArrayEntidades($repository, $array) {
         for ($i = 0; $i < count($array); $i++) {
             $resultado[$i] = $repository->find($array[$i]);
         }
         return $resultado;
     }
+
 }

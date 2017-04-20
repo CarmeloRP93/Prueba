@@ -78,44 +78,6 @@ class __TwigTemplate_742340581d2707ab125580593f81a653605f74f7ea69ccee30e1f3a68f4
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "email", array()), "html", null, true);
         echo "</p>
 
-                    <div>
-                        ";
-        // line 21
-        if (($this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "sesiones", array()) != null)) {
-            // line 22
-            echo "                            <div>
-                                <h4>Sesiones: </h4> 
-                                <ul id=\"sesiones\">
-                                    ";
-            // line 25
-            $context['_parent'] = (array) $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["sesiones"]) ? $context["sesiones"] : $this->getContext($context, "sesiones")));
-            foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
-                // line 26
-                echo "                                        <li>
-                                            <p>Aula ";
-                // line 27
-                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "aula", array()), "html", null, true);
-                echo " - ";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
-                echo " con ";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "monitor", array()), "html", null, true);
-                echo " - ";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "horario", array()), "html", null, true);
-                echo "</p>
-                                        </li>
-                                    ";
-            }
-            $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
-            $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 30
-            echo "                                </ul>
-                            </div>
-                        ";
-        }
-        // line 33
-        echo "                    </div><br>
                 </div>
             </div>
         </div>
@@ -136,6 +98,6 @@ class __TwigTemplate_742340581d2707ab125580593f81a653605f74f7ea69ccee30e1f3a68f4
 
     public function getDebugInfo()
     {
-        return array (  118 => 33,  113 => 30,  98 => 27,  95 => 26,  91 => 25,  86 => 22,  84 => 21,  78 => 18,  74 => 17,  70 => 16,  66 => 15,  61 => 13,  54 => 9,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  78 => 18,  74 => 17,  70 => 16,  66 => 15,  61 => 13,  54 => 9,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }

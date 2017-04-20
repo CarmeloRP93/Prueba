@@ -77,41 +77,55 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
                         <li><a href=\"";
         // line 27
         echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_misSesionesMonitores");
-        echo "\">Mis sesiones</a></li>
+        echo "\">Mis sesiones públicas</a></li>
                         <li><a href=\"";
         // line 28
         echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_misSesionesDedicadas");
-        echo "\">Mis sesiones dedicadas</a></li>
+        echo "\">Mis sesiones privadas</a></li>
+                        <li role=\"separator\" class=\"divider\"></li>
+                        <li class=\"dropdown-submenu\">
+                            <a tabindex=\"-1\" href=\"#\">Nueva sesión</a>
+                            <ul class=\"dropdown-menu\">
+                                <li><a href=\"";
+        // line 33
+        echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_nuevaSesion");
+        echo "\">Sesión pública</a></li> 
+                                <li><a href=\"";
+        // line 34
+        echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_nuevaSesionDedicada");
+        echo "\">Sesión privada</a></li> 
+                            </ul>
+                        </li>   
                     </ul>
                 </li>
                 <li class=\"dropdown\">
                     <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Sesiones <b class=\"caret\"></b></a>
                     <ul class=\"dropdown-menu\">
                         <li><a href=\"";
-        // line 34
+        // line 42
         echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_sesionesMonitores");
-        echo "\">Sesiones</a></li>
+        echo "\">Sesiones públicas</a></li>
                         <li><a href=\"";
-        // line 35
+        // line 43
         echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_sesionesDedicadas");
-        echo "\">Sesiones dedicadas</a></li>
+        echo "\">Sesiones privadas</a></li>
                     </ul>
                 </li>
             </ul>
 
             ";
-        // line 40
+        // line 48
         if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_FULLY")) {
-            // line 41
+            // line 49
             echo "                <ul class=\"nav navbar-nav navbar-right\">
                     <li><a href = \"";
-            // line 42
+            // line 50
             echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_miperfilm");
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/user-128.png"), "html", null, true);
             echo "\" style=\"width: 50%;\" /></a></li>
                     <li><a href=\"";
-            // line 43
+            // line 51
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
             echo "\"  style=\"margin-right: 12px\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/logout-128.png"), "html", null, true);
@@ -119,7 +133,7 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
                 </ul>
             ";
         }
-        // line 46
+        // line 54
         echo "            
             <form class=\"navbar-form navbar-center\" role=\"search\">
                 <div class=\"form-group\">
@@ -132,16 +146,16 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 ";
     }
 
-    // line 56
+    // line 64
     public function block_body($context, array $blocks = array())
     {
-        // line 57
+        // line 65
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 59
+        // line 67
         $this->displayBlock('contenido', $context, $blocks);
-        // line 61
+        // line 69
         echo "        </div>
 
     </div>
@@ -149,10 +163,10 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 ";
     }
 
-    // line 59
+    // line 67
     public function block_contenido($context, array $blocks = array())
     {
-        // line 60
+        // line 68
         echo "            ";
     }
 
@@ -168,6 +182,6 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 
     public function getDebugInfo()
     {
-        return array (  156 => 60,  153 => 59,  145 => 61,  143 => 59,  139 => 57,  136 => 56,  123 => 46,  115 => 43,  109 => 42,  106 => 41,  104 => 40,  96 => 35,  92 => 34,  83 => 28,  79 => 27,  67 => 18,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
+        return array (  170 => 68,  167 => 67,  159 => 69,  157 => 67,  153 => 65,  150 => 64,  137 => 54,  129 => 51,  123 => 50,  120 => 49,  118 => 48,  110 => 43,  106 => 42,  95 => 34,  91 => 33,  83 => 28,  79 => 27,  67 => 18,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
     }
 }

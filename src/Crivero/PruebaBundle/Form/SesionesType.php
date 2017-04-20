@@ -25,7 +25,7 @@ class SesionesType extends AbstractType
             ->add('cliente', 'text')
             ->add('nombre', 'text')
             ->add('imagen', 'text')
-            ->add('ejercicios', 'text')
+            ->add('ejercicios', 'textarea')
             ->add('repeticiones', 'integer')
             ->add('duracion', 'integer')
             ->add('descanso', 'integer')

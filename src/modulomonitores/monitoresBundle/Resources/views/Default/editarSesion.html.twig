@@ -1,95 +1,108 @@
 {% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
-{% block title %}Vista de editar sesion{% endblock %}
+{% block title %}Editar sesión pública{% endblock %}
 {% block contenido %}
-    <div class="container">
-        <h1 class="t1">Editar sesion</h1>
+    <div class="  col-md-8 col-md-offset-2">
+        <div class="panel panel-default" style="padding:5px">
+            <div class="panel-heading text-center">
+                <h1 class="t1">Editar sesión pública</h1>                       
+            </div>
+            {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+            <div class="row">
+                <div class="form-group" style="display:none;">
+                    {{ form_label(form.cliente) }}
+                    {{ form_widget(form.cliente, {'attr': {'class': 'form-control', 'placeholder' : 'Si no es dedicada dejelo vacio'}}) }}
+                    <span class="text-danger">{{ form_errors(form.cliente) }}</span>
+                </div>
+                <div class="col-md-6" >
+                    <div class="form-group">
+                        <label>Nombre de la sesión</label>
+                        {{ form_widget(form.nombre, {'attr': {'class': 'form-control', 'placeholder' : 'Introduzca nombre de la sesión'}}) }}
+                        <span class="text-danger">{{ form_errors(form.nombre) }}</span>
+                    </div>
+                </div>
+                <div class="form-group" style="display:none;">
+                    {{ form_label(form.imagen) }}
+                    {{ form_widget(form.imagen, { 'attr' : {'class' : 'form-control', 'placeholder' : 'imagen'} }) }}
+                    <span class="text-danger">{{ form_errors(form.imagen) }}</span>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" >
+                        <label>Ejercicios a realizar durante la sesión</label>
+                        {{ form_widget(form.ejercicios, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca los ejercicios a realizar'} }) }}
+                        <span class="text-danger">{{ form_errors(form.ejercicios) }}</span>
+                    </div>
+                </div>
+                <div class="col-md-6" >
+                    <div class="form-group" >
+                        <label>Repeticiones por cada ejercicio</label>
+                        {{ form_widget(form.repeticiones, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca las repeticiones a realizar'} }) }}
+                        <span class="text-danger">{{ form_errors(form.repeticiones) }}</span>
+                    </div>
 
-        {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+                </div>
+                <div class="col-md-6" >
+                    <div class="form-group" >
+                        <label>Duración de cada sesión</label>
+                        {{ form_widget(form.duracion, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca la duracion de cada sesión'} }) }}
+                        <span class="text-danger">{{ form_errors(form.duracion) }}</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6" >
+                    <div class="form-group" >
+                        <label>Descanso entre ejercicios</label>
+                        {{ form_widget(form.descanso, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca el descanso entre ejercicios'} }) }}
+                        <span class="text-danger">{{ form_errors(form.descanso) }}</span>
+                    </div>
+                </div>
+                <div class="col-md-6" >
+                    <div class="form-group">
+                        <label>Limite de clientes</label>
+                        {{ form_widget(form.lClientes, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca el limite de participantes'} }) }}
+                        <span class="text-danger">{{ form_errors(form.lClientes) }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
 
 
 
+                <div class="col-md-6" > 
+                    <div class="form-group" >
+                        <label>Número total de sesiones</label>
+                        {{ form_widget(form.nSesiones, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca el número total de sesiones'} }) }}
+                        <span class="text-danger">{{ form_errors(form.nSesiones) }}</span>
+                    </div>
+                </div>
+                <div class="col-md-6" >
+                    <div class="form-group">
+                        <label>Objetivo de la sesión</label>
+                        {{ form_widget(form.objetivo, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca el objetivo de la sesión'} }) }}
+                        <span class="text-danger">{{ form_errors(form.objetivo) }}</span>
+                    </div>
+                </div>
 
-        <div class="form-group" style="display:none;">
-            {{ form_label(form.cliente) }}
-            {{ form_widget(form.cliente, {'attr': {'class': 'form-control', 'placeholder' : 'Si no es dedicada dejelo vacio'}}) }}
-            <span class="text-danger">{{ form_errors(form.cliente) }}</span>
+                <div class="col-md-6" >
+                    <div class="form-group">
+                        <label>Seleccione un aula para realizar la sesión</label> {{ form_widget(form.aula, { 'attr' : { 'placeholder' : 'Motivos de cancelación'} }) }}
+                        <span class="text-danger">{{ form_errors(form.aula) }}</span>
+                    </div>
+                </div>
+                <div class="form-group" style="display:none;">
+                    {{ form_label(form.observaciones) }}
+                    {{ form_widget(form.observaciones, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Motivos de cancelación'} }) }}
+                    <span class="text-danger">{{ form_errors(form.observaciones) }}</span>
+                </div>
+                <div class="form-group" style="display:none;">
+                    {{ form_label(form.motivos) }}
+                    {{ form_widget(form.motivos, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Motivos de cancelación'} }) }}
+                    <span class="text-danger">{{ form_errors(form.motivos) }}</span>
+                </div>
+            </div>
+            <p>
+                {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
+            </p>  
         </div>
-
-        <div class="form-group">
-            {{ form_label(form.nombre) }}
-            {{ form_widget(form.nombre, {'attr': {'class': 'form-control', 'placeholder' : 'Introduzca nombre de la sesion'}}) }}
-            <span class="text-danger">{{ form_errors(form.nombre) }}</span>
-        </div>
-
-        <div class="form-group" style="display:none;">
-            {{ form_label(form.imagen) }}
-            {{ form_widget(form.imagen, { 'attr' : {'class' : 'form-control', 'placeholder' : 'imagen'} }) }}
-            <span class="text-danger">{{ form_errors(form.imagen) }}</span>
-        </div>
-
-        <div class="form-group">
-            {{ form_label(form.ejercicios) }}
-            {{ form_widget(form.ejercicios, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca ejercicios de la sesion'} }) }}
-            <span class="text-danger">{{ form_errors(form.ejercicios) }}</span>
-        </div>
-
-        <div class="form-group">
-            {{ form_label(form.repeticiones) }}
-            {{ form_widget(form.repeticiones, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca las repeticiones'} }) }}
-            <span class="text-danger">{{ form_errors(form.repeticiones) }}</span>
-        </div>
-
-        <div class="form-group">
-            {{ form_label(form.duracion) }}
-            {{ form_widget(form.duracion, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca la duracion de la sesionjoin'} }) }}
-            <span class="text-danger">{{ form_errors(form.duracion) }}</span>
-        </div>
-
-        <div class="form-group">
-            {{ form_label(form.descanso) }}
-            {{ form_widget(form.descanso, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca el descanso entre ejercicios'} }) }}
-            <span class="text-danger">{{ form_errors(form.descanso) }}</span>
-        </div>
-
-        <div class="form-group">
-            <label>Limite de clientes</label>
-            {{ form_widget(form.lClientes, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca el limite de participantes'} }) }}
-            <span class="text-danger">{{ form_errors(form.lClientes) }}</span>
-        </div>
-
-        <div class="form-group">
-            <label>Número total de sesiones</label>
-            {{ form_widget(form.nSesiones, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca el número total de sesiones'} }) }}
-            <span class="text-danger">{{ form_errors(form.nSesiones) }}</span>
-        </div>
-
-        <div class="form-group">
-            {{ form_label(form.objetivo) }}
-            {{ form_widget(form.objetivo, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca el objetivo de la sesion'} }) }}
-            <span class="text-danger">{{ form_errors(form.objetivo) }}</span>
-        </div>
-
-        <div class="form-group">
-            {{ form_label(form.aula) }}
-            {{ form_widget(form.aula, { 'attr' : { 'placeholder' : 'Motivos de cancelación'} }) }}
-            <span class="text-danger">{{ form_errors(form.aula) }}</span>
-        </div>
-
-        <div class="form-group" style="display:none;">
-            {{ form_label(form.observaciones) }}
-            {{ form_widget(form.observaciones, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Motivos de cancelación'} }) }}
-            <span class="text-danger">{{ form_errors(form.observaciones) }}</span>
-        </div>
-
-        <div class="form-group" style="display:none;">
-            {{ form_label(form.motivos) }}
-            {{ form_widget(form.motivos, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Motivos de cancelación'} }) }}
-            <span class="text-danger">{{ form_errors(form.motivos) }}</span>
-        </div>
-
-        <p>
-            {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
-        </p>                
     </div>
     {{ form_end(form) }}
 {% endblock %}

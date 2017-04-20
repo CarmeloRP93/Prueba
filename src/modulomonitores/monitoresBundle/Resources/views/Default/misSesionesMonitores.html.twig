@@ -1,17 +1,50 @@
-{# empty Twig template #}
 {% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
 
-{% block title %} Vista de Sesiones {% endblock %}
+{% block title %} Sesiones públicas {% endblock %}
 {% block contenido %}
+    {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class="container">
-        <h1 class="t1">Listado de Sesiones</h1>
-        {% for sesion in sesiones %}
-            {% if sesion.cliente=="normal" %}
-                <a href="{{url('modulomonitores_monitores_miSesionMonitores', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{sesion.id}}: {{ sesion.nombre }} - {{ sesion.estado }}</a>
-            {% endif %}
-        {% endfor %}
-        <div class="accionesesion text-center" style="margin-top:5px; margin-left: 5px">
-            <a href="{{path('modulomonitores_monitores_nuevaSesion')}}" class="btn btn-success col-sm-1" style="height: 30px; width: 150px;">Nueva sesion <span class="glyphicon glyphicon-plus"></span></a>
+        <div class="page-header">
+            <h1 class="t1">Listado de sesiones públicas</h1>
+        </div>
+        {% if not pagination|length %}
+            <h2>No se encontraron sesiones públicas</h2>
+        {% else %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>{{ knp_pagination_sortable(pagination, 'Nombre de la sesión', 'pagination.nombre') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Estado de la sesión', 'pagination.estado') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Número de clientes', 'pagination.nClientes') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Número de sesiones', 'pagination.nSesiones') }}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sesion in pagination %}
+                            {% if sesion.cliente=="normal" %}
+                                <tr data-id="{{ sesion.id }}">
+                                    <td>{{sesion.nombre}}</td>
+                                    <td>{{sesion.estado}}</td>
+                                    <td>{{sesion.nClientes}} Clientes</td>
+                                    <td>{{sesion.nSesiones}} Sesiones</td>
+                                    <td class="actions">
+
+                                        <a href="{{ path('modulomonitores_monitores_miSesionMonitores', { id: sesion.id }) }}" class="btn btn-sm btn-info">
+                                            Ver más información
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
         </div>
     </div>
 {% endblock %}
+

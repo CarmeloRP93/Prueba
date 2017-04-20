@@ -36,7 +36,7 @@ class __TwigTemplate_8ed742937e7ce88682bf25772ea5cc84968470d9f6fc1b5d56b4e9895d3
     // line 3
     public function block_title($context, array $blocks = array())
     {
-        echo " Vista de Participantes ";
+        echo " Participantes ";
     }
 
     // line 4
@@ -44,58 +44,69 @@ class __TwigTemplate_8ed742937e7ce88682bf25772ea5cc84968470d9f6fc1b5d56b4e9895d3
     {
         // line 5
         echo "    <div class=\"container\">
-        <h1>Listado de Participantes: ";
-        // line 6
-        echo twig_escape_filter($this->env, twig_length_filter($this->env, (isset($context["clientes"]) ? $context["clientes"] : $this->getContext($context, "clientes"))), "html", null, true);
-        echo " </h1>
-        
-        ";
-        // line 8
+        <div class=\"page-header\">
+            <h1 class=\"t1\">Listado de participantes</h1>
+        </div>
+        <div class=\"table-responsive\">
+            <table class=\"table table-hover\">
+                <thead>
+                    <tr>
+                        <th>";
+        // line 13
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre del cliente", "pagination.nombre");
+        echo "</th>
+                        <th>";
+        // line 14
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Número de teléfono", "pagination.telefono");
+        echo "</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    ";
+        // line 20
         $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["clientes"]) ? $context["clientes"] : $this->getContext($context, "clientes")));
-        $context['loop'] = array(
-          'parent' => $context['_parent'],
-          'index0' => 0,
-          'index'  => 1,
-          'first'  => true,
-        );
-        if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
-            $length = count($context['_seq']);
-            $context['loop']['revindex0'] = $length - 1;
-            $context['loop']['revindex'] = $length;
-            $context['loop']['length'] = $length;
-            $context['loop']['last'] = 1 === $length;
-        }
+        $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         foreach ($context['_seq'] as $context["_key"] => $context["cliente"]) {
-            // line 9
-            echo "            
-                <a href=\"";
-            // line 10
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_participante", array("id" => $this->getAttribute($context["cliente"], "id", array()))), "html", null, true);
-            echo "\" class=\"fila ";
-            echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
-            echo "\"> Cliente ";
+            // line 21
+            echo "                        <tr data-id=\"";
             echo twig_escape_filter($this->env, $this->getAttribute($context["cliente"], "id", array()), "html", null, true);
-            echo ": ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["cliente"], "username", array()), "html", null, true);
-            echo " - ";
+            echo "\">
+                            <td>";
+            // line 22
             echo twig_escape_filter($this->env, $this->getAttribute($context["cliente"], "nombre", array()), "html", null, true);
-            echo "</a>
-        ";
-            ++$context['loop']['index0'];
-            ++$context['loop']['index'];
-            $context['loop']['first'] = false;
-            if (isset($context['loop']['length'])) {
-                --$context['loop']['revindex0'];
-                --$context['loop']['revindex'];
-                $context['loop']['last'] = 0 === $context['loop']['revindex0'];
-            }
+            echo "</td>
+                            <td>";
+            // line 23
+            echo twig_escape_filter($this->env, $this->getAttribute($context["cliente"], "telefono", array()), "html", null, true);
+            echo "</td>
+                            <td class=\"actions\">
+                                <a href=\"";
+            // line 25
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_participante", array("id" => $this->getAttribute($context["cliente"], "id", array()))), "html", null, true);
+            echo "\" class=\"btn btn-sm btn-info\">
+                                    Ver más información
+                                </a>
+                            </td>
+                        </tr>
+                    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cliente'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 12
-        echo "    </div>
+        // line 31
+        echo "                </tbody>
+            </table>
+        </div>
+        <div class=\"navigation\">
+            ";
+        // line 35
+        echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
+        echo "
+        </div>
+    </div>
+
 ";
     }
 
@@ -111,6 +122,6 @@ class __TwigTemplate_8ed742937e7ce88682bf25772ea5cc84968470d9f6fc1b5d56b4e9895d3
 
     public function getDebugInfo()
     {
-        return array (  98 => 12,  74 => 10,  71 => 9,  54 => 8,  49 => 6,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
+        return array (  105 => 35,  99 => 31,  87 => 25,  82 => 23,  78 => 22,  73 => 21,  69 => 20,  60 => 14,  56 => 13,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
     }
 }
