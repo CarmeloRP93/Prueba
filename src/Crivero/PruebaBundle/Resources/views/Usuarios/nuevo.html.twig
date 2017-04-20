@@ -9,7 +9,7 @@
 
         <div class="form-group">
             {{ form_label(form.username) }}
-            {{ form_widget(form.username, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba nombre de usuario'} }) }}
+            {{ form_widget(form.username, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba un username'} }) }}
             <span class="text-danger">{{ form_errors(form.username) }}</span>
         </div>
         
@@ -21,13 +21,13 @@
 
         <div class="form-group">
             {{ form_label(form.email) }}
-            {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder' : 'Introduzca email'}}) }}
+            {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder' : 'Introduzca un correo'}}) }}
             <span class="text-danger">{{ form_errors(form.email) }}</span>
         </div>
 
         <div class="form-group">
             {{ form_label(form.password) }}
-            {{ form_widget(form.password, {'attr': {'class': 'form-control', 'placeholder' : 'Introduzca password'}}) }}
+            {{ form_widget(form.password, {'attr': {'class': 'form-control', 'placeholder' : 'Introduzca una clave de acceso'}}) }}
             <span class="text-danger">{{ form_errors(form.password) }}</span>
         </div>
 
@@ -39,7 +39,7 @@
 
         <div class="form-group">
             {{ form_label(form.telefono) }}
-            {{ form_widget(form.telefono, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Inserte número de teléfono. Ej: 651-44-19-75'} }) }}
+            {{ form_widget(form.telefono, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Inserte un número de teléfono. Ej: 651-44-19-75'} }) }}
             <span class="text-danger">{{ form_errors(form.telefono) }}</span>
         </div>
 

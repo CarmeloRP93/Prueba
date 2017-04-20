@@ -88,7 +88,7 @@ class __TwigTemplate_a008f252d44b1dc7fc574c78f011c9e8b6e874775701c746dc9a6b0ba1e
             // line 29
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Creado", "u.registro");
             echo "</th>
-                            <th>Acciones</th>
+                            <td><strong>Acciones</strong></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -101,10 +101,10 @@ class __TwigTemplate_a008f252d44b1dc7fc574c78f011c9e8b6e874775701c746dc9a6b0ba1e
                 echo "                            <tr data-id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "id", array()), "html", null, true);
                 echo "\">
-                                    <td>";
+                                    <td><strong>";
                 // line 36
                 echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "username", array()), "html", null, true);
-                echo "</td>
+                echo "</strong></td>
                                     <td>";
                 // line 37
                 echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "nombre", array()), "html", null, true);

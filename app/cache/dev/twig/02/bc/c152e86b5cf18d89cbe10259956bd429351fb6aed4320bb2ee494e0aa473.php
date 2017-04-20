@@ -70,7 +70,7 @@ class __TwigTemplate_02bcc152e86b5cf18d89cbe10259956bd429351fb6aed4320bb2ee494e0
         echo "
                                     ";
         // line 20
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "username", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Escriba su nombre completo")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "username", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Username")));
         echo "
                                     <span class=\"text-danger\">";
         // line 21
@@ -101,7 +101,7 @@ class __TwigTemplate_02bcc152e86b5cf18d89cbe10259956bd429351fb6aed4320bb2ee494e0
         echo "
                                     ";
         // line 33
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Escriba su nombre completo")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Nombre de pila")));
         echo "
                                     <span class=\"text-danger\">";
         // line 34
@@ -115,7 +115,7 @@ class __TwigTemplate_02bcc152e86b5cf18d89cbe10259956bd429351fb6aed4320bb2ee494e0
         echo "
                                     ";
         // line 38
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "password", array()), 'widget', array("attr" => array("class" => "form-control")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "password", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Clave de acceso")));
         echo "
                                     <span class=\"text-danger\">";
         // line 39
@@ -151,7 +151,7 @@ class __TwigTemplate_02bcc152e86b5cf18d89cbe10259956bd429351fb6aed4320bb2ee494e0
         echo "
                                     ";
         // line 56
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "telefono", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Introduzca su número teléfono")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "telefono", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Ej: 651-44-19-75")));
         echo "
                                     <span class=\"text-danger\">";
         // line 57

@@ -15,13 +15,14 @@ class UsuariosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', 'text')
-            ->add('nombre', 'text')
+            ->add('username', 'text', array('label' => 'Nombre de usuario'))
+            ->add('nombre', 'text', array('label' => 'Nombre y Apellidos'))
             ->add('email', 'email')
             ->add('password', 'password')
-            ->add('telefono', 'text')
-            ->add('tipo', 'choice', array('choices' => array(1 => 'Administrador', 2 => 'Cliente', 3 => 'Monitor')))
-            ->add('fNacimiento', 'text')
+            ->add('telefono', 'text', array('label' => 'Teléfono'))
+            ->add('tipo', 'choice', array('choices' => array(1 => 'Administrador', 2 => 'Cliente', 3 => 'Monitor'), 
+                                          'label' => 'Rol'))
+            ->add('fNacimiento', 'text', array('label' => 'Fecha nacimiento'))
             ->add('imagen', 'file',  array('data_class' => null))
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;

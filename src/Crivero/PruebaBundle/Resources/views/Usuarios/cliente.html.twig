@@ -1,28 +1,29 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 
-{% block title %} Cliente {{cliente.username}} {% endblock %}
+{% block title %} {{ (cliente.id != app.user.id) ? 'Cliente ' ~ cliente.username : 'Mi Perfil'  }} {% endblock %}
 {% block contenido %}
     <div class="usuardesc container">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">
-                    <h3>{{cliente.username}}</h3>
+                    <h3>{{ (cliente.id != app.user.id) ? cliente.username : 'Mi Perfil'  }}</h3>
                 </div>
                 <div class="panel-body">
                     <div class="usuarfot">
                         <img src="{{ asset('images/' ~ cliente.imagen) }}" style="float: left; width: 120%;" />        
+                        <a href = "{{path('crivero_prueba_editarUsuario', { id: cliente.id })}}" class="btn btn-sm btn-default active">Editar</a>
                     </div>
-                    <div class="usuardat text-center">
-                        <form action="{{ path('crivero_prueba_enviarMensaje') }}" method="post" class="form-signin">
-                            <button type="submit" class="btn btn-primary">Enviar mensaje</button>
-                        </form>
-                        <a href = "{{path('crivero_prueba_editarUsuario', { id: cliente.id })}}" class="btn btn-sm btn-primary">Editar</a>
+                    <div class="usuardat">
+                        {% if cliente.id != app.user.id %}
+                            <form action="{{ path('crivero_prueba_enviarMensaje') }}" method="post" class="form-signin">
+                                <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                            </form>
+                        {% endif %}
 
-                    </div>
-                    <h4>Nombre: </h4> <p>{{cliente.nombre}}</p>
-                    <h4>F.Nacimiento: </h4> <p>{{cliente.fNacimiento}}</p>
-                    <h4>Telefono: </h4> <p>{{cliente.telefono}}</p>
-                    <h4>Registro: </h4> <p>{{cliente.registro|date('d/m/Y')}}</p>
+                    <h4>Nombre </h4> <p>{{cliente.nombre}}</p>
+                    <h4>Aniversario </h4> <p>{{cliente.fNacimiento}}</p>
+                    <h4>Telefono </h4> <p>{{cliente.telefono}}</p>
+                    <h4>Registro </h4> <p>{{cliente.registro|date('d/m/Y')}}</p>
 
                     <div>
                         {% if reservas != null %}
@@ -62,6 +63,7 @@
                             </div>
                         {% endif %}
                     </div><br>
+                    </div>
                     {% if app.user.id != cliente.id %}
                         <div class="accionesExclus text-center">       
                             {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar usuario" })}}

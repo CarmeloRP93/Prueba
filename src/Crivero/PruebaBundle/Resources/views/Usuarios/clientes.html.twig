@@ -26,14 +26,14 @@
                             <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'u.nombre') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'Correo electrónico', 'u.email') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'Creado', 'u.registro') }}</th>
-                            <th>Acciones</th>
+                            <td><strong>Acciones</strong></td>
                         </tr>
                     </thead>
                     <tbody>
 
                         {% for usuario in pagination %}
                             <tr data-id="{{ usuario.id }}">
-                                <td>{{usuario.username}}</td>
+                                <td><strong>{{usuario.username}}</strong></td>
                                 <td>{{usuario.nombre}}</td>
                                 <td>{{usuario.email}}</td>
                                 <td>{{usuario.registro|date('d/m/Y')}}</td>
