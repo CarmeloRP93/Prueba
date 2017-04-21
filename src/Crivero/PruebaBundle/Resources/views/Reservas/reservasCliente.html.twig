@@ -1,13 +1,13 @@
 {# empty Twig template #}
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 
-{% block title %} Reservas de {{ pagination[0].cliente }}{% endblock %}
+{% block title %} {{ pagination[0].cliente|capitalize }} - Reservas{% endblock %}
 
 {% block contenido %}
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class="container">
             <div class="page-header "> 
-                <h1 class="t1">Reservas de {{ pagination[0].cliente }}</h1>
+                <h1 class="t1">{{ pagination[0].cliente|capitalize }} - Reservas</h1>
             </div>
         {% if not pagination|length %}
             <h2>No se encontraron reservas.</h2>

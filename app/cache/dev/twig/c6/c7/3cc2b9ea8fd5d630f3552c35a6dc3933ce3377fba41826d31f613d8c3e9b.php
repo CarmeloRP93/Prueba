@@ -87,7 +87,7 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
             // line 28
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Creado", "u.registro");
             echo "</th>
-                            <td><strong>Acciones</strong></td>
+                            <th class=\"t3\">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>

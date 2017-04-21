@@ -203,7 +203,10 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
                            placeholder=\"Buscar usuarios, reservas\" required>
                     <div class=\"input-group-btn\">
                         <button type=\"submit\" class=\"btn btn-default\">
-                            <i class=\"glyphicon glyphicon-search\"></i>    
+                           <img src=\"";
+        // line 85
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/search-128.png"), "html", null, true);
+        echo "\" style=\"width: 15px;\" />  
                         </button>
                     </div>
                 </div>
@@ -249,6 +252,6 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
 
     public function getDebugInfo()
     {
-        return array (  237 => 97,  234 => 96,  226 => 98,  224 => 96,  220 => 94,  217 => 93,  201 => 81,  196 => 78,  188 => 75,  182 => 74,  179 => 73,  173 => 72,  171 => 71,  168 => 70,  166 => 69,  158 => 64,  154 => 63,  145 => 57,  140 => 55,  136 => 54,  132 => 53,  128 => 52,  121 => 48,  113 => 43,  109 => 42,  101 => 37,  97 => 36,  88 => 30,  83 => 28,  79 => 27,  67 => 18,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
+        return array (  240 => 97,  237 => 96,  229 => 98,  227 => 96,  223 => 94,  220 => 93,  208 => 85,  201 => 81,  196 => 78,  188 => 75,  182 => 74,  179 => 73,  173 => 72,  171 => 71,  168 => 70,  166 => 69,  158 => 64,  154 => 63,  145 => 57,  140 => 55,  136 => 54,  132 => 53,  128 => 52,  121 => 48,  113 => 43,  109 => 42,  101 => 37,  97 => 36,  88 => 30,  83 => 28,  79 => 27,  67 => 18,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
     }
 }

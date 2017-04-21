@@ -7,7 +7,7 @@
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">
-                    {{ (usuario.id == app.user.id) ?  '<h3 class="t3">Mi Perfil</h3>'|raw : '<h3 class="t3">Editar usuario</h3>'|raw }} 
+                    {{ (usuario.id == app.user.id) ?  '<h2 class="t3">Editar perfil</h2>'|raw : '<h2 class="t3">Editar usuario</h2>'|raw }} 
 
                 </div>
                 {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="form-group">
                                     {{ form_label(form.email) }}
-                                    {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder' : 'Escriba su email'}}) }}
+                                    {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder' : 'Correo electrónico'}}) }}
                                     <span class="text-danger">{{ form_errors(form.email) }}</span>
                                 </div>
 
@@ -46,7 +46,7 @@
 
                                 <div class="form-group">
                                     {{ form_label(form.fNacimiento) }}
-                                    {{ form_widget(form.fNacimiento, { 'attr' : {'class' : 'form-control', 'placeholder' : '--/--/----'} }) }}
+                                    {{ form_widget(form.fNacimiento, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ej: 08/10/1993'} }) }}
                                     <span class="text-danger">{{ form_errors(form.fNacimiento) }}</span>
                                 </div>
                             </div>

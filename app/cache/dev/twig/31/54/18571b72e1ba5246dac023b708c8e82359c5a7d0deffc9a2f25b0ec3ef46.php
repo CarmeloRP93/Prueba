@@ -36,8 +36,9 @@ class __TwigTemplate_315418571b72e1ba5246dac023b708c8e82359c5a7d0deffc9a2f25b0ec
     // line 4
     public function block_title($context, array $blocks = array())
     {
-        echo " Reservas de ";
-        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), 0, array(), "array"), "cliente", array()), "html", null, true);
+        echo " ";
+        echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), 0, array(), "array"), "cliente", array())), "html", null, true);
+        echo " - Reservas";
     }
 
     // line 6
@@ -49,10 +50,10 @@ class __TwigTemplate_315418571b72e1ba5246dac023b708c8e82359c5a7d0deffc9a2f25b0ec
         echo "
     <div class=\"container\">
             <div class=\"page-header \"> 
-                <h1 class=\"t1\">Reservas de ";
+                <h1 class=\"t1\">";
         // line 10
-        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), 0, array(), "array"), "cliente", array()), "html", null, true);
-        echo "</h1>
+        echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), 0, array(), "array"), "cliente", array())), "html", null, true);
+        echo " - Reservas</h1>
             </div>
         ";
         // line 12
@@ -180,6 +181,6 @@ class __TwigTemplate_315418571b72e1ba5246dac023b708c8e82359c5a7d0deffc9a2f25b0ec
 
     public function getDebugInfo()
     {
-        return array (  163 => 54,  158 => 52,  155 => 51,  148 => 46,  136 => 40,  132 => 38,  126 => 36,  119 => 34,  115 => 33,  110 => 32,  108 => 31,  104 => 30,  100 => 29,  94 => 28,  91 => 27,  87 => 26,  79 => 21,  75 => 20,  71 => 19,  65 => 15,  61 => 13,  59 => 12,  54 => 10,  47 => 7,  44 => 6,  37 => 4,  11 => 2,);
+        return array (  164 => 54,  159 => 52,  156 => 51,  149 => 46,  137 => 40,  133 => 38,  127 => 36,  120 => 34,  116 => 33,  111 => 32,  109 => 31,  105 => 30,  101 => 29,  95 => 28,  92 => 27,  88 => 26,  80 => 21,  76 => 20,  72 => 19,  66 => 15,  62 => 13,  60 => 12,  55 => 10,  48 => 7,  45 => 6,  37 => 4,  11 => 2,);
     }
 }

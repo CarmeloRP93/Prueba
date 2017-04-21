@@ -32,7 +32,7 @@ class ReservasType extends AbstractType {
         }else{
             $builder
                     ->add('cliente', 'hidden')
-                    ->add('motivos', 'textarea')
+                    ->add('motivos', 'textarea', array('attr' => array('cols' => '5', 'rows' => '5')))
                     ->add('confirmar', 'submit', array('label' => 'Confirmar'));
         }
     }

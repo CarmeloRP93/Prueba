@@ -181,7 +181,8 @@ class UsuarioController extends Controller {
             $em->flush();
             $request->getSession()->getFlashBag()->add('mensaje', 'El usuario ha sido modificado correctamente.');
             $tipo = $form->get('tipo')->getData();
-            return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitores')) : $this->redirect($this->generateUrl('crivero_prueba_clientes'));
+            return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitor', array('id' => $id))):
+                                  $this->redirect($this->generateUrl('crivero_prueba_cliente', array('id' => $id)));
         }
         return $this->render('CriveroPruebaBundle:Usuarios:editar.html.twig', array('usuario' => $usuario, 'form' => $form->createView()));
     }

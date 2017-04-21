@@ -2,6 +2,7 @@
 
 {% block title %} {{ (cliente.id != app.user.id) ? 'Cliente ' ~ cliente.username : 'Mi Perfil'  }} {% endblock %}
 {% block contenido %}
+    {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class="container">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-4">
             <div class="panel panel-default text-center">
@@ -14,7 +15,7 @@
                             <h3>{{ (cliente.id != app.user.id) ? cliente.username|capitalize : 'Mi Perfil'  }}</h3>
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="margin-top: 18px;">
-                            <a href = "{{path('crivero_prueba_editarUsuario', { id: cliente.id })}}" class="btn btn-sm btn-default active">Editar</a>
+                            <a href = "{{path('crivero_prueba_editarUsuario', { id: cliente.id })}}" class="btn btn-default active">Editar</a>
                         </div>
                     </div>
                 </div>

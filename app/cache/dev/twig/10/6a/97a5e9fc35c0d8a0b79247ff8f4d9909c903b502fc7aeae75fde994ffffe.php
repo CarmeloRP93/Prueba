@@ -44,7 +44,7 @@ class __TwigTemplate_106a97a5e9fc35c0d8a0b79247ff8f4d9909c903b502fc7aeae75fde994
     {
         // line 4
         echo "    <div class=\"container\">
-        <h2>Cancelar reserva</h2>
+        <h1 class=\"t1\">Cancelar reserva</h1>
 
         ";
         // line 7
