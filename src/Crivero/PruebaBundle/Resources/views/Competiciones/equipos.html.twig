@@ -17,12 +17,6 @@
                 <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila">Nombre del equipo:{{ equipo.nombre }}</a>
             {%endif%}
         {% endfor %}
-        <h3 class="t3">Tenis</h3>
-        {% for equipo in equipos %}
-            {%if equipo.deporte =='Tenis'%}
-                <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>
-            {%endif%}
-        {% endfor %}
         <h3 class="t3">Padel</h3>
         {% for equipo in equipos %}
             {%if equipo.deporte =='Padel'%}

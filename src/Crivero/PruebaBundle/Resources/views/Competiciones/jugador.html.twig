@@ -3,7 +3,7 @@
 {% block title %} Vista de {{jugador.nombre}} {% endblock %}
 
 {% block contenido %}
-    <h1>Información detallada de: {{jugador.nombre}} {{jugador.primerApellido}} {{jugador.segundoApellido}}</h1>
+    <h1>Información detallada de: {{jugador.nombre}}</h1>
     <ul>
         <li>Nº de Dorsal : {{jugador.dorsal}}</li>
         {%for equipo in equipos if equipo.id == jugador.idEquipo %}

@@ -15,9 +15,8 @@
                     <tr>
                         <th>Equipo</th>
                         <th>Nombre</th>
-                        <th>1º Apellido</th>
-                        <th>2º Apellido</th>
                         <th>Dorsal</th>
+                        <th>Incidencias</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -28,9 +27,8 @@
                                 <td>{{equipo.nombre}}</td>
                             {%endfor%}
                             <td><p>{{jugador.nombre}}</p></td>
-                            <td>{{jugador.primerApellido}}</td>
-                            <td>{{jugador.segundoApellido}}</td>
                             <td>{{jugador.dorsal}}</td>
+                            <td>{{jugador.incidencia}}</td>
                             <td class="actions">
                                 <a href="{{ path('crivero_prueba_jugador', { id: jugador.id })  }}" class="btn btn-sm btn-info">
                                     Ver Detalles
