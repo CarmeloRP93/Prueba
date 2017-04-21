@@ -362,6 +362,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        if (0 === strpos($pathinfo, '/partido')) {
+            // moduloclientes_cliente_partidosClientes
+            if (0 === strpos($pathinfo, '/partidosClientes') && preg_match('#^/partidosClientes/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_partidosClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\PartidoController::partidosClientesAction',));
+            }
+
+            // moduloclientes_cliente_partidoClientes
+            if (0 === strpos($pathinfo, '/partidoClientes') && preg_match('#^/partidoClientes/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_partidoClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\PartidoController::partidoClienteAction',));
+            }
+
+        }
+
         if (0 === strpos($pathinfo, '/competicion')) {
             // moduloclientes_cliente_competicionesClientes
             if ($pathinfo === '/competicionesClientes') {

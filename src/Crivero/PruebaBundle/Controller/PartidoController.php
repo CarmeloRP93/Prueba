@@ -2,8 +2,6 @@
 
 namespace Crivero\PruebaBundle\Controller;
 
-use Doctrine\ORM\Mapping\Entity;
-use FOS\ElasticaBundle\Repository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class PartidoController extends Controller {

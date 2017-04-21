@@ -39,6 +39,9 @@
                     {%endfor%}
                 </table>
             </div>
+            <a href="{{ path('moduloclientes_cliente_partidosClientes',{ id: competicion.id }) }}" class="btn btn-sm btn-info">
+                Ver Partidos
+            </a>
         {%endif%}
     </div>
     <div>
@@ -46,6 +49,9 @@
             {%if competicion.estadoCompeticion == "Finalizado" %}
                 <h3 class="t3">Resumen del {{competicion.nombre}}</h3>
                 <p>Equipos</p>
+                <a href="{{ path('moduloclientes_cliente_partidosClientes',{ id: competicion.id }) }}" class="btn btn-sm btn-info">
+                    Ver Partidos
+                </a>
             {%endif%}
         </ul>
     </div>

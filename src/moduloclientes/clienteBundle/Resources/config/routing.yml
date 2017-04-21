@@ -11,7 +11,16 @@ moduloclientes_cliente_reservaClientes:
     pattern:  /reservaClientes/{id}
     defaults: { _controller: moduloclientesclienteBundle:Reserva:reservaClientes }
 #-------------------------------------------------------------------------------------------
-#Competiciones, equipos y jugadores
+#Competiciones, equipos, partidos y jugadores
+
+moduloclientes_cliente_partidosClientes:
+    pattern:  /partidosClientes/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Partido:partidosClientes }
+
+moduloclientes_cliente_partidoClientes:
+    pattern:  /partidoClientes/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Partido:partidoCliente }
+    
 moduloclientes_cliente_competicionesClientes:
     pattern:  /competicionesClientes
     defaults: { _controller: moduloclientesclienteBundle:Competicion:competicionesClientes }
