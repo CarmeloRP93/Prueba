@@ -2,22 +2,25 @@
 
 {% block title %} Cliente {{usuario.nombre}} {% endblock %}
 {% block contenido %}
-    <div class="usuardesc container">
+    <div class="container">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-heading text-center">
-                     <h1 class="t1">{{usuario.nombre}}</h1>
-                </div>
-                <div class="panel-body">
-                    <div class="usuarfot">
-                        <img src="{{ asset('images/no-image-found.png') }}" style="float: left; width: 120%;" />        
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <img src="{{ asset('images/' ~ 'm.jpg') }}" class="img-circle" style="width:60px;" />        
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <h3>{{ usuario.username|capitalize }}</h3>
+                        </div>
                     </div>
-                    
-                    <h4>Nombre: </h4> <p>{{usuario.nombre}}</p>
-                    <h4>F.Nacimiento: </h4> <p>{{usuario.fNacimiento}}</p>
-                    <h4>Telefono: </h4> <p>{{usuario.telefono}}</p>
-                    <h4>Registro: </h4> <p>{{usuario.registro|date('d/m/Y H:i')}}</p>
+                </div>
 
+                <div class="panel-body text-center">                   
+                    <h4>Nombre </h4> <p>{{usuario.nombre}}</p>
+                    <h4>Aniversario </h4> <p>{{usuario.fNacimiento}}</p>
+                    <h4>Telefono </h4> <p>{{usuario.telefono}}</p>
+                    <h4>Registro </h4> <p>{{usuario.registro|date('d/m/Y')}}</p>
                 </div>
             </div>
         </div>

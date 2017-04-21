@@ -146,6 +146,8 @@ class SesionController extends Controller {
         if ($restaCliente == 0 && $sesion->getEstado() == 'cancelada' && $sesion->getIdMonitor() == null) {
             $em->remove($sesion);
         } else {
+            // Si no está cancelada, el estadoCliente volverá a disponible (esté completa o no)
+            $sesion->setEstadoCliente('disponible');
             $em->persist($sesion);
         }
         

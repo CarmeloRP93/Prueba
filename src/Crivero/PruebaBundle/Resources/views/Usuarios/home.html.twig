@@ -3,23 +3,25 @@
 {% block navegation %}{% endblock %}
 {% block title %}Home{% endblock %}
 {% block body %}
- <div class="container" >
-            {% if app.user.tipo == 1 %}
-{#                {% if 'now'|date('d-m') == app.user.fechaPagar|date('d-m') || moroso == true %}#}
-                    <form id="formu" action="{{ path('crivero_prueba_clientes') }}" method="post">
-                    </form>
-{#                {% endif %}#}
-            {% elseif app.user.tipo == 2 %}
-                <form id="formu" action="{{ path('moduloclientes_cliente_reservasClientes') }}" method="post">
-                </form>
-            {% else %}
-                <form id="formu" action="{{ path('modulomonitores_monitores_misSesionesMonitores') }}" method="post">
-                </form>
-            {% endif %}
-            <img src="{{ asset('images/loading.gif') }}" style="margin-left: 35%; margin-top: 15%" />
- </div>
-            
-<script type="text/javascript">
-    setTimeout(function(){document.getElementById("formu").submit();}, 2000); 
-</script>
+    <div class="container" >
+        {% if app.user.tipo == 1 %}
+            {#                {% if 'now'|date('d-m') == app.user.fechaPagar|date('d-m') || moroso == true %}#}
+            <form id="formu" action="{{ path('crivero_prueba_clientes') }}" method="post">
+            </form>
+            {#                {% endif %}#}
+        {% elseif app.user.tipo == 2 %}
+            <form id="formu" action="{{ path('moduloclientes_cliente_reservasClientes') }}" method="post">
+            </form>
+        {% else %}
+            <form id="formu" action="{{ path('modulomonitores_monitores_misSesionesMonitores') }}" method="post">
+            </form>
+        {% endif %}
+        <img src="{{ asset('images/loading.gif') }}" style="position: absolute; top: 50%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); width: 25%;" />
+    </div>
+
+    <script type="text/javascript">
+        setTimeout(function () {
+            document.getElementById("formu").submit();
+        }, 2000);
+    </script>
 {% endblock %}

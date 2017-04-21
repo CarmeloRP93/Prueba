@@ -190,15 +190,15 @@ class SesionController extends Controller {
                 $this->removeSesionId($aula, $id);
                 $em->persist($aula);
 
-                if ($sesion->getIdsClientes() != null) {
-                    $idsClientesSesion = explode('&', $sesion->getIdsClientes());
-                    $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
-                    $clientes = $this->getArrayEntidades($repositoryUsuarios, $idsClientesSesion);
-                    foreach ($clientes as $cliente) {
-                        $this->removeSesionId($cliente, $id);
-                        $em->persist($cliente);
-                    }
-                }
+//                if ($sesion->getIdsClientes() != null) {
+//                    $idsClientesSesion = explode('&', $sesion->getIdsClientes());
+//                    $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+//                    $clientes = $this->getArrayEntidades($repositoryUsuarios, $idsClientesSesion);
+//                    foreach ($clientes as $cliente) {
+//                        $this->removeSesionId($cliente, $id);
+//                        $em->persist($cliente);
+//                    }
+//                }
                 
                 $em->flush();
                 $request->getSession()->getFlashBag()->add('mensaje', 'La sesión se canceló correctamente');

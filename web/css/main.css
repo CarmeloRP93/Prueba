@@ -1,5 +1,6 @@
 body {
     background-image: url("../images/background-main.jpg");
+    background-size: 100% 100%;
 }
 
 .nuevoUsuario {
@@ -186,12 +187,12 @@ nav li:last-child a {
     background: linear-gradient(#fac754, #f8ac00);
 }
 
-.usuarfot {
+/*.usuarfot {
     float: left;
     height: 500px;
     border: transparent 1px;
     width: 20%;
-}
+}*/
 
 #buscador {
     float: right;
@@ -340,6 +341,7 @@ sub {
 }
 img {
     border: 0;
+    border-radius: 8px;
 }
 svg:not(:root) {
     overflow: hidden;

@@ -8,23 +8,32 @@
 
     <div id="sesiondat" class="container">
         <div id="sesionfot" style="margin-top: 14px;">
-            <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" style="width: 50%; margin-bottom: 1%" />        
+            <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" style="width: 400px; margin-bottom: 1%"" />     
         </div>
         {% if sesion.estadoCliente == "disponible" %}
             <div class="accionesesion text-center">
                 <a href="{{path('moduloclientes_cliente_sesionesClientes_apuntarse', {id: sesion.id})}}" 
-                   class="btn btn-primary text-center center-block" style="height: 30px; width: 600px;">Apuntarse <span class="glyphicon glyphicon-pencil"></span></a>
+                   class="btn btn-primary text-center center-block img-responsive" style="height: 30px; width: 400px;">Apuntarse <span class="glyphicon glyphicon-pencil"></span></a>
             </div>
 
         {% elseif sesion.estadoCliente == "completo" %}
             <div class="accionesesion text-center">
-                <button class="btn btn-danger text-center center-block" style="height: 30px; width: 600px;" disabled="disabled">Completo</button>
+                <button class="btn btn-danger text-center center-block img-responsive" style="height: 30px; width: 400px;" disabled="disabled">Completo</button>
             </div>
 
         {% elseif sesion.estadoCliente == "cancelada" %}
             <div class="accionesesion text-center">
-                <button class="btn btn-danger text-center center-block" style="height: 30px; width: 600px;" disabled="disabled">Cancelada</button>
+                <button class="btn btn-danger text-center center-block img-responsive" style="height: 30px; width: 400px;" disabled="disabled">Cancelada</button>
             </div>
+            
+            <div class="row">
+                {% if sesion.estado == "cancelada" %}
+                    <div class="text-center">
+                    <h3 class="terr">Motivo de cancelación:</h3> 
+                    <p>{{sesion.observaciones}}</p>   
+                {% endif %}
+            </div>
+            
         {% endif %}
 
         <div class="row">

@@ -182,7 +182,7 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))), "html", null, true);
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/user-128.png"), "html", null, true);
-            echo "\" style=\"width: 50%;\" /></a></li>
+            echo "\" style=\"width: 18px;\" /></a></li>
                     <li><a href=\"";
             // line 75
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");

@@ -2,73 +2,76 @@
 
 {% block title %} {{ (cliente.id != app.user.id) ? 'Cliente ' ~ cliente.username : 'Mi Perfil'  }} {% endblock %}
 {% block contenido %}
-    <div class="usuardesc container">
-        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-heading text-center">
-                    <h3>{{ (cliente.id != app.user.id) ? cliente.username : 'Mi Perfil'  }}</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="usuarfot">
-                        <img src="{{ asset('images/' ~ cliente.imagen) }}" style="float: left; width: 120%;" />        
-                        <a href = "{{path('crivero_prueba_editarUsuario', { id: cliente.id })}}" class="btn btn-sm btn-default active">Editar</a>
+    <div class="container">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-4">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <img src="{{ asset('images/' ~ 'm.jpg') }}" class="img-circle" style="width:60px;" />        
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <h3>{{ (cliente.id != app.user.id) ? cliente.username|capitalize : 'Mi Perfil'  }}</h3>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="margin-top: 18px;">
+                            <a href = "{{path('crivero_prueba_editarUsuario', { id: cliente.id })}}" class="btn btn-sm btn-default active">Editar</a>
+                        </div>
                     </div>
-                    <div class="usuardat">
+                </div>
+                
+                <div class="panel-body">                   
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <h4>Nombre </h4> <p>{{cliente.nombre}}</p>
+                            <h4>Aniversario </h4> <p>{{cliente.fNacimiento}}</p>
+                            <h4>Telefono </h4> <p>{{cliente.telefono}}</p>
+                            <h4>Registro </h4> <p>{{cliente.registro|date('d/m/Y')}}</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            {% if reservas != null %}
+                                <div>
+                                    <form action="{{ path('crivero_prueba_reservas_cliente', { id: cliente.id })}}" method="post" class="form-signin">
+                                        <button type="submit" class="btn btn-success">Ver reservas</button>
+                                    </form>
+                               {#     <ul id="reservas">
+                                        {% for reserva in reservas %}
+                                            <li>
+                                                <div class="acciones">
+                                                    <a href="{{path('crivero_prueba_reserva_cancelar', {id: reserva.id})}}" class="btn btn-sm btn-warning">
+                                                        Cancelar
+                                                    </a>
+                                                </div>
+                                                <p>{{reserva.cancha}}: {{reserva.fechaInicio|date('d/m')}} - {{reserva.horario}}</p>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>#}
+                                </div>
+                            {% endif %}
+
+                            {% if cliente.sesiones != null %}
+                                <div>
+                                    <form action="{{ path('crivero_prueba_sesiones_cliente', { id: cliente.id })}}" method="post" class="form-signin">
+                                        <button type="submit" class="btn btn-success">Ver sesiones</button>
+                                    </form>
+                                    {#<ul id="sesiones">
+                                        {% for sesion in sesiones %}
+                                            <li>
+                                                <p>Aula {{sesion.aula}} - {{sesion.nombre}} con {{sesion.monitor}} - {{sesion.horario}}</p>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>#}
+                                </div>
+                            {% endif %}
                         {% if cliente.id != app.user.id %}
                             <form action="{{ path('crivero_prueba_enviarMensaje') }}" method="post" class="form-signin">
                                 <button type="submit" class="btn btn-primary">Enviar mensaje</button>
                             </form>
                         {% endif %}
-
-                    <h4>Nombre </h4> <p>{{cliente.nombre}}</p>
-                    <h4>Aniversario </h4> <p>{{cliente.fNacimiento}}</p>
-                    <h4>Telefono </h4> <p>{{cliente.telefono}}</p>
-                    <h4>Registro </h4> <p>{{cliente.registro|date('d/m/Y')}}</p>
-
-                    <div>
-                        {% if reservas != null %}
-                            <div>
-                                <h4>Reservas: </h4> 
-                                <form action="{{ path('crivero_prueba_reservas_cliente', { id: cliente.id })}}" method="post" class="form-signin">
-                                    <button type="submit" class="btn btn-success">Ver reservas</button>
-                                </form>
-                           {#     <ul id="reservas">
-                                    {% for reserva in reservas %}
-                                        <li>
-                                            <div class="acciones">
-                                                <a href="{{path('crivero_prueba_reserva_cancelar', {id: reserva.id})}}" class="btn btn-sm btn-warning">
-                                                    Cancelar
-                                                </a>
-                                            </div>
-                                            <p>{{reserva.cancha}}: {{reserva.fechaInicio|date('d/m')}} - {{reserva.horario}}</p>
-                                        </li>
-                                    {% endfor %}
-                                </ul>#}
-                            </div>
-                        {% endif %}
-
-                        {% if cliente.sesiones != null %}
-                            <div>
-                                <h4>Sesiones: </h4> 
-                                <form action="{{ path('crivero_prueba_sesiones_cliente', { id: cliente.id })}}" method="post" class="form-signin">
-                                    <button type="submit" class="btn btn-success">Ver sesiones</button>
-                                </form>
-                                {#<ul id="sesiones">
-                                    {% for sesion in sesiones %}
-                                        <li>
-                                            <p>Aula {{sesion.aula}} - {{sesion.nombre}} con {{sesion.monitor}} - {{sesion.horario}}</p>
-                                        </li>
-                                    {% endfor %}
-                                </ul>#}
-                            </div>
-                        {% endif %}
-                    </div><br>
-                    </div>
-                    {% if app.user.id != cliente.id %}
-                        <div class="accionesExclus text-center">       
+                        {% if app.user.id != cliente.id %}
                             {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar usuario" })}}
+                        {% endif %}
                         </div>
-                    {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
