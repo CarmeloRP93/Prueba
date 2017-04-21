@@ -254,6 +254,7 @@ class SesionController extends Controller {
             $observaciones = $form->get('observaciones')->getData();
             if ($observaciones != null) {
                 $em->flush();
+                $request->getSession()->getFlashBag()->add('mensaje', 'La sesión se rechazó correctamente.');
                 return $this->redirect($this->generateUrl('crivero_prueba_sesion', array('id' => $sesion->getId())));
             } else {
                 $form->get('observaciones')->addError(new FormError('Rellene el campo gracias'));

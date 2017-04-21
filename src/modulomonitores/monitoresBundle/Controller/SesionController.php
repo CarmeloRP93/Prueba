@@ -12,10 +12,14 @@ use Symfony\Component\Form\FormError;
 
 class SesionController extends Controller {
 
-    public function sesionesMonitoresAction() {
-        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        $sesiones = $repository->findAll();
-        return $this->render('modulomonitoresmonitoresBundle:Default:sesionesMonitores.html.twig', array("sesiones" => $sesiones));
+    public function sesionesMonitoresAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.estado = 'validada' AND s.cliente = 'normal'" ;
+        $sesiones = $em->createQuery($dql)->getResult();
+         $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $sesiones, $request->query->getInt('page', 1), 5);
+        return $this->render('modulomonitoresmonitoresBundle:Default:sesionesMonitores.html.twig', array("pagination" => $pagination));
     }
 
     public function sesionMonitoresAction($id) {
@@ -27,7 +31,7 @@ class SesionController extends Controller {
     public function misSesionesMonitoresAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $usuarioId = $this->getUser()->getId();
-        $dql = 'SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.idMonitor = :id';
+        $dql = "SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.idMonitor = :id AND s.cliente = 'normal'" ;
         $sesiones = $em->createQuery($dql)->setParameter('id', $usuarioId)->getResult();
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -172,7 +176,9 @@ class SesionController extends Controller {
     }
 
     private function createCreateFormDedicado(Sesiones $entity) {
-        $form = $this->createForm(new SesionesType(), $entity, array(
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+        $aulas = $repository->findAll();
+        $form = $this->createForm(new SesionesType($aulas), $entity, array(
             'action' => $this->generateUrl('modulomonitores_monitores_crearSesionDedicada'),
             'method' => 'POST'
         ));
@@ -183,22 +189,26 @@ class SesionController extends Controller {
         $sesion = new Sesiones();
         $form = $this->createCreateFormDedicado($sesion);
         $form->handleRequest($request);
+            
         if ($form->isValid()) {
             $sesion->setEstado("pendiente");
             $sesion->setEstadoCliente("no disponible");
-            $sesion->setnClientes(1);
+            $sesion->setnClientes(0);
+            $sesion->setCliente("sin participante");
             $sesion->setlClientes(1);
+            $sesion->setImagen("images/" . mt_rand(1, 5) . "m.jpg");
             $sesion->setIdMonitor($this->getUser()->getId());
             $sesion->setMonitor($this->getUser()->getUsername());
-            $cliente = $form->get('cliente')->getData();
-            if ($cliente != null) {
+            if ($form->get('nSesiones')->getData() > 20) {
+                $form->get('nSesiones')->addError(new FormError('El límite son 20 sesiones'));
+                return $this->render('modulomonitoresmonitoresBundle:Default:nuevaSesion.html.twig', array('form' => $form->createView()));
+            }
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($sesion);
                 $em->flush();
-                return $this->redirect($this->generateUrl('modulomonitores_monitores_MisSesionesDedicadas'));
-            } else {
-                $form->get('cliente')->addError(new FormError('Rellene el campo gracias'));
-            }
+                $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido creada con éxito.');
+                return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionesDedicadas'));
+            
         }
         return $this->render('modulomonitoresmonitoresBundle:Default:nuevaSesionDedicada.html.twig', array('form' => $form->createView()));
     }
@@ -215,7 +225,9 @@ class SesionController extends Controller {
     }
 
     private function createEdiDediForm(Sesiones $entity) {
-        $form = $this->createForm(new SesionesType(), $entity, array(
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+        $aulas = $repository->findAll();
+        $form = $this->createForm(new SesionesType($aulas), $entity, array(
             'action' => $this->generateUrl('modulomonitores_monitores_editarDedicada', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));
@@ -233,13 +245,13 @@ class SesionController extends Controller {
         if ($form->isSubmitted() && $form->isValid()) {
             $sesion->setEstado("modificada");
             $sesion->setEstadoCliente("no disponible");
-            $cliente = $form->get('cliente')->getData();
-            if ($cliente != null) {
-                $em->flush();
-                return $this->redirect($this->generateUrl('modulomonitores_monitores_sesionDedicada', array('id' => $sesion->getId())));
-            } else {
-                $form->get('cliente')->addError(new FormError('Rellene el campo gracias'));
+            if ($form->get('nSesiones')->getData() > 20) {
+                $form->get('nSesiones')->addError(new FormError('El límite son 20 sesiones'));
+                return $this->render('modulomonitoresmonitoresBundle:Default:editarSesionDedicada.html.twig', array('form' => $form->createView()));
             }
+                $em->flush();
+                $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido modificada con éxito.');
+                return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionDedicadas', array('id' => $sesion->getId())));
         }
         return $this->render('modulomonitoresmonitoresBundle:Default:editarSesionDedicada.html.twig', array('form' => $form->createView()));
     }

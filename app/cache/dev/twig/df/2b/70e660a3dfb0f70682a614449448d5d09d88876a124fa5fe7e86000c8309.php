@@ -7,12 +7,12 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
     {
         parent::__construct($env);
 
-        // line 2
+        // line 1
         try {
             $this->parent = $this->env->loadTemplate("modulomonitoresmonitoresBundle::main.html.twig");
         } catch (Twig_Error_Loader $e) {
             $e->setTemplateFile($this->getTemplateName());
-            $e->setTemplateLine(2);
+            $e->setTemplateLine(1);
 
             throw $e;
         }
@@ -33,69 +33,109 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 4
+    // line 3
     public function block_title($context, array $blocks = array())
     {
-        echo " Vista de Sesiones ";
+        echo " Sesiones públicas aceptadas";
     }
 
-    // line 5
+    // line 4
     public function block_contenido($context, array $blocks = array())
     {
-        // line 6
-        echo "    <div class=\"container\">
-        <h1 class=\"t1\">Listado de Sesiones</h1>
+        // line 5
+        echo "    ";
+        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:messages/success.html.twig");
+        echo "
+    <div class=\"container\">
+        <div class=\"page-header\">
+            <h1 class=\"t1\">Sesiones públicas aceptadas</h1>
+        </div>
         ";
-        // line 8
-        $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["sesiones"]) ? $context["sesiones"] : $this->getContext($context, "sesiones")));
-        $context['loop'] = array(
-          'parent' => $context['_parent'],
-          'index0' => 0,
-          'index'  => 1,
-          'first'  => true,
-        );
-        if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
-            $length = count($context['_seq']);
-            $context['loop']['revindex0'] = $length - 1;
-            $context['loop']['revindex'] = $length;
-            $context['loop']['length'] = $length;
-            $context['loop']['last'] = 1 === $length;
-        }
-        foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
-            // line 9
-            echo "            ";
-            if ((($this->getAttribute($context["sesion"], "cliente", array()) == "normal") && ($this->getAttribute($context["sesion"], "estado", array()) == "validada"))) {
-                // line 10
-                echo "                <a href=\"";
-                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_sesionMonitores", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
-                echo "\" class=\"fila ";
-                echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
-                echo "\"> Sesion ";
+        // line 10
+        if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
+            // line 11
+            echo "            <h2>No se encontraron sesiones públicas aceptadas</h2>
+        ";
+        } else {
+            // line 13
+            echo "            <div class=\"table-responsive\">
+                <table class=\"table table-hover\">
+                    <thead>
+                        <tr>
+                            <th>";
+            // line 17
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre de la sesión", "pagination.nombre");
+            echo "</th>
+                            <th>";
+            // line 18
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Número de clientes", "pagination.nClientes");
+            echo "</th>
+                            <th>";
+            // line 19
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Número de sesiones", "pagination.nSesiones");
+            echo "</th>
+                            <th>";
+            // line 20
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Aula asignada", "pagination.aula");
+            echo "</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ";
+            // line 25
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
+            foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
+                // line 26
+                echo "                            <tr data-id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "id", array()), "html", null, true);
-                echo ": ";
+                echo "\">
+                                <td>";
+                // line 27
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
-                echo " - ";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "estado", array()), "html", null, true);
-                echo "</a>
-            ";
+                echo "</td>
+                                <td>";
+                // line 28
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nClientes", array()), "html", null, true);
+                echo " Clientes</td>
+                                <td>";
+                // line 29
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nSesiones", array()), "html", null, true);
+                echo " Sesiones</td>
+                                <td>";
+                // line 30
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "aula", array()), "html", null, true);
+                echo "</td>
+                                <td class=\"actions\">
+
+                                    <a href=\"";
+                // line 33
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_sesionMonitores", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
+                echo "\" class=\"btn btn-sm btn-info\">
+                                        Ver más información
+                                    </a>
+                                </td>
+                            </tr>
+                        ";
             }
-            // line 12
-            echo "        ";
-            ++$context['loop']['index0'];
-            ++$context['loop']['index'];
-            $context['loop']['first'] = false;
-            if (isset($context['loop']['length'])) {
-                --$context['loop']['revindex0'];
-                --$context['loop']['revindex'];
-                $context['loop']['last'] = 0 === $context['loop']['revindex0'];
-            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 39
+            echo "                    </tbody>
+                </table>
+            </div>
+        ";
         }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 13
-        echo "    </div>
+        // line 43
+        echo "        <div class=\"navigation\">
+            ";
+        // line 44
+        echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
+        echo "
+        </div>
+    </div>
 ";
     }
 
@@ -111,6 +151,6 @@ class __TwigTemplate_df2b70e660a3dfb0f70682a614449448d5d09d88876a124fa5fe7e86000
 
     public function getDebugInfo()
     {
-        return array (  98 => 13,  84 => 12,  70 => 10,  67 => 9,  50 => 8,  46 => 6,  43 => 5,  37 => 4,  11 => 2,);
+        return array (  135 => 44,  132 => 43,  126 => 39,  114 => 33,  108 => 30,  104 => 29,  100 => 28,  96 => 27,  91 => 26,  87 => 25,  79 => 20,  75 => 19,  71 => 18,  67 => 17,  61 => 13,  57 => 11,  55 => 10,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
     }
 }

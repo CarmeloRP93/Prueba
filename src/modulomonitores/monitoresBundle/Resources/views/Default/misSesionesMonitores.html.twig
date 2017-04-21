@@ -18,17 +18,18 @@
                             <th>{{ knp_pagination_sortable(pagination, 'Estado de la sesión', 'pagination.estado') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'Número de clientes', 'pagination.nClientes') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'Número de sesiones', 'pagination.nSesiones') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Aula asignada', 'pagination.aula') }}</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for sesion in pagination %}
-                            {% if sesion.cliente=="normal" %}
                                 <tr data-id="{{ sesion.id }}">
                                     <td>{{sesion.nombre}}</td>
                                     <td>{{sesion.estado}}</td>
                                     <td>{{sesion.nClientes}} Clientes</td>
                                     <td>{{sesion.nSesiones}} Sesiones</td>
+                                    <td>{{sesion.aula}}</td>
                                     <td class="actions">
 
                                         <a href="{{ path('modulomonitores_monitores_miSesionMonitores', { id: sesion.id }) }}" class="btn btn-sm btn-info">
@@ -36,7 +37,6 @@
                                         </a>
                                     </td>
                                 </tr>
-                            {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>

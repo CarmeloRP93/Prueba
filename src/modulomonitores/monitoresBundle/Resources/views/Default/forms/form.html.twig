@@ -6,7 +6,7 @@
            onclick="return confirmarEliminar()" >
 
 {{ form_end(form) }}
-
+<script src="{{ asset('js/bootbox.min.js') }}"></script>
 <script>
     function confirmarEliminar() {
         bootbox.confirm ('¿Estas seguro?', function(result) {

@@ -1,14 +1,46 @@
-{# empty Twig template #}
 {% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
 
-{% block title %} Vista de sesiones dedicadas {% endblock %}            
+{% block title %} Sesiones privadas aceptadas {% endblock %}
 {% block contenido %}
+    {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class="container">
-        <h1 class="t1">Listado de sesiones de dedicadas</h1>
-        {% for sesion in sesiones %}
-            {% if sesion.cliente!="normal" and sesion.estado == "validada"%}
-                <a href="{{url('modulomonitores_monitores_sesionDedicada', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{ sesion.id }}: {{ sesion.cliente }}/{{ sesion.nombre }} - {{ sesion.estado}} </a>
-          {% endif %}
-        {% endfor %}
+        <div class="page-header">
+            <h1 class="t1">Sesiones privadas aceptadas</h1>
+        </div>
+        {% if not pagination|length %}
+            <h2>No se encontraron sesiones privadas aceptadas</h2>
+        {% else %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>{{ knp_pagination_sortable(pagination, 'Nombre de la sesión', 'pagination.nombre') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Número de sesiones', 'pagination.nSesiones') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Aula asignada', 'pagination.aula') }}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sesion in pagination %}
+                                <tr data-id="{{ sesion.id }}">
+                                    <td>{{sesion.nombre}}</td>
+                                    <td>{{sesion.nSesiones}} Sesiones</td>
+                                    <td>{{sesion.aula}}</td>
+                                    <td class="actions">
+
+                                        <a href="{{ path('modulomonitores_monitores_sesionDedicada', { id: sesion.id }) }}" class="btn btn-sm btn-info">
+                                            Ver más información
+                                        </a>
+                                    </td>
+                                </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
     </div>
 {% endblock %}
+

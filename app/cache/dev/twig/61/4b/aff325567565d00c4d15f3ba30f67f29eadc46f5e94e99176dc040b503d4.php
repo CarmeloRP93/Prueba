@@ -78,52 +78,54 @@ class __TwigTemplate_614baff325567565d00c4d15f3ba30f67f29eadc46f5e94e99176dc040b
             // line 20
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Número de sesiones", "pagination.nSesiones");
             echo "</th>
+                            <th>";
+            // line 21
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Aula asignada", "pagination.aula");
+            echo "</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         ";
-            // line 25
+            // line 26
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
             foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
-                // line 26
-                echo "                            ";
-                if (($this->getAttribute($context["sesion"], "cliente", array()) == "normal")) {
-                    // line 27
-                    echo "                                <tr data-id=\"";
-                    echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "id", array()), "html", null, true);
-                    echo "\">
+                // line 27
+                echo "                                <tr data-id=\"";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "id", array()), "html", null, true);
+                echo "\">
                                     <td>";
-                    // line 28
-                    echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
-                    echo "</td>
+                // line 28
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
+                echo "</td>
                                     <td>";
-                    // line 29
-                    echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "estado", array()), "html", null, true);
-                    echo "</td>
+                // line 29
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "estado", array()), "html", null, true);
+                echo "</td>
                                     <td>";
-                    // line 30
-                    echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nClientes", array()), "html", null, true);
-                    echo " Clientes</td>
+                // line 30
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nClientes", array()), "html", null, true);
+                echo " Clientes</td>
                                     <td>";
-                    // line 31
-                    echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nSesiones", array()), "html", null, true);
-                    echo " Sesiones</td>
+                // line 31
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nSesiones", array()), "html", null, true);
+                echo " Sesiones</td>
+                                    <td>";
+                // line 32
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "aula", array()), "html", null, true);
+                echo "</td>
                                     <td class=\"actions\">
 
                                         <a href=\"";
-                    // line 34
-                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_miSesionMonitores", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
-                    echo "\" class=\"btn btn-sm btn-info\">
+                // line 35
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_miSesionMonitores", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
+                echo "\" class=\"btn btn-sm btn-info\">
                                             Ver más información
                                         </a>
                                     </td>
                                 </tr>
-                            ";
-                }
-                // line 40
-                echo "                        ";
+                        ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
@@ -157,6 +159,6 @@ class __TwigTemplate_614baff325567565d00c4d15f3ba30f67f29eadc46f5e94e99176dc040b
 
     public function getDebugInfo()
     {
-        return array (  141 => 46,  138 => 45,  132 => 41,  126 => 40,  117 => 34,  111 => 31,  107 => 30,  103 => 29,  99 => 28,  94 => 27,  91 => 26,  87 => 25,  79 => 20,  75 => 19,  71 => 18,  67 => 17,  61 => 13,  57 => 11,  55 => 10,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
+        return array (  143 => 46,  140 => 45,  134 => 41,  122 => 35,  116 => 32,  112 => 31,  108 => 30,  104 => 29,  100 => 28,  95 => 27,  91 => 26,  83 => 21,  79 => 20,  75 => 19,  71 => 18,  67 => 17,  61 => 13,  57 => 11,  55 => 10,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
     }
 }
