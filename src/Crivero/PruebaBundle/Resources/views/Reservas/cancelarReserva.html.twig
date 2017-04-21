@@ -1,7 +1,7 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 {% block title %}Cancelar reserva{% endblock %}
 {% block contenido %}
-    <div class="container">
+    <div class="container centradoV">
         <h1 class="t1">Cancelar reserva</h1>
 
         {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
@@ -13,7 +13,7 @@
      
         <div class="form-group">
             {{ form_label(form.motivos) }}
-            {{ form_widget(form.motivos, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Motivos de cancelación'} }) }}
+            {{ form_widget(form.motivos, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba los motivos de cancelación...'} }) }}
             <span class="text-danger">{{ form_errors(form.motivos) }}</span>
         </div>
         <p>

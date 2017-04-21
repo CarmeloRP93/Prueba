@@ -127,6 +127,7 @@ class SesionController extends Controller {
                     $vuelta = 1;
                 }
                 $mes++;
+                if ($mes < 10) $mes = '0' . $mes;
                 $fecha = date('Y')+$vuelta . '-' . $mes . '-01';
                 $limite = date('t', strtotime($fecha));
             }
@@ -186,20 +187,28 @@ class SesionController extends Controller {
                 $sesion->setEstado("cancelada");
                 $sesion->setEstadoCliente("cancelada");
                 $em->persist($sesion);
+                
+                $horarios = explode('&', $sesion->getHorario());
+                foreach ($horarios as $clave=>$horario) {
+                    if ($horario{1} == '/'){
+                        $horario = "0". $horario;
+                    }
+                    $dias[$clave] = substr($horario, 0, 2); 
+                    $horas[$clave] = substr($horario, 8); 
+                }
+                
+                $horariosAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
+                for ($i = 0; $i < count($dias); $i++) {
+                    $diaReserva = $horariosAula->getDiaReserva($sesion->getAula(), (int)$dias[$i]);
+                    $horarioNoAsig = $diaReserva[0]->getPeriodo();
+                    if (strpos($horarioNoAsig, $horas[$i]) === false) {
+                        $diaReserva[0]->setPeriodo($horarioNoAsig . $horas[$i].'&'); 
+                        $em->persist($diaReserva[0]);
+                    }
+                }
 
                 $this->removeSesionId($aula, $id);
-                $em->persist($aula);
-
-//                if ($sesion->getIdsClientes() != null) {
-//                    $idsClientesSesion = explode('&', $sesion->getIdsClientes());
-//                    $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
-//                    $clientes = $this->getArrayEntidades($repositoryUsuarios, $idsClientesSesion);
-//                    foreach ($clientes as $cliente) {
-//                        $this->removeSesionId($cliente, $id);
-//                        $em->persist($cliente);
-//                    }
-//                }
-                
+                $em->persist($aula);                
                 $em->flush();
                 $request->getSession()->getFlashBag()->add('mensaje', 'La sesión se canceló correctamente');
                 return $this->redirect($this->generateUrl('crivero_prueba_sesion', array('id' => $sesion->getId())));

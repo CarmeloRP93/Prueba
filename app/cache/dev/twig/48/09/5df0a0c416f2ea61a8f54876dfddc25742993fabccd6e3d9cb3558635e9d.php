@@ -43,7 +43,7 @@ class __TwigTemplate_48095df0a0c416f2ea61a8f54876dfddc25742993fabccd6e3d9cb35586
     public function block_contenido($context, array $blocks = array())
     {
         // line 4
-        echo "    <div class=\"container\">
+        echo "    <div class=\"container centradoV\">
         <h1 class=\"t1\">Cancelar sesión</h1>
 
         ";
@@ -189,7 +189,7 @@ class __TwigTemplate_48095df0a0c416f2ea61a8f54876dfddc25742993fabccd6e3d9cb35586
         echo "
             ";
         // line 64
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "observaciones", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Escriba motivos de cancelación...")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "observaciones", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Escriba los motivos de cancelación...")));
         echo "
             <span class=\"text-danger\">";
         // line 65

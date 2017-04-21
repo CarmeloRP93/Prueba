@@ -81,7 +81,7 @@ class __TwigTemplate_0a0d7c2b21bc3124710f155c13d1d9390dcacee1da8ee3c1ccdb269e091
         // line 19
         echo "        <img src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/loading.gif"), "html", null, true);
-        echo "\" style=\"position: absolute; top: 50%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); width: 25%;\" />
+        echo "\" class=\"centradoV\" style=\"width: 10%; top: 50%\" />
     </div>
 
     <script type=\"text/javascript\">
