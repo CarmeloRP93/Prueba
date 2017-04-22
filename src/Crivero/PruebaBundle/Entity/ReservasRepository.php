@@ -11,27 +11,30 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class ReservasRepository extends EntityRepository {
-    
+
     public function getReservas() {
         return $this->getEntityManager()
-            ->createQuery("SELECT r FROM CriveroPruebaBundle:Reservas r WHERE r.estadoReserva='Reservado'")
-            ->getResult();
+                        ->createQueryBuilder()->select('r')
+                        ->from('CriveroPruebaBundle:Reservas', 'r')
+                        ->where("r.estadoReserva='Reservado'")
+                        ->getQuery();
     }
-    
+
     public function getReservasCliente($id) {
         return $this->getEntityManager()
-            ->createQuery("SELECT r FROM CriveroPruebaBundle:Reservas r WHERE r.estadoReserva='Reservado' AND "
-                    . "r.idCliente = :id")
-            ->setParameter('id', $id)
-            ->getResult();
+                        ->createQuery("SELECT r FROM CriveroPruebaBundle:Reservas r WHERE r.estadoReserva='Reservado' AND "
+                                . "r.idCliente = :id")
+                        ->setParameter('id', $id)
+                        ->getResult();
     }
-    
+
     public function searchReservas($searchQuery) {
         return $this->getEntityManager()
-            ->createQuery("SELECT r FROM CriveroPruebaBundle:Reservas r WHERE r.estadoReserva='Reservado' AND "
-                        . "r.cliente = :cliente OR r.cancha = :cancha")
-            ->setParameter('cliente', $searchQuery)
-            ->setParameter('cancha', $searchQuery)
-            ->getResult();
+                        ->createQuery("SELECT r FROM CriveroPruebaBundle:Reservas r WHERE r.estadoReserva='Reservado' AND "
+                                . "r.cliente = :cliente OR r.cancha = :cancha")
+                        ->setParameter('cliente', $searchQuery)
+                        ->setParameter('cancha', $searchQuery)
+                        ->getResult();
     }
+
 }

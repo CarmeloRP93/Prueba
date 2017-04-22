@@ -31,7 +31,8 @@ class Usuarios implements AdvancedUserInterface, \Serializable {
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=200, unique=true)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
      */
     private $username;
 
@@ -39,7 +40,8 @@ class Usuarios implements AdvancedUserInterface, \Serializable {
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=200)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
      */
     private $nombre;
 
@@ -54,8 +56,10 @@ class Usuarios implements AdvancedUserInterface, \Serializable {
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=200, unique=true)
-     * @Assert\NotBlank()
-     * @Assert\Email()
+     * @Assert\NotBlank(
+     *         message="Rellene el campo.")
+     * @Assert\Email(
+     *          message="Introduzca un email válido.")
      */
     private $email;
 
@@ -63,7 +67,8 @@ class Usuarios implements AdvancedUserInterface, \Serializable {
      * @var integer
      *
      * @ORM\Column(name="tipo", type="integer")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
      * @Assert\Choice(choices = {1, 2, 3})
      */
     private $tipo;
@@ -72,10 +77,11 @@ class Usuarios implements AdvancedUserInterface, \Serializable {
      * @var string
      *
      * @ORM\Column(name="telefono", type="string", length=200)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *         message="Rellene el campo.")
      * @Assert\Regex(
      *     pattern="/^(\d{3})[-]?(\d{2})[-]?(\d{2})[-]?(\d{2})$/",
-     *     message="This is not a valid telephone number."
+     *     message="Introduzca un teléfono válido."
      * )
      */
     private $telefono;
@@ -84,10 +90,11 @@ class Usuarios implements AdvancedUserInterface, \Serializable {
      * @var string
      *
      * @ORM\Column(name="fNacimiento", type="string", length=200)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
      * @Assert\Regex(
      *     pattern="/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/",
-     *     message="This is not a valid date."
+     *     message="Introduzca una fecha válida."
      * )
      */
     private $fNacimiento;
@@ -274,7 +281,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable {
     public function getTelefono() {
         return $this->telefono;
     }
-    
+
     /**
      * Set imagen
      *

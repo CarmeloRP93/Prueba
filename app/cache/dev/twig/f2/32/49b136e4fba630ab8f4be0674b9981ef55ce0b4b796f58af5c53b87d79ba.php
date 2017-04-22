@@ -67,7 +67,7 @@ class __TwigTemplate_f23249b136e4fba630ab8f4be0674b9981ef55ce0b4b796f58af5c53b87
                         <tr>
                             <th>";
             // line 20
-            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Fecha", "p.FechaPago");
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Fecha", "p.fechaPago");
             echo "</th>
                             <th>";
             // line 21
@@ -96,7 +96,7 @@ class __TwigTemplate_f23249b136e4fba630ab8f4be0674b9981ef55ce0b4b796f58af5c53b87
                 echo "\">
                                 <td>";
                 // line 30
-                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["pago"], "FechaPago", array()), "d/m/Y H:i"), "html", null, true);
+                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["pago"], "fechaPago", array()), "d/m/Y"), "html", null, true);
                 echo "</td>
                                 <td>";
                 // line 31

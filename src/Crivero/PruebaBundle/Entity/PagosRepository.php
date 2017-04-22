@@ -11,10 +11,14 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class PagosRepository extends EntityRepository {
-     public function getPagos($id){
+
+    public function getPagos($id) {
         return $this->getEntityManager()
-            ->createQuery('SELECT p FROM CriveroPruebaBundle:Pagos p WHERE p.idCliente = :id')
-            ->setParameter('id', $id)    
-            ->getResult();
+                        ->createQueryBuilder()->select('p')
+                        ->from('CriveroPruebaBundle:Pagos', 'p')
+                        ->where('p.idCliente=:id')
+                        ->setParameter('id', $id)
+                        ->getQuery();
     }
+
 }

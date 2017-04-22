@@ -76,7 +76,7 @@ class __TwigTemplate_c21506cdc8736fcc19f962a697f59721caf3d667fb762cf4183c4343f63
             echo "</th>
                             <th>";
             // line 22
-            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Horario", "r.fechaFinalizacion");
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Horario", "r.horario");
             echo "</th>
                             <th class=\"t3\">Acciones</th>
                         </tr>
@@ -136,11 +136,9 @@ class __TwigTemplate_c21506cdc8736fcc19f962a697f59721caf3d667fb762cf4183c4343f63
                 }
                 // line 40
                 echo "                                
-";
-                // line 42
-                echo "                                <td class=\"actions\">
+                                <td class=\"actions\">
                                     <a href=\"";
-                // line 43
+                // line 42
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_reserva_cancelar", array("id" => $this->getAttribute($context["reserva"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-danger\">
                                         Cancelar
@@ -152,16 +150,16 @@ class __TwigTemplate_c21506cdc8736fcc19f962a697f59721caf3d667fb762cf4183c4343f63
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['reserva'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 49
+            // line 48
             echo "                    </tbody>
                 </table>
             </div>
         ";
         }
-        // line 53
+        // line 52
         echo "        <div class=\"navigation\">
             ";
-        // line 54
+        // line 53
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
         </div>
@@ -181,6 +179,6 @@ class __TwigTemplate_c21506cdc8736fcc19f962a697f59721caf3d667fb762cf4183c4343f63
 
     public function getDebugInfo()
     {
-        return array (  165 => 54,  162 => 53,  156 => 49,  144 => 43,  141 => 42,  138 => 40,  132 => 38,  125 => 36,  121 => 35,  116 => 34,  114 => 33,  110 => 32,  106 => 31,  100 => 30,  94 => 29,  91 => 28,  87 => 27,  79 => 22,  75 => 21,  71 => 20,  67 => 19,  61 => 15,  57 => 13,  55 => 12,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  163 => 53,  160 => 52,  154 => 48,  142 => 42,  138 => 40,  132 => 38,  125 => 36,  121 => 35,  116 => 34,  114 => 33,  110 => 32,  106 => 31,  100 => 30,  94 => 29,  91 => 28,  87 => 27,  79 => 22,  75 => 21,  71 => 20,  67 => 19,  61 => 15,  57 => 13,  55 => 12,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
     }
 }

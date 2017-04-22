@@ -17,7 +17,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>{{ knp_pagination_sortable(pagination, 'Fecha', 'p.FechaPago') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Fecha', 'p.fechaPago') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'Tipo', 'p.tipoPago') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'Concepto', 'p.concepto') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'Cuantia', 'p.cuantia') }}</th>
@@ -27,7 +27,7 @@
 
                         {% for pago in pagination %}
                             <tr data-id="{{ pago.id }}">
-                                <td>{{pago.FechaPago|date('d/m/Y H:i')}}</td>
+                                <td>{{pago.fechaPago|date('d/m/Y')}}</td>
                                 <td>{{pago.tipoPago}}</td>
                                 <td>{{pago.concepto}}</td>
                                 <td>{{pago.cuantia}}€</td>

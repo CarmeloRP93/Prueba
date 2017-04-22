@@ -14,8 +14,10 @@ class UsuariosRepository extends EntityRepository {
 
     public function getClientes() {
         return $this->getEntityManager()
-                        ->createQuery('SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=2')
-                        ->getResult();
+                        ->createQueryBuilder()->select('u')
+                        ->from('CriveroPruebaBundle:Usuarios', 'u')
+                        ->where('u.tipo=2')
+                        ->getQuery();
     }
 
     public function searchClientes($searchQuery) {
@@ -28,8 +30,10 @@ class UsuariosRepository extends EntityRepository {
 
     public function getMonitores() {
         return $this->getEntityManager()
-                        ->createQuery('SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=3')
-                        ->getResult();
+                        ->createQueryBuilder()->select('u')
+                        ->from('CriveroPruebaBundle:Usuarios', 'u')
+                        ->where('u.tipo=3')
+                        ->getQuery();
     }
 
     public function searchMonitores($searchQuery) {

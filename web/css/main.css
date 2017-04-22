@@ -2546,6 +2546,10 @@ th {
     text-align: left;
 }
 
+th a {
+    color: #23527c;
+}
+
 .table {
     width: 100%;
     max-width: 100%;

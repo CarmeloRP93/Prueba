@@ -1,0 +1,5 @@
+# src/Crivero/PruebaBundle/Resources/config/validation.yml
+#Crivero\PruebaBundle\Entity\Usuarios:
+#    properties:
+#        nombre:
+#            - NotBlank: { message: "Rellene el campo, gracias" }
