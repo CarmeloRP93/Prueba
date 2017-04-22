@@ -158,6 +158,16 @@ crivero_prueba_partido_crear:
     requirements:
         _method:  POST|GET
         
+crivero_prueba_editarPartido:
+    pattern:  /editarPartido/{id}
+    defaults: { _controller: CriveroPruebaBundle:Partido:editarPartido }
+    
+crivero_prueba_partido_editar:
+    pattern:  /partido/editar/{id}
+    defaults: { _controller: CriveroPruebaBundle:Partido:editar }
+    requirements:
+        _method: POST|PUT|GET
+        
 crivero_prueba_competiciones:
     pattern:  /competiciones
     defaults: { _controller: CriveroPruebaBundle:Competicion:competiciones }

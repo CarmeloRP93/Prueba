@@ -22,7 +22,12 @@ class CompeticionesType extends AbstractType
                                                                        "Torneo"=>'Torneo')))
             ->add('fechainicio','date', array('widget' => "single_text"))
             ->add('fechafinalizacion','date', array('widget' => "single_text"))
-            ->add('estadocompeticion','text')
+            ->add('estadocompeticion','choice',array('choices' => array("Validado"=>'Validado',
+                                                                "Jugandose"=>'Jugandose',
+                                                                "Pendiente"=>'Pendiente',
+                                                                "Rechazado"=>'Rechazado',
+                                                                "Cancelado"=>'Cancelado',
+                                                                "Finalizado"=>'Finalizado')))
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;
     }

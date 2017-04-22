@@ -9,10 +9,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CompeticionController extends Controller { 
     
-    public function competicionesAction() {
+    public function competicionesAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
         $competiciones=$repository->findAll();
-        return $this->render('CriveroPruebaBundle:Competiciones:competiciones.html.twig',array("competiciones"=>$competiciones));
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $competiciones, $request->query->getInt('page', 1), 5);
+        return $this->render('CriveroPruebaBundle:Competiciones:competiciones.html.twig',array("competiciones"=>$pagination));
     }
     
     public function competicionAction($id) {

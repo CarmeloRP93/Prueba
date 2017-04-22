@@ -56,7 +56,7 @@ class __TwigTemplate_dfc0a1e606d5ebf67545ac73c010f567647f56f2e24e29da59aac83a781
                         <th>Equipo Local</th>
                         <th>Equipo Visitante</th>
                         <th>Lugar del partido</th>
-                        <th>Fecha de inicio</th>
+                        <th>Fecha inicio</th>
                         <th>Resultados</th>
                         <th>Estados de los partidos</th>
                         <th>Acciones</th>
@@ -105,9 +105,13 @@ class __TwigTemplate_dfc0a1e606d5ebf67545ac73c010f567647f56f2e24e29da59aac83a781
             echo "\" class=\"btn btn-sm btn-info\">
                                     Ver
                                 </a>
-                                ";
-            // line 42
-            echo "                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
+                                <a href=\"";
+            // line 39
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_editarPartido", array("id" => $this->getAttribute($context["partido"], "id", array()))), "html", null, true);
+            echo "\" class=\"btn btn-sm btn-primary\">
+                                    Editar
+                                </a>
+                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
                                     Eliminar
                                 </a>
                             </td>
@@ -139,6 +143,6 @@ class __TwigTemplate_dfc0a1e606d5ebf67545ac73c010f567647f56f2e24e29da59aac83a781
 
     public function getDebugInfo()
     {
-        return array (  126 => 56,  121 => 48,  110 => 42,  104 => 36,  99 => 34,  95 => 33,  91 => 32,  87 => 31,  83 => 30,  79 => 29,  75 => 28,  72 => 27,  68 => 26,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  130 => 56,  125 => 48,  110 => 39,  104 => 36,  99 => 34,  95 => 33,  91 => 32,  87 => 31,  83 => 30,  79 => 29,  75 => 28,  72 => 27,  68 => 26,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

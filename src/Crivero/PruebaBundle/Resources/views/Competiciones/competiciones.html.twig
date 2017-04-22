@@ -12,10 +12,10 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Deporte</th>
-                        <th>Estado Competicion</th>
-                        <th>Tipo competicion</th>
+                        <th>{{ knp_pagination_sortable(competiciones, 'Nombre', 'competiciones.nombre') }}</th>
+                        <th>{{ knp_pagination_sortable(competiciones, 'Deporte', 'competiciones.deporte') }}</th>
+                        <th>{{ knp_pagination_sortable(competiciones, 'Estado de la competicion', 'competiciones.estadoCompeticion') }}</th>
+                        <th>{{ knp_pagination_sortable(competiciones, 'Tipo Competicion', 'competiciones.tipoCompeticion') }}</th>
                         <th>Fecha inicio</th>
                         <th>Fecha finalización</th>
                         <th>Acciones</th>
@@ -55,5 +55,8 @@
                 Nueva Competicion 
              <span class="glyphicon glyphicon-plus"></span></a>
         </div>#}
+        <div class="navigation">
+            {{ knp_pagination_render(competiciones) }}
+        </div>
     </div>
 {% endblock %}

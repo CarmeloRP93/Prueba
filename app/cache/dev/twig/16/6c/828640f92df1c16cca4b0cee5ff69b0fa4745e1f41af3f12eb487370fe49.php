@@ -54,8 +54,14 @@ class __TwigTemplate_166c828640f92df1c16cca4b0cee5ff69b0fa4745e1f41af3f12eb48737
                 <thead>
                     <tr>
                         <th>Equipo</th>
-                        <th>Nombre</th>
-                        <th>Dorsal</th>
+                         <th>";
+        // line 17
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre del jugador", "pagination.nombre");
+        echo "</th>
+                         <th>";
+        // line 18
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Dorsal", "pagination.dorsal");
+        echo "</th>
                         <th>Incidencias</th>
                         <th>Acciones</th>
                     </tr>
@@ -64,7 +70,7 @@ class __TwigTemplate_166c828640f92df1c16cca4b0cee5ff69b0fa4745e1f41af3f12eb48737
                     ";
         // line 24
         $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["jugadores"]) ? $context["jugadores"] : $this->getContext($context, "jugadores")));
+        $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         foreach ($context['_seq'] as $context["_key"] => $context["jugador"]) {
             // line 25
             echo "                        <tr>
@@ -85,9 +91,9 @@ class __TwigTemplate_166c828640f92df1c16cca4b0cee5ff69b0fa4745e1f41af3f12eb48737
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
             // line 29
-            echo "                            <td><p>";
+            echo "                            <td>";
             echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "nombre", array()), "html", null, true);
-            echo "</p></td>
+            echo "</td>
                             <td>";
             // line 30
             echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "dorsal", array()), "html", null, true);
@@ -119,6 +125,12 @@ class __TwigTemplate_166c828640f92df1c16cca4b0cee5ff69b0fa4745e1f41af3f12eb48737
         echo "                </tbody>
             </table>
         </div>
+        <div class=\"navigation\">
+            ";
+        // line 49
+        echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
+        echo "
+        </div>
     </div>
 ";
     }
@@ -135,6 +147,6 @@ class __TwigTemplate_166c828640f92df1c16cca4b0cee5ff69b0fa4745e1f41af3f12eb48737
 
     public function getDebugInfo()
     {
-        return array (  119 => 45,  108 => 39,  102 => 33,  97 => 31,  93 => 30,  88 => 29,  78 => 27,  73 => 26,  70 => 25,  66 => 24,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  131 => 49,  125 => 45,  114 => 39,  108 => 33,  103 => 31,  99 => 30,  94 => 29,  84 => 27,  79 => 26,  76 => 25,  72 => 24,  63 => 18,  59 => 17,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

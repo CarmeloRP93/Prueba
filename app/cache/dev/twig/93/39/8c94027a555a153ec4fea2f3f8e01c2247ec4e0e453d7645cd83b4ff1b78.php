@@ -52,10 +52,22 @@ class __TwigTemplate_93398c94027a555a153ec4fea2f3f8e01c2247ec4e0e453d7645cd83b4f
             <table class=\"table table-hover\">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Deporte</th>
-                        <th>Estado Competicion</th>
-                        <th>Tipo competicion</th>
+                        <th>";
+        // line 15
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["competiciones"]) ? $context["competiciones"] : $this->getContext($context, "competiciones")), "Nombre", "competiciones.nombre");
+        echo "</th>
+                        <th>";
+        // line 16
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["competiciones"]) ? $context["competiciones"] : $this->getContext($context, "competiciones")), "Deporte", "competiciones.deporte");
+        echo "</th>
+                        <th>";
+        // line 17
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["competiciones"]) ? $context["competiciones"] : $this->getContext($context, "competiciones")), "Estado de la competicion", "competiciones.estadoCompeticion");
+        echo "</th>
+                        <th>";
+        // line 18
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["competiciones"]) ? $context["competiciones"] : $this->getContext($context, "competiciones")), "Tipo Competicion", "competiciones.tipoCompeticion");
+        echo "</th>
                         <th>Fecha inicio</th>
                         <th>Fecha finalización</th>
                         <th>Acciones</th>
@@ -132,7 +144,13 @@ class __TwigTemplate_93398c94027a555a153ec4fea2f3f8e01c2247ec4e0e453d7645cd83b4f
         </div>
         ";
         // line 58
-        echo "    </div>
+        echo "        <div class=\"navigation\">
+            ";
+        // line 59
+        echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["competiciones"]) ? $context["competiciones"] : $this->getContext($context, "competiciones")));
+        echo "
+        </div>
+    </div>
 ";
     }
 
@@ -148,6 +166,6 @@ class __TwigTemplate_93398c94027a555a153ec4fea2f3f8e01c2247ec4e0e453d7645cd83b4f
 
     public function getDebugInfo()
     {
-        return array (  135 => 58,  130 => 50,  115 => 41,  109 => 38,  106 => 37,  102 => 35,  96 => 33,  94 => 32,  90 => 31,  86 => 30,  82 => 29,  78 => 28,  74 => 27,  71 => 26,  67 => 25,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  150 => 59,  147 => 58,  142 => 50,  127 => 41,  121 => 38,  118 => 37,  114 => 35,  108 => 33,  106 => 32,  102 => 31,  98 => 30,  94 => 29,  90 => 28,  86 => 27,  83 => 26,  79 => 25,  69 => 18,  65 => 17,  61 => 16,  57 => 15,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

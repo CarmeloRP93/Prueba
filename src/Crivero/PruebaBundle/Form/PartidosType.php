@@ -15,14 +15,17 @@ class PartidosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('idCompeticion')
             ->add('idEquipoLocal')
             ->add('idEquipoVisitante')
             ->add('idCancha')
-            ->add('fechaInicio')
-            ->add('resultado')
-            ->add('idCompeticion')
-            ->add('estadoPartido')
-            ->add('arbitro')
+            ->add('fechaInicio','date', array('widget' => "single_text"))
+            ->add('resultado','text')
+            ->add('estadoPartido','choice',array('choices' => array("Pendiente"=>'Pendiente',
+                                                                    "Jugandose"=>'Jugandose',
+                                                                    "Cancelado"=>'Cancelado',
+                                                                    "Finalizado"=>'Finalizado')))
+            ->add('arbitro','text')
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;
     }
