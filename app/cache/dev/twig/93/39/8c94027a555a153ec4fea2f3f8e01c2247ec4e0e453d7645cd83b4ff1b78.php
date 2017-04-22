@@ -110,9 +110,13 @@ class __TwigTemplate_93398c94027a555a153ec4fea2f3f8e01c2247ec4e0e453d7645cd83b4f
             echo "\" class=\"btn btn-sm btn-info\">
                                     Ver
                                 </a>
-                                ";
-            // line 44
-            echo "                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
+                                <a href=\"";
+            // line 41
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_editarCompeticion", array("id" => $this->getAttribute($context["competicion"], "id", array()))), "html", null, true);
+            echo "\" class=\"btn btn-sm btn-primary\">
+                                    Editar
+                                </a>
+                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
                                     Eliminar
                                 </a>
                             </td>
@@ -144,6 +148,6 @@ class __TwigTemplate_93398c94027a555a153ec4fea2f3f8e01c2247ec4e0e453d7645cd83b4f
 
     public function getDebugInfo()
     {
-        return array (  131 => 58,  126 => 50,  115 => 44,  109 => 38,  106 => 37,  102 => 35,  96 => 33,  94 => 32,  90 => 31,  86 => 30,  82 => 29,  78 => 28,  74 => 27,  71 => 26,  67 => 25,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  135 => 58,  130 => 50,  115 => 41,  109 => 38,  106 => 37,  102 => 35,  96 => 33,  94 => 32,  90 => 31,  86 => 30,  82 => 29,  78 => 28,  74 => 27,  71 => 26,  67 => 25,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

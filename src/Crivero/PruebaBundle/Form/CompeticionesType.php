@@ -21,6 +21,8 @@ class CompeticionesType extends AbstractType
             ->add('tipocompeticion','choice', array('choices' => array("Liga"=>'Liga',
                                                                        "Torneo"=>'Torneo')))
             ->add('fechainicio','date', array('widget' => "single_text"))
+            ->add('fechafinalizacion','date', array('widget' => "single_text"))
+            ->add('estadocompeticion','text')
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;
     }

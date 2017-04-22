@@ -78,11 +78,47 @@ class CompeticionController extends Controller {
         return $this->render('CriveroPruebaBundle:Competiciones:nuevaCompeticion.html.twig', array('form' => $form->createView()));
     }
     
+    public function editarCompeticionAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $competicion = $em->getRepository('CriveroPruebaBundle:Competiciones')->find($id);
+
+        if (!$competicion) {
+            throw $this->createNotFoundException("No encontrado");
+        }
+        $form = $this->createEditForm($competicion);
+        return $this->render('CriveroPruebaBundle:Competiciones:editarCompeticion.html.twig', array('competicion' => $competicion, 'form' => $form->createView()));
+    }
+
+    public function editarAction($id, Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $competicion = $em->getRepository('CriveroPruebaBundle:Competiciones')->find($id);
+        if (!$competicion) {
+            throw $this->createNotFoundException("No encontrado");
+        }
+        $form = $this->createEditForm($competicion);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($competicion);
+            $em->flush();
+            return $this->redirect($this->generateUrl('crivero_prueba_competiciones'));
+        }
+        return $this->render('CriveroPruebaBundle:Competiciones:editarCompeticion.html.twig', array('form' => $form->createView()));
+    }
+    
     private function findEntity($id, $em, $repository) {
         $entity = $em->getRepository($repository)->find($id);
         if (!$entity) {
             throw $this->createNotFoundException('Entidad no encontrada');
         }
         return $entity;
+    }
+    
+    private function createEditForm(Competiciones $entity) {
+        $form = $this->createForm(new CompeticionesType(), $entity, array(
+            'action' => $this->generateUrl('crivero_prueba_competicion_editar', array('id' => $entity->getId())),
+            'method' => 'PUT'
+        ));
+        return $form;
     }
 }

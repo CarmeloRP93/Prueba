@@ -1,0 +1,52 @@
+{% extends 'CriveroPruebaBundle::main.html.twig'  %}
+
+{% block title %} Editar Competicion {% endblock %}
+
+{% block contenido %}
+    <div class="container">
+        <h1 class="t1">Editar Competicion</h1>
+        {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+
+        <div class="form-group">
+            {{ form_label(form.nombre) }}
+            {{ form_widget(form.nombre, {'attr' : {'class' : 'form-control'}  } ) }}
+            <span class="text-danger">{{ form_errors(form.nombre) }}</span>
+        </div>
+        
+        <div class="form-group">
+            {{ form_label(form.deporte) }}
+            {{ form_widget(form.deporte, { 'attr' : {'class' : 'form-control'} }) }}
+            <span class="text-danger">{{ form_errors(form.deporte) }}</span>
+        </div>
+        
+        <div class="form-group">
+            <label>Tipo Competicion:</label>
+            {{ form_widget(form.tipocompeticion, { 'attr' : {'class' : 'form-control'} }) }}
+            <span class="text-danger">{{ form_errors(form.tipocompeticion) }}</span>
+        </div>
+        
+        <div class="form-group">
+            <label>Estado</label><br>
+            {{ form_widget(form.estadocompeticion, { 'attr' : {'class' : 'form-control'} }) }}
+            <span class="text-danger">{{ form_errors(form.estadocompeticion) }}</span>
+        </div>
+        
+        <div class="form-group">
+            <label>Fecha Inicio:</label><br>
+            {{ form_widget(form.fechainicio, { 'attr' : {'class' : 'form-control'} }) }}
+            <span class="text-danger">{{ form_errors(form.fechainicio) }}</span>
+        </div>
+        
+        <div class="form-group">
+            <label>Fecha Finalización:</label><br>
+            {{ form_widget(form.fechafinalizacion, { 'attr' : {'class' : 'form-control'} }) }}
+            <span class="text-danger">{{ form_errors(form.fechafinalizacion) }}</span>
+        </div>
+        
+        <p>
+            {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
+        </p>                
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

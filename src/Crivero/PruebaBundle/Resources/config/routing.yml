@@ -147,11 +147,21 @@ crivero_prueba_partidos:
 crivero_prueba_partido:
     pattern:  /partido/{id}
     defaults: { _controller: CriveroPruebaBundle:Partido:partido }
-
+    
+crivero_prueba_partido_nuevo:
+    pattern:  /nuevoPartido
+    defaults: { _controller: CriveroPruebaBundle:Partido:nuevo }
+    
+crivero_prueba_partido_crear:
+    pattern:  /crearPartido
+    defaults: { _controller: CriveroPruebaBundle:Partido:crear }
+    requirements:
+        _method:  POST|GET
+        
 crivero_prueba_competiciones:
     pattern:  /competiciones
     defaults: { _controller: CriveroPruebaBundle:Competicion:competiciones }
-
+    
 crivero_prueba_competicion:
     pattern:  /competicion/{id}
     defaults: { _controller: CriveroPruebaBundle:Competicion:competicion }
@@ -183,7 +193,17 @@ crivero_prueba_competicion_crear:
     defaults: { _controller: CriveroPruebaBundle:Competicion:crear }
     requirements:
         _method:  POST|GET
+
+crivero_prueba_editarCompeticion:
+    pattern:  /editarCompeticion/{id}
+    defaults: { _controller: CriveroPruebaBundle:Competicion:editarCompeticion }
     
+crivero_prueba_competicion_editar:
+    pattern:  /competicion/editar/{id}
+    defaults: { _controller: CriveroPruebaBundle:Competicion:editar }
+    requirements:
+        _method: POST|PUT|GET
+        
 crivero_prueba_equipos:
     pattern:  /equipos
     defaults: { _controller: CriveroPruebaBundle:Equipo:equipos }

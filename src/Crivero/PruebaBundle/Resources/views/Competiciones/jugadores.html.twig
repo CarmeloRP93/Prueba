@@ -14,19 +14,19 @@
                 <thead>
                     <tr>
                         <th>Equipo</th>
-                        <th>Nombre</th>
-                        <th>Dorsal</th>
+                         <th>{{ knp_pagination_sortable(pagination, 'Nombre de la sesión', 'pagination.nombre') }}</th>
+                         <th>{{ knp_pagination_sortable(pagination, 'Nombre de la sesión', 'pagination.dorsal') }}</th>
                         <th>Incidencias</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for jugador in jugadores %}
+                    {% for jugador in pagination %}
                         <tr>
                             {% for equipo in equipos if equipo.id == jugador.idEquipo%}
                                 <td>{{equipo.nombre}}</td>
                             {%endfor%}
-                            <td><p>{{jugador.nombre}}</p></td>
+                            <td>{{jugador.nombre}}</td>
                             <td>{{jugador.dorsal}}</td>
                             <td>{{jugador.incidencia}}</td>
                             <td class="actions">
@@ -44,6 +44,9 @@
                     {% endfor %}
                 </tbody>
             </table>
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
         </div>
     </div>
 {% endblock %}
