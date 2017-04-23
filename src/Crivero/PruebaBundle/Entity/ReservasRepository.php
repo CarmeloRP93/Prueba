@@ -22,10 +22,12 @@ class ReservasRepository extends EntityRepository {
 
     public function getReservasCliente($id) {
         return $this->getEntityManager()
-                        ->createQuery("SELECT r FROM CriveroPruebaBundle:Reservas r WHERE r.estadoReserva='Reservado' AND "
-                                . "r.idCliente = :id")
+                        ->createQueryBuilder()->select('r')
+                        ->from('CriveroPruebaBundle:Reservas', 'r')
+                        ->where("r.estadoReserva = 'Reservado'")
+                        ->andWhere("r.idCliente = :id")
                         ->setParameter('id', $id)
-                        ->getResult();
+                        ->getQuery();
     }
 
     public function searchReservas($searchQuery) {

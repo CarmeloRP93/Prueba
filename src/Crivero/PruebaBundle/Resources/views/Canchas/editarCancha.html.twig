@@ -4,12 +4,12 @@
 
 {% block contenido %}
 
-    <div class="container">
+    <div class="container"><br>
 
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">
-                    <h3>Editar Cancha</h3>
+                    <h2 class="t3">Editar Cancha</h2>
                 </div>
                 {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
                 <div class="panel-body">
@@ -39,24 +39,6 @@
                                     <span class="text-danger">{{ form_errors(form.disponibilidad) }}</span>
                                 </div>
                             </div>
-
-                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    {{ form_label(form.horario) }}
-                                    {{ form_widget(form.horario, {'attr': {'class': 'form-control', 'placeholder' : '00:00-23:59'}}) }}
-                                    <span class="text-danger">{{ form_errors(form.horario) }}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    {{ form_label(form.direccion) }}
-                                    {{ form_widget(form.direccion, {'attr': {'class': 'form-control', 'placeholder' : 'dirección cancha'}}) }}
-                                    <span class="text-danger">{{ form_errors(form.direccion) }}</span>
-                                </div>
-                            </div>
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <div class="form-group">
                                     {{ form_label(form.dimensiones) }}
@@ -65,11 +47,19 @@
                                 </div>
                             </div>
                         </div>
+                       
+                        <div class="form-group">
+                            {{ form_label(form.direccion) }}
+                            {{ form_widget(form.direccion, {'attr': {'class': 'form-control', 'placeholder' : 'dirección cancha'}}) }}
+                            <span class="text-danger">{{ form_errors(form.direccion) }}</span>
+                        </div>
+                           
                         <div class="form-group">
                             {{ form_label(form.imagen) }}
                             {{ form_widget(form.imagen) }}
                             <span class="text-danger">{{ form_errors(form.imagen) }}</span>
                         </div>
+                    </div>
 
                     </form>
                     <div class="text-center">

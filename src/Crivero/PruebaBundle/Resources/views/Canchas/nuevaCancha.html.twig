@@ -4,12 +4,12 @@
 
 {% block contenido %}
 
-    <div class="container">
+    <div class="container"><br>
 
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">
-                    <h3 class="t3">Nueva Cancha</h3>
+                    <h2 class="t3">Nueva Cancha</h2>
                 </div>
                 {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
                 <div class="panel-body">
@@ -41,29 +41,18 @@
                             </div>
 
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    {{ form_label(form.horario) }}
-                                    {{ form_widget(form.horario, {'attr': {'class': 'form-control', 'placeholder' : '00:00-23:59'}}) }}
-                                    <span class="text-danger">{{ form_errors(form.horario) }}</span>
+                                 <div class="form-group">
+                                    {{ form_label(form.dimensiones) }}
+                                    {{ form_widget(form.dimensiones, {'attr': {'class': 'form-control', 'placeholder' : 'Tamaño cancha'}}) }}
+                                    <span class="text-danger">{{ form_errors(form.dimensiones) }}</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    {{ form_label(form.direccion) }}
-                                    {{ form_widget(form.direccion, {'attr': {'class': 'form-control', 'placeholder' : 'dirección cancha'}}) }}
-                                    <span class="text-danger">{{ form_errors(form.direccion) }}</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    {{ form_label(form.dimensiones) }}
-                                    {{ form_widget(form.dimensiones, {'attr': {'class': 'form-control', 'placeholder' : 'Inserta una cifra'}}) }}
-                                    <span class="text-danger">{{ form_errors(form.dimensiones) }}</span>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            {{ form_label(form.direccion) }}
+                            {{ form_widget(form.direccion, {'attr': {'class': 'form-control', 'placeholder' : 'Localización de la cancha'}}) }}
+                            <span class="text-danger">{{ form_errors(form.direccion) }}</span>
                         </div>
 
                         <div class="form-group">
@@ -72,9 +61,12 @@
                             <span class="text-danger">{{ form_errors(form.imagen) }}</span>
                         </div>
 
-                    </form>
+                    </form><br>
                     <div class="text-center">
                         {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
+                        <form class="alinear" action="{{ path("crivero_prueba_canchas") }}">
+                            <button type="submit" class="btn btn-danger" >Cancelar</button>
+                        </form>
                     </div>
                     {{ form_end(form) }}
                 </div>

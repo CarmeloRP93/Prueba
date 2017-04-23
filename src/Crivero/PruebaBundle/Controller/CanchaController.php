@@ -51,9 +51,10 @@ class CanchaController extends Controller {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($form->get('imagen')->getData() == null) {
-                $form->get('imagen')->addError(new FormError('Seleccione una imagen, gracias'));
+            if (empty($form->get('imagen')->getData())) {
+                $form->get('imagen')->addError(new FormError('Seleccione una imagen.'));
             } else {
+                $cancha->setHorario('09:00 - 22:00');
                 $cancha->setValoracion(0);
                 $file = $form->get('imagen')->getData();
                 $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());

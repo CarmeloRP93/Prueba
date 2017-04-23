@@ -31,7 +31,7 @@ class UsuarioController extends Controller {
 
     public function clienteAction($id) {
         $repositoryReservas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas");
-        $reservasCliente = $repositoryReservas->getReservasCliente($id);
+        $reservasCliente = $repositoryReservas->getReservasCliente($id)->getResult();
 
         $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $cliente = $repositoryUsuarios->find($id);
@@ -99,7 +99,7 @@ class UsuarioController extends Controller {
                 $tipo = $form->get('tipo')->getData();
                 return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitores')) : $this->redirect($this->generateUrl('crivero_prueba_clientes'));
             } else {
-                $form->get('password')->addError(new FormError('Rellene el campo, gracias'));
+                $form->get('password')->addError(new FormError('Rellene el campo.'));
             }
         }
         return $this->render('CriveroPruebaBundle:Usuarios:nuevo.html.twig', array('form' => $form->createView()));

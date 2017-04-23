@@ -21,7 +21,6 @@ class AulasType extends AbstractType {
     {
         $builder
             ->add('nombre', 'text')
-            ->add('horario', 'text')
             ->add('disponibilidad', 'choice', array('choices' => array("Disponible" => 'Disponible', 
                                                                        "No disponible" => 'No disponible')))
             ->add('imagen', 'file', array('data_class' => null))

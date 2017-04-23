@@ -74,7 +74,9 @@
                     </form><br>
                     <div class="text-center">
                         {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
-                        <a href="{{ path('crivero_prueba_clientes') }}" class="btn btn-danger">Cancelar</a>
+                          <form class="alinear" action="{{ path("crivero_prueba_clientes") }}">
+                            <button type="submit" class="btn btn-danger" >Cancelar</button>
+                        </form>
                     </div>
                     {{ form_end(form) }}
                 </div>

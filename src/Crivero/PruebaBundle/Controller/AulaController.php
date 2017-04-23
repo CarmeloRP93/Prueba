@@ -67,8 +67,9 @@ class AulaController extends Controller {
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->get('imagen')->getData() == null) {
-                $form->get('imagen')->addError(new FormError('Seleccione una imagen, gracias'));
+                $form->get('imagen')->addError(new FormError('Seleccione una imagen.'));
             } else {
+                $aula->setHorario('09:00 - 22:00');
                 $file = $form->get('imagen')->getData();
                 $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
                 $aula->setImagen($file->getClientOriginalName());
@@ -186,7 +187,7 @@ class AulaController extends Controller {
         for ($i = 1; $i <= 31; $i++) {
             $horario = new HorariosAulas();
             $horario->setPeriodo("09:00-10:00&10:00-11:00&11:00-12:00&"
-                    . "12:00-13:00&16:00-17:00&17:00-18:00&18:00-19:00&19:00-20:00&20:00-21:00&");
+                    . "12:00-13:00&16:00-17:00&17:00-18:00&18:00-19:00&19:00-20:00&20:00-21:00&21:00-22:00&");
             $horario->setAula($aulaId);
             $horario->setFechaInicio($i);
             $em->persist($horario);

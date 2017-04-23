@@ -29,7 +29,8 @@ class Aulas
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *         message="Rellene el campo.")
      */
     private $nombre;
 
@@ -37,11 +38,6 @@ class Aulas
      * @var string
      *
      * @ORM\Column(name="horario", type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Regex(
-     *     pattern="/^(\d{2}:\d{2}) - (\d{2}:\d{2})$/",
-     *     message="Should be a time interval"
-     * )
      */
     private $horario;
 

@@ -22,10 +22,9 @@ class CanchasType extends AbstractType
                                                                 "Padel" => 'Padel')))
             ->add('disponibilidad', 'choice', array('choices' => array("Disponible" => 'Disponible', 
                                                                        "No disponible" => 'No disponible')))
-            ->add('horario')
 //            ->add('valoracion')
-            ->add('direccion', 'text')
-            ->add('dimensiones', 'integer', array('label' => 'dimensiones(m²)'))
+            ->add('direccion', 'text', array('label' => 'Dirección'))
+            ->add('dimensiones', 'integer', array('label' => 'Dimensiones(m²)'))
             ->add('imagen', 'file',  array('data_class' => null))
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;

@@ -60,9 +60,9 @@ class ReservaController extends Controller {
         $form = $this->createCancelForm($reserva);
         $form->handleRequest($request);
 
+        $referer = $form->get('cliente')->getData();
         if ($form->isSubmitted() && $form->isValid()) {
             $motivos = $form->get('motivos')->getData();
-
             if ($motivos != null) {
                 $reserva->setEstadoReserva("Cancelada");
                 $reserva->setCliente($orig);
@@ -70,15 +70,15 @@ class ReservaController extends Controller {
                 $em->persist($reserva);
                 $em->flush();
                 $request->getSession()->getFlashBag()->add('mensaje', 'La reserva se canceló correctamente');
-                $referer = $form->get('cliente')->getData();
                 return (strpos($referer, 'cliente') === false) ? $this->redirect($this->generateUrl('crivero_prueba_reservas')):
                                                     $this->redirect($this->generateUrl('crivero_prueba_reservas_cliente',
-                                                                                array('id' => $reserva->getIdCliente())));
+                                                                                 array('id' => $reserva->getIdCliente())));
             } else {
-                $form->get('motivos')->addError(new FormError('Rellene el campo gracias'));
+                $form->get('motivos')->addError(new FormError('Rellene el campo.'));
             }
         }
-        return $this->render('CriveroPruebaBundle:Reservas:cancelarReserva.html.twig', array('form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Reservas:cancelarReserva.html.twig', array('form' => $form->createView(),
+                                                                                             'ref' => $referer));
     }
 
     private function findEntity($id, $em, $repository) {

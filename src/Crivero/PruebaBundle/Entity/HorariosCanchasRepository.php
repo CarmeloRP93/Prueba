@@ -27,12 +27,20 @@ class HorariosCanchasRepository extends EntityRepository {
                         ->setParameter('dia', $dia)
                         ->getResult();
     }
-    
+
     public function removeHorariosCancha($cancha) {
         $this->getEntityManager()
                 ->createQuery('DELETE FROM CriveroPruebaBundle:HorariosCanchas h WHERE h.cancha = :canchaId')
                 ->setParameter('canchaId', $cancha)
                 ->execute();
     }
+
+//    public function createEvent() {
+//        $qb= "CREATE DEFINER=`root`@`localhost` EVENT `rst` ON SCHEDULE EVERY 24 HOUR STARTS '2017-04-19 22:00:00' ON
+//              COMPLETION NOT PRESERVE ENABLE DO update horariosAulas set periodo='09:00-10:00&10:00-11:00&11:00-12:00&12:00-13:00&16:00-17:00&17:00-18:00&18:00-19:00&19:00-20:00&20:00-21:00&'
+//              where fechaInicio = day(now())";
+//        $st = $this->getEntityManager()->getConnection()->prepare($qb);
+//        $st->execute();
+//    }
 
 }

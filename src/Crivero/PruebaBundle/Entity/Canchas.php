@@ -29,18 +29,14 @@ class Canchas {
      * @var string
      *
      * @ORM\Column(name="tipo", type="string", length=200, nullable=false)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
      */
     private $tipo;
 
     /**
      * @var string
      * @ORM\Column(name="horario", type="string", length=200, nullable=false)
-     * @Assert\NotBlank()
-     * @Assert\Regex(
-     *     pattern="/^(\d{2}:\d{2})-(\d{2}:\d{2})$/",
-     *     message="Should be a time interval"
-     * )
      */
     private $horario;
 
@@ -76,7 +72,8 @@ class Canchas {
      * @var string
      *
      * @ORM\Column(name="direccion", type="string", length=200, nullable=false)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
      */
     private $direccion;
 
@@ -84,7 +81,8 @@ class Canchas {
      * @var string
      *
      * @ORM\Column(name="dimensiones", type="string", length=200, nullable=false)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
      */
     private $dimensiones;
 

@@ -67,7 +67,7 @@ class __TwigTemplate_54a7b5ec9c2531dbe462f7bcd3081f97825836640b6797de18cd58127a6
         echo "</th>
                         <th>";
         // line 17
-        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Cliente/s", "s.monitor");
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Cliente", "s.monitor");
         echo "</th>
                         <th>";
         // line 18
@@ -94,7 +94,7 @@ class __TwigTemplate_54a7b5ec9c2531dbe462f7bcd3081f97825836640b6797de18cd58127a6
             echo "</strong></td>
                             <td>";
             // line 27
-            echo twig_escape_filter($this->env, ((($this->getAttribute($context["sesion"], "cliente", array()) == "normal")) ? ("Múltiples") : ($this->getAttribute($context["sesion"], "cliente", array()))), "html", null, true);
+            echo twig_escape_filter($this->env, ((($this->getAttribute($context["sesion"], "cliente", array()) == "normal")) ? ("Varios") : ($this->getAttribute($context["sesion"], "cliente", array()))), "html", null, true);
             echo "</td>
                             <td>";
             // line 28
