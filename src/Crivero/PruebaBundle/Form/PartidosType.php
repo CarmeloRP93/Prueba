@@ -12,13 +12,29 @@ class PartidosType extends AbstractType
      * @param FormBuilderInterface $builder
      * @param array $options
      */
+    private $equipos;
+    private $canchas;
+    public function __construct(array $equipos, array $canchas) {
+        $this->equipos = $equipos;
+        $this->canchas = $canchas;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $resEquipos = array();
+        for($i=0; $i < count($this->equipos); $i++){
+            $resEquipos[$i]= array($this->equipos[$i]->getId() => $this->equipos[$i]->getNombre());
+        }
+        $resCanchas = array();
+        for($i=0; $i < count($this->canchas); $i++){
+            $resCanchas[$i]= array($this->canchas[$i]->getId() => $this->canchas[$i]->getTipo());
+        }
+
         $builder
             ->add('idCompeticion')
-            ->add('idEquipoLocal')
-            ->add('idEquipoVisitante')
-            ->add('idCancha')
+            ->add('idEquipoLocal','choice', array('choices' => $resEquipos))
+            ->add('idEquipoVisitante','choice', array('choices' => $resEquipos))
+            ->add('idCancha','choice', array('choices' => $resCanchas))
             ->add('fechaInicio','date', array('widget' => "single_text"))
             ->add('resultado','text')
             ->add('estadoPartido','choice',array('choices' => array("Pendiente"=>'Pendiente',

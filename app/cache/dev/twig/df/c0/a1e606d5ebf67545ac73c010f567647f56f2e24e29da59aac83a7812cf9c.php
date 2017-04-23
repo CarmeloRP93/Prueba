@@ -52,13 +52,31 @@ class __TwigTemplate_dfc0a1e606d5ebf67545ac73c010f567647f56f2e24e29da59aac83a781
             <table class=\"table table-hover\">
                 <thead>
                     <tr>
-                        <th>Nombre Competición</th>
-                        <th>Equipo Local</th>
-                        <th>Equipo Visitante</th>
-                        <th>Lugar del partido</th>
-                        <th>Fecha inicio</th>
-                        <th>Resultados</th>
-                        <th>Estados de los partidos</th>
+                        <th>";
+        // line 15
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Competición", "partidos.idCompeticion");
+        echo "</th>
+                        <th>";
+        // line 16
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Equipo Locar", "partidos.idEquipoLocal");
+        echo "</th>
+                        <th>";
+        // line 17
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Equipo Visitante", "partidos.idEquipoVisitante");
+        echo "</th>
+                        <th>";
+        // line 18
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Lugar del partido", "partidos.idCancha");
+        echo "</th>
+                        <th>Fecha Inicio</th>
+                        <th>";
+        // line 20
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Resultado", "partidos.resultado");
+        echo "</th>
+                        <th>";
+        // line 21
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Estado de los partidos", "partidos.estadoPartido");
+        echo "</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -127,7 +145,13 @@ class __TwigTemplate_dfc0a1e606d5ebf67545ac73c010f567647f56f2e24e29da59aac83a781
         </div>
         ";
         // line 56
-        echo "    </div>
+        echo "        <div class=\"navigation\">
+            ";
+        // line 57
+        echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")));
+        echo "
+        </div>
+    </div>
 ";
     }
 
@@ -143,6 +167,6 @@ class __TwigTemplate_dfc0a1e606d5ebf67545ac73c010f567647f56f2e24e29da59aac83a781
 
     public function getDebugInfo()
     {
-        return array (  130 => 56,  125 => 48,  110 => 39,  104 => 36,  99 => 34,  95 => 33,  91 => 32,  87 => 31,  83 => 30,  79 => 29,  75 => 28,  72 => 27,  68 => 26,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  151 => 57,  148 => 56,  143 => 48,  128 => 39,  122 => 36,  117 => 34,  113 => 33,  109 => 32,  105 => 31,  101 => 30,  97 => 29,  93 => 28,  90 => 27,  86 => 26,  78 => 21,  74 => 20,  69 => 18,  65 => 17,  61 => 16,  57 => 15,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

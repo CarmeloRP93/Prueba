@@ -12,13 +12,13 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Nombre Competición</th>
-                        <th>Equipo Local</th>
-                        <th>Equipo Visitante</th>
-                        <th>Lugar del partido</th>
-                        <th>Fecha inicio</th>
-                        <th>Resultados</th>
-                        <th>Estados de los partidos</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Competición', 'partidos.idCompeticion') }}</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Equipo Locar', 'partidos.idEquipoLocal') }}</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Equipo Visitante', 'partidos.idEquipoVisitante') }}</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Lugar del partido', 'partidos.idCancha') }}</th>
+                        <th>Fecha Inicio</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Resultado', 'partidos.resultado') }}</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Estado de los partidos', 'partidos.estadoPartido') }}</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -53,5 +53,8 @@
                 Nuevo Partido
              <span class="glyphicon glyphicon-plus"></span></a>
         </div>#}
+        <div class="navigation">
+            {{ knp_pagination_render(partidos) }}
+        </div>
     </div>
 {% endblock %}

@@ -9,9 +9,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PartidoController extends Controller {
 
-    public function partidosAction() {
+    public function partidosAction(Request $request) {
         $repositoryPartidos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Partidos");
         $partidos=$repositoryPartidos->findAll();
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $partidos, $request->query->getInt('page', 1), 5);
         $repositoryCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
         $repositoryEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
         $repositoryCanchas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
@@ -22,7 +25,7 @@ class PartidoController extends Controller {
             $equiposVisitantes[$partido] = $repositoryEquipos->find($valor->getIdEquipoVisitante());
             $canchas[$partido] = $repositoryCanchas->find($valor->getIdCancha());
         }     
-        return $this->render('CriveroPruebaBundle:Competiciones:partidos.html.twig', array("partidos"=>$partidos, "competiciones"=>$competiciones,
+        return $this->render('CriveroPruebaBundle:Competiciones:partidos.html.twig', array("partidos"=>$pagination, "competiciones"=>$competiciones,
                              "equiposLocales"=>$equiposLocales,"equiposVisitantes"=>$equiposVisitantes, "canchas"=>$canchas));
     }
 
@@ -70,8 +73,10 @@ class PartidoController extends Controller {
         return $this->render('CriveroPruebaBundle:Competiciones:editarPartido.html.twig', array('form' => $form->createView()));
     }
     
-    private function createEditForm(Partidos $entity) {
-        $form = $this->createForm(new PartidosType(), $entity, array(
+    private function createEditForm(Partidos $entity) { 
+        $canchas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas")->findAll();
+        $equipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos")->findAll();
+        $form = $this->createForm(new PartidosType($equipos,$canchas), $entity, array(
             'action' => $this->generateUrl('crivero_prueba_partido_editar', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));
