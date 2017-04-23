@@ -1,0 +1,20 @@
+{{ form_start(form, {'attr': {'id': id|default('form')}} ) }}
+
+    {{ form_widget(form) }}
+    {% if with_submit is not defined or with_submit == true %}
+        <input type="button" value="{{ nombre }}" class="btn btn-danger" 
+               onclick="confirmarEliminar()" style="border-radius: 0px 0px 4px 4px;">
+    {% endif %}
+
+{{ form_end(form) }}
+
+<script src="{{ asset('js/bootbox.min.js') }}"></script>
+<script>
+    function confirmarEliminar() {
+        bootbox.confirm ('¿Estas seguro?', function(result) {
+           if (result === true) {
+               document.getElementById("form").submit();
+           } 
+        });
+    }
+</script>

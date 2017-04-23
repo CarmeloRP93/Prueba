@@ -60,8 +60,8 @@
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">Sesiones <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{url('crivero_prueba_sesiones')}}">S.Generales</a></li>
-                        <li><a href="{{url('crivero_prueba_dedicadas')}}">S.Dedicadas</a></li>
+                        <li><a href="{{url('crivero_prueba_sesiones')}}">S.Públicas</a></li>
+                        <li><a href="{{url('crivero_prueba_dedicadas')}}">S.Privadas</a></li>
                     </ul>
                 </li>
             </ul>
@@ -71,7 +71,7 @@
                     {% if app.user.username == 'director' %}
                         <li><a href = "{{url('crivero_prueba_enviarMensaje')}}">enviar mensaje</a></li>
                     {% endif %} 
-                    <li><a href = "{{path('crivero_prueba_cliente', { id: app.user.id })}}"><img src="{{asset('images/user-128.png')}}" style="width: 18px;" /></a></li>
+                    <li><a href = "{{path('crivero_prueba_perfil')}}"><img src="{{asset('images/user-128.png')}}" style="width: 18px;" /></a></li>
                     <li><a href="{{path('crivero_prueba_logout')}}" style="margin-right: 12px"><img src="{{asset('images/logout-128.png')}}" style="width: 18px;" /></a></li>
                 </ul>
             {% endif %}
@@ -99,4 +99,8 @@
 
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
 {% endblock %}

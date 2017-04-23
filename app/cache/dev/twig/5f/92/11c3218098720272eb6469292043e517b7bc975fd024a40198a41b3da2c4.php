@@ -23,6 +23,7 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
             'navegation' => array($this, 'block_navegation'),
             'body' => array($this, 'block_body'),
             'contenido' => array($this, 'block_contenido'),
+            'javascripts' => array($this, 'block_javascripts'),
         );
     }
 
@@ -152,11 +153,11 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
                         <li><a href=\"";
         // line 63
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_sesiones");
-        echo "\">S.Generales</a></li>
+        echo "\">S.Públicas</a></li>
                         <li><a href=\"";
         // line 64
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_dedicadas");
-        echo "\">S.Dedicadas</a></li>
+        echo "\">S.Privadas</a></li>
                     </ul>
                 </li>
             </ul>
@@ -179,7 +180,7 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
             echo " 
                     <li><a href = \"";
             // line 74
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))), "html", null, true);
+            echo $this->env->getExtension('routing')->getPath("crivero_prueba_perfil");
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/user-128.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
@@ -240,6 +241,16 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
         echo "            ";
     }
 
+    // line 104
+    public function block_javascripts($context, array $blocks = array())
+    {
+        // line 105
+        echo "    ";
+        $this->displayParentBlock("javascripts", $context, $blocks);
+        echo "
+";
+    }
+
     public function getTemplateName()
     {
         return "CriveroPruebaBundle::main.html.twig";
@@ -252,6 +263,6 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
 
     public function getDebugInfo()
     {
-        return array (  240 => 97,  237 => 96,  229 => 98,  227 => 96,  223 => 94,  220 => 93,  208 => 85,  201 => 81,  196 => 78,  188 => 75,  182 => 74,  179 => 73,  173 => 72,  171 => 71,  168 => 70,  166 => 69,  158 => 64,  154 => 63,  145 => 57,  140 => 55,  136 => 54,  132 => 53,  128 => 52,  121 => 48,  113 => 43,  109 => 42,  101 => 37,  97 => 36,  88 => 30,  83 => 28,  79 => 27,  67 => 18,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
+        return array (  248 => 105,  245 => 104,  241 => 97,  238 => 96,  230 => 98,  228 => 96,  224 => 94,  221 => 93,  209 => 85,  202 => 81,  197 => 78,  189 => 75,  183 => 74,  180 => 73,  174 => 72,  172 => 71,  169 => 70,  167 => 69,  159 => 64,  155 => 63,  146 => 57,  141 => 55,  137 => 54,  133 => 53,  129 => 52,  122 => 48,  114 => 43,  110 => 42,  102 => 37,  98 => 36,  89 => 30,  84 => 28,  80 => 27,  68 => 18,  55 => 7,  52 => 6,  47 => 4,  41 => 2,  11 => 1,);
     }
 }

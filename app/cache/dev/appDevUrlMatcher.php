@@ -589,6 +589,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::homeAction',  '_route' => 'crivero_prueba_home',);
         }
 
+        // crivero_prueba_perfil
+        if ($pathinfo === '/perfil') {
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::perfilAction',  '_route' => 'crivero_prueba_perfil',);
+        }
+
         if (0 === strpos($pathinfo, '/log')) {
             if (0 === strpos($pathinfo, '/login')) {
                 // crivero_prueba_login

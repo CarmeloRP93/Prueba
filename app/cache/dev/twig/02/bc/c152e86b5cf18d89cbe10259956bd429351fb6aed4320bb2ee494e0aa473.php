@@ -45,7 +45,7 @@ class __TwigTemplate_02bcc152e86b5cf18d89cbe10259956bd429351fb6aed4320bb2ee494e0
     public function block_contenido($context, array $blocks = array())
     {
         // line 6
-        echo "    <div class=\"container\">
+        echo "    <div class=\"container \"><br>
         <div class=\"col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4\">
             <div class=\"panel panel-default\">
                 <div class=\"panel-heading text-center\">
@@ -221,15 +221,36 @@ class __TwigTemplate_02bcc152e86b5cf18d89cbe10259956bd429351fb6aed4320bb2ee494e0
         // line 84
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
-                        <form class=\"alinear\" action=\"";
+                        ";
         // line 85
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "id", array()))), "html", null, true);
+        if (($this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "tipo", array()) == 2)) {
+            // line 86
+            echo "                            ";
+            $context["ruta"] = $this->env->getExtension('routing')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "id", array())));
+            // line 87
+            echo "                        ";
+        } elseif (($this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "tipo", array()) == 3)) {
+            // line 88
+            echo "                            ";
+            $context["ruta"] = $this->env->getExtension('routing')->getPath("crivero_prueba_monitor", array("id" => $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "id", array())));
+            // line 89
+            echo "                        ";
+        } else {
+            // line 90
+            echo "                            ";
+            $context["ruta"] = $this->env->getExtension('routing')->getPath("crivero_prueba_perfil");
+            // line 91
+            echo "                        ";
+        }
+        // line 92
+        echo "                        <form class=\"alinear\" action=\"";
+        echo twig_escape_filter($this->env, (isset($context["ruta"]) ? $context["ruta"] : $this->getContext($context, "ruta")), "html", null, true);
         echo "\">
                             <button type=\"submit\" class=\"btn btn-danger\" >Cancelar</button>
                         </form>
                     </div>
                     ";
-        // line 89
+        // line 96
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
                 </div>
@@ -252,6 +273,6 @@ class __TwigTemplate_02bcc152e86b5cf18d89cbe10259956bd429351fb6aed4320bb2ee494e0
 
     public function getDebugInfo()
     {
-        return array (  233 => 89,  226 => 85,  222 => 84,  217 => 81,  211 => 78,  207 => 77,  203 => 76,  200 => 75,  194 => 72,  190 => 71,  186 => 70,  183 => 69,  181 => 68,  174 => 64,  170 => 63,  166 => 62,  158 => 57,  154 => 56,  150 => 55,  142 => 50,  138 => 49,  134 => 48,  122 => 39,  118 => 38,  114 => 37,  108 => 34,  104 => 33,  100 => 32,  91 => 26,  87 => 25,  83 => 24,  77 => 21,  73 => 20,  69 => 19,  60 => 13,  54 => 10,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
+        return array (  254 => 96,  246 => 92,  243 => 91,  240 => 90,  237 => 89,  234 => 88,  231 => 87,  228 => 86,  226 => 85,  222 => 84,  217 => 81,  211 => 78,  207 => 77,  203 => 76,  200 => 75,  194 => 72,  190 => 71,  186 => 70,  183 => 69,  181 => 68,  174 => 64,  170 => 63,  166 => 62,  158 => 57,  154 => 56,  150 => 55,  142 => 50,  138 => 49,  134 => 48,  122 => 39,  118 => 38,  114 => 37,  108 => 34,  104 => 33,  100 => 32,  91 => 26,  87 => 25,  83 => 24,  77 => 21,  73 => 20,  69 => 19,  60 => 13,  54 => 10,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
     }
 }

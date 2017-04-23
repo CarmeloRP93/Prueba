@@ -36,7 +36,7 @@ class __TwigTemplate_7ee64068a57593b58e91cdcd2f010ff14a4ffbd7b23fff633777fe740be
     // line 4
     public function block_title($context, array $blocks = array())
     {
-        echo " Sesiones Dedicadas";
+        echo " Sesiones Privadas";
     }
 
     // line 6
@@ -45,7 +45,7 @@ class __TwigTemplate_7ee64068a57593b58e91cdcd2f010ff14a4ffbd7b23fff633777fe740be
         // line 7
         echo "    <div class=\"container\">
         <div class=\"page-header\">
-            <h1 class=\"t1\">Sesiones Dedicadas</h1>
+            <h1 class=\"t1\">Sesiones Privadas</h1>
         </div>
         
         <div class=\"table-responsive\">

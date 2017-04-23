@@ -44,13 +44,6 @@ class UsuariosRepository extends EntityRepository {
                         ->getResult();
     }
 
-    public function getSesionesMonitor($idMonitor) {
-        return $this->getEntityManager()
-                        ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.idMonitor = :id AND s.estado = 'validada'")
-                        ->setParameter('id', $idMonitor)
-                        ->getResult();
-    }
-
     public function recuperarPass($id) {
         return $this->getEntityManager()
                         ->createQuery('SELECT u.password FROM CriveroPruebaBundle:Usuarios u WHERE u.id = :id')

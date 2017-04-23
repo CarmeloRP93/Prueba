@@ -2,6 +2,10 @@ crivero_prueba_home:
     pattern:  /home
     defaults: { _controller: CriveroPruebaBundle:Usuario:home }
     
+crivero_prueba_perfil:
+    pattern:  /perfil
+    defaults: { _controller: CriveroPruebaBundle:Usuario:perfil }
+    
 crivero_prueba_login:
     pattern:  /login
     defaults: { _controller: CriveroPruebaBundle:Security:login }

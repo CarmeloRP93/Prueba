@@ -36,7 +36,7 @@ class __TwigTemplate_db262f23e8a5b451e21ed1709a7ceea6b75e1aa3c8bf0acdca8e501d313
     // line 3
     public function block_title($context, array $blocks = array())
     {
-        echo " Sesiones Generales ";
+        echo " Sesiones Públicas ";
     }
 
     // line 5
@@ -45,7 +45,7 @@ class __TwigTemplate_db262f23e8a5b451e21ed1709a7ceea6b75e1aa3c8bf0acdca8e501d313
         // line 6
         echo "    <div class=\"container\">
         <div class=\"page-header\">
-            <h1 class=\"t1\">Sesiones Generales</h1>
+            <h1 class=\"t1\">Sesiones Públicas</h1>
         </div>
         
         <div class=\"table-responsive\">

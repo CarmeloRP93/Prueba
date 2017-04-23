@@ -29,7 +29,7 @@ class __TwigTemplate_3bddeff0ccb739486b463191cd86a9d592d5701ec315f6bbfb47c3b4cdc
             // line 5
             echo "        <input type=\"button\" value=\"";
             echo twig_escape_filter($this->env, (isset($context["nombre"]) ? $context["nombre"] : $this->getContext($context, "nombre")), "html", null, true);
-            echo "\" class=\"btn btn-danger\" 
+            echo "\" class=\"btn btn-danger active\" 
                onclick=\"confirmarEliminar()\" >
     ";
         }

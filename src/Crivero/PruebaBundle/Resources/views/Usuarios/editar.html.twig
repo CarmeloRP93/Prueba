@@ -3,7 +3,7 @@
 {% block title %} {{ (usuario.id == app.user.id) ?  'Mi Perfil' : 'Editar usuario' }}  {% endblock %}
 
 {% block contenido %}
-    <div class="container">
+    <div class="container "><br>
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">
@@ -82,7 +82,14 @@
                     </form><br>
                     <div class="text-center">
                         {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
-                        <form class="alinear" action="{{ path('crivero_prueba_cliente', { id: usuario.id }) }}">
+                        {% if usuario.tipo == 2 %}
+                            {% set ruta = path('crivero_prueba_cliente', { id: usuario.id }) %}
+                        {% elseif usuario.tipo == 3 %}
+                            {% set ruta = path('crivero_prueba_monitor', { id: usuario.id }) %}
+                        {% else %}
+                            {% set ruta = path('crivero_prueba_perfil') %}
+                        {% endif %}
+                        <form class="alinear" action="{{ ruta }}">
                             <button type="submit" class="btn btn-danger" >Cancelar</button>
                         </form>
                     </div>

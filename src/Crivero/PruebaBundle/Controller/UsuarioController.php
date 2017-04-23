@@ -62,9 +62,10 @@ class UsuarioController extends Controller {
     }
 
     public function monitorAction($id) {
-        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
-        $monitor = $repository->find($id);
-        $sesionesMonitor = $repository->getSesionesMonitor($id);
+        $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $monitor = $repositoryUsuarios->find($id);
+        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesionesMonitor = $repositorySesiones->getSesionesMonitor($id);
 
         $deleteForm = $this->createCustomForm($monitor->getId(), 'DELETE', 'crivero_prueba_eliminar');
         return $this->render('CriveroPruebaBundle:Usuarios:monitor.html.twig', array("monitor" => $monitor, "sesiones" => $sesionesMonitor,
@@ -180,6 +181,7 @@ class UsuarioController extends Controller {
             }
             $em->flush();
             $request->getSession()->getFlashBag()->add('mensaje', 'El usuario ha sido modificado correctamente.');
+            if ($this->getUser()->getId() == $usuario->getId()) return $this->redirect($this->generateUrl('crivero_prueba_perfil'));  
             $tipo = $form->get('tipo')->getData();
             return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitor', array('id' => $id))):
                                   $this->redirect($this->generateUrl('crivero_prueba_cliente', array('id' => $id)));
@@ -200,9 +202,6 @@ class UsuarioController extends Controller {
         return $currentPass;
     }
 
-    public function homeAction() {
-        return $this->render('CriveroPruebaBundle:Usuarios:home.html.twig');
-    }
 
     public function pagosAction($id, Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Pagos");
@@ -220,8 +219,11 @@ class UsuarioController extends Controller {
         $destino = null;
         if ($referer) {
             //print_r(explode('/', $referer));
-            $id = explode('/', $referer)[7]; 
-            $destino = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($id)->getEmail();
+            $url = explode('/', $referer);
+            if ($url[6] == 'cliente' || $url[6] == 'monitor') {
+                $id = $url[7]; 
+                $destino = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($id)->getEmail();
+            }
         }
         $form = $this->createMessageForm($comentario);
         return $this->render('CriveroPruebaBundle:Usuarios:nuevoMensaje.html.twig', array('form' => $form->createView(),
@@ -281,4 +283,33 @@ class UsuarioController extends Controller {
         return $resultado;
     }
 
+    public function homeAction() {
+        return $this->render('CriveroPruebaBundle:Usuarios:home.html.twig');
+    }
+    
+    public function perfilAction() {
+        $repository = $this->getDoctrine()->getRepository('CriveroPruebaBundle:Usuarios');
+        $currentUser = $repository->find($this->getUser()->getId());
+        $rolName = $this->getRolName($currentUser->getTipo());
+        return $this->render('CriveroPruebaBundle:Usuarios:perfil.html.twig', array('usuario' => $currentUser, 
+                                                                                    'rol' => $rolName));
+    }
+    
+    private function getRolName($rol) {
+        switch ($rol){
+            case 1:
+                $res = 'administrador';
+                break;
+            case 2:
+                $res = 'cliente';
+                break;
+            case 3:
+                $res = 'monitor';
+                break;
+            case 4:
+                $res = 'director';
+                break;
+        }
+        return $res;
+    }
 }

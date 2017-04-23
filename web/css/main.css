@@ -99,6 +99,16 @@ panel {
     opacity: 0.7;
 }
 
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.42;
+  border-radius: 15px;
+}
+
 a {
     font-size: 15px;
     color: black;
@@ -217,7 +227,7 @@ nav li:last-child a {
 
 #reservas {
     list-style-type: none;
-    padding: 0;
+    
 }
 
 #sesiones {
@@ -6967,6 +6977,19 @@ html {
 .affix {
     position: fixed;
 }
+
+.btn-outline-success {
+    color: #5cb85c;
+    background-color: #fff;
+    border-color: #4cae4c;
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #449d44;
+    border-color: #398439;
+}
+
 @-ms-viewport {
     width: device-width;
 }
