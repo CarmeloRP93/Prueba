@@ -43,7 +43,7 @@ class __TwigTemplate_de437512c58909dae4292a8e495a80603c0bbaaf2fe3cb876fd571610e5
     public function block_contenido($context, array $blocks = array())
     {
         // line 4
-        echo "<div class=\"container\">
+        echo "    <div class=\"container centradoV\">
         <h1 class=\"t1\">Rechazar sesión</h1>
 
         ";
@@ -189,7 +189,7 @@ class __TwigTemplate_de437512c58909dae4292a8e495a80603c0bbaaf2fe3cb876fd571610e5
         echo "
             ";
         // line 64
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "observaciones", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Escriba aquí los motivos...")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "observaciones", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Escriba los motivos...")));
         echo "
             <span class=\"text-danger\">";
         // line 65
@@ -235,15 +235,34 @@ class __TwigTemplate_de437512c58909dae4292a8e495a80603c0bbaaf2fe3cb876fd571610e5
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nSesiones", array()), 'errors');
         echo "</span>
         </div>
-        <p>
+        <div>
             ";
         // line 83
+        if (($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "cliente", array()) == "normal")) {
+            // line 84
+            echo "                ";
+            $context["ruta"] = $this->env->getExtension('routing')->getPath("crivero_prueba_sesion", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array())));
+            // line 85
+            echo "            ";
+        } else {
+            // line 86
+            echo "                ";
+            $context["ruta"] = $this->env->getExtension('routing')->getPath("crivero_prueba_dedicadas", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array())));
+            // line 87
+            echo "            ";
+        }
+        // line 88
+        echo "            ";
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
-        </p>                
+            <a href=\"";
+        // line 89
+        echo twig_escape_filter($this->env, (isset($context["ruta"]) ? $context["ruta"] : $this->getContext($context, "ruta")), "html", null, true);
+        echo "\" class=\"btn btn-danger\">Cancelar</a>
+        </div>                
 
         ";
-        // line 86
+        // line 92
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
     </div>
@@ -262,6 +281,6 @@ class __TwigTemplate_de437512c58909dae4292a8e495a80603c0bbaaf2fe3cb876fd571610e5
 
     public function getDebugInfo()
     {
-        return array (  247 => 86,  241 => 83,  235 => 80,  231 => 79,  224 => 75,  220 => 74,  216 => 73,  210 => 70,  206 => 69,  202 => 68,  196 => 65,  192 => 64,  188 => 63,  181 => 59,  177 => 58,  173 => 57,  166 => 53,  162 => 52,  154 => 47,  150 => 46,  146 => 45,  139 => 41,  135 => 40,  131 => 39,  124 => 35,  120 => 34,  116 => 33,  109 => 29,  105 => 28,  101 => 27,  94 => 23,  90 => 22,  86 => 21,  79 => 17,  75 => 16,  71 => 15,  64 => 11,  60 => 10,  56 => 9,  51 => 7,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  266 => 92,  260 => 89,  255 => 88,  252 => 87,  249 => 86,  246 => 85,  243 => 84,  241 => 83,  235 => 80,  231 => 79,  224 => 75,  220 => 74,  216 => 73,  210 => 70,  206 => 69,  202 => 68,  196 => 65,  192 => 64,  188 => 63,  181 => 59,  177 => 58,  173 => 57,  166 => 53,  162 => 52,  154 => 47,  150 => 46,  146 => 45,  139 => 41,  135 => 40,  131 => 39,  124 => 35,  120 => 34,  116 => 33,  109 => 29,  105 => 28,  101 => 27,  94 => 23,  90 => 22,  86 => 21,  79 => 17,  75 => 16,  71 => 15,  64 => 11,  60 => 10,  56 => 9,  51 => 7,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

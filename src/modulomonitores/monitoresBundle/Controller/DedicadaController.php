@@ -11,13 +11,21 @@ use Symfony\Component\Form\FormError;
 class DedicadaController extends Controller {
 
     public function sesionesDedicadasAction(Request $request) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $em = $this->getDoctrine()->getManager();
-        $dql = "SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.estado = 'validada' AND s.cliente != 'normal'" ;
-        $sesiones = $em->createQuery($dql)->getResult();
+        $dql = "SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.estado = 'validada' AND s.cliente != 'normal'";
+        $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $sesiones = $repository->searchSesionesDedicadasTotales($searchQuery) :
+                        $sesiones = $em->createQuery($dql)->getResult();
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $sesiones, $request->query->getInt('page', 1), 5);
-        return $this->render('modulomonitoresmonitoresBundle:Default:sesionesDedicadas.html.twig', array("pagination" => $pagination));
+        $aulas = null;
+        foreach ($sesiones as $clave => $sesion) {
+            $aulas[$clave] = $repositoryAula->find($sesion->getAula());
+        }
+        return $this->render('modulomonitoresmonitoresBundle:Default:sesionesDedicadas.html.twig', array("pagination" => $pagination, "aulas" => $aulas));
     }
 
     public function sesionDedicadaAction($id) {
@@ -25,19 +33,27 @@ class DedicadaController extends Controller {
         $sesion = $repository->find($id);
         $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $aula = $repositoryAula->find($sesion->getAula());
-    
+
         return $this->render('modulomonitoresmonitoresBundle:Default:sesionDedicada.html.twig', array("sesion" => $sesion, "aula" => $aula));
     }
 
     public function misSesionesDedicadasAction(Request $request) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $em = $this->getDoctrine()->getManager();
         $usuarioId = $this->getUser()->getId();
-        $dql = "SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.idMonitor = :id AND s.cliente != 'normal'" ;
-        $sesiones = $em->createQuery($dql)->setParameter('id', $usuarioId)->getResult();
+        $dql = "SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.idMonitor = :id AND s.cliente != 'normal'";
+        $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $sesiones = $repository->searchSesionesDedicadas($searchQuery, $usuarioId) :
+                        $sesiones = $em->createQuery($dql)->setParameter('id', $usuarioId)->getResult();
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $sesiones, $request->query->getInt('page', 1), 5);
-        return $this->render('modulomonitoresmonitoresBundle:Default:misSesionesDedicadas.html.twig', array("pagination" => $pagination));
+        $aulas = null;
+        foreach ($sesiones as $clave => $sesion) {
+            $aulas[$clave] = $repositoryAula->find($sesion->getAula());
+        }
+        return $this->render('modulomonitoresmonitoresBundle:Default:misSesionesDedicadas.html.twig', array("pagination" => $pagination, "aulas" => $aulas));
     }
 
     public function miSesionDedicadaAction($id) {
@@ -48,6 +64,7 @@ class DedicadaController extends Controller {
         $deleteForm = $this->createDeleteFormDedicada($sesion);
         return $this->render('modulomonitoresmonitoresBundle:Default:miSesionDedicada.html.twig', array("sesion" => $sesion, "aula" => $aula, 'delete_form' => $deleteForm->createView()));
     }
+
     public function miSesionMonitoresAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");

@@ -90,35 +90,50 @@ class __TwigTemplate_614baff325567565d00c4d15f3ba30f67f29eadc46f5e94e99176dc040b
             // line 26
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
+            $context['loop'] = array(
+              'parent' => $context['_parent'],
+              'index0' => 0,
+              'index'  => 1,
+              'first'  => true,
+            );
+            if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
+                $length = count($context['_seq']);
+                $context['loop']['revindex0'] = $length - 1;
+                $context['loop']['revindex'] = $length;
+                $context['loop']['length'] = $length;
+                $context['loop']['last'] = 1 === $length;
+            }
             foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
                 // line 27
-                echo "                                <tr data-id=\"";
+                echo "                            
+                                <tr data-id=\"";
+                // line 28
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "id", array()), "html", null, true);
                 echo "\">
                                     <td>";
-                // line 28
+                // line 29
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
                 echo "</td>
                                     <td>";
-                // line 29
+                // line 30
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "estado", array()), "html", null, true);
                 echo "</td>
                                     <td>";
-                // line 30
+                // line 31
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nClientes", array()), "html", null, true);
                 echo " Clientes</td>
                                     <td>";
-                // line 31
+                // line 32
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nSesiones", array()), "html", null, true);
                 echo " Sesiones</td>
                                     <td>";
-                // line 32
-                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "aula", array()), "html", null, true);
+                // line 33
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["aulas"]) ? $context["aulas"] : $this->getContext($context, "aulas")), ($this->getAttribute($context["loop"], "index", array()) - 1), array(), "array"), "nombre", array()), "html", null, true);
                 echo "</td>
                                     <td class=\"actions\">
 
                                         <a href=\"";
-                // line 35
+                // line 36
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_miSesionMonitores", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-primary\">
                                             Ver más información
@@ -126,20 +141,28 @@ class __TwigTemplate_614baff325567565d00c4d15f3ba30f67f29eadc46f5e94e99176dc040b
                                     </td>
                                 </tr>
                         ";
+                ++$context['loop']['index0'];
+                ++$context['loop']['index'];
+                $context['loop']['first'] = false;
+                if (isset($context['loop']['length'])) {
+                    --$context['loop']['revindex0'];
+                    --$context['loop']['revindex'];
+                    $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+                }
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 41
+            // line 42
             echo "                    </tbody>
                 </table>
             </div>
         ";
         }
-        // line 45
+        // line 46
         echo "        <div class=\"navigation\">
             ";
-        // line 46
+        // line 47
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
         </div>
@@ -159,6 +182,6 @@ class __TwigTemplate_614baff325567565d00c4d15f3ba30f67f29eadc46f5e94e99176dc040b
 
     public function getDebugInfo()
     {
-        return array (  143 => 46,  140 => 45,  134 => 41,  122 => 35,  116 => 32,  112 => 31,  108 => 30,  104 => 29,  100 => 28,  95 => 27,  91 => 26,  83 => 21,  79 => 20,  75 => 19,  71 => 18,  67 => 17,  61 => 13,  57 => 11,  55 => 10,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
+        return array (  166 => 47,  163 => 46,  157 => 42,  137 => 36,  131 => 33,  127 => 32,  123 => 31,  119 => 30,  115 => 29,  111 => 28,  108 => 27,  91 => 26,  83 => 21,  79 => 20,  75 => 19,  71 => 18,  67 => 17,  61 => 13,  57 => 11,  55 => 10,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
     }
 }

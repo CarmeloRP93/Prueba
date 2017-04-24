@@ -1,28 +1,42 @@
 {% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
 
-{% block title %} {{monitor.nombre}} {% endblock %}
+{% block title %} Mi perfil {% endblock %}
 {% block contenido %}
+    {{ include('CriveroPruebaBundle:Default:messages/success2.html.twig') }}
     <div class="container">
-        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-            <div class="panel panel-default">
-{#                <div class="usuardesc">
-#}                    <div class="panel-heading text-center">
-                        <h3 class="t1">Monitor: {{monitor.nombre}}</h3>  
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <img src="{{ asset('images/'~monitor.imagen) }}" class="img-circle" style="width:60px;" />        
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <h3 style="font-weight: 600">Perfil</h3>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="margin-top: 18px;">
+                            <a href = "{{path('modulomonitores_monitores_editarmiperfilm', { id: monitor.id })}}" class="btn btn-default active">Editar</a>
+                        </div>
                     </div>
-                    <div class="usuarfot">
-                        <img src="{{ asset('images/no-image-found.png') }}" style="float: left; width: 100%;" />        
+                </div>
+                <div class="panel-body">  
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                            <h4>Nombre </h4> <p>{{monitor.nombre}}</p>
+                            <h4>Fecha nacimiento </h4> <p>{{monitor.fNacimiento}}</p>
+                            <h4>E-mail </h4> <p>{{monitor.email}}</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 " >
+                            <h4>Nombre de usuario</h4> <p>{{monitor.username}}</p>        
+                            <h4>Registro </h4> <p>{{monitor.registro|date('d/m/Y')}}</p>
+                            <h4>Teléfono </h4> <p>{{monitor.telefono}}</p>
+                        </div>
                     </div>
-{#                    <div class="usuardat">
-#}                      <h4>F.Nacimiento: </h4> <p>{{monitor.fNacimiento}}</p>
-                        <h4>Correo electrónico: </h4> <p>{{monitor.email}}</p>
-                        <h4>Registro: </h4> <p>{{monitor.registro|date('d/m/Y H:i')}}</p>
-                        <h4>Telefono: </h4> <p>{{monitor.telefono}}</p>
-{#                    </div>
-#}                    <div class="accionesExclus">
-                        <a href="{{path('modulomonitores_monitores_editarmiperfilm')}}" class="btn btn-primary">Editar perfil</a> 
-                    </div>
-{#                </div>
-#}            </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
+

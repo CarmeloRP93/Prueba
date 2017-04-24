@@ -44,7 +44,7 @@ class __TwigTemplate_7f5e889b2a63ba8a64758f60ee6c0408881ad2f8b49badb4b68ef425227
     public function block_contenido($context, array $blocks = array())
     {
         // line 4
-        echo "    <h3 class=\"t1\">Sesión privada ";
+        echo "    <h3 class=\"t1\">Sesión privada: ";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "nombre", array()), "html", null, true);
         echo "</h3>
     <div id=\"sesiondat\">
@@ -139,7 +139,7 @@ class __TwigTemplate_7f5e889b2a63ba8a64758f60ee6c0408881ad2f8b49badb4b68ef425227
             // line 43
             echo "                    <h4>Horario: <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_verHorario", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array()))), "html", null, true);
-            echo "\" style=\"height: 28px; width: 100px;\" class=\"btn btn-primary\">Ver Horario</a> </h4>
+            echo "\" style=\"height: 30px; width: 100px;\" class=\"btn btn-primary\">Ver Horario</a> </h4>
                 ";
         }
         // line 45

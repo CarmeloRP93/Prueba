@@ -24,12 +24,13 @@
                     </thead>
                     <tbody>
                         {% for sesion in pagination %}
+                            
                                 <tr data-id="{{ sesion.id }}">
                                     <td>{{sesion.nombre}}</td>
                                     <td>{{sesion.estado}}</td>
                                     <td>{{sesion.nClientes}} Clientes</td>
                                     <td>{{sesion.nSesiones}} Sesiones</td>
-                                    <td>{{sesion.aula}}</td>
+                                    <td>{{aulas[loop.index-1].nombre}}</td>
                                     <td class="actions">
 
                                         <a href="{{ path('modulomonitores_monitores_miSesionMonitores', { id: sesion.id }) }}" class="btn btn-sm btn-primary">

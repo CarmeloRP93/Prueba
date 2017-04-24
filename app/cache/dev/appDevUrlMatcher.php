@@ -316,14 +316,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::actualizarmiperfilmAction',  '_route' => 'modulomonitores_monitores_actualizarmiperfilm',);
         }
 
-        // modulomonitores_monitores_verParticipantes
-        if (0 === strpos($pathinfo, '/verParticipantes') && preg_match('#^/verParticipantes/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_verParticipantes')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::verParticipantesAction',));
-        }
+        if (0 === strpos($pathinfo, '/miSesionMonitores')) {
+            // modulomonitores_monitores_verParticipantes
+            if (preg_match('#^/miSesionMonitores/(?P<id>[^/]++)/verParticipantes$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_verParticipantes')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::verParticipantesAction',));
+            }
 
-        // modulomonitores_monitores_participante
-        if (0 === strpos($pathinfo, '/participante') && preg_match('#^/participante/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_participante')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::participanteAction',));
+            // modulomonitores_monitores_participante
+            if (preg_match('#^/miSesionMonitores/(?P<id>[^/]++)/verParticipantes/(?P<idUsuario>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_participante')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::participanteAction',));
+            }
+
         }
 
         // modulomonitores_monitores_abandonarSesion

@@ -31,4 +31,34 @@ class SesionesRepository extends EntityRepository {
                         ->getResult();
     }
 
+    public function searchSesiones($searchQuery, $id) {
+        return $this->getEntityManager()
+                        ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.idMonitor = :id AND s.cliente = 'normal' AND (s.nombre = :nombre OR s.estado = :estado)")
+                        ->setParameter('id', $id)
+                        ->setParameter('nombre', $searchQuery)
+                        ->setParameter('estado', $searchQuery)
+                        ->getResult();
+    }
+    public function searchSesionesDedicadas($searchQuery, $id) {
+        return $this->getEntityManager()
+                        ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.idMonitor = :id AND s.cliente != 'normal' AND (s.nombre = :nombre OR s.estado = :estado)")
+                        ->setParameter('id', $id)
+                        ->setParameter('nombre', $searchQuery)
+                        ->setParameter('estado', $searchQuery)
+                        ->getResult();
+    }
+    
+    public function searchSesionesTotales($searchQuery) {
+        return $this->getEntityManager()
+                        ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.estado = 'validada' AND s.cliente = 'normal' AND (s.nombre = :nombre)")
+                        ->setParameter('nombre', $searchQuery)
+                        ->getResult();
+    }
+    public function searchSesionesDedicadasTotales($searchQuery) {
+        return $this->getEntityManager()
+                        ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.estado = 'validada' AND s.cliente != 'normal' AND (s.nombre = :nombre)")
+                        ->setParameter('nombre', $searchQuery)
+                        ->getResult();
+    }
+
 }

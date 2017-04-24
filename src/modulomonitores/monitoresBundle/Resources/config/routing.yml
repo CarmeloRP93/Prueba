@@ -102,10 +102,10 @@ modulomonitores_monitores_actualizarmiperfilm:
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:actualizarmiperfilm }
     
 modulomonitores_monitores_verParticipantes:
-    pattern:  /verParticipantes/{id}
+    pattern:  /miSesionMonitores/{id}/verParticipantes
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:verParticipantes }
 modulomonitores_monitores_participante:
-    pattern:  /participante/{id}
+    pattern:  /miSesionMonitores/{id}/verParticipantes/{idUsuario}
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:participante }
 modulomonitores_monitores_abandonarSesion:
     pattern:  /abandonarSesion/{id}

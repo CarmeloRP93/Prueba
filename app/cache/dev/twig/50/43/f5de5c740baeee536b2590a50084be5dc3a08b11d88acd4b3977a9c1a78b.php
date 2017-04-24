@@ -135,27 +135,38 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
         }
         // line 54
         echo "            
-            <form class=\"navbar-form navbar-center\" role=\"search\">
-                <div class=\"form-group\">
-                    <input type=\"text\" class=\"form-control\" placeholder=\"Nombre, sesion...\">
+            <form method=\"GET\" class=\"navbar-form navbar-center\" role=\"search\">
+                <div class=\"input-group\">
+                    <input type=\"text\" name=\"query\" class=\"form-control\" value=\"";
+        // line 57
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "get", array(0 => "query"), "method"), "html", null, true);
+        echo "\" 
+                           placeholder=\"Buscar...\">
+                    <div class=\"input-group-btn\">
+                        <button type=\"submit\" class=\"btn btn-default\">
+                           <img src=\"";
+        // line 61
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/search-128.png"), "html", null, true);
+        echo "\" style=\"width: 15px;\" />  
+                        </button>
+                    </div>
                 </div>
-                <button type=\"submit\" class=\"btn btn-default\" style=\"margin-bottom: 0px\">Buscar</button>
             </form>
         </div>
     </nav>
 ";
     }
 
-    // line 64
+    // line 69
     public function block_body($context, array $blocks = array())
     {
-        // line 65
+        // line 70
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 67
+        // line 72
         $this->displayBlock('contenido', $context, $blocks);
-        // line 69
+        // line 74
         echo "        </div>
 
     </div>
@@ -163,10 +174,10 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 ";
     }
 
-    // line 67
+    // line 72
     public function block_contenido($context, array $blocks = array())
     {
-        // line 68
+        // line 73
         echo "            ";
     }
 
@@ -182,6 +193,6 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 
     public function getDebugInfo()
     {
-        return array (  170 => 68,  167 => 67,  159 => 69,  157 => 67,  153 => 65,  150 => 64,  137 => 54,  129 => 51,  123 => 50,  120 => 49,  118 => 48,  110 => 43,  106 => 42,  95 => 34,  91 => 33,  83 => 28,  79 => 27,  67 => 18,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
+        return array (  181 => 73,  178 => 72,  170 => 74,  168 => 72,  164 => 70,  161 => 69,  149 => 61,  142 => 57,  137 => 54,  129 => 51,  123 => 50,  120 => 49,  118 => 48,  110 => 43,  106 => 42,  95 => 34,  91 => 33,  83 => 28,  79 => 27,  67 => 18,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
     }
 }

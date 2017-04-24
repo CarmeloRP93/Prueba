@@ -8,7 +8,7 @@
             <h1 class="t1">Sesiones públicas aceptadas</h1>
         </div>
         {% if not pagination|length %}
-            <h2>No se encontraron sesiones públicas aceptadas</h2>
+            <h2>No se encontraron sesiones públicas</h2>
         {% else %}
             <div class="table-responsive">
                 <table class="table table-hover">
@@ -27,7 +27,7 @@
                                 <td>{{sesion.nombre}}</td>
                                 <td>{{sesion.nClientes}} Clientes</td>
                                 <td>{{sesion.nSesiones}} Sesiones</td>
-                                <td>{{sesion.aula}}</td>
+                                <td>{{aulas[loop.index-1].nombre}}</td>
                                 <td class="actions">
 
                                     <a href="{{ path('modulomonitores_monitores_sesionMonitores', { id: sesion.id }) }}" class="btn btn-sm btn-primary">

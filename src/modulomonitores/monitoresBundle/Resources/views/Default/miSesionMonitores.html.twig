@@ -52,7 +52,7 @@
                 <h4>Objetivo de la sesión: {{sesion.objetivo}}</h4>
                 {% if sesion.nClientes > 0 %}
                     <h4>Participantes:
-                        <a href="{{path('modulomonitores_monitores_verParticipantes', {id: sesion.id})}}" style="height: 30px; width: 130px;" class="btn btn-primary">Ver participantes</a> </h4> 
+                        <a href="{{'http://localhost/Prueba/web/app_dev.php/miSesionMonitores/'~sesion.id~'/verParticipantes'}}" style="height: 30px; width: 130px;" class="btn btn-primary">Ver participantes</a> </h4> 
                     {% endif %}
             </div>
         </div>

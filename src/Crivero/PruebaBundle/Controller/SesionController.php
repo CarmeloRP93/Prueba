@@ -264,7 +264,7 @@ class SesionController extends Controller {
                 $form->get('observaciones')->addError(new FormError('Rellene el campo gracias'));
             }
         }
-        return $this->render('CriveroPruebaBundle:Sesiones:rechazarSesion.html.twig', array('form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Sesiones:rechazarSesion.html.twig', array('sesion'=>$sesion, 'form' => $form->createView()));
     }
 
     private function findEntity($id, $em, $repository) {

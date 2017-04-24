@@ -1,23 +1,33 @@
 {% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
 
-{% block title %} Cliente {{cliente.username}} {% endblock %}
+{% block title %} Cliente {{cliente.nombre}} {% endblock %}
 {% block contenido %}
-    <div class="usuardesc container">
-        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-heading text-center">
-                    <h3>{{cliente.username}}</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="usuarfot">
-                        <img src="{{ asset('images/no-image-found.png') }}" style="float: left; width: 120%;" />        
+    <div class="container">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <img src="{{ asset('images/'~cliente.imagen) }}" class="img-circle" style="width:60px;" />        
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <h3 style="font-weight: 600">{{ cliente.nombre|capitalize }}</h3>
+                        </div>
                     </div>
-                    <h4>Nombre: </h4> <p>{{cliente.nombre}}</p>
-                    <h4>F.Nacimiento: </h4> <p>{{cliente.fNacimiento}}</p>
-                    <h4>Telefono: </h4> <p>{{cliente.telefono}}</p>
-                    <h4>Correo: </h4> <p>{{cliente.email}}</p>
-
                 </div>
+                <div class="panel-body">  
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <h4>E-mail </h4> <p>{{cliente.email}}</p>
+                            <h4>Fecha nacimiento </h4> <p>{{cliente.fNacimiento}}</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <h4>Teléfono </h4> <p>{{cliente.telefono}}</p>
+                        </div>
+                    </div>
+                </div>
+                        <div id="colder" class="col-md-8"><a href="{{'http://localhost/Prueba/web/app_dev.php/miSesionMonitores/'~id~'/verParticipantes'}}" style="height: 30px; width: 190px; margin-top: 10px;" class="btn btn-success">Volver a lista de participantes</a></div>
             </div>
         </div>
     </div>

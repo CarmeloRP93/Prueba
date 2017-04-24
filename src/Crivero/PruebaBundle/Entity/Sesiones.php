@@ -53,7 +53,7 @@ class Sesiones {
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=200)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Rellene el campo.")
      */
     private $nombre;
 
@@ -68,7 +68,7 @@ class Sesiones {
      * @var string
      *
      * @ORM\Column(name="ejercicios", type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Rellene el campo.")
      */
     private $ejercicios;
 
@@ -76,7 +76,7 @@ class Sesiones {
      * @var integer
      *
      * @ORM\Column(name="repeticiones", type="integer")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Rellene el campo.")
      */
     private $repeticiones;
     
@@ -84,7 +84,7 @@ class Sesiones {
      * @var integer
      *
      * @ORM\Column(name="aula", type="integer")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Rellene el campo.")
      */
     private $aula;
 
@@ -92,7 +92,7 @@ class Sesiones {
      * @var integer
      *
      * @ORM\Column(name="duracion", type="integer")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Rellene el campo.")
      */
     private $duracion;
   
@@ -100,7 +100,7 @@ class Sesiones {
      * @var integer
      *
      * @ORM\Column(name="descanso", type="integer")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Rellene el campo.")
      */
     private $descanso;
 
@@ -129,7 +129,7 @@ class Sesiones {
      * @var string
      *
      * @ORM\Column(name="objetivo", type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Rellene el campo.")
      */
     private $objetivo;
     
@@ -151,7 +151,7 @@ class Sesiones {
      * @var integer
      *
      * @ORM\Column(name="nSesiones", type="integer")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Rellene el campo.")
      */
     private $nSesiones;
 

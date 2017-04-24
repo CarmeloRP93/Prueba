@@ -83,7 +83,7 @@
             {% if sesion.cliente == 'normal' %}
                 {% set ruta = path("crivero_prueba_sesion", {id: sesion.id}) %}
             {% else %}
-                {% set ruta = path("crivero_prueba_dedicadas") %}
+                {% set ruta = path("crivero_prueba_dedicadas", {id: sesion.id})) %}
             {% endif %}
             <a href="{{ ruta }}" class="btn btn-danger">Anular</a>
             {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
