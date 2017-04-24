@@ -120,7 +120,7 @@ class __TwigTemplate_3af4f8b456b8863533061b98d6311b7d5ece8398c0c72b906286c65a495
                                         <a href=\"";
                 // line 35
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_miSesionDedicada", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-sm btn-info\">
+                echo "\" class=\"btn btn-sm btn-primary\">
                                             Ver más información
                                         </a>
                                     </td>

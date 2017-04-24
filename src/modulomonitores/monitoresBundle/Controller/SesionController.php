@@ -25,7 +25,10 @@ class SesionController extends Controller {
     public function sesionMonitoresAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repository->find($id);
-        return $this->render('modulomonitoresmonitoresBundle:Default:sesionMonitores.html.twig', array("sesion" => $sesion));
+        $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+        $aula = $repositoryAula->find($sesion->getAula());
+    
+        return $this->render('modulomonitoresmonitoresBundle:Default:sesionMonitores.html.twig', array("sesion" => $sesion, "aula" => $aula));
     }
 
     public function misSesionesMonitoresAction(Request $request) {

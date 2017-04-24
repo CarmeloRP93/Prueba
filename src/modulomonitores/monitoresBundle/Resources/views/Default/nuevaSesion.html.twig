@@ -1,7 +1,7 @@
 {% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
 {% block title %}Nueva sesión pública{% endblock %}
 {% block contenido %}
-    <div class="container center-block">
+   <div class="container center-block">
 
         <div class="panel panel-default">
             <div class="panel-heading text-center">
@@ -59,7 +59,7 @@
 
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
-                        <label>Descansos</label>
+                        <label>Descanso entre ejercicios</label>
                         {{ form_widget(form.descanso, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca el descanso entre ejercicios'} }) }}
                         <span class="text-danger">{{ form_errors(form.descanso) }}</span>
                     </div>
@@ -77,7 +77,7 @@
                         <span class="text-danger">{{ form_errors(form.duracion) }}</span>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
-                        <label>Limite de clientes</label>
+                        <label>Limite de participantes</label>
                         {{ form_widget(form.lClientes, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca el limite de participantes'} }) }}
                         <span class="text-danger">{{ form_errors(form.lClientes) }}</span>
                     </div>
