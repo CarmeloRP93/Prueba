@@ -133,7 +133,7 @@ moduloclientes_cliente_misSesionesClientes:
     defaults: { _controller: moduloclientesclienteBundle:Sesion:misSesiones }
     
 moduloclientes_cliente_miPerfil:
-    pattern:  /miPerfil/{id}
+    pattern:  /miPerfil
     defaults: { _controller: moduloclientesclienteBundle:Usuario:miPerfil }
     
 moduloclientes_cliente_escribirSugerencia:
@@ -160,3 +160,11 @@ moduloclientes_cliente_añadirValoracion:
     defaults: { _controller: moduloclientesclienteBundle:Cancha:añadirValoracion }
     requirements:
         _method:  POST|GET
+        
+moduloclientes_cliente_editarPerfil:
+    pattern:  /editarPerfil
+    defaults: { _controller: moduloclientesclienteBundle:Usuario:editarPerfil }
+
+moduloclientes_cliente_actualizarPerfil:
+    pattern:  /actualizarPerfil
+    defaults: { _controller: moduloclientesclienteBundle:Usuario:actualizarPerfil }

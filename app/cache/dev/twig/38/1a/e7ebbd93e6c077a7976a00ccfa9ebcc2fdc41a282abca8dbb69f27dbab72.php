@@ -45,43 +45,67 @@ class __TwigTemplate_381ae7ebbd93e6c077a7976a00ccfa9ebcc2fdc41a282abca8dbb69f27d
     public function block_contenido($context, array $blocks = array())
     {
         // line 5
-        echo "    <div class=\"container\">
+        echo "    <div class=\"container\"><br><br>
         <div class=\"col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4\">
             <div class=\"panel panel-default text-center\">
                 <div class=\"panel-heading\">
                     <div class=\"row\">
-                        <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
+                        <div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4\">
                             <img src=\"";
         // line 11
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("images/" . "m.jpg")), "html", null, true);
         echo "\" class=\"img-circle\" style=\"width:60px;\" />        
                         </div>
-                        <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
+                        <div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4\">
                             <h3>";
         // line 14
         echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "username", array())), "html", null, true);
         echo "</h3>
                         </div>
+                        <div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4\" style=\"margin-top: 18px;\">
+                            <a href = \"";
+        // line 17
+        echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_editarPerfil");
+        echo "\" class=\"btn btn-default active\">Editar</a>
+                        </div>
                     </div>
                 </div>
 
-                <div class=\"panel-body text-center\">                   
-                    <h4>Nombre </h4> <p>";
-        // line 20
+                <div class=\"panel-body text-center\">    
+                    <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
+                        <h4>Nombre </h4> <p>";
+        // line 24
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "nombre", array()), "html", null, true);
         echo "</p>
-                    <h4>Aniversario </h4> <p>";
-        // line 21
+                        <h4>Fecha nacimiento </h4> <p>";
+        // line 25
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "fNacimiento", array()), "html", null, true);
         echo "</p>
-                    <h4>Telefono </h4> <p>";
-        // line 22
+                        <h4>Telefono </h4> <p>";
+        // line 26
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "telefono", array()), "html", null, true);
         echo "</p>
-                    <h4>Registro </h4> <p>";
-        // line 23
+                    </div>
+
+                    <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
+                        <h4>E-mail </h4> <p>";
+        // line 30
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "email", array()), "html", null, true);
+        echo "</p>
+                        <h4>Registro </h4> <p>";
+        // line 31
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "registro", array()), "d/m/Y"), "html", null, true);
         echo "</p>
+                        <form class=\"btn-group-vertical\" action=\"";
+        // line 32
+        echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
+        echo "\" method=\"post\">
+                            <input type=\"hidden\" class=\"btn\">
+                            <button type=\"submit\" class=\"btn btn-danger\">Salir de sesión</button>
+                        </form>
+                            <button type=\"submit\" class=\"btn btn-primary\">Ver mis pagos</button>
+                    </div>
+                    <button type=\"submit\" class=\"btn btn-danger\">Borrar mi cuenta</button>
                 </div>
             </div>
         </div>
@@ -102,6 +126,6 @@ class __TwigTemplate_381ae7ebbd93e6c077a7976a00ccfa9ebcc2fdc41a282abca8dbb69f27d
 
     public function getDebugInfo()
     {
-        return array (  83 => 23,  79 => 22,  75 => 21,  71 => 20,  62 => 14,  56 => 11,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  101 => 32,  97 => 31,  93 => 30,  86 => 26,  82 => 25,  78 => 24,  68 => 17,  62 => 14,  56 => 11,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }

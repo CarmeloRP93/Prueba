@@ -1,0 +1,94 @@
+{% extends 'moduloclientesclienteBundle::main.html.twig' %}
+
+{% block title %} {{ 'Mi Perfil' }}  {% endblock %}
+
+{% block contenido %}
+    <div class="container "><br>
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h3 class="t3">Editar mi perfil</h3>
+                </div>
+                {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    {{ form_label(form.username) }}
+                                    {{ form_widget(form.username, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Username'} }) }}
+                                    <span class="text-danger">{{ form_errors(form.username) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.email) }}
+                                    {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder' : 'Correo electrónico'}}) }}
+                                    <span class="text-danger">{{ form_errors(form.email) }}</span>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    {{ form_label(form.nombre) }}
+                                    {{ form_widget(form.nombre, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Nombre de pila'} }) }}
+                                    <span class="text-danger">{{ form_errors(form.nombre) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.password) }}
+                                    {{ form_widget(form.password, {'attr': {'class': 'form-control', 'placeholder' : 'Clave de acceso'}}) }}
+                                    <span class="text-danger">{{ form_errors(form.password) }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                                <div class="form-group">
+                                    {{ form_label(form.fNacimiento) }}
+                                    {{ form_widget(form.fNacimiento, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ej: 08/10/1993'} }) }}
+                                    <span class="text-danger">{{ form_errors(form.fNacimiento) }}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    {{ form_label(form.telefono) }}
+                                    {{ form_widget(form.telefono, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ej: 651-44-19-75'} }) }}
+                                    <span class="text-danger">{{ form_errors(form.telefono) }}</span>
+                                </div>
+                            </div>
+                            <div class="hidden">
+                                <div class="form-group">
+                                    {{ form_label(form.tipo) }}
+                                    {{ form_widget(form.tipo, {'attr': {'class': 'form-control'}}) }}
+                                    <span class="text-danger">{{ form_errors(form.tipo) }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% if app.user.id == usuario.id %}
+                            <div class="form-group">
+                                {{ form_label(form.imagen) }}
+                                {{ form_widget(form.imagen) }}
+                                <span class="text-danger">{{ form_errors(form.imagen) }}</span>
+                            </div>
+                        {% else %}
+                            <div class="hidden">
+                                {{ form_label(form.imagen) }}
+                                {{ form_widget(form.imagen) }}
+                                <span class="text-danger">{{ form_errors(form.imagen) }}</span>
+                            </div>
+                        {% endif %}
+
+                    </form><br>
+                    <div class="text-center">
+                        {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
+                        <form class="alinear" action="{{path('moduloclientes_cliente_miPerfil', {id : app.user.id})}}">
+                            <button type="submit" class="btn btn-danger" >Cancelar</button>
+                        </form>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>               
+        </div>
+    </div>           
+
+{% endblock %}

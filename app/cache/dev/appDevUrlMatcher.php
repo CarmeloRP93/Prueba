@@ -554,8 +554,8 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
 
             // moduloclientes_cliente_miPerfil
-            if (0 === strpos($pathinfo, '/miPerfil') && preg_match('#^/miPerfil/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_miPerfil')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\UsuarioController::miPerfilAction',));
+            if ($pathinfo === '/miPerfil') {
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\UsuarioController::miPerfilAction',  '_route' => 'moduloclientes_cliente_miPerfil',);
             }
 
         }
@@ -602,6 +602,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::añadirValoracionAction',  '_route' => 'moduloclientes_cliente_añadirValoracion',);
         }
         not_moduloclientes_cliente_aadirValoracion:
+
+        // moduloclientes_cliente_editarPerfil
+        if ($pathinfo === '/editarPerfil') {
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\UsuarioController::editarPerfilAction',  '_route' => 'moduloclientes_cliente_editarPerfil',);
+        }
+
+        // moduloclientes_cliente_actualizarPerfil
+        if ($pathinfo === '/actualizarPerfil') {
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\UsuarioController::actualizarPerfilAction',  '_route' => 'moduloclientes_cliente_actualizarPerfil',);
+        }
 
         // crivero_prueba_home
         if ($pathinfo === '/home') {
