@@ -370,7 +370,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             // moduloclientes_cliente_partidoClientes
             if (0 === strpos($pathinfo, '/partidoClientes') && preg_match('#^/partidoClientes/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_partidoClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\PartidoController::partidoClienteAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_partidoClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\PartidoController::partidoClientesAction',));
             }
 
         }
@@ -432,6 +432,25 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::crearAction',  '_route' => 'moduloclientes_cliente_equipo_crear',);
         }
         not_moduloclientes_cliente_equipo_crear:
+
+        if (0 === strpos($pathinfo, '/e')) {
+            // moduloclientes_cliente_editarEquipo
+            if (0 === strpos($pathinfo, '/editarEquipo') && preg_match('#^/editarEquipo/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_editarEquipo')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::editarEquipoAction',));
+            }
+
+            // moduloclientes_cliente_equipo_editar
+            if (0 === strpos($pathinfo, '/equipo/editar') && preg_match('#^/equipo/editar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+                    goto not_moduloclientes_cliente_equipo_editar;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_equipo_editar')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::editarAction',));
+            }
+            not_moduloclientes_cliente_equipo_editar:
+
+        }
 
         // moduloclientes_cliente_jugador_nuevo
         if (0 === strpos($pathinfo, '/nuevoJugadorCliente') && preg_match('#^/nuevoJugadorCliente/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {

@@ -12,48 +12,38 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Nombre Competición</th>
-                        <th>Equipo Local</th>
-                        <th>Equipo Visitante</th>
-                        <th>Lugar del partido</th>
-                        <th>Fecha de inicio</th>
-                        <th>Resultados</th>
-                        <th>Estados de los partidos</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Competición', 'partidos.idCompeticion') }}</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Equipo Locar', 'partidos.idEquipoLocal') }}</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Equipo Visitante', 'partidos.idEquipoVisitante') }}</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Lugar del partido', 'partidos.idCancha') }}</th>
+                        <th>Fecha Inicio</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Resultado', 'partidos.resultado') }}</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Estado de los partidos', 'partidos.estadoPartido') }}</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for partido in partidos%}
-                        {%if partido.idCompeticion == idCompeticion %}
+                    {% for partido in partidos if partido.idCompeticion == idCompeticion %}
                         <tr>
-                            <td>{{competiciones[partido.id-1].nombre}}</td>
-                            <td>{{equiposLocales[partido.id-1].nombre}}</td>
-                            <td>{{equiposVisitantes[partido.id-1].nombre}}</td>
-                            <td>{{canchas[partido.id-1].tipo}}</td>
+                            <td>{{competiciones[loop.index-1].nombre}}</td>
+                            <td>{{equiposLocales[loop.index-1].nombre}}</td>
+                            <td>{{equiposVisitantes[loop.index-1].nombre}}</td>
+                            <td>{{canchas[loop.index-1].tipo}}</td>
                             <td><strong>{{partido.fechaInicio|date('d/m/Y H:i:s')}}</strong></td>
                             <td>{{partido.resultado}}</td>
                             <td>{{partido.estadoPartido}}</td>
                             <td class="actions">
-                                <a href="{{ path('crivero_prueba_partido', { id: partido.id }) }}" class="btn btn-sm btn-info">
+                                <a href="{{ path('moduloclientes_cliente_partidoClientes', { id: partido.id }) }}" class="btn btn-sm btn-info">
                                     Ver
-                                </a>
-                                {#<a href="{{ path('crivero_prueba_editarPartido', { id: partido.id }) }}" class="btn btn-sm btn-primary">
-                                    Editar
-                                </a>#}
-                                <a href="#" class="btn btn-sm btn-danger btn-delete">
-                                    Eliminar
                                 </a>
                             </td>
                         </tr>
-                        {%endif%}
                     {% endfor %}
                 </tbody>
             </table>
         </div>
-        {#<div class="nueva">
-            <a href="{{path('crivero_prueba_partido_nuevo')}}" class="btn btn-success" style="height: 30px; width: 150px;">
-                Nuevo Partido
-             <span class="glyphicon glyphicon-plus"></span></a>
-        </div>#}
+        <div class="navigation">
+            {{ knp_pagination_render(partidos) }}
+        </div>
     </div>
 {% endblock %}

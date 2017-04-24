@@ -3,16 +3,20 @@
 namespace moduloclientes\clienteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class PartidoController extends Controller {
 
-    public function partidosClientesAction($id) {
+    public function partidosClientesAction($id, Request $request) {
         $repositoryPartidos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Partidos");
         $partidos=$repositoryPartidos->findAll();
         $repositoryCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
         $repositoryEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
         $repositoryCanchas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
         $idCompeticion= $id;
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $partidos, $request->query->getInt('page', 1), 10);
 
         foreach ($partidos as $partido=>$valor){
             $competiciones[$partido] = $repositoryCompeticiones->find($valor->getIdCompeticion());   
@@ -20,7 +24,7 @@ class PartidoController extends Controller {
             $equiposVisitantes[$partido] = $repositoryEquipos->find($valor->getIdEquipoVisitante());
             $canchas[$partido] = $repositoryCanchas->find($valor->getIdCancha());
         }     
-        return $this->render('moduloclientesclienteBundle:Competiciones:partidosClientes.html.twig', array("partidos"=>$partidos, "competiciones"=>$competiciones,
+        return $this->render('moduloclientesclienteBundle:Competiciones:partidosClientes.html.twig', array("partidos"=>$pagination, "competiciones"=>$competiciones,
                              "equiposLocales"=>$equiposLocales,"equiposVisitantes"=>$equiposVisitantes, "canchas"=>$canchas, "idCompeticion"=>$idCompeticion));
     }
 

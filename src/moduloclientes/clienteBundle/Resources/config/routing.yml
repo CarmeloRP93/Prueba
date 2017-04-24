@@ -19,7 +19,7 @@ moduloclientes_cliente_partidosClientes:
 
 moduloclientes_cliente_partidoClientes:
     pattern:  /partidoClientes/{id}
-    defaults: { _controller: moduloclientesclienteBundle:Partido:partidoCliente }
+    defaults: { _controller: moduloclientesclienteBundle:Partido:partidoClientes }
     
 moduloclientes_cliente_competicionesClientes:
     pattern:  /competicionesClientes
@@ -56,6 +56,16 @@ moduloclientes_cliente_equipo_crear:
     defaults: { _controller: moduloclientesclienteBundle:Equipo:crear }
     requirements:
         _method:  POST|GET
+        
+moduloclientes_cliente_editarEquipo:
+    pattern:  /editarEquipo/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Equipo:editarEquipo }
+    
+moduloclientes_cliente_equipo_editar:
+    pattern:  /equipo/editar/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Equipo:editar }
+    requirements:
+        _method: POST|PUT|GET
         
 moduloclientes_cliente_jugador_nuevo:
     pattern:  /nuevoJugadorCliente/{id}

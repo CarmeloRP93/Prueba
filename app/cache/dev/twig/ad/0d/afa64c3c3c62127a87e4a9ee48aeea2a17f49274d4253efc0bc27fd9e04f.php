@@ -52,13 +52,31 @@ class __TwigTemplate_ad0dafa64c3c3c62127a87e4a9ee48aeea2a17f49274d4253efc0bc27fd
             <table class=\"table table-hover\">
                 <thead>
                     <tr>
-                        <th>Nombre Competición</th>
-                        <th>Equipo Local</th>
-                        <th>Equipo Visitante</th>
-                        <th>Lugar del partido</th>
-                        <th>Fecha de inicio</th>
-                        <th>Resultados</th>
-                        <th>Estados de los partidos</th>
+                        <th>";
+        // line 15
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Competición", "partidos.idCompeticion");
+        echo "</th>
+                        <th>";
+        // line 16
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Equipo Locar", "partidos.idEquipoLocal");
+        echo "</th>
+                        <th>";
+        // line 17
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Equipo Visitante", "partidos.idEquipoVisitante");
+        echo "</th>
+                        <th>";
+        // line 18
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Lugar del partido", "partidos.idCancha");
+        echo "</th>
+                        <th>Fecha Inicio</th>
+                        <th>";
+        // line 20
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Resultado", "partidos.resultado");
+        echo "</th>
+                        <th>";
+        // line 21
+        echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Estado de los partidos", "partidos.estadoPartido");
+        echo "</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -67,69 +85,73 @@ class __TwigTemplate_ad0dafa64c3c3c62127a87e4a9ee48aeea2a17f49274d4253efc0bc27fd
         // line 26
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")));
+        $context['loop'] = array(
+          'parent' => $context['_parent'],
+          'index0' => 0,
+          'index'  => 1,
+          'first'  => true,
+        );
         foreach ($context['_seq'] as $context["_key"] => $context["partido"]) {
-            // line 27
-            echo "                        ";
             if (($this->getAttribute($context["partido"], "idCompeticion", array()) == (isset($context["idCompeticion"]) ? $context["idCompeticion"] : $this->getContext($context, "idCompeticion")))) {
-                // line 28
+                // line 27
                 echo "                        <tr>
                             <td>";
+                // line 28
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["competiciones"]) ? $context["competiciones"] : $this->getContext($context, "competiciones")), ($this->getAttribute($context["loop"], "index", array()) - 1), array(), "array"), "nombre", array()), "html", null, true);
+                echo "</td>
+                            <td>";
                 // line 29
-                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["competiciones"]) ? $context["competiciones"] : $this->getContext($context, "competiciones")), ($this->getAttribute($context["partido"], "id", array()) - 1), array(), "array"), "nombre", array()), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["equiposLocales"]) ? $context["equiposLocales"] : $this->getContext($context, "equiposLocales")), ($this->getAttribute($context["loop"], "index", array()) - 1), array(), "array"), "nombre", array()), "html", null, true);
                 echo "</td>
                             <td>";
                 // line 30
-                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["equiposLocales"]) ? $context["equiposLocales"] : $this->getContext($context, "equiposLocales")), ($this->getAttribute($context["partido"], "id", array()) - 1), array(), "array"), "nombre", array()), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["equiposVisitantes"]) ? $context["equiposVisitantes"] : $this->getContext($context, "equiposVisitantes")), ($this->getAttribute($context["loop"], "index", array()) - 1), array(), "array"), "nombre", array()), "html", null, true);
                 echo "</td>
                             <td>";
                 // line 31
-                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["equiposVisitantes"]) ? $context["equiposVisitantes"] : $this->getContext($context, "equiposVisitantes")), ($this->getAttribute($context["partido"], "id", array()) - 1), array(), "array"), "nombre", array()), "html", null, true);
-                echo "</td>
-                            <td>";
-                // line 32
-                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["canchas"]) ? $context["canchas"] : $this->getContext($context, "canchas")), ($this->getAttribute($context["partido"], "id", array()) - 1), array(), "array"), "tipo", array()), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["canchas"]) ? $context["canchas"] : $this->getContext($context, "canchas")), ($this->getAttribute($context["loop"], "index", array()) - 1), array(), "array"), "tipo", array()), "html", null, true);
                 echo "</td>
                             <td><strong>";
-                // line 33
+                // line 32
                 echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["partido"], "fechaInicio", array()), "d/m/Y H:i:s"), "html", null, true);
                 echo "</strong></td>
                             <td>";
-                // line 34
+                // line 33
                 echo twig_escape_filter($this->env, $this->getAttribute($context["partido"], "resultado", array()), "html", null, true);
                 echo "</td>
                             <td>";
-                // line 35
+                // line 34
                 echo twig_escape_filter($this->env, $this->getAttribute($context["partido"], "estadoPartido", array()), "html", null, true);
                 echo "</td>
                             <td class=\"actions\">
                                 <a href=\"";
-                // line 37
-                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_partido", array("id" => $this->getAttribute($context["partido"], "id", array()))), "html", null, true);
+                // line 36
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_partidoClientes", array("id" => $this->getAttribute($context["partido"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-info\">
                                     Ver
                                 </a>
-                                ";
-                // line 43
-                echo "                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
-                                    Eliminar
-                                </a>
                             </td>
                         </tr>
-                        ";
+                    ";
+                ++$context['loop']['index0'];
+                ++$context['loop']['index'];
+                $context['loop']['first'] = false;
             }
-            // line 49
-            echo "                    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['partido'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 50
+        // line 42
         echo "                </tbody>
             </table>
         </div>
-        ";
-        // line 58
-        echo "    </div>
+        <div class=\"navigation\">
+            ";
+        // line 46
+        echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")));
+        echo "
+        </div>
+    </div>
 ";
     }
 
@@ -145,6 +167,6 @@ class __TwigTemplate_ad0dafa64c3c3c62127a87e4a9ee48aeea2a17f49274d4253efc0bc27fd
 
     public function getDebugInfo()
     {
-        return array (  132 => 58,  127 => 50,  121 => 49,  113 => 43,  107 => 37,  102 => 35,  98 => 34,  94 => 33,  90 => 32,  86 => 31,  82 => 30,  78 => 29,  75 => 28,  72 => 27,  68 => 26,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  151 => 46,  145 => 42,  129 => 36,  124 => 34,  120 => 33,  116 => 32,  112 => 31,  108 => 30,  104 => 29,  100 => 28,  97 => 27,  86 => 26,  78 => 21,  74 => 20,  69 => 18,  65 => 17,  61 => 16,  57 => 15,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

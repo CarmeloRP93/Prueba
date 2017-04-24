@@ -56,6 +56,42 @@ class EquipoController extends Controller {
             $em->flush();
             return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));
         }
-        return $this->render('moduloclientesclienteBundle:Competiciones:nuevaEquipoCliente.html.twig', array('form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevoEquipoCliente.html.twig', array('form' => $form->createView()));
+    }
+    
+    public function editarEquipoAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $equipo = $em->getRepository('CriveroPruebaBundle:Equipos')->find($id);
+
+        if (!$equipo) {
+            throw $this->createNotFoundException("No encontrado");
+        }
+        $form = $this->createEditForm($equipo);
+        return $this->render('moduloclientesclienteBundle:Competiciones:editarEquipoCliente.html.twig', array('equipo' => $equipo, 'form' => $form->createView()));
+    }
+
+    public function editarAction($id, Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $equipo = $em->getRepository('CriveroPruebaBundle:Equipos')->find($id);
+        if (!$equipo) {
+            throw $this->createNotFoundException("No encontrado");
+        }
+        $form = $this->createEditForm($equipo);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($equipo);
+            $em->flush();
+            return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));
+        }
+        return $this->render('moduloclientesclienteBundle:Competiciones:editarEquipoCliente.html.twig', array('form' => $form->createView()));
+    }
+    
+    private function createEditForm(Equipos $entity) {
+        $form = $this->createForm(new EquiposType(), $entity, array(
+            'action' => $this->generateUrl('moduloclientes_cliente_equipo_editar', array('id' => $entity->getId())),
+            'method' => 'PUT'
+        ));
+        return $form;
     }
 }
