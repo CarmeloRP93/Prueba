@@ -3,13 +3,24 @@
 namespace Crivero\PruebaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class EquipoController extends Controller {
     
-    public function equiposAction() {
+    public function equiposAction(Request $request) {
        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
        $equipos=$repository->findAll();
-       return $this->render('CriveroPruebaBundle:Competiciones:equipos.html.twig', array("equipos"=>$equipos));
+       $paginator = $this->get('knp_paginator');
+       $pagination = $paginator->paginate(
+                $equipos, $request->query->getInt('page', 1), 5);
+       $repositoryCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
+       $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+       foreach ($equipos as $equipo=>$valor){
+            $competiciones[$equipo] = $repositoryCompeticiones->find($valor->getIdCompeticion());   
+            $representantes[$equipo] = $repositoryUsuarios->find($valor->getIdCliente());
+        }
+       return $this->render('CriveroPruebaBundle:Competiciones:equipos.html.twig', array("equipos"=>$pagination,
+           "competiciones"=>$competiciones,"representantes"=>$representantes));
     }
     
     public function equipoAction($id) {

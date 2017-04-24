@@ -45,10 +45,10 @@ class PartidoController extends Controller {
             "equipoLocal"=>$equipoLocal, "equipoVisitante"=>$equipoVisitante, "cancha"=>$cancha, "jugadores"=>$jugadores));
     }
     
-    public function nuevoAction() {
+    public function nuevoAction($id) {
         $partido = new Partidos();
         $form = $this->createCreateForm($partido);
-        return $this->render('CriveroPruebaBundle:Competiciones:nuevoPartido.html.twig', array('form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Competiciones:nuevoPartido.html.twig', array('form' => $form->createView(),'idCompeticion'=>$id));
     }
     
     private function createCreateForm(Partidos $entity) {

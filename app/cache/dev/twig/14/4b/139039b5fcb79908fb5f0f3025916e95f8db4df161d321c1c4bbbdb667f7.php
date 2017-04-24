@@ -50,14 +50,14 @@ class __TwigTemplate_144b139039b5fcb79908fb5f0f3025916e95f8db4df161d321c1c4bbbdb
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("attr" => array("novalidate" => "novalidate", "role" => "form")));
         echo "
         
-        <div class=\"form-group\">
+        <div class=\"hidden\">
             ";
         // line 11
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "idCompeticion", array()), 'label');
         echo "
             ";
         // line 12
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "idCompeticion", array()), 'widget', array("attr" => array("class" => "form-control")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "idCompeticion", array()), 'widget', array("value" => (isset($context["idCompeticion"]) ? $context["idCompeticion"] : $this->getContext($context, "idCompeticion"))));
         echo "
             <span class=\"text-danger\">";
         // line 13

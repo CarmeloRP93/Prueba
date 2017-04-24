@@ -7,9 +7,9 @@
         <h1 class="t1">Nuevo Partido</h1>
         {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
         
-        <div class="form-group">
+        <div class="hidden">
             {{ form_label(form.idCompeticion) }}
-            {{ form_widget(form.idCompeticion, {'attr' : {'class' : 'form-control'}  } ) }}
+            {{ form_widget(form.idCompeticion, {'value' : idCompeticion } ) }}
             <span class="text-danger">{{ form_errors(form.idCompeticion) }}</span>
         </div>
         

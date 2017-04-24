@@ -4,24 +4,57 @@
 
 {% block contenido %}
     <div class="container">
-
-{#        <div id="buscador">
-            <form>
-                <input type="search" name="equipo" placeholder="Buscar equipo"/>
-            </form>
-        </div>#}
-        <h1 class="t1">Listado de Equipos</h1>
-        <h3 class="t3">Fútbol</h3>
-        {% for equipo in equipos %}
-            {%if equipo.deporte =='Fútbol'%}
-                <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila">Nombre del equipo:{{ equipo.nombre }}</a>
-            {%endif%}
-        {% endfor %}
-        <h3 class="t3">Padel</h3>
-        {% for equipo in equipos %}
-            {%if equipo.deporte =='Padel'%}
-                <a href="{{url('crivero_prueba_equipo', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>
-            {%endif%}
-        {% endfor %}
+        <div class="page-header">
+            <h1 class="t1">Equipos</h1>
+        </div>
+        
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>{{ knp_pagination_sortable(equipos, 'Equipo', 'equipo.nombre') }}</th>
+                        <th>{{ knp_pagination_sortable(equipos, 'Competición inscrito', 'equipo.idCompeticion') }}</th>
+                        <th>{{ knp_pagination_sortable(equipos, 'Responsable', 'equipo.idCliente') }}</th>
+                        <th>{{ knp_pagination_sortable(equipos, 'Deporte', 'equipo.deporte') }}</th>
+                        <th>{{ knp_pagination_sortable(equipos, 'Clasificacion', 'equipo.clasificacion') }}</th>
+                        <th>{{ knp_pagination_sortable(equipos, 'Puntuación', 'equipo.puntuacion') }}</th>
+                        <th>{{ knp_pagination_sortable(equipos, 'Victorias', 'equipo.victorias') }}</th>
+                        <th>{{ knp_pagination_sortable(equipos, 'Empates', 'equipo.empates') }}</th>
+                        <th>{{ knp_pagination_sortable(equipos, 'Derrotas', 'equipo.derrotas') }}</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for equipo in equipos %}
+                        <tr>
+                            <td>{{equipo.nombre}}</td>
+                            <td>{{competiciones[equipo.id-1].nombre}}</td>
+                            <td>{{representantes[equipo.id-1].nombre}}</td>
+                            <td>{{equipo.deporte}}</td>
+                            {%if equipo.clasificacion != 0 %}
+                                <td>{{equipo.clasificacion}} º</td>
+                            {%else%}
+                                <td>Pendiente</td>
+                            {%endif%}
+                            <td>{{equipo.puntuacion}}</td>
+                            <td>{{equipo.victorias}}</td>
+                            <td>{{equipo.empates}}</td>
+                            <td>{{equipo.derrotas}}</td>
+                            <td class="actions">
+                                <a href="{{ path('crivero_prueba_equipo', { id: equipo.id }) }}" class="btn btn-sm btn-info">
+                                    Ver
+                                </a>
+                                <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                    Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(equipos) }}
+        </div>
     </div>
 {% endblock %}

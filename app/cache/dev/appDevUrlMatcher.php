@@ -832,8 +832,8 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // crivero_prueba_partido_nuevo
-        if ($pathinfo === '/nuevoPartido') {
-            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PartidoController::nuevoAction',  '_route' => 'crivero_prueba_partido_nuevo',);
+        if (0 === strpos($pathinfo, '/nuevoPartido') && preg_match('#^/nuevoPartido/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_partido_nuevo')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PartidoController::nuevoAction',));
         }
 
         // crivero_prueba_partido_crear

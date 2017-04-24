@@ -153,7 +153,7 @@ crivero_prueba_partido:
     defaults: { _controller: CriveroPruebaBundle:Partido:partido }
     
 crivero_prueba_partido_nuevo:
-    pattern:  /nuevoPartido
+    pattern:  /nuevoPartido/{id}
     defaults: { _controller: CriveroPruebaBundle:Partido:nuevo }
     
 crivero_prueba_partido_crear:

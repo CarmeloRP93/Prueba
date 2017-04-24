@@ -124,7 +124,7 @@ class __TwigTemplate_292b8aff0ca87db287d617efa601c648c962a27653f69103d6dd80667a8
             $context = array_intersect_key($context, $_parent) + $_parent;
             // line 43
             echo "             <a href=\"";
-            echo $this->env->getExtension('routing')->getPath("crivero_prueba_partido_nuevo");
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_partido_nuevo", array("id" => $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">
                 Nuevo Partido
             <span class=\"glyphicon glyphicon-plus\"></span></a>
@@ -209,7 +209,7 @@ class __TwigTemplate_292b8aff0ca87db287d617efa601c648c962a27653f69103d6dd80667a8
             </div>
             <a href=\"";
             // line 85
-            echo $this->env->getExtension('routing')->getPath("crivero_prueba_partido_nuevo");
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_partido_nuevo", array("id" => $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">
                 Nuevo Partido
             <span class=\"glyphicon glyphicon-plus\"></span></a>

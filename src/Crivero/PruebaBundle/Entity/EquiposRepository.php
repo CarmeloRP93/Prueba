@@ -28,9 +28,4 @@ class EquiposRepository extends EntityRepository
             ->setParameter('idCompeticion', $idCompeticion)
             ->getResult();
     }
-
-    public function findAll()
-    {
-        return $this->findBy(array(), array('clasificacion' => 'ASC'));
-    }
 }
