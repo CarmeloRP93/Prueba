@@ -23,7 +23,10 @@ class DedicadaController extends Controller {
     public function sesionDedicadaAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repository->find($id);
-        return $this->render('modulomonitoresmonitoresBundle:Default:sesionDedicada.html.twig', array("sesion" => $sesion));
+        $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+        $aula = $repositoryAula->find($sesion->getAula());
+    
+        return $this->render('modulomonitoresmonitoresBundle:Default:sesionDedicada.html.twig', array("sesion" => $sesion, "aula" => $aula));
     }
 
     public function misSesionesDedicadasAction(Request $request) {
@@ -39,9 +42,19 @@ class DedicadaController extends Controller {
 
     public function miSesionDedicadaAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $sesion = $repository->find($id);
+        $aula = $repositoryAula->find($sesion->getAula());
         $deleteForm = $this->createDeleteFormDedicada($sesion);
-        return $this->render('modulomonitoresmonitoresBundle:Default:miSesionDedicada.html.twig', array("sesion" => $sesion, 'delete_form' => $deleteForm->createView()));
+        return $this->render('modulomonitoresmonitoresBundle:Default:miSesionDedicada.html.twig', array("sesion" => $sesion, "aula" => $aula, 'delete_form' => $deleteForm->createView()));
+    }
+    public function miSesionMonitoresAction($id) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+        $sesion = $repository->find($id);
+        $aula = $repositoryAula->find($sesion->getAula());
+        $deleteForm = $this->createDeleteForm($sesion);
+        return $this->render('modulomonitoresmonitoresBundle:Default:miSesionMonitores.html.twig', array("sesion" => $sesion, "aula" => $aula, 'delete_form' => $deleteForm->createView()));
     }
 
     private function createDeleteFormDedicada($sesion) {
