@@ -24,9 +24,20 @@ class CanchaController extends Controller {
         $cancha = $repository->find($id);
 
         $repositoryHorarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosCanchas");
+        $mes = date('m');
         for ($i = 1; $i < 8; $i++) {
             $dia = date('d') + $i;
-            $diaMes = $dia . '-' . date('m');
+            if ($dia > date('t')) {
+                $dia = $dia - date('t');
+                $mes++;
+                if ($mes < 10) {
+                    $mes = '0' . $mes;
+                }
+            }
+            if ($dia < 10) {
+                $dia = '0' . $dia;
+            }
+            $diaMes = $dia . '-' . $mes;
             $horarios[$i] = $repositoryHorarios->getInstancia($id, $diaMes)[0];
         }
         return $this->render('moduloclientesclienteBundle:Canchas:canchaClientes.html.twig', array("cancha" => $cancha, "horarios" => $horarios));
@@ -137,4 +148,5 @@ class CanchaController extends Controller {
         ));
         return $form;
     }
+
 }
