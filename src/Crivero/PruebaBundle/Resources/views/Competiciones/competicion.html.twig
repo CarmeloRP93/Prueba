@@ -40,6 +40,10 @@
                     </td>
                 </tr>
              {%endfor%}
+             <a href="{{path('crivero_prueba_partido_nuevo')}}" class="btn btn-success" style="height: 30px; width: 150px;">
+                Nuevo Partido
+            <span class="glyphicon glyphicon-plus"></span></a>
+            
             <a href="{{path('crivero_prueba_competicion_cancelar', {id: competicion.id})}}" class="btn btn-sm btn-danger">
                 Cancelar Competición
             </a>
@@ -78,6 +82,9 @@
                     {%endfor%}
                 </table>
             </div>
+            <a href="{{path('crivero_prueba_partido_nuevo')}}" class="btn btn-success" style="height: 30px; width: 150px;">
+                Nuevo Partido
+            <span class="glyphicon glyphicon-plus"></span></a>
         {%endif%}
     </div>
 {% endblock %}

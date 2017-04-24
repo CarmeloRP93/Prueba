@@ -45,6 +45,36 @@ class PartidoController extends Controller {
             "equipoLocal"=>$equipoLocal, "equipoVisitante"=>$equipoVisitante, "cancha"=>$cancha, "jugadores"=>$jugadores));
     }
     
+    public function nuevoAction() {
+        $partido = new Partidos();
+        $form = $this->createCreateForm($partido);
+        return $this->render('CriveroPruebaBundle:Competiciones:nuevoPartido.html.twig', array('form' => $form->createView()));
+    }
+    
+    private function createCreateForm(Partidos $entity) {
+        $competiciones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones")->findAll();
+        $canchas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas")->findAll();
+        $equipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos")->findAll();
+        $form = $this->createForm(new PartidosType($competiciones,$equipos,$canchas), $entity, array(
+            'action' => $this->generateUrl('crivero_prueba_partido_crear'),
+            'method' => 'POST'
+        ));
+        return $form;
+    }
+    
+    public function crearAction(Request $request) {
+        $partido = new Partidos();
+        $form = $this->createCreateForm($partido);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($partido);
+            $em->flush();
+            return $this->redirect($this->generateUrl('crivero_prueba_partidos'));
+        }
+        return $this->render('CriveroPruebaBundle:Competiciones:nuevoPartido.html.twig', array('form' => $form->createView()));
+    }
+    
     public function editarPartidoAction($id) {
         $em = $this->getDoctrine()->getManager();
         $partido = $em->getRepository('CriveroPruebaBundle:Partidos')->find($id);
@@ -73,10 +103,11 @@ class PartidoController extends Controller {
         return $this->render('CriveroPruebaBundle:Competiciones:editarPartido.html.twig', array('form' => $form->createView()));
     }
     
-    private function createEditForm(Partidos $entity) { 
+    private function createEditForm(Partidos $entity) {
+        $competiciones=$this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones")->findAll();
         $canchas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas")->findAll();
         $equipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos")->findAll();
-        $form = $this->createForm(new PartidosType($equipos,$canchas), $entity, array(
+        $form = $this->createForm(new PartidosType($competiciones,$equipos,$canchas), $entity, array(
             'action' => $this->generateUrl('crivero_prueba_partido_editar', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));

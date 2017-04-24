@@ -123,17 +123,24 @@ class __TwigTemplate_292b8aff0ca87db287d617efa601c648c962a27653f69103d6dd80667a8
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
             // line 43
-            echo "            <a href=\"";
+            echo "             <a href=\"";
+            echo $this->env->getExtension('routing')->getPath("crivero_prueba_partido_nuevo");
+            echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">
+                Nuevo Partido
+            <span class=\"glyphicon glyphicon-plus\"></span></a>
+            
+            <a href=\"";
+            // line 47
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_competicion_cancelar", array("id" => $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-danger\">
                 Cancelar Competición
             </a>
          ";
         }
-        // line 47
+        // line 51
         echo "        ";
         if (($this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "estadoCompeticion", array()) == "Jugandose")) {
-            // line 48
+            // line 52
             echo "            <div class=\"table-responsive\">
                 <table class=\"table table-bordered\">
                     <thead>
@@ -148,40 +155,40 @@ class __TwigTemplate_292b8aff0ca87db287d617efa601c648c962a27653f69103d6dd80667a8
                         </tr>
                     </thead>
                     ";
-            // line 61
+            // line 65
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["equipos"]) ? $context["equipos"] : $this->getContext($context, "equipos")));
             foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
                 if (($this->getAttribute($context["equipo"], "idCompeticion", array()) == $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "id", array()))) {
-                    // line 62
+                    // line 66
                     echo "                            <tr>
                                 <td>   ";
-                    // line 63
+                    // line 67
                     echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "clasificacion", array()), "html", null, true);
                     echo "º  </td>
                                 <td>   ";
-                    // line 64
+                    // line 68
                     echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "nombre", array()), "html", null, true);
                     echo "    </td>
                                 <td>   ";
-                    // line 65
+                    // line 69
                     echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "puntuacion", array()), "html", null, true);
                     echo "   </td>
                                 <td>   ";
-                    // line 66
+                    // line 70
                     echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "victorias", array()), "html", null, true);
                     echo "   </td>
                                 <td>   ";
-                    // line 67
+                    // line 71
                     echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "derrotas", array()), "html", null, true);
                     echo "   </td>
                                 <td>   ";
-                    // line 68
+                    // line 72
                     echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "empates", array()), "html", null, true);
                     echo "   </td>
                                 <td>
                                     <a href=\"";
-                    // line 70
+                    // line 74
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_equipo", array("id" => $this->getAttribute($context["equipo"], "id", array()))), "html", null, true);
                     echo "\" class=\"btn btn-sm btn-info\">
                                         Ver
@@ -197,12 +204,18 @@ class __TwigTemplate_292b8aff0ca87db287d617efa601c648c962a27653f69103d6dd80667a8
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 79
+            // line 83
             echo "                </table>
             </div>
+            <a href=\"";
+            // line 85
+            echo $this->env->getExtension('routing')->getPath("crivero_prueba_partido_nuevo");
+            echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">
+                Nuevo Partido
+            <span class=\"glyphicon glyphicon-plus\"></span></a>
         ";
         }
-        // line 82
+        // line 89
         echo "    </div>
 ";
     }
@@ -219,6 +232,6 @@ class __TwigTemplate_292b8aff0ca87db287d617efa601c648c962a27653f69103d6dd80667a8
 
     public function getDebugInfo()
     {
-        return array (  206 => 82,  201 => 79,  185 => 70,  180 => 68,  176 => 67,  172 => 66,  168 => 65,  164 => 64,  160 => 63,  157 => 62,  152 => 61,  137 => 48,  134 => 47,  126 => 43,  110 => 34,  105 => 32,  102 => 31,  97 => 30,  87 => 22,  84 => 21,  76 => 17,  73 => 16,  66 => 12,  59 => 9,  57 => 8,  53 => 7,  49 => 6,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
+        return array (  219 => 89,  212 => 85,  208 => 83,  192 => 74,  187 => 72,  183 => 71,  179 => 70,  175 => 69,  171 => 68,  167 => 67,  164 => 66,  159 => 65,  144 => 52,  141 => 51,  134 => 47,  126 => 43,  110 => 34,  105 => 32,  102 => 31,  97 => 30,  87 => 22,  84 => 21,  76 => 17,  73 => 16,  66 => 12,  59 => 9,  57 => 8,  53 => 7,  49 => 6,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
     }
 }

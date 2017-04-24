@@ -12,15 +12,21 @@ class PartidosType extends AbstractType
      * @param FormBuilderInterface $builder
      * @param array $options
      */
+    private $competiciones;
     private $equipos;
     private $canchas;
-    public function __construct(array $equipos, array $canchas) {
+    public function __construct(array $competiciones, array $equipos, array $canchas) {
+        $this->competiciones=$competiciones;
         $this->equipos = $equipos;
         $this->canchas = $canchas;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    {   
+        $resCompeticiones = array();
+        for($i=0; $i < count($this->competiciones); $i++){
+            $resCompeticiones[$i]= array($this->competiciones[$i]->getId() => $this->competiciones[$i]->getNombre());
+        }
         $resEquipos = array();
         for($i=0; $i < count($this->equipos); $i++){
             $resEquipos[$i]= array($this->equipos[$i]->getId() => $this->equipos[$i]->getNombre());
@@ -31,7 +37,7 @@ class PartidosType extends AbstractType
         }
 
         $builder
-            ->add('idCompeticion')
+            ->add('idCompeticion','choice', array('choices' => $resCompeticiones))
             ->add('idEquipoLocal','choice', array('choices' => $resEquipos))
             ->add('idEquipoVisitante','choice', array('choices' => $resEquipos))
             ->add('idCancha','choice', array('choices' => $resCanchas))
