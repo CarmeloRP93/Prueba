@@ -12,8 +12,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\UsuariosRepository")
- * @UniqueEntity("username")
- * @UniqueEntity("email")
+ * @UniqueEntity(fields={"username"},
+ *               message="Ya existe un usuario con este nombre.")
+ * @UniqueEntity(fields={"email"},
+ *               message="Este email ya esta en uso.")
  * @ORM\HasLifecycleCallbacks()
  */
 class Usuarios implements AdvancedUserInterface, \Serializable {

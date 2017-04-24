@@ -810,23 +810,20 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/pa')) {
-            // crivero_prueba_pagos_usuario
-            if (0 === strpos($pathinfo, '/pagos/usuario') && preg_match('#^/pagos/usuario/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_pagos_usuario')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::pagosAction',));
+        // crivero_prueba_pagos_usuario
+        if (0 === strpos($pathinfo, '/cliente') && preg_match('#^/cliente/(?P<id>[^/]++)/pagos$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_pagos_usuario')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::pagosAction',));
+        }
+
+        if (0 === strpos($pathinfo, '/partido')) {
+            // crivero_prueba_partidos
+            if ($pathinfo === '/partidos') {
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PartidoController::partidosAction',  '_route' => 'crivero_prueba_partidos',);
             }
 
-            if (0 === strpos($pathinfo, '/partido')) {
-                // crivero_prueba_partidos
-                if ($pathinfo === '/partidos') {
-                    return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PartidoController::partidosAction',  '_route' => 'crivero_prueba_partidos',);
-                }
-
-                // crivero_prueba_partido
-                if (preg_match('#^/partido/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_partido')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PartidoController::partidoAction',));
-                }
-
+            // crivero_prueba_partido
+            if (preg_match('#^/partido/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_partido')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PartidoController::partidoAction',));
             }
 
         }

@@ -201,7 +201,7 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
         // line 81
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "get", array(0 => "query"), "method"), "html", null, true);
         echo "\" 
-                           placeholder=\"Buscar usuarios, reservas\" required>
+                           placeholder=\"Buscar usuarios, reservas\" >
                     <div class=\"input-group-btn\">
                         <button type=\"submit\" class=\"btn btn-default\">
                            <img src=\"";

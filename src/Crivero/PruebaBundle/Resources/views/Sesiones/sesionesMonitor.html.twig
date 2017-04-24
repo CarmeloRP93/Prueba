@@ -28,11 +28,11 @@
                             <td>{{sesion.nClientes}}/{{sesion.lClientes}}</td>
 
                             <td class="actions">
-                                <a href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}" class="btn btn-sm btn-info">
+                                <a href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}" class="btn btn-sm btn-info" style="margin-bottom: 0">
                                     Ver
                                 </a>
                                 {% if sesion.estado != 'cancelada' %}    
-                                    <a href="{{path('crivero_prueba_horarios_sesion', {id: sesion.id})}}" class="btn btn-sm btn-primary">
+                                    <a href="{{path('crivero_prueba_horarios_sesion', {id: sesion.id})}}" class="btn btn-sm btn-primary" style="margin-bottom: 0">
                                         Ver horarios
                                     </a>
                                 {% endif %}

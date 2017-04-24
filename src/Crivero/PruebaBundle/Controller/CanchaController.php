@@ -172,7 +172,7 @@ class CanchaController extends Controller {
         $cont = 1;
         $mes = date('m');
         $limite = date('t');
-        for ($i = date('d')+1; $cont <= 31; $i++) {
+        for ($i = date('d')+1; $cont < 31; $i++) {
             if ($i == $limite + 1) {
                 $i = 1;
                 if ($mes == 12) $mes = 0; 

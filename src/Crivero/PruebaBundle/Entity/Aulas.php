@@ -11,7 +11,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\AulasRepository")
- * @UniqueEntity("nombre")
+ * @UniqueEntity(fields={"nombre"},
+ *               message="Ya existe un aula con este nombre.")
  * @ORM\HasLifecycleCallbacks
  */
 class Aulas

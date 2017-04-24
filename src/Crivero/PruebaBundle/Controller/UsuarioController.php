@@ -206,11 +206,13 @@ class UsuarioController extends Controller {
     public function pagosAction($id, Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Pagos");
         $pagos = $repository->getPagos($id);
-
+        $usuario = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($id);
+        
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $pagos, $request->query->getInt('page', 1), 7);
-        return $this->render('CriveroPruebaBundle:Usuarios:pagos.html.twig', array('pagination' => $pagination));
+                $pagos, $request->query->getInt('page', 1), 8);
+        return $this->render('CriveroPruebaBundle:Usuarios:pagos.html.twig', array('pagination' => $pagination,
+                                                                                   'usuario' => $usuario));
     }
 
     public function enviarMensajeAction() {

@@ -36,7 +36,9 @@ class __TwigTemplate_f23249b136e4fba630ab8f4be0674b9981ef55ce0b4b796f58af5c53b87
     // line 3
     public function block_title($context, array $blocks = array())
     {
-        echo " Pagos ";
+        echo " ";
+        echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "username", array())), "html", null, true);
+        echo " - Pagos ";
     }
 
     // line 5
@@ -50,7 +52,10 @@ class __TwigTemplate_f23249b136e4fba630ab8f4be0674b9981ef55ce0b4b796f58af5c53b87
         echo "
     <div class=\"container\">
         <div class=\"page-header\">
-            <h1 class=\"t1\">Pagos</h1>
+            <h1 class=\"t1\">";
+        // line 10
+        echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "username", array())), "html", null, true);
+        echo " - Pagos </h1>
         </div>
 
         ";
@@ -62,7 +67,7 @@ class __TwigTemplate_f23249b136e4fba630ab8f4be0674b9981ef55ce0b4b796f58af5c53b87
         } else {
             // line 16
             echo "            <div class=\"table-responsive\">
-                <table class=\"table table-hover\">
+                <table class=\"table table-hover table-bordered\">
                     <thead>
                         <tr>
                             <th>";
@@ -124,9 +129,13 @@ class __TwigTemplate_f23249b136e4fba630ab8f4be0674b9981ef55ce0b4b796f58af5c53b87
         }
         // line 40
         echo "        <div>
-            <div class=\"navigation\">
+            <a class=\"btn btn-success\" href=\"";
+        // line 41
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "id", array()))), "html", null, true);
+        echo "\">Volver atrás</a>
+            <div class=\"navigation\" style=\"float: right\">
                 ";
-        // line 42
+        // line 43
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
             </div>
@@ -148,6 +157,6 @@ class __TwigTemplate_f23249b136e4fba630ab8f4be0674b9981ef55ce0b4b796f58af5c53b87
 
     public function getDebugInfo()
     {
-        return array (  130 => 42,  126 => 40,  120 => 36,  111 => 33,  107 => 32,  103 => 31,  99 => 30,  94 => 29,  90 => 28,  82 => 23,  78 => 22,  74 => 21,  70 => 20,  64 => 16,  60 => 14,  58 => 13,  49 => 7,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  139 => 43,  134 => 41,  131 => 40,  125 => 36,  116 => 33,  112 => 32,  108 => 31,  104 => 30,  99 => 29,  95 => 28,  87 => 23,  83 => 22,  79 => 21,  75 => 20,  69 => 16,  65 => 14,  63 => 13,  57 => 10,  51 => 7,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
     }
 }

@@ -137,7 +137,7 @@ crivero_prueba_reserva_cancelando:
         _method:  POST|PUT|GET
         
 crivero_prueba_pagos_usuario:
-    pattern:  /pagos/usuario/{id}
+    pattern:  /cliente/{id}/pagos
     defaults: { _controller: CriveroPruebaBundle:Usuario:pagos }
 
     

@@ -9,9 +9,12 @@ body {
     margin-top: 12px    
 }
 
-.differentTable, .differentTable td{
-    display: table;
-    border-color: black;
+#differentTable {
+    width: 60%;
+    margin: 0px auto;
+    float: none;
+    max-width: 60%; 
+    min-width: 60%; 
 }
 
 .wh {

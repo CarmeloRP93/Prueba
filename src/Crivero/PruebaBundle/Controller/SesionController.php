@@ -28,7 +28,7 @@ class SesionController extends Controller {
         $sesiones = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
         
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 5);
+        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 7);
 
         return $this->render('CriveroPruebaBundle:Sesiones:sesionesCliente.html.twig', array("pagination" => $pagination,
                                                                     'username' => $cliente->getUsername(), 'cId' => $id));
@@ -39,20 +39,24 @@ class SesionController extends Controller {
         $sesiones = $repository->getSesionesMonitor($id);
         
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 5);
+        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 7);
 
         return $this->render('CriveroPruebaBundle:Sesiones:sesionesMonitor.html.twig', array("pagination" => $pagination,
                                                                  'username' => $sesiones[0]->getMonitor(), 'mId' => $id));
     }
     
-    public function horariosSesionAction($id) {
+    public function horariosSesionAction($id, Request $request) {
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repositorySesiones->find($id);
         $horarios = explode("&", $sesion->getHorario());
+        
+//        $paginator = $this->get('knp_paginator');
+//        $pagination = $paginator->paginate($horarios, $request->query->getInt('page', 1), 8);
+        
         $aula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas")->find($sesion->getAula())->getNombre();
         
         return $this->render('CriveroPruebaBundle:Sesiones:horariosSesion.html.twig', array("sesion" => $sesion, 
-                                                                              "horarios" => $horarios, 'aula' => $aula));
+                                                                              "pagination" => $horarios, 'aula' => $aula));
     }
 
     public function dedicadasAction(Request $request) {
@@ -213,10 +217,10 @@ class SesionController extends Controller {
                 $request->getSession()->getFlashBag()->add('mensaje', 'La sesión se canceló correctamente');
                 return $this->redirect($this->generateUrl('crivero_prueba_sesion', array('id' => $sesion->getId())));
             } else {
-                $form->get('observaciones')->addError(new FormError('Rellene el campo gracias'));
+                $form->get('observaciones')->addError(new FormError('Rellene el campo.'));
             }
         }
-        return $this->render('CriveroPruebaBundle:Sesiones:cancelarSesion.html.twig', array('form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Sesiones:cancelarSesion.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
     }
 
     public function rechazarSesionAction($id) {

@@ -11,7 +11,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="canchas")
  * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\CanchasRepository")
- * @UniqueEntity("tipo")
+ * @UniqueEntity(fields={"tipo"}, 
+ *               message="Ya existe una cancha con este nombre.")
  * @ORM\HasLifecycleCallbacks
  */
 class Canchas {

@@ -79,9 +79,15 @@
             {{ form_widget(form.nSesiones, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca el número total de sesiones'} }) }}
             <span class="text-danger">{{ form_errors(form.nSesiones) }}</span>
         </div>
-        <p>
+        <div>
+            {% if sesion.cliente == 'normal' %}
+                {% set ruta = path("crivero_prueba_sesion", {id: sesion.id}) %}
+            {% else %}
+                {% set ruta = path("crivero_prueba_dedicadas") %}
+            {% endif %}
+            <a href="{{ ruta }}" class="btn btn-danger">Anular</a>
             {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
-        </p>                
+        </div>                
 
         {{ form_end(form) }}
     </div>

@@ -8,33 +8,38 @@
             <h1 class="t1">Sesión {{ sesion.nombre }} - Horarios</h1>
         </div>
         <h4 class="t3">*Las sesiones se realizarán en el aula: {{aula}}</h4>
-        <div class="table-responsive">
-            <table class="table table-hover table-bordered">
+        <div>
+            <table id="differentTable" class="table table-hover table-bordered table-condensed" >
                 <thead>
                     <tr>
                         <th>Nº Sesión</th>
-                        <th>Dia y hora</th>
+                        <th>Día y hora</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% set i = 1 %}
-                    {% for horario in horarios %}
+                  {#  {% set page = app.request.uri|last %}
+                    {% if page matches '/^\\d+$/' %}
+                        {% set i = page %}
+                    {% else %}
+                        {% set i = 1 %}
+                    {% endif %}#}
+                    {% for horario in pagination %}
                         <tr>
-                            <td>{{i}}</td>
+                            <td>{{ loop.index }}</td>
                             <td>{{horario}}</td>
-                            {% set i = i + 1 %}
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
-        </div>
-            {% if app.request.headers.get('referer') %}    
-                <a class="btn btn-success" href="{{ app.request.headers.get('referer') }}">Volver atrás</a>
-            {% else %}
-                <a class="btn btn-success" href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}">Volver atrás</a>
-            {% endif %}
-       {#<form action="{{ app.request.headers.get('referer') }}">        
-            <button type="submit" class="btn btn-success">Volver atrás</button>
-        </form>  #}
+        </div><br>
+        {% if app.request.headers.get('referer') %}    
+            <a class="btn btn-success" href="{{ app.request.headers.get('referer') }}">Volver atrás</a>
+        {% else %}
+            <a class="btn btn-success" href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}">Volver atrás</a>
+        {% endif %}
+        
+       {# <div class="navigation" style="float: right">
+            {{ knp_pagination_render(pagination) }}
+        </div>#}
     </div>
 {% endblock %}

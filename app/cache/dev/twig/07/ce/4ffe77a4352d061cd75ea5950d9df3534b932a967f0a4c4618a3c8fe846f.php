@@ -56,7 +56,7 @@ class __TwigTemplate_07ce4ffe77a4352d061cd75ea5950d9df3534b932a967f0a4c4618a3c8f
                         <div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4\">
                             <img src=\"";
         // line 12
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("images/" . "m.jpg")), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("images/" . $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "imagen", array()))), "html", null, true);
         echo "\" class=\"img-circle\" style=\"width:60px;\" />        
                         </div>
                         <div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4\">

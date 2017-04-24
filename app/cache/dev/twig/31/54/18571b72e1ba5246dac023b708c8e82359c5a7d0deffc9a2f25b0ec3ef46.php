@@ -135,7 +135,7 @@ class __TwigTemplate_315418571b72e1ba5246dac023b708c8e82359c5a7d0deffc9a2f25b0ec
                                     <a href=\"";
                 // line 40
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_reserva_cancelar", array("id" => $this->getAttribute($context["reserva"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-sm btn-danger\">
+                echo "\" class=\"btn btn-sm btn-danger\" style=\"margin-bottom: 0\">
                                         Cancelar
                                     </a>
                                 </td>

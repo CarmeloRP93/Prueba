@@ -107,7 +107,7 @@ class __TwigTemplate_54a7b5ec9c2531dbe462f7bcd3081f97825836640b6797de18cd58127a6
                                 <a href=\"";
             // line 31
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_sesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
-            echo "\" class=\"btn btn-sm btn-info\">
+            echo "\" class=\"btn btn-sm btn-info\" style=\"margin-bottom: 0\">
                                     Ver
                                 </a>
                                 ";
@@ -117,7 +117,7 @@ class __TwigTemplate_54a7b5ec9c2531dbe462f7bcd3081f97825836640b6797de18cd58127a6
                                     <a href=\"";
                 // line 35
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_horarios_sesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-sm btn-primary\">
+                echo "\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
                                         Ver horarios
                                     </a>
                                 ";
