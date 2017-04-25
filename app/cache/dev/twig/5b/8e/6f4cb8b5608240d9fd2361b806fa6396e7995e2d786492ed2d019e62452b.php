@@ -76,7 +76,7 @@ class __TwigTemplate_5b8e6f4cb8b5608240d9fd2361b806fa6396e7995e2d786492ed2d019e6
         // line 18
         echo "            </div>
 
-            <div class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center\" >
+            <div class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center\">
                 <div class=\"panel panel-default\">                  
                     <div class=\"panel-body\">                   
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">                           

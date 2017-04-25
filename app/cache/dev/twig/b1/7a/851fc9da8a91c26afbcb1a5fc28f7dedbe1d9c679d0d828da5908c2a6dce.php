@@ -54,7 +54,7 @@ class __TwigTemplate_b17a851fc9da8a91c26afbcb1a5fc28f7dedbe1d9c679d0d828da5908c2
         // line 10
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
             // line 11
-            echo "            <h2>No se encontraron sesiones privadas aceptadas</h2>
+            echo "            <h2>No se encontraron sesiones privadas</h2>
         ";
         } else {
             // line 13

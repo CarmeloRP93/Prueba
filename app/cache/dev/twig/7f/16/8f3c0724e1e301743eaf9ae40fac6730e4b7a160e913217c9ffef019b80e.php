@@ -222,32 +222,30 @@ class __TwigTemplate_7f168f3c0724e1e301743eaf9ae40fac6730e4b7a160e913217c9ffef01
         echo "</span><br>
                         </div>
                     </div>
-            </div>
-            </form><br>
+                </form><br>
 
-            <div class=\"text-center\">
+                <div class=\"text-center\">
 
-                ";
-        // line 95
+                    ";
+        // line 94
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
 
-                <form class=\"alinear\" action=\"";
-        // line 97
+                    <form class=\"alinear\" action=\"";
+        // line 96
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_miSesionDedicada", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array()))), "html", null, true);
         echo "\">
-                    <button type=\"submit\" class=\"btn btn-danger\" >Cancelar</button>
-                </form>
+                        <button type=\"submit\" class=\"btn btn-danger\" >Cancelar</button>
+                    </form>
 
-            </div>
-            ";
-        // line 102
+                </div>
+                ";
+        // line 101
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "                   
+            </div>
         </div>
     </div>
-
-</div>
 ";
     }
 
@@ -263,6 +261,6 @@ class __TwigTemplate_7f168f3c0724e1e301743eaf9ae40fac6730e4b7a160e913217c9ffef01
 
     public function getDebugInfo()
     {
-        return array (  245 => 102,  237 => 97,  232 => 95,  221 => 87,  217 => 86,  210 => 82,  206 => 81,  196 => 74,  192 => 73,  185 => 69,  181 => 68,  171 => 61,  167 => 60,  159 => 55,  155 => 54,  145 => 47,  141 => 46,  132 => 40,  128 => 39,  119 => 33,  115 => 32,  109 => 29,  105 => 28,  101 => 27,  96 => 25,  92 => 24,  88 => 23,  83 => 21,  79 => 20,  75 => 19,  70 => 17,  66 => 16,  62 => 15,  55 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  244 => 101,  236 => 96,  231 => 94,  221 => 87,  217 => 86,  210 => 82,  206 => 81,  196 => 74,  192 => 73,  185 => 69,  181 => 68,  171 => 61,  167 => 60,  159 => 55,  155 => 54,  145 => 47,  141 => 46,  132 => 40,  128 => 39,  119 => 33,  115 => 32,  109 => 29,  105 => 28,  101 => 27,  96 => 25,  92 => 24,  88 => 23,  83 => 21,  79 => 20,  75 => 19,  70 => 17,  66 => 16,  62 => 15,  55 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

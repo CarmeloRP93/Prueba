@@ -272,7 +272,7 @@ class SesionController extends Controller {
             }
             $em->flush();
             $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido modificada con éxito.');
-            return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionDedicadas', array('id' => $sesion->getId())));
+            return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionDedicada', array('id' => $sesion->getId())));
         }
         return $this->render('modulomonitoresmonitoresBundle:Default:editarSesionDedicada.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
     }

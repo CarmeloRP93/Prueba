@@ -247,7 +247,7 @@ class __TwigTemplate_48095df0a0c416f2ea61a8f54876dfddc25742993fabccd6e3d9cb35586
         } else {
             // line 86
             echo "                ";
-            $context["ruta"] = $this->env->getExtension('routing')->getPath("crivero_prueba_dedicadas");
+            $context["ruta"] = $this->env->getExtension('routing')->getPath("crivero_prueba_dedicadas", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array())));
             // line 87
             echo "            ";
         }

@@ -2,24 +2,29 @@
 {% block title %}{{sesion.nombre}} {% endblock %}
 {% block contenido %}
     <h3 class="t1">Sesión privada: {{sesion.nombre}}</h3>
-
-    <div id="sesiondat">
-        <div id="sesionfot" style="margin-top: 14px;">
-            <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" style="width: 50%; margin-bottom: 1%" />        
-        </div>
-        <div class="row">
-            <div id="colizq" class="col-md-4 col-md-offset-3" >
-                <h4>Aula de la sesión: {{aula.nombre}}</h4>
-                <h4>Monitor: {{sesion.monitor}}</h4>
-                <h4>Ejercicios a realizar: {{sesion.ejercicios}}</h4>
-                <h4>Repeticiones por cada ejercicio: {{sesion.repeticiones}} por ejercicio</h4>
-                <h4>Horario: <a href="{{path('modulomonitores_monitores_verHorario', {id: sesion.id})}}" style="height: 30px; width: 100px;" class="btn btn-primary">Ver Horario</a> </h4>
-                <h4>Duración de cada sesión: {{sesion.duracion}} minutos</h4>
-                <h4>Descanso entre ejercicios: {{sesion.descanso}} minutos</h4>
-
-                <h4>Objetivo de la sesión: {{sesion.objetivo}}</h4>
+    <div id="sesiondat" class="container">
+        <div class="row">           
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >  
+                <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" style="max-width: 330px; margin-bottom:20px"/>        
             </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
+                <div class="panel panel-default">                  
+                    <div class="panel-body">   
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">    
+                            <h4>Aula de la sesión:</h4> <p>{{aula.nombre}}</p>
+                            <h4>Monitor:</h4> <p>{{sesion.monitor}}</p>
+                            <h4>Ejercicios a realizar:</h4> <p>{{sesion.ejercicios}}</p>
+                            <h4>Repeticiones por cada ejercicio:</h4> <p>{{sesion.repeticiones}} por ejercicio</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <h4>Duración de cada sesión:</h4> <p>{{sesion.duracion}} minutos</p>
+                            <h4>Descanso entre ejercicios:</h4> <p>{{sesion.descanso}} minutos</p>
+                            <h4>Objetivo de la sesión:</h4> <p>{{sesion.objetivo}}</p>
+                            <a href="{{path('modulomonitores_monitores_verHorario', {id: sesion.id})}}" style="height: 30px; width: 100px;" class="btn btn-primary">Ver Horario</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
-
 {% endblock %}

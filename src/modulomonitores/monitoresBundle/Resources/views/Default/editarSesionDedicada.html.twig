@@ -87,21 +87,19 @@
                             <span class="text-danger">{{ form_errors(form.aula) }}</span><br>
                         </div>
                     </div>
+                </form><br>
+
+                <div class="text-center">
+
+                    {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
+
+                    <form class="alinear" action="{{ path('modulomonitores_monitores_miSesionDedicada', { id: sesion.id }) }}">
+                        <button type="submit" class="btn btn-danger" >Cancelar</button>
+                    </form>
+
+                </div>
+                {{ form_end(form) }}                   
             </div>
-            </form><br>
-
-            <div class="text-center">
-
-                {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
-
-                <form class="alinear" action="{{ path('modulomonitores_monitores_miSesionDedicada', { id: sesion.id }) }}">
-                    <button type="submit" class="btn btn-danger" >Cancelar</button>
-                </form>
-
-            </div>
-            {{ form_end(form) }}                   
         </div>
     </div>
-
-</div>
 {% endblock %}
