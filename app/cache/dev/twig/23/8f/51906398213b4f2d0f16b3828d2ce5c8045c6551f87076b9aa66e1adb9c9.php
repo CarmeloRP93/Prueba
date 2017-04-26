@@ -114,7 +114,7 @@ class __TwigTemplate_238f51906398213b4f2d0f16b3828d2ce5c8045c6551f87076b9aa66e1a
             // line 40
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_enviarMensaje");
             echo "\" method=\"post\">
-                                        <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-primary\">Enviar mensaje</button>
+                                        <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-primary\">Nuevo mensaje</button>
                                         <input type=\"hidden\" class=\"btn\">
                                     </form>
                                     <form class=\"btn-group-vertical\" action=\"";
@@ -122,7 +122,7 @@ class __TwigTemplate_238f51906398213b4f2d0f16b3828d2ce5c8045c6551f87076b9aa66e1a
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_nuevo");
             echo "\" method=\"post\">
                                         <input type=\"hidden\" class=\"btn\">
-                                        <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-info\">Nuevo usuario</button>
+                                        <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-info\">Publicar evento</button>
                                         <input type=\"hidden\" class=\"btn\">
                                     </form>
                                     <form class=\"btn-group-vertical\" action=\"";

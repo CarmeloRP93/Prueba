@@ -106,21 +106,9 @@ class __TwigTemplate_4b0e1a086b4c994a45bff9dc961ce7811f9bd786c32c0c2bde0b9f09717
                             </div>
 
                             <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
-                                <div class=\"form-group\">
-                                    ";
-        // line 41
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horario", array()), 'label');
-        echo "
-                                    ";
-        // line 42
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horario", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "00:00 - 23:59")));
-        echo "
-                                    <span class=\"text-danger\">";
-        // line 43
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "imagen", array()), 'errors');
-        echo "</span>
-                                </div>
-                            </div>
+                                ";
+        // line 45
+        echo "                            </div>
                         </div>
 
                     </form>
@@ -154,6 +142,6 @@ class __TwigTemplate_4b0e1a086b4c994a45bff9dc961ce7811f9bd786c32c0c2bde0b9f09717
 
     public function getDebugInfo()
     {
-        return array (  135 => 52,  130 => 50,  120 => 43,  116 => 42,  112 => 41,  103 => 35,  99 => 34,  95 => 33,  88 => 29,  84 => 28,  80 => 27,  73 => 23,  69 => 22,  65 => 21,  56 => 15,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  123 => 52,  118 => 50,  111 => 45,  103 => 35,  99 => 34,  95 => 33,  88 => 29,  84 => 28,  80 => 27,  73 => 23,  69 => 22,  65 => 21,  56 => 15,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
     }
 }

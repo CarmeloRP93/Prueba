@@ -8,8 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormError;
 use Crivero\PruebaBundle\Entity\Usuarios;
 use Crivero\PruebaBundle\Form\UsuariosType;
-use Crivero\PruebaBundle\Entity\Comentarios;
-use Crivero\PruebaBundle\Form\ComentariosType;
 
 class UsuarioController extends Controller {
 
@@ -215,54 +213,6 @@ class UsuarioController extends Controller {
                                                                                    'usuario' => $usuario));
     }
 
-    public function enviarMensajeAction() {
-        $comentario = new Comentarios();
-        $referer = $this->getRequest()->headers->get('referer');
-        $destino = null;
-        if ($referer) {
-            //print_r(explode('/', $referer));
-            $url = explode('/', $referer);
-            if ($url[6] == 'cliente' || $url[6] == 'monitor') {
-                $id = $url[7]; 
-                $destino = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($id)->getEmail();
-            }
-        }
-        $form = $this->createMessageForm($comentario);
-        return $this->render('CriveroPruebaBundle:Usuarios:nuevoMensaje.html.twig', array('form' => $form->createView(),
-                                                                                          'destino' => $destino));
-    }
-
-    private function createMessageForm(Comentarios $entity) {
-        $form = $this->createForm(new ComentariosType(), $entity, array(
-            'action' => $this->generateUrl('crivero_prueba_enviando'),
-            'method' => 'POST'
-        ));
-        return $form;
-    }
-
-    public function enviandoAction(Request $request) {
-        $comentario = new Comentarios();
-        $form = $this->createMessageForm($comentario);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $repositoryUsuarios = $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
-            $dest = $repositoryUsuarios->getDestinatario($form->get('destinatario')->getData());
-            if ($dest != null) {
-                $comentario->setIdDestinatario($dest[0]->getId());
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($comentario);
-                $em->flush();
-                return $this->redirect($this->generateUrl('crivero_prueba_clientes'));
-            } else {
-                $form->get('destinatario')->addError(new FormError('Este destinatario no existe.'));
-            }
-        }
-        $destino = $form->get('destinatario')->getData();
-        return $this->render('CriveroPruebaBundle:Usuarios:nuevoMensaje.html.twig', array('form' => $form->createView(), 
-                                                                                           'destino' => $destino));
-    }
-    
     private function findUser($id, $em) {
         $usuario = $em->getRepository('CriveroPruebaBundle:Usuarios')->find($id);
         if (!$usuario) {

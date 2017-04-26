@@ -37,7 +37,7 @@ class __TwigTemplate_02bcc152e86b5cf18d89cbe10259956bd429351fb6aed4320bb2ee494e0
     public function block_title($context, array $blocks = array())
     {
         echo " ";
-        echo ((($this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "id", array()) == $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))) ? ("Mi Perfil") : ("Editar usuario"));
+        echo ((($this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "id", array()) == $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))) ? ("Editar perfil") : ("Editar usuario"));
         echo "  ";
     }
 

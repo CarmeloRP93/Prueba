@@ -56,7 +56,7 @@ class __TwigTemplate_5ffe749a75e897b4a229188aa9d7c988c2e72617bc1697e290207d62937
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("attr" => array("novalidate" => "novalidate", "role" => "form")));
         echo "
                 <div class=\"panel-body\">
-                    <form role=\"form\">
+                    
                         <div class=\"row\">
                             <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
                                 <div class=\"form-group\">
@@ -158,7 +158,7 @@ class __TwigTemplate_5ffe749a75e897b4a229188aa9d7c988c2e72617bc1697e290207d62937
                         </div>
                     </div>
 
-                    </form>
+                    
                     <div class=\"text-center\">
                         ";
         // line 66
@@ -171,8 +171,7 @@ class __TwigTemplate_5ffe749a75e897b4a229188aa9d7c988c2e72617bc1697e290207d62937
         echo "
                 </div>
             </div>               
-        </div>
-    </div>           
+        </div>     
 
 ";
     }

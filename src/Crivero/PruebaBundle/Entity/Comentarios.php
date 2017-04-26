@@ -70,6 +70,13 @@ class Comentarios {
     private $idDestinatario;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha", type="datetime")
+     */
+    private $fecha;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -197,6 +204,22 @@ class Comentarios {
      */
     public function getIdDestinatario() {
         return $this->idDestinatario;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setFecha() {
+        $this->fecha = new \DateTime();
+    }
+
+    /**
+     * Get fecha
+     *
+     * @return \DateTime 
+     */
+    public function getFecha() {
+        return $this->fecha;
     }
 
 }

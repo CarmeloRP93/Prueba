@@ -1081,7 +1081,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         if (0 === strpos($pathinfo, '/envia')) {
             // crivero_prueba_enviarMensaje
             if ($pathinfo === '/enviarMensaje') {
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::enviarMensajeAction',  '_route' => 'crivero_prueba_enviarMensaje',);
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::enviarMensajeAction',  '_route' => 'crivero_prueba_enviarMensaje',);
             }
 
             // crivero_prueba_enviando
@@ -1091,9 +1091,22 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     goto not_crivero_prueba_enviando;
                 }
 
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::enviandoAction',  '_route' => 'crivero_prueba_enviando',);
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::enviandoAction',  '_route' => 'crivero_prueba_enviando',);
             }
             not_crivero_prueba_enviando:
+
+        }
+
+        if (0 === strpos($pathinfo, '/mensajes')) {
+            // crivero_prueba_mensajes_recibidos
+            if ($pathinfo === '/mensajes/recibidos') {
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::mensajesRecibidosAction',  '_route' => 'crivero_prueba_mensajes_recibidos',);
+            }
+
+            // crivero_prueba_mensajes_enviados
+            if ($pathinfo === '/mensajes/enviados') {
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::mensajesEnviadosAction',  '_route' => 'crivero_prueba_mensajes_enviados',);
+            }
 
         }
 

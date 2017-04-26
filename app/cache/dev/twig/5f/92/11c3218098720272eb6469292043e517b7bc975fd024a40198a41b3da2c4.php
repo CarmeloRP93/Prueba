@@ -180,12 +180,20 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
             echo " 
                     <li><a href = \"";
             // line 74
+            echo $this->env->getExtension('routing')->getPath("crivero_prueba_mensajes_enviados");
+            echo "\">Enviados</a></li>
+                    <li><a href = \"";
+            // line 75
+            echo $this->env->getExtension('routing')->getPath("crivero_prueba_mensajes_recibidos");
+            echo "\">Recibidos</a></li>
+                    <li><a href = \"";
+            // line 76
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_perfil");
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/user-128.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
                     <li><a href=\"";
-            // line 75
+            // line 77
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
             echo "\" style=\"margin-right: 12px\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/logout-128.png"), "html", null, true);
@@ -193,19 +201,19 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
                 </ul>
             ";
         }
-        // line 78
+        // line 80
         echo "
             <form method=\"GET\" class=\"navbar-form navbar-center\" role=\"search\">
                 <div class=\"input-group\">
                     <input type=\"text\" name=\"query\" class=\"form-control\" value=\"";
-        // line 81
+        // line 83
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "get", array(0 => "query"), "method"), "html", null, true);
         echo "\" 
                            placeholder=\"Buscar usuarios, reservas\" >
                     <div class=\"input-group-btn\">
                         <button type=\"submit\" class=\"btn btn-default\">
                            <img src=\"";
-        // line 85
+        // line 87
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/search-128.png"), "html", null, true);
         echo "\" style=\"width: 15px;\" />  
                         </button>
@@ -217,16 +225,16 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
 ";
     }
 
-    // line 93
+    // line 95
     public function block_body($context, array $blocks = array())
     {
-        // line 94
+        // line 96
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 96
-        $this->displayBlock('contenido', $context, $blocks);
         // line 98
+        $this->displayBlock('contenido', $context, $blocks);
+        // line 100
         echo "        </div>
 
     </div>
@@ -234,17 +242,17 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
 ";
     }
 
-    // line 96
+    // line 98
     public function block_contenido($context, array $blocks = array())
     {
-        // line 97
+        // line 99
         echo "            ";
     }
 
-    // line 104
+    // line 106
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 105
+        // line 107
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
@@ -263,6 +271,6 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
 
     public function getDebugInfo()
     {
-        return array (  248 => 105,  245 => 104,  241 => 97,  238 => 96,  230 => 98,  228 => 96,  224 => 94,  221 => 93,  209 => 85,  202 => 81,  197 => 78,  189 => 75,  183 => 74,  180 => 73,  174 => 72,  172 => 71,  169 => 70,  167 => 69,  159 => 64,  155 => 63,  146 => 57,  141 => 55,  137 => 54,  133 => 53,  129 => 52,  122 => 48,  114 => 43,  110 => 42,  102 => 37,  98 => 36,  89 => 30,  84 => 28,  80 => 27,  68 => 18,  55 => 7,  52 => 6,  47 => 4,  41 => 2,  11 => 1,);
+        return array (  256 => 107,  253 => 106,  249 => 99,  246 => 98,  238 => 100,  236 => 98,  232 => 96,  229 => 95,  217 => 87,  210 => 83,  205 => 80,  197 => 77,  191 => 76,  187 => 75,  183 => 74,  180 => 73,  174 => 72,  172 => 71,  169 => 70,  167 => 69,  159 => 64,  155 => 63,  146 => 57,  141 => 55,  137 => 54,  133 => 53,  129 => 52,  122 => 48,  114 => 43,  110 => 42,  102 => 37,  98 => 36,  89 => 30,  84 => 28,  80 => 27,  68 => 18,  55 => 7,  52 => 6,  47 => 4,  41 => 2,  11 => 1,);
     }
 }

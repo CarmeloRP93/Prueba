@@ -13,7 +13,7 @@
                 </div>
                 {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
                 <div class="panel-body">
-                    <form role="form">
+                    
                         <div class="row">
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <div class="form-group">
@@ -61,14 +61,13 @@
                         </div>
                     </div>
 
-                    </form>
+                    
                     <div class="text-center">
                         {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
                     </div>
                     {{ form_end(form) }}
                 </div>
             </div>               
-        </div>
-    </div>           
+        </div>     
 
 {% endblock %}
