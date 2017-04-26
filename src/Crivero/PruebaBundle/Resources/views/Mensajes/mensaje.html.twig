@@ -1,0 +1,42 @@
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
+
+{% block title %} Mensaje {{ mensaje.id }}{% endblock %}
+{% block contenido %}
+    {{ include('CriveroPruebaBundle:Default:messages/success2.html.twig') }}
+    <div class="container">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h3 class="t3" style=" word-wrap: break-word;">{{ ( mensaje.asunto == null) ? "Sin asunto" : mensaje.asunto }}</h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" >
+                            <img class="img-circle" src="{{asset('images/' ~ remitente.imagen)}}" style="width: 80px; float: left"/>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-md-10 col-lg-10">
+                            {% if mensaje.idDestinatario == app.user.id %}
+                                <form class="alinear" action="{{path('crivero_prueba_responderMensaje', {id: remitente.id})}}" style="float: right">
+                                    <button type="submit" class="btn btn-sm btn-success" >Responder<span class=""></span></button>
+                                </form>
+                            {% endif %}
+                            <p style="font-weight: bold">{{ remitente.username }} {{"<" ~ remitente.email ~ ">" }}</p>
+                            <p style="font-weight: bold">{{ mensaje.fecha|date('d/m/Y H:i')}}</p>
+                            <p style="font-weight: bold">{{"(" ~ mensaje.destinatario ~ ")"}}</p>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12 " >
+                        <div class="row">
+                            <p>{{ mensaje.descripcion }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

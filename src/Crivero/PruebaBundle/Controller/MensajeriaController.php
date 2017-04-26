@@ -59,40 +59,64 @@ class MensajeriaController extends Controller {
                     'destino' => $destino));
     }
 
+    public function responderMensajeAction($id) {
+        $comentario = new Comentarios();
+        $destino = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($id)->getEmail();
+        
+        $asunto = null;
+        $referer = $this->getRequest()->headers->get('referer');
+        if ($referer && strpos($referer, 'mensaje')) {
+            $idMensaje = explode('/', $referer)[7];
+            $asunto = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Comentarios")->find($idMensaje)->getAsunto();
+        }
+        $form = $this->createMessageForm($comentario);
+        return $this->render('CriveroPruebaBundle:Mensajes:nuevoMensaje.html.twig', array('form' => $form->createView(),
+                    'destino' => $destino, 'asunto' => 'RE: '.$asunto));
+    }
+
     public function mensajesRecibidosAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Comentarios");
         $mensajesRecibidos = $repository->getMensajesRecibidos($this->getUser()->getId());
-        
-        $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
-        $remitentes = null;
-        foreach ($mensajesRecibidos as $clave => $mensaje) {
-            $remitentes[$clave] = $repositoryUsuarios->find($mensaje->getIdRemitente())->getEmail();
-        }
+
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $mensajesRecibidos, $request->query->getInt('page', 1), 9);
 
+        $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $remitentes = null;
+        foreach ($mensajesRecibidos->getResult() as $clave => $mensaje) {
+            $remitentes[$clave] = $repositoryUsuarios->find($mensaje->getIdRemitente())->getEmail();
+        }
+
         return $this->render('CriveroPruebaBundle:Mensajes:recibidos.html.twig', array('pagination' => $pagination,
-                                                                                       'remitentes' => $remitentes));
-  
+                    'remitentes' => $remitentes));
     }
-    
+
     public function mensajesEnviadosAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Comentarios");
         $mensajesEnviados = $repository->getMensajesEnviados($this->getUser()->getId());
-        
-        $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
-        $destinatarios = null;
-        foreach ($mensajesEnviados as $clave => $mensaje) {
-            $destinatarios[$clave] = $repositoryUsuarios->find($mensaje->getIdDestinatario())->getEmail();
-        }
+
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $mensajesEnviados, $request->query->getInt('page', 1), 9);
 
+        $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $destinatarios = null;
+        foreach ($mensajesEnviados->getResult() as $clave => $mensaje) {
+            $destinatarios[$clave] = $repositoryUsuarios->find($mensaje->getIdDestinatario())->getEmail();
+        }
+
         return $this->render('CriveroPruebaBundle:Mensajes:enviados.html.twig', array('pagination' => $pagination,
-                                                                                       'destinatarios' => $destinatarios));
-  
+                    'destinatarios' => $destinatarios));
+    }
+
+    public function mensajeAction($id) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Comentarios");
+        $mensaje = $repository->find($id);
+        $remitente = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($mensaje->getIdRemitente());
+
+        return $this->render('CriveroPruebaBundle:Mensajes:mensaje.html.twig', array('mensaje' => $mensaje,
+                    'remitente' => $remitente));
     }
 
 }

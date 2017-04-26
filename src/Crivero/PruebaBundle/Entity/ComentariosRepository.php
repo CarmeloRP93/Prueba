@@ -11,17 +11,23 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class ComentariosRepository extends EntityRepository {
-     public function getMensajesRecibidos($usuarioId) {
+
+    public function getMensajesRecibidos($usuarioId) {
         return $this->getEntityManager()
-                        ->createQuery('SELECT m FROM CriveroPruebaBundle:Comentarios m WHERE m.idDestinatario = :dest')
+                        ->createQueryBuilder()->select('m')
+                        ->from('CriveroPruebaBundle:Comentarios', 'm')
+                        ->where("m.idDestinatario = :dest")
                         ->setParameter('dest', $usuarioId)
-                        ->getResult();
+                        ->getQuery();
     }
-    
-     public function getMensajesEnviados($usuarioId) {
+
+    public function getMensajesEnviados($usuarioId) {
         return $this->getEntityManager()
-                        ->createQuery('SELECT m FROM CriveroPruebaBundle:Comentarios m WHERE m.idRemitente = :rmt')
+                        ->createQueryBuilder()->select('m')
+                        ->from('CriveroPruebaBundle:Comentarios', 'm')
+                        ->where("m.idRemitente = :rmt")
                         ->setParameter('rmt', $usuarioId)
-                        ->getResult();
+                        ->getQuery();
     }
+
 }

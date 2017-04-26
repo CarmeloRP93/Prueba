@@ -111,16 +111,30 @@ class __TwigTemplate_b2e0dedd2a8bd8d36a4aa87f7f0a7d035ec97ec43237f3b254fef3ef91f
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "descripcion", array()), 'errors');
         echo "</span>
     </div>
+    <div class=\"hidden\">
+        ";
+        // line 34
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fecha", array()), 'label');
+        echo "
+        ";
+        // line 35
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fecha", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Escriba la descripción")));
+        echo "
+        <span class=\"text-danger\">";
+        // line 36
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fecha", array()), 'errors');
+        echo "</span>
+    </div>
 
     <div class=\"form-group container\"><p>
             ";
-        // line 35
+        // line 40
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "enviar", array()), 'widget', array("label" => "Enviar", "attr" => array("class" => "btn btn-success")));
         echo "
         </p></div>      
 
     ";
-        // line 38
+        // line 43
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
 
@@ -139,6 +153,6 @@ class __TwigTemplate_b2e0dedd2a8bd8d36a4aa87f7f0a7d035ec97ec43237f3b254fef3ef91f
 
     public function getDebugInfo()
     {
-        return array (  124 => 38,  118 => 35,  111 => 31,  107 => 30,  103 => 29,  96 => 25,  92 => 24,  88 => 23,  81 => 19,  77 => 18,  73 => 17,  66 => 13,  62 => 12,  58 => 11,  52 => 8,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  138 => 43,  132 => 40,  125 => 36,  121 => 35,  117 => 34,  111 => 31,  107 => 30,  103 => 29,  96 => 25,  92 => 24,  88 => 23,  81 => 19,  77 => 18,  73 => 17,  66 => 13,  62 => 12,  58 => 11,  52 => 8,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

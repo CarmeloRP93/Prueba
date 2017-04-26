@@ -44,37 +44,53 @@ class __TwigTemplate_9856cb3c9693313f2d84ec370803e5677b16c4882914cc16d0e6f9a3805
     public function block_contenido($context, array $blocks = array())
     {
         // line 6
-        echo "    
+        echo "
     ";
         // line 7
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:messages/success.html.twig");
         echo "
-    <div class=\"container\" style=\"margin-top: -22px\">
+    <div class=\"container\" style=\"margin-top: -21px\">
         <div class=\"page-header\">
-            <h1 class=\"t1\">Mensajes Recibidos </h1>
+            <div class=\"dropdown \" style=\"float: left\">
+                <button style=\"margin-bottom: 0\" class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Mensajes Recibidos
+                    <span class=\"caret\"></span></button>
+                <ul class=\"dropdown-menu\">
+                    <li><a href=\"";
+        // line 14
+        echo $this->env->getExtension('routing')->getPath("crivero_prueba_mensajes_enviados");
+        echo "\">Mensajes Enviados</a></li>
+                    <li class=\"active\"><a href=\"#\">Mensajes Recibidos</a></li>
+                    <li class=\"divider\"></li>
+                    <li><a href=\"";
+        // line 17
+        echo $this->env->getExtension('routing')->getPath("crivero_prueba_enviarMensaje");
+        echo "\">Nuevo mensaje</a></li>
+                </ul>
+            </div>
+            <h1 class=\"t1\" style=\"margin-right: 4.5em\">Mensajes Recibidos </h1>
         </div>
         ";
-        // line 12
+        // line 22
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
-            // line 13
+            // line 23
             echo "            <h2>No se encontraron mensajes.</h2>
         ";
         } else {
-            // line 15
+            // line 25
             echo "            <div class=\"table-responsive\">
                 <table class=\"table table-hover table-condensed\">
                     <thead>
                         <tr>
                             <th>";
-            // line 19
+            // line 29
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Remitente", "m.idRemitente");
             echo "</th>
                             <th>";
-            // line 20
+            // line 30
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Asunto", "m.asunto");
             echo "</th>
                             <th>";
-            // line 21
+            // line 31
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Recibido", "m.fecha");
             echo "</th>
                             <th class=\"t3\">Acciones</th>
@@ -83,7 +99,7 @@ class __TwigTemplate_9856cb3c9693313f2d84ec370803e5677b16c4882914cc16d0e6f9a3805
                     <tbody>
 
                         ";
-            // line 27
+            // line 37
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
             $context['loop'] = array(
@@ -100,35 +116,40 @@ class __TwigTemplate_9856cb3c9693313f2d84ec370803e5677b16c4882914cc16d0e6f9a3805
                 $context['loop']['last'] = 1 === $length;
             }
             foreach ($context['_seq'] as $context["_key"] => $context["mensaje"]) {
-                // line 28
+                // line 38
                 echo "                            <tr data-id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["mensaje"], "id", array()), "html", null, true);
                 echo "\">
                                 <td><strong>";
-                // line 29
+                // line 39
                 echo twig_escape_filter($this->env, $this->getAttribute((isset($context["remitentes"]) ? $context["remitentes"] : $this->getContext($context, "remitentes")), $this->getAttribute($context["loop"], "index0", array()), array(), "array"), "html", null, true);
                 echo "</strong></td>
                                 ";
-                // line 30
+                // line 40
                 if (($this->getAttribute($context["mensaje"], "asunto", array()) == null)) {
-                    // line 31
+                    // line 41
                     echo "                                    <td>Sin asunto</td>
                                 ";
                 } else {
-                    // line 33
+                    // line 43
                     echo "                                    <td>";
                     echo twig_escape_filter($this->env, $this->getAttribute($context["mensaje"], "asunto", array()), "html", null, true);
                     echo "</td>
                                 ";
                 }
-                // line 35
+                // line 45
                 echo "                                <td>";
                 echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["mensaje"], "fecha", array()), "d/m/Y H:i"), "html", null, true);
                 echo "</td>
-                                 <td class=\"actions\">
-                                    <a href=\"\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
-                                        Ver mensaje
-                                    </a>
+                                <td class=\"actions\">
+                                    <form action=\"";
+                // line 47
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_mensaje", array("id" => $this->getAttribute($context["mensaje"], "id", array()))), "html", null, true);
+                echo "\">
+                                        <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                            Ver mensaje
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         ";
@@ -144,17 +165,17 @@ class __TwigTemplate_9856cb3c9693313f2d84ec370803e5677b16c4882914cc16d0e6f9a3805
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['mensaje'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 43
+            // line 55
             echo "                    </tbody>
                 </table>
             </div>
         ";
         }
-        // line 47
+        // line 59
         echo "        <div>
             <div class=\"navigation\">
                 ";
-        // line 49
+        // line 61
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
             </div>
@@ -165,15 +186,15 @@ class __TwigTemplate_9856cb3c9693313f2d84ec370803e5677b16c4882914cc16d0e6f9a3805
 ";
     }
 
-    // line 56
+    // line 68
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 57
+        // line 69
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <script src=\"";
-        // line 58
+        // line 70
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/criveroprueba/js/delete-user.js"), "html", null, true);
         echo "\"></script>
 ";
@@ -191,6 +212,6 @@ class __TwigTemplate_9856cb3c9693313f2d84ec370803e5677b16c4882914cc16d0e6f9a3805
 
     public function getDebugInfo()
     {
-        return array (  177 => 58,  172 => 57,  169 => 56,  158 => 49,  154 => 47,  148 => 43,  125 => 35,  119 => 33,  115 => 31,  113 => 30,  109 => 29,  104 => 28,  87 => 27,  78 => 21,  74 => 20,  70 => 19,  64 => 15,  60 => 13,  58 => 12,  50 => 7,  47 => 6,  44 => 5,  38 => 3,  11 => 1,);
+        return array (  198 => 70,  193 => 69,  190 => 68,  179 => 61,  175 => 59,  169 => 55,  147 => 47,  141 => 45,  135 => 43,  131 => 41,  129 => 40,  125 => 39,  120 => 38,  103 => 37,  94 => 31,  90 => 30,  86 => 29,  80 => 25,  76 => 23,  74 => 22,  66 => 17,  60 => 14,  50 => 7,  47 => 6,  44 => 5,  38 => 3,  11 => 1,);
     }
 }

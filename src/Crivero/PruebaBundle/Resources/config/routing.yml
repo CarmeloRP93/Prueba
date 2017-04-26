@@ -297,6 +297,10 @@ crivero_prueba_enviando:
     defaults: { _controller: CriveroPruebaBundle:Mensajeria:enviando }
     requirements:
         _method:  POST|GET
+        
+crivero_prueba_responderMensaje:
+    pattern: /mensaje/responder/{id}
+    defaults: { _controller: CriveroPruebaBundle:Mensajeria:responderMensaje }        
 
 crivero_prueba_mensajes_recibidos:
     pattern: /mensajes/recibidos
@@ -305,3 +309,7 @@ crivero_prueba_mensajes_recibidos:
 crivero_prueba_mensajes_enviados:
     pattern: /mensajes/enviados
     defaults: { _controller: CriveroPruebaBundle:Mensajeria:mensajesEnviados }
+    
+crivero_prueba_mensaje:
+    pattern: /mensaje/{id}
+    defaults: { _controller: CriveroPruebaBundle:Mensajeria:mensaje }

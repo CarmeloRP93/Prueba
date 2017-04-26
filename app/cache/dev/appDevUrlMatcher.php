@@ -1097,15 +1097,28 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/mensajes')) {
-            // crivero_prueba_mensajes_recibidos
-            if ($pathinfo === '/mensajes/recibidos') {
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::mensajesRecibidosAction',  '_route' => 'crivero_prueba_mensajes_recibidos',);
+        if (0 === strpos($pathinfo, '/mensaje')) {
+            // crivero_prueba_responderMensaje
+            if (0 === strpos($pathinfo, '/mensaje/responder') && preg_match('#^/mensaje/responder/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_responderMensaje')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::responderMensajeAction',));
             }
 
-            // crivero_prueba_mensajes_enviados
-            if ($pathinfo === '/mensajes/enviados') {
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::mensajesEnviadosAction',  '_route' => 'crivero_prueba_mensajes_enviados',);
+            if (0 === strpos($pathinfo, '/mensajes')) {
+                // crivero_prueba_mensajes_recibidos
+                if ($pathinfo === '/mensajes/recibidos') {
+                    return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::mensajesRecibidosAction',  '_route' => 'crivero_prueba_mensajes_recibidos',);
+                }
+
+                // crivero_prueba_mensajes_enviados
+                if ($pathinfo === '/mensajes/enviados') {
+                    return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::mensajesEnviadosAction',  '_route' => 'crivero_prueba_mensajes_enviados',);
+                }
+
+            }
+
+            // crivero_prueba_mensaje
+            if (preg_match('#^/mensaje/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_mensaje')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::mensajeAction',));
             }
 
         }
