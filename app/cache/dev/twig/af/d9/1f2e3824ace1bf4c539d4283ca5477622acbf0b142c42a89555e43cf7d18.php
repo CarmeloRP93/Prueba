@@ -59,14 +59,14 @@ class __TwigTemplate_afd91f2e3824ace1bf4c539d4283ca5477622acbf0b142c42a89555e43c
 
                 <div class=\"panel-body\">
                     <div class=\"row\">
-                        <div class=\"col-xs-12 col-sm-2 col-md-2 col-lg-2\" >
+                        <div class=\"col-xs-3 col-sm-3 col-md-3 col-lg-2\" >
                             <img class=\"img-circle\" src=\"";
         // line 16
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("images/" . $this->getAttribute((isset($context["remitente"]) ? $context["remitente"] : $this->getContext($context, "remitente")), "imagen", array()))), "html", null, true);
         echo "\" style=\"width: 80px; float: left\"/>
                         </div>
 
-                        <div class=\"col-xs-12 col-sm-6 col-md-10 col-lg-10\">
+                        <div class=\"col-xs-9 col-sm-9 col-md-9 col-lg-10\">
                             ";
         // line 20
         if (($this->getAttribute((isset($context["mensaje"]) ? $context["mensaje"] : $this->getContext($context, "mensaje")), "idDestinatario", array()) == $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))) {

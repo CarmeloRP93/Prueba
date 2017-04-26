@@ -6,21 +6,32 @@
 {% block title %}Vista de {{sesion.nombre}} {% endblock %}
 {% block contenido %}
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
-    <h1 class="t1">Sesion {{sesion.id}}</h1>
-    <h1 class="t1">{{sesion.nombre}}</h1>
-
     <div id="sesiondat" class="container">
+    <div class="page-header">
+        <h1 class="t1">Sesión - {{sesion.nombre}}</h1>
+    </div>
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >  
-                <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" style="max-width: 350px; margin-bottom:20px"/>        
-                {% if sesion.estado == "cancelada" %}
+                <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" style="max-width: 450px; margin-bottom:20px"/>        
+                {% if sesion.estado == 'validada' %}
+                    <a href="{{path('crivero_prueba_cancelarSesion', {id: sesion.id})}}" class="btn btn-danger text-center center-block btn-block" style="width: 450px;">Cancelar</a>
+                {% elseif sesion.estado == "cancelada" %}
                     <div class="text-center">
-                        <h4 class="terr">Motivo de cancelación: {{sesion.observaciones}}</h4>   
+                        <h4 class="terr">Motivos de cancelación: {{sesion.observaciones}}</h4>   
                     </div>
                 {% elseif sesion.estado == "rechazada" %}
                     <div class="text-center">
                         <h4 class="terr">Motivos de rechazo: {{sesion.observaciones}}</h4>
+                    </div>
+                {% else %}
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <a href="{{path('crivero_prueba_aceptarSesion', {id: sesion.id})}}" class="btn btn-success text-center center-block img-responsive" style="width: 180px;">Aceptar Solicitud</a>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <a href="{{path('crivero_prueba_rechazarSesion', {id: sesion.id})}}" class="btn btn-danger text-center center-block img-responsive" style="width: 180px;">Rechazar Solicitud </a>               
+                        </div>
                     </div>
                 {% endif %}
             </div>
@@ -29,23 +40,22 @@
                 <div class="panel panel-default">                  
                     <div class="panel-body">                   
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">    
-                            <h4>Monitor:</h4> <p>{{sesion.monitor}}</p>
-                            <h4>Ejercicios:</h4> <p>{{sesion.ejercicios}}</p>
-                            <h4>Repeticiones:</h4> <p>{{sesion.repeticiones}} por ejercicio</p>
-                            <h4>Nº de participantes:</h4> <p>{{sesion.nClientes}}</p>
+                            <h4>Monitor</h4> <p>{{sesion.monitor}}</p>
+                            <h4>Ejercicios</h4> <p>{{sesion.ejercicios}}</p>
+                            <h4>Repeticiones</h4> <p>{{sesion.repeticiones}} por ejercicio</p>
+                            <h4>Nº de participantes</h4> <p>{{sesion.nClientes}}</p>
                             {% if sesion.estado == "validada"%}
-                                <h4>Aula:</h4> <p>{{aula.nombre}}</p>
+                                <h4>Aula</h4> <p>{{aula.nombre}}</p>
                             {% endif %}
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <h4>Tiempo estimado:</h4> <p>{{sesion.duracion}} minutos</p>
-                            <h4>Descanso entre ejercicios:</h4> <p>{{sesion.descanso}} minutos</p>
-                            <h4>Objetivo:</h4> <p>{{sesion.objetivo}}</p>
-                            <h4>Límite de participantes:</h4> <p>{{sesion.lClientes}}</p>
+                            <h4>Tiempo estimado</h4> <p>{{sesion.duracion}} minutos</p>
+                            <h4>Descanso entre ejercicios</h4> <p>{{sesion.descanso}} minutos</p>
+                            <h4>Objetivo</h4> <p>{{sesion.objetivo}}</p>
+                            <h4>Límite de participantes</h4> <p>{{sesion.lClientes}}</p>
                             {% if sesion.estado == "validada"%}
-                                <h4>Horario:</h4> 
                                 <form action="{{ path('crivero_prueba_horarios_sesion', { id: sesion.id })}}" method="post" class="form-signin">
-                                    <button type="submit" class="btn btn-sm btn-success" style="margin-bottom: 5px">Ver horarios</button>
+                                    <button type="submit" class="btn btn-sm btn-success" style="margin-top: 10px">Ver horarios</button>
                                 </form>
                             {% endif %}
                         </div>
@@ -54,23 +64,24 @@
             </div>
         </div>
 
-        <div class="text-center">
-            {% if sesion.estado == "validada"%}
-                <a href="{{path('crivero_prueba_cancelarSesion', {id: sesion.id})}}" class="btn btn-danger text-center center-block img-responsive" style="width: 180px;">Cancelar</a>
-            {% elseif sesion.estado == "cancelada" %}
-                <button class="btn btn-danger text-center center-block img-responsive" style="width: 180px;" disabled="disabled">Cancelada</button>
-            {% elseif sesion.estado == "rechazada" %}
-                <button class="btn btn-danger text-center center-block img-responsive" style="width: 180px;" disabled="disabled">Rechazada</button>
-            {% else %}  
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <a href="{{path('crivero_prueba_aceptarSesion', {id: sesion.id})}}" class="btn btn-success text-center center-block img-responsive" style="width: 180px;">Aceptar Solicitud</a>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <a href="{{path('crivero_prueba_rechazarSesion', {id: sesion.id})}}" class="btn btn-danger text-center center-block img-responsive" style="width: 180px;">Rechazar Solicitud </a>               
-                    </div>
-                </div>
-            {% endif %}
-        </div>
+        {# <div class="text-center">
+             {% if sesion.estado == "validada"%}
+                                <a href="{{path('crivero_prueba_cancelarSesion', {id: sesion.id})}}" class="btn btn-danger text-center center-block img-responsive" style="width: 180px;">Cancelar</a>
+ 
+             {% elseif sesion.estado == "cancelada" %}
+                                 <button class="btn btn-danger text-center center-block img-responsive" style="width: 180px;" disabled="disabled">Cancelada</button>
+             {% elseif sesion.estado == "rechazada" %}
+                 <button class="btn btn-danger text-center center-block img-responsive" style="width: 180px;" disabled="disabled">Rechazada</button>
+             {% else %}  
+                 <div class="row">
+                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                         <a href="{{path('crivero_prueba_aceptarSesion', {id: sesion.id})}}" class="btn btn-success text-center center-block img-responsive" style="width: 180px;">Aceptar Solicitud</a>
+                     </div>
+                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                         <a href="{{path('crivero_prueba_rechazarSesion', {id: sesion.id})}}" class="btn btn-danger text-center center-block img-responsive" style="width: 180px;">Rechazar Solicitud </a>               
+                     </div>
+                 </div>
+             {% endif %}
+         </div>#}
     </div>
 {% endblock %}

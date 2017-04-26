@@ -2,42 +2,43 @@
 
 {% block title %}Vista de {{sesion.nombre}} {% endblock %}
 {% block contenido %}
-    <h1 class="t1">Sesion {{sesion.id}}</h1>
-    <h3 class="t1">{{sesion.nombre}}</h3>    
 
     <div id="sesiondat" class="container">
-        
+        <div class="page-header">    
+            <h1 class="t1">Sesión - {{sesion.nombre}}</h1>
+        </div>
+        <br>
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
-                <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" style="max-width: 340px; margin-bottom:20px"/>        
-                    {% if sesion.estado == "cancelada" %}
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" >
+                <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" style="max-width: 350px; margin-bottom:20px; margin-right: 0"/>        
+                {% if sesion.estado == "cancelada" %}
                     <div class="text-center">
                         <h4 class="terr">Motivo de cancelación: {{sesion.observaciones}}</h4>   
                     </div>
-                    {% endif %}
+                {% endif %}
             </div>
-            
+
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center" >
                 <div class="panel panel-default">                  
                     <div class="panel-body">                   
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <h4>Monitor:</h4> <p>{{sesion.monitor}}</p>
-                            <h4>Ejercicios:</h4> <p>{{sesion.ejercicios}}</p>
-                            <h4>Repeticiones:</h4> <p>{{sesion.repeticiones}} por ejercicio</p>
+                            <h4>Monitor</h4> <p>{{sesion.monitor}}</p>
+                            <h4>Ejercicios</h4> <p>{{sesion.ejercicios}}</p>
+                            <h4>Repeticiones</h4> <p>{{sesion.repeticiones}} por ejercicio</p>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <h4>Tiempo estimado:</h4> <p>{{sesion.duracion}} minutos</p>
-                            <h4>Descanso entre ejercicios:</h4> <p>{{sesion.descanso}} minutos</p>
-                            <h4>Objetivo:</h4> <p>{{sesion.objetivo}}</p>
+                            <h4>Tiempo estimado</h4> <p>{{sesion.duracion}} minutos</p>
+                            <h4>Descanso entre ejercicios</h4> <p>{{sesion.descanso}} minutos</p>
+                            <h4>Objetivo</h4> <p>{{sesion.objetivo}}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-                        
+
         <div class="text-center">
             <a href="{{path('moduloclientes_cliente_sesionesClientes_abandonar', {id: sesion.id})}}" 
-               class="btn btn-danger text-center center-block img-responsive" style="width: 180px;">Abandonar</a>
+               class="btn btn-danger text-center img-responsive" style="width: 220px;">Abandonar</a>
         </div>
     </div>
 </div>

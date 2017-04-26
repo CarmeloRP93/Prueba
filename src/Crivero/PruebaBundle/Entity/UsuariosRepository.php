@@ -22,10 +22,14 @@ class UsuariosRepository extends EntityRepository {
 
     public function searchClientes($searchQuery) {
         return $this->getEntityManager()
-                        ->createQuery('SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=2 AND u.username = :user OR u.nombre = :nombre')
+                        ->createQueryBuilder()->select('u')
+                        ->from('CriveroPruebaBundle:Usuarios', 'u')
+                        ->where("u.tipo=2")
+                        ->andWhere("u.username = :user")
+                        ->orWhere("u.nombre = :nombre")
                         ->setParameter('user', $searchQuery)
                         ->setParameter('nombre', $searchQuery)
-                        ->getResult();
+                        ->getQuery();
     }
 
     public function getMonitores() {
@@ -37,11 +41,15 @@ class UsuariosRepository extends EntityRepository {
     }
 
     public function searchMonitores($searchQuery) {
-        return $this->getEntityManager()
-                        ->createQuery('SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=3 AND u.username = :user OR u.nombre = :nombre')
+           return $this->getEntityManager()
+                        ->createQueryBuilder()->select('u')
+                        ->from('CriveroPruebaBundle:Usuarios', 'u')
+                        ->where("u.tipo=3")
+                        ->andWhere("u.username = :user")
+                        ->orWhere("u.nombre = :nombre")
                         ->setParameter('user', $searchQuery)
                         ->setParameter('nombre', $searchQuery)
-                        ->getResult();
+                        ->getQuery();
     }
 
     public function recuperarPass($id) {

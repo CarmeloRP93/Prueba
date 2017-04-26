@@ -20,8 +20,9 @@ class CanchasRepository extends EntityRepository {
     
     public function searchCanchas($searchQuery) {
         return $this->getEntityManager()
-            ->createQuery("SELECT c FROM CriveroPruebaBundle:Canchas c WHERE c.tipo= :nombre")
+            ->createQuery("SELECT c FROM CriveroPruebaBundle:Canchas c WHERE c.tipo= :nombre OR c.deporte = :deporte")
             ->setParameter('nombre', $searchQuery)
+            ->setParameter('deporte', $searchQuery)
             ->getResult();
     }
 }

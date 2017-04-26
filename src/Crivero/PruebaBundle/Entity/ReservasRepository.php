@@ -32,11 +32,14 @@ class ReservasRepository extends EntityRepository {
 
     public function searchReservas($searchQuery) {
         return $this->getEntityManager()
-                        ->createQuery("SELECT r FROM CriveroPruebaBundle:Reservas r WHERE r.estadoReserva='Reservado' AND "
-                                . "r.cliente = :cliente OR r.cancha = :cancha")
+                        ->createQueryBuilder()->select('r')
+                        ->from('CriveroPruebaBundle:Reservas', 'r')
+                        ->where("r.estadoReserva = 'Reservado'")
+                        ->andWhere("r.cliente = :cliente")
+                        ->orWhere("r.cancha = :cancha")
                         ->setParameter('cliente', $searchQuery)
                         ->setParameter('cancha', $searchQuery)
-                        ->getResult();
+                        ->getQuery();
     }
 
 }
