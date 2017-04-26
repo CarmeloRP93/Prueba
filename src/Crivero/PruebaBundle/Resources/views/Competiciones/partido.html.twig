@@ -1,51 +1,135 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
-
 {% block title %} Partido {{ partido.id }} {% endblock %}
-
 {% block contenido %}
     <div class="container">
-        <div class="page-header">
-            <h1 class="t1">{{ competicion.nombre }}</h1>
-            <h2 class="t1">Partido entre {{ equipoLocal.nombre }} VS {{ equipoVisitante.nombre }}</h2>
-        </div>
-        <div>
-            {% if partido.estadoPartido == 'Pendiente' %}
-                <ul>
-                    <li>El partido esta previsto para: {{ partido.fechaInicio|date('d/m/Y H:i:s') }} en la cancha {{ cancha.tipo }}
-                    <li> El {{ equipoLocal.nombre }} clasificado en {{ equipoLocal.clasificacion }}º
-                        puesto VS {{ equipoVisitante.nombre }} clasificado en {{ equipoVisitante.clasificacion }}º puesto</li>
-                    <li>Árbitro designado para el encuentro: {{ partido.arbitro }}</li>
-                </ul>
+        <h1 class="t1">{{ competicion.nombre }}</h1>
+        <div class="panel panel-default text-center">
+            <div class="panel-heading">
+                {% if partido.estadoPartido == 'Finalizado' %}
+                    <h2 class="t1">Partido {{ partido.estadoPartido }}: {{ partido.resultado }}</h2>
+                {% else %}
+                    <h2 class="t1">Partido {{ partido.estadoPartido }}</h2>
+                {% endif %}
+            </div>  
+
+            {% if partido.estadoPartido == 'Pendiente' %}  
+                <div class="panel-body">  
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            <h4>Fecha prevista</h4> <p>El {{ partido.fechaInicio|date('d/m/Y') }} a las {{ partido.fechaInicio|date('H:i') }}</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            <h4>Cancha</h4> <p>{{ cancha.tipo }}</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            <h4>Árbitro designado</h4> <p>{{ partido.arbitro }}</p>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
+
             {% if partido.estadoPartido == 'Jugandose' %}
-                <ul>
-                    <li> El {{ equipoLocal.nombre }} clasificado en {{ equipoLocal.clasificacion }}º
-                        puesto VS {{ equipoVisitante.nombre }} clasificado en {{ equipoVisitante.clasificacion }}º puesto</li>
-                    <li>Arbitro pitando: {{ partido.arbitro }}</li>
-                    <li>Los jugadores del {{ equipoLocal.nombre }}</li>
-                    {% for jugador in jugadores if equipoLocal.id == jugador.idEquipo%}
-                        <p>{{ jugador.nombre }} con el dorsal {{ jugador.dorsal }}</p>
-                    {% endfor %}
-                    <li>Los jugadores del {{ equipoVisitante.nombre }}</li>
-                    {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
-                        <p>{{ jugador.nombre }} con el dorsal {{ jugador.dorsal }}</p>
-                    {% endfor %}
-                </ul>
+                <div class="panel-body">  
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <h4>Arbitro pitando: {{ partido.arbitro }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                            <h4>{{ equipoLocal.nombre }}</h4>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>Jugador</th>
+                                        <th>Dorsal</th>
+                                    </tr>
+                                    {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
+                                        <tr>
+                                            <td>{{ jugador.nombre }}</td>
+                                            <td>{{ jugador.dorsal }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                            <h4>Vs</h4>
+                        </div>      
+
+                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                            <h4>{{ equipoVisitante.nombre }}</h4>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>Jugador</th>
+                                        <th>Dorsal</th>
+                                    </tr>
+                                    {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
+                                        <tr>
+                                            <td>{{ jugador.nombre }}</td>
+                                            <td>{{ jugador.dorsal }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
-            {% if partido.estadoPartido == 'Finalizado' %}
-                <ul>
-                    <li>Clasificación de ambos en la competición</li>
-                    <li>Árbitro asignado al encuentro: {{ partido.arbitro }}</li>
-                    <li>Los jugadores del {{ equipoLocal.nombre }}</li>
-                    {% for jugador in jugadores if equipoLocal.id == jugador.idEquipo%}
-                        <p>{{ jugador.nombre }} con el dorsal {{ jugador.dorsal }}</p>
-                    {% endfor %}
-                    <li>Los jugadores del {{ equipoVisitante.nombre }}</li>
-                    {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
-                        <p>Nombre: {{ jugador.nombre }} Dorsal: {{ jugador.dorsal }} Incidencias: {{ jugador.incidencia }}</p>
-                    {% endfor %}
-                    <li>Resultado del encuentro: {{ partido.resultado}}</li>
-                </ul>
+
+            {% if partido.estadoPartido == 'Finalizado' %}  
+                <div class="panel-body">  
+                    <h4>Arbitrado por {{ partido.arbitro }}</h4>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                            <h4>{{ equipoLocal.nombre }}</h4>
+                            <h4>Posición en la liga: {{ equipoLocal.clasificacion }}</h4>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>Jugador</th>
+                                        <th>Dorsal</th>
+                                        <th>Incidencias</th>
+                                    </tr>
+                                    {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
+                                        <tr>
+                                            <td>{{ jugador.nombre }}</td>
+                                            <td>{{ jugador.dorsal }}</td>
+                                            <td>{{ jugador.incidencia }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                            <h4>Vs</h4>
+                        </div>      
+
+                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                            <h4>{{ equipoVisitante.nombre }}</h4>
+                            <h4>Posición en la liga: {{ equipoVisitante.clasificacion }}</h4>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>Jugador</th>
+                                        <th>Dorsal</th>
+                                        <th>Incidencias</th>
+                                    </tr>
+                                    {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
+                                        <tr>
+                                            <td>{{ jugador.nombre }}</td>
+                                            <td>{{ jugador.dorsal }}</td>
+                                            <td>{{ jugador.incidencia }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
         </div>
     </div>
