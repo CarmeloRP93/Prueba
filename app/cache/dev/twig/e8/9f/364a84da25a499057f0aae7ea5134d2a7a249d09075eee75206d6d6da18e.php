@@ -48,116 +48,103 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
         echo "    <h1 class=\"t1\">Detalles de la cancha</h1>   
     <div class=\"container text-center\">
 
-        <div class=\"text-center\">
-            <h3 class=\"t3\">";
-        // line 8
+        <h3 class=\"t3\">";
+        // line 7
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "tipo", array()), "html", null, true);
         echo "</h3>
-        </div>
 
-        <div class=\" container row\">
-            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">
-                <div class=\"text-center\">
-                    <img src=\"";
-        // line 14
+        <div class=\"row\">
+            <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
+                <img src=\"";
+        // line 11
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "imagen", array())), "html", null, true);
-        echo "\" width=\"180px\" class=\"img-rounded\"/><br>
-
-                    <br>";
-        // line 16
+        echo "\" class=\"img-responsive center-block\" style=\"max-width: 340px; margin-bottom:20px\"/>
+                ";
+        // line 12
         if (($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()) == "Disponible")) {
-            // line 17
-            echo "                    <div class=\"text-center\">
-                        <a href=\"";
-            // line 18
+            // line 13
+            echo "                    <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_nuevaReserva", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-primary\" style=\"height: 30px; width: 150px;\"> Reservar </a>
-                    </div>
-                    ";
+                ";
         } else {
-            // line 21
-            echo "                        <div class=\"text-center\">
-                            <button class=\"btn btn-danger\">Reservada</button>
-                        </div>
-                        ";
+            // line 15
+            echo "                    <button class=\"btn btn-danger\">Reservada</button>
+                ";
         }
-        // line 25
-        echo "                </div><br>
+        // line 17
+        echo "            </div>
 
-            </div>
-                
-            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">
-                <div class=\"text-center\">
-                    <label class=\"control-label span7 text-left\">Horario: </label>
-                    <label class=\"control-label span7 text-right\">";
-        // line 32
+            <div class=\"col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0 col-lg-6 col-lg-offset-0\"> 
+                <div class=\"panel panel-default\">                  
+                    <div class=\"panel-body\">
+                        <div class=\"row\">
+                            <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\">
+                                <h4>Horario: </h4> <p>";
+        // line 24
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "horario", array()), "html", null, true);
-        echo "</label>
-                </div>
-
-                <div class=\"text-center\">
-                    <label class=\"control-label span7 text-left\">Deporte: </label>
-                    <label class=\" text-right\">";
-        // line 37
+        echo "</p>
+                            </div>
+                            <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\">
+                                <h4>Deporte: </h4><p>";
+        // line 27
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "deporte", array()), "html", null, true);
-        echo "</label>
-                </div> 
-
-                <div class=\"text-center\">
-                    <label class=\"control-label span7 text-left\">Dimensiones: </label>
-                    <label class=\"control-label span7 text-right\">";
-        // line 42
+        echo "</p>
+                            </div>
+                            <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\">
+                                <h4>Dimensiones: </h4><p>";
+        // line 30
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "dimensiones", array()), "html", null, true);
-        echo " m²</label>
-                </div>
-
-                <div class=\"text-center\">
-                    <label class=\"control-label span7 text-left\">Valoracion: </label>
-                    <label class=\" text-right\">";
-        // line 47
+        echo " m²</p>
+                            </div>
+                            <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
+                                <h4>Valoracion: </h4><p>";
+        // line 33
         echo twig_escape_filter($this->env, twig_round($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "valoracion", array()), 0, "common"), "html", null, true);
-        echo "</label>
-                </div>
-
-                <div class=\"text-center\">
-                    <label class=\"control-label span7 text-left\">Dirección: </label>
-                    <label class=\"control-label span7 text-right\">";
-        // line 52
+        echo "</p>
+                            </div>
+                            <div class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6\">
+                                <h4>Dirección: </h4><p>";
+        // line 36
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "direccion", array()), "html", null, true);
-        echo "</label>
-                </div><br>
-
+        echo "</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class=\"text-center\">
                     <a href=\"";
-        // line 56
+        // line 42
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_escribirSugerencia", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
         echo "\" class=\"btn btn-primary\" style=\"height: 30px; width: 150px;\"> Escribir sugerencia </a>
                 </div><br>
             </div>
         </div>
-                
+
         <div class=\"row\">
-            <div class=\"col-md-12\">
+            <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-xs\">
                 <h3 class=\"t3 text-center\">Horarios disponibles de los próximos 7 días</h3>               
-                <table class=\"table\">
+                <table class=\"table ";
+        // line 50
+        echo "\">
                     <tbody>
                         ";
-        // line 66
+        // line 52
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["horarios"]) ? $context["horarios"] : $this->getContext($context, "horarios")));
         foreach ($context['_seq'] as $context["_key"] => $context["horario"]) {
-            // line 67
+            // line 53
             echo "                            <tr>
                                 <th>Día ";
-            // line 68
+            // line 54
             echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute($context["horario"], "fechaInicio", array()), "-"), 0, array(), "array"), "html", null, true);
             echo "</th>
-                                ";
-            // line 69
+                                    ";
+            // line 55
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable(twig_split_filter($this->env, $this->getAttribute($context["horario"], "periodo", array()), "&"));
             foreach ($context['_seq'] as $context["_key"] => $context["horitas"]) {
-                // line 70
+                // line 56
                 echo "                                    <td>";
                 echo twig_escape_filter($this->env, $context["horitas"], "html", null, true);
                 echo "</td>
@@ -166,14 +153,14 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['horitas'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 72
+            // line 58
             echo "                            </tr>
                         ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['horario'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 74
+        // line 60
         echo "                    </tbody>
                 </table>
             </div>
@@ -195,6 +182,6 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
 
     public function getDebugInfo()
     {
-        return array (  177 => 74,  170 => 72,  161 => 70,  157 => 69,  153 => 68,  150 => 67,  146 => 66,  133 => 56,  126 => 52,  118 => 47,  110 => 42,  102 => 37,  94 => 32,  85 => 25,  79 => 21,  73 => 18,  70 => 17,  68 => 16,  63 => 14,  54 => 8,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  164 => 60,  157 => 58,  148 => 56,  144 => 55,  140 => 54,  137 => 53,  133 => 52,  129 => 50,  118 => 42,  109 => 36,  103 => 33,  97 => 30,  91 => 27,  85 => 24,  76 => 17,  72 => 15,  66 => 13,  64 => 12,  60 => 11,  53 => 7,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }
