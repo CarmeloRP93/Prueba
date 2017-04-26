@@ -18,16 +18,15 @@ class CompeticionesType extends AbstractType
             ->add('nombre', 'text')
             ->add('deporte','choice', array('choices' => array("Futbol"=>'Futbol', 
                                                                "Padel"=>'Padel')))
-            ->add('tipocompeticion','choice', array('choices' => array("Liga"=>'Liga',
-                                                                       "Torneo"=>'Torneo')))
-            ->add('fechainicio','date', array('widget' => "single_text"))
-            ->add('fechafinalizacion','date', array('widget' => "single_text"))
+            ->add('tipocompeticion','choice', array('choices' => array("Liga"=>'Liga', "Torneo"=>'Torneo'), 'label' => 'Tipo'))
+            ->add('fechainicio','date', array('widget' => "single_text", 'label' => 'Fecha de inicio'))
+            ->add('fechafinalizacion','date', array('widget' => "single_text", 'label' => 'Fecha de finalización'))
             ->add('estadocompeticion','choice',array('choices' => array("Validado"=>'Validado',
-                                                                "Jugandose"=>'Jugandose',
+                                                                "Jugandose"=>'Jugándose',
                                                                 "Pendiente"=>'Pendiente',
                                                                 "Rechazado"=>'Rechazado',
                                                                 "Cancelado"=>'Cancelado',
-                                                                "Finalizado"=>'Finalizado')))
+                                                                "Finalizado"=>'Finalizado'), 'label' => 'Estado'))
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;
     }

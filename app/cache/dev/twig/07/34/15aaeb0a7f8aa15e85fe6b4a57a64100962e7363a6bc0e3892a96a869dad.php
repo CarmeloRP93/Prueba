@@ -118,11 +118,11 @@ class __TwigTemplate_073415aaeb0a7f8aa15e85fe6b4a57a64100962e7363a6bc0e3892a96a8
             echo "</td>
                             <td>";
             // line 31
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["competiciones"]) ? $context["competiciones"] : $this->getContext($context, "competiciones")), ($this->getAttribute($context["loop"], "index", array()) - 1), array(), "array"), "nombre", array()), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["competiciones"]) ? $context["competiciones"] : $this->getContext($context, "competiciones")), ($this->getAttribute($context["loop"], "index", array()) - 1), array(), "array"), "html", null, true);
             echo "</td>
                             <td>";
             // line 32
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["representantes"]) ? $context["representantes"] : $this->getContext($context, "representantes")), ($this->getAttribute($context["loop"], "index", array()) - 1), array(), "array"), "nombre", array()), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["representantes"]) ? $context["representantes"] : $this->getContext($context, "representantes")), ($this->getAttribute($context["loop"], "index", array()) - 1), array(), "array"), "html", null, true);
             echo "</td>
                             <td>";
             // line 33

@@ -16,8 +16,8 @@ class EquipoController extends Controller {
        $repositoryCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
        $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
        foreach ($equipos as $equipo=>$valor){
-            $competiciones[$equipo] = $repositoryCompeticiones->find($valor->getIdCompeticion());   
-            $representantes[$equipo] = $repositoryUsuarios->find($valor->getIdCliente());
+            $competiciones[$equipo] = $repositoryCompeticiones->find($valor->getIdCompeticion())->getNombre();   
+            $representantes[$equipo] = $repositoryUsuarios->find($valor->getIdCliente())->getNombre();
         }
        return $this->render('CriveroPruebaBundle:Competiciones:equipos.html.twig', array("equipos"=>$pagination,
            "competiciones"=>$competiciones,"representantes"=>$representantes));

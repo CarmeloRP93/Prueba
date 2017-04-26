@@ -38,16 +38,16 @@ class PartidosType extends AbstractType
 
         $builder
             ->add('idCompeticion','choice', array('choices' => $resCompeticiones))
-            ->add('idEquipoLocal','choice', array('choices' => $resEquipos))
-            ->add('idEquipoVisitante','choice', array('choices' => $resEquipos))
-            ->add('idCancha','choice', array('choices' => $resCanchas))
+            ->add('idEquipoLocal','choice', array('choices' => $resEquipos, 'label' => 'Equipo local'))
+            ->add('idEquipoVisitante','choice', array('choices' => $resEquipos, 'label' => 'Equipo visitante'))
+            ->add('idCancha','choice', array('choices' => $resCanchas, 'label' => 'Cancha'))
             ->add('fechaInicio','date', array('widget' => "single_text"))
             ->add('resultado','text')
             ->add('estadoPartido','choice',array('choices' => array("Pendiente"=>'Pendiente',
                                                                     "Jugandose"=>'Jugandose',
                                                                     "Cancelado"=>'Cancelado',
                                                                     "Finalizado"=>'Finalizado')))
-            ->add('arbitro','text')
+            ->add('arbitro','text', array('label' => 'Árbitro'))
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;
     }

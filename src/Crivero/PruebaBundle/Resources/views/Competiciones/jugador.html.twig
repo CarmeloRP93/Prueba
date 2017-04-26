@@ -1,20 +1,40 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
-
 {% block title %} Vista de {{jugador.nombre}} {% endblock %}
-
 {% block contenido %}
-    <h1>Información detallada de: {{jugador.nombre}}</h1>
-    <ul>
-        <li>Nº de Dorsal : {{jugador.dorsal}}</li>
-        {%for equipo in equipos if equipo.id == jugador.idEquipo %}
-            <li>Equipo al que pertenece: {{equipo.nombre}}</li>
-            {%for competicion in competiciones if equipo.idCompeticion == competicion.id%}
-                <li>Competición en la que participa: {{competicion.nombre}}</li>
-            {%endfor%}
-        {%endfor%}
-        {%for equipo in equipos if equipo.id == jugador.idEquipo %}
-            <li>Nº de partidos en los que su equipo ha disputado:{{equipo.victorias + equipo.empates + equipo.derrotas}}</li>
-        {%endfor%}
-        <li>Incidencias:{{jugador.incidencia}}</li>
-    </ul>
+    <div class="container">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            {#                          <img src="{{ asset('images/' ~ jugador.imagen) }}" class="img-circle" style="width:60px;" />        
+                            #}                          <h3 style="font-weight: 600">"Foto"</h3>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <h3 style="font-weight: 600">{{jugador.nombre}}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">  
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <h4>Nº de Dorsal:</h4> <p>{{jugador.dorsal}}</p>
+                            {%for equipo in equipos if equipo.id == jugador.idEquipo %}
+                                <h4>Equipo al que pertenece:</h4><p>{{equipo.nombre}}</p>
+                                {%for competicion in competiciones if equipo.idCompeticion == competicion.id%}
+                                    <h4>Competición en la que participa: </h4><p>{{competicion.nombre}}</p>
+                                {%endfor%}
+                            {%endfor%}
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 " >
+                            {%for equipo in equipos if equipo.id == jugador.idEquipo %}
+                                <h4>Nº de partidos en los que su equipo ha disputado:</h4><p>{{equipo.victorias + equipo.empates + equipo.derrotas}}</p>
+                            {%endfor%}
+                            <h4>Incidencias:</h4><p>{{jugador.incidencia}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
