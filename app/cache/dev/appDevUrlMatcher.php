@@ -189,38 +189,41 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/solElim')) {
-            // modulomonitores_monitores_solEliminarSesion
-            if (0 === strpos($pathinfo, '/solEliminarSesion') && preg_match('#^/solEliminarSesion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_solEliminarSesion')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::solEliminarSesionAction',));
+        if (0 === strpos($pathinfo, '/suspender')) {
+            // modulomonitores_monitores_suspender
+            if (preg_match('#^/suspender/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_suspender')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::suspenderAction',));
             }
 
-            // modulomonitores_monitores_solElimSe
-            if (0 === strpos($pathinfo, '/solElimSe') && preg_match('#^/solElimSe/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
-                    $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
-                    goto not_modulomonitores_monitores_solElimSe;
+            if (0 === strpos($pathinfo, '/suspenderSe')) {
+                // modulomonitores_monitores_suspenderSe
+                if (preg_match('#^/suspenderSe/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+                        goto not_modulomonitores_monitores_suspenderSe;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_suspenderSe')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::suspenderSeAction',));
+                }
+                not_modulomonitores_monitores_suspenderSe:
+
+                // modulomonitores_monitores_suspenderSesionDedicada
+                if (0 === strpos($pathinfo, '/suspenderSesionDedicada') && preg_match('#^/suspenderSesionDedicada/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_suspenderSesionDedicada')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DedicadaController::suspenderSesionDedicadaAction',));
                 }
 
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_solElimSe')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::solElimSeAction',));
-            }
-            not_modulomonitores_monitores_solElimSe:
+                // modulomonitores_monitores_suspenderSeDe
+                if (0 === strpos($pathinfo, '/suspenderSeDe') && preg_match('#^/suspenderSeDe/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+                        goto not_modulomonitores_monitores_suspenderSeDe;
+                    }
 
-            // modulomonitores_monitores_solEliminarSesionDedicada
-            if (0 === strpos($pathinfo, '/solEliminarSesionDedicada') && preg_match('#^/solEliminarSesionDedicada/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_solEliminarSesionDedicada')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DedicadaController::solEliminarSesionDedicadaAction',));
-            }
-
-            // modulomonitores_monitores_solElimSeDe
-            if (0 === strpos($pathinfo, '/solElimSeDe') && preg_match('#^/solElimSeDe/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
-                    $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
-                    goto not_modulomonitores_monitores_solElimSeDe;
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_suspenderSeDe')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DedicadaController::suspenderSeDeAction',));
                 }
+                not_modulomonitores_monitores_suspenderSeDe:
 
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_solElimSeDe')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DedicadaController::solElimSeDeAction',));
             }
-            not_modulomonitores_monitores_solElimSeDe:
 
         }
 
@@ -327,6 +330,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_participante')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::participanteAction',));
             }
 
+            // modulomonitores_monitores_participantePrivado
+            if (preg_match('#^/miSesionMonitores/(?P<id>[^/]++)/participantePrivado$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_participantePrivado')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::participantePrivadoAction',));
+            }
+
         }
 
         // modulomonitores_monitores_abandonarSesion
@@ -334,10 +342,26 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_abandonarSesion')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::abandonarSesionAction',));
         }
 
+        // modulomonitores_monitores_expulsar
+        if (0 === strpos($pathinfo, '/expulsar') && preg_match('#^/expulsar/(?P<id>[^/]++)/(?P<idUsuario>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_expulsar')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::expulsarAction',));
+        }
+
         // modulomonitores_monitores_verHorario
         if (0 === strpos($pathinfo, '/verHorario') && preg_match('#^/verHorario/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_verHorario')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::verHorarioAction',));
         }
+
+        // modulomonitores_monitores_terminar
+        if (0 === strpos($pathinfo, '/terminar') && preg_match('#^/terminar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+                goto not_modulomonitores_monitores_terminar;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_terminar')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::terminarAction',));
+        }
+        not_modulomonitores_monitores_terminar:
 
         if (0 === strpos($pathinfo, '/cancha')) {
             // moduloclientes_cliente_canchasClientes

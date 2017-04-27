@@ -16,13 +16,13 @@
                 <h3>Fútbol</h3>
                 {% for equipo in equipos %}
                     {%if equipo.deporte =='Fútbol'%}
-                        <a href="{{url('moduloclientes_cliente_equipoClientes', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>
+                        <a href="{{url('moduloclientes_cliente_equipoClientes', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ equipo.nombre }}</a>
                     {%endif%}
                 {% endfor %}
                 <h3>Padel</h3>
                 {% for equipo in equipos %}
                     {%if equipo.deporte =='Padel'%}
-                        <a href="{{url('moduloclientes_cliente_equipoClientes', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">Nombre del equipo:{{ equipo.nombre }}</a>
+                        <a href="{{url('moduloclientes_cliente_equipoClientes', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ equipo.nombre }}</a>
                     {%endif%}
                 {% endfor %}
             </div>
