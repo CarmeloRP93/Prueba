@@ -166,7 +166,7 @@ class __TwigTemplate_f367c17d08d0227d16ff617072669e20ddb4702ac4be675a8742177bf00
 
                     <div class=\"row\">
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\" >
-                            <label>Descanso entre ejercicios</label>
+                            <label>Descanso entre ejercicios (segundos)</label>
                             ";
         // line 65
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "descanso", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Introduzca el descanso entre ejercicios")));
@@ -177,7 +177,7 @@ class __TwigTemplate_f367c17d08d0227d16ff617072669e20ddb4702ac4be675a8742177bf00
         echo "</span>
                         </div>
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\" >
-                            <label>Repeticiones por cada ejercicio</label>
+                            <label>Repeticiones por cada ejercicio </label>
                             ";
         // line 70
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "repeticiones", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Introduzca las repeticiones a realizar")));
@@ -191,7 +191,7 @@ class __TwigTemplate_f367c17d08d0227d16ff617072669e20ddb4702ac4be675a8742177bf00
 
                     <div class=\"row\">
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\" >
-                            <label>Duración de cada sesión</label>
+                            <label>Duración de cada sesión (minutos)</label>
                             ";
         // line 78
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "duracion", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Introduzca la duracion de cada sesión")));

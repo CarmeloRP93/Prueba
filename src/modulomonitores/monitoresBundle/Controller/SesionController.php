@@ -28,7 +28,7 @@ class SesionController extends Controller {
             $aulas[$clave] = $repositoryAula->find($sesion->getAula());
         }
         return $this->render('modulomonitoresmonitoresBundle:Default:sesionesMonitores.html.twig', array("pagination" => $pagination, "aulas" => $aulas));
-     }
+    }
 
     public function sesionMonitoresAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
@@ -48,7 +48,7 @@ class SesionController extends Controller {
         $dql = "SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.idMonitor = :id AND s.cliente = 'normal'";
 
         $searchQuery = $request->get('query');
-        (!empty($searchQuery)) ? $sesiones = $repository->searchSesiones($searchQuery ,$usuarioId) :
+        (!empty($searchQuery)) ? $sesiones = $repository->searchSesiones($searchQuery, $usuarioId) :
                         $sesiones = $em->createQuery($dql)->setParameter('id', $usuarioId)->getResult();
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -277,45 +277,48 @@ class SesionController extends Controller {
         return $this->render('modulomonitoresmonitoresBundle:Default:editarSesionDedicada.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
     }
 
-    public function solEliminarSesionAction($id) {
+    public function suspenderAction($id) {
         $em = $this->getDoctrine()->getManager();
         $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
 
         if (!$sesion) {
             throw $this->createNotFoundException("no encontrado");
         }
-        $form = $this->createSolEliminarSesionForm($sesion);
-        return $this->render('modulomonitoresmonitoresBundle:Default:solEliminarSesion.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
+        $form = $this->createSuspenderSesionForm($sesion);
+        return $this->render('modulomonitoresmonitoresBundle:Default:suspenderSesion.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
     }
 
-    private function createSolEliminarSesionForm(Sesiones $entity) {
-        $form = $this->createForm(new SesionesType(), $entity, array(
-            'action' => $this->generateUrl('modulomonitores_monitores_solElimSe', array('id' => $entity->getId())),
+    private function createSuspenderSesionForm(Sesiones $entity) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+        $aulas = $repository->findAll();
+        $form = $this->createForm(new SesionesType($aulas), $entity, array(
+            'action' => $this->generateUrl('modulomonitores_monitores_suspenderSe', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));
         return $form;
     }
 
-    public function solElimSeAction($id, Request $request) {
+    public function suspenderSeAction($id, Request $request) {
         $em = $this->getDoctrine()->getManager();
         $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
         if (!$sesion) {
             throw $this->createNotFoundException("no encontrado");
         }
-        $form = $this->createSolEliminarSesionForm($sesion);
+        $form = $this->createSuspenderSesionForm($sesion);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $sesion->setEstado("solEliminar");
-            $sesion->setEstadoCliente("solEliminar");
-            $motivos = $form->get('motivos')->getData();
-            if ($motivos != null) {
+            $sesion->setEstado("suspendida");
+            $sesion->setEstadoCliente("suspendida");
+            $observaciones = $form->get('observaciones')->getData();
+            if ($observaciones != null) {
                 $em->flush();
-                return $this->redirect($this->generateUrl('modulomonitores_monitores_sesionesMonitores', array('id' => $sesion->getId())));
+                $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido suspendida correctamente.');
+                return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionMonitores', array('id' => $sesion->getId())));
             } else {
-                $form->get('motivos')->addError(new FormError('Rellene el campo gracias'));
+                $form->get('observaciones')->addError(new FormError('Rellene el campo gracias'));
             }
         }
-        return $this->render('modulomonitoresmonitoresBundle:Default:solEliminarSesion.html.twig', array('form' => $form->createView()));
+        return $this->render('modulomonitoresmonitoresBundle:Default:suspenderSesion.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
     }
 
     public function miperfilmAction() {
@@ -404,7 +407,16 @@ class SesionController extends Controller {
         $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $cliente = $repositoryUsuarios->find($idUsuario);
 
-        return $this->render('modulomonitoresmonitoresBundle:Default:participante.html.twig', array("cliente" => $cliente, "id" => $id));
+        return $this->render('modulomonitoresmonitoresBundle:Default:participante.html.twig', array("cliente" => $cliente, "id" => $id, "idUsuario" => $idUsuario));
+    }
+
+    public function participantePrivadoAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
+        $idUsuario = $sesion->getIdsClientes();
+        $repositoryu = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $cliente = $repositoryu->find($idUsuario);
+        return $this->render('modulomonitoresmonitoresBundle:Default:participantePrivado.html.twig', array("idSesion" => $id, "cliente" => $cliente));
     }
 
     public function verHorarioAction($id) {
@@ -431,6 +443,83 @@ class SesionController extends Controller {
         $em->flush();
         $request->getSession()->getFlashBag()->add('mensaje', 'Has abanonado la sesión.');
         return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionesMonitores'));
+    }
+
+    public function expulsarAction($id, $idUsuario) {
+        $em = $this->getDoctrine()->getManager();
+
+        // Aquí eliminamos el cliente en la tabla sesiones
+        $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
+        $arrayClientes = explode('&', $sesion->getIdsClientes());
+        for ($i = 0; $i <= count($arrayClientes); $i++) {
+            if ($arrayClientes[$i] == $idUsuario) {
+                $pos = $i;
+                break;
+            }
+        }
+        unset($arrayClientes[$pos]);
+        $arrayClientes1 = array_values($arrayClientes);
+        $sesion->setIdsClientes(implode($arrayClientes1, '&'));
+
+        // Aquí eliminamos la sesión en la tabla usuario
+        $usuario = $this->findEntity($idUsuario, $em, 'CriveroPruebaBundle:Usuarios');
+        $arraySesiones = explode('&', $usuario->getSesiones());
+        for ($i = 0; $i <= count($arraySesiones); $i++) {
+            if ($arraySesiones[$i] == $id) {
+                $posS = $i;
+                break;
+            }
+        }
+        unset($arraySesiones[$posS]);
+        $arraySesiones1 = array_values($arraySesiones);
+        $usuario->setSesiones(implode($arraySesiones1, '&'));
+
+        // Aquí restamos la cantidad de clientes apuntados a la sesion y la eliminamos si el estado es cancelado
+        $restaCliente = $sesion->getNClientes();
+        $restaCliente--;
+        $sesion->setNClientes($restaCliente);
+
+
+        $sesion->setEstadoCliente('disponible');
+        $em->persist($sesion);
+
+
+        $em->persist($usuario);
+        $em->flush();
+        if (count($arrayClientes) > 0) {
+            return $this->redirect($this->generateUrl('modulomonitores_monitores_verParticipantes', array('id' => $id)));
+        } else {
+            return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionMonitores', array('id' => $id)));
+        }
+    }
+
+    public function terminarAction($id, Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
+        $sesion->setEstado("terminada");
+        $sesion->setEstadoCliente("terminada");
+
+
+        $tipo = $sesion->getCliente();
+        $em->persist($sesion);
+        $em->flush();
+        $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido terminada con éxito');
+        if ($tipo == "normal") {
+            return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionMonitores', array('id' => $sesion->getId())));
+        } else {
+            return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionDedicada', array('id' => $sesion->getId())));
+        }
+    }
+
+    private function updateMonth($i, $mes, $vuelta, $limite) {
+        $i = 0;
+        if ($mes == 12) {
+            $mes = 0;
+            $vuelta = 1;
+        }
+        $mes++;
+        $fecha = date('Y') + $vuelta . '-' . $mes . '-01';
+        $limite = date('t', strtotime($fecha));
     }
 
     private function findEntity($id, $em, $repository) {

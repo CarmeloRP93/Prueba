@@ -175,7 +175,7 @@ class __TwigTemplate_7f168f3c0724e1e301743eaf9ae40fac6730e4b7a160e913217c9ffef01
 
                     <div class=\"row\">
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\" >
-                            <label>Descanso entre ejercicios</label>
+                            <label>Descanso entre ejercicios (segundos)</label>
                             ";
         // line 68
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "descanso", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Introduzca el descanso entre ejercicios")));
@@ -200,7 +200,7 @@ class __TwigTemplate_7f168f3c0724e1e301743eaf9ae40fac6730e4b7a160e913217c9ffef01
 
                     <div class=\"row\">
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\" >
-                            <label>Duración de cada sesión</label>
+                            <label>Duración de cada sesión (minutos)</label>
                             ";
         // line 81
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "duracion", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Introduzca la duracion de cada sesión")));

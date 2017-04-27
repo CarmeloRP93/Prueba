@@ -111,45 +111,47 @@ class DedicadaController extends Controller {
         }
     }
 
-    public function solEliminarSesionDedicadaAction($id) {
+    public function suspenderSesionDedicadaAction($id) {
         $em = $this->getDoctrine()->getManager();
         $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
 
         if (!$sesion) {
             throw $this->createNotFoundException("no encontrado");
         }
-        $form = $this->createSolEliminarSesionDeForm($sesion);
-        return $this->render('modulomonitoresmonitoresBundle:Default:solEliminarSesionDe.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
+        $form = $this->createSuspenderSesionDeForm($sesion);
+        return $this->render('modulomonitoresmonitoresBundle:Default:suspenderSesionDe.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
     }
 
-    private function createSolEliminarSesionDeForm(Sesiones $entity) {
-        $form = $this->createForm(new SesionesType(), $entity, array(
-            'action' => $this->generateUrl('modulomonitores_monitores_solElimSe', array('id' => $entity->getId())),
+    private function createSuspenderSesionDeForm(Sesiones $entity) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+        $aulas = $repository->findAll();
+        $form = $this->createForm(new SesionesType($aulas), $entity, array(
+            'action' => $this->generateUrl('modulomonitores_monitores_suspenderSeDe', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));
         return $form;
     }
 
-    public function solElimSeDEAction($id, Request $request) {
+    public function suspenderSeDeAction($id, Request $request) {
         $em = $this->getDoctrine()->getManager();
         $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
         if (!$sesion) {
             throw $this->createNotFoundException("no encontrado");
         }
-        $form = $this->createSolEliminarSesionDeForm($sesion);
+        $form = $this->createSuspenderSesionDeForm($sesion);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $sesion->setEstado("solEliminar");
-            $sesion->setEstadoCliente("solEliminar");
-            $motivos = $form->get('motivos')->getData();
-            if ($motivos != null) {
+            $sesion->setEstado("suspendida");
+            $sesion->setEstadoCliente("suspendida");
+            $observaciones = $form->get('observaciones')->getData();
+            if ($observaciones != null) {
                 $em->flush();
-                return $this->redirect($this->generateUrl('modulomonitores_monitores_sesionesDedicadas', array('id' => $sesion->getId())));
+                return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionDedicada', array('id' => $sesion->getId())));
             } else {
-                $form->get('motivos')->addError(new FormError('Rellene el campo gracias'));
+                $form->get('observaciones')->addError(new FormError('Rellene el campo gracias'));
             }
         }
-        return $this->render('modulomonitoresmonitoresBundle:Default:solEliminarSesionDe.html.twig', array('form' => $form->createView()));
+        return $this->render('modulomonitoresmonitoresBundle:Default:suspenderSesionDe.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
     }
 
 }

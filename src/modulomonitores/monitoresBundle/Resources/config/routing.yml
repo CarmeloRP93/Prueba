@@ -42,20 +42,20 @@ modulomonitores_monitores_editarSesion:
 modulomonitores_monitores_editarSesionDedicada:
     pattern:  /editarSesionDedicada/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:editarSesionDedicada }
-modulomonitores_monitores_solEliminarSesion:
-    pattern:  /solEliminarSesion/{id}
-    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:solEliminarSesion }    
-modulomonitores_monitores_solElimSe:
-    pattern:  /solElimSe/{id}
-    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:solElimSe }
+modulomonitores_monitores_suspender:
+    pattern:  /suspender/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:suspender }    
+modulomonitores_monitores_suspenderSe:
+    pattern:  /suspenderSe/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:suspenderSe }
     requirements:
         _method:  POST|PUT|GET  
-modulomonitores_monitores_solEliminarSesionDedicada:
-    pattern:  /solEliminarSesionDedicada/{id}
-    defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:solEliminarSesionDedicada }    
-modulomonitores_monitores_solElimSeDe:
-    pattern:  /solElimSeDe/{id}
-    defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:solElimSeDe }
+modulomonitores_monitores_suspenderSesionDedicada:
+    pattern:  /suspenderSesionDedicada/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:suspenderSesionDedicada }    
+modulomonitores_monitores_suspenderSeDe:
+    pattern:  /suspenderSeDe/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:suspenderSeDe }
     requirements:
         _method:  POST|PUT|GET  
 modulomonitores_monitores_nuevaSesionDedicada:
@@ -107,9 +107,21 @@ modulomonitores_monitores_verParticipantes:
 modulomonitores_monitores_participante:
     pattern:  /miSesionMonitores/{id}/verParticipantes/{idUsuario}
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:participante }
+modulomonitores_monitores_participantePrivado:
+    pattern:  /miSesionMonitores/{id}/participantePrivado
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:participantePrivado }
 modulomonitores_monitores_abandonarSesion:
     pattern:  /abandonarSesion/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:abandonarSesion}
+modulomonitores_monitores_expulsar:
+    pattern:  /expulsar/{id}/{idUsuario}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:expulsar}
 modulomonitores_monitores_verHorario:
     pattern:  /verHorario/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:verHorario }    
+    
+modulomonitores_monitores_terminar:
+    pattern:  /terminar/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:terminar }
+    requirements:
+        _method:  POST|PUT|GET

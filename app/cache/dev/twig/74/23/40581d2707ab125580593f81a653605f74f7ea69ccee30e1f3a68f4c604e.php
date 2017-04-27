@@ -82,16 +82,22 @@ class __TwigTemplate_742340581d2707ab125580593f81a653605f74f7ea69ccee30e1f3a68f4
         // line 26
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "telefono", array()), "html", null, true);
         echo "</p>
+                            <a href=\"";
+        // line 27
+        echo twig_escape_filter($this->env, ((("http://localhost/Prueba/web/app_dev.php/expulsar/" . (isset($context["id"]) ? $context["id"] : $this->getContext($context, "id"))) . "/") . (isset($context["idUsuario"]) ? $context["idUsuario"] : $this->getContext($context, "idUsuario"))), "html", null, true);
+        echo "\"
+                               class=\"btn btn-danger text-center center-block img-responsive\" style=\"width: 180px;\">Expulsar</a>
                         </div>
                     </div>
                 </div>
-                        <div id=\"colder\" class=\"col-md-8\"><a href=\"";
-        // line 30
+            </div>
+            <div id=\"colder\" class=\"col-md-8\"><a href=\"";
+        // line 33
         echo twig_escape_filter($this->env, (("http://localhost/Prueba/web/app_dev.php/miSesionMonitores/" . (isset($context["id"]) ? $context["id"] : $this->getContext($context, "id"))) . "/verParticipantes"), "html", null, true);
         echo "\" style=\"height: 30px; width: 190px; margin-top: 10px;\" class=\"btn btn-success\">Volver a lista de participantes</a></div>
-            </div>
         </div>
     </div>
+</div>
 </div>
 ";
     }
@@ -108,6 +114,6 @@ class __TwigTemplate_742340581d2707ab125580593f81a653605f74f7ea69ccee30e1f3a68f4
 
     public function getDebugInfo()
     {
-        return array (  90 => 30,  83 => 26,  77 => 23,  73 => 22,  62 => 14,  56 => 11,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  96 => 33,  87 => 27,  83 => 26,  77 => 23,  73 => 22,  62 => 14,  56 => 11,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }

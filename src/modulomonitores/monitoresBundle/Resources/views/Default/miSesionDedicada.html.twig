@@ -9,10 +9,12 @@
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >  
                 <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" style="max-width: 330px; margin-bottom:20px"/>        
                 <div class="text-center">
-                    {% if sesion.estado == "solEliminar" %}
-                        <h4 class="terr">Motivos: {{sesion.motivos}}</h4>
+                    {% if sesion.estado == "suspendida" %}
+                        <h4 class="terr">Motivos: {{sesion.observaciones}}</h4>
                     {% elseif sesion.estado == "cancelada" %}
                         <h4 class="terr">Motivos: {{sesion.observaciones}}</h4>
+                    {% elseif sesion.estado == "terminada" %}
+                        <h4 class="terr">¡Gracias por su participación! </h4>
                     {% elseif sesion.estado == "rechazada" %}
                         <h4 class="terr">Motivos: {{sesion.observaciones}}</h4>
                     {% endif %}
@@ -24,7 +26,6 @@
                     <div class="panel-body">   
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">    
                             <h4>Aula de la sesión:</h4> <p>{{aula.nombre}}</p>
-                            <h4>Monitor:</h4> <p>{{sesion.monitor}}</p>
                             <h4>Ejercicios a realizar:</h4> <p>{{sesion.ejercicios}}</p>
                             <h4>Repeticiones por cada ejercicio:</h4> <p>{{sesion.repeticiones}} por ejercicio</p>
                             {% if sesion.estado == "validada" %}
@@ -33,11 +34,10 @@
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <h4>Duración de cada sesión:</h4> <p>{{sesion.duracion}} minutos</p>
-                            <h4>Descanso entre ejercicios:</h4> <p>{{sesion.descanso}} minutos</p>
+                            <h4>Descanso entre ejercicios:</h4> <p>{{sesion.descanso}} segundos</p>
                             <h4>Objetivo de la sesión:</h4> <p>{{sesion.objetivo}}</p>
                             {% if sesion.nClientes > 0 %}
-                                <h4>Participante:</h4> <p>{{sesion.cliente}}</p>
-                                <a href="{{path('modulomonitores_monitores_verParticipantes', {id: sesion.id})}}" style="height: 30px; width: 130px;" class="btn btn-primary">Ver participantes</a>
+                                <a href="{{path('modulomonitores_monitores_participantePrivado', {id: sesion.id})}}" style="height: 30px; width: 180px;" class="btn btn-primary">Ver info del participante</a>
                             {% endif %}
                         </div>
                     </div>
@@ -47,18 +47,25 @@
 
         <div class="text-center">         
             {% if sesion.estado == "validada" %}
-                <a href="{{path('modulomonitores_monitores_solEliminarSesionDedicada', {id: sesion.id})}}" class="btn btn-danger text-center center-block img-responsive" style="width: 180px;">Eliminar</a> 
-            {% elseif sesion.estado == "solEliminar" %}
-                <button class="btn btn-danger text-center center-block img-responsive" style="width: 180px;" disabled="disabled">Solicitud de eliminacion enviada</button>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <a href="{{path('modulomonitores_monitores_terminar', {id: sesion.id})}}" class="btn btn-warning text-center center-block img-responsive" style="width: 180px;">Terminar sesión</a>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <a href="{{path('modulomonitores_monitores_suspenderSesionDedicada', {id: sesion.id})}}" class="btn btn-danger text-center center-block img-responsive" style="width: 180px;">Suspender sesión</a> 
+                </div>
+            {% elseif sesion.estado == "suspendida" %}
+                <button class="btn btn-danger text-center center-block img-responsive" style="width: 180px;" disabled="disabled">Suspendida</button>
             {% elseif sesion.estado == "cancelada" %}
-                <button class="btn btn-danger text-center center-block img-responsive" style="width: 180px;" disabled="disabled">Cancelada</button>
+                <a href="{{path('modulomonitores_monitores_abandonarSesion', {id: sesion.id})}}" class="btn btn-danger text-center center-block img-responsive" style="width: 180px;">Abandonar sesión</a>
+            {% elseif sesion.estado == "terminada" %}
+                <button class="btn btn-warning text-center center-block img-responsive" style="width: 180px;" disabled="disabled">Sesión terminada</button>
             {% elseif sesion.estado == "rechazada" %}
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                         {{ include('modulomonitoresmonitoresBundle:Default:forms/form.html.twig', { form: delete_form })}}
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <a href="{{path('modulomonitores_monitores_editarSesionDedicada', {id: sesion.id})}}" class="btn btn-primary text-center center-block img-responsive" style="width: 200px;">Modificar sesion dedicada</a>
+                        <a href="{{path('modulomonitores_monitores_editarSesionDedicada', {id: sesion.id})}}" class="btn btn-primary text-center center-block img-responsive" style="width: 200px;">Modificar sesión</a>
                     </div>
                 </div>
             {% else %}
