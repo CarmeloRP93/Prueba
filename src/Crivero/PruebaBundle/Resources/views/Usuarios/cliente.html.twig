@@ -80,14 +80,16 @@
                                     <ul style="list-style: none">
                                         {% set i = 0 %}
                                         {% for sesion in sesiones if i < 2 %}
-                                            {% set i = i+1 %}
-                                            <li>
-                                                <p>Aula {{sesion.aula}} - {{sesion.nombre}} con {{sesion.monitor}} 
-                                                    <a style="margin-bottom: 0; padding: 1px 1px; line-height: 0;" class="btn btn-xs btn-primary" href="{{path('crivero_prueba_horarios_sesion', { id: sesion.id })}}">
-                                                        <img src="{{ asset("images/clock.png") }}" style="width: 13px" />
-                                                    </a>
-                                                </p>
-                                            </li>
+                                            {% if sesion.estado == 'validada' %}
+                                                {% set i = i+1 %}
+                                                <li>
+                                                    <p>Aula {{sesion.aula}} - {{sesion.nombre}} con {{sesion.monitor}} 
+                                                        <a style="margin-bottom: 0; padding: 1px 1px; line-height: 0;" class="btn btn-xs btn-primary" href="{{path('crivero_prueba_horarios_sesion', { id: sesion.id })}}">
+                                                            <img src="{{ asset("images/clock.png") }}" style="width: 13px" />
+                                                        </a>
+                                                    </p>
+                                                </li>
+                                            {% endif %}
                                         {% endfor %}
                                     </ul>
                                     <form action="{{ path('crivero_prueba_sesiones_cliente', { id: cliente.id })}}" method="post" class="form-signin">

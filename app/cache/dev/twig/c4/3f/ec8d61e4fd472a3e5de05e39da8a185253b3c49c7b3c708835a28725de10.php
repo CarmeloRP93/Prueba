@@ -83,7 +83,7 @@ class __TwigTemplate_c43fec8d61e4fd472a3e5de05e39da8a185253b3c49c7b3c708835a2872
                         <tr>
                             <th>";
             // line 29
-            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Destinatario", "m.destinatario");
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Destino", "m.destinatario");
             echo "</th>
                             <th>";
             // line 30

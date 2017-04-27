@@ -225,38 +225,44 @@ class __TwigTemplate_07ce4ffe77a4352d061cd75ea5950d9df3534b932a967f0a4c4618a3c8f
                 if (((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) < 2)) {
                     // line 83
                     echo "                                            ";
-                    $context["i"] = ((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) + 1);
-                    // line 84
-                    echo "                                            <li>
-                                                <p>Aula ";
-                    // line 85
-                    echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "aula", array()), "html", null, true);
-                    echo " - ";
-                    echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
-                    echo " con ";
-                    echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "monitor", array()), "html", null, true);
-                    echo " 
-                                                    <a style=\"margin-bottom: 0; padding: 1px 1px; line-height: 0;\" class=\"btn btn-xs btn-primary\" href=\"";
-                    // line 86
-                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_horarios_sesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
-                    echo "\">
-                                                        <img src=\"";
-                    // line 87
-                    echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/clock.png"), "html", null, true);
-                    echo "\" style=\"width: 13px\" />
-                                                    </a>
-                                                </p>
-                                            </li>
-                                        ";
+                    if (($this->getAttribute($context["sesion"], "estado", array()) == "validada")) {
+                        // line 84
+                        echo "                                                ";
+                        $context["i"] = ((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) + 1);
+                        // line 85
+                        echo "                                                <li>
+                                                    <p>Aula ";
+                        // line 86
+                        echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "aula", array()), "html", null, true);
+                        echo " - ";
+                        echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
+                        echo " con ";
+                        echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "monitor", array()), "html", null, true);
+                        echo " 
+                                                        <a style=\"margin-bottom: 0; padding: 1px 1px; line-height: 0;\" class=\"btn btn-xs btn-primary\" href=\"";
+                        // line 87
+                        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_horarios_sesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
+                        echo "\">
+                                                            <img src=\"";
+                        // line 88
+                        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/clock.png"), "html", null, true);
+                        echo "\" style=\"width: 13px\" />
+                                                        </a>
+                                                    </p>
+                                                </li>
+                                            ";
+                    }
+                    // line 93
+                    echo "                                        ";
                 }
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 92
+            // line 94
             echo "                                    </ul>
                                     <form action=\"";
-            // line 93
+            // line 95
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_sesiones_cliente", array("id" => $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "id", array()))), "html", null, true);
             echo "\" method=\"post\" class=\"form-signin\">
                                         <button type=\"submit\" class=\"btn btn-sm btn-success\">Ver sesiones</button>
@@ -264,36 +270,36 @@ class __TwigTemplate_07ce4ffe77a4352d061cd75ea5950d9df3534b932a967f0a4c4618a3c8f
                                 </div>
                             ";
         } else {
-            // line 98
+            // line 100
             echo "                                <p style=\"color: red\"><strong>Sin sesiones actualmente.</strong></p>
                             ";
         }
-        // line 100
+        // line 102
         echo "                            
                             ";
-        // line 101
+        // line 103
         if ((($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()) != $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "id", array())) && (((isset($context["reservas"]) ? $context["reservas"] : $this->getContext($context, "reservas")) == null) || ($this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "sesiones", array()) == null)))) {
-            // line 102
+            // line 104
             echo "                                <br>
                                 ";
-            // line 103
+            // line 105
             echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form")), "nombre" => "Eliminar usuario"));
             echo "
                             ";
         }
-        // line 105
+        // line 107
         echo "                        </div>
                     </div>
                     ";
-        // line 107
+        // line 109
         if (((($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()) != $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "id", array())) && ((isset($context["reservas"]) ? $context["reservas"] : $this->getContext($context, "reservas")) != null)) && ($this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "sesiones", array()) != null))) {
-            // line 108
+            // line 110
             echo "                        ";
             echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form")), "nombre" => "Eliminar usuario"));
             echo "
                     ";
         }
-        // line 110
+        // line 112
         echo "                </div>
             </div>
         </div>
@@ -314,6 +320,6 @@ class __TwigTemplate_07ce4ffe77a4352d061cd75ea5950d9df3534b932a967f0a4c4618a3c8f
 
     public function getDebugInfo()
     {
-        return array (  297 => 110,  291 => 108,  289 => 107,  285 => 105,  280 => 103,  277 => 102,  275 => 101,  272 => 100,  268 => 98,  260 => 93,  257 => 92,  245 => 87,  241 => 86,  233 => 85,  230 => 84,  227 => 83,  221 => 82,  219 => 81,  215 => 79,  213 => 78,  209 => 76,  205 => 74,  197 => 69,  194 => 68,  186 => 66,  180 => 64,  173 => 62,  169 => 61,  164 => 60,  162 => 59,  158 => 58,  152 => 57,  149 => 56,  146 => 55,  140 => 54,  138 => 53,  134 => 51,  132 => 50,  124 => 45,  120 => 44,  116 => 43,  112 => 42,  108 => 41,  103 => 38,  94 => 32,  86 => 27,  79 => 23,  76 => 22,  74 => 21,  65 => 15,  59 => 12,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  303 => 112,  297 => 110,  295 => 109,  291 => 107,  286 => 105,  283 => 104,  281 => 103,  278 => 102,  274 => 100,  266 => 95,  263 => 94,  256 => 93,  248 => 88,  244 => 87,  236 => 86,  233 => 85,  230 => 84,  227 => 83,  221 => 82,  219 => 81,  215 => 79,  213 => 78,  209 => 76,  205 => 74,  197 => 69,  194 => 68,  186 => 66,  180 => 64,  173 => 62,  169 => 61,  164 => 60,  162 => 59,  158 => 58,  152 => 57,  149 => 56,  146 => 55,  140 => 54,  138 => 53,  134 => 51,  132 => 50,  124 => 45,  120 => 44,  116 => 43,  112 => 42,  108 => 41,  103 => 38,  94 => 32,  86 => 27,  79 => 23,  76 => 22,  74 => 21,  65 => 15,  59 => 12,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }

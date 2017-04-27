@@ -68,7 +68,7 @@ class __TwigTemplate_7ee64068a57593b58e91cdcd2f010ff14a4ffbd7b23fff633777fe740be
         // line 19
         echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Cliente", "s.cliente");
         echo "</th>
-                        <th>Acciones</th>
+                        <th class=\"t3\">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -105,7 +105,7 @@ class __TwigTemplate_7ee64068a57593b58e91cdcd2f010ff14a4ffbd7b23fff633777fe740be
                                 </a>
                                 ";
             // line 35
-            if (($this->getAttribute($context["sesion"], "estado", array()) == "pendiente")) {
+            if ((($this->getAttribute($context["sesion"], "estado", array()) == "pendiente") || ($this->getAttribute($context["sesion"], "estado", array()) == "modificada"))) {
                 // line 36
                 echo "                                    <a href=\"#\" class=\"btn btn-sm btn-success\">
                                         Aceptar
@@ -114,9 +114,12 @@ class __TwigTemplate_7ee64068a57593b58e91cdcd2f010ff14a4ffbd7b23fff633777fe740be
                                         Rechazar
                                     </a>
                                 ";
-            } else {
+            } elseif (($this->getAttribute(            // line 42
+$context["sesion"], "estado", array()) == "validada")) {
                 // line 43
-                echo "                                    <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
+                echo "                                    <a href=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancelarSesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
+                echo "\" class=\"btn btn-sm btn-danger btn-delete\">
                                         Cancelar
                                     </a>
                                 ";
@@ -155,6 +158,6 @@ class __TwigTemplate_7ee64068a57593b58e91cdcd2f010ff14a4ffbd7b23fff633777fe740be
 
     public function getDebugInfo()
     {
-        return array (  139 => 54,  133 => 50,  125 => 47,  119 => 43,  110 => 36,  108 => 35,  102 => 32,  96 => 29,  92 => 28,  88 => 27,  84 => 26,  81 => 25,  77 => 24,  69 => 19,  65 => 18,  61 => 17,  57 => 16,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  142 => 54,  136 => 50,  128 => 47,  120 => 43,  118 => 42,  110 => 36,  108 => 35,  102 => 32,  96 => 29,  92 => 28,  88 => 27,  84 => 26,  81 => 25,  77 => 24,  69 => 19,  65 => 18,  61 => 17,  57 => 16,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
     }
 }

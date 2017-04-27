@@ -20,7 +20,8 @@ class ReservaController extends Controller {
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $reservas, $request->query->getInt('page', 1), 5);
-        return $this->render('CriveroPruebaBundle:Reservas:reservas.html.twig', array("pagination" => $pagination));
+        return $this->render('CriveroPruebaBundle:Reservas:reservas.html.twig', array("pagination" => $pagination,
+                                                              'notificacionesSinLeer' => $this->getNewNotification()));
     }
     
     public function reservasClienteAction($id, Request $request) {
@@ -32,7 +33,7 @@ class ReservaController extends Controller {
                 $reservas, $request->query->getInt('page', 1), 7);
 
         return $this->render('CriveroPruebaBundle:Reservas:reservasCliente.html.twig', array("pagination" => $pagination,
-                    ));
+                                                             'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function cancelarAction($id) {
@@ -42,7 +43,8 @@ class ReservaController extends Controller {
         $form = $this->createCancelForm($reserva);
         $referer = $this->getRequest()->headers->get('referer');
         return $this->render('CriveroPruebaBundle:Reservas:cancelarReserva.html.twig', array('reserva' => $reserva, 
-                                                            'ref' => $referer, 'form' => $form->createView()));
+                                                             'ref' => $referer, 'form' => $form->createView(),
+                                                             'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function createCancelForm(Reservas $entity) {
@@ -78,7 +80,8 @@ class ReservaController extends Controller {
             }
         }
         return $this->render('CriveroPruebaBundle:Reservas:cancelarReserva.html.twig', array('form' => $form->createView(),
-                                                                                             'ref' => $referer));
+                                                              'ref' => $referer,
+                                                              'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function findEntity($id, $em, $repository) {
@@ -87,6 +90,18 @@ class ReservaController extends Controller {
             throw $this->createNotFoundException('Entidad no encontrada');
         }
         return $entity;
+    }
+    
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
     }
 
 }

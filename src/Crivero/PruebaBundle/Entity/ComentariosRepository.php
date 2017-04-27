@@ -18,6 +18,7 @@ class ComentariosRepository extends EntityRepository {
                         ->from('CriveroPruebaBundle:Comentarios', 'm')
                         ->where("m.idDestinatario = :dest")
                         ->setParameter('dest', $usuarioId)
+                        ->orderBy("m.fecha", 'DESC')
                         ->getQuery();
     }
 
@@ -27,6 +28,7 @@ class ComentariosRepository extends EntityRepository {
                         ->from('CriveroPruebaBundle:Comentarios', 'm')
                         ->where("m.idRemitente = :rmt")
                         ->setParameter('rmt', $usuarioId)
+                        ->orderBy("m.fecha", 'DESC')
                         ->getQuery();
     }
 

@@ -22,6 +22,7 @@ class ComentariosType extends AbstractType
             ->add('descripcion', 'textarea', array('attr' => array('cols' => '4', 'rows' => '4'), 
                                                    'label' => "Mensaje"))
             ->add('fecha', 'datetime')
+            ->add('estado', 'hidden')
             ->add('enviar', 'submit', array('label' => 'Enviar'))
         ;
     }

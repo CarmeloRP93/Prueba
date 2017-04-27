@@ -17,7 +17,7 @@
                         <th>{{ knp_pagination_sortable(pagination, 'Estado', 's.estado') }}</th>
                         <th>{{ knp_pagination_sortable(pagination, 'Monitor', 's.monitor') }}</th>
                         <th>{{ knp_pagination_sortable(pagination, 'Cliente', 's.cliente') }}</th>
-                        <th>Acciones</th>
+                        <th class="t3">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,15 +32,15 @@
                                 <a href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}" class="btn btn-sm btn-info">
                                     Ver
                                 </a>
-                                {% if sesion.estado == 'pendiente' %}
+                                {% if sesion.estado == 'pendiente' or sesion.estado == 'modificada' %}
                                     <a href="#" class="btn btn-sm btn-success">
                                         Aceptar
                                     </a>
                                     <a href="#" class="btn btn-sm btn-danger btn-delete">
                                         Rechazar
                                     </a>
-                                {% else %}
-                                    <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                {% elseif sesion.estado == 'validada' %}
+                                    <a href="{{path('crivero_prueba_cancelarSesion', {id: sesion.id})}}" class="btn btn-sm btn-danger btn-delete">
                                         Cancelar
                                     </a>
                                 {% endif %}

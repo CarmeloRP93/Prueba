@@ -117,33 +117,34 @@ class __TwigTemplate_9856cb3c9693313f2d84ec370803e5677b16c4882914cc16d0e6f9a3805
             }
             foreach ($context['_seq'] as $context["_key"] => $context["mensaje"]) {
                 // line 38
-                echo "                            <tr data-id=\"";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["mensaje"], "id", array()), "html", null, true);
-                echo "\">
-                                <td><strong>";
+                echo "                            ";
+                echo ((($this->getAttribute($context["mensaje"], "estado", array()) == "nuevo")) ? ("<tr data-id='{{ mensaje.id }}' style='font-weight: bold'>") : ("<tr data-id='{{ mensaje.id }}'>"));
                 // line 39
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["remitentes"]) ? $context["remitentes"] : $this->getContext($context, "remitentes")), $this->getAttribute($context["loop"], "index0", array()), array(), "array"), "html", null, true);
-                echo "</strong></td>
-                                ";
+                echo "
+                                <td>";
                 // line 40
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["remitentes"]) ? $context["remitentes"] : $this->getContext($context, "remitentes")), $this->getAttribute($context["loop"], "index0", array()), array(), "array"), "html", null, true);
+                echo "</td>
+                                ";
+                // line 41
                 if (($this->getAttribute($context["mensaje"], "asunto", array()) == null)) {
-                    // line 41
+                    // line 42
                     echo "                                    <td>Sin asunto</td>
                                 ";
                 } else {
-                    // line 43
+                    // line 44
                     echo "                                    <td>";
                     echo twig_escape_filter($this->env, $this->getAttribute($context["mensaje"], "asunto", array()), "html", null, true);
                     echo "</td>
                                 ";
                 }
-                // line 45
+                // line 46
                 echo "                                <td>";
                 echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["mensaje"], "fecha", array()), "d/m/Y H:i"), "html", null, true);
                 echo "</td>
                                 <td class=\"actions\">
                                     <form action=\"";
-                // line 47
+                // line 48
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_mensaje", array("id" => $this->getAttribute($context["mensaje"], "id", array()))), "html", null, true);
                 echo "\">
                                         <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
@@ -165,17 +166,17 @@ class __TwigTemplate_9856cb3c9693313f2d84ec370803e5677b16c4882914cc16d0e6f9a3805
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['mensaje'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 55
+            // line 56
             echo "                    </tbody>
                 </table>
             </div>
         ";
         }
-        // line 59
+        // line 60
         echo "        <div>
             <div class=\"navigation\">
                 ";
-        // line 61
+        // line 62
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
             </div>
@@ -186,15 +187,15 @@ class __TwigTemplate_9856cb3c9693313f2d84ec370803e5677b16c4882914cc16d0e6f9a3805
 ";
     }
 
-    // line 68
+    // line 69
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 69
+        // line 70
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <script src=\"";
-        // line 70
+        // line 71
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/criveroprueba/js/delete-user.js"), "html", null, true);
         echo "\"></script>
 ";
@@ -212,6 +213,6 @@ class __TwigTemplate_9856cb3c9693313f2d84ec370803e5677b16c4882914cc16d0e6f9a3805
 
     public function getDebugInfo()
     {
-        return array (  198 => 70,  193 => 69,  190 => 68,  179 => 61,  175 => 59,  169 => 55,  147 => 47,  141 => 45,  135 => 43,  131 => 41,  129 => 40,  125 => 39,  120 => 38,  103 => 37,  94 => 31,  90 => 30,  86 => 29,  80 => 25,  76 => 23,  74 => 22,  66 => 17,  60 => 14,  50 => 7,  47 => 6,  44 => 5,  38 => 3,  11 => 1,);
+        return array (  199 => 71,  194 => 70,  191 => 69,  180 => 62,  176 => 60,  170 => 56,  148 => 48,  142 => 46,  136 => 44,  132 => 42,  130 => 41,  126 => 40,  123 => 39,  120 => 38,  103 => 37,  94 => 31,  90 => 30,  86 => 29,  80 => 25,  76 => 23,  74 => 22,  66 => 17,  60 => 14,  50 => 7,  47 => 6,  44 => 5,  38 => 3,  11 => 1,);
     }
 }

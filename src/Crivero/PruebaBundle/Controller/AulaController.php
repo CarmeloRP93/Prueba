@@ -14,10 +14,10 @@ class AulaController extends Controller {
 
     public function aulasAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
-        
+
         $searchQuery = $request->get('query');
-        (!empty($searchQuery)) ? $aulas = $repository->searchAulas($searchQuery):
-                                 $aulas = $repository->getAulas();
+        (!empty($searchQuery)) ? $aulas = $repository->searchAulas($searchQuery) :
+                        $aulas = $repository->getAulas();
         //$repositoryHorarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
         //$hoy = date('j');
         //$nombreHoy = date('w');
@@ -26,10 +26,11 @@ class AulaController extends Controller {
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $aulas, $request->query->getInt('page', 1), 5);
-        
+
         $deleteFormAjax = $this->createCustomForm(':AULA_ID', 'DELETE', 'crivero_prueba_aula_eliminar');
         return $this->render('CriveroPruebaBundle:Aulas:aulas.html.twig', array("pagination" => $pagination,
-                                    "delete_form_ajax" => $deleteFormAjax->createView()));
+                    "delete_form_ajax" => $deleteFormAjax->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function aulaAction($id) {
@@ -39,17 +40,19 @@ class AulaController extends Controller {
         $idsSesionesAula = explode('&', $aula->getSesiones());
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesionesAula = $this->getArrayEntidades($repositorySesiones, $idsSesionesAula);
-        
+
         $deleteForm = $this->createCustomForm($aula->getId(), 'DELETE', 'crivero_prueba_aula_eliminar');
-        return $this->render('CriveroPruebaBundle:Aulas:aula.html.twig', array("aula" => $aula, 
-                                "sesiones" => $sesionesAula, "delete_form"=>$deleteForm->createView()));
+        return $this->render('CriveroPruebaBundle:Aulas:aula.html.twig', array("aula" => $aula,
+                    "sesiones" => $sesionesAula, "delete_form" => $deleteForm->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function nuevaAulaAction() {
         $aula = new Aulas();
         $form = $this->createCreateForm($aula);
 
-        return $this->render('CriveroPruebaBundle:Aulas:nuevaAula.html.twig', array('form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Aulas:nuevaAula.html.twig', array('form' => $form->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function createCreateForm(Aulas $entity) {
@@ -85,7 +88,8 @@ class AulaController extends Controller {
             }
         }
 
-        return $this->render('CriveroPruebaBundle:Aulas:nuevaAula.html.twig', array('form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Aulas:nuevaAula.html.twig', array('form' => $form->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function getArrayEntidades($repository, $array) {
@@ -101,7 +105,7 @@ class AulaController extends Controller {
 
         $form = $this->createEditForm($aula);
         return $this->render('CriveroPruebaBundle:Aulas:editarAula.html.twig', array('aula' => $aula,
-                    'form' => $form->createView()));
+                    'form' => $form->createView(), 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function createEditForm(Aulas $entity) {
@@ -132,9 +136,10 @@ class AulaController extends Controller {
             $request->getSession()->getFlashBag()->add('mensaje', 'El aula ha sido modificada correctamente.');
             return $this->redirect($this->generateUrl('crivero_prueba_aula', array('id' => $id)));
         }
-        return $this->render('CriveroPruebaBundle:Aulas:editarAula.html.twig', array('aula' => $aula, 'form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Aulas:editarAula.html.twig', array('aula' => $aula,
+                    'form' => $form->createView(), 'notificacionesSinLeer' => $this->getNewNotification()));
     }
-    
+
     public function eliminarAulaAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
         $aula = $this->findAula($id, $em);
@@ -156,8 +161,8 @@ class AulaController extends Controller {
             return $this->redirect($this->generateUrl('crivero_prueba_aulas'));
         }
     }
-    
-     private function deleteAula($em, $aula) {
+
+    private function deleteAula($em, $aula) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
         $repository->removeHorariosAula($aula->getId());
         $em->remove($aula);
@@ -167,7 +172,7 @@ class AulaController extends Controller {
         $remove = 1;
         return array('removed' => $remove, 'message' => $message);
     }
-    
+
     private function createCustomForm($id, $method, $route) {
         return $this->createFormBuilder()
                         ->setAction($this->generateUrl($route, array('id' => $id)))
@@ -193,6 +198,18 @@ class AulaController extends Controller {
             $em->persist($horario);
         }
         $em->flush();
+    }
+
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
     }
 
 }

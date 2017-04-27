@@ -17,7 +17,8 @@ class SesionController extends Controller {
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $sesiones, $request->query->getInt('page', 1), 5);
-        return $this->render('CriveroPruebaBundle:Sesiones:sesiones.html.twig', array("pagination" => $pagination));
+        return $this->render('CriveroPruebaBundle:Sesiones:sesiones.html.twig', array("pagination" => $pagination,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function sesionesClienteAction($id, Request $request) {
@@ -32,7 +33,8 @@ class SesionController extends Controller {
         $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 7);
 
         return $this->render('CriveroPruebaBundle:Sesiones:sesionesCliente.html.twig', array("pagination" => $pagination,
-                    'username' => $cliente->getUsername(), 'cId' => $id));
+                    'username' => $cliente->getUsername(), 'cId' => $id,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function sesionesMonitorAction($id, Request $request) {
@@ -43,7 +45,8 @@ class SesionController extends Controller {
         $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 7);
 
         return $this->render('CriveroPruebaBundle:Sesiones:sesionesMonitor.html.twig', array("pagination" => $pagination,
-                    'username' => $sesiones[0]->getMonitor(), 'mId' => $id));
+                    'username' => $sesiones[0]->getMonitor(), 'mId' => $id,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function horariosSesionAction($id, Request $request) {
@@ -57,7 +60,7 @@ class SesionController extends Controller {
         $aula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas")->find($sesion->getAula())->getNombre();
 
         return $this->render('CriveroPruebaBundle:Sesiones:horariosSesion.html.twig', array("sesion" => $sesion,
-                    "pagination" => $horarios, 'aula' => $aula));
+                    "pagination" => $horarios, 'aula' => $aula, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function dedicadasAction(Request $request) {
@@ -67,20 +70,22 @@ class SesionController extends Controller {
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $sesiones, $request->query->getInt('page', 1), 5);
-        return $this->render('CriveroPruebaBundle:Sesiones:sesionesDedicadas.html.twig', array("pagination" => $pagination));
+        return $this->render('CriveroPruebaBundle:Sesiones:sesionesDedicadas.html.twig', array("pagination" => $pagination,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function sesionAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
-        if ($repositoryN->getNotificacionEntidad($id)) {
+        if ($repositoryN->getNotificacionEntidad($id, $this->getUser()->getId())) {
             $repositoryN->getNotificacionEntidad($id)[0]->setEstado("Leido");
         }
         $this->getDoctrine()->getManager()->flush();
         $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $sesion = $repository->find($id);
         $aula = $repositoryAula->find($sesion->getAula());
-        return $this->render('CriveroPruebaBundle:Sesiones:sesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),"sesion" => $sesion, "aula" => $aula));
+        return $this->render('CriveroPruebaBundle:Sesiones:sesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),
+                    "sesion" => $sesion, "aula" => $aula, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function aceptarSesionAction($id, Request $request) {
@@ -173,9 +178,10 @@ class SesionController extends Controller {
             $em->persist($notificacion);
             $em->flush();
         }
-        
+
         $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido aceptada con éxito');
-        return $this->redirect($this->generateUrl('crivero_prueba_sesion', array('id' => $sesion->getId())));
+        return $this->redirect($this->generateUrl('crivero_prueba_sesion', array('id' => $sesion->getId(),
+                            'notificacionesSinLeer' => $this->getNewNotification())));
     }
 
     private function updateMonth($i, $mes, $vuelta, $limite) {
@@ -197,7 +203,8 @@ class SesionController extends Controller {
             throw $this->createNotFoundException("No encontrado");
         }
         $form = $this->createCancelForm($sesion);
-        return $this->render('CriveroPruebaBundle:Sesiones:cancelarSesion.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Sesiones:cancelarSesion.html.twig', array('sesion' => $sesion,
+                    'form' => $form->createView(), 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function createCancelForm(Sesiones $entity) {
@@ -254,7 +261,8 @@ class SesionController extends Controller {
                 $form->get('observaciones')->addError(new FormError('Rellene el campo.'));
             }
         }
-        return $this->render('CriveroPruebaBundle:Sesiones:cancelarSesion.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Sesiones:cancelarSesion.html.twig', array('sesion' => $sesion,
+                    'form' => $form->createView(), 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function rechazarSesionAction($id) {
@@ -265,7 +273,8 @@ class SesionController extends Controller {
             throw $this->createNotFoundException("no encontrado");
         }
         $form = $this->createRechForm($sesion);
-        return $this->render('CriveroPruebaBundle:Sesiones:rechazarSesion.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Sesiones:rechazarSesion.html.twig', array('sesion' => $sesion,
+                    'form' => $form->createView(), 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function createRechForm(Sesiones $entity) {
@@ -298,7 +307,8 @@ class SesionController extends Controller {
                 $form->get('observaciones')->addError(new FormError('Rellene el campo gracias'));
             }
         }
-        return $this->render('CriveroPruebaBundle:Sesiones:rechazarSesion.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Sesiones:rechazarSesion.html.twig', array('sesion' => $sesion,
+                    'form' => $form->createView(), 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function findEntity($id, $em, $repository) {
@@ -352,7 +362,7 @@ class SesionController extends Controller {
         $diaS = date('w', strtotime($fecha));
         return ($diaS == 0 || $diaS == 6 );
     }
-    
+
     private function getNewNotification() {
         $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
         $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
@@ -364,4 +374,5 @@ class SesionController extends Controller {
         }
         return $notificacionesSinLeer;
     }
+
 }

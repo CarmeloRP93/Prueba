@@ -12,39 +12,42 @@ use Crivero\PruebaBundle\Entity\HorariosCanchasRepository;
 use Symfony\Component\Form\FormError;
 
 class CanchaController extends Controller {
-    
+
     public function canchasAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
-        
+
         $searchQuery = $request->get('query');
-        (!empty($searchQuery)) ? $canchas = $repository->searchCanchas($searchQuery):
-                                 $canchas = $repository->getCanchas();
-        
+        (!empty($searchQuery)) ? $canchas = $repository->searchCanchas($searchQuery) :
+                        $canchas = $repository->getCanchas();
+
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $canchas, $request->query->getInt('page', 1), 5);
-        
+
         $deleteFormAjax = $this->createCustomForm(':CANCHA_ID', 'DELETE', 'crivero_prueba_cancha_eliminar');
-        return $this->render('CriveroPruebaBundle:Canchas:canchas.html.twig', array("pagination"=>$pagination,
-                             "delete_form_ajax" => $deleteFormAjax->createView()));
+        return $this->render('CriveroPruebaBundle:Canchas:canchas.html.twig', array("pagination" => $pagination,
+                    "delete_form_ajax" => $deleteFormAjax->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
-    
+
     public function canchaAction($id) {
-       $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
-       $cancha=$repository->find($id);
-       
-       $deleteForm = $this->createCustomForm($cancha->getId(), 'DELETE', 'crivero_prueba_cancha_eliminar');
-       return $this->render('CriveroPruebaBundle:Canchas:cancha.html.twig', array("cancha"=>$cancha, 
-                                                                            "delete_form"=>$deleteForm->createView()));
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
+        $cancha = $repository->find($id);
+
+        $deleteForm = $this->createCustomForm($cancha->getId(), 'DELETE', 'crivero_prueba_cancha_eliminar');
+        return $this->render('CriveroPruebaBundle:Canchas:cancha.html.twig', array("cancha" => $cancha,
+                    "delete_form" => $deleteForm->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
-    
+
     public function nuevaCanchaAction() {
         $cancha = new Canchas();
         $form = $this->createCreateForm($cancha);
 
-        return $this->render('CriveroPruebaBundle:Canchas:nuevaCancha.html.twig', array('form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Canchas:nuevaCancha.html.twig', array('form' => $form->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
-    
+
     public function crearCanchaAction(Request $request) {
         $cancha = new Canchas();
         $form = $this->createCreateForm($cancha);
@@ -62,16 +65,17 @@ class CanchaController extends Controller {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($cancha);
                 $em->flush();
-                
+
                 $this->setHorariosCancha($cancha->getId(), $em);
 
                 $request->getSession()->getFlashBag()->add('mensaje', 'La cancha ha sido creada con éxito.');
                 return $this->redirect($this->generateUrl('crivero_prueba_canchas'));
             }
         }
-        return $this->render('CriveroPruebaBundle:Canchas:nuevaCancha.html.twig', array('form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Canchas:nuevaCancha.html.twig', array('form' => $form->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
-    
+
     private function createCreateForm(Canchas $entity) {
         $form = $this->createForm(new CanchasType(), $entity, array(
             'action' => $this->generateUrl('crivero_prueba_cancha_crear'),
@@ -79,23 +83,23 @@ class CanchaController extends Controller {
         ));
         return $form;
     }
-    
+
     public function editarAction($id) {
         $em = $this->getDoctrine()->getManager();
-        $cancha= $this->findEntity($id, $em, 'CriveroPruebaBundle:Canchas');
-        
+        $cancha = $this->findEntity($id, $em, 'CriveroPruebaBundle:Canchas');
+
         $form = $this->createEditForm($cancha);
-        return $this->render('CriveroPruebaBundle:Canchas:editarCancha.html.twig', array('cancha' => $cancha, 
-                             'form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Canchas:editarCancha.html.twig', array('cancha' => $cancha,
+                    'form' => $form->createView(), 'notificacionesSinLeer' => $this->getNewNotification()));
     }
-    
+
     public function createEditForm(Canchas $entity) {
-          $form = $this->createForm(new CanchasType(), $entity, array(
+        $form = $this->createForm(new CanchasType(), $entity, array(
             'action' => $this->generateUrl('crivero_prueba_cancha_actualizar', array('id' => $entity->getId())),
-            'method' => 'PUT')); 
-          return $form;        
+            'method' => 'PUT'));
+        return $form;
     }
-    
+
     public function actualizarAction($id, Request $request) {
         $em = $this->getDoctrine()->getManager();
         $cancha = $this->findEntity($id, $em, 'CriveroPruebaBundle:Canchas');
@@ -103,8 +107,8 @@ class CanchaController extends Controller {
         $form = $this->createEditForm($cancha);
         $originalImage = $cancha->getImagen();
         $form->handleRequest($request);
-        
-        if($form->isSubmitted() && $form->isValid()) {
+
+        if ($form->isSubmitted() && $form->isValid()) {
             if ($form->get('imagen')->getData() == null) {
                 $cancha->setImagen($originalImage);
             } else {
@@ -112,14 +116,15 @@ class CanchaController extends Controller {
                 $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
                 $cancha->setImagen("images/" . $file->getClientOriginalName());
             }
-            
+
             $em->flush();
             $request->getSession()->getFlashBag()->add('mensaje', 'La cancha ha sido modificada correctamente.');
             return $this->redirect($this->generateUrl('crivero_prueba_cancha', array('id' => $id)));
         }
-        return $this->render('CriveroPruebaBundle:Canchas:editarCancha.html.twig', array('cancha' => $cancha, 'form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Canchas:editarCancha.html.twig', array('cancha' => $cancha,
+                    'form' => $form->createView(), 'notificacionesSinLeer' => $this->getNewNotification()));
     }
-    
+
     public function eliminarCanchaAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
         $cancha = $this->findEntity($id, $em, 'CriveroPruebaBundle:Canchas');
@@ -141,7 +146,7 @@ class CanchaController extends Controller {
             return $this->redirect($this->generateUrl('crivero_prueba_canchas'));
         }
     }
-    
+
     private function deleteCancha($em, $cancha) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosCanchas");
         $repository->removeHorariosCancha($cancha->getId());
@@ -152,42 +157,56 @@ class CanchaController extends Controller {
         $remove = 1;
         return array('removed' => $remove, 'message' => $message);
     }
-    
+
     private function createCustomForm($id, $method, $route) {
         return $this->createFormBuilder()
                         ->setAction($this->generateUrl($route, array('id' => $id)))
                         ->setMethod($method)
                         ->getForm();
     }
-    
-     private function findEntity($id, $em, $repository) {
+
+    private function findEntity($id, $em, $repository) {
         $cancha = $em->getRepository($repository)->find($id);
         if (!$cancha) {
             throw $this->createNotFoundException('Cancha no encontrada');
         }
         return $cancha;
     }
-    
-     private function setHorariosCancha($canchaId, $em) {
+
+    private function setHorariosCancha($canchaId, $em) {
         $cont = 1;
         $mes = date('m');
         $limite = date('t');
-        for ($i = date('d')+1; $cont < 31; $i++) {
+        for ($i = date('d') + 1; $cont < 31; $i++) {
             if ($i == $limite + 1) {
                 $i = 1;
-                if ($mes == 12) $mes = 0; 
-                ($mes <= date('n')) ? $mes = "0".($mes + 1) : $mes = $mes+1;
-                $limite = date('t', strtotime(date('Y')."-".$mes."-01"));
+                if ($mes == 12)
+                    $mes = 0;
+                ($mes <= date('n')) ? $mes = "0" . ($mes + 1) : $mes = $mes + 1;
+                $limite = date('t', strtotime(date('Y') . "-" . $mes . "-01"));
             }
             $horario = new HorariosCanchas();
             $horario->setPeriodo("09:00-10:00&10:00-11:00&11:00-12:00&12:00-13:00&13:00-14:00&14:00-15:00&"
-                                 . "15:00-16:00&16:00-17:00&17:00-18:00&18:00-19:00&19:00-20:00&20:00-21:00&21:00-22:00");
+                    . "15:00-16:00&16:00-17:00&17:00-18:00&18:00-19:00&19:00-20:00&20:00-21:00&21:00-22:00");
             $horario->setCancha($canchaId);
             ($i <= 9) ? $dia = "0" . $i : $dia = $i;
-            $horario->setFechaInicio($dia . "-". $mes);
+            $horario->setFechaInicio($dia . "-" . $mes);
             $em->persist($horario);
             $cont++;
         }
         $em->flush();
     }
+
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
+    }
+
 }

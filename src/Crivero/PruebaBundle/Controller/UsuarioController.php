@@ -39,7 +39,8 @@ class UsuarioController extends Controller {
         $sesionesCliente = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
 
         $deleteForm = $this->createCustomForm($cliente->getId(), 'DELETE', 'crivero_prueba_eliminar');
-        return $this->render('CriveroPruebaBundle:Usuarios:cliente.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),"cliente" => $cliente,
+        return $this->render('CriveroPruebaBundle:Usuarios:cliente.html.twig', array("cliente" => $cliente,
+                    'notificacionesSinLeer' => $this->getNewNotification(),
                     "reservas" => $reservasCliente, "sesiones" => $sesionesCliente,
                     'delete_form' => $deleteForm->createView()));
     }
@@ -57,7 +58,7 @@ class UsuarioController extends Controller {
 
         $deleteFormAjax = $this->createCustomForm(':USER_ID', 'DELETE', 'crivero_prueba_eliminar');
         return $this->render('CriveroPruebaBundle:Usuarios:monitores.html.twig', array("pagination" => $pagination,
-                    "delete_form_ajax" => $deleteFormAjax->createView()));
+                    "delete_form_ajax" => $deleteFormAjax->createView(), 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function monitorAction($id) {
@@ -68,14 +69,15 @@ class UsuarioController extends Controller {
 
         $deleteForm = $this->createCustomForm($monitor->getId(), 'DELETE', 'crivero_prueba_eliminar');
         return $this->render('CriveroPruebaBundle:Usuarios:monitor.html.twig', array("monitor" => $monitor, "sesiones" => $sesionesMonitor,
-                    'delete_form' => $deleteForm->createView()));
+                    'delete_form' => $deleteForm->createView(), 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function nuevoAction() {
         $usuario = new Usuarios();
         $form = $this->createCreateForm($usuario);
 
-        return $this->render('CriveroPruebaBundle:Usuarios:nuevo.html.twig', array('form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Usuarios:nuevo.html.twig', array('form' => $form->createView(),
+                                                              'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function crearAction(Request $request) {
@@ -101,7 +103,8 @@ class UsuarioController extends Controller {
                 $form->get('password')->addError(new FormError('Rellene el campo.'));
             }
         }
-        return $this->render('CriveroPruebaBundle:Usuarios:nuevo.html.twig', array('form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Usuarios:nuevo.html.twig', array('form' => $form->createView(),
+                                                            'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function createCreateForm(Usuarios $entity) {
@@ -150,7 +153,7 @@ class UsuarioController extends Controller {
 
         $form = $this->createEditForm($usuario);
         return $this->render('CriveroPruebaBundle:Usuarios:editar.html.twig', array('usuario' => $usuario,
-                    'form' => $form->createView()));
+                    'form' => $form->createView(), 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function actualizarAction($id, Request $request) {
@@ -186,7 +189,8 @@ class UsuarioController extends Controller {
             return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitor', array('id' => $id))) :
                     $this->redirect($this->generateUrl('crivero_prueba_cliente', array('id' => $id)));
         }
-        return $this->render('CriveroPruebaBundle:Usuarios:editar.html.twig', array('usuario' => $usuario, 'form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Usuarios:editar.html.twig', array('usuario' => $usuario,
+                    'form' => $form->createView(), 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function createEditForm(Usuarios $entity) {
@@ -211,7 +215,7 @@ class UsuarioController extends Controller {
         $pagination = $paginator->paginate(
                 $pagos, $request->query->getInt('page', 1), 8);
         return $this->render('CriveroPruebaBundle:Usuarios:pagos.html.twig', array('pagination' => $pagination,
-                    'usuario' => $usuario));
+                    'usuario' => $usuario, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function findUser($id, $em) {
@@ -245,7 +249,7 @@ class UsuarioController extends Controller {
         $currentUser = $repository->find($this->getUser()->getId());
         $rolName = $this->getRolName($currentUser->getTipo());
         return $this->render('CriveroPruebaBundle:Usuarios:perfil.html.twig', array('usuario' => $currentUser,
-                    'rol' => $rolName));
+                    'rol' => $rolName, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function getRolName($rol) {

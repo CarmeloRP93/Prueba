@@ -25,7 +25,7 @@ class MensajeriaController extends Controller {
         }
         $form = $this->createMessageForm($comentario);
         return $this->render('CriveroPruebaBundle:Mensajes:nuevoMensaje.html.twig', array('form' => $form->createView(),
-                    'destino' => $destino));
+                    'destino' => $destino, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function createMessageForm(Comentarios $entity) {
@@ -56,13 +56,13 @@ class MensajeriaController extends Controller {
         }
         $destino = $form->get('destinatario')->getData();
         return $this->render('CriveroPruebaBundle:Mensajes:nuevoMensaje.html.twig', array('form' => $form->createView(),
-                    'destino' => $destino));
+                    'destino' => $destino, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function responderMensajeAction($id) {
         $comentario = new Comentarios();
         $destino = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($id)->getEmail();
-        
+
         $asunto = null;
         $referer = $this->getRequest()->headers->get('referer');
         if ($referer && strpos($referer, 'mensaje')) {
@@ -71,7 +71,8 @@ class MensajeriaController extends Controller {
         }
         $form = $this->createMessageForm($comentario);
         return $this->render('CriveroPruebaBundle:Mensajes:nuevoMensaje.html.twig', array('form' => $form->createView(),
-                    'destino' => $destino, 'asunto' => 'RE: '.$asunto));
+                    'destino' => $destino, 'asunto' => 'RE: ' . $asunto, 
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function mensajesRecibidosAction(Request $request) {
@@ -89,7 +90,7 @@ class MensajeriaController extends Controller {
         }
 
         return $this->render('CriveroPruebaBundle:Mensajes:recibidos.html.twig', array('pagination' => $pagination,
-                    'remitentes' => $remitentes));
+                    'remitentes' => $remitentes, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function mensajesEnviadosAction(Request $request) {
@@ -107,32 +108,37 @@ class MensajeriaController extends Controller {
         }
 
         return $this->render('CriveroPruebaBundle:Mensajes:enviados.html.twig', array('pagination' => $pagination,
-                    'destinatarios' => $destinatarios));
+                    'destinatarios' => $destinatarios, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function mensajeAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Comentarios");
         $mensaje = $repository->find($id);
         $remitente = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($mensaje->getIdRemitente());
-
+        if ($mensaje->getEstado() == "nuevo" && $mensaje->getIdDestinatario() == $this->getUser()->getId()) {
+            $mensaje->setEstado("leido"); 
+            $this->getDoctrine()->getManager()->flush();
+        }
         return $this->render('CriveroPruebaBundle:Mensajes:mensaje.html.twig', array('mensaje' => $mensaje,
-                    'remitente' => $remitente));
+                    'remitente' => $remitente, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
-    
-    public function notificacionesAdminAction(Request $request){
+
+    public function notificacionesAdminAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
         $notificaciones = $repository->getNotificaciones($this->getUser()->getId());
-        $notificacionesSinLeer= array();
-        foreach ($notificaciones as $clave=>$notificacion){
-            if($notificacion->getEstado() == "No leido"){
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
                 $notificacionesSinLeer[$clave] = $notificacion;
             }
         }
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $notificacionesSinLeer, $request->query->getInt('page', 1), 9);
-        return $this->render('CriveroPruebaBundle:Mensajes:notificacionesAdmin.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'pagination' => $pagination));
+        return $this->render('CriveroPruebaBundle:Mensajes:notificacionesAdmin.html.twig', 
+                            array('notificacionesSinLeer' => $this->getNewNotification(), 'pagination' => $pagination));
     }
+
     private function getNewNotification() {
         $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
         $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());

@@ -144,16 +144,27 @@ class __TwigTemplate_88734d48e8baa5987c76fe61257f0c3c032083c2ff4410d6d7b83477f4e
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fecha", array()), 'errors');
         echo "</span>
         </div>
+        
+        <div>
+            ";
+        // line 51
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "estado", array()), 'widget', array("value" => "nuevo"));
+        echo "
+            <span class=\"text-danger\">";
+        // line 52
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "estado", array()), 'errors');
+        echo "</span>
+        </div>
 
         <div class=\"form-group\"><p>
                 ";
-        // line 51
+        // line 56
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "enviar", array()), 'widget', array("label" => "Enviar", "attr" => array("class" => "btn btn-success")));
         echo "
             </p></div>     
 
         ";
-        // line 54
+        // line 59
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
 
@@ -173,6 +184,6 @@ class __TwigTemplate_88734d48e8baa5987c76fe61257f0c3c032083c2ff4410d6d7b83477f4e
 
     public function getDebugInfo()
     {
-        return array (  157 => 54,  151 => 51,  144 => 47,  140 => 46,  136 => 45,  129 => 41,  125 => 40,  121 => 39,  113 => 35,  107 => 33,  101 => 31,  99 => 30,  95 => 29,  88 => 25,  84 => 24,  80 => 23,  73 => 19,  69 => 18,  62 => 14,  58 => 13,  51 => 9,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  168 => 59,  162 => 56,  155 => 52,  151 => 51,  144 => 47,  140 => 46,  136 => 45,  129 => 41,  125 => 40,  121 => 39,  113 => 35,  107 => 33,  101 => 31,  99 => 30,  95 => 29,  88 => 25,  84 => 24,  80 => 23,  73 => 19,  69 => 18,  62 => 14,  58 => 13,  51 => 9,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }
