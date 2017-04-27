@@ -28,7 +28,7 @@ class SesionController extends Controller {
         foreach ($sesiones as $clave => $sesion) {
             $aulas[$clave] = $repositoryAula->find($sesion->getAula());
         }
-        return $this->render('modulomonitoresmonitoresBundle:Default:sesionesMonitores.html.twig', array("pagination" => $pagination, "aulas" => $aulas));
+        return $this->render('modulomonitoresmonitoresBundle:Default:sesionesMonitores.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "pagination" => $pagination, "aulas" => $aulas));
     }
 
     public function sesionMonitoresAction($id) {
@@ -37,7 +37,7 @@ class SesionController extends Controller {
         $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $aula = $repositoryAula->find($sesion->getAula());
 
-        return $this->render('modulomonitoresmonitoresBundle:Default:sesionMonitores.html.twig', array("sesion" => $sesion, "aula" => $aula));
+        return $this->render('modulomonitoresmonitoresBundle:Default:sesionMonitores.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "sesion" => $sesion, "aula" => $aula));
     }
 
     public function misSesionesMonitoresAction(Request $request) {
@@ -59,16 +59,21 @@ class SesionController extends Controller {
             $aulas[$clave] = $repositoryAula->find($sesion->getAula());
         }
 
-        return $this->render('modulomonitoresmonitoresBundle:Default:misSesionesMonitores.html.twig', array("pagination" => $pagination, "aulas" => $aulas));
+        return $this->render('modulomonitoresmonitoresBundle:Default:misSesionesMonitores.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "pagination" => $pagination, "aulas" => $aulas));
     }
 
     public function miSesionMonitoresAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
         $sesion = $repository->find($id);
+        if ($repositoryN->getNotificacionEntidad($id, $this->getUser()->getId())) {
+            $repositoryN->getNotificacionEntidad($id, $this->getUser()->getId())[0]->setEstado("Leido");
+            $this->getDoctrine()->getManager()->flush();
+        }
         $aula = $repositoryAula->find($sesion->getAula());
         $deleteForm = $this->createDeleteForm($sesion);
-        return $this->render('modulomonitoresmonitoresBundle:Default:miSesionMonitores.html.twig', array("sesion" => $sesion, "aula" => $aula, 'delete_form' => $deleteForm->createView()));
+        return $this->render('modulomonitoresmonitoresBundle:Default:miSesionMonitores.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "sesion" => $sesion, "aula" => $aula, 'delete_form' => $deleteForm->createView()));
     }
 
     private function createDeleteForm($sesion) {
@@ -96,7 +101,7 @@ class SesionController extends Controller {
         $sesion = new Sesiones();
         $form = $this->createCreateForm($sesion);
 
-        return $this->render('modulomonitoresmonitoresBundle:Default:nuevaSesion.html.twig', array('form' => $form->createView()));
+        return $this->render('modulomonitoresmonitoresBundle:Default:nuevaSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
     }
 
     private function createCreateForm(Sesiones $entity) {
@@ -124,7 +129,7 @@ class SesionController extends Controller {
             $sesion->setMonitor($this->getUser()->getUsername());
             if ($form->get('nSesiones')->getData() > 20) {
                 $form->get('nSesiones')->addError(new FormError('El límite son 20 sesiones'));
-                return $this->render('modulomonitoresmonitoresBundle:Default:nuevaSesion.html.twig', array('form' => $form->createView()));
+                return $this->render('modulomonitoresmonitoresBundle:Default:nuevaSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
             }
             $lClientes = $form->get('lClientes')->getData();
             if ($lClientes != null) {
@@ -150,7 +155,7 @@ class SesionController extends Controller {
                 $form->get('lClientes')->addError(new FormError('Introduzca un valor correcto'));
             }
         }
-        return $this->render('modulomonitoresmonitoresBundle:Default:nuevaSesion.html.twig', array('form' => $form->createView()));
+        return $this->render('modulomonitoresmonitoresBundle:Default:nuevaSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
     }
 
     public function editarSesionAction($id) {
@@ -161,7 +166,7 @@ class SesionController extends Controller {
             throw $this->createNotFoundException("no encontrado");
         }
         $form = $this->createEdiForm($sesion);
-        return $this->render('modulomonitoresmonitoresBundle:Default:editarSesion.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
+        return $this->render('modulomonitoresmonitoresBundle:Default:editarSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'sesion' => $sesion, 'form' => $form->createView()));
     }
 
     private function createEdiForm(Sesiones $entity) {
@@ -538,9 +543,31 @@ class SesionController extends Controller {
         }
     }
 
-//    public function notificacionesAction(){
-//        
-//    }
+public function notificacionesMonitorAction(Request $request){
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repository->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer= array();
+        foreach ($notificaciones as $clave=>$notificacion){
+            if($notificacion->getEstado() == "No leido"){
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $notificacionesSinLeer, $request->query->getInt('page', 1), 9);
+        return $this->render('modulomonitoresmonitoresBundle:Default:notificacionesMonitor.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'pagination' => $pagination));
+    }
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
+    }
 
     private function updateMonth($i, $mes, $vuelta, $limite) {
         $i = 0;

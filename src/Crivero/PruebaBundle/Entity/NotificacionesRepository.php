@@ -19,10 +19,11 @@ class NotificacionesRepository extends EntityRepository {
                         ->getResult();
     }
 
-    public function getNotificacionEntidad($id) {
+    public function getNotificacionEntidad($id, $idUsuario) {
         return $this->getEntityManager()
-                        ->createQuery("SELECT n FROM CriveroPruebaBundle:Notificaciones n WHERE n.idEntidad = :id")
+                        ->createQuery("SELECT n FROM CriveroPruebaBundle:Notificaciones n WHERE n.idEntidad = :id AND n.idDestinatario = :idUsuario")
                         ->setParameter('id', $id)
+                        ->setParameter('idUsuario', $idUsuario)
                         ->getResult();
     }
 

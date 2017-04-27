@@ -126,6 +126,6 @@ modulomonitores_monitores_terminar:
     requirements:
         _method:  POST|PUT|GET
 
-modulomonitores_monitores_notificaciones:
-    pattern:  /notificaciones
-    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:notificaciones }
+modulomonitores_monitores_notificacionesMonitor:
+    pattern:  /notificacionesMonitor
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:notificacionesMonitor }

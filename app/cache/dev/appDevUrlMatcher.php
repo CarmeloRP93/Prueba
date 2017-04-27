@@ -363,6 +363,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_modulomonitores_monitores_terminar:
 
+        // modulomonitores_monitores_notificacionesMonitor
+        if ($pathinfo === '/notificacionesMonitor') {
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::notificacionesMonitorAction',  '_route' => 'modulomonitores_monitores_notificacionesMonitor',);
+        }
+
         if (0 === strpos($pathinfo, '/cancha')) {
             // moduloclientes_cliente_canchasClientes
             if ($pathinfo === '/canchasClientes') {
@@ -1145,6 +1150,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_mensaje')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::mensajeAction',));
             }
 
+        }
+
+        // crivero_prueba_notificacionesAdmin
+        if ($pathinfo === '/notificacionesAdmin') {
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::notificacionesAdminAction',  '_route' => 'crivero_prueba_notificacionesAdmin',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
