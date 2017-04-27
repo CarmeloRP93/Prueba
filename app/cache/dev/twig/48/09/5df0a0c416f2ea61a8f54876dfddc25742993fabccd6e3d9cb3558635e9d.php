@@ -189,7 +189,7 @@ class __TwigTemplate_48095df0a0c416f2ea61a8f54876dfddc25742993fabccd6e3d9cb35586
         echo "
             ";
         // line 64
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "observaciones", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Escriba los motivos de cancelación...")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "observaciones", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Escriba los motivos de cancelación..."), "value" => ""));
         echo "
             <span class=\"text-danger\">";
         // line 65

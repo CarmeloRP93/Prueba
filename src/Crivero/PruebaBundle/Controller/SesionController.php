@@ -75,14 +75,11 @@ class SesionController extends Controller {
     }
 
     public function sesionAction($id) {
+        $this->changeStateNotification($id);
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
-        if ($repositoryN->getNotificacionEntidad($id, $this->getUser()->getId())) {
-            $repositoryN->getNotificacionEntidad($id)[0]->setEstado("Leido");
-        }
-        $this->getDoctrine()->getManager()->flush();
-        $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $sesion = $repository->find($id);
+        
+        $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $aula = $repositoryAula->find($sesion->getAula());
         return $this->render('CriveroPruebaBundle:Sesiones:sesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),
                     "sesion" => $sesion, "aula" => $aula, 'notificacionesSinLeer' => $this->getNewNotification()));
@@ -153,6 +150,7 @@ class SesionController extends Controller {
         $em->persist($sesion);
         $em->persist($aula);
         $em->flush();
+        
         $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
         foreach ($usuarios as $usuario) {
             if ($usuario->getTipo() == 1) {
@@ -373,6 +371,14 @@ class SesionController extends Controller {
             }
         }
         return $notificacionesSinLeer;
+    }
+    
+    private function changeStateNotification($idEntidad) {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        if ($repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())) {
+            $repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())[0]->setEstado("Leido");
+            $this->getDoctrine()->getManager()->flush();
+        }
     }
 
 }

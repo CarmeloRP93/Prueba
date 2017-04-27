@@ -13,7 +13,7 @@
 
         <div class="form-group">
             {{ form_label(form.motivos) }}
-            {{ form_widget(form.motivos, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba los motivos de cancelación...'} }) }}
+            {{ form_widget(form.motivos, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba los motivos de cancelación...'}, 'value': "" }) }}
             <span class="text-danger">{{ form_errors(form.motivos) }}</span>
         </div>
         <div>

@@ -61,7 +61,7 @@
 
         <div class="form-group">
             {{ form_label(form.observaciones) }}
-            {{ form_widget(form.observaciones, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba los motivos de cancelación...'} }) }}
+            {{ form_widget(form.observaciones, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba los motivos de cancelación...'}, 'value': "" }) }}
             <span class="text-danger">{{ form_errors(form.observaciones) }}</span>
         </div>
         <div class="form-group" style="display:none;">

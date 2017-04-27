@@ -83,6 +83,33 @@ class AulaController extends Controller {
 
                 $this->setHorariosAula($aula->getId(), $em);
 
+                $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
+//                foreach ($usuarios as $usuario) {
+//                    if ($usuario->getTipo() == 1) {
+//                        continue;
+//                    }
+//                    $notificacion = new Notificaciones();
+//                    $notificacion->setIdDestinatario($usuario->getId());
+//                    $notificacion->setIdEntidad($sesion->getId());
+//                    if ($usuario->getId() == $sesion->getIdMonitor()) {
+//                        $notificacion->setMensaje("Tu sesion " . $sesion->getNombre() . " ha"
+//                                . " sido aceptada");
+//                    } else {
+//                        $notificacion->setMensaje("La sesion " . $sesion->getNombre() . " ha"
+//                                . " sido creada");
+//                    }
+//                    $notificacion->setIdOrigen($this->getUser()->getId());
+//                    $notificacion->setEstado("No leido");
+//                    if ($sesion->getCliente() == "normal") {
+//                        $notificacion->setConcepto("Publica");
+//                    } else {
+//                        $notificacion->setConcepto("Privada");
+//                    }
+//                    $em->persist($notificacion);
+//                    $em->flush();
+//                }
+
+
                 $request->getSession()->getFlashBag()->add('mensaje', 'El aula ha sido creada con éxito.');
                 return $this->redirect($this->generateUrl('crivero_prueba_aulas'));
             }
