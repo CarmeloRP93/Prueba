@@ -71,7 +71,7 @@ class __TwigTemplate_9dba75544428893e6c9f79aa021e674d5d1b4def8852cce935a9dc64962
             if (($context["sesion"] != null)) {
                 // line 14
                 echo "                    ";
-                if (($this->getAttribute($context["sesion"], "estadoCliente", array()) != "no disponible")) {
+                if ((($this->getAttribute($context["sesion"], "estadoCliente", array()) != "no disponible") && ($this->getAttribute($context["sesion"], "cliente", array()) == "normal"))) {
                     // line 15
                     echo "                        <a href=\"";
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_sesionClientes", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);

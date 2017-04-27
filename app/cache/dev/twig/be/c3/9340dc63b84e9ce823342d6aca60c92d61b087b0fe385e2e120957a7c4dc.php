@@ -47,12 +47,12 @@ class __TwigTemplate_bec39340dc63b84e9ce823342d6aca60c92d61b087b0fe385e2e120957a
         <div class=\"panel panel-default text-center\">
             <div class=\"panel-heading\">
                 <h1 class=\"t1\">Nueva Competición</h1>
-                ";
-        // line 8
-        echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("attr" => array("novalidate" => "novalidate", "role" => "form")));
-        echo "
             </div>
 
+            ";
+        // line 10
+        echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("attr" => array("novalidate" => "novalidate", "role" => "form")));
+        echo "
             <div class=\"panel-body\">  
                 <div class=\"row\">
                     <div class=\"col-xs-12 col-sm-6 col-md-4 col-lg-2\">
@@ -151,11 +151,11 @@ class __TwigTemplate_bec39340dc63b84e9ce823342d6aca60c92d61b087b0fe385e2e120957a
         echo "
                 </div>
             </div>
-        </div>
-        ";
-        // line 53
+            ";
+        // line 52
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
+        </div>
     </div>
 ";
     }
@@ -172,6 +172,6 @@ class __TwigTemplate_bec39340dc63b84e9ce823342d6aca60c92d61b087b0fe385e2e120957a
 
     public function getDebugInfo()
     {
-        return array (  157 => 53,  150 => 49,  143 => 45,  139 => 44,  135 => 43,  128 => 39,  124 => 38,  120 => 37,  113 => 33,  109 => 32,  105 => 31,  98 => 27,  94 => 26,  90 => 25,  83 => 21,  79 => 20,  75 => 19,  69 => 16,  65 => 15,  61 => 14,  52 => 8,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  156 => 52,  150 => 49,  143 => 45,  139 => 44,  135 => 43,  128 => 39,  124 => 38,  120 => 37,  113 => 33,  109 => 32,  105 => 31,  98 => 27,  94 => 26,  90 => 25,  83 => 21,  79 => 20,  75 => 19,  69 => 16,  65 => 15,  61 => 14,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

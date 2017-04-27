@@ -82,6 +82,10 @@ moduloclientes_cliente_sesionesClientes:
     pattern:  /sesionesClientes
     defaults: { _controller: moduloclientesclienteBundle:Sesion:sesionesClientes }
     
+moduloclientes_cliente_sesionesPrivadasClientes:
+    pattern:  /sesionesPrivadasClientes
+    defaults: { _controller: moduloclientesclienteBundle:Sesion:sesionesPrivadasClientes }
+    
 moduloclientes_cliente_pagoSesion:
     pattern:  /pagoSesion
     defaults: { _controller: moduloclientesclienteBundle:Sesion:pagoSesion }

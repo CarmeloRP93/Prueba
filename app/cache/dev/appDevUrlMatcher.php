@@ -500,9 +500,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_moduloclientes_cliente_jugador_crear:
 
-        // moduloclientes_cliente_sesionesClientes
-        if ($pathinfo === '/sesionesClientes') {
-            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::sesionesClientesAction',  '_route' => 'moduloclientes_cliente_sesionesClientes',);
+        if (0 === strpos($pathinfo, '/sesiones')) {
+            // moduloclientes_cliente_sesionesClientes
+            if ($pathinfo === '/sesionesClientes') {
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::sesionesClientesAction',  '_route' => 'moduloclientes_cliente_sesionesClientes',);
+            }
+
+            // moduloclientes_cliente_sesionesPrivadasClientes
+            if ($pathinfo === '/sesionesPrivadasClientes') {
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::sesionesPrivadasClientesAction',  '_route' => 'moduloclientes_cliente_sesionesPrivadasClientes',);
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/pag')) {

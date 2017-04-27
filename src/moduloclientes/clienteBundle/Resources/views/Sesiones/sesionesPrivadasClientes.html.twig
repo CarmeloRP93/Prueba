@@ -1,0 +1,21 @@
+{# empty Twig template #}
+{% extends 'moduloclientesclienteBundle::main.html.twig' %}
+
+{% block title %} Vista de entrenamiento {% endblock %}
+
+{% block contenido %}
+    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <h1 class="t1">Listado de entrenamiento</h1>
+            </div>
+            {% for sesion in sesiones %}
+                {% if (sesion != NULL) %}
+                    {% if (sesion.cliente == 'sin participante' and sesion.estadoCliente == 'disponible') %}
+                            <a href="{{url('moduloclientes_cliente_sesionClientes', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{sesion.id}}: {{ sesion.nombre }} - {{ sesion.estadoCliente}} </a>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

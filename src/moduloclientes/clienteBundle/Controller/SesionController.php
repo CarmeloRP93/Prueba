@@ -26,6 +26,21 @@ class SesionController extends Controller {
         }
         return $this->render('moduloclientesclienteBundle:Sesiones:sesionesClientes.html.twig', array("sesiones" => NULL));
     }
+    
+    public function sesionesPrivadasClientesAction() {
+        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesiones = $repositorySesiones->findAll();
+        $resultado = NULL;
+        foreach ($sesiones as $i => $sesion) {
+            if (strpos($sesion->getIdsClientes(), strval($this->getUser()->getId())) === false) {
+                $resultado[$i] = $sesion;
+            }
+        }
+        if ($resultado != NULL) {
+            return $this->render('moduloclientesclienteBundle:Sesiones:sesionesPrivadasClientes.html.twig', array("sesiones" => $resultado));
+        }
+        return $this->render('moduloclientesclienteBundle:Sesiones:sesionesPrivadasClientes.html.twig', array("sesiones" => NULL));
+    }
 
 
     public function misSesionesAction() {

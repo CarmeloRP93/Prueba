@@ -1,8 +1,6 @@
 {% extends '::base.html.twig' %}
 {% block title %} Vista desde main{% endblock %}
-
 {% block header %}{% endblock %}
-
 {% block navegation %}
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation" >
         <!-- El logotipo y el icono que despliega el menú se agrupan
@@ -39,8 +37,10 @@
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">Sesiones<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{url('moduloclientes_cliente_misSesionesClientes')}}"> Mis sesiones </a></li>
-                        <li><a href="{{url('moduloclientes_cliente_sesionesClientes')}}">Sesiones</a></li>                    </ul>
+                        <li><a href="{{url('moduloclientes_cliente_misSesionesClientes')}}">Apuntadas</a></li>
+                        <li><a href="{{url('moduloclientes_cliente_sesionesClientes')}}">Públicas</a></li>                    
+                        <li><a href="{{url('moduloclientes_cliente_sesionesPrivadasClientes')}}">Privadas</a></li>                    
+                    </ul>
                 </li>
 
                 <li><a href="{{url('moduloclientes_cliente_pagoSesion')}}">Pagar</a></li>

@@ -42,15 +42,15 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
         echo " Vista desde main";
     }
 
-    // line 4
+    // line 3
     public function block_header($context, array $blocks = array())
     {
     }
 
-    // line 6
+    // line 4
     public function block_navegation($context, array $blocks = array())
     {
-        // line 7
+        // line 5
         echo "    <nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\" >
         <!-- El logotipo y el icono que despliega el menú se agrupan
              para mostrarlos mejor en los dispositivos móviles -->
@@ -63,7 +63,7 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
                 <span class=\"icon-bar\"></span>
             </button>
             <a class=\"navbar-brand\" href=\"#\"> <img src=\"";
-        // line 18
+        // line 16
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/logo.png"), "html", null, true);
         echo "\" style=\"width: 30px\"> </a>
         </div>
@@ -74,13 +74,13 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
 
                 <li class=\"dropdown\">
                     <li><a href=\"";
-        // line 26
+        // line 24
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_reservasClientes");
         echo "\">Mis reservas</a></li>
                 </li>
 
                 <li><a href=\"";
-        // line 29
+        // line 27
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_canchasClientes");
         echo "\">Canchas</a></li>
 
@@ -88,11 +88,11 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
                     <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Competiciones <b class=\"caret\"></b></a>
                     <ul class=\"dropdown-menu\">
                         <li><a href=\"";
-        // line 34
+        // line 32
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_competicionesClientes");
         echo "\">Competiciones </a></li>
                         <li><a href=\"";
-        // line 35
+        // line 33
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_equiposClientes");
         echo "\"> Mis equipos </a></li>
                     </ul>
@@ -102,13 +102,18 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
                     <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Sesiones<b class=\"caret\"></b></a>
                     <ul class=\"dropdown-menu\">
                         <li><a href=\"";
-        // line 42
+        // line 40
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_misSesionesClientes");
-        echo "\"> Mis sesiones </a></li>
+        echo "\">Apuntadas</a></li>
                         <li><a href=\"";
-        // line 43
+        // line 41
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_sesionesClientes");
-        echo "\">Sesiones</a></li>                    </ul>
+        echo "\">Públicas</a></li>                    
+                        <li><a href=\"";
+        // line 42
+        echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_sesionesPrivadasClientes");
+        echo "\">Privadas</a></li>                    
+                    </ul>
                 </li>
 
                 <li><a href=\"";
@@ -183,6 +188,6 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
 
     public function getDebugInfo()
     {
-        return array (  171 => 70,  168 => 69,  160 => 71,  158 => 69,  154 => 67,  151 => 66,  137 => 55,  131 => 52,  127 => 51,  124 => 50,  122 => 49,  116 => 46,  110 => 43,  106 => 42,  96 => 35,  92 => 34,  84 => 29,  78 => 26,  67 => 18,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
+        return array (  176 => 70,  173 => 69,  165 => 71,  163 => 69,  159 => 67,  156 => 66,  142 => 55,  136 => 52,  132 => 51,  129 => 50,  127 => 49,  121 => 46,  114 => 42,  110 => 41,  106 => 40,  96 => 33,  92 => 32,  84 => 27,  78 => 24,  67 => 16,  54 => 5,  51 => 4,  46 => 3,  40 => 2,  11 => 1,);
     }
 }

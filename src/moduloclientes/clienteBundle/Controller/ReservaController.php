@@ -37,7 +37,9 @@ class ReservaController extends Controller {
     public function elegirHoraAction($id, $fecha) {
         $reserva = new Reservas();
         $form = $this->createCreateFormHora($reserva, $id, $fecha);
-        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null));
+        $fecha2 = $fecha.'-'.date('Y');
+        $fecha3 = date('Y-m-d', strtotime($fecha2));
+        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'fecha' => $fecha3, 'mensaje' => null));
     }
 
     private function createCreateFormHora(Reservas $entity, $id, $fecha) {

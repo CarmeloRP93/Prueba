@@ -1,34 +1,32 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
-
 {% block title %}Vista de {{sesion.nombre}} {% endblock %}
 {% block contenido %}
-    <h1 class="t1">Sesion {{sesion.id}}</h1>
-    <h3 class="t1">{{sesion.nombre}}</h3>    
 
     <div id="sesiondat" class="container">
-        
+        <div class="page-header">    
+            <h1 class="t1">Sesión - {{sesion.nombre}}</h1>
+        </div>
+        <br>
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >   
-                <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" style="max-width: 350px; margin-bottom:20px"/>     
-                    {% if sesion.estado == "cancelada" %}
-                    <div class="text-center">
-                        <h4 class="terr">Motivo de cancelación: {{sesion.observaciones}}</h4>   
-                    </div>
-                    {% endif %}
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center" >
+                <img src="{{ asset(sesion.imagen) }}" style="max-width: 350px; margin-bottom:20px; margin-right: 0"/>        
+                {% if sesion.estado == "cancelada" %}
+                    <h4 class="terr">Motivo de cancelación: {{sesion.observaciones}}</h4>   
+                {% endif %}
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
+            <div class="col-xs-8 col-sm-8 col-md-6 col-lg-6 col-xs-offset-2 col-sm-offset-2 col-md-offset-0 col-lg-offset-0 text-center" >
                 <div class="panel panel-default">                  
                     <div class="panel-body">                   
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">                           
-                            <h4>Monitor:</h4> <p>{{sesion.monitor}}</p>
-                            <h4>Ejercicios:</h4> <p>{{sesion.ejercicios}}</p>
-                            <h4>Repeticiones:</h4> <p>{{sesion.repeticiones}} por ejercicio</p>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <h4>Monitor</h4> <p>{{sesion.monitor}}</p>
+                            <h4>Ejercicios</h4> <p>{{sesion.ejercicios}}</p>
+                            <h4>Repeticiones</h4> <p>{{sesion.repeticiones}} por ejercicio</p>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <h4>Tiempo estimado:</h4> <p>{{sesion.duracion}} minutos</p>
-                            <h4>Descanso entre ejercicios:</h4> <p>{{sesion.descanso}} minutos</p>
-                            <h4>Objetivo:</h4> <p>{{sesion.objetivo}}</p>
+                            <h4>Tiempo estimado</h4> <p>{{sesion.duracion}} minutos</p>
+                            <h4>Descanso entre ejercicios</h4> <p>{{sesion.descanso}} minutos</p>
+                            <h4>Objetivo</h4> <p>{{sesion.objetivo}}</p>
                         </div>
                     </div>
                 </div>
@@ -37,14 +35,13 @@
 
         <div class="text-center">
             {% if sesion.estadoCliente == "disponible" %}
-                    <a href="{{path('moduloclientes_cliente_sesionesClientes_apuntarse', {id: sesion.id})}}" 
-                       class="btn btn-primary text-center center-block img-responsive" style="width: 180px;">Apuntarse <span class="glyphicon glyphicon-pencil"></span></a>
-            {% elseif sesion.estadoCliente == "completo" %}
-                    <button class="btn btn-danger text-center center-block img-responsive" style="width: 180px;" disabled="disabled">Completo</button>
+                <a href="{{path('moduloclientes_cliente_sesionesClientes_apuntarse', {id: sesion.id})}}" 
+                   class="btn btn-primary text-center center-block img-responsive" style="width: 180px;">Apuntarse <span class="glyphicon glyphicon-pencil"></span></a>
+                {% elseif sesion.estadoCliente == "completo" %}
+                <button class="btn btn-danger text-center center-block img-responsive" style="width: 180px;" disabled="disabled">Completo</button>
             {% elseif sesion.estadoCliente == "cancelada" %}
-                    <button class="btn btn-danger text-center center-block img-responsive" style="width: 180px;" disabled="disabled">Cancelada</button>
+                <button class="btn btn-danger text-center center-block img-responsive" style="width: 180px;" disabled="disabled">Cancelada</button>
             {% endif %}
         </div>
-        
     </div>
 {% endblock %}

@@ -1,70 +1,57 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
-
 {% block title %}Reserva de {{reserva.cancha}} {% endblock %}
 {% block contenido %}
     <div class="container text-center">
-        <h1 class="t1">Detalles de Reserva</h1>
-        <h3 class="t3">{{reserva.cancha}}</h3>
+        <h1 class="t1">Reserva de la cancha {{cancha.tipo}}</h1><br>
 
-        <div class="container row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div class="text-center">
-                    <img src="{{ asset(cancha.imagen) }}" width="180px" class="img-rounded"/><br>
+                    <img src="{{ asset(cancha.imagen) }}" class="img-responsive center-block" style="max-width: 340px; margin-bottom:20px"/>
                 </div><br>
-
-                <div class="text-center">
-                    {% if reserva.estadoReserva == 'Reservado' %}
-                        {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Cancelar reserva" })}}
-                    {% else %}
-                        {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Cancelada (Pulsar para descartar reserva)" })}}
-                        {% if reserva.motivos != null %}
-                            <div >
-                                <h4>Motivos:</h4>
-                                <p>{{reserva.motivos}}</p>
-                            </div>
-                        {% endif %}
-                    {% endif %}      
-                </div>        
+                {% if reserva.estadoReserva == 'Reservado' %}
+                    {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Cancelar reserva" })}}
+                {% else %}
+                    {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Cancelada (Pulsar para descartar reserva)" })}}
+                    {% if reserva.motivos != null %}
+                        <h4 class="terr">{{reserva.motivos}}</h4>
+                    {% endif %}
+                {% endif %}      
             </div>                      
 
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="text-center">
-                    <label class="control-label span7 text-left">Fecha reserva: </label>
-                    <label>{{reserva.fechaInicio|date('d/m/Y')}}</label>
-                    {% set horario = reserva.horario|split('&') %} 
-                    {% if horario|length > 2 %}
-                        {% set horarioFinal1 = horario[0]|split('-') %} 
-                        {% set horarioFinal2 = horario[horario|length - 2]|split('-') %} 
-                        <label>{{horarioFinal1[0]}}-{{horarioFinal2[horarioFinal2|length - 1]}} </label>
-                    {% else %}
-                        <label>{{horario[0]}}</label>
-                    {% endif %}
+            <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0 col-lg-6 col-lg-offset-0">
+                <div class="panel panel-default">                  
+                    <div class="panel-body">
+                        <div class="row">
+                            <h4>Fecha reserva </h4>
+                            <p>El día {{reserva.fechaInicio|date('d/m/Y')}} de 
+                            {% set horario = reserva.horario|split('&') %} 
+                            {% if horario|length > 2 %}
+                                {% set horarioFinal1 = horario[0]|split('-') %} 
+                                {% set horarioFinal2 = horario[horario|length - 2]|split('-') %} 
+                                {{horarioFinal1[0]}}-{{horarioFinal2[horarioFinal2|length - 1]}}
+                            {% else %}
+                                {{horario[0]}}</p>
+                            {% endif %}
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <h4>Deporte </h4><p>{{cancha.deporte}}</p>
+                            </div> 
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <h4>Dimensiones </h4><p>{{cancha.dimensiones}} m²</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <h4>Valoracion </h4>
+                                <p>{{cancha.valoracion|round (0, 'common')}}</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <h4>Dirección </h4><p>{{cancha.direccion}}</p>
+                            </div><br>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="text-center">
-                    <label class="control-label span7 text-left">Deporte: </label>
-                    <label class=" text-right">{{cancha.deporte}}</label>
-                </div> 
-
-                <div class="text-center">
-                    <label class="control-label span7 text-left">Dimensiones: </label>
-                    <label class="control-label span7 text-right">{{cancha.dimensiones}} m²</label>
-                </div>
-
-                <div class="text-center">
-                    <label class="control-label span7 text-left">Valoracion: </label>
-                    <label class=" text-right">{{cancha.valoracion|round (0, 'common')}}</label>
-                </div>
-
-                <div class="text-center">
-                    <label class="control-label span7 text-left">Dirección: </label>
-                    <label class="control-label span7 text-right">{{cancha.direccion}}</label>
-                </div><br>
-
                 <div class="text-center">
                     <a href="{{path('moduloclientes_cliente_valorar', {'id': reserva.id})}}" class="btn btn-primary" style="height: 30px; width: 150px;"> Valorar cancha </a>
                 </div><br>
-
             </div>
         </div>
     </div>

@@ -2,44 +2,48 @@
 {% block title %}Vista de escribir sugerencia {% endblock %}
 {% block contenido %}
     <div class="container">
-        <h1 class="t1">Escribir sugerencia</h1>   
-    </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h1 class="t1">Escribir sugerencia</h1>   
+                </div>
 
-    {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+                {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+                <div class="hidden">
+                    {{ form_label(form.destinatario) }}
+                    {{ form_widget(form.destinatario, {'value':admins[0].email, 'attr' : {'class' : 'form-control', 'placeholder' : 'Destino'} }) }}
+                    <span class="text-danger">{{ form_errors(form.destinatario) }}</span>
+                </div>
+                <div class="hidden">
+                    {{ form_label(form.tipoComentario) }}
+                    {{ form_widget(form.tipoComentario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba el tipo de sugerencia'} }) }}
+                    <span class="text-danger">{{ form_errors(form.tipoComentario) }}</span>
+                </div> 
+                <div class="hidden">
+                    {{ form_label(form.fecha) }}
+                    {{ form_widget(form.fecha, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba la descripción'} }) }}
+                    <span class="text-danger">{{ form_errors(form.fecha) }}</span>
+                </div>
 
-    <div class="hidden">
-        {{ form_label(form.destinatario) }}
-        {{ form_widget(form.destinatario, {'value':admins[0].email, 'attr' : {'class' : 'form-control', 'placeholder' : 'Destino'} }) }}
-        <span class="text-danger">{{ form_errors(form.destinatario) }}</span>
-    </div>
-
-    <div class="hidden">
-        {{ form_label(form.tipoComentario) }}
-        {{ form_widget(form.tipoComentario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba el tipo de sugerencia'} }) }}
-        <span class="text-danger">{{ form_errors(form.tipoComentario) }}</span>
-    </div> 
-
-    <div class="form-group container">
-        {{ form_label(form.asunto) }}
-        {{ form_widget(form.asunto, {'value':asunto, 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba el asunto'}}) }}
-        <span class="text-danger">{{ form_errors(form.asunto) }}</span>
-    </div>
-
-    <div class="form-group container">
-        {{ form_label(form.descripcion) }}
-        {{ form_widget(form.descripcion, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba la descripción'} }) }}
-        <span class="text-danger">{{ form_errors(form.descripcion) }}</span>
-    </div>
-    <div class="hidden">
-        {{ form_label(form.fecha) }}
-        {{ form_widget(form.fecha, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba la descripción'} }) }}
-        <span class="text-danger">{{ form_errors(form.fecha) }}</span>
-    </div>
-
-    <div class="form-group container"><p>
-            {{ form_widget(form.enviar, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
-        </p></div>      
-
-    {{ form_end(form) }}
-
+                <div class="panel-body">  
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            {{ form_label(form.asunto) }}
+                            {{ form_widget(form.asunto, {'value':asunto, 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba el asunto'}}) }}
+                            <span class="text-danger">{{ form_errors(form.asunto) }}</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        {{ form_label(form.descripcion) }}
+                        {{ form_widget(form.descripcion, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba la descripción'} }) }}
+                        <span class="text-danger">{{ form_errors(form.descripcion) }}</span>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <br>{{ form_widget(form.enviar, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
+                    </div>      
+                </div>      
+                {{ form_end(form) }}
+            </div>      
+        </div>      
+    </div>      
 {% endblock %}

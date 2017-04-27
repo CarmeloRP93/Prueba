@@ -88,7 +88,7 @@ class __TwigTemplate_1cd0666dac7a3da8738bdc71e2dc16a4dc7a6a3fa677afc0419d134ea7d
                             <h4>Descanso entre ejercicios:</h4> <p>";
         // line 22
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "descanso", array()), "html", null, true);
-        echo " minutos</p>
+        echo " segundos</p>
                             <h4>Objetivo de la sesión:</h4> <p>";
         // line 23
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "objetivo", array()), "html", null, true);

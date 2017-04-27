@@ -1,5 +1,4 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
-
 {% block title %}Vista de {{sesion.nombre}} {% endblock %}
 {% block contenido %}
 
@@ -9,16 +8,14 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" >
-                <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" style="max-width: 350px; margin-bottom:20px; margin-right: 0"/>        
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center" >
+                <img src="{{ asset(sesion.imagen) }}" style="max-width: 350px; margin-bottom:20px; margin-right: 0"/>        
                 {% if sesion.estado == "cancelada" %}
-                    <div class="text-center">
-                        <h4 class="terr">Motivo de cancelación: {{sesion.observaciones}}</h4>   
-                    </div>
+                    <h4 class="terr">Motivo de cancelación: {{sesion.observaciones}}</h4>   
                 {% endif %}
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center" >
+            <div class="col-xs-8 col-sm-8 col-md-6 col-lg-6 col-xs-offset-2 col-sm-offset-2 col-md-offset-0 col-lg-offset-0 text-center" >
                 <div class="panel panel-default">                  
                     <div class="panel-body">                   
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -41,6 +38,4 @@
                class="btn btn-danger text-center img-responsive" style="width: 220px;">Abandonar</a>
         </div>
     </div>
-</div>
-
 {% endblock %}
