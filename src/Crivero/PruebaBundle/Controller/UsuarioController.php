@@ -22,8 +22,9 @@ class UsuarioController extends Controller {
         $pagination = $paginator->paginate(
                 $usuarios, $request->query->getInt('page', 1), 5);
 
+
         $deleteFormAjax = $this->createCustomForm(':USER_ID', 'DELETE', 'crivero_prueba_eliminar');
-        return $this->render('CriveroPruebaBundle:Usuarios:clientes.html.twig', array("pagination" => $pagination,
+        return $this->render('CriveroPruebaBundle:Usuarios:clientes.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "pagination" => $pagination,
                     "delete_form_ajax" => $deleteFormAjax->createView()));
     }
 
@@ -38,7 +39,7 @@ class UsuarioController extends Controller {
         $sesionesCliente = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
 
         $deleteForm = $this->createCustomForm($cliente->getId(), 'DELETE', 'crivero_prueba_eliminar');
-        return $this->render('CriveroPruebaBundle:Usuarios:cliente.html.twig', array("cliente" => $cliente,
+        return $this->render('CriveroPruebaBundle:Usuarios:cliente.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),"cliente" => $cliente,
                     "reservas" => $reservasCliente, "sesiones" => $sesionesCliente,
                     'delete_form' => $deleteForm->createView()));
     }
@@ -169,7 +170,7 @@ class UsuarioController extends Controller {
                 $recoverPass = $this->recoverPass($id);
                 $usuario->setPassword($recoverPass[0]['password']);
             }
-            
+
             if ($form->get('imagen')->getData() != null) {
                 $file = $form->get('imagen')->getData();
                 $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
@@ -179,10 +180,11 @@ class UsuarioController extends Controller {
             }
             $em->flush();
             $request->getSession()->getFlashBag()->add('mensaje', 'El usuario ha sido modificado correctamente.');
-            if ($this->getUser()->getId() == $usuario->getId()) return $this->redirect($this->generateUrl('crivero_prueba_perfil'));  
+            if ($this->getUser()->getId() == $usuario->getId())
+                return $this->redirect($this->generateUrl('crivero_prueba_perfil'));
             $tipo = $form->get('tipo')->getData();
-            return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitor', array('id' => $id))):
-                                  $this->redirect($this->generateUrl('crivero_prueba_cliente', array('id' => $id)));
+            return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitor', array('id' => $id))) :
+                    $this->redirect($this->generateUrl('crivero_prueba_cliente', array('id' => $id)));
         }
         return $this->render('CriveroPruebaBundle:Usuarios:editar.html.twig', array('usuario' => $usuario, 'form' => $form->createView()));
     }
@@ -200,17 +202,16 @@ class UsuarioController extends Controller {
         return $currentPass;
     }
 
-
     public function pagosAction($id, Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Pagos");
         $pagos = $repository->getPagos($id);
         $usuario = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($id);
-        
+
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $pagos, $request->query->getInt('page', 1), 8);
         return $this->render('CriveroPruebaBundle:Usuarios:pagos.html.twig', array('pagination' => $pagination,
-                                                                                   'usuario' => $usuario));
+                    'usuario' => $usuario));
     }
 
     private function findUser($id, $em) {
@@ -238,17 +239,17 @@ class UsuarioController extends Controller {
     public function homeAction() {
         return $this->render('CriveroPruebaBundle:Usuarios:home.html.twig');
     }
-    
+
     public function perfilAction() {
         $repository = $this->getDoctrine()->getRepository('CriveroPruebaBundle:Usuarios');
         $currentUser = $repository->find($this->getUser()->getId());
         $rolName = $this->getRolName($currentUser->getTipo());
-        return $this->render('CriveroPruebaBundle:Usuarios:perfil.html.twig', array('usuario' => $currentUser, 
-                                                                                    'rol' => $rolName));
+        return $this->render('CriveroPruebaBundle:Usuarios:perfil.html.twig', array('usuario' => $currentUser,
+                    'rol' => $rolName));
     }
-    
+
     private function getRolName($rol) {
-        switch ($rol){
+        switch ($rol) {
             case 1:
                 $res = 'administrador';
                 break;
@@ -264,4 +265,17 @@ class UsuarioController extends Controller {
         }
         return $res;
     }
+
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
+    }
+
 }

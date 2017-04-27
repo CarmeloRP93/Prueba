@@ -47,6 +47,7 @@
 
             {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href = "{{url('modulomonitores_monitores_notificaciones')}}">Notificaciones</a></li>
                     <li><a href = "{{url('modulomonitores_monitores_miperfilm')}}"><img src="{{asset('images/user-128.png')}}" style="width: 50%;" /></a></li>
                     <li><a href="{{path('crivero_prueba_logout')}}"  style="margin-right: 12px"><img src="{{asset('images/logout-128.png')}}" style="width: 18px;" /></a></li>
                 </ul>

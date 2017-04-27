@@ -4,6 +4,7 @@ namespace modulomonitores\monitoresBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Crivero\PruebaBundle\Entity\Sesiones;
+use Crivero\PruebaBundle\Entity\Notificaciones;
 use Crivero\PruebaBundle\Entity\Usuarios;
 use Crivero\PruebaBundle\Form\UsuariosType;
 use Crivero\PruebaBundle\Form\SesionesType;
@@ -130,6 +131,19 @@ class SesionController extends Controller {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($sesion);
                 $em->flush();
+
+                $notificacion = new Notificaciones();
+                $notificacion->setIdDestinatario(1);
+                $notificacion->setIdEntidad($sesion->getId());
+                $notificacion->setMensaje("El monitor " . $this->getUser()->getUsername() . " ha"
+                        . " creado una nueva sesión");
+                $notificacion->setIdOrigen($this->getUser()->getId());
+                $notificacion->setConcepto("Publica");
+                $notificacion->setEstado("No leido");
+                $em->persist($notificacion);
+                $em->flush();
+
+
                 $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido creado con éxito.');
                 return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionesMonitores'));
             } else {
@@ -228,6 +242,19 @@ class SesionController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $em->persist($sesion);
             $em->flush();
+
+
+            $notificacion = new Notificaciones();
+            $notificacion->setIdDestinatario(1);
+            $notificacion->setIdEntidad($sesion->getId());
+            $notificacion->setMensaje("El monitor " . $this->getUser()->getUsername() . " ha"
+                    . " creado una nueva sesión");
+            $notificacion->setIdOrigen($this->getUser()->getId());
+            $notificacion->setEstado("No leido");
+            $notificacion->setConcepto("Privada");
+            $em->persist($notificacion);
+            $em->flush();
+
             $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido creada con éxito.');
             return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionesDedicadas'));
         }
@@ -510,6 +537,10 @@ class SesionController extends Controller {
             return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionDedicada', array('id' => $sesion->getId())));
         }
     }
+
+//    public function notificacionesAction(){
+//        
+//    }
 
     private function updateMonth($i, $mes, $vuelta, $limite) {
         $i = 0;

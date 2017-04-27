@@ -71,5 +71,5 @@ class UsuariosRepository extends EntityRepository {
                         ->createQuery('SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=1')
                         ->getResult();
     }
-
+    
 }

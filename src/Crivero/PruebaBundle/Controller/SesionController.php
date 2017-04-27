@@ -4,6 +4,7 @@ namespace Crivero\PruebaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Crivero\PruebaBundle\Entity\Sesiones;
+use Crivero\PruebaBundle\Entity\Notificaciones;
 use Crivero\PruebaBundle\Form\SesionesType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormError;
@@ -18,45 +19,45 @@ class SesionController extends Controller {
                 $sesiones, $request->query->getInt('page', 1), 5);
         return $this->render('CriveroPruebaBundle:Sesiones:sesiones.html.twig', array("pagination" => $pagination));
     }
-    
+
     public function sesionesClienteAction($id, Request $request) {
         $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $cliente = $repositoryUsuarios->find($id);
-        
+
         $idsSesionesCliente = explode('&', $cliente->getSesiones());
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesiones = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
-        
+
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 7);
 
         return $this->render('CriveroPruebaBundle:Sesiones:sesionesCliente.html.twig', array("pagination" => $pagination,
-                                                                    'username' => $cliente->getUsername(), 'cId' => $id));
+                    'username' => $cliente->getUsername(), 'cId' => $id));
     }
-    
+
     public function sesionesMonitorAction($id, Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesiones = $repository->getSesionesMonitor($id);
-        
+
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 7);
 
         return $this->render('CriveroPruebaBundle:Sesiones:sesionesMonitor.html.twig', array("pagination" => $pagination,
-                                                                 'username' => $sesiones[0]->getMonitor(), 'mId' => $id));
+                    'username' => $sesiones[0]->getMonitor(), 'mId' => $id));
     }
-    
+
     public function horariosSesionAction($id, Request $request) {
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repositorySesiones->find($id);
         $horarios = explode("&", $sesion->getHorario());
-        
+
 //        $paginator = $this->get('knp_paginator');
 //        $pagination = $paginator->paginate($horarios, $request->query->getInt('page', 1), 8);
-        
+
         $aula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas")->find($sesion->getAula())->getNombre();
-        
-        return $this->render('CriveroPruebaBundle:Sesiones:horariosSesion.html.twig', array("sesion" => $sesion, 
-                                                                              "pagination" => $horarios, 'aula' => $aula));
+
+        return $this->render('CriveroPruebaBundle:Sesiones:horariosSesion.html.twig', array("sesion" => $sesion,
+                    "pagination" => $horarios, 'aula' => $aula));
     }
 
     public function dedicadasAction(Request $request) {
@@ -71,10 +72,15 @@ class SesionController extends Controller {
 
     public function sesionAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        if ($repositoryN->getNotificacionEntidad($id)) {
+            $repositoryN->getNotificacionEntidad($id)[0]->setEstado("Leido");
+        }
+        $this->getDoctrine()->getManager()->flush();
         $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $sesion = $repository->find($id);
         $aula = $repositoryAula->find($sesion->getAula());
-        return $this->render('CriveroPruebaBundle:Sesiones:sesion.html.twig', array("sesion" => $sesion, "aula" => $aula));
+        return $this->render('CriveroPruebaBundle:Sesiones:sesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),"sesion" => $sesion, "aula" => $aula));
     }
 
     public function aceptarSesionAction($id, Request $request) {
@@ -82,17 +88,17 @@ class SesionController extends Controller {
         $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
         $sesion->setEstado("validada");
         $sesion->setEstadoCliente("disponible");
-        
+
         $aula = $this->findEntity($sesion->getAula(), $em, 'CriveroPruebaBundle:Aulas');
-        ($aula->getSesiones() == null) ? $aula->setSesiones($sesion->getId()):
-                                            $aula->setSesiones($aula->getSesiones() . "&" . $sesion->getId()); 
+        ($aula->getSesiones() == null) ? $aula->setSesiones($sesion->getId()) :
+                        $aula->setSesiones($aula->getSesiones() . "&" . $sesion->getId());
 
         $hoy = date('j');
         $mes = date('m');
         $limite = date('t');
         $duracion = $sesion->getNSesiones();
         //$this->actualizarValores($hoy, $mes, $limite);
-            if ($hoy > 28 && $limite == 30) {
+        if ($hoy > 28 && $limite == 30) {
             $mes++;
             $hoy = 1;
         } elseif ($hoy > 29 && $limite == 31) {
@@ -105,9 +111,9 @@ class SesionController extends Controller {
             $mes++;
             $hoy = 1;
         }
-        
+
         $repositoryHorarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
-        
+
         $vuelta = 0;
         for ($i = $hoy + 2; $i <= $limite; $i++) {
             if (!$this->isWeekend($i, $mes, $vuelta)) {
@@ -115,24 +121,26 @@ class SesionController extends Controller {
                 if ($diaReserva[0]->getPeriodo() != null) {
                     $fechaReserva = $this->findFechaReserva($diaReserva[0], $mes);
                     ($sesion->getHorario() == null) ? $horarioCompleto = $fechaReserva :
-                                                       $horarioCompleto = $sesion->getHorario() . "&" . $fechaReserva;
+                                    $horarioCompleto = $sesion->getHorario() . "&" . $fechaReserva;
                     $sesion->setHorario($horarioCompleto);
                     $em->persist($diaReserva[0]);
                     $duracion--;
-                    if ($duracion == 0) break;
+                    if ($duracion == 0)
+                        break;
                     $i++;
                 }
-            } 
+            }
             if ($i >= $limite) {
-               // $this->updateMonth($i, $mes, $vuelta, $limite);
+                // $this->updateMonth($i, $mes, $vuelta, $limite);
                 $i = 0;
                 if ($mes == 12) {
                     $mes = 0;
                     $vuelta = 1;
                 }
                 $mes++;
-                if ($mes < 10) $mes = '0' . $mes;
-                $fecha = date('Y')+$vuelta . '-' . $mes . '-01';
+                if ($mes < 10)
+                    $mes = '0' . $mes;
+                $fecha = date('Y') + $vuelta . '-' . $mes . '-01';
                 $limite = date('t', strtotime($fecha));
             }
         }
@@ -140,10 +148,36 @@ class SesionController extends Controller {
         $em->persist($sesion);
         $em->persist($aula);
         $em->flush();
+        $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
+        foreach ($usuarios as $usuario) {
+            if ($usuario->getTipo() == 1) {
+                continue;
+            }
+            $notificacion = new Notificaciones();
+            $notificacion->setIdDestinatario($usuario->getId());
+            $notificacion->setIdEntidad($sesion->getId());
+            if ($usuario->getId() == $sesion->getIdMonitor()) {
+                $notificacion->setMensaje("Tu sesion " . $sesion->getNombre() . " ha"
+                        . " sido aceptada");
+            } else {
+                $notificacion->setMensaje("La sesion " . $sesion->getNombre() . " ha"
+                        . " sido creada");
+            }
+            $notificacion->setIdOrigen($this->getUser()->getId());
+            $notificacion->setEstado("No leido");
+            if ($sesion->getCliente() == "normal") {
+                $notificacion->setConcepto("Publica");
+            } else {
+                $notificacion->setConcepto("Privada");
+            }
+            $em->persist($notificacion);
+            $em->flush();
+        }
+        
         $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido aceptada con éxito');
         return $this->redirect($this->generateUrl('crivero_prueba_sesion', array('id' => $sesion->getId())));
     }
-    
+
     private function updateMonth($i, $mes, $vuelta, $limite) {
         $i = 0;
         if ($mes == 12) {
@@ -151,7 +185,7 @@ class SesionController extends Controller {
             $vuelta = 1;
         }
         $mes++;
-        $fecha = date('Y')+$vuelta . '-' . $mes . '-01';
+        $fecha = date('Y') + $vuelta . '-' . $mes . '-01';
         $limite = date('t', strtotime($fecha));
     }
 
@@ -184,35 +218,35 @@ class SesionController extends Controller {
         $form = $this->createCancelForm($sesion);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             $observaciones = $form->get('observaciones')->getData();
-            
+
             if ($observaciones != null) {
                 $sesion->setEstado("cancelada");
                 $sesion->setEstadoCliente("cancelada");
                 $em->persist($sesion);
-                
+
                 $horarios = explode('&', $sesion->getHorario());
-                foreach ($horarios as $clave=>$horario) {
-                    if ($horario{1} == '/'){
-                        $horario = "0". $horario;
+                foreach ($horarios as $clave => $horario) {
+                    if ($horario{1} == '/') {
+                        $horario = "0" . $horario;
                     }
-                    $dias[$clave] = substr($horario, 0, 2); 
-                    $horas[$clave] = substr($horario, 8); 
+                    $dias[$clave] = substr($horario, 0, 2);
+                    $horas[$clave] = substr($horario, 8);
                 }
-                
+
                 $horariosAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
                 for ($i = 0; $i < count($dias); $i++) {
-                    $diaReserva = $horariosAula->getDiaReserva($sesion->getAula(), (int)$dias[$i]);
+                    $diaReserva = $horariosAula->getDiaReserva($sesion->getAula(), (int) $dias[$i]);
                     $horarioNoAsig = $diaReserva[0]->getPeriodo();
                     if (strpos($horarioNoAsig, $horas[$i]) === false) {
-                        $diaReserva[0]->setPeriodo($horarioNoAsig . $horas[$i].'&'); 
+                        $diaReserva[0]->setPeriodo($horarioNoAsig . $horas[$i] . '&');
                         $em->persist($diaReserva[0]);
                     }
                 }
 
                 $this->removeSesionId($aula, $id);
-                $em->persist($aula);                
+                $em->persist($aula);
                 $em->flush();
                 $request->getSession()->getFlashBag()->add('mensaje', 'La sesión se canceló correctamente');
                 return $this->redirect($this->generateUrl('crivero_prueba_sesion', array('id' => $sesion->getId())));
@@ -264,7 +298,7 @@ class SesionController extends Controller {
                 $form->get('observaciones')->addError(new FormError('Rellene el campo gracias'));
             }
         }
-        return $this->render('CriveroPruebaBundle:Sesiones:rechazarSesion.html.twig', array('sesion'=>$sesion, 'form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Sesiones:rechazarSesion.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
     }
 
     private function findEntity($id, $em, $repository) {
@@ -304,7 +338,7 @@ class SesionController extends Controller {
             $hoy = 1;
         }
     }
-    
+
     private function findFechaReserva($diaReserva, $mes) {
         $pos = strpos($diaReserva->getPeriodo(), "&");
         $horaReserva = substr($diaReserva->getPeriodo(), 0, $pos);
@@ -312,10 +346,22 @@ class SesionController extends Controller {
         $fechaReserva = $diaReserva->getFechaInicio() . "/" . $mes . " : " . $horaReserva;
         return $fechaReserva;
     }
-    
+
     private function isWeekend($dia, $mes, $cambio) {
-        $fecha = date('Y')+$cambio . '-' . $mes . '-' . $dia;
+        $fecha = date('Y') + $cambio . '-' . $mes . '-' . $dia;
         $diaS = date('w', strtotime($fecha));
         return ($diaS == 0 || $diaS == 6 );
+    }
+    
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
     }
 }

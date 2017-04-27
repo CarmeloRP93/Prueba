@@ -70,7 +70,13 @@
                 <ul class="nav navbar-nav navbar-right">
                     {% if app.user.username == 'director' %}
                         <li><a href = "{{url('crivero_prueba_enviarMensaje')}}">enviar mensaje</a></li>
-                    {% endif %} 
+                        {% endif %} 
+                        {% if not notificacionesSinLeer|length %}  
+                        <li><a href = "{{url('crivero_prueba_notificacionesAdmin')}}"><img src="{{asset('images/campanaSN.png')}}" style="width: 18px;" /></a></li>
+                            {% else %}
+
+                        <li><a href = "{{url('crivero_prueba_notificacionesAdmin')}}"><img src="{{asset('images/campanaCN.png')}}" style="width: 18px;" /></a></li>
+                            {% endif %}
                     <li><a href = "{{path('crivero_prueba_mensajes_recibidos')}}"><img src="{{asset('images/correo.png')}}" style="width: 18px;" /></a></li>
                     <li><a href = "{{path('crivero_prueba_perfil')}}"><img src="{{asset('images/user-128.png')}}" style="width: 18px;" /></a></li>
                     <li><a href="{{path('crivero_prueba_logout')}}" style="margin-right: 12px"><img src="{{asset('images/logout-128.png')}}" style="width: 18px;" /></a></li>
@@ -83,7 +89,7 @@
                            placeholder="Buscar usuarios, reservas" >
                     <div class="input-group-btn">
                         <button type="submit" class="btn btn-default">
-                           <img src="{{asset('images/search-128.png')}}" style="width: 15px;" />  
+                            <img src="{{asset('images/search-128.png')}}" style="width: 15px;" />  
                         </button>
                     </div>
                 </div>
