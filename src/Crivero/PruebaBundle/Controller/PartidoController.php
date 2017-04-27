@@ -25,7 +25,7 @@ class PartidoController extends Controller {
             $equiposVisitantes[$partido] = $repositoryEquipos->find($valor->getIdEquipoVisitante());
             $canchas[$partido] = $repositoryCanchas->find($valor->getIdCancha());
         }     
-        return $this->render('CriveroPruebaBundle:Competiciones:partidos.html.twig', array("partidos"=>$pagination, "competiciones"=>$competiciones,
+        return $this->render('CriveroPruebaBundle:Competiciones:partidos.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),"partidos"=>$pagination, "competiciones"=>$competiciones,
                              "equiposLocales"=>$equiposLocales,"equiposVisitantes"=>$equiposVisitantes, "canchas"=>$canchas));
     }
 
@@ -41,14 +41,14 @@ class PartidoController extends Controller {
         $equipoVisitante=$repositoryEquipos->find($partido->getIdEquipoVisitante());
         $cancha=$repositoryCanchas->find($partido->getIdCancha());
         $jugadores =$repositoryJugadores->findAll();
-        return $this->render('CriveroPruebaBundle:Competiciones:partido.html.twig', array("partido"=>$partido, "competicion"=>$competicion,
+        return $this->render('CriveroPruebaBundle:Competiciones:partido.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),"partido"=>$partido, "competicion"=>$competicion,
             "equipoLocal"=>$equipoLocal, "equipoVisitante"=>$equipoVisitante, "cancha"=>$cancha, "jugadores"=>$jugadores));
     }
     
     public function nuevoAction($id) {
         $partido = new Partidos();
         $form = $this->createCreateForm($partido);
-        return $this->render('CriveroPruebaBundle:Competiciones:nuevoPartido.html.twig', array('form' => $form->createView(),'idCompeticion'=>$id));
+        return $this->render('CriveroPruebaBundle:Competiciones:nuevoPartido.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),'form' => $form->createView(),'idCompeticion'=>$id));
     }
     
     private function createCreateForm(Partidos $entity) {
@@ -72,7 +72,8 @@ class PartidoController extends Controller {
             $em->flush();
             return $this->redirect($this->generateUrl('crivero_prueba_partidos'));
         }
-        return $this->render('CriveroPruebaBundle:Competiciones:nuevoPartido.html.twig', array('form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Competiciones:nuevoPartido.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+            'form' => $form->createView()));
     }
     
     public function editarPartidoAction($id) {
@@ -83,7 +84,8 @@ class PartidoController extends Controller {
             throw $this->createNotFoundException("No encontrado");
         }
         $form = $this->createEditForm($partido);
-        return $this->render('CriveroPruebaBundle:Competiciones:editarPartido.html.twig', array('partido' => $partido, 'form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Competiciones:editarPartido.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+            'partido' => $partido, 'form' => $form->createView()));
     }
 
     public function editarAction($id, Request $request) {
@@ -100,7 +102,8 @@ class PartidoController extends Controller {
             $em->flush();
             return $this->redirect($this->generateUrl('crivero_prueba_partidos'));
         }
-        return $this->render('CriveroPruebaBundle:Competiciones:editarPartido.html.twig', array('form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Competiciones:editarPartido.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+            'form' => $form->createView()));
     }
     
     private function createEditForm(Partidos $entity) {
@@ -112,5 +115,16 @@ class PartidoController extends Controller {
             'method' => 'PUT'
         ));
         return $form;
+    }
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
     }
 }

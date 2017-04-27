@@ -13,7 +13,7 @@ class EquipoController extends Controller {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
         $idCliente = $this->getUser()->getId();
         $equipos = $repository->findAllMisEquipos($idCliente);
-        return $this->render('moduloclientesclienteBundle:Competiciones:equiposClientes.html.twig', array("equipos" => $equipos));
+        return $this->render('moduloclientesclienteBundle:Competiciones:equiposClientes.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),"equipos" => $equipos));
     }
 
     public function equipoClientesAction($id) {
@@ -21,13 +21,15 @@ class EquipoController extends Controller {
         $equipo = $repositoryEquipos->find($id);
         $repositoryJugadores = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Jugadores");
         $jugadores = $repositoryJugadores->findAll();
-        return $this->render('moduloclientesclienteBundle:Competiciones:equipoClientes.html.twig', array("equipo" => $equipo, "jugadores"=>$jugadores));
+        return $this->render('moduloclientesclienteBundle:Competiciones:equipoClientes.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+            "equipo" => $equipo, "jugadores"=>$jugadores));
     }
     
     public function nuevoAction($id) {
         $equipo = new Equipos();
         $form = $this->createCreateForm($equipo);
-        return $this->render('moduloclientesclienteBundle:Competiciones:nuevoEquipoCliente.html.twig', array('form' => $form->createView(),'id'=>$id));
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevoEquipoCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+            'form' => $form->createView(),'id'=>$id));
     }
     
     private function createCreateForm(Equipos $entity) {
@@ -56,7 +58,8 @@ class EquipoController extends Controller {
             $em->flush();
             return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));
         }
-        return $this->render('moduloclientesclienteBundle:Competiciones:nuevoEquipoCliente.html.twig', array('form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevoEquipoCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+            'form' => $form->createView()));
     }
     
     public function editarEquipoAction($id) {
@@ -67,7 +70,8 @@ class EquipoController extends Controller {
             throw $this->createNotFoundException("No encontrado");
         }
         $form = $this->createEditForm($equipo);
-        return $this->render('moduloclientesclienteBundle:Competiciones:editarEquipoCliente.html.twig', array('equipo' => $equipo, 'form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Competiciones:editarEquipoCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+            'equipo' => $equipo, 'form' => $form->createView()));
     }
 
     public function editarAction($id, Request $request) {
@@ -84,7 +88,8 @@ class EquipoController extends Controller {
             $em->flush();
             return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));
         }
-        return $this->render('moduloclientesclienteBundle:Competiciones:editarEquipoCliente.html.twig', array('form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Competiciones:editarEquipoCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+            'form' => $form->createView()));
     }
     
     private function createEditForm(Equipos $entity) {
@@ -93,5 +98,17 @@ class EquipoController extends Controller {
             'method' => 'PUT'
         ));
         return $form;
+    }
+    
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
     }
 }

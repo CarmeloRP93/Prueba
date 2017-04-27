@@ -24,8 +24,11 @@ class PartidoController extends Controller {
             $equiposVisitantes[$partido] = $repositoryEquipos->find($valor->getIdEquipoVisitante());
             $canchas[$partido] = $repositoryCanchas->find($valor->getIdCancha());
         }     
-        return $this->render('moduloclientesclienteBundle:Competiciones:partidosClientes.html.twig', array("partidos"=>$pagination, "competiciones"=>$competiciones,
-                             "equiposLocales"=>$equiposLocales,"equiposVisitantes"=>$equiposVisitantes, "canchas"=>$canchas, "idCompeticion"=>$idCompeticion));
+        return $this->render('moduloclientesclienteBundle:Competiciones:partidosClientes.html.twig',
+                array("notificacionesSinLeer"=>$this->getNewNotification(),
+                    "partidos"=>$pagination, "competiciones"=>$competiciones,
+                    "equiposLocales"=>$equiposLocales,"equiposVisitantes"=>$equiposVisitantes,
+                    "canchas"=>$canchas, "idCompeticion"=>$idCompeticion));
     }
 
     public function partidoClientesAction($id) {
@@ -40,7 +43,21 @@ class PartidoController extends Controller {
         $equipoVisitante=$repositoryEquipos->find($partido->getIdEquipoVisitante());
         $cancha=$repositoryCanchas->find($partido->getIdCancha());
         $jugadores =$repositoryJugadores->findAll();
-        return $this->render('moduloclientesclienteBundle:Competiciones:partidoClientes.html.twig', array("partido"=>$partido, "competicion"=>$competicion,
-            "equipoLocal"=>$equipoLocal, "equipoVisitante"=>$equipoVisitante, "cancha"=>$cancha, "jugadores"=>$jugadores));
+        return $this->render('moduloclientesclienteBundle:Competiciones:partidoClientes.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+            "partido"=>$partido, "competicion"=>$competicion,
+            "equipoLocal"=>$equipoLocal, "equipoVisitante"=>$equipoVisitante,
+            "cancha"=>$cancha, "jugadores"=>$jugadores));
+    }
+    
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
     }
 }

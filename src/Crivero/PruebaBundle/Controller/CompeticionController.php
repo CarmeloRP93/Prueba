@@ -15,7 +15,7 @@ class CompeticionController extends Controller {
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $competiciones, $request->query->getInt('page', 1), 5);
-        return $this->render('CriveroPruebaBundle:Competiciones:competiciones.html.twig',array("competiciones"=>$pagination));
+        return $this->render('CriveroPruebaBundle:Competiciones:competiciones.html.twig',array("notificacionesSinLeer"=>$this->getNewNotification(),"competiciones"=>$pagination));
     }
     
     public function competicionAction($id) {
@@ -23,7 +23,7 @@ class CompeticionController extends Controller {
       $competicion=$repositoryCompeticion->find($id);
       $repositoryEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
       $equipos=$repositoryEquipos->findAll();
-      return $this->render('CriveroPruebaBundle:Competiciones:competicion.html.twig', array("competicion"=>$competicion,"equipos"=>$equipos));
+      return $this->render('CriveroPruebaBundle:Competiciones:competicion.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),"competicion"=>$competicion,"equipos"=>$equipos));
     }
     
     public function validarAction($id) {
@@ -56,7 +56,7 @@ class CompeticionController extends Controller {
     public function nuevaAction() {
         $competicion = new Competiciones();
         $form = $this->createCreateForm($competicion);
-        return $this->render('CriveroPruebaBundle:Competiciones:nuevaCompeticion.html.twig', array('form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Competiciones:nuevaCompeticion.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),'form' => $form->createView()));
     }
     
     private function createCreateForm(Competiciones $entity) {
@@ -89,7 +89,7 @@ class CompeticionController extends Controller {
             throw $this->createNotFoundException("No encontrado");
         }
         $form = $this->createEditForm($competicion);
-        return $this->render('CriveroPruebaBundle:Competiciones:editarCompeticion.html.twig', array('competicion' => $competicion, 'form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Competiciones:editarCompeticion.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),'competicion' => $competicion, 'form' => $form->createView()));
     }
 
     public function editarAction($id, Request $request) {
@@ -106,7 +106,7 @@ class CompeticionController extends Controller {
             $em->flush();
             return $this->redirect($this->generateUrl('crivero_prueba_competiciones'));
         }
-        return $this->render('CriveroPruebaBundle:Competiciones:editarCompeticion.html.twig', array('form' => $form->createView()));
+        return $this->render('CriveroPruebaBundle:Competiciones:editarCompeticion.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),'form' => $form->createView()));
     }
     
     private function findEntity($id, $em, $repository) {
@@ -123,5 +123,17 @@ class CompeticionController extends Controller {
             'method' => 'PUT'
         ));
         return $form;
+    }
+    
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
     }
 }

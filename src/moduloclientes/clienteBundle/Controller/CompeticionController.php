@@ -12,7 +12,7 @@ class CompeticionController extends Controller {
     public function competicionesClientesAction() {
         $repositoryCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
         $competiciones = $repositoryCompeticiones->findAll();
-        return $this->render('moduloclientesclienteBundle:Competiciones:competicionesClientes.html.twig', array("competiciones" => $competiciones));
+        return $this->render('moduloclientesclienteBundle:Competiciones:competicionesClientes.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),"competiciones" => $competiciones));
     }
 
     public function competicionClientesAction($id) {
@@ -20,13 +20,15 @@ class CompeticionController extends Controller {
         $competicion = $repositoryCompeticiones->find($id);
         $repositoryEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
         $equipos = $repositoryEquipos ->getEquiposCompeticion($id);
-        return $this->render('moduloclientesclienteBundle:Competiciones:competicionClientes.html.twig', array("competicion" => $competicion, "equipos"=>$equipos));
+        return $this->render('moduloclientesclienteBundle:Competiciones:competicionClientes.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+            "competicion" => $competicion, "equipos"=>$equipos));
     }
     
     public function nuevaAction() {
         $competicion = new Competiciones();
         $form = $this->createCreateForm($competicion);
-        return $this->render('moduloclientesclienteBundle:Competiciones:nuevaCompeticionClientes.html.twig', array('form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevaCompeticionClientes.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+            'form' => $form->createView()));
     }
     
     private function createCreateForm(Competiciones $entity) {
@@ -48,6 +50,19 @@ class CompeticionController extends Controller {
             $em->flush();
             return $this->redirect($this->generateUrl('moduloclientes_cliente_competicionesClientes'));
         }
-        return $this->render('moduloclientesclienteBundle:Competiciones:nuevaCompeticionClientes.html.twig', array('form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevaCompeticionClientes.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+            'form' => $form->createView()));
+    }
+    
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
     }
 }

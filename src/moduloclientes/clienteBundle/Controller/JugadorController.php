@@ -12,7 +12,8 @@ class JugadorController extends Controller {
       public function nuevoAction($id) {
         $jugador = new Jugadores();
         $form = $this->createCreateForm($jugador);
-        return $this->render('moduloclientesclienteBundle:Competiciones:nuevoJugadorCliente.html.twig', array('form' => $form->createView(),'id' => $id));
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevoJugadorCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+            'form' => $form->createView(),'id' => $id));
     }
     
     private function createCreateForm(Jugadores $entity) {
@@ -35,7 +36,20 @@ class JugadorController extends Controller {
             $em->flush();
             return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));
         }
-        return $this->render('moduloclientesclienteBundle:Competiciones:nuevoJugadorCliente.html.twig', array('form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevoJugadorCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+            'form' => $form->createView()));
+    }
+    
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
     }
     
 //    Los siguientes métodos jugadoresAction y jugadorAction estan cogidos de Crivero

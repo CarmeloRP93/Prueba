@@ -106,7 +106,7 @@ class __TwigTemplate_dfc0a1e606d5ebf67545ac73c010f567647f56f2e24e29da59aac83a781
             echo "</td>
                             <td><strong>";
             // line 32
-            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["partido"], "fechaInicio", array()), "d/m/Y H:i:s"), "html", null, true);
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["partido"], "fechaInicio", array()), "d/m/Y"), "html", null, true);
             echo "</strong></td>
                             <td>";
             // line 33

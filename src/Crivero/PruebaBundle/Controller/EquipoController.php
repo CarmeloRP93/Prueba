@@ -19,7 +19,7 @@ class EquipoController extends Controller {
             $competiciones[$equipo] = $repositoryCompeticiones->find($valor->getIdCompeticion())->getNombre();   
             $representantes[$equipo] = $repositoryUsuarios->find($valor->getIdCliente())->getNombre();
         }
-       return $this->render('CriveroPruebaBundle:Competiciones:equipos.html.twig', array("equipos"=>$pagination,
+       return $this->render('CriveroPruebaBundle:Competiciones:equipos.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),"equipos"=>$pagination,
            "competiciones"=>$competiciones,"representantes"=>$representantes));
     }
     
@@ -28,6 +28,18 @@ class EquipoController extends Controller {
       $equipo=$repositoryEquipo->find($id);
       $repositoryJugadores = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Jugadores");
       $jugadores=$repositoryJugadores->findAll();
-      return $this->render('CriveroPruebaBundle:Competiciones:equipo.html.twig', array("equipo"=>$equipo,"jugadores"=>$jugadores));
-    } 
+      return $this->render('CriveroPruebaBundle:Competiciones:equipo.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),"equipo"=>$equipo,"jugadores"=>$jugadores));
+    }
+    
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
+    }
 }
