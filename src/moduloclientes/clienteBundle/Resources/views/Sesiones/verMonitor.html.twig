@@ -30,7 +30,15 @@
                             <h4>Teléfono </h4> <p>{{monitor.telefono}}</p>
                         </div>
                     </div>
+                    {% if app.request.headers.get('referer') %}
+                        {% if app.request.headers.get('referer') == url('moduloclientes_cliente_miSesionClientes', {id : app.request.headers.get('referer')|last }) %}
+                            <div class="row">
+                                <a class="btn btn-default" href="{{ path('moduloclientes_cliente_enviarMensajeMonitor', { id : monitor.id } ) }}">Enviar mensaje</a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
                 </div>
+
             </div>                     
             {% if app.request.headers.get('referer') %}
                 <a class="btn btn-default" href="{{ app.request.headers.get('referer') }}">Volver atrás</a>

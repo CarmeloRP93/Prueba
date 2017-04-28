@@ -10,6 +10,7 @@ use Crivero\PruebaBundle\Form\ValoracionesType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormError;
+use Crivero\PruebaBundle\Entity\Notificaciones;
 
 class CanchaController extends Controller {
 
@@ -24,10 +25,12 @@ class CanchaController extends Controller {
         $pagination = $paginator->paginate(
                 $canchas, $request->query->getInt('page', 1), 5);
 
-        return $this->render('moduloclientesclienteBundle:Canchas:canchasClientes.html.twig', array("pagination" => $pagination));
+        return $this->render('moduloclientesclienteBundle:Canchas:canchasClientes.html.twig', array("pagination" => $pagination,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function canchaClientesAction($id) {
+        $this->changeStateNotification($id);
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
         $cancha = $repository->find($id);
 
@@ -52,7 +55,8 @@ class CanchaController extends Controller {
 
             $horarios[$i] = $repositoryHorarios->getInstancia($id, $diaMes)[0];
         }
-        return $this->render('moduloclientesclienteBundle:Canchas:canchaClientes.html.twig', array("cancha" => $cancha, "horarios" => $horarios));
+        return $this->render('moduloclientesclienteBundle:Canchas:canchaClientes.html.twig', array("cancha" => $cancha, "horarios" => $horarios,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function escribirSugerenciaAction() {
@@ -66,7 +70,8 @@ class CanchaController extends Controller {
         $form = $this->createCreateForm($comentario);
         $admins = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->getAdmin();
         return $this->render('moduloclientesclienteBundle:Canchas:escribirSugerencia.html.twig', array('form' => $form->createView(),
-                    'asunto' => $asunto, 'admins' => $admins));
+                    'asunto' => $asunto, 'admins' => $admins,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function añadirSugerenciaAction(Request $request) {
@@ -91,7 +96,8 @@ class CanchaController extends Controller {
         $asunto = $form->get('asunto')->getData();
         $admins = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->getAdmin();
         return $this->render('moduloclientesclienteBundle:Canchas:escribirSugerencia.html.twig', array('form' => $form->createView(),
-                    'asunto' => $asunto, 'admins' => $admins));
+                    'asunto' => $asunto, 'admins' => $admins,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function createCreateForm(Comentarios $entity) {
@@ -112,7 +118,8 @@ class CanchaController extends Controller {
         }
         $form = $this->createCreateFormVal($valoracion);
         return $this->render('moduloclientesclienteBundle:Canchas:valorar.html.twig', array('form' => $form->createView(),
-                    'idCancha' => $idCancha));
+                    'idCancha' => $idCancha,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function añadirValoracionAction(Request $request) {
@@ -150,7 +157,8 @@ class CanchaController extends Controller {
         }
         $idCancha = $form->get('idCancha')->getData();
         return $this->render('moduloclientesclienteBundle:Canchas:escribirSugerencia.html.twig', array('form' => $form->createView(),
-                    'idCancha' => $idCancha));
+                    'idCancha' => $idCancha,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function createCreateFormVal(Valoraciones $entity) {
@@ -159,6 +167,26 @@ class CanchaController extends Controller {
             'method' => 'POST'
         ));
         return $form;
+    }
+
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
+    }
+
+    private function changeStateNotification($idEntidad) {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        if ($repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())) {
+            $repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())[0]->setEstado("Leido");
+            $this->getDoctrine()->getManager()->flush();
+        }
     }
 
 }

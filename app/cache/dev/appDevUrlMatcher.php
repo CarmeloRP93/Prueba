@@ -655,6 +655,58 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\UsuarioController::actualizarPerfilAction',  '_route' => 'moduloclientes_cliente_actualizarPerfil',);
         }
 
+        // moduloclientes_cliente_notificacionesCliente
+        if ($pathinfo === '/notificacionesCliente') {
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\MensajeriaController::notificacionesClienteAction',  '_route' => 'moduloclientes_cliente_notificacionesCliente',);
+        }
+
+        // moduloclientes_cliente_enviarMensajeMonitor
+        if (0 === strpos($pathinfo, '/enviarMensajeMonitor') && preg_match('#^/enviarMensajeMonitor/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_enviarMensajeMonitor')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\MensajeriaController::enviarMensajeMonitorAction',));
+        }
+
+        // moduloclientes_cliente_mensajearAdministradorCliente
+        if ($pathinfo === '/mensajearAdministradorCliente') {
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\MensajeriaController::mensajearAdministradorClienteAction',  '_route' => 'moduloclientes_cliente_mensajearAdministradorCliente',);
+        }
+
+        // moduloclientes_cliente_enviandoCliente
+        if (0 === strpos($pathinfo, '/enviandoCliente') && preg_match('#^/enviandoCliente/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                goto not_moduloclientes_cliente_enviandoCliente;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_enviandoCliente')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\MensajeriaController::enviandoClienteAction',));
+        }
+        not_moduloclientes_cliente_enviandoCliente:
+
+        if (0 === strpos($pathinfo, '/mensaje')) {
+            // moduloclientes_cliente_responderMensajeCliente
+            if (0 === strpos($pathinfo, '/mensaje/responderCliente') && preg_match('#^/mensaje/responderCliente/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_responderMensajeCliente')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\MensajeriaController::responderMensajeClienteAction',));
+            }
+
+            if (0 === strpos($pathinfo, '/mensajes')) {
+                // moduloclientes_cliente_mensajes_recibidosCliente
+                if ($pathinfo === '/mensajes/recibidosCliente') {
+                    return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\MensajeriaController::mensajesRecibidosClienteAction',  '_route' => 'moduloclientes_cliente_mensajes_recibidosCliente',);
+                }
+
+                // moduloclientes_cliente_mensajes_enviadosCliente
+                if ($pathinfo === '/mensajes/enviadosCliente') {
+                    return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\MensajeriaController::mensajesEnviadosClienteAction',  '_route' => 'moduloclientes_cliente_mensajes_enviadosCliente',);
+                }
+
+            }
+
+            // moduloclientes_cliente_mensajeCliente
+            if (0 === strpos($pathinfo, '/mensajeCliente') && preg_match('#^/mensajeCliente/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_mensajeCliente')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\MensajeriaController::mensajeClienteAction',));
+            }
+
+        }
+
         // crivero_prueba_home
         if ($pathinfo === '/home') {
             return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::homeAction',  '_route' => 'crivero_prueba_home',);

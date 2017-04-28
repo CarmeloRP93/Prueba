@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormError;
 use Crivero\PruebaBundle\Entity\Usuarios;
 use Crivero\PruebaBundle\Form\UsuariosType;
+use Crivero\PruebaBundle\Entity\Notificaciones;
 
 class UsuarioController extends Controller {
 
@@ -77,7 +78,7 @@ class UsuarioController extends Controller {
         $form = $this->createCreateForm($usuario);
 
         return $this->render('CriveroPruebaBundle:Usuarios:nuevo.html.twig', array('form' => $form->createView(),
-                                                              'notificacionesSinLeer' => $this->getNewNotification()));
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function crearAction(Request $request) {
@@ -104,7 +105,7 @@ class UsuarioController extends Controller {
             }
         }
         return $this->render('CriveroPruebaBundle:Usuarios:nuevo.html.twig', array('form' => $form->createView(),
-                                                            'notificacionesSinLeer' => $this->getNewNotification()));
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function createCreateForm(Usuarios $entity) {
@@ -182,6 +183,17 @@ class UsuarioController extends Controller {
                 $usuario->setImagen($originalImage);
             }
             $em->flush();
+
+            $notificacion = new Notificaciones();
+            $notificacion->setIdDestinatario($usuario->getId());
+            $notificacion->setIdEntidad($usuario->getId());
+            $notificacion->setMensaje("El administrador ha hecho cambios en tu perfil");
+            $notificacion->setIdOrigen($this->getUser()->getId());
+            $notificacion->setEstado("No leido");
+            $notificacion->setConcepto("Usuario");
+            $em->persist($notificacion);
+            $em->flush();
+
             $request->getSession()->getFlashBag()->add('mensaje', 'El usuario ha sido modificado correctamente.');
             if ($this->getUser()->getId() == $usuario->getId())
                 return $this->redirect($this->generateUrl('crivero_prueba_perfil'));

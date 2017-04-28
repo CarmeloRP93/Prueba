@@ -20,22 +20,46 @@
                 </div>
 
                 <div class="panel-body text-center">    
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <h4>Nombre </h4> <p>{{usuario.nombre}}</p>
-                        <h4>Fecha nacimiento </h4> <p>{{usuario.fNacimiento}}</p>
-                        <h4>Telefono </h4> <p>{{usuario.telefono}}</p>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <h4>Nombre </h4> <p>{{usuario.nombre}}</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <h4>Fecha nacimiento </h4> <p>{{usuario.fNacimiento}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <h4>Telefono </h4> <p>{{usuario.telefono}}</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <h4>Registro </h4> <p>{{usuario.registro|date('d/m/Y')}}</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h4>E-mail </h4> <p>{{usuario.email}}</p>
                     </div>
 
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <h4>E-mail </h4> <p>{{usuario.email}}</p>
-                        <h4>Registro </h4> <p>{{usuario.registro|date('d/m/Y')}}</p>
+                    <div style="display: inline-grid">
+                        <form class="btn-group-vertical" action="{{ path('moduloclientes_cliente_mensajearAdministradorCliente') }}" method="post">
+                            <button type="submit" style="margin-bottom: 0" class="btn btn-primary">Mensaje a administrador</button>
+                            <input type="hidden" class="btn">
+                        </form>
+                        <form class="btn-group-vertical" action="{{ path('crivero_prueba_nuevo') }}" method="post">
+                            <input type="hidden" class="btn">
+                            <button type="submit" style="margin-bottom: 0" class="btn btn-info">Ver mis pagos</button>
+                            <input type="hidden" class="btn">
+                        </form>
                         <form class="btn-group-vertical" action="{{ path('crivero_prueba_logout') }}" method="post">
                             <input type="hidden" class="btn">
-                            <button type="submit" class="btn btn-danger">Salir de sesión</button>
+                            <button type="submit" style="margin-bottom: 0" class="btn btn-danger">Salir de sesión</button>
+                            <input type="hidden" class="btn">
                         </form>
-                            <button type="submit" class="btn btn-primary">Ver mis pagos</button>
-                    </div>
-                    <button type="submit" class="btn btn-danger">Borrar mi cuenta</button>
+                        <form class="btn-group-vertical" method="post">
+                            <input type="hidden" class="btn">
+                            <button type="submit" style="margin-bottom: 0" class="btn btn-danger">Borrar mi cuenta</button>
+                        </form>
+                    </div> 
                 </div>
             </div>
         </div>

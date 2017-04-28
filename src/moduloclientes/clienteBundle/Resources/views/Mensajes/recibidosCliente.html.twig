@@ -1,0 +1,69 @@
+{% extends 'moduloclientesclienteBundle::main.html.twig' %}
+
+{% block title %} Mensajes Recibidos {% endblock %}
+
+{% block contenido %}
+
+    <div class="container" style="margin-top: -21px">
+        <div class="page-header">
+            <div class="dropdown " style="float: left">
+                <button style="margin-bottom: 0" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Mensajes Recibidos
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="{{path('moduloclientes_cliente_mensajes_enviadosCliente')}}">Mensajes Enviados</a></li>
+                    <li class="active"><a href="#">Mensajes Recibidos</a></li>
+                </ul>
+            </div>
+            <h1 class="t1" style="margin-right: 4.5em">Mensajes Recibidos </h1>
+        </div>
+        {% if not pagination|length %}
+            <h2>No se encontraron mensajes.</h2>
+        {% else %}
+            <div class="table-responsive">
+                <table class="table table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>{{ knp_pagination_sortable(pagination, 'Remitente', 'm.idRemitente') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Asunto', 'm.asunto') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Recibido', 'm.fecha') }}</th>
+                            <th class="t3">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for mensaje in pagination %}
+                            {{ (mensaje.estado == "nuevo") ? "<tr data-id='{{ mensaje.id }}' style='font-weight: bold'>"|raw : 
+                                                             "<tr data-id='{{ mensaje.id }}'>"|raw }}
+                                <td>{{ remitentes[loop.index0] }}</td>
+                                {% if mensaje.asunto == null %}
+                                    <td>Sin asunto</td>
+                                {% else %}
+                                    <td>{{mensaje.asunto}}</td>
+                                {% endif %}
+                                <td>{{ mensaje.fecha|date('d/m/Y H:i') }}</td>
+                                <td class="actions">
+                                    <form action="{{ path('moduloclientes_cliente_mensajeCliente', {id: mensaje.id}) }}">
+                                        <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                            Ver mensaje
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+        <div>
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/criveroprueba/js/delete-user.js') }}"></script>
+{% endblock %}

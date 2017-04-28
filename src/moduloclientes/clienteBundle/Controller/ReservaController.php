@@ -7,6 +7,7 @@ use Crivero\PruebaBundle\Entity\Reservas;
 use Crivero\PruebaBundle\Form\ReservasType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormError;
+use Crivero\PruebaBundle\Entity\Notificaciones;
 
 class ReservaController extends Controller {
 
@@ -23,23 +24,27 @@ class ReservaController extends Controller {
         $pagination = $paginator->paginate(
                 $reservas, $request->query->getInt('page', 1), 5);
 
-        return $this->render('moduloclientesclienteBundle:Reservas:reservasClientes.html.twig', array("pagination" => $pagination));
-    }
+        return $this->render('moduloclientesclienteBundle:Reservas:reservasClientes.html.twig', array("pagination" => $pagination,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
+        }
 
-    public function reservaClientesAction($id) {
+        public function reservaClientesAction($id) {
+        $this->changeStateNotification($id);
         $repositoryReserva = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas");
         $reserva = $repositoryReserva->find($id);
         $canchaId = $reserva->getIdCancha();
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
         $cancha = $repository->find($canchaId);
         $deleteForm = $this->createCustomForm($reserva->getId(), 'DELETE', 'moduloclientes_cliente_cancelarReserva');
-        return $this->render('moduloclientesclienteBundle:Reservas:reservaClientes.html.twig', array("reserva" => $reserva, "cancha" => $cancha, 'delete_form' => $deleteForm->createView()));
+        return $this->render('moduloclientesclienteBundle:Reservas:reservaClientes.html.twig', array("reserva" => $reserva, "cancha" => $cancha, 'delete_form' => $deleteForm->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function nuevaReservaAction($id) {
         $reserva = new Reservas();
         $form = $this->createCreateForm($reserva, $id);
-        return $this->render('moduloclientesclienteBundle:Reservas:nuevaReserva.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null));
+        return $this->render('moduloclientesclienteBundle:Reservas:nuevaReserva.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function elegirHoraAction($id, $fecha) {
@@ -47,7 +52,8 @@ class ReservaController extends Controller {
         $form = $this->createCreateFormHora($reserva, $id, $fecha);
         $fecha2 = $fecha . '-' . date('Y');
         $fecha3 = date('Y-m-d', strtotime($fecha2));
-        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'fecha' => $fecha3, 'mensaje' => null));
+        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'fecha' => $fecha3, 'mensaje' => null,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function createCreateFormHora(Reservas $entity, $id, $fecha) {
@@ -93,7 +99,8 @@ class ReservaController extends Controller {
             //Comprobamos si se ha seleccionado algún horario
             if (count($form->get('horario')->getData()) == 0) {
                 $form->get('horario')->addError(new FormError('Seleccione una o más opciones'));
-                return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null, 'fecha' => $form->get('fechaInicio')->getData()));
+                return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null, 'fecha' => $form->get('fechaInicio')->getData(),
+                            'notificacionesSinLeer' => $this->getNewNotification()));
             }
 
             //Concatenamos en horitas las horas seleccionadas en una string
@@ -140,7 +147,8 @@ class ReservaController extends Controller {
             return $this->redirect($this->generateUrl('moduloclientes_cliente_reservasClientes'));
         }
 
-        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null));
+        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function mostrarHorasAction($id, Request $request) {
@@ -154,14 +162,17 @@ class ReservaController extends Controller {
                 $horarioscancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Horarioscanchas")->getHorario($id, $fecha);
                 if ($horarioscancha == array() || $horarioscancha[0]['periodo'] == null) {
                     $mensaje = 'No hay horas disponibles para la fecha seleccionada';
-                    return $this->render('moduloclientesclienteBundle:Reservas:nuevaReserva.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => $mensaje));
+                    return $this->render('moduloclientesclienteBundle:Reservas:nuevaReserva.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => $mensaje,
+                                'notificacionesSinLeer' => $this->getNewNotification()));
                 }
             } else {
-                return $this->render('moduloclientesclienteBundle:Reservas:nuevaReserva.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null));
+                return $this->render('moduloclientesclienteBundle:Reservas:nuevaReserva.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null,
+                            'notificacionesSinLeer' => $this->getNewNotification()));
             }
             return $this->elegirHoraAction($id, $fecha);
         }
-        return $this->render('moduloclientesclienteBundle:Reservas:nuevaReserva.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null));
+        return $this->render('moduloclientesclienteBundle:Reservas:nuevaReserva.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function cancelarReservaAction(Request $request, $id) {
@@ -229,6 +240,26 @@ class ReservaController extends Controller {
                         ->setAction($this->generateUrl($route, array('id' => $id)))
                         ->setMethod($method)
                         ->getForm();
+    }
+
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
+    }
+
+    private function changeStateNotification($idEntidad) {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        if ($repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())) {
+            $repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())[0]->setEstado("Leido");
+            $this->getDoctrine()->getManager()->flush();
+        }
     }
 
 }

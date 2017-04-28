@@ -92,24 +92,44 @@ class __TwigTemplate_4f67a4a41053f88b5ad86ee20739e49eb1b39bb129c35ca5ebc804430ae
         echo "</p>
                         </div>
                     </div>
-                </div>
+                    ";
+        // line 33
+        if ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")) {
+            // line 34
+            echo "                        ";
+            if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method") == $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_miSesionClientes", array("id" => twig_last($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")))))) {
+                // line 35
+                echo "                            <div class=\"row\">
+                                <a class=\"btn btn-default\" href=\"";
+                // line 36
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_enviarMensajeMonitor", array("id" => $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "id", array()))), "html", null, true);
+                echo "\">Enviar mensaje</a>
+                            </div>
+                        ";
+            }
+            // line 39
+            echo "                    ";
+        }
+        // line 40
+        echo "                </div>
+
             </div>                     
             ";
-        // line 35
+        // line 43
         if ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")) {
-            // line 36
+            // line 44
             echo "                <a class=\"btn btn-default\" href=\"";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method"), "html", null, true);
             echo "\">Volver atrás</a>
             ";
         } else {
-            // line 38
+            // line 46
             echo "                <a class=\"btn btn-default\" href=\"";
             echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_sesionesClientes");
             echo "\">Volver atrás</a>
             ";
         }
-        // line 40
+        // line 48
         echo "        </div>
     </div>
 </div>
@@ -128,6 +148,6 @@ class __TwigTemplate_4f67a4a41053f88b5ad86ee20739e49eb1b39bb129c35ca5ebc804430ae
 
     public function getDebugInfo()
     {
-        return array (  113 => 40,  107 => 38,  101 => 36,  99 => 35,  91 => 30,  85 => 27,  79 => 24,  73 => 21,  62 => 13,  56 => 10,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  133 => 48,  127 => 46,  121 => 44,  119 => 43,  114 => 40,  111 => 39,  105 => 36,  102 => 35,  99 => 34,  97 => 33,  91 => 30,  85 => 27,  79 => 24,  73 => 21,  62 => 13,  56 => 10,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

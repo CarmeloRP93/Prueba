@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormError;
 use Crivero\PruebaBundle\Entity\Comentarios;
 use Crivero\PruebaBundle\Form\ComentariosType;
+use Crivero\PruebaBundle\Entity\Notificaciones;
+
 
 class MensajeriaController extends Controller {
 
@@ -19,7 +21,7 @@ class MensajeriaController extends Controller {
         return $this->render('CriveroPruebaBundle:Mensajes:nuevoMensaje.html.twig', array('form' => $form->createView(),
                     'destino' => $destino, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
-    
+
     public function mensajearDirectorAction() {
         $comentario = new Comentarios();
         $destino = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->getDirector()[0];
@@ -50,6 +52,17 @@ class MensajeriaController extends Controller {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($comentario);
                 $em->flush();
+
+                $notificacion = new Notificaciones();
+                $notificacion->setIdDestinatario($dest->getId());
+                $notificacion->setIdEntidad($comentario->getId());
+                $notificacion->setConcepto('Mensaje');
+                $notificacion->setMensaje("Tiene un nuevo mensaje de " . $this->getUser()->getUsername());
+                $notificacion->setIdOrigen($this->getUser()->getId());
+                $notificacion->setEstado("No leido");
+                $em->persist($notificacion);
+                $em->flush();
+
                 return $this->redirect($this->generateUrl('crivero_prueba_mensajes_enviados'));
             } else {
                 $form->get('destinatario')->addError(new FormError('Este destinatario no existe.'));
@@ -72,7 +85,7 @@ class MensajeriaController extends Controller {
         }
         $form = $this->createMessageForm($id, $comentario);
         return $this->render('CriveroPruebaBundle:Mensajes:nuevoMensaje.html.twig', array('form' => $form->createView(),
-                    'destino' => $destino, 'asunto' => 'RE: ' . $asunto, 
+                    'destino' => $destino, 'asunto' => 'RE: ' . $asunto,
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
@@ -113,11 +126,12 @@ class MensajeriaController extends Controller {
     }
 
     public function mensajeAction($id) {
+        $this->changeStateNotification($id);
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Comentarios");
         $mensaje = $repository->find($id);
         $remitente = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($mensaje->getIdRemitente());
         if ($mensaje->getEstado() == "nuevo" && $mensaje->getIdDestinatario() == $this->getUser()->getId()) {
-            $mensaje->setEstado("leido"); 
+            $mensaje->setEstado("leido");
             $this->getDoctrine()->getManager()->flush();
         }
         return $this->render('CriveroPruebaBundle:Mensajes:mensaje.html.twig', array('mensaje' => $mensaje,
@@ -136,8 +150,7 @@ class MensajeriaController extends Controller {
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $notificacionesSinLeer, $request->query->getInt('page', 1), 9);
-        return $this->render('CriveroPruebaBundle:Mensajes:notificacionesAdmin.html.twig', 
-                            array('notificacionesSinLeer' => $this->getNewNotification(), 'pagination' => $pagination));
+        return $this->render('CriveroPruebaBundle:Mensajes:notificacionesAdmin.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'pagination' => $pagination));
     }
 
     private function getNewNotification() {
@@ -150,6 +163,14 @@ class MensajeriaController extends Controller {
             }
         }
         return $notificacionesSinLeer;
+    }
+
+    private function changeStateNotification($idEntidad) {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        if ($repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())) {
+            $repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())[0]->setEstado("Leido");
+            $this->getDoctrine()->getManager()->flush();
+        }
     }
 
 }

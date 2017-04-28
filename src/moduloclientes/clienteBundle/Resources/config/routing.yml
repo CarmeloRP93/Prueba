@@ -176,3 +176,37 @@ moduloclientes_cliente_editarPerfil:
 moduloclientes_cliente_actualizarPerfil:
     pattern:  /actualizarPerfil
     defaults: { _controller: moduloclientesclienteBundle:Usuario:actualizarPerfil }
+    
+moduloclientes_cliente_notificacionesCliente:
+    pattern:  /notificacionesCliente
+    defaults: { _controller: moduloclientesclienteBundle:Mensajeria:notificacionesCliente }
+
+moduloclientes_cliente_enviarMensajeMonitor:
+    pattern: /enviarMensajeMonitor/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Mensajeria:enviarMensajeMonitor }
+
+moduloclientes_cliente_mensajearAdministradorCliente:
+    pattern: /mensajearAdministradorCliente
+    defaults: { _controller: moduloclientesclienteBundle:Mensajeria:mensajearAdministradorCliente }
+
+moduloclientes_cliente_enviandoCliente:
+    pattern: /enviandoCliente/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Mensajeria:enviandoCliente }
+    requirements:
+        _method:  POST|GET
+        
+moduloclientes_cliente_responderMensajeCliente:
+    pattern: /mensaje/responderCliente/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Mensajeria:responderMensajeCliente }        
+
+moduloclientes_cliente_mensajes_recibidosCliente:
+    pattern: /mensajes/recibidosCliente
+    defaults: { _controller: moduloclientesclienteBundle:Mensajeria:mensajesRecibidosCliente }
+    
+moduloclientes_cliente_mensajes_enviadosCliente:
+    pattern: /mensajes/enviadosCliente
+    defaults: { _controller: moduloclientesclienteBundle:Mensajeria:mensajesEnviadosCliente }
+    
+moduloclientes_cliente_mensajeCliente:
+    pattern: /mensajeCliente/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Mensajeria:mensajeCliente }

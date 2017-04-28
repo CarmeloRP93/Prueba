@@ -9,6 +9,7 @@ use Crivero\PruebaBundle\Form\PagosType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormError;
+use Crivero\PruebaBundle\Entity\Notificaciones;
 
 class SesionController extends Controller {
 
@@ -23,7 +24,8 @@ class SesionController extends Controller {
             }
         }
         $pagination = $paginator->paginate($resultado, $request->query->getInt('page', 1), 5);
-        return $this->render('moduloclientesclienteBundle:Sesiones:sesionesClientes.html.twig', array("pagination" => $pagination));
+        return $this->render('moduloclientesclienteBundle:Sesiones:sesionesClientes.html.twig', array("pagination" => $pagination,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function sesionesPrivadasClientesAction(Request $request) {
@@ -31,7 +33,8 @@ class SesionController extends Controller {
         $sesiones = $repository->getSesionesClientesDedicadas($this->getUser()->getId());
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 5);
-        return $this->render('moduloclientesclienteBundle:Sesiones:sesionesPrivadasClientes.html.twig', array("pagination" => $pagination));
+        return $this->render('moduloclientesclienteBundle:Sesiones:sesionesPrivadasClientes.html.twig', array("pagination" => $pagination,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function misSesionesAction(Request $request) {
@@ -42,7 +45,8 @@ class SesionController extends Controller {
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $sesiones, $request->query->getInt('page', 1), 5);
-        return $this->render('moduloclientesclienteBundle:Sesiones:misSesiones.html.twig', array("sesiones" => $sesiones, "pagination" => $pagination));
+        return $this->render('moduloclientesclienteBundle:Sesiones:misSesiones.html.twig', array("sesiones" => $sesiones, "pagination" => $pagination,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function verMonitorAction($id) {
@@ -51,13 +55,15 @@ class SesionController extends Controller {
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesionesMonitor = $repositorySesiones->getSesionesMonitor($id);
 
-        return $this->render('moduloclientesclienteBundle:Sesiones:verMonitor.html.twig', array("monitor" => $monitor, "sesiones" => $sesionesMonitor,));
+        return $this->render('moduloclientesclienteBundle:Sesiones:verMonitor.html.twig', array("monitor" => $monitor, "sesiones" => $sesionesMonitor,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function pagoSesionAction() {
         $pago = new Pagos();
         $form = $this->createCreateForm($pago);
-        return $this->render('moduloclientesclienteBundle:Sesiones:pagoSesion.html.twig', array('form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Sesiones:pagoSesion.html.twig', array('form' => $form->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function createCreateForm(Pagos $entity) {
@@ -82,21 +88,25 @@ class SesionController extends Controller {
             $em->persist($pago);
             $em->flush();
             $request->getSession()->getFlashBag()->add('mensaje', 'Pago realizado con éxito.');
-            return $this->render('CriveroPruebaBundle:Usuarios:home.html.twig');
+            return $this->render('CriveroPruebaBundle:Usuarios:home.html.twig', array('notificacionesSinLeer' => $this->getNewNotification()));
         }
-        return $this->render('moduloclientesclienteBundle:Sesiones:pagoSesion.html.twig', array('form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Sesiones:pagoSesion.html.twig', array('form' => $form->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function sesionClientesAction($id) {
+        $this->changeStateNotification($id);
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repository->find($id);
-        return $this->render('moduloclientesclienteBundle:Sesiones:sesionClientes.html.twig', array("sesion" => $sesion));
+        return $this->render('moduloclientesclienteBundle:Sesiones:sesionClientes.html.twig', array("sesion" => $sesion,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function miSesionClientesAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repository->find($id);
-        return $this->render('moduloclientesclienteBundle:Sesiones:miSesionClientes.html.twig', array("sesion" => $sesion));
+        return $this->render('moduloclientesclienteBundle:Sesiones:miSesionClientes.html.twig', array("sesion" => $sesion,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function apuntarseAction($id) {
@@ -116,7 +126,7 @@ class SesionController extends Controller {
         }
 
         $usuario = $this->findEntity($this->getUser()->getId(), $em, 'CriveroPruebaBundle:Usuarios');
-        if ( $sesion->getCliente() != 'normal') {
+        if ($sesion->getCliente() != 'normal') {
             $sesion->setCliente($usuario->getUsername());
         }
         if ($usuario->getSesiones() == null) {
@@ -127,6 +137,20 @@ class SesionController extends Controller {
 
         $em->persist($usuario);
         $em->persist($sesion);
+        $em->flush();
+
+        $notificacion = new Notificaciones();
+        $notificacion->setIdDestinatario($sesion->getIdMonitor());
+        $notificacion->setIdEntidad($sesion->getId());
+        $notificacion->setMensaje("El usuario " . $usuario->getUsername() . " se ha unido a la sesión " . $sesion->getNombre());
+        $notificacion->setIdOrigen($this->getUser()->getId());
+        $notificacion->setEstado("No leido");
+        if ($sesion->getCliente() == 'normal') {
+            $notificacion->setConcepto("Publica");
+        } else {
+            $notificacion->setConcepto("Privada");
+        }
+        $em->persist($notificacion);
         $em->flush();
         return $this->redirect($this->generateUrl('moduloclientes_cliente_misSesionesClientes'));
     }
@@ -175,6 +199,21 @@ class SesionController extends Controller {
 
         $em->persist($usuario);
         $em->flush();
+
+        $notificacion = new Notificaciones();
+        $notificacion->setIdDestinatario($sesion->getIdMonitor());
+        $notificacion->setIdEntidad($sesion->getId());
+        $notificacion->setMensaje("El usuario " . $usuario->getUsername() . " ha abandonado la sesión " . $sesion->getNombre());
+        $notificacion->setIdOrigen($this->getUser()->getId());
+        $notificacion->setEstado("No leido");
+        if ($sesion->getCliente() == 'normal') {
+            $notificacion->setConcepto("Publica");
+        } else {
+            $notificacion->setConcepto("Privada");
+        }
+        $em->persist($notificacion);
+        $em->flush();
+
         return $this->redirect($this->generateUrl('moduloclientes_cliente_misSesionesClientes'));
     }
 
@@ -191,6 +230,26 @@ class SesionController extends Controller {
             $resultado[$i] = $repository->find($array[$i]);
         }
         return $resultado;
+    }
+
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
+    }
+
+    private function changeStateNotification($idEntidad) {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        if ($repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())) {
+            $repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())[0]->setEstado("Leido");
+            $this->getDoctrine()->getManager()->flush();
+        }
     }
 
 }

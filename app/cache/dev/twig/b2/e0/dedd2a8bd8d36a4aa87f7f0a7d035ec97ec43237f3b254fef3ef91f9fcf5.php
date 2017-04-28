@@ -115,50 +115,54 @@ class __TwigTemplate_b2e0dedd2a8bd8d36a4aa87f7f0a7d035ec97ec43237f3b254fef3ef91f
         echo "</span>
                             </div>
                         </div>
-                        <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12\">
-                            ";
-        // line 38
+                        <div class=\"row\">
+                            <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12\">
+                                ";
+        // line 39
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "descripcion", array()), 'label');
         echo "
-                            ";
-        // line 39
+                                ";
+        // line 40
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "descripcion", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Escriba la descripción")));
         echo "
-                            <span class=\"text-danger\">";
-        // line 40
+                                <span class=\"text-danger\">";
+        // line 41
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "descripcion", array()), 'errors');
         echo "</span>
+                            </div>
                         </div>
-                        <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12\">
-                            <br>";
-        // line 43
+                        <div class=\"row\">
+                            <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12\">
+                                <br>";
+        // line 46
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "enviar", array()), 'widget', array("label" => "Enviar", "attr" => array("class" => "btn btn-success")));
         echo "
+                            </div>      
                         </div>      
                     </div>      
                     ";
-        // line 46
+        // line 50
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
                 </div>      
             </div> 
         </div> 
         ";
-        // line 50
+        // line 54
         if ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")) {
-            // line 51
+            // line 55
             echo "            <a class=\"btn btn-default\" href=\"";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method"), "html", null, true);
             echo "\">Volver atrás</a>
         ";
         } else {
-            // line 53
+            // line 57
             echo "            <a class=\"btn btn-default\" href=\"";
             echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_canchasClientes");
             echo "\">Volver atrás</a>
         ";
         }
-        // line 54
+        // line 58
         echo "  
     </div>      
 ";
@@ -176,6 +180,6 @@ class __TwigTemplate_b2e0dedd2a8bd8d36a4aa87f7f0a7d035ec97ec43237f3b254fef3ef91f
 
     public function getDebugInfo()
     {
-        return array (  162 => 54,  156 => 53,  150 => 51,  148 => 50,  141 => 46,  135 => 43,  129 => 40,  125 => 39,  121 => 38,  114 => 34,  110 => 33,  106 => 32,  97 => 26,  93 => 25,  89 => 24,  83 => 21,  79 => 20,  75 => 19,  69 => 16,  65 => 15,  61 => 14,  56 => 12,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  166 => 58,  160 => 57,  154 => 55,  152 => 54,  145 => 50,  138 => 46,  130 => 41,  126 => 40,  122 => 39,  114 => 34,  110 => 33,  106 => 32,  97 => 26,  93 => 25,  89 => 24,  83 => 21,  79 => 20,  75 => 19,  69 => 16,  65 => 15,  61 => 14,  56 => 12,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

@@ -34,13 +34,17 @@
                                 <span class="text-danger">{{ form_errors(form.asunto) }}</span>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            {{ form_label(form.descripcion) }}
-                            {{ form_widget(form.descripcion, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba la descripción'} }) }}
-                            <span class="text-danger">{{ form_errors(form.descripcion) }}</span>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                {{ form_label(form.descripcion) }}
+                                {{ form_widget(form.descripcion, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba la descripción'} }) }}
+                                <span class="text-danger">{{ form_errors(form.descripcion) }}</span>
+                            </div>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <br>{{ form_widget(form.enviar, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <br>{{ form_widget(form.enviar, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
+                            </div>      
                         </div>      
                     </div>      
                     {{ form_end(form) }}

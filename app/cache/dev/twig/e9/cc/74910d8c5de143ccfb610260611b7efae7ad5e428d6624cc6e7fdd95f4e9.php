@@ -112,8 +112,19 @@ class __TwigTemplate_e9cc74910d8c5de143ccfb610260611b7efae7ad5e428d6624cc6e7fdd9
                                             </button>
                                         </form>
                                     ";
+                } elseif (($this->getAttribute(                // line 39
+$context["notificacion"], "concepto", array()) == "Mensaje")) {
+                    // line 40
+                    echo "                                        <form action=\"";
+                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_mensaje", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array()))), "html", null, true);
+                    echo "\">
+                                            <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                Ver notificación
+                                            </button>
+                                        </form>
+                                    ";
                 }
-                // line 40
+                // line 46
                 echo "                                </td>
                             </tr>
                         ";
@@ -121,17 +132,17 @@ class __TwigTemplate_e9cc74910d8c5de143ccfb610260611b7efae7ad5e428d6624cc6e7fdd9
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['notificacion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 43
+            // line 49
             echo "                    </tbody>
                 </table>
             </div>
         ";
         }
-        // line 47
+        // line 53
         echo "        <div>
             <div class=\"navigation\"  >
                 ";
-        // line 49
+        // line 55
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
             </div>
@@ -154,6 +165,6 @@ class __TwigTemplate_e9cc74910d8c5de143ccfb610260611b7efae7ad5e428d6624cc6e7fdd9
 
     public function getDebugInfo()
     {
-        return array (  135 => 49,  131 => 47,  125 => 43,  117 => 40,  107 => 34,  105 => 33,  100 => 31,  96 => 30,  92 => 29,  87 => 28,  83 => 27,  74 => 21,  70 => 20,  66 => 19,  60 => 15,  56 => 13,  54 => 12,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  146 => 55,  142 => 53,  136 => 49,  128 => 46,  118 => 40,  116 => 39,  107 => 34,  105 => 33,  100 => 31,  96 => 30,  92 => 29,  87 => 28,  83 => 27,  74 => 21,  70 => 20,  66 => 19,  60 => 15,  56 => 13,  54 => 12,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

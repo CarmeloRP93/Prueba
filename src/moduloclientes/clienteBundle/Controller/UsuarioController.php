@@ -6,23 +6,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Crivero\PruebaBundle\Entity\Usuarios;
 use Crivero\PruebaBundle\Form\UsuariosType;
+use Crivero\PruebaBundle\Entity\Notificaciones;
 
 class UsuarioController extends Controller {
 
     public function miPerfilAction() {
+        $this->changeStateNotification($this->getUser()->getId());
         $em = $this->getDoctrine()->getManager();
         $usuario = $this->getUser();
         $form = $this->createEditForm($usuario);
         return $this->render('moduloclientesclienteBundle:Usuarios:miPerfil.html.twig', array('usuario' => $usuario,
-                    'form' => $form->createView()));
+                    'form' => $form->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
-
-//    public function createEditForm(Usuarios $entity) {
-//        $form = $this->createForm(new UsuariosType(), $entity, array(
-//            'action' => $this->generateUrl('moduloclientes_cliente_miPerfil', array('id' => $entity->getId())),
-//            'method' => 'PUT'));
-//        return $form;
-//    }
 
     private function findUser($id, $em) {
         $usuario = $em->getRepository('CriveroPruebaBundle:Usuarios')->find($id);
@@ -36,7 +32,8 @@ class UsuarioController extends Controller {
         $usuario = $this->getUser();
         $form = $this->createEditForm($usuario);
         return $this->render('moduloclientesclienteBundle:Usuarios:editarPerfil.html.twig', array('usuario' => $usuario,
-                    'form' => $form->createView()));
+                    'form' => $form->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function actualizarPerfilAction(Request $request) {
@@ -69,7 +66,8 @@ class UsuarioController extends Controller {
 
             return $this->redirect($this->generateUrl('moduloclientes_cliente_miPerfil'));
         }
-        return $this->render('moduloclientesclienteBundle:Usuarios:editarPerfil.html.twig', array('usuario' => $usuario, 'form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Usuarios:editarPerfil.html.twig', array('usuario' => $usuario, 'form' => $form->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function createEditForm(Usuarios $entity) {
@@ -83,6 +81,26 @@ class UsuarioController extends Controller {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $currentPass = $repository->recuperarPass($id);
         return $currentPass;
+    }
+
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
+    }
+
+    private function changeStateNotification($idEntidad) {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        if ($repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())) {
+            $repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())[0]->setEstado("Leido");
+            $this->getDoctrine()->getManager()->flush();
+        }
     }
 
 }

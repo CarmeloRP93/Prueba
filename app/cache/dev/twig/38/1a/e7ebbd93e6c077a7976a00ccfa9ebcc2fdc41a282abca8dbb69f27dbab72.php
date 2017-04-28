@@ -72,40 +72,70 @@ class __TwigTemplate_381ae7ebbd93e6c077a7976a00ccfa9ebcc2fdc41a282abca8dbb69f27d
                 </div>
 
                 <div class=\"panel-body text-center\">    
-                    <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
-                        <h4>Nombre </h4> <p>";
-        // line 24
+                    <div class=\"row\">
+                        <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
+                            <h4>Nombre </h4> <p>";
+        // line 25
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "nombre", array()), "html", null, true);
         echo "</p>
-                        <h4>Fecha nacimiento </h4> <p>";
-        // line 25
+                        </div>
+                        <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
+                            <h4>Fecha nacimiento </h4> <p>";
+        // line 28
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "fNacimiento", array()), "html", null, true);
         echo "</p>
-                        <h4>Telefono </h4> <p>";
-        // line 26
+                        </div>
+                    </div>
+                    <div class=\"row\">
+                        <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
+                            <h4>Telefono </h4> <p>";
+        // line 33
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "telefono", array()), "html", null, true);
+        echo "</p>
+                        </div>
+                        <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
+                            <h4>Registro </h4> <p>";
+        // line 36
+        echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "registro", array()), "d/m/Y"), "html", null, true);
+        echo "</p>
+                        </div>
+                    </div>
+                    <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12\">
+                        <h4>E-mail </h4> <p>";
+        // line 40
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "email", array()), "html", null, true);
         echo "</p>
                     </div>
 
-                    <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
-                        <h4>E-mail </h4> <p>";
-        // line 30
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "email", array()), "html", null, true);
-        echo "</p>
-                        <h4>Registro </h4> <p>";
-        // line 31
-        echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "registro", array()), "d/m/Y"), "html", null, true);
-        echo "</p>
+                    <div style=\"display: inline-grid\">
                         <form class=\"btn-group-vertical\" action=\"";
-        // line 32
+        // line 44
+        echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_mensajearAdministradorCliente");
+        echo "\" method=\"post\">
+                            <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-primary\">Mensaje a administrador</button>
+                            <input type=\"hidden\" class=\"btn\">
+                        </form>
+                        <form class=\"btn-group-vertical\" action=\"";
+        // line 48
+        echo $this->env->getExtension('routing')->getPath("crivero_prueba_nuevo");
+        echo "\" method=\"post\">
+                            <input type=\"hidden\" class=\"btn\">
+                            <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-info\">Ver mis pagos</button>
+                            <input type=\"hidden\" class=\"btn\">
+                        </form>
+                        <form class=\"btn-group-vertical\" action=\"";
+        // line 53
         echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
         echo "\" method=\"post\">
                             <input type=\"hidden\" class=\"btn\">
-                            <button type=\"submit\" class=\"btn btn-danger\">Salir de sesión</button>
+                            <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-danger\">Salir de sesión</button>
+                            <input type=\"hidden\" class=\"btn\">
                         </form>
-                            <button type=\"submit\" class=\"btn btn-primary\">Ver mis pagos</button>
-                    </div>
-                    <button type=\"submit\" class=\"btn btn-danger\">Borrar mi cuenta</button>
+                        <form class=\"btn-group-vertical\" method=\"post\">
+                            <input type=\"hidden\" class=\"btn\">
+                            <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-danger\">Borrar mi cuenta</button>
+                        </form>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -126,6 +156,6 @@ class __TwigTemplate_381ae7ebbd93e6c077a7976a00ccfa9ebcc2fdc41a282abca8dbb69f27d
 
     public function getDebugInfo()
     {
-        return array (  101 => 32,  97 => 31,  93 => 30,  86 => 26,  82 => 25,  78 => 24,  68 => 17,  62 => 14,  56 => 11,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  128 => 53,  120 => 48,  113 => 44,  106 => 40,  99 => 36,  93 => 33,  85 => 28,  79 => 25,  68 => 17,  62 => 14,  56 => 11,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }
