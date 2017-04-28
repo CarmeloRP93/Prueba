@@ -91,7 +91,7 @@ class __TwigTemplate_0db255f66f4c8730b8097ac9da46603d5a441d6b0f36003f9e51acf08be
         echo "</span>
                         </div>                         
 ";
-        // line 29
+        // line 27
         echo "                    </div>
                 </div>
             </div>
@@ -105,21 +105,25 @@ class __TwigTemplate_0db255f66f4c8730b8097ac9da46603d5a441d6b0f36003f9e51acf08be
                 <div class=\"panel-body\">  
                     <div class=\"row\">
                         <h4>";
-        // line 41
+        // line 39
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horario", array()), 'label');
         echo "</h4>
                         ";
-        // line 42
+        // line 40
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horario", array()), 'widget');
         echo "
+                         <span class=\"text-danger\">";
+        // line 41
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horario", array()), 'errors');
+        echo "</span>
                         <br>";
-        // line 43
+        // line 42
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
                     </div>
                 </div>
                 ";
-        // line 46
+        // line 45
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
             </div>
@@ -140,6 +144,6 @@ class __TwigTemplate_0db255f66f4c8730b8097ac9da46603d5a441d6b0f36003f9e51acf08be
 
     public function getDebugInfo()
     {
-        return array (  123 => 46,  117 => 43,  113 => 42,  109 => 41,  95 => 29,  90 => 24,  86 => 23,  82 => 22,  74 => 17,  70 => 16,  67 => 15,  61 => 13,  59 => 12,  55 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  127 => 45,  121 => 42,  117 => 41,  113 => 40,  109 => 39,  95 => 27,  90 => 24,  86 => 23,  82 => 22,  74 => 17,  70 => 16,  67 => 15,  61 => 13,  59 => 12,  55 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

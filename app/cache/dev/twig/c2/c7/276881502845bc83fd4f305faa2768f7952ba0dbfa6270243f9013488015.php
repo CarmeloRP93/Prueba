@@ -20,7 +20,6 @@ class __TwigTemplate_c2c7276881502845bc83fd4f305faa2768f7952ba0dbfa6270243f90134
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'contenido' => array($this, 'block_contenido'),
-            'javascripts' => array($this, 'block_javascripts'),
         );
     }
 
@@ -34,139 +33,132 @@ class __TwigTemplate_c2c7276881502845bc83fd4f305faa2768f7952ba0dbfa6270243f90134
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 3
+    // line 2
     public function block_title($context, array $blocks = array())
     {
         echo " Mensajes Enviados ";
     }
 
-    // line 5
+    // line 3
     public function block_contenido($context, array $blocks = array())
     {
-        // line 6
-        echo "
-    <div class=\"container\" style=\"margin-top: -21px\">
-        <div class=\"page-header\">
-            <div class=\"dropdown \" style=\"float: left\">
-                <button style=\"margin-bottom: 0\" class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Mensajes Enviados
-                    <span class=\"caret\"></span></button>
-                <ul class=\"dropdown-menu\">
-                    <li><a href=\"";
-        // line 13
+        // line 4
+        echo "    <div class=\"container\">
+        <div class=\"col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-1 col-md-offset-1 col-lg-offset-1\">
+            <div class=\"page-header\">
+                <div class=\"row text-center\">
+                    <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
+                        <h1 class=\"t1\">Mensajes enviados</h1>
+                    </div>
+                    <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\"><br>
+                        <div class=\"dropdown\">
+                            <button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Mensajes Enviados<span class=\"caret\"></span></button>
+                            <ul class=\"dropdown-menu\">
+                                <li><a href=\"";
+        // line 15
         echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_mensajes_recibidosCliente");
         echo "\">Mensajes Recibidos</a></li>
-                    <li class=\"active\"><a href=\"#\">Mensajes Enviados</a></li>
-                </ul>
+                                <li class=\"active\"><a href=\"#\">Mensajes Enviados</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h1 class=\"t1\" style=\"margin-right: 4.5em\">Mensajes Enviados </h1>
-        </div>
-        ";
-        // line 19
+            <div class=\"panel panel-default text-center\">
+                <div class=\"panel-body myelement\">
+                    ";
+        // line 24
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
-            // line 20
-            echo "            <h2>No se encontraron mensajes.</h2>
-        ";
+            // line 25
+            echo "                        <h2>No se encontraron mensajes</h2>
+                    ";
         } else {
-            // line 22
-            echo "            <div class=\"table-responsive\">
-                <table class=\"table table-hover table-condensed\">
-                    <thead>
-                        <tr>
-                            <th>";
-            // line 26
+            // line 27
+            echo "                        <div class=\"table-responsive\">
+                            <table class=\"table table-hover table-condensed\">
+                                <thead>
+                                    <tr>
+                                        <th>";
+            // line 31
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Destino", "m.destinatario");
             echo "</th>
-                            <th>";
-            // line 27
+                                        <th><div class=\"hidden-xs\">";
+            // line 32
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Asunto", "m.asunto");
-            echo "</th>
-                            <th>";
-            // line 28
+            echo "</div></th>
+                                        <th>";
+            // line 33
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Enviado", "m.fecha");
             echo "</th>
-                            <th class=\"t3\">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        ";
-            // line 34
+                                        <th class=\"t3\">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ";
+            // line 38
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
             foreach ($context['_seq'] as $context["_key"] => $context["mensaje"]) {
-                // line 35
-                echo "                            <tr data-id=\"";
+                // line 39
+                echo "                                        <tr data-id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["mensaje"], "id", array()), "html", null, true);
                 echo "\">
-                                <td><strong>";
-                // line 36
+                                            <td><strong>";
+                // line 40
                 echo twig_escape_filter($this->env, $this->getAttribute($context["mensaje"], "destinatario", array()), "html", null, true);
                 echo "</strong></td>
-                                ";
-                // line 37
+                                            ";
+                // line 41
                 if (($this->getAttribute($context["mensaje"], "asunto", array()) == null)) {
-                    // line 38
-                    echo "                                    <td>Sin asunto</td>
-                                ";
+                    // line 42
+                    echo "                                                <td>Sin asunto</td>
+                                            ";
                 } else {
-                    // line 40
-                    echo "                                    <td>";
+                    // line 44
+                    echo "                                                <td><div class=\"hidden-xs\">";
                     echo twig_escape_filter($this->env, $this->getAttribute($context["mensaje"], "asunto", array()), "html", null, true);
-                    echo "</td>
-                                ";
+                    echo "</div></td>
+                                                ";
                 }
-                // line 42
-                echo "                                <td>";
+                // line 46
+                echo "                                            <td>";
                 echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["mensaje"], "fecha", array()), "d/m/Y H:i"), "html", null, true);
                 echo "</td>
-                                <td class=\"actions\">
-                                    <form action=\"";
-                // line 44
+                                            <td class=\"actions\">
+                                                <form action=\"";
+                // line 48
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_mensajeCliente", array("id" => $this->getAttribute($context["mensaje"], "id", array()))), "html", null, true);
                 echo "\">
-                                        <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
-                                            Ver mensaje
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        ";
+                                                    <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                        Ver mensaje
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['mensaje'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 52
-            echo "                    </tbody>
-                </table>
-            </div>
-        ";
+            // line 56
+            echo "                                </tbody>
+                            </table>
+                        </div>
+                    ";
         }
-        // line 56
-        echo "        <div>
-            <div class=\"navigation\"  >
-                ";
-        // line 58
+        // line 60
+        echo "                    <div>
+                        <div class=\"navigation\"  >
+                            ";
+        // line 62
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-
-";
-    }
-
-    // line 65
-    public function block_javascripts($context, array $blocks = array())
-    {
-        // line 66
-        echo "    ";
-        $this->displayParentBlock("javascripts", $context, $blocks);
-        echo "
-    <script src=\"";
-        // line 67
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/criveroprueba/js/delete-user.js"), "html", null, true);
-        echo "\"></script>
 ";
     }
 
@@ -182,6 +174,6 @@ class __TwigTemplate_c2c7276881502845bc83fd4f305faa2768f7952ba0dbfa6270243f90134
 
     public function getDebugInfo()
     {
-        return array (  168 => 67,  163 => 66,  160 => 65,  149 => 58,  145 => 56,  139 => 52,  125 => 44,  119 => 42,  113 => 40,  109 => 38,  107 => 37,  103 => 36,  98 => 35,  94 => 34,  85 => 28,  81 => 27,  77 => 26,  71 => 22,  67 => 20,  65 => 19,  56 => 13,  47 => 6,  44 => 5,  38 => 3,  11 => 1,);
+        return array (  154 => 62,  150 => 60,  144 => 56,  130 => 48,  124 => 46,  118 => 44,  114 => 42,  112 => 41,  108 => 40,  103 => 39,  99 => 38,  91 => 33,  87 => 32,  83 => 31,  77 => 27,  73 => 25,  71 => 24,  59 => 15,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

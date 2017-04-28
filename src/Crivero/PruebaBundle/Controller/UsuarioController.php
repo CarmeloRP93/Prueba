@@ -184,15 +184,17 @@ class UsuarioController extends Controller {
             }
             $em->flush();
 
-            $notificacion = new Notificaciones();
-            $notificacion->setIdDestinatario($usuario->getId());
-            $notificacion->setIdEntidad($usuario->getId());
-            $notificacion->setMensaje("El administrador ha hecho cambios en tu perfil");
-            $notificacion->setIdOrigen($this->getUser()->getId());
-            $notificacion->setEstado("No leido");
-            $notificacion->setConcepto("Usuario");
-            $em->persist($notificacion);
-            $em->flush();
+            if ($this->getUser()->getId() != $usuario->getId()) {
+                $notificacion = new Notificaciones();
+                $notificacion->setIdDestinatario($usuario->getId());
+                $notificacion->setIdEntidad($usuario->getId());
+                $notificacion->setMensaje("El administrador ha hecho cambios en tu perfil");
+                $notificacion->setIdOrigen($this->getUser()->getId());
+                $notificacion->setEstado("No leido");
+                $notificacion->setConcepto("Usuario");
+                $em->persist($notificacion);
+                $em->flush();
+            }
 
             $request->getSession()->getFlashBag()->add('mensaje', 'El usuario ha sido modificado correctamente.');
             if ($this->getUser()->getId() == $usuario->getId())

@@ -53,7 +53,7 @@ class __TwigTemplate_b1d6b753d1bf4156e7334f423434f18a8dc9df6fa6e831b7701e90b8f77
         // line 10
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
             // line 11
-            echo "            <h2>No hay notificaciones.</h2>
+            echo "            <h2>No hay notificaciones</h2>
         ";
         } else {
             // line 13

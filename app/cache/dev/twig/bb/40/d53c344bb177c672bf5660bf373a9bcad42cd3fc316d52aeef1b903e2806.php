@@ -123,41 +123,41 @@ $context["sesion"], "estadoCliente", array()) == "disponible")) {
                                                 ";
                 }
                 // line 39
-                echo "                                                <td class=\"actions\">
-                                                    <a href=\"";
+                echo "                                            <td class=\"actions\">
+                                                <a href=\"";
                 // line 40
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_miSesionClientes", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-info\">
-                                                        Ver
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            ";
+                                                    Ver
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
             // line 46
-            echo "                                            </tbody>
-                                        </table>
-                                    </div>
-                                    ";
+            echo "                                </tbody>
+                            </table>
+                        </div>
+                    ";
         }
         // line 49
         echo "        
-                                        <div>
-                                            <div class=\"navigation\">
-                                                ";
+                    <div>
+                        <div class=\"navigation\">
+                            ";
         // line 52
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
-                                            </div>
-                                        </div>
-                                    </div>                     
-                                </div>                     
-                            </div>                     
-                        </div>                     
-                        ";
+                        </div>
+                    </div>
+                </div>                     
+            </div>                     
+        </div>                     
+    </div>                     
+";
     }
 
     public function getTemplateName()

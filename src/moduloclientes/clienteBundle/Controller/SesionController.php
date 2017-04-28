@@ -39,13 +39,14 @@ class SesionController extends Controller {
 
     public function misSesionesAction(Request $request) {
         $idsSesionesCliente = explode('&', $this->getUser()->getSesiones());
-        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        $sesiones = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
-
+        $sesiones = array();
+        if ($idsSesionesCliente[0] != null) {
+            $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+            $sesiones = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
+        }
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-                $sesiones, $request->query->getInt('page', 1), 5);
-        return $this->render('moduloclientesclienteBundle:Sesiones:misSesiones.html.twig', array("sesiones" => $sesiones, "pagination" => $pagination,
+        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 5);
+        return $this->render('moduloclientesclienteBundle:Sesiones:misSesiones.html.twig', array("pagination" => $pagination,
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
@@ -226,6 +227,7 @@ class SesionController extends Controller {
     }
 
     private function getArrayEntidades($repository, $array) {
+        $resultado = array();
         for ($i = 0; $i < count($array); $i++) {
             $resultado[$i] = $repository->find($array[$i]);
         }

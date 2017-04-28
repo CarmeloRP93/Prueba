@@ -1,58 +1,49 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
 {% block title %} Elegir hora{% endblock %}
 {% block contenido %}
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <h1 class="t1">Nueva reserva</h1>
-                    </div>
-
-                    {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
-                    {% if mensaje != null  %}
-                        <h3 class="terr">{{mensaje}}</h3>
-                    {% endif %}
-                    <div class="hidden">
-                        {{ form_widget(form.idCancha, {'value' : id } ) }}
-                        <span class="text-danger">{{ form_errors(form.idCancha) }}</span>
-                    </div>
-                    <div class="panel-body">  
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
-                                {{ form_label(form.fechaInicio) }}
-                                {{ form_widget(form.fechaInicio, {'value' : fecha,  'attr' : {'class' : 'form-control'}, 'disabled' : 'disabled' }) }}
-{#                                <span class="text-danger">{{ form_errors(form.fechaInicio) }}</span>
-#}                            </div>                         
-                            {#                        <form  action="{{ path('moduloclientes_cliente_elegirHora', { id : id }, { fecha : fecha }) }}">
-                                                        <button type="submit" class="btn btn-success" >Elegir hora</button>
-                                                    </form>#}
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h1 class="t1">Nueva reserva</h1>
                 </div>
-            </div>
 
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <h1 class="t1">Elija hora</h1>
+                {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+                {% if mensaje != null  %}
+                    <h3 class="terr">{{mensaje}}</h3>
+                {% endif %}
+                <div class="hidden">
+                    {{ form_widget(form.idCancha, {'value' : id } ) }}
+                    <span class="text-danger">{{ form_errors(form.idCancha) }}</span>
+                </div>
+                <div class="panel-body">  
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+                            {{ form_label(form.fechaInicio) }}
+                            {{ form_widget(form.fechaInicio, {'value' : fecha,  'attr' : {'class' : 'form-control'} }) }}
+                            <span class="text-danger">{{ form_errors(form.fechaInicio) }}</span>
+                        </div>                         
+{#                        <a  href="{{ path('moduloclientes_cliente_elegirHora', { 'id' : id, 'fecha': fecha }) }}">actualizar horas </a>#}
                     </div>
-                    <div class="panel-body">  
-                        <div class="row">
-                            <h4>{{ form_label(form.horario) }}</h4>
-                            {{ form_widget(form.horario) }}
-                            <span class="text-danger">{{ form_errors(form.horario) }}</span>
-                            <br>{{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
-                        </div>
-                    </div>
-                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
-        {% if app.request.headers.get('referer') %}
-            <a class="btn btn-default" href="{{ app.request.headers.get('referer') }}">Volver atrás</a>
-        {% else %}
-            <a class="btn btn-default" href="{{ path('moduloclientes_cliente_canchasClientes') }}">Volver atrás</a>
-        {% endif %} 
+
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h1 class="t1">Elija hora</h1>
+                </div>
+                <div class="panel-body">  
+                    <div class="row">
+                        <h4>{{ form_label(form.horario) }}</h4>
+                        {{ form_widget(form.horario) }}
+                         <span class="text-danger">{{ form_errors(form.horario) }}</span>
+                        <br>{{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
     </div>
 {% endblock %}

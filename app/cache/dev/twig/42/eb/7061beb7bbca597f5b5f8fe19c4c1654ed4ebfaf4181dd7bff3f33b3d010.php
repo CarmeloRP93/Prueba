@@ -7,12 +7,12 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
     {
         parent::__construct($env);
 
-        // line 2
+        // line 1
         try {
             $this->parent = $this->env->loadTemplate("moduloclientesclienteBundle::main.html.twig");
         } catch (Twig_Error_Loader $e) {
             $e->setTemplateFile($this->getTemplateName());
-            $e->setTemplateLine(2);
+            $e->setTemplateLine(1);
 
             throw $e;
         }
@@ -33,13 +33,13 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 4
+    // line 2
     public function block_title($context, array $blocks = array())
     {
         echo " Vista de Canchas ";
     }
 
-    // line 6
+    // line 3
     public function block_contenido($context, array $blocks = array())
     {
         echo "          
@@ -58,31 +58,31 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
             <div class=\"panel panel-default text-center\">
                 <div class=\"panel-body myelement\">
                     ";
-        // line 21
+        // line 18
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
-            // line 22
+            // line 19
             echo "                        <h2>No se encontraron canchas</h2>
                     ";
         } else {
-            // line 24
+            // line 21
             echo "                        <div class=\"table-responsive\">
                             <table class=\"table table-hover\">
                                 <thead>
                                     <tr>
                                         <th>";
-            // line 28
+            // line 25
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre", "c.tipo");
             echo "</th>
                                         <th>";
-            // line 29
+            // line 26
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Deporte", "c.deporte");
             echo "</th>
                                         <th>";
-            // line 30
+            // line 27
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Estado", "c.disponibilidad");
             echo "</th>
                                         <th><div class=\"hidden-xs\">";
-            // line 31
+            // line 28
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Horario", "c.horario");
             echo "</div></th>
                                         <th class=\"t3\">Acciones</th>
@@ -90,56 +90,81 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
                                 </thead>
                                 <tbody>
                                     ";
-            // line 36
+            // line 33
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
             foreach ($context['_seq'] as $context["_key"] => $context["cancha"]) {
-                // line 37
+                // line 34
                 echo "                                        <tr data-id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "id", array()), "html", null, true);
                 echo "\">
                                             <td>";
-                // line 38
+                // line 35
                 echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "tipo", array()), "html", null, true);
                 echo "</td>
                                             <td>";
-                // line 39
+                // line 36
                 echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "deporte", array()), "html", null, true);
                 echo "</td>
-                                            <td><strong>";
-                // line 40
-                echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
-                echo "</strong></td>
-                                            <td><div class=\"hidden-xs\">";
-                // line 41
+                                            ";
+                // line 37
+                if (($this->getAttribute($context["cancha"], "disponibilidad", array()) != "Disponible")) {
+                    // line 38
+                    echo "                                                <td><strong><font color=\"red\">";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
+                    echo "</font></strong></td>                                                                                         
+                                            ";
+                } else {
+                    // line 39
+                    echo "                                              
+                                                <td><strong>";
+                    // line 40
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
+                    echo "</strong></td>                                               
+                                            ";
+                }
+                // line 42
+                echo "                                            <td><div class=\"hidden-xs\">";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "horario", array()), "html", null, true);
                 echo "</div></td>
                                             <td class=\"actions\">
+                                            ";
+                // line 44
+                if (($this->getAttribute($context["cancha"], "disponibilidad", array()) != "Disponible")) {
+                    // line 45
+                    echo "                                                <a href=\"\" class=\"btn btn-sm btn-info\" disabled>Ver</a>
+                                            ";
+                } else {
+                    // line 46
+                    echo "                                              
                                                 <a href=\"";
-                // line 43
-                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_canchaClientes", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-sm btn-info\">
+                    // line 47
+                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_canchaClientes", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
+                    echo "\" class=\"btn btn-sm btn-info\">
                                                     Ver
                                                 </a>
-                                            </td>
+                                            ";
+                }
+                // line 51
+                echo "                                            </td>
                                         </tr>
                                     ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cancha'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 49
+            // line 54
             echo "                                </tbody>
                             </table>
                         </div>
                     ";
         }
-        // line 52
+        // line 57
         echo "        
                     <div>
                         <div class=\"navigation\">
                             ";
-        // line 55
+        // line 60
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                         </div>
@@ -163,6 +188,6 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
 
     public function getDebugInfo()
     {
-        return array (  143 => 55,  138 => 52,  132 => 49,  120 => 43,  115 => 41,  111 => 40,  107 => 39,  103 => 38,  98 => 37,  94 => 36,  86 => 31,  82 => 30,  78 => 29,  74 => 28,  68 => 24,  64 => 22,  62 => 21,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  168 => 60,  163 => 57,  157 => 54,  149 => 51,  142 => 47,  139 => 46,  135 => 45,  133 => 44,  127 => 42,  122 => 40,  119 => 39,  113 => 38,  111 => 37,  107 => 36,  103 => 35,  98 => 34,  94 => 33,  86 => 28,  82 => 27,  78 => 26,  74 => 25,  68 => 21,  64 => 19,  62 => 18,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

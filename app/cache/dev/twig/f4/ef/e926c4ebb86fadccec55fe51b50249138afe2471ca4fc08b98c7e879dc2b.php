@@ -177,7 +177,13 @@ class __TwigTemplate_f4efe926c4ebb86fadccec55fe51b50249138afe2471ca4fc08b98c7e87
         echo "
                 </div>     
             </div>     
-        </div>     
+        </div>
+        <div class=\"text-center\">
+            <a class=\"btn btn-default\" href=\"";
+        // line 67
+        echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_mensajes_recibidosCliente");
+        echo "\">Volver atrás</a>
+        </div>
     </div>
 ";
     }
@@ -194,6 +200,6 @@ class __TwigTemplate_f4efe926c4ebb86fadccec55fe51b50249138afe2471ca4fc08b98c7e87
 
     public function getDebugInfo()
     {
-        return array (  176 => 62,  169 => 58,  160 => 52,  156 => 51,  152 => 50,  143 => 45,  137 => 43,  131 => 41,  129 => 40,  125 => 39,  116 => 33,  112 => 32,  106 => 29,  102 => 28,  98 => 27,  92 => 24,  88 => 23,  84 => 22,  78 => 19,  74 => 18,  68 => 15,  64 => 14,  59 => 12,  53 => 9,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  184 => 67,  176 => 62,  169 => 58,  160 => 52,  156 => 51,  152 => 50,  143 => 45,  137 => 43,  131 => 41,  129 => 40,  125 => 39,  116 => 33,  112 => 32,  106 => 29,  102 => 28,  98 => 27,  92 => 24,  88 => 23,  84 => 22,  78 => 19,  74 => 18,  68 => 15,  64 => 14,  59 => 12,  53 => 9,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

@@ -97,7 +97,7 @@ class __TwigTemplate_4f67a4a41053f88b5ad86ee20739e49eb1b39bb129c35ca5ebc804430ae
         if ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")) {
             // line 34
             echo "                        ";
-            if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method") == $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_miSesionClientes", array("id" => twig_last($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")))))) {
+            if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method") == $this->env->getExtension('routing')->getPath("moduloclientes_cliente_miSesionClientes", array("id" => twig_last($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")))))) {
                 // line 35
                 echo "                            <div class=\"row\">
                                 <a class=\"btn btn-default\" href=\"";

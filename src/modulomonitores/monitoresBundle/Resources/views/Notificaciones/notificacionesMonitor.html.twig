@@ -37,13 +37,19 @@
                                             </button>
                                         </form>
                                     {% elseif notificacion.concepto == "Privada"%}
-                                         <form action="{{ path('modulomonitores_monitores_miSesionDedicada', {id: notificacion.idEntidad}) }}">
+                                        <form action="{{ path('modulomonitores_monitores_miSesionDedicada', {id: notificacion.idEntidad}) }}">
                                             <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
                                                 Ver notificación
                                             </button>
                                         </form>
                                     {% elseif notificacion.concepto == "Mensaje"%}  
                                         <form action="{{ path('modulomonitores_monitores_mensajeMonitor', {id: notificacion.idEntidad}) }}">
+                                            <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                Ver notificación
+                                            </button>
+                                        </form>
+                                    {% elseif notificacion.concepto == "Aula"%}  
+                                        <form action="{{ path('modulomonitores_monitores_verAula', {id: notificacion.idEntidad}) }}">
                                             <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
                                                 Ver notificación
                                             </button>

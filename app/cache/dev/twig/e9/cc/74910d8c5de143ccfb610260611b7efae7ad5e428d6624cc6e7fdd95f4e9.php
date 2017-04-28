@@ -113,8 +113,19 @@ class __TwigTemplate_e9cc74910d8c5de143ccfb610260611b7efae7ad5e428d6624cc6e7fdd9
                                         </form>
                                     ";
                 } elseif (($this->getAttribute(                // line 39
-$context["notificacion"], "concepto", array()) == "Mensaje")) {
+$context["notificacion"], "concepto", array()) == "Privada")) {
                     // line 40
+                    echo "                                        <form action=\"";
+                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_sesion", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array()))), "html", null, true);
+                    echo "\">
+                                            <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                Ver notificación
+                                            </button>
+                                        </form>
+                                    ";
+                } elseif (($this->getAttribute(                // line 45
+$context["notificacion"], "concepto", array()) == "Mensaje")) {
+                    // line 46
                     echo "                                        <form action=\"";
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_mensaje", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array()))), "html", null, true);
                     echo "\">
@@ -123,8 +134,30 @@ $context["notificacion"], "concepto", array()) == "Mensaje")) {
                                             </button>
                                         </form>
                                     ";
+                } elseif (($this->getAttribute(                // line 51
+$context["notificacion"], "concepto", array()) == "Reserva")) {
+                    // line 52
+                    echo "                                        <form action=\"";
+                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_reservas_cliente", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array()))), "html", null, true);
+                    echo "\">
+                                            <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                Ver notificación
+                                            </button>
+                                        </form>
+                                    ";
+                } elseif (($this->getAttribute(                // line 57
+$context["notificacion"], "concepto", array()) == "Usuario")) {
+                    // line 58
+                    echo "                                        <form action=\"";
+                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array()))), "html", null, true);
+                    echo "\">
+                                            <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                Ver notificación
+                                            </button>
+                                        </form>
+                                    ";
                 }
-                // line 46
+                // line 64
                 echo "                                </td>
                             </tr>
                         ";
@@ -132,17 +165,17 @@ $context["notificacion"], "concepto", array()) == "Mensaje")) {
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['notificacion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 49
+            // line 67
             echo "                    </tbody>
                 </table>
             </div>
         ";
         }
-        // line 53
+        // line 71
         echo "        <div>
             <div class=\"navigation\"  >
                 ";
-        // line 55
+        // line 73
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
             </div>
@@ -165,6 +198,6 @@ $context["notificacion"], "concepto", array()) == "Mensaje")) {
 
     public function getDebugInfo()
     {
-        return array (  146 => 55,  142 => 53,  136 => 49,  128 => 46,  118 => 40,  116 => 39,  107 => 34,  105 => 33,  100 => 31,  96 => 30,  92 => 29,  87 => 28,  83 => 27,  74 => 21,  70 => 20,  66 => 19,  60 => 15,  56 => 13,  54 => 12,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  179 => 73,  175 => 71,  169 => 67,  161 => 64,  151 => 58,  149 => 57,  140 => 52,  138 => 51,  129 => 46,  127 => 45,  118 => 40,  116 => 39,  107 => 34,  105 => 33,  100 => 31,  96 => 30,  92 => 29,  87 => 28,  83 => 27,  74 => 21,  70 => 20,  66 => 19,  60 => 15,  56 => 13,  54 => 12,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

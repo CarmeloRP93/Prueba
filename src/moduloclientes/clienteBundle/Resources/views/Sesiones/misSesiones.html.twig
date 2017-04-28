@@ -36,27 +36,27 @@
                                                 {% else %}
                                                     <td><font color="red">{{sesion.estadoCliente|capitalize}}</font></td>
                                                 {% endif %}
-                                                <td class="actions">
-                                                    <a href="{{ path('moduloclientes_cliente_miSesionClientes', { id: sesion.id }) }}" class="btn btn-sm btn-info">
-                                                        Ver
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            {% endfor %}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    {% endif %}        
-                                        <div>
-                                            <div class="navigation">
-                                                {{ knp_pagination_render(pagination) }}
-                                            </div>
-                                        </div>
-                                    </div>                     
-                                </div>                     
-                            </div>                     
-                        </div>                     
-                        {% endblock %}
+                                            <td class="actions">
+                                                <a href="{{ path('moduloclientes_cliente_miSesionClientes', { id: sesion.id }) }}" class="btn btn-sm btn-info">
+                                                    Ver
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endif %}        
+                    <div>
+                        <div class="navigation">
+                            {{ knp_pagination_render(pagination) }}
+                        </div>
+                    </div>
+                </div>                     
+            </div>                     
+        </div>                     
+    </div>                     
+{% endblock %}
 
 
 

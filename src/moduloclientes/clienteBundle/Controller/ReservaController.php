@@ -26,9 +26,9 @@ class ReservaController extends Controller {
 
         return $this->render('moduloclientesclienteBundle:Reservas:reservasClientes.html.twig', array("pagination" => $pagination,
                     'notificacionesSinLeer' => $this->getNewNotification()));
-        }
+    }
 
-        public function reservaClientesAction($id) {
+    public function reservaClientesAction($id) {
         $this->changeStateNotification($id);
         $repositoryReserva = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas");
         $reserva = $repositoryReserva->find($id);
@@ -51,8 +51,8 @@ class ReservaController extends Controller {
         $reserva = new Reservas();
         $form = $this->createCreateFormHora($reserva, $id, $fecha);
         $fecha2 = $fecha . '-' . date('Y');
-        $fecha3 = date('Y-m-d', strtotime($fecha2));
-        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'fecha' => $fecha3, 'mensaje' => null,
+        $fecha = date('Y-m-d', strtotime($fecha2));
+        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'fecha' => $fecha, 'mensaje' => null,
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
@@ -78,10 +78,10 @@ class ReservaController extends Controller {
 
     public function crearReservaAction($id, Request $request) {
 
-        //Aquí cogemos la fecha de reserva que escogimos en la vista de nueva reserva, le damos el formato
+        //AquÃ­ cogemos la fecha de reserva que escogimos en la vista de nueva reserva, le damos el formato
         $reserva = new Reservas();
         $fechaTime = $this->getRequest()->query->get('fechaInicio') . '-' . date('Y');
-        $fecha = date_create(date('Y-m-d', strtotime($fechaTime)));
+        $fecha = date('Y-m-d', strtotime($fechaTime));
         $form = $this->createCreateFormHora($reserva, $id, $this->getRequest()->query->get('fechaInicio'));
         $form->handleRequest($request);
 
@@ -96,11 +96,11 @@ class ReservaController extends Controller {
             $reserva->setCancha($cancha->getTipo());
             $reserva->setEstadoReserva("Reservado");
 
-            //Comprobamos si se ha seleccionado algún horario
+            //Comprobamos si se ha seleccionado algÃºn horario
             if (count($form->get('horario')->getData()) == 0) {
-                $form->get('horario')->addError(new FormError('Seleccione una o más opciones'));
-                return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null, 'fecha' => $form->get('fechaInicio')->getData(),
-                            'notificacionesSinLeer' => $this->getNewNotification()));
+                $form->get('horario')->addError(new FormError('Seleccione una o más opciones.'));
+                return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null, 'fecha' => $fecha,
+                                'notificacionesSinLeer' => $this->getNewNotification()));
             }
 
             //Concatenamos en horitas las horas seleccionadas en una string
@@ -111,7 +111,8 @@ class ReservaController extends Controller {
                 if ($i != count($form->get('horario')->getData()) - 1) {
                     if ((int) substr(strval($form->get('horario')->getData()[$i]), 0, 2) + 1 != (int) substr(strval($form->get('horario')->getData()[$i + 1]), 0, 2)) {
                         $mensaje = 'Seleccione horas contiguas. Para escoger horas no contiguas realice distintas reservas';
-                        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => $mensaje, 'fecha' => $form->get('fechaInicio')->getData()));
+                        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => $mensaje, 'fecha' => $fecha,
+                                'notificacionesSinLeer' => $this->getNewNotification()));
                     }
                 }
 
@@ -119,7 +120,7 @@ class ReservaController extends Controller {
             }
 
             //Escribimos en la base de datos de reserva la fecha y la horas
-            $reserva->setFechaInicio($fecha);
+            $reserva->setFechaInicio(date_create($fecha));
             $reserva->setHorario($horitas);
 
             //Aqui cogemos todas las horas disponible, comparamos con las seleccionadas y eliminamos de la tabla cancha las horas ya reservadas
@@ -148,7 +149,7 @@ class ReservaController extends Controller {
         }
 
         return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null,
-                    'notificacionesSinLeer' => $this->getNewNotification()));
+                                'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function mostrarHorasAction($id, Request $request) {

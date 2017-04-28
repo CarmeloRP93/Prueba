@@ -87,9 +87,11 @@ class CanchaController extends Controller {
             $admins = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->getAdmin();
             $comentario->setIdDestinatario($admins[0]->getId());
             $comentario->setTipoComentario('Sugerencia cancha');
+            $comentario->setEstado('nuevo');
             $em = $this->getDoctrine()->getManager();
             $em->persist($comentario);
             $em->flush();
+
             $request->getSession()->getFlashBag()->add('mensaje', 'Sugerencia enviada.');
             return $this->redirect($this->generateUrl('moduloclientes_cliente_canchasClientes'));
         }
