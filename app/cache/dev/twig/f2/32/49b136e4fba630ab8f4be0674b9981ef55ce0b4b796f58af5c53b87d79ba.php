@@ -129,7 +129,7 @@ class __TwigTemplate_f23249b136e4fba630ab8f4be0674b9981ef55ce0b4b796f58af5c53b87
         }
         // line 40
         echo "        <div>
-            <a class=\"btn btn-success\" href=\"";
+            <a class=\"btn btn-default\" href=\"";
         // line 41
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "id", array()))), "html", null, true);
         echo "\">Volver atrás</a>

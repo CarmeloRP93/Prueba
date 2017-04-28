@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Crivero\PruebaBundle\Entity\Aulas;
+use Crivero\PruebaBundle\Entity\Notificaciones;
 use Crivero\PruebaBundle\Entity\HorariosAulas;
 use Crivero\PruebaBundle\Form\AulasType;
 use Symfony\Component\Form\FormError;
@@ -84,31 +85,19 @@ class AulaController extends Controller {
                 $this->setHorariosAula($aula->getId(), $em);
 
                 $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
-//                foreach ($usuarios as $usuario) {
-//                    if ($usuario->getTipo() == 1) {
-//                        continue;
-//                    }
-//                    $notificacion = new Notificaciones();
-//                    $notificacion->setIdDestinatario($usuario->getId());
-//                    $notificacion->setIdEntidad($sesion->getId());
-//                    if ($usuario->getId() == $sesion->getIdMonitor()) {
-//                        $notificacion->setMensaje("Tu sesion " . $sesion->getNombre() . " ha"
-//                                . " sido aceptada");
-//                    } else {
-//                        $notificacion->setMensaje("La sesion " . $sesion->getNombre() . " ha"
-//                                . " sido creada");
-//                    }
-//                    $notificacion->setIdOrigen($this->getUser()->getId());
-//                    $notificacion->setEstado("No leido");
-//                    if ($sesion->getCliente() == "normal") {
-//                        $notificacion->setConcepto("Publica");
-//                    } else {
-//                        $notificacion->setConcepto("Privada");
-//                    }
-//                    $em->persist($notificacion);
-//                    $em->flush();
-//                }
-
+                foreach ($usuarios as $usuario) {
+                    if ($usuario->getTipo() == 3) {
+                        $notificacion = new Notificaciones();
+                        $notificacion->setIdDestinatario($usuario->getId());
+                        $notificacion->setIdEntidad($aula->getId());
+                        $notificacion->setMensaje("Una nueva aula ha sido registrada en el sistema");
+                        $notificacion->setIdOrigen($this->getUser()->getId());
+                        $notificacion->setEstado("No leido");
+                        $notificacion->setConcepto("Aula");
+                        $em->persist($notificacion);
+                        $em->flush();
+                    }
+                }
 
                 $request->getSession()->getFlashBag()->add('mensaje', 'El aula ha sido creada con éxito.');
                 return $this->redirect($this->generateUrl('crivero_prueba_aulas'));
@@ -158,8 +147,23 @@ class AulaController extends Controller {
                 $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
                 $aula->setImagen($file->getClientOriginalName());
             }
-
             $em->flush();
+
+            $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
+            foreach ($usuarios as $usuario) {
+                if ($usuario->getTipo() == 3) {
+                    $notificacion = new Notificaciones();
+                    $notificacion->setIdDestinatario($usuario->getId());
+                    $notificacion->setIdEntidad($aula->getId());
+                    $notificacion->setMensaje("El aula " . $aula->getNombre() . " ha sido modificada");
+                    $notificacion->setIdOrigen($this->getUser()->getId());
+                    $notificacion->setEstado("No leido");
+                    $notificacion->setConcepto("Aula");
+                    $em->persist($notificacion);
+                    $em->flush();
+                }
+            }
+
             $request->getSession()->getFlashBag()->add('mensaje', 'El aula ha sido modificada correctamente.');
             return $this->redirect($this->generateUrl('crivero_prueba_aula', array('id' => $id)));
         }
@@ -192,9 +196,24 @@ class AulaController extends Controller {
     private function deleteAula($em, $aula) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
         $repository->removeHorariosAula($aula->getId());
+
+        $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
+        foreach ($usuarios as $usuario) {
+            if ($usuario->getTipo() == 2) {
+                $notificacion = new Notificaciones();
+                $notificacion->setIdDestinatario($usuario->getId());
+                $notificacion->setIdEntidad($aula->getId());
+                $notificacion->setMensaje("El aula " . $aula->getNombre() . " ha sido eliminada del sistema");
+                $notificacion->setIdOrigen($this->getUser()->getId());
+                $notificacion->setEstado("No leido");
+                $notificacion->setConcepto("Aula");
+                $em->persist($notificacion);
+                $em->flush();
+            }
+        }
+
         $em->remove($aula);
         $em->flush();
-
         $message = 'El aula ha sido eliminada con éxito.';
         $remove = 1;
         return array('removed' => $remove, 'message' => $message);

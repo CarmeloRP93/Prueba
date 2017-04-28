@@ -15,8 +15,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *               message="Ya existe un aula con este nombre.")
  * @ORM\HasLifecycleCallbacks
  */
-class Aulas
-{
+class Aulas {
+
     /**
      * @var integer
      *
@@ -38,17 +38,17 @@ class Aulas
     /**
      * @var string
      *
-     * @ORM\Column(name="horario", type="string", length=255)
+     * @ORM\Column(name="horario", type="string", length=255, nullable=false)
      */
     private $horario;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="disponibilidad", type="string", length=255)
+     * @ORM\Column(name="disponibilidad", type="string", length=255, nullable=false)
      */
     private $disponibilidad;
-    
+
     /**
      * @var string
      *
@@ -62,14 +62,31 @@ class Aulas
      * @ORM\Column(name="imagen", type="string", length=255, nullable=false)
      */
     private $imagen;
-    
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dimensiones", type="string", length=200, nullable=false)
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
+     */
+    private $dimensiones;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="string", length=150, nullable=false)
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
+     */
+    private $descripcion;
+
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -79,8 +96,7 @@ class Aulas
      * @param string $nombre
      * @return Aulas
      */
-    public function setNombre($nombre)
-    {
+    public function setNombre($nombre) {
         $this->nombre = $nombre;
 
         return $this;
@@ -91,8 +107,7 @@ class Aulas
      *
      * @return string 
      */
-    public function getNombre()
-    {
+    public function getNombre() {
         return $this->nombre;
     }
 
@@ -102,8 +117,7 @@ class Aulas
      * @param string $horario
      * @return Aulas
      */
-    public function setHorario($horario)
-    {
+    public function setHorario($horario) {
         $this->horario = $horario;
 
         return $this;
@@ -114,8 +128,7 @@ class Aulas
      *
      * @return string 
      */
-    public function getHorario()
-    {
+    public function getHorario() {
         return $this->horario;
     }
 
@@ -125,8 +138,7 @@ class Aulas
      * @param string $disponibilidad
      * @return Aulas
      */
-    public function setDisponibilidad($disponibilidad)
-    {
+    public function setDisponibilidad($disponibilidad) {
         $this->disponibilidad = $disponibilidad;
 
         return $this;
@@ -137,42 +149,38 @@ class Aulas
      *
      * @return string 
      */
-    public function getDisponibilidad()
-    {
+    public function getDisponibilidad() {
         return $this->disponibilidad;
     }
-    
+
     /**
      * Set sesiones
      *
      * @param string $sesiones
      * @return Aulas
      */
-    public function setSesiones($sesiones)
-    {
+    public function setSesiones($sesiones) {
         $this->sesiones = $sesiones;
- 
+
         return $this;
     }
- 
+
     /**
      * Get sesiones
      *
      * @return string 
      */
-    public function getSesiones()
-    {
+    public function getSesiones() {
         return $this->sesiones;
     }
-    
+
     /**
      * Set imagen
      *
      * @param string $imagen
      * @return Aulas
      */
-    public function setImagen($imagen)
-    {
+    public function setImagen($imagen) {
         $this->imagen = $imagen;
 
         return $this;
@@ -183,8 +191,47 @@ class Aulas
      *
      * @return string 
      */
-    public function getImagen()
-    {
+    public function getImagen() {
         return $this->imagen;
+    }
+    
+    /**
+     * Get dimensiones
+     *
+     * @return string 
+     */
+    public function getDimensiones() {
+        return $this->dimensiones;
+    }
+
+    /**
+     * Set dimensiones
+     *
+     * @param string $dimensiones
+     * @return Aulas
+     */
+    public function setDimensiones($dimensiones) {
+        $this->dimensiones = $dimensiones;
+        return $this;
+    }
+
+    /**
+     * Get descripcion
+     *
+     * @return string 
+     */
+    public function getDescripcion() {
+        return $this->descripcion;
+    }
+
+    /**
+     * Set descripcion
+     *
+     * @param string $descripcion
+     * @return Aulas
+     */
+    public function setDescripcion($descripcion) {
+        $this->descripcion = $descripcion;
+        return $this;
     }
 }

@@ -11,41 +11,42 @@ use Crivero\PruebaBundle\Form\ComentariosType;
 
 class MensajeriaController extends Controller {
 
-    public function enviarMensajeAction() {
+    public function enviarMensajeAction($id) {
         $comentario = new Comentarios();
-        $referer = $this->getRequest()->headers->get('referer');
-        $destino = null;
-        if ($referer) {
-            //print_r(explode('/', $referer));
-            $url = explode('/', $referer);
-            if ($url[6] == 'cliente' || $url[6] == 'monitor') {
-                $id = $url[7];
-                $destino = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($id)->getEmail();
-            }
-        }
-        $form = $this->createMessageForm($comentario);
+        $destino = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($id)->getUsername();
+
+        $form = $this->createMessageForm($id, $comentario);
         return $this->render('CriveroPruebaBundle:Mensajes:nuevoMensaje.html.twig', array('form' => $form->createView(),
                     'destino' => $destino, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
+    
+    public function mensajearDirectorAction() {
+        $comentario = new Comentarios();
+        $destino = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->getDirector()[0];
 
-    private function createMessageForm(Comentarios $entity) {
+        $form = $this->createMessageForm($destino->getId(), $comentario);
+        return $this->render('CriveroPruebaBundle:Mensajes:nuevoMensaje.html.twig', array('form' => $form->createView(),
+                    'destino' => $destino->getUsername(), 'notificacionesSinLeer' => $this->getNewNotification()));
+    }
+
+    private function createMessageForm($id, Comentarios $entity) {
         $form = $this->createForm(new ComentariosType(), $entity, array(
-            'action' => $this->generateUrl('crivero_prueba_enviando'),
+            'action' => $this->generateUrl('crivero_prueba_enviando', array('id' => $id)),
             'method' => 'POST'
         ));
         return $form;
     }
 
-    public function enviandoAction(Request $request) {
+    public function enviandoAction($id, Request $request) {
         $comentario = new Comentarios();
-        $form = $this->createMessageForm($comentario);
+        $form = $this->createMessageForm($id, $comentario);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
-            $dest = $repositoryUsuarios->getDestinatario($form->get('destinatario')->getData());
+            $dest = $repositoryUsuarios->find($id);
             if ($dest != null) {
-                $comentario->setIdDestinatario($dest[0]->getId());
+                $comentario->setIdDestinatario($dest->getId());
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($comentario);
                 $em->flush();
@@ -61,7 +62,7 @@ class MensajeriaController extends Controller {
 
     public function responderMensajeAction($id) {
         $comentario = new Comentarios();
-        $destino = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($id)->getEmail();
+        $destino = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($id)->getUsername();
 
         $asunto = null;
         $referer = $this->getRequest()->headers->get('referer');
@@ -69,7 +70,7 @@ class MensajeriaController extends Controller {
             $idMensaje = explode('/', $referer)[7];
             $asunto = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Comentarios")->find($idMensaje)->getAsunto();
         }
-        $form = $this->createMessageForm($comentario);
+        $form = $this->createMessageForm($id, $comentario);
         return $this->render('CriveroPruebaBundle:Mensajes:nuevoMensaje.html.twig', array('form' => $form->createView(),
                     'destino' => $destino, 'asunto' => 'RE: ' . $asunto, 
                     'notificacionesSinLeer' => $this->getNewNotification()));
@@ -86,7 +87,7 @@ class MensajeriaController extends Controller {
         $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $remitentes = null;
         foreach ($mensajesRecibidos->getResult() as $clave => $mensaje) {
-            $remitentes[$clave] = $repositoryUsuarios->find($mensaje->getIdRemitente())->getEmail();
+            $remitentes[$clave] = $repositoryUsuarios->find($mensaje->getIdRemitente())->getUsername();
         }
 
         return $this->render('CriveroPruebaBundle:Mensajes:recibidos.html.twig', array('pagination' => $pagination,

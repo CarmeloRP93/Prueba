@@ -289,11 +289,15 @@ crivero_prueba_rechazarSesion:
 # Otros
 
 crivero_prueba_enviarMensaje:
-    pattern: /enviarMensaje
+    pattern: /enviarMensaje/{id}
     defaults: { _controller: CriveroPruebaBundle:Mensajeria:enviarMensaje }
 
+crivero_prueba_mensajearDirector:
+    pattern: /mensajearDirector
+    defaults: { _controller: CriveroPruebaBundle:Mensajeria:mensajearDirector }
+
 crivero_prueba_enviando:
-    pattern: /enviando
+    pattern: /enviando/{id}
     defaults: { _controller: CriveroPruebaBundle:Mensajeria:enviando }
     requirements:
         _method:  POST|GET

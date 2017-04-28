@@ -65,7 +65,7 @@ class __TwigTemplate_0f682913b5ef62bfeaa73c9a9243bc6a9daa204ce6fa644ae38a1924733
                     </tr>
                 </thead>
                 <tbody>
-                  ";
+                    ";
         // line 26
         echo "                    ";
         $context['_parent'] = (array) $context;
@@ -111,27 +111,29 @@ class __TwigTemplate_0f682913b5ef62bfeaa73c9a9243bc6a9daa204ce6fa644ae38a1924733
         // line 32
         echo "                </tbody>
             </table>
-        </div><br>
-        ";
-        // line 35
+        </div>
+        <div style=\"margin: 14px\">
+            ";
+        // line 36
         if ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")) {
             echo "    
-            <a class=\"btn btn-success\" href=\"";
-            // line 36
+                <a class=\"btn btn-default\" href=\"";
+            // line 37
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method"), "html", null, true);
             echo "\">Volver atrás</a>
-        ";
+            ";
         } else {
-            // line 38
-            echo "            <a class=\"btn btn-success\" href=\"";
+            // line 39
+            echo "                <a class=\"btn btn-default\" href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_sesion", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array()))), "html", null, true);
             echo "\">Volver atrás</a>
-        ";
+            ";
         }
-        // line 40
-        echo "        
-       ";
-        // line 44
+        // line 41
+        echo "        </div>
+
+        ";
+        // line 46
         echo "    </div>
 ";
     }
@@ -148,6 +150,6 @@ class __TwigTemplate_0f682913b5ef62bfeaa73c9a9243bc6a9daa204ce6fa644ae38a1924733
 
     public function getDebugInfo()
     {
-        return array (  135 => 44,  132 => 40,  126 => 38,  121 => 36,  117 => 35,  112 => 32,  95 => 29,  91 => 28,  88 => 27,  70 => 26,  57 => 10,  52 => 8,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
+        return array (  137 => 46,  133 => 41,  127 => 39,  122 => 37,  118 => 36,  112 => 32,  95 => 29,  91 => 28,  88 => 27,  70 => 26,  57 => 10,  52 => 8,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
     }
 }

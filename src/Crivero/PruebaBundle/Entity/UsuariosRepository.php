@@ -59,16 +59,15 @@ class UsuariosRepository extends EntityRepository {
                         ->getResult();
     }
 
-    public function getDestinatario($email) {
-        return $this->getEntityManager()
-                        ->createQuery("SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.email = :email")
-                        ->setParameter('email', $email)
-                        ->getResult();
-    }
-
     public function getAdmin() {
         return $this->getEntityManager()
                         ->createQuery('SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=1')
+                        ->getResult();
+    }
+    
+    public function getDirector() {
+        return $this->getEntityManager()
+                        ->createQuery('SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=4')
                         ->getResult();
     }
     

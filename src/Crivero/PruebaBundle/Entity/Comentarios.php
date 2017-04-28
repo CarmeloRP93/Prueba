@@ -35,8 +35,8 @@ class Comentarios {
      * @var string
      *
      * @ORM\Column(name="destinatario", type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Email()
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
      */
     private $destinatario;
 
@@ -51,7 +51,8 @@ class Comentarios {
      * @var string
      *
      * @ORM\Column(name="descripcion", type="string", length=10000)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
      */
     private $descripcion;
 

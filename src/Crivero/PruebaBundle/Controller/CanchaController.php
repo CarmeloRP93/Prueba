@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Crivero\PruebaBundle\Entity\Canchas;
+use Crivero\PruebaBundle\Entity\Notificaciones;
 use Crivero\PruebaBundle\Form\CanchasType;
 use Crivero\PruebaBundle\Entity\HorariosCanchas;
 use Crivero\PruebaBundle\Entity\HorariosCanchasRepository;
@@ -68,6 +69,21 @@ class CanchaController extends Controller {
 
                 $this->setHorariosCancha($cancha->getId(), $em);
 
+                $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
+                foreach ($usuarios as $usuario) {
+                    if ($usuario->getTipo() == 2) {
+                        $notificacion = new Notificaciones();
+                        $notificacion->setIdDestinatario($usuario->getId());
+                        $notificacion->setIdEntidad($cancha->getId());
+                        $notificacion->setMensaje("Una nueva cancha ha sido registrada en el sistema");
+                        $notificacion->setIdOrigen($this->getUser()->getId());
+                        $notificacion->setEstado("No leido");
+                        $notificacion->setConcepto("Cancha");
+                        $em->persist($notificacion);
+                        $em->flush();
+                    }
+                }
+
                 $request->getSession()->getFlashBag()->add('mensaje', 'La cancha ha sido creada con éxito.');
                 return $this->redirect($this->generateUrl('crivero_prueba_canchas'));
             }
@@ -116,8 +132,23 @@ class CanchaController extends Controller {
                 $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
                 $cancha->setImagen("images/" . $file->getClientOriginalName());
             }
-
             $em->flush();
+
+            $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
+            foreach ($usuarios as $usuario) {
+                if ($usuario->getTipo() == 2) {
+                    $notificacion = new Notificaciones();
+                    $notificacion->setIdDestinatario($usuario->getId());
+                    $notificacion->setIdEntidad($cancha->getId());
+                    $notificacion->setMensaje("La cancha " . $cancha->getTipo() . " ha sido modificada");
+                    $notificacion->setIdOrigen($this->getUser()->getId());
+                    $notificacion->setEstado("No leido");
+                    $notificacion->setConcepto("Cancha");
+                    $em->persist($notificacion);
+                    $em->flush();
+                }
+            }
+
             $request->getSession()->getFlashBag()->add('mensaje', 'La cancha ha sido modificada correctamente.');
             return $this->redirect($this->generateUrl('crivero_prueba_cancha', array('id' => $id)));
         }
@@ -150,6 +181,21 @@ class CanchaController extends Controller {
     private function deleteCancha($em, $cancha) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosCanchas");
         $repository->removeHorariosCancha($cancha->getId());
+        
+        $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
+        foreach ($usuarios as $usuario) {
+            if ($usuario->getTipo() == 3) {
+                $notificacion = new Notificaciones();
+                $notificacion->setIdDestinatario($usuario->getId());
+                $notificacion->setIdEntidad($cancha->getId());
+                $notificacion->setMensaje("La cancha " . $cancha->getTipo() . " ha sido eliminada del sistema");
+                $notificacion->setIdOrigen($this->getUser()->getId());
+                $notificacion->setEstado("No leido");
+                $notificacion->setConcepto("Cancha");
+                $em->persist($notificacion);
+                $em->flush();
+            }
+        }
         $em->remove($cancha);
         $em->flush();
 

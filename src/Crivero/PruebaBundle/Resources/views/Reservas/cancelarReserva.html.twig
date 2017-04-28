@@ -17,8 +17,8 @@
             <span class="text-danger">{{ form_errors(form.motivos) }}</span>
         </div>
         <div>
-            <a href="{{ ref }}" class="btn btn-danger">Anular</a>
             {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
+            <a href="{{ ref }}" class="btn btn-danger">Anular</a>
         </div>                
 
         {{ form_end(form) }}

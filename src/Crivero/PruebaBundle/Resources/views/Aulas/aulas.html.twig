@@ -26,6 +26,7 @@
                             <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'a.nombre') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'Estado', 'a.disponibilidad') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'Horario', 'a.horario') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Área', 'a.dimensiones') }}</th>
                             <th class="t3">Acciones</th>
                         </tr>
                     </thead>
@@ -40,6 +41,7 @@
                                     {% endif %}</td>#}
                                 <td><strong>{{aula.disponibilidad}}</strong></td>
                                 <td>{{aula.horario}}</td>
+                                <td>{{aula.dimensiones ~ 'm²'}}</td>
                                 <td class="actions">
                                   <a href="{{ path('crivero_prueba_aula', { id: aula.id }) }}" class="btn btn-sm btn-info">
                                         Ver

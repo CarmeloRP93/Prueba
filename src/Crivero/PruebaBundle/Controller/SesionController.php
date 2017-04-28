@@ -78,7 +78,7 @@ class SesionController extends Controller {
         $this->changeStateNotification($id);
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repository->find($id);
-        
+
         $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $aula = $repositoryAula->find($sesion->getAula());
         return $this->render('CriveroPruebaBundle:Sesiones:sesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),
@@ -150,7 +150,7 @@ class SesionController extends Controller {
         $em->persist($sesion);
         $em->persist($aula);
         $em->flush();
-        
+
         $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
         foreach ($usuarios as $usuario) {
             if ($usuario->getTipo() == 1) {
@@ -163,16 +163,12 @@ class SesionController extends Controller {
                 $notificacion->setMensaje("Tu sesion " . $sesion->getNombre() . " ha"
                         . " sido aceptada");
             } else {
-                $notificacion->setMensaje("La sesion " . $sesion->getNombre() . " ha"
-                        . " sido creada");
+                $notificacion->setMensaje("Una nueva sesion ha sido creada");
             }
             $notificacion->setIdOrigen($this->getUser()->getId());
             $notificacion->setEstado("No leido");
-            if ($sesion->getCliente() == "normal") {
-                $notificacion->setConcepto("Publica");
-            } else {
-                $notificacion->setConcepto("Privada");
-            }
+            ($sesion->getCliente() == "normal") ? $notificacion->setConcepto("Publica"):
+                                                  $notificacion->setConcepto("Privada");
             $em->persist($notificacion);
             $em->flush();
         }
@@ -253,6 +249,28 @@ class SesionController extends Controller {
                 $this->removeSesionId($aula, $id);
                 $em->persist($aula);
                 $em->flush();
+
+                $idsUsuarios = explode('&', $sesion->getIdsClientes().'&'.$sesion->getIdMonitor());
+                foreach ($idsUsuarios as $idUsuario) {
+                    if ($idUsuario == 0) continue;
+                    $notificacion = new Notificaciones();
+                    $notificacion->setIdDestinatario($idUsuario);
+                    $notificacion->setIdEntidad($sesion->getId());
+                    if ($idUsuario == $sesion->getIdMonitor()) {
+                        $notificacion->setMensaje("Tu sesion " . $sesion->getNombre() . " ha sido cancelada");
+                    } else {
+                        $notificacion->setMensaje("La sesion " . $sesion->getNombre() . " del monitor " .
+                                $sesion->getMonitor() . " ha sido cancelada");
+                    }
+                    $notificacion->setIdOrigen($this->getUser()->getId());
+                    $notificacion->setEstado("No leido");
+                    ($sesion->getCliente() == "normal") ? $notificacion->setConcepto("Publica"):
+                                                          $notificacion->setConcepto("Privada");
+                    $em->persist($notificacion);
+                    $em->flush();
+                }
+
+
                 $request->getSession()->getFlashBag()->add('mensaje', 'La sesión se canceló correctamente');
                 return $this->redirect($this->generateUrl('crivero_prueba_sesion', array('id' => $sesion->getId())));
             } else {
@@ -299,6 +317,18 @@ class SesionController extends Controller {
             $observaciones = $form->get('observaciones')->getData();
             if ($observaciones != null) {
                 $em->flush();
+
+                $notificacion = new Notificaciones();
+                $notificacion->setIdDestinatario($sesion->getIdMonitor());
+                $notificacion->setIdEntidad($sesion->getId());
+                $notificacion->setMensaje("Tu sesion " . $sesion->getNombre() . " ha sido rechazada");
+                $notificacion->setIdOrigen($this->getUser()->getId());
+                $notificacion->setEstado("No leido");
+                ($sesion->getCliente() == "normal") ? $notificacion->setConcepto("Publica"):
+                                                      $notificacion->setConcepto("Privada");
+                $em->persist($notificacion);
+                $em->flush();
+
                 $request->getSession()->getFlashBag()->add('mensaje', 'La sesión se rechazó correctamente.');
                 return $this->redirect($this->generateUrl('crivero_prueba_sesion', array('id' => $sesion->getId())));
             } else {
@@ -372,7 +402,7 @@ class SesionController extends Controller {
         }
         return $notificacionesSinLeer;
     }
-    
+
     private function changeStateNotification($idEntidad) {
         $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
         if ($repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())) {

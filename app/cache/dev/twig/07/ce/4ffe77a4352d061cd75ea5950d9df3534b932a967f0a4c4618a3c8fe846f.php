@@ -76,7 +76,7 @@ class __TwigTemplate_07ce4ffe77a4352d061cd75ea5950d9df3534b932a967f0a4c4618a3c8f
             echo "                        <div>
                             <form style=\"margin-right: -3px\" action=\"";
             // line 23
-            echo $this->env->getExtension('routing')->getPath("crivero_prueba_enviarMensaje");
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_enviarMensaje", array("id" => $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "id", array()))), "html", null, true);
             echo "\" method=\"post\" class=\"alinear btn-group\">
                                 <button type=\"submit\" class=\"btn btn-primary\">Enviar mensaje</button>
                                 <input type=\"hidden\" class=\"btn\">

@@ -252,13 +252,13 @@ class __TwigTemplate_48095df0a0c416f2ea61a8f54876dfddc25742993fabccd6e3d9cb35586
             echo "            ";
         }
         // line 88
-        echo "            <a href=\"";
-        echo twig_escape_filter($this->env, (isset($context["ruta"]) ? $context["ruta"] : $this->getContext($context, "ruta")), "html", null, true);
-        echo "\" class=\"btn btn-danger\">Anular</a>
-            ";
-        // line 89
+        echo "            ";
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
+            <a href=\"";
+        // line 89
+        echo twig_escape_filter($this->env, (isset($context["ruta"]) ? $context["ruta"] : $this->getContext($context, "ruta")), "html", null, true);
+        echo "\" class=\"btn btn-danger\">Anular</a>
         </div>                
 
         ";

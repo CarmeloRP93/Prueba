@@ -37,8 +37,8 @@
                             {% if usuario.tipo == 1 %}
                                 <br>
                                 <div style="display: inline-grid">
-                                    <form class="btn-group-vertical" action="{{ path('crivero_prueba_enviarMensaje') }}" method="post">
-                                        <button type="submit" style="margin-bottom: 0" class="btn btn-primary">Nuevo mensaje</button>
+                                    <form class="btn-group-vertical" action="{{ path('crivero_prueba_mensajearDirector') }}" method="post">
+                                        <button type="submit" style="margin-bottom: 0" class="btn btn-primary">Mensaje a director</button>
                                         <input type="hidden" class="btn">
                                     </form>
                                     <form class="btn-group-vertical" action="{{ path('crivero_prueba_nuevo') }}" method="post">

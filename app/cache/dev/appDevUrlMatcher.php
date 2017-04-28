@@ -1115,24 +1115,26 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/envia')) {
-            // crivero_prueba_enviarMensaje
-            if ($pathinfo === '/enviarMensaje') {
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::enviarMensajeAction',  '_route' => 'crivero_prueba_enviarMensaje',);
-            }
-
-            // crivero_prueba_enviando
-            if ($pathinfo === '/enviando') {
-                if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
-                    $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
-                    goto not_crivero_prueba_enviando;
-                }
-
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::enviandoAction',  '_route' => 'crivero_prueba_enviando',);
-            }
-            not_crivero_prueba_enviando:
-
+        // crivero_prueba_enviarMensaje
+        if (0 === strpos($pathinfo, '/enviarMensaje') && preg_match('#^/enviarMensaje/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_enviarMensaje')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::enviarMensajeAction',));
         }
+
+        // crivero_prueba_mensajearDirector
+        if ($pathinfo === '/mensajearDirector') {
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::mensajearDirectorAction',  '_route' => 'crivero_prueba_mensajearDirector',);
+        }
+
+        // crivero_prueba_enviando
+        if (0 === strpos($pathinfo, '/enviando') && preg_match('#^/enviando/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                goto not_crivero_prueba_enviando;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_enviando')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::enviandoAction',));
+        }
+        not_crivero_prueba_enviando:
 
         if (0 === strpos($pathinfo, '/mensaje')) {
             // crivero_prueba_responderMensaje

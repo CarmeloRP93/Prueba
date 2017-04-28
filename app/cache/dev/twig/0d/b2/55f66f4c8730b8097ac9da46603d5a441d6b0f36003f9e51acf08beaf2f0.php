@@ -83,7 +83,7 @@ class __TwigTemplate_0db255f66f4c8730b8097ac9da46603d5a441d6b0f36003f9e51acf08be
         echo "
                             ";
         // line 23
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fechaInicio", array()), 'widget', array("value" => (isset($context["fecha"]) ? $context["fecha"] : $this->getContext($context, "fecha")), "attr" => array("class" => "form-control"), "disabled" => "disabled"));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fechaInicio", array()), 'widget', array("value" => (isset($context["fecha"]) ? $context["fecha"] : $this->getContext($context, "fecha")), "attr" => array("class" => "form-control")));
         echo "
                             <span class=\"text-danger\">";
         // line 24

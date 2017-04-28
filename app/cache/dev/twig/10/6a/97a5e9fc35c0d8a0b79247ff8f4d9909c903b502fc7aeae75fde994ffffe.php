@@ -77,14 +77,14 @@ class __TwigTemplate_106a97a5e9fc35c0d8a0b79247ff8f4d9909c903b502fc7aeae75fde994
         echo "</span>
         </div>
         <div>
-            <a href=\"";
-        // line 20
-        echo twig_escape_filter($this->env, (isset($context["ref"]) ? $context["ref"] : $this->getContext($context, "ref")), "html", null, true);
-        echo "\" class=\"btn btn-danger\">Anular</a>
             ";
-        // line 21
+        // line 20
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
+            <a href=\"";
+        // line 21
+        echo twig_escape_filter($this->env, (isset($context["ref"]) ? $context["ref"] : $this->getContext($context, "ref")), "html", null, true);
+        echo "\" class=\"btn btn-danger\">Anular</a>
         </div>                
 
         ";

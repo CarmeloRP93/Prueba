@@ -112,9 +112,9 @@ class __TwigTemplate_238f51906398213b4f2d0f16b3828d2ce5c8045c6551f87076b9aa66e1a
                                 <div style=\"display: inline-grid\">
                                     <form class=\"btn-group-vertical\" action=\"";
             // line 40
-            echo $this->env->getExtension('routing')->getPath("crivero_prueba_enviarMensaje");
+            echo $this->env->getExtension('routing')->getPath("crivero_prueba_mensajearDirector");
             echo "\" method=\"post\">
-                                        <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-primary\">Nuevo mensaje</button>
+                                        <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-primary\">Mensaje a director</button>
                                         <input type=\"hidden\" class=\"btn\">
                                     </form>
                                     <form class=\"btn-group-vertical\" action=\"";

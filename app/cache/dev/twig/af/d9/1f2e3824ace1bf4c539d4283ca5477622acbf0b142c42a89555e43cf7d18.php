@@ -79,10 +79,8 @@ class __TwigTemplate_afd91f2e3824ace1bf4c539d4283ca5477622acbf0b142c42a89555e43c
                             ";
         }
         // line 25
-        echo "                            <p style=\"font-weight: bold\">";
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["remitente"]) ? $context["remitente"] : $this->getContext($context, "remitente")), "username", array()), "html", null, true);
-        echo " ";
-        echo twig_escape_filter($this->env, (("<" . $this->getAttribute((isset($context["remitente"]) ? $context["remitente"] : $this->getContext($context, "remitente")), "email", array())) . ">"), "html", null, true);
+        echo "                            <p style=\"font-weight: bold\"> ";
+        echo twig_escape_filter($this->env, (("<" . $this->getAttribute((isset($context["remitente"]) ? $context["remitente"] : $this->getContext($context, "remitente")), "username", array())) . ">"), "html", null, true);
         echo "</p>
                             <p style=\"font-weight: bold\">";
         // line 26
@@ -124,6 +122,6 @@ class __TwigTemplate_afd91f2e3824ace1bf4c539d4283ca5477622acbf0b142c42a89555e43c
 
     public function getDebugInfo()
     {
-        return array (  104 => 35,  93 => 27,  89 => 26,  82 => 25,  74 => 21,  72 => 20,  65 => 16,  56 => 10,  47 => 5,  44 => 4,  37 => 3,  11 => 1,);
+        return array (  102 => 35,  91 => 27,  87 => 26,  82 => 25,  74 => 21,  72 => 20,  65 => 16,  56 => 10,  47 => 5,  44 => 4,  37 => 3,  11 => 1,);
     }
 }

@@ -49,7 +49,7 @@ class __TwigTemplate_efa214fda3b7aea40713fc3fc80cdbfb2068d9a4386d46b27dc554b10d4
         <div class=\"col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4\">
             <div class=\"panel panel-default\">
                 <div class=\"panel-heading text-center\">
-                    <h2 class=\"t3\">Nueva Cancha</h2>
+                    <h2 class=\"t3\">Nueva cancha</h2>
                 </div>
                 ";
         // line 14

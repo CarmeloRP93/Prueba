@@ -23,6 +23,9 @@ class AulasType extends AbstractType {
             ->add('nombre', 'text')
             ->add('disponibilidad', 'choice', array('choices' => array("Disponible" => 'Disponible', 
                                                                        "No disponible" => 'No disponible')))
+            ->add('dimensiones', 'integer', array('label' => 'Dimensiones (m²)'))
+            ->add('descripcion', 'textarea', array('label' => 'Descripción',
+                                                   'attr' => array('maxlength' => 140, 'cols' => '3', 'rows' => '3')))
             ->add('imagen', 'file', array('data_class' => null))
             ->add('confirmar', 'submit', array('label' => 'Confirmar'));
     }

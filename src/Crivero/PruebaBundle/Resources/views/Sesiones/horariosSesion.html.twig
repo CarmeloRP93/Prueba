@@ -17,12 +17,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                  {#  {% set page = app.request.uri|last %}
-                    {% if page matches '/^\\d+$/' %}
-                        {% set i = page %}
-                    {% else %}
-                        {% set i = 1 %}
-                    {% endif %}#}
+                    {#  {% set page = app.request.uri|last %}
+                      {% if page matches '/^\\d+$/' %}
+                          {% set i = page %}
+                      {% else %}
+                          {% set i = 1 %}
+                      {% endif %}#}
                     {% for horario in pagination %}
                         <tr>
                             <td>{{ loop.index }}</td>
@@ -31,15 +31,17 @@
                     {% endfor %}
                 </tbody>
             </table>
-        </div><br>
-        {% if app.request.headers.get('referer') %}    
-            <a class="btn btn-success" href="{{ app.request.headers.get('referer') }}">Volver atrás</a>
-        {% else %}
-            <a class="btn btn-success" href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}">Volver atrás</a>
-        {% endif %}
-        
-       {# <div class="navigation" style="float: right">
-            {{ knp_pagination_render(pagination) }}
-        </div>#}
+        </div>
+        <div style="margin: 14px">
+            {% if app.request.headers.get('referer') %}    
+                <a class="btn btn-default" href="{{ app.request.headers.get('referer') }}">Volver atrás</a>
+            {% else %}
+                <a class="btn btn-default" href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}">Volver atrás</a>
+            {% endif %}
+        </div>
+
+        {# <div class="navigation" style="float: right">
+             {{ knp_pagination_render(pagination) }}
+         </div>#}
     </div>
 {% endblock %}
