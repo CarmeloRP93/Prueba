@@ -136,6 +136,10 @@ moduloclientes_cliente_misSesionesClientes:
     pattern:  /misSesiones
     defaults: { _controller: moduloclientesclienteBundle:Sesion:misSesiones }
     
+moduloclientes_cliente_verMonitor:
+    pattern:  /verMonitor/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Sesion:verMonitor }
+    
 moduloclientes_cliente_miPerfil:
     pattern:  /miPerfil
     defaults: { _controller: moduloclientesclienteBundle:Usuario:miPerfil }

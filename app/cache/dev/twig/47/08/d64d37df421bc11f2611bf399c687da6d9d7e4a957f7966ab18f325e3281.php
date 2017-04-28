@@ -43,82 +43,101 @@ class __TwigTemplate_4708d64d37df421bc11f2611bf399c687da6d9d7e4a957f7966ab18f325
     public function block_contenido($context, array $blocks = array())
     {
         // line 4
-        echo "    <div class=\"container\">
-        <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-3 col-md-offset-3 col-lg-offset-3\">
-            <div class=\"panel panel-default text-center\">
-                <div class=\"panel-heading\">
-                    <h1 class=\"t1\">Nueva reserva</h1>
-                </div>
+        echo "    <div class=\"container text-center\">
+        <div class=\"row\">
+            <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-3 col-md-offset-3 col-lg-offset-3\">
+                <div class=\"panel panel-default text-center\">
+                    <div class=\"panel-heading\">
+                        <h1 class=\"t1\">Nueva reserva</h1>
+                    </div>
 
-                ";
-        // line 11
+                    ";
+        // line 12
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("attr" => array("novalidate" => "novalidate", "role" => "form")));
         echo "
-                ";
-        // line 12
+                    ";
+        // line 13
         if (((isset($context["mensaje"]) ? $context["mensaje"] : $this->getContext($context, "mensaje")) != null)) {
-            // line 13
-            echo "                    <h3 class=\"terr\">";
+            // line 14
+            echo "                        <h3 class=\"terr\">";
             echo twig_escape_filter($this->env, (isset($context["mensaje"]) ? $context["mensaje"] : $this->getContext($context, "mensaje")), "html", null, true);
             echo "</h3>
-                ";
-        }
-        // line 15
-        echo "                <div class=\"hidden\">
                     ";
+        }
         // line 16
+        echo "                    <div class=\"hidden\">
+                        ";
+        // line 17
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "idCancha", array()), 'widget', array("value" => (isset($context["id"]) ? $context["id"] : $this->getContext($context, "id"))));
         echo "
-                    <span class=\"text-danger\">";
-        // line 17
+                        <span class=\"text-danger\">";
+        // line 18
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "idCancha", array()), 'errors');
         echo "</span>
-                </div>
-                <div class=\"hidden\">
-                    ";
-        // line 20
+                    </div>
+                    <div class=\"hidden\">
+                        ";
+        // line 21
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horario", array()), 'label');
         echo "
-                    ";
-        // line 21
+                        ";
+        // line 22
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horario", array()), 'widget');
         echo "
-                    <span class=\"text-danger\">";
-        // line 22
+                        <span class=\"text-danger\">";
+        // line 23
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horario", array()), 'errors');
         echo "</span>
-                </div> 
+                    </div> 
 
-                <div class=\"panel-body\">  
-                    <div class=\"row\">
-                        <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
-                            ";
-        // line 28
+                    <div class=\"panel-body\">  
+                        <div class=\"row\">
+                            <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
+                                ";
+        // line 29
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fechaInicio", array()), 'label');
         echo "
-                            ";
-        // line 29
+                                ";
+        // line 30
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fechaInicio", array()), 'widget', array("attr" => array("class" => "form-control")));
         echo "
-                            <span class=\"text-danger\">";
-        // line 30
+                                <span class=\"text-danger\">";
+        // line 31
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fechaInicio", array()), 'errors');
         echo "</span>
-                        </div>
-                        <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
-                            <br>";
-        // line 33
+                            </div>
+                            <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
+                                <br>";
+        // line 34
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Elegir hora", "attr" => array("class" => "btn btn-success")));
         echo "
+                            </div>
                         </div>
                     </div>
-                </div>
-                ";
-        // line 37
+                    ";
+        // line 38
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
+                </div>
             </div>
         </div>
+        ";
+        // line 42
+        if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method") && ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method") != $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_mostrarHoras", array("id" => (isset($context["id"]) ? $context["id"] : $this->getContext($context, "id"))))))) {
+            // line 43
+            echo "            <a class=\"btn btn-default\" href=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method"), "html", null, true);
+            echo "\">Volver atrás</a>
+        ";
+        } else {
+            // line 45
+            echo "            <a class=\"btn btn-default\" href=\"";
+            echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_canchasClientes");
+            echo "\">Volver atrás</a>
+        ";
+        }
+        // line 46
+        echo "  
     </div>
 ";
     }
@@ -135,6 +154,6 @@ class __TwigTemplate_4708d64d37df421bc11f2611bf399c687da6d9d7e4a957f7966ab18f325
 
     public function getDebugInfo()
     {
-        return array (  118 => 37,  111 => 33,  105 => 30,  101 => 29,  97 => 28,  88 => 22,  84 => 21,  80 => 20,  74 => 17,  70 => 16,  67 => 15,  61 => 13,  59 => 12,  55 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  140 => 46,  134 => 45,  128 => 43,  126 => 42,  119 => 38,  112 => 34,  106 => 31,  102 => 30,  98 => 29,  89 => 23,  85 => 22,  81 => 21,  75 => 18,  71 => 17,  68 => 16,  62 => 14,  60 => 13,  56 => 12,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

@@ -21,7 +21,7 @@
             <ul class="nav navbar-nav">
 
                 <li class="dropdown">
-                    <li><a href="{{url('moduloclientes_cliente_reservasClientes')}}">Mis reservas</a></li>
+                <li><a href="{{url('moduloclientes_cliente_reservasClientes')}}">Mis reservas</a></li>
                 </li>
 
                 <li><a href="{{url('moduloclientes_cliente_canchasClientes')}}">Canchas</a></li>
@@ -38,8 +38,13 @@
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">Sesiones<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{url('moduloclientes_cliente_misSesionesClientes')}}">Apuntadas</a></li>
-                        <li><a href="{{url('moduloclientes_cliente_sesionesClientes')}}">Públicas</a></li>                    
-                        <li><a href="{{url('moduloclientes_cliente_sesionesPrivadasClientes')}}">Privadas</a></li>                    
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Disponibles</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{url('moduloclientes_cliente_sesionesClientes')}}">Públicas</a></li>                    
+                                <li><a href="{{url('moduloclientes_cliente_sesionesPrivadasClientes')}}">Privadas</a></li>                          </ul>
+                        </li>   
                     </ul>
                 </li>
 
@@ -48,8 +53,8 @@
 
             {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{url('moduloclientes_cliente_miPerfil', {id:app.user.id} )}}">Perfil</a></li>
-                    <li><a href="{{path('crivero_prueba_logout')}}">Logout</a></li>
+                    <li><a href="{{url('moduloclientes_cliente_miPerfil', {id:app.user.id} )}}"><img src="{{asset('images/user-128.png')}}" style="width: 18px;" /></a></li>
+                    <li><a href="{{path('crivero_prueba_logout')}}" style="margin-right:12px;"><img src="{{asset('images/logout-128.png')}}" style="width: 18px;" /></a></li>
                 </ul>
             {% endif %}
 

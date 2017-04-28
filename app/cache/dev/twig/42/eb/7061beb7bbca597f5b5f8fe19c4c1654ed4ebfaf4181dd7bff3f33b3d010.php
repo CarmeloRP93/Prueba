@@ -42,76 +42,112 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
     // line 6
     public function block_contenido($context, array $blocks = array())
     {
-        // line 7
-        echo "    <div class=\"col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4\">
-        <div class=\"panel panel-default\">
-            <div class=\"panel-heading text-center\">
-                <h1 class=\"t1\">Listado de canchas</h1>
+        echo "          
+    <div class=\"progress no-border hidden\" id=\"delete-progress\" style=\"margin-top: -20px\">
+        <div class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"45\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 100%\">
+            <span class=\"sr-only\">Loading...</span>
+        </div>
+    </div> 
+
+    <div class=\"container\">
+        <div class=\"col-xs-12 col-sm-8 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-2 col-md-offset-3 col-lg-offset-3\">
+
+            <div class=\"page-header\">
+                <h1 class=\"t1\">Canchas</h1>
             </div>
-            ";
-        // line 12
-        $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["canchas"]) ? $context["canchas"] : $this->getContext($context, "canchas")));
-        $context['loop'] = array(
-          'parent' => $context['_parent'],
-          'index0' => 0,
-          'index'  => 1,
-          'first'  => true,
-        );
-        if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
-            $length = count($context['_seq']);
-            $context['loop']['revindex0'] = $length - 1;
-            $context['loop']['revindex'] = $length;
-            $context['loop']['length'] = $length;
-            $context['loop']['last'] = 1 === $length;
-        }
-        foreach ($context['_seq'] as $context["_key"] => $context["cancha"]) {
-            // line 13
-            echo "                ";
-            if (($this->getAttribute($context["cancha"], "disponibilidad", array()) == "No disponible")) {
-                // line 14
-                echo "                    <a class=\"fila ";
-                echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
-                echo "\"> ";
+            <div class=\"panel panel-default text-center\">
+                <div class=\"panel-body myelement\">
+                    ";
+        // line 21
+        if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
+            // line 22
+            echo "                        <h2>No se encontraron canchas</h2>
+                    ";
+        } else {
+            // line 24
+            echo "                        <div class=\"table-responsive\">
+                            <table class=\"table table-hover\">
+                                <thead>
+                                    <tr>
+                                        <th>";
+            // line 28
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre", "c.tipo");
+            echo "</th>
+                                        <th>";
+            // line 29
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Deporte", "c.deporte");
+            echo "</th>
+                                        <th>";
+            // line 30
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Estado", "c.disponibilidad");
+            echo "</th>
+                                        <th><div class=\"hidden-xs\">";
+            // line 31
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Horario", "c.horario");
+            echo "</div></th>
+                                        <th class=\"t3\">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ";
+            // line 36
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
+            foreach ($context['_seq'] as $context["_key"] => $context["cancha"]) {
+                // line 37
+                echo "                                        <tr data-id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "id", array()), "html", null, true);
-                echo " - ";
+                echo "\">
+                                            <td>";
+                // line 38
                 echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "tipo", array()), "html", null, true);
-                echo " - ";
+                echo "</td>
+                                            <td>";
+                // line 39
+                echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "deporte", array()), "html", null, true);
+                echo "</td>
+                                            <td><strong>";
+                // line 40
                 echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
-                echo " </a>
-                ";
-            } else {
-                // line 16
-                echo "                    <a href=\"";
-                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_canchaClientes", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
-                echo "\" class=\"fila ";
-                echo twig_escape_filter($this->env, twig_cycle(array(0 => "par", 1 => "impar"), $this->getAttribute($context["loop"], "index", array())), "html", null, true);
-                echo "\"> ";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "id", array()), "html", null, true);
-                echo " - ";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "tipo", array()), "html", null, true);
-                echo " - ";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
-                echo " </a>
-                ";
+                echo "</strong></td>
+                                            <td><div class=\"hidden-xs\">";
+                // line 41
+                echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "horario", array()), "html", null, true);
+                echo "</div></td>
+                                            <td class=\"actions\">
+                                                <a href=\"";
+                // line 43
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_canchaClientes", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
+                echo "\" class=\"btn btn-sm btn-info\">
+                                                    Ver
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    ";
             }
-            // line 18
-            echo "            ";
-            ++$context['loop']['index0'];
-            ++$context['loop']['index'];
-            $context['loop']['first'] = false;
-            if (isset($context['loop']['length'])) {
-                --$context['loop']['revindex0'];
-                --$context['loop']['revindex'];
-                $context['loop']['last'] = 0 === $context['loop']['revindex0'];
-            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cancha'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 49
+            echo "                                </tbody>
+                            </table>
+                        </div>
+                    ";
         }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cancha'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 19
-        echo "        </div>
-    </div>
+        // line 52
+        echo "        
+                    <div>
+                        <div class=\"navigation\">
+                            ";
+        // line 55
+        echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
+        echo "
+                        </div>
+                    </div>
+                </div>                     
+            </div>                     
+        </div>                     
+    </div>                     
 ";
     }
 
@@ -127,6 +163,6 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
 
     public function getDebugInfo()
     {
-        return array (  113 => 19,  99 => 18,  85 => 16,  73 => 14,  70 => 13,  53 => 12,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  143 => 55,  138 => 52,  132 => 49,  120 => 43,  115 => 41,  111 => 40,  107 => 39,  103 => 38,  98 => 37,  94 => 36,  86 => 31,  82 => 30,  78 => 29,  74 => 28,  68 => 24,  64 => 22,  62 => 21,  43 => 6,  37 => 4,  11 => 2,);
     }
 }

@@ -13,10 +13,18 @@ use Symfony\Component\Form\FormError;
 
 class CanchaController extends Controller {
 
-    public function canchasClientesAction() {
+    public function canchasClientesAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
-        $canchas = $repository->findAll();
-        return $this->render('moduloclientesclienteBundle:Canchas:canchasClientes.html.twig', array("canchas" => $canchas));
+
+        $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $canchas = $repository->searchCanchas($searchQuery) :
+                        $canchas = $repository->getCanchas();
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $canchas, $request->query->getInt('page', 1), 5);
+
+        return $this->render('moduloclientesclienteBundle:Canchas:canchasClientes.html.twig', array("pagination" => $pagination));
     }
 
     public function canchaClientesAction($id) {
@@ -30,12 +38,12 @@ class CanchaController extends Controller {
             $dia = date('d') + $i;
             if ($dia > date('t')) {
                 $dia = $dia - date('t');
-                if ($cambio == false){
+                if ($cambio == false) {
                     $mes++;
-                    if ($mes < 10) $mes = '0' . $mes;
+                    if ($mes < 10)
+                        $mes = '0' . $mes;
                     $cambio = true;
                 }
-                
             }
             if ($dia < 10) {
                 $dia = '0' . $dia;

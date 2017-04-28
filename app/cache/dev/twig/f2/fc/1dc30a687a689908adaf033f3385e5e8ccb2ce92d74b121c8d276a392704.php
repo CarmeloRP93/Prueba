@@ -64,71 +64,73 @@ class __TwigTemplate_f2fc1dc30a687a689908adaf033f3385e5e8ccb2ce92d74b121c8d276a3
     public function block_contenido($context, array $blocks = array())
     {
         // line 13
-        echo "    <div class=\"carousel slide carousel-fade\" data-ride=\"carousel\">
-        <!-- Indicators -->
-        <ol class=\"carousel-indicators\">
-            <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>
-            <li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>
-            <li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>
-            <li data-target=\"#myCarousel\" data-slide-to=\"3\"></li>
-        </ol>
+        echo "    <body style=\" margin: 0px\">
+        <div class=\"carousel slide carousel-fade\" data-ride=\"carousel\">
+            <!-- Indicators -->
+            <ol class=\"carousel-indicators\">
+                <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>
+                <li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>
+                <li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>
+                <li data-target=\"#myCarousel\" data-slide-to=\"3\"></li>
+            </ol>
 
-        <!-- Wrapper for slides -->
-        <div class=\"carousel-inner\" role=\"listbox\">
-            <div class=\"item active\">
-";
-        // line 26
-        echo "            </div>
+            <!-- Wrapper for slides -->
+            <div class=\"carousel-inner\" role=\"listbox\">
+                <div class=\"item active\">
+                    ";
+        // line 27
+        echo "                </div>
 
-            <div class=\"item\">
-";
-        // line 30
-        echo "            </div>
-            <div class=\"item\">
-";
-        // line 33
-        echo "            </div>
-        </div>
-    </div>  
-    <br> 
-    <div class=\"container\" text=\"center\">
-        <div id=\"login-form\" class=\"loginmodal-container\">
-            <form action=\"";
-        // line 39
+                <div class=\"item\">
+                    ";
+        // line 31
+        echo "                </div>
+                <div class=\"item\">
+                    ";
+        // line 34
+        echo "                </div>
+            </div>
+        </div>  
+        <br> 
+        <div class=\"container\" text=\"center\">
+            <div id=\"login-form\" class=\"loginmodal-container\">
+                <form action=\"";
+        // line 40
         echo $this->env->getExtension('routing')->getPath("crivero_prueba_login_check");
         echo "\" method=\"post\" class=\"form-signin\">
-                <h3>Inicio de sesión</h3>
-                ";
-        // line 41
+                    <h3>Inicio de sesión</h3>
+                    ";
+        // line 42
         if ((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error"))) {
-            // line 42
-            echo "                    <div class=\"text-danger\">
-                        <p>
-                        <h4>
-                            ";
-            // line 45
+            // line 43
+            echo "                        <div class=\"text-danger\">
+                            <p>
+                            <h4>
+                                ";
+            // line 46
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans($this->getAttribute((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error")), "messageKey", array()), $this->getAttribute((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error")), "messageData", array()), "security"), "html", null, true);
             echo "
-                        </h4>
-                        </p>
-                    </div>
-                ";
+                            </h4>
+                            </p>
+                        </div>
+                    ";
         }
-        // line 50
+        // line 51
         echo "
-                <fieldset>
-                    <input type=\"text\" id=\"username\" class=\"form-control\" name=\"_username\" value=\"";
-        // line 52
+                    <fieldset>
+                        <input type=\"text\" id=\"username\" class=\"form-control\" name=\"_username\" value=\"";
+        // line 53
         echo twig_escape_filter($this->env, (isset($context["last_username"]) ? $context["last_username"] : $this->getContext($context, "last_username")), "html", null, true);
         echo "\" placeholder=\"Usuario\" required autofocus />
-                    <input type=\"password\" id=\"password\" class=\"form-control\" name=\"_password\" placeholder=\"Pass\" required />
-                    <input type=\"hidden\" name=\"_target_path\" value=\"crivero_prueba_home\" />
-                    <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">Entrar</button>   
+                        <input type=\"password\" id=\"password\" class=\"form-control\" name=\"_password\" placeholder=\"Pass\" required />
+                        <input type=\"hidden\" name=\"_target_path\" value=\"crivero_prueba_home\" />
+                        <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">Entrar</button>   
 
-                </fieldset>
-            </form>
-        </div> <!-- /login-form -->
-    </div> <!-- /container -->
+                    </fieldset>
+                </form>
+            </div> <!-- /login-form -->
+        </div> <!-- /container -->
+    </div> <!-- /body -->
 ";
     }
 
@@ -144,6 +146,6 @@ class __TwigTemplate_f2fc1dc30a687a689908adaf033f3385e5e8ccb2ce92d74b121c8d276a3
 
     public function getDebugInfo()
     {
-        return array (  122 => 52,  118 => 50,  110 => 45,  105 => 42,  103 => 41,  98 => 39,  90 => 33,  86 => 30,  81 => 26,  67 => 13,  64 => 12,  59 => 10,  53 => 9,  46 => 6,  44 => 5,  42 => 4,  39 => 3,  11 => 1,);
+        return array (  123 => 53,  119 => 51,  111 => 46,  106 => 43,  104 => 42,  99 => 40,  91 => 34,  87 => 31,  82 => 27,  67 => 13,  64 => 12,  59 => 10,  53 => 9,  46 => 6,  44 => 5,  42 => 4,  39 => 3,  11 => 1,);
     }
 }

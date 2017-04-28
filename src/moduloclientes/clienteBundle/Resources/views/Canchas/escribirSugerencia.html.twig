@@ -1,49 +1,56 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
 {% block title %}Vista de escribir sugerencia {% endblock %}
 {% block contenido %}
-    <div class="container">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
-            <div class="panel panel-default text-center">
-                <div class="panel-heading">
-                    <h1 class="t1">Escribir sugerencia</h1>   
-                </div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <h1 class="t1">Escribir sugerencia</h1>   
+                    </div>
 
-                {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
-                <div class="hidden">
-                    {{ form_label(form.destinatario) }}
-                    {{ form_widget(form.destinatario, {'value':admins[0].email, 'attr' : {'class' : 'form-control', 'placeholder' : 'Destino'} }) }}
-                    <span class="text-danger">{{ form_errors(form.destinatario) }}</span>
-                </div>
-                <div class="hidden">
-                    {{ form_label(form.tipoComentario) }}
-                    {{ form_widget(form.tipoComentario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba el tipo de sugerencia'} }) }}
-                    <span class="text-danger">{{ form_errors(form.tipoComentario) }}</span>
-                </div> 
-                <div class="hidden">
-                    {{ form_label(form.fecha) }}
-                    {{ form_widget(form.fecha, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba la descripción'} }) }}
-                    <span class="text-danger">{{ form_errors(form.fecha) }}</span>
-                </div>
+                    {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+                    <div class="hidden">
+                        {{ form_label(form.destinatario) }}
+                        {{ form_widget(form.destinatario, {'value':admins[0].email, 'attr' : {'class' : 'form-control', 'placeholder' : 'Destino'} }) }}
+                        <span class="text-danger">{{ form_errors(form.destinatario) }}</span>
+                    </div>
+                    <div class="hidden">
+                        {{ form_label(form.tipoComentario) }}
+                        {{ form_widget(form.tipoComentario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba el tipo de sugerencia'} }) }}
+                        <span class="text-danger">{{ form_errors(form.tipoComentario) }}</span>
+                    </div> 
+                    <div class="hidden">
+                        {{ form_label(form.fecha) }}
+                        {{ form_widget(form.fecha, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba la descripción'} }) }}
+                        <span class="text-danger">{{ form_errors(form.fecha) }}</span>
+                    </div>
 
-                <div class="panel-body">  
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            {{ form_label(form.asunto) }}
-                            {{ form_widget(form.asunto, {'value':asunto, 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba el asunto'}}) }}
-                            <span class="text-danger">{{ form_errors(form.asunto) }}</span>
+                    <div class="panel-body">  
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                {{ form_label(form.asunto) }}
+                                {{ form_widget(form.asunto, {'value':asunto, 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba el asunto'}}) }}
+                                <span class="text-danger">{{ form_errors(form.asunto) }}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        {{ form_label(form.descripcion) }}
-                        {{ form_widget(form.descripcion, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba la descripción'} }) }}
-                        <span class="text-danger">{{ form_errors(form.descripcion) }}</span>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <br>{{ form_widget(form.enviar, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            {{ form_label(form.descripcion) }}
+                            {{ form_widget(form.descripcion, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba la descripción'} }) }}
+                            <span class="text-danger">{{ form_errors(form.descripcion) }}</span>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <br>{{ form_widget(form.enviar, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
+                        </div>      
                     </div>      
+                    {{ form_end(form) }}
                 </div>      
-                {{ form_end(form) }}
-            </div>      
-        </div>      
+            </div> 
+        </div> 
+        {% if app.request.headers.get('referer') %}
+            <a class="btn btn-default" href="{{ app.request.headers.get('referer') }}">Volver atrás</a>
+        {% else %}
+            <a class="btn btn-default" href="{{ path('moduloclientes_cliente_canchasClientes') }}">Volver atrás</a>
+        {% endif %}  
     </div>      
 {% endblock %}

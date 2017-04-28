@@ -3,19 +3,60 @@
 
 {% block title %} Vista de Canchas {% endblock %}
 
-{% block contenido %}
-    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-        <div class="panel panel-default">
-            <div class="panel-heading text-center">
-                <h1 class="t1">Listado de canchas</h1>
-            </div>
-            {% for cancha in canchas %}
-                {% if cancha.disponibilidad == 'No disponible' %}
-                    <a class="fila {{cycle(["par","impar"], loop.index)}}"> {{ cancha.id }} - {{ cancha.tipo }} - {{ cancha.disponibilidad}} </a>
-                {% else %}
-                    <a href="{{url('moduloclientes_cliente_canchaClientes', {'id': cancha.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> {{ cancha.id }} - {{ cancha.tipo }} - {{ cancha.disponibilidad}} </a>
-                {% endif %}
-            {% endfor %}
+{% block contenido %}          
+    <div class="progress no-border hidden" id="delete-progress" style="margin-top: -20px">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            <span class="sr-only">Loading...</span>
         </div>
-    </div>
+    </div> 
+
+    <div class="container">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
+
+            <div class="page-header">
+                <h1 class="t1">Canchas</h1>
+            </div>
+            <div class="panel panel-default text-center">
+                <div class="panel-body myelement">
+                    {% if not pagination|length %}
+                        <h2>No se encontraron canchas</h2>
+                    {% else %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'c.tipo') }}</th>
+                                        <th>{{ knp_pagination_sortable(pagination, 'Deporte', 'c.deporte') }}</th>
+                                        <th>{{ knp_pagination_sortable(pagination, 'Estado', 'c.disponibilidad') }}</th>
+                                        <th><div class="hidden-xs">{{ knp_pagination_sortable(pagination, 'Horario', 'c.horario') }}</div></th>
+                                        <th class="t3">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for cancha in pagination %}
+                                        <tr data-id="{{ cancha.id }}">
+                                            <td>{{cancha.tipo}}</td>
+                                            <td>{{cancha.deporte}}</td>
+                                            <td><strong>{{cancha.disponibilidad}}</strong></td>
+                                            <td><div class="hidden-xs">{{cancha.horario}}</div></td>
+                                            <td class="actions">
+                                                <a href="{{ path('moduloclientes_cliente_canchaClientes', { id: cancha.id }) }}" class="btn btn-sm btn-info">
+                                                    Ver
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endif %}        
+                    <div>
+                        <div class="navigation">
+                            {{ knp_pagination_render(pagination) }}
+                        </div>
+                    </div>
+                </div>                     
+            </div>                     
+        </div>                     
+    </div>                     
 {% endblock %}

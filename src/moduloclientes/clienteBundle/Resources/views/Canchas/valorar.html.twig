@@ -1,34 +1,41 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
 {% block title %}Vista de valorar cancha {% endblock %}
 {% block contenido %}
-    <div class="container">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
-            <div class="panel panel-default text-center">
-                <div class="panel-heading">
-                    <h1 class="t1">Valorar cancha</h1>
-                </div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <h1 class="t1">Valorar cancha</h1>
+                    </div>
 
-                {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
-                <div class="hidden">
-                    {{ form_label(form.idCancha) }}
-                    {{ form_widget(form.idCancha, {'value':idCancha, 'attr' : {'class' : 'form-control', 'placeholder' : 'idCancha'} }) }}
-                    <span class="text-danger">{{ form_errors(form.idCancha) }}</span>
-                </div>
+                    {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+                    <div class="hidden">
+                        {{ form_label(form.idCancha) }}
+                        {{ form_widget(form.idCancha, {'value':idCancha, 'attr' : {'class' : 'form-control', 'placeholder' : 'idCancha'} }) }}
+                        <span class="text-danger">{{ form_errors(form.idCancha) }}</span>
+                    </div>
 
-                <div class="panel-body">  
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                            {{ form_label(form.puntuacion) }}
-                            {{ form_widget(form.puntuacion, { 'attr' : {'class' : 'form-control'} }) }}
-                            <span class="text-danger">{{ form_errors(form.puntuacion) }}</span>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                            <br>{{ form_widget(form.enviar, {'label' : 'Enviar valoracion', 'attr': {'class': 'btn btn-success'}}) }}                
+                    <div class="panel-body">  
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                {{ form_label(form.puntuacion) }}
+                                {{ form_widget(form.puntuacion, { 'attr' : {'class' : 'form-control'} }) }}
+                                <span class="text-danger">{{ form_errors(form.puntuacion) }}</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <br>{{ form_widget(form.enviar, {'label' : 'Enviar valoracion', 'attr': {'class': 'btn btn-success'}}) }}                
+                            </div>
                         </div>
                     </div>
+                    {{ form_end(form) }}
                 </div>
-                {{ form_end(form) }}
             </div>
         </div>
+        {% if app.request.headers.get('referer') %}
+            <a class="btn btn-default" href="{{ app.request.headers.get('referer') }}">Volver atrás</a>
+        {% else %}
+            <a class="btn btn-default" href="{{ path('moduloclientes_cliente_canchasClientes') }}">Volver atrás</a>
+        {% endif %}    
     </div>
 {% endblock %}

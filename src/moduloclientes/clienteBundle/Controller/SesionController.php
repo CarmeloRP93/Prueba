@@ -12,42 +12,46 @@ use Symfony\Component\Form\FormError;
 
 class SesionController extends Controller {
 
-    public function sesionesClientesAction() {
-        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        $sesiones = $repositorySesiones->findAll();
-        $resultado = NULL;
+    public function sesionesClientesAction(Request $request) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesiones = $repository->getSesionesGeneralesDisponibles();
+        $paginator = $this->get('knp_paginator');
+        $resultado = array();
         foreach ($sesiones as $i => $sesion) {
             if (strpos($sesion->getIdsClientes(), strval($this->getUser()->getId())) === false) {
                 $resultado[$i] = $sesion;
             }
         }
-        if ($resultado != NULL) {
-            return $this->render('moduloclientesclienteBundle:Sesiones:sesionesClientes.html.twig', array("sesiones" => $resultado));
-        }
-        return $this->render('moduloclientesclienteBundle:Sesiones:sesionesClientes.html.twig', array("sesiones" => NULL));
-    }
-    
-    public function sesionesPrivadasClientesAction() {
-        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        $sesiones = $repositorySesiones->findAll();
-        $resultado = NULL;
-        foreach ($sesiones as $i => $sesion) {
-            if (strpos($sesion->getIdsClientes(), strval($this->getUser()->getId())) === false) {
-                $resultado[$i] = $sesion;
-            }
-        }
-        if ($resultado != NULL) {
-            return $this->render('moduloclientesclienteBundle:Sesiones:sesionesPrivadasClientes.html.twig', array("sesiones" => $resultado));
-        }
-        return $this->render('moduloclientesclienteBundle:Sesiones:sesionesPrivadasClientes.html.twig', array("sesiones" => NULL));
+        $pagination = $paginator->paginate($resultado, $request->query->getInt('page', 1), 5);
+        return $this->render('moduloclientesclienteBundle:Sesiones:sesionesClientes.html.twig', array("pagination" => $pagination));
     }
 
+    public function sesionesPrivadasClientesAction(Request $request) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesiones = $repository->getSesionesClientesDedicadas($this->getUser()->getId());
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 5);
+        return $this->render('moduloclientesclienteBundle:Sesiones:sesionesPrivadasClientes.html.twig', array("pagination" => $pagination));
+    }
 
-    public function misSesionesAction() {
+    public function misSesionesAction(Request $request) {
         $idsSesionesCliente = explode('&', $this->getUser()->getSesiones());
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesiones = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
-        return $this->render('moduloclientesclienteBundle:Sesiones:misSesiones.html.twig', array("sesiones" => $sesiones));
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $sesiones, $request->query->getInt('page', 1), 5);
+        return $this->render('moduloclientesclienteBundle:Sesiones:misSesiones.html.twig', array("sesiones" => $sesiones, "pagination" => $pagination));
+    }
+
+    public function verMonitorAction($id) {
+        $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $monitor = $repositoryUsuarios->find($id);
+        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesionesMonitor = $repositorySesiones->getSesionesMonitor($id);
+
+        return $this->render('moduloclientesclienteBundle:Sesiones:verMonitor.html.twig', array("monitor" => $monitor, "sesiones" => $sesionesMonitor,));
     }
 
     public function pagoSesionAction() {
@@ -112,6 +116,9 @@ class SesionController extends Controller {
         }
 
         $usuario = $this->findEntity($this->getUser()->getId(), $em, 'CriveroPruebaBundle:Usuarios');
+        if ( $sesion->getCliente() != 'normal') {
+            $sesion->setCliente($usuario->getUsername());
+        }
         if ($usuario->getSesiones() == null) {
             $usuario->setSesiones($sesion->getId());
         } else {
@@ -165,7 +172,7 @@ class SesionController extends Controller {
             $sesion->setEstadoCliente('disponible');
             $em->persist($sesion);
         }
-        
+
         $em->persist($usuario);
         $em->flush();
         return $this->redirect($this->generateUrl('moduloclientes_cliente_misSesionesClientes'));
@@ -185,4 +192,5 @@ class SesionController extends Controller {
         }
         return $resultado;
     }
+
 }

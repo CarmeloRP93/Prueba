@@ -10,12 +10,20 @@ use Symfony\Component\Form\FormError;
 
 class ReservaController extends Controller {
 
-    public function reservasClientesAction() {
-        $em = $this->getDoctrine()->getManager();
-        $usuarioId = $this->getUser()->getId();
-        $dql = 'SELECT r FROM CriveroPruebaBundle:Reservas r WHERE r.idCliente = :id';
-        $reservas = $em->createQuery($dql)->setParameter('id', $usuarioId)->getResult();
-        return $this->render('moduloclientesclienteBundle:Reservas:reservasClientes.html.twig', array("reservas" => $reservas));
+    public function reservasClientesAction(Request $request) {
+
+
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas");
+        $cliente = $this->getUser();
+        $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $reservas = $repository->searchCanchas($searchQuery) :
+                        $reservas = $repository->getReservasCliente($cliente->getId());
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $reservas, $request->query->getInt('page', 1), 5);
+
+        return $this->render('moduloclientesclienteBundle:Reservas:reservasClientes.html.twig', array("pagination" => $pagination));
     }
 
     public function reservaClientesAction($id) {
@@ -37,7 +45,7 @@ class ReservaController extends Controller {
     public function elegirHoraAction($id, $fecha) {
         $reserva = new Reservas();
         $form = $this->createCreateFormHora($reserva, $id, $fecha);
-        $fecha2 = $fecha.'-'.date('Y');
+        $fecha2 = $fecha . '-' . date('Y');
         $fecha3 = date('Y-m-d', strtotime($fecha2));
         return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'fecha' => $fecha3, 'mensaje' => null));
     }
@@ -85,7 +93,7 @@ class ReservaController extends Controller {
             //Comprobamos si se ha seleccionado algún horario
             if (count($form->get('horario')->getData()) == 0) {
                 $form->get('horario')->addError(new FormError('Seleccione una o más opciones'));
-                return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null));
+                return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null, 'fecha' => $form->get('fechaInicio')->getData()));
             }
 
             //Concatenamos en horitas las horas seleccionadas en una string
@@ -96,7 +104,7 @@ class ReservaController extends Controller {
                 if ($i != count($form->get('horario')->getData()) - 1) {
                     if ((int) substr(strval($form->get('horario')->getData()[$i]), 0, 2) + 1 != (int) substr(strval($form->get('horario')->getData()[$i + 1]), 0, 2)) {
                         $mensaje = 'Seleccione horas contiguas. Para escoger horas no contiguas realice distintas reservas';
-                        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => $mensaje));
+                        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => $mensaje, 'fecha' => $form->get('fechaInicio')->getData()));
                     }
                 }
 

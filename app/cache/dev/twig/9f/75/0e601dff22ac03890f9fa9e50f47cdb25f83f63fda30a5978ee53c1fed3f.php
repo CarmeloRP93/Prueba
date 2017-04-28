@@ -96,34 +96,34 @@ class __TwigTemplate_9f750e601dff22ac03890f9fa9e50f47cdb25f83f63fda30a5978ee53c1
         // line 27
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["reserva"]) ? $context["reserva"] : $this->getContext($context, "reserva")), "fechaInicio", array()), "d/m/Y"), "html", null, true);
         echo " de 
-                            ";
+                                ";
         // line 28
         $context["horario"] = twig_split_filter($this->env, $this->getAttribute((isset($context["reserva"]) ? $context["reserva"] : $this->getContext($context, "reserva")), "horario", array()), "&");
         echo " 
-                            ";
+                                ";
         // line 29
         if ((twig_length_filter($this->env, (isset($context["horario"]) ? $context["horario"] : $this->getContext($context, "horario"))) > 2)) {
             // line 30
-            echo "                                ";
+            echo "                                    ";
             $context["horarioFinal1"] = twig_split_filter($this->env, $this->getAttribute((isset($context["horario"]) ? $context["horario"] : $this->getContext($context, "horario")), 0, array(), "array"), "-");
             echo " 
-                                ";
+                                    ";
             // line 31
             $context["horarioFinal2"] = twig_split_filter($this->env, $this->getAttribute((isset($context["horario"]) ? $context["horario"] : $this->getContext($context, "horario")), (twig_length_filter($this->env, (isset($context["horario"]) ? $context["horario"] : $this->getContext($context, "horario"))) - 2), array(), "array"), "-");
             echo " 
-                                ";
+                                    ";
             // line 32
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["horarioFinal1"]) ? $context["horarioFinal1"] : $this->getContext($context, "horarioFinal1")), 0, array(), "array"), "html", null, true);
             echo "-";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["horarioFinal2"]) ? $context["horarioFinal2"] : $this->getContext($context, "horarioFinal2")), (twig_length_filter($this->env, (isset($context["horarioFinal2"]) ? $context["horarioFinal2"] : $this->getContext($context, "horarioFinal2"))) - 1), array(), "array"), "html", null, true);
             echo "
-                            ";
+                                ";
         } else {
             // line 34
-            echo "                                ";
+            echo "                                    ";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["horario"]) ? $context["horario"] : $this->getContext($context, "horario")), 0, array(), "array"), "html", null, true);
             echo "</p>
-                            ";
+                                ";
         }
         // line 36
         echo "                            <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
@@ -162,6 +162,10 @@ class __TwigTemplate_9f750e601dff22ac03890f9fa9e50f47cdb25f83f63fda30a5978ee53c1
                 </div><br>
             </div>
         </div>
+        <a class=\"btn btn-default\" href=\"";
+        // line 57
+        echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_reservasClientes");
+        echo "\">Volver atrás</a>
     </div>
 ";
     }
@@ -178,6 +182,6 @@ class __TwigTemplate_9f750e601dff22ac03890f9fa9e50f47cdb25f83f63fda30a5978ee53c1
 
     public function getDebugInfo()
     {
-        return array (  160 => 53,  151 => 47,  145 => 44,  138 => 40,  132 => 37,  129 => 36,  123 => 34,  116 => 32,  112 => 31,  107 => 30,  105 => 29,  101 => 28,  97 => 27,  85 => 19,  79 => 17,  77 => 16,  72 => 15,  66 => 13,  64 => 12,  59 => 10,  51 => 5,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  167 => 57,  160 => 53,  151 => 47,  145 => 44,  138 => 40,  132 => 37,  129 => 36,  123 => 34,  116 => 32,  112 => 31,  107 => 30,  105 => 29,  101 => 28,  97 => 27,  85 => 19,  79 => 17,  77 => 16,  72 => 15,  66 => 13,  64 => 12,  59 => 10,  51 => 5,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

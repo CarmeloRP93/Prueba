@@ -25,14 +25,14 @@
                         <div class="row">
                             <h4>Fecha reserva </h4>
                             <p>El día {{reserva.fechaInicio|date('d/m/Y')}} de 
-                            {% set horario = reserva.horario|split('&') %} 
-                            {% if horario|length > 2 %}
-                                {% set horarioFinal1 = horario[0]|split('-') %} 
-                                {% set horarioFinal2 = horario[horario|length - 2]|split('-') %} 
-                                {{horarioFinal1[0]}}-{{horarioFinal2[horarioFinal2|length - 1]}}
-                            {% else %}
-                                {{horario[0]}}</p>
-                            {% endif %}
+                                {% set horario = reserva.horario|split('&') %} 
+                                {% if horario|length > 2 %}
+                                    {% set horarioFinal1 = horario[0]|split('-') %} 
+                                    {% set horarioFinal2 = horario[horario|length - 2]|split('-') %} 
+                                    {{horarioFinal1[0]}}-{{horarioFinal2[horarioFinal2|length - 1]}}
+                                {% else %}
+                                    {{horario[0]}}</p>
+                                {% endif %}
                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                 <h4>Deporte </h4><p>{{cancha.deporte}}</p>
                             </div> 
@@ -54,5 +54,6 @@
                 </div><br>
             </div>
         </div>
+        <a class="btn btn-default" href="{{ path('moduloclientes_cliente_reservasClientes') }}">Volver atrás</a>
     </div>
 {% endblock %}

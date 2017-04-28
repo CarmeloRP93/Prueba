@@ -73,7 +73,7 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
             <ul class=\"nav navbar-nav\">
 
                 <li class=\"dropdown\">
-                    <li><a href=\"";
+                <li><a href=\"";
         // line 24
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_reservasClientes");
         echo "\">Mis reservas</a></li>
@@ -105,40 +105,49 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
         // line 40
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_misSesionesClientes");
         echo "\">Apuntadas</a></li>
-                        <li><a href=\"";
-        // line 41
+                        <li role=\"separator\" class=\"divider\"></li>
+                        <li class=\"dropdown-submenu\">
+                            <a tabindex=\"-1\" href=\"#\">Disponibles</a>
+                            <ul class=\"dropdown-menu\">
+                                <li><a href=\"";
+        // line 45
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_sesionesClientes");
         echo "\">Públicas</a></li>                    
-                        <li><a href=\"";
-        // line 42
+                                <li><a href=\"";
+        // line 46
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_sesionesPrivadasClientes");
-        echo "\">Privadas</a></li>                    
+        echo "\">Privadas</a></li>                          </ul>
+                        </li>   
                     </ul>
                 </li>
 
                 <li><a href=\"";
-        // line 46
+        // line 51
         echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_pagoSesion");
         echo "\">Pagar</a></li>
             </ul>
 
             ";
-        // line 49
+        // line 54
         if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_FULLY")) {
-            // line 50
+            // line 55
             echo "                <ul class=\"nav navbar-nav navbar-right\">
                     <li><a href=\"";
-            // line 51
+            // line 56
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_miPerfil", array("id" => $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))), "html", null, true);
-            echo "\">Perfil</a></li>
+            echo "\"><img src=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/user-128.png"), "html", null, true);
+            echo "\" style=\"width: 18px;\" /></a></li>
                     <li><a href=\"";
-            // line 52
+            // line 57
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
-            echo "\">Logout</a></li>
+            echo "\" style=\"margin-right:12px;\"><img src=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/logout-128.png"), "html", null, true);
+            echo "\" style=\"width: 18px;\" /></a></li>
                 </ul>
             ";
         }
-        // line 55
+        // line 60
         echo "
             <form class=\"navbar-form navbar-center\" role=\"search\">
                 <div class=\"form-group\">
@@ -152,16 +161,16 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
 ";
     }
 
-    // line 66
+    // line 71
     public function block_body($context, array $blocks = array())
     {
-        // line 67
+        // line 72
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 69
+        // line 74
         $this->displayBlock('contenido', $context, $blocks);
-        // line 71
+        // line 76
         echo "        </div>
 
     </div>
@@ -169,10 +178,10 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
 ";
     }
 
-    // line 69
+    // line 74
     public function block_contenido($context, array $blocks = array())
     {
-        // line 70
+        // line 75
         echo "            ";
     }
 
@@ -188,6 +197,6 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
 
     public function getDebugInfo()
     {
-        return array (  176 => 70,  173 => 69,  165 => 71,  163 => 69,  159 => 67,  156 => 66,  142 => 55,  136 => 52,  132 => 51,  129 => 50,  127 => 49,  121 => 46,  114 => 42,  110 => 41,  106 => 40,  96 => 33,  92 => 32,  84 => 27,  78 => 24,  67 => 16,  54 => 5,  51 => 4,  46 => 3,  40 => 2,  11 => 1,);
+        return array (  185 => 75,  182 => 74,  174 => 76,  172 => 74,  168 => 72,  165 => 71,  151 => 60,  143 => 57,  137 => 56,  134 => 55,  132 => 54,  126 => 51,  118 => 46,  114 => 45,  106 => 40,  96 => 33,  92 => 32,  84 => 27,  78 => 24,  67 => 16,  54 => 5,  51 => 4,  46 => 3,  40 => 2,  11 => 1,);
     }
 }

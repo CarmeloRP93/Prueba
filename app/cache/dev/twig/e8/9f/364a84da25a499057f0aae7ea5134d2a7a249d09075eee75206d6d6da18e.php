@@ -162,7 +162,10 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
                 </table>
             </div>
         </div>
-                    
+        <a class=\"btn btn-default\" href=\"";
+        // line 62
+        echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_canchasClientes");
+        echo "\">Volver atrás</a>
     </div>
 ";
     }
@@ -179,6 +182,6 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
 
     public function getDebugInfo()
     {
-        return array (  161 => 58,  154 => 56,  145 => 54,  141 => 53,  137 => 52,  134 => 51,  130 => 50,  126 => 48,  115 => 40,  106 => 34,  100 => 31,  94 => 28,  88 => 25,  82 => 22,  73 => 15,  69 => 13,  63 => 11,  61 => 10,  57 => 9,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  167 => 62,  161 => 58,  154 => 56,  145 => 54,  141 => 53,  137 => 52,  134 => 51,  130 => 50,  126 => 48,  115 => 40,  106 => 34,  100 => 31,  94 => 28,  88 => 25,  82 => 22,  73 => 15,  69 => 13,  63 => 11,  61 => 10,  57 => 9,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

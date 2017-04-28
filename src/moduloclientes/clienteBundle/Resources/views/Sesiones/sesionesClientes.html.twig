@@ -1,26 +1,50 @@
-{# empty Twig template #}
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
-
-{% block title %} Vista de entrenamiento {% endblock %}
-
+{% block title %} Vista de sesiones públicas {% endblock %}
 {% block contenido %}
-    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-        <div class="panel panel-default">
-            <div class="panel-heading text-center">
-                 <h1 class="t1">Listado de entrenamiento</h1>
+    <div class="container">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
+            <div class="page-header">
+                <h1 class="t1">Sesiones públicas</h1>
             </div>
-            {% for sesion in sesiones %}
-                {% if (sesion != NULL) %}
-                    {% if sesion.estadoCliente != 'no disponible' and sesion.cliente == 'normal' %}
-                        <a href="{{url('moduloclientes_cliente_sesionClientes', {'id': sesion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}"> Sesion {{sesion.id}}: {{ sesion.nombre }} - {{ sesion.estadoCliente}} </a>
-                    {% endif %}
-                {% endif %}
-            {% endfor %}
-        </div>
-    </div>
+            <div class="panel panel-default text-center">
+                <div class="panel-body myelement">
+                    {% if not pagination|length %}
+                        <h2>No se encontraron sesiones</h2>
+                    {% else %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>{{ knp_pagination_sortable(pagination, 'Nombre', 's.nombre') }}</th>
+                                        <th>{{ knp_pagination_sortable(pagination, 'Monitor', 's.monitor') }}</th>
+                                        <th><div class="hidden-xs">{{ knp_pagination_sortable(pagination, 'Objetivo', 's.objetivo') }}</div></th>
+                                        <th class="t3">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for sesion in pagination %}
+                                        <tr data-id="{{ sesion.id }}">
+                                            <td>{{sesion.nombre}}</td>
+                                            <td>{{sesion.monitor}}</td>
+                                            <td>{{sesion.objetivo}}</td>
+                                            <td class="actions">
+                                                <a href="{{ path('moduloclientes_cliente_sesionClientes', { id: sesion.id }) }}" class="btn btn-sm btn-info">
+                                                    Ver
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endif %}        
+                    <div>
+                        <div class="navigation">
+                            {{ knp_pagination_render(pagination) }}
+                        </div>
+                    </div>
+                </div>                     
+            </div>                     
+        </div>                     
+    </div>                                
 {% endblock %}
-
-
-
-
-

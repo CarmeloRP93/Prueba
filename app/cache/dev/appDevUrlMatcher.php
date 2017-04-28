@@ -587,17 +587,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/mi')) {
-            // moduloclientes_cliente_misSesionesClientes
-            if ($pathinfo === '/misSesiones') {
-                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::misSesionesAction',  '_route' => 'moduloclientes_cliente_misSesionesClientes',);
-            }
+        // moduloclientes_cliente_misSesionesClientes
+        if ($pathinfo === '/misSesiones') {
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::misSesionesAction',  '_route' => 'moduloclientes_cliente_misSesionesClientes',);
+        }
 
-            // moduloclientes_cliente_miPerfil
-            if ($pathinfo === '/miPerfil') {
-                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\UsuarioController::miPerfilAction',  '_route' => 'moduloclientes_cliente_miPerfil',);
-            }
+        // moduloclientes_cliente_verMonitor
+        if (0 === strpos($pathinfo, '/verMonitor') && preg_match('#^/verMonitor/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_verMonitor')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::verMonitorAction',));
+        }
 
+        // moduloclientes_cliente_miPerfil
+        if ($pathinfo === '/miPerfil') {
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\UsuarioController::miPerfilAction',  '_route' => 'moduloclientes_cliente_miPerfil',);
         }
 
         // moduloclientes_cliente_escribirSugerencia

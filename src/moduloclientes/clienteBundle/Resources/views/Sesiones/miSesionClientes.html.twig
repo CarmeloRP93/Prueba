@@ -2,7 +2,7 @@
 {% block title %}Vista de {{sesion.nombre}} {% endblock %}
 {% block contenido %}
 
-    <div id="sesiondat" class="container">
+    <div id="sesiondat" class="container text-center">
         <div class="page-header">    
             <h1 class="t1">Sesión - {{sesion.nombre}}</h1>
         </div>
@@ -19,7 +19,9 @@
                 <div class="panel panel-default">                  
                     <div class="panel-body">                   
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <h4>Monitor</h4> <p>{{sesion.monitor}}</p>
+                            <h4>Monitor</h4> 
+                            <a href="{{path('moduloclientes_cliente_verMonitor', {id: sesion.idMonitor})}}" 
+                               class="btn btn-success text-center center-block img-responsive" style="width: 180px;">{{sesion.monitor}}</a>
                             <h4>Ejercicios</h4> <p>{{sesion.ejercicios}}</p>
                             <h4>Repeticiones</h4> <p>{{sesion.repeticiones}} por ejercicio</p>
                         </div>
@@ -33,9 +35,11 @@
             </div>
         </div>
 
-        <div class="text-center">
-            <a href="{{path('moduloclientes_cliente_sesionesClientes_abandonar', {id: sesion.id})}}" 
-               class="btn btn-danger text-center img-responsive" style="width: 220px;">Abandonar</a>
-        </div>
+        <a href="{{path('moduloclientes_cliente_sesionesClientes_abandonar', {id: sesion.id})}}" 
+           class="btn btn-danger text-center img-responsive" style="width: 220px;">Abandonar</a><br>
+
+        {% if app.request.headers.get('referer') %}
+            <a class="btn btn-default" href="{{ path('moduloclientes_cliente_misSesionesClientes') }}">Volver atrás</a>
+        {% endif %}
     </div>
 {% endblock %}

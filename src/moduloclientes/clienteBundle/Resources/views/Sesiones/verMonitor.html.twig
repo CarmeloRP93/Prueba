@@ -1,0 +1,43 @@
+{% extends 'moduloclientesclienteBundle::main.html.twig' %}
+{% block title %} Monitor {{ monitor.username }} {% endblock %}
+{% block contenido %}
+    <div class="container text-center">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <img src="{{ asset('images/' ~ monitor.imagen) }}" class="img-circle" style="width:60px;" />        
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <h3 style="font-weight: 600">{{ monitor.username|capitalize }}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">  
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <h4>Nombre </h4> <p>{{monitor.nombre|capitalize}}</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <h4>E-mail </h4> <p>{{monitor.email}}</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <h4>Fecha nacimiento </h4> <p>{{monitor.fNacimiento}}</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <h4>Teléfono </h4> <p>{{monitor.telefono}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>                     
+            {% if app.request.headers.get('referer') %}
+                <a class="btn btn-default" href="{{ app.request.headers.get('referer') }}">Volver atrás</a>
+            {% else %}
+                <a class="btn btn-default" href="{{ path('moduloclientes_cliente_sesionesClientes') }}">Volver atrás</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
