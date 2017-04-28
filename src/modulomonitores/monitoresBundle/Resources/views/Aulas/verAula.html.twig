@@ -1,0 +1,32 @@
+{% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
+
+{% block title %} {{aula.nombre}} {% endblock %}
+{% block contenido %}
+    <div class="container text-center">
+        <h3>Detalles del Aula</h3>
+    </div>
+
+    <div class="text-center">
+        <h4>{{aula.nombre}}</h4>
+    </div>
+
+    <div class="col-md-6 col-xs-12">
+
+        <div class="text-center">
+            <img src="{{ asset('images/' ~ aula.imagen) }}" style="width:250px; height: 150px"  class="img-rounded"/><br>
+
+            <br>{% if aula.disponibilidad == "Disponible" %}
+            <div class="text-center">
+                <button class="btn btn-success">{{aula.disponibilidad}}</button>
+            </div>
+            {% else %}
+                <div class="text-center">
+                    <button class="btn btn-danger">{{aula.disponibilidad}}</button>
+                </div>
+                {% endif %}
+                </div><br>
+
+            </div>
+
+           
+{% endblock %}

@@ -1,7 +1,3 @@
-modulomonitores_monitores_homeMonitores:
-    pattern:  /homeMonitores
-    defaults: { _controller: modulomonitoresmonitoresBundle:Home:homeMonitores }
-    
 modulomonitores_monitores_sesionesMonitores:
     pattern:  /sesionesMonitores
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:sesionesMonitores }
@@ -41,7 +37,7 @@ modulomonitores_monitores_editarSesion:
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:editarSesion }
 modulomonitores_monitores_editarSesionDedicada:
     pattern:  /editarSesionDedicada/{id}
-    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:editarSesionDedicada }
+    defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:editarSesionDedicada }
 modulomonitores_monitores_suspender:
     pattern:  /suspender/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:suspender }    
@@ -60,7 +56,7 @@ modulomonitores_monitores_suspenderSeDe:
         _method:  POST|PUT|GET  
 modulomonitores_monitores_nuevaSesionDedicada:
     pattern:  /nuevaSesionDedicada
-    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:nuevaSesionDedicada }
+    defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:nuevaSesionDedicada }
 modulomonitores_monitores_crearSesion:
     pattern:  /crearSesion
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:crearSesion }
@@ -73,12 +69,12 @@ modulomonitores_monitores_editar:
         _method:  POST|PUT|GET
 modulomonitores_monitores_editarDedicada:
     pattern:  /editarDedicada/{id}
-    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:editarDedicada }
+    defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:editarDedicada }
     requirements:
         _method:  POST|PUT|GET
 modulomonitores_monitores_crearSesionDedicada:
     pattern:  /crearSesionDedicada
-    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:crearSesionDedicada }
+    defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:crearSesionDedicada }
     requirements:
         _method:  POST|GET
 modulomonitores_monitores_eliminarSesion:
@@ -91,34 +87,32 @@ modulomonitores_monitores_eliminarSesionDedicada:
     methods: [POST, DELETE]
 modulomonitores_monitores_miperfilm:
     pattern:  /monitor/perfil
-    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:miperfilm}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Perfil:miperfilm}
     
 modulomonitores_monitores_editarmiperfilm:
     pattern:  /editarmiperfilm
-    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:editarmiperfilm }
+    defaults: { _controller: modulomonitoresmonitoresBundle:Perfil:editarmiperfilm }
 
 modulomonitores_monitores_actualizarmiperfilm:
     pattern:  /actualizarmiperfilm
-    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:actualizarmiperfilm }
+    defaults: { _controller: modulomonitoresmonitoresBundle:Perfil:actualizarmiperfilm }
     
 modulomonitores_monitores_verParticipantes:
     pattern:  /miSesionMonitores/{id}/verParticipantes
-    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:verParticipantes }
+    defaults: { _controller: modulomonitoresmonitoresBundle:Participantes:verParticipantes }
 modulomonitores_monitores_participante:
     pattern:  /miSesionMonitores/{id}/verParticipantes/{idUsuario}
-    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:participante }
+    defaults: { _controller: modulomonitoresmonitoresBundle:Participantes:participante }
 modulomonitores_monitores_participantePrivado:
     pattern:  /miSesionMonitores/{id}/participantePrivado
-    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:participantePrivado }
+    defaults: { _controller: modulomonitoresmonitoresBundle:Participantes:participantePrivado }
 modulomonitores_monitores_abandonarSesion:
     pattern:  /abandonarSesion/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:abandonarSesion}
 modulomonitores_monitores_expulsar:
     pattern:  /expulsar/{id}/{idUsuario}
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:expulsar}
-modulomonitores_monitores_verHorario:
-    pattern:  /verHorario/{id}
-    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:verHorario }    
+  
     
 modulomonitores_monitores_terminar:
     pattern:  /terminar/{id}
@@ -128,4 +122,50 @@ modulomonitores_monitores_terminar:
 
 modulomonitores_monitores_notificacionesMonitor:
     pattern:  /notificacionesMonitor
-    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:notificacionesMonitor }
+    defaults: { _controller: modulomonitoresmonitoresBundle:Notificaciones:notificacionesMonitor }
+    
+modulomonitores_monitores_verHorario:
+    pattern:  /verHorario/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Horario:verHorario }  
+    
+    
+    
+    
+modulomonitores_monitores_enviarMensajeCliente:
+    pattern: /enviarMensajeMonitor/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Mensajeria:enviarMensajeCliente }
+
+modulomonitores_monitores_mensajearAdministradorMonitor:
+    pattern: /mensajearAdministradorMonitor
+    defaults: { _controller: modulomonitoresmonitoresBundle:Mensajeria:mensajearAdministradorMonitor }
+
+modulomonitores_monitores_enviandoMonitor:
+    pattern: /enviandoMonitor/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Mensajeria:enviandoMonitor }
+    requirements:
+        _method:  POST|GET
+        
+modulomonitores_monitores_responderMensajeMonitor:
+    pattern: /mensaje/responderMonitor/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Mensajeria:responderMensajeMonitor }        
+
+modulomonitores_monitores_mensajes_recibidosMonitor:
+    pattern: /mensajes/recibidosMonitor
+    defaults: { _controller: modulomonitoresmonitoresBundle:Mensajeria:mensajesRecibidosMonitor }
+    
+modulomonitores_monitores_mensajes_enviadosMonitor:
+    pattern: /mensajes/enviadosMonitor
+    defaults: { _controller: modulomonitoresmonitoresBundle:Mensajeria:mensajesEnviadosMonitor }
+    
+modulomonitores_monitores_mensajeMonitor:
+    pattern: /mensajeMonitor/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Mensajeria:mensajeMonitor }
+    
+    
+modulomonitores_monitores_listadoAulas:
+    pattern: /listadoAulas/
+    defaults: { _controller: modulomonitoresmonitoresBundle:Aulas:listadoAulas }
+    
+modulomonitores_monitores_verAula:
+    pattern: /verAula/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Aulas:verAula }

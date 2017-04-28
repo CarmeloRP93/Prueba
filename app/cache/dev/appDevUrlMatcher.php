@@ -120,11 +120,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // modulomonitores_monitores_homeMonitores
-        if ($pathinfo === '/homeMonitores') {
-            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\HomeController::homeMonitoresAction',  '_route' => 'modulomonitores_monitores_homeMonitores',);
-        }
-
         if (0 === strpos($pathinfo, '/sesion')) {
             // modulomonitores_monitores_sesionesMonitores
             if ($pathinfo === '/sesionesMonitores') {
@@ -184,7 +179,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             // modulomonitores_monitores_editarSesionDedicada
             if (0 === strpos($pathinfo, '/editarSesionDedicada') && preg_match('#^/editarSesionDedicada/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_editarSesionDedicada')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::editarSesionDedicadaAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_editarSesionDedicada')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DedicadaController::editarSesionDedicadaAction',));
             }
 
         }
@@ -229,7 +224,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         // modulomonitores_monitores_nuevaSesionDedicada
         if ($pathinfo === '/nuevaSesionDedicada') {
-            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::nuevaSesionDedicadaAction',  '_route' => 'modulomonitores_monitores_nuevaSesionDedicada',);
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DedicadaController::nuevaSesionDedicadaAction',  '_route' => 'modulomonitores_monitores_nuevaSesionDedicada',);
         }
 
         // modulomonitores_monitores_crearSesion
@@ -262,7 +257,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     goto not_modulomonitores_monitores_editarDedicada;
                 }
 
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_editarDedicada')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::editarDedicadaAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_editarDedicada')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DedicadaController::editarDedicadaAction',));
             }
             not_modulomonitores_monitores_editarDedicada:
 
@@ -275,7 +270,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 goto not_modulomonitores_monitores_crearSesionDedicada;
             }
 
-            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::crearSesionDedicadaAction',  '_route' => 'modulomonitores_monitores_crearSesionDedicada',);
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DedicadaController::crearSesionDedicadaAction',  '_route' => 'modulomonitores_monitores_crearSesionDedicada',);
         }
         not_modulomonitores_monitores_crearSesionDedicada:
 
@@ -306,33 +301,33 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         // modulomonitores_monitores_miperfilm
         if ($pathinfo === '/monitor/perfil') {
-            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::miperfilmAction',  '_route' => 'modulomonitores_monitores_miperfilm',);
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\PerfilController::miperfilmAction',  '_route' => 'modulomonitores_monitores_miperfilm',);
         }
 
         // modulomonitores_monitores_editarmiperfilm
         if ($pathinfo === '/editarmiperfilm') {
-            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::editarmiperfilmAction',  '_route' => 'modulomonitores_monitores_editarmiperfilm',);
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\PerfilController::editarmiperfilmAction',  '_route' => 'modulomonitores_monitores_editarmiperfilm',);
         }
 
         // modulomonitores_monitores_actualizarmiperfilm
         if ($pathinfo === '/actualizarmiperfilm') {
-            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::actualizarmiperfilmAction',  '_route' => 'modulomonitores_monitores_actualizarmiperfilm',);
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\PerfilController::actualizarmiperfilmAction',  '_route' => 'modulomonitores_monitores_actualizarmiperfilm',);
         }
 
         if (0 === strpos($pathinfo, '/miSesionMonitores')) {
             // modulomonitores_monitores_verParticipantes
             if (preg_match('#^/miSesionMonitores/(?P<id>[^/]++)/verParticipantes$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_verParticipantes')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::verParticipantesAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_verParticipantes')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\ParticipantesController::verParticipantesAction',));
             }
 
             // modulomonitores_monitores_participante
             if (preg_match('#^/miSesionMonitores/(?P<id>[^/]++)/verParticipantes/(?P<idUsuario>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_participante')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::participanteAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_participante')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\ParticipantesController::participanteAction',));
             }
 
             // modulomonitores_monitores_participantePrivado
             if (preg_match('#^/miSesionMonitores/(?P<id>[^/]++)/participantePrivado$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_participantePrivado')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::participantePrivadoAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_participantePrivado')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\ParticipantesController::participantePrivadoAction',));
             }
 
         }
@@ -345,11 +340,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         // modulomonitores_monitores_expulsar
         if (0 === strpos($pathinfo, '/expulsar') && preg_match('#^/expulsar/(?P<id>[^/]++)/(?P<idUsuario>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_expulsar')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::expulsarAction',));
-        }
-
-        // modulomonitores_monitores_verHorario
-        if (0 === strpos($pathinfo, '/verHorario') && preg_match('#^/verHorario/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_verHorario')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::verHorarioAction',));
         }
 
         // modulomonitores_monitores_terminar
@@ -365,7 +355,73 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         // modulomonitores_monitores_notificacionesMonitor
         if ($pathinfo === '/notificacionesMonitor') {
-            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::notificacionesMonitorAction',  '_route' => 'modulomonitores_monitores_notificacionesMonitor',);
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\NotificacionesController::notificacionesMonitorAction',  '_route' => 'modulomonitores_monitores_notificacionesMonitor',);
+        }
+
+        // modulomonitores_monitores_verHorario
+        if (0 === strpos($pathinfo, '/verHorario') && preg_match('#^/verHorario/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_verHorario')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\HorarioController::verHorarioAction',));
+        }
+
+        // modulomonitores_monitores_enviarMensajeCliente
+        if (0 === strpos($pathinfo, '/enviarMensajeMonitor') && preg_match('#^/enviarMensajeMonitor/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_enviarMensajeCliente')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\MensajeriaController::enviarMensajeClienteAction',));
+        }
+
+        // modulomonitores_monitores_mensajearAdministradorMonitor
+        if ($pathinfo === '/mensajearAdministradorMonitor') {
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\MensajeriaController::mensajearAdministradorMonitorAction',  '_route' => 'modulomonitores_monitores_mensajearAdministradorMonitor',);
+        }
+
+        // modulomonitores_monitores_enviandoMonitor
+        if (0 === strpos($pathinfo, '/enviandoMonitor') && preg_match('#^/enviandoMonitor/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                goto not_modulomonitores_monitores_enviandoMonitor;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_enviandoMonitor')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\MensajeriaController::enviandoMonitorAction',));
+        }
+        not_modulomonitores_monitores_enviandoMonitor:
+
+        if (0 === strpos($pathinfo, '/mensaje')) {
+            // modulomonitores_monitores_responderMensajeMonitor
+            if (0 === strpos($pathinfo, '/mensaje/responderMonitor') && preg_match('#^/mensaje/responderMonitor/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_responderMensajeMonitor')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\MensajeriaController::responderMensajeMonitorAction',));
+            }
+
+            if (0 === strpos($pathinfo, '/mensajes')) {
+                // modulomonitores_monitores_mensajes_recibidosMonitor
+                if ($pathinfo === '/mensajes/recibidosMonitor') {
+                    return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\MensajeriaController::mensajesRecibidosMonitorAction',  '_route' => 'modulomonitores_monitores_mensajes_recibidosMonitor',);
+                }
+
+                // modulomonitores_monitores_mensajes_enviadosMonitor
+                if ($pathinfo === '/mensajes/enviadosMonitor') {
+                    return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\MensajeriaController::mensajesEnviadosMonitorAction',  '_route' => 'modulomonitores_monitores_mensajes_enviadosMonitor',);
+                }
+
+            }
+
+            // modulomonitores_monitores_mensajeMonitor
+            if (0 === strpos($pathinfo, '/mensajeMonitor') && preg_match('#^/mensajeMonitor/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_mensajeMonitor')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\MensajeriaController::mensajeMonitorAction',));
+            }
+
+        }
+
+        // modulomonitores_monitores_listadoAulas
+        if (rtrim($pathinfo, '/') === '/listadoAulas') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'modulomonitores_monitores_listadoAulas');
+            }
+
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\AulasController::listadoAulasAction',  '_route' => 'modulomonitores_monitores_listadoAulas',);
+        }
+
+        // modulomonitores_monitores_verAula
+        if (0 === strpos($pathinfo, '/verAula') && preg_match('#^/verAula/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_verAula')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\AulasController::verAulaAction',));
         }
 
         if (0 === strpos($pathinfo, '/cancha')) {

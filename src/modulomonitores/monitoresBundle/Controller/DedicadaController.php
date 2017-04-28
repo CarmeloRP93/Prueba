@@ -4,9 +4,12 @@ namespace modulomonitores\monitoresBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Crivero\PruebaBundle\Entity\Sesiones;
+use Crivero\PruebaBundle\Entity\Notificaciones;
 use Crivero\PruebaBundle\Form\SesionesType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormError;
+
+
 
 class DedicadaController extends Controller {
 
@@ -25,16 +28,17 @@ class DedicadaController extends Controller {
         foreach ($sesiones as $clave => $sesion) {
             $aulas[$clave] = $repositoryAula->find($sesion->getAula());
         }
-        return $this->render('modulomonitoresmonitoresBundle:Default:sesionesDedicadas.html.twig', array("pagination" => $pagination, "aulas" => $aulas));
+        return $this->render('modulomonitoresmonitoresBundle:Privada:sesionesDedicadas.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),"pagination" => $pagination, "aulas" => $aulas));
     }
 
     public function sesionDedicadaAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repository->find($id);
+        $this->changeStateNotification($id);
         $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $aula = $repositoryAula->find($sesion->getAula());
 
-        return $this->render('modulomonitoresmonitoresBundle:Default:sesionDedicada.html.twig', array("sesion" => $sesion, "aula" => $aula));
+        return $this->render('modulomonitoresmonitoresBundle:Privada:sesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),"sesion" => $sesion, "aula" => $aula));
     }
 
     public function misSesionesDedicadasAction(Request $request) {
@@ -53,25 +57,17 @@ class DedicadaController extends Controller {
         foreach ($sesiones as $clave => $sesion) {
             $aulas[$clave] = $repositoryAula->find($sesion->getAula());
         }
-        return $this->render('modulomonitoresmonitoresBundle:Default:misSesionesDedicadas.html.twig', array("pagination" => $pagination, "aulas" => $aulas));
+        return $this->render('modulomonitoresmonitoresBundle:Privada:misSesionesDedicadas.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),"pagination" => $pagination, "aulas" => $aulas));
     }
 
     public function miSesionDedicadaAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $sesion = $repository->find($id);
+        $this->changeStateNotification($id);
         $aula = $repositoryAula->find($sesion->getAula());
         $deleteForm = $this->createDeleteFormDedicada($sesion);
-        return $this->render('modulomonitoresmonitoresBundle:Default:miSesionDedicada.html.twig', array("sesion" => $sesion, "aula" => $aula, 'delete_form' => $deleteForm->createView()));
-    }
-
-    public function miSesionMonitoresAction($id) {
-        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
-        $sesion = $repository->find($id);
-        $aula = $repositoryAula->find($sesion->getAula());
-        $deleteForm = $this->createDeleteForm($sesion);
-        return $this->render('modulomonitoresmonitoresBundle:Default:miSesionMonitores.html.twig', array("sesion" => $sesion, "aula" => $aula, 'delete_form' => $deleteForm->createView()));
+        return $this->render('modulomonitoresmonitoresBundle:Privada:miSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),"sesion" => $sesion, "aula" => $aula, 'delete_form' => $deleteForm->createView()));
     }
 
     private function createDeleteFormDedicada($sesion) {
@@ -79,21 +75,6 @@ class DedicadaController extends Controller {
                         ->setAction($this->generateUrl('modulomonitores_monitores_eliminarSesionDedicada', array('id' => $sesion->getId())))
                         ->setMethod('DELETE')
                         ->getForm();
-    }
-
-    public function eliminarSesionAction(Request $request, $id) {
-        $em = $this->getDoctrine()->getManager();
-        $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
-
-        $form = $this->createDeleteForm($sesion);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->remove($sesion);
-            $em->flush();
-            $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido eliminada con éxito.');
-            return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionesMonitores'));
-        }
     }
 
     public function eliminarSesionDedicadaAction(Request $request, $id) {
@@ -119,7 +100,7 @@ class DedicadaController extends Controller {
             throw $this->createNotFoundException("no encontrado");
         }
         $form = $this->createSuspenderSesionDeForm($sesion);
-        return $this->render('modulomonitoresmonitoresBundle:Default:suspenderSesionDe.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
+        return $this->render('modulomonitoresmonitoresBundle:Privada:suspenderSesionDe.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),'sesion' => $sesion, 'form' => $form->createView()));
     }
 
     private function createSuspenderSesionDeForm(Sesiones $entity) {
@@ -151,7 +132,140 @@ class DedicadaController extends Controller {
                 $form->get('observaciones')->addError(new FormError('Rellene el campo gracias'));
             }
         }
-        return $this->render('modulomonitoresmonitoresBundle:Default:suspenderSesionDe.html.twig', array('sesion' => $sesion, 'form' => $form->createView()));
+        return $this->render('modulomonitoresmonitoresBundle:Privada:suspenderSesionDe.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),'sesion' => $sesion, 'form' => $form->createView()));
+    }
+    
+    public function nuevaSesionDedicadaAction() {
+        $sesion = new Sesiones();
+        $form = $this->createCreateFormDedicado($sesion);
+
+        return $this->render('modulomonitoresmonitoresBundle:Privada:nuevaSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),'form' => $form->createView()));
+    }
+
+    private function createCreateFormDedicado(Sesiones $entity) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+        $aulas = $repository->findAll();
+        $form = $this->createForm(new SesionesType($aulas), $entity, array(
+            'action' => $this->generateUrl('modulomonitores_monitores_crearSesionDedicada'),
+            'method' => 'POST'
+        ));
+        return $form;
+    }
+
+    public function crearSesionDedicadaAction(Request $request) {
+        $sesion = new Sesiones();
+        $form = $this->createCreateFormDedicado($sesion);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $sesion->setEstado("pendiente");
+            $sesion->setEstadoCliente("no disponible");
+            $sesion->setnClientes(0);
+            $sesion->setCliente("sin participante");
+            $sesion->setlClientes(1);
+            $sesion->setImagen("images/" . mt_rand(1, 5) . "m.jpg");
+            $sesion->setIdMonitor($this->getUser()->getId());
+            $sesion->setMonitor($this->getUser()->getUsername());
+            if ($form->get('nSesiones')->getData() > 20) {
+                $form->get('nSesiones')->addError(new FormError('El límite son 20 sesiones'));
+                return $this->render('modulomonitoresmonitoresBundle:Privada:nuevaSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),'form' => $form->createView()));
+            }
+            if ($form->get('duracion')->getData() > 60) {
+                $form->get('duracion')->addError(new FormError('Máximo 60 minutos por sesión'));
+                return $this->render('modulomonitoresmonitoresBundle:Privada:nuevaSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
+            }
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($sesion);
+            $em->flush();
+
+
+            $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
+                foreach ($usuarios as $usuario) {
+                    if ($usuario->getTipo() == 1) {
+                        $notificacion = new Notificaciones();
+                        $notificacion->setIdDestinatario($usuario->getId());
+                        $notificacion->setIdEntidad($sesion->getId());
+                        $notificacion->setMensaje("El monitor " . $this->getUser()->getUsername() . " ha"
+                                . " creado una nueva sesión");
+                        $notificacion->setIdOrigen($this->getUser()->getId());
+                        $notificacion->setConcepto("Privada");
+                        $notificacion->setEstado("No leido");
+                        $em->persist($notificacion);
+                        $em->flush();
+                    }
+                }
+
+            $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido creada con éxito.');
+            return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionesDedicadas'));
+        }
+        return $this->render('modulomonitoresmonitoresBundle:Privada:nuevaSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),'form' => $form->createView()));
+    }
+
+    public function editarSesionDedicadaAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
+
+        if (!$sesion) {
+            throw $this->createNotFoundException("no encontrado");
+        }
+        $form = $this->createEdiDediForm($sesion);
+        return $this->render('modulomonitoresmonitoresBundle:Privada:editarSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),'sesion' => $sesion, 'form' => $form->createView()));
+    }
+
+    private function createEdiDediForm(Sesiones $entity) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+        $aulas = $repository->findAll();
+        $form = $this->createForm(new SesionesType($aulas), $entity, array(
+            'action' => $this->generateUrl('modulomonitores_monitores_editarDedicada', array('id' => $entity->getId())),
+            'method' => 'PUT'
+        ));
+        return $form;
+    }
+
+    public function editarDedicadaAction($id, Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
+        if (!$sesion) {
+            throw $this->createNotFoundException("no encontrado");
+        }
+        $form = $this->createEdiDediForm($sesion);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $sesion->setEstado("modificada");
+            $sesion->setEstadoCliente("no disponible");
+            if ($form->get('nSesiones')->getData() > 20) {
+                $form->get('nSesiones')->addError(new FormError('El límite son 20 sesiones'));
+                return $this->render('modulomonitoresmonitoresBundle:Privada:editarSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),'form' => $form->createView()));
+            }
+            if ($form->get('duracion')->getData() > 60) {
+                $form->get('duracion')->addError(new FormError('Máximo 60 minutos por sesión'));
+                return $this->render('modulomonitoresmonitoresBundle:Privada:editarSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
+            }
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido modificada con éxito.');
+            return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionDedicada', array('id' => $sesion->getId())));
+        }
+        return $this->render('modulomonitoresmonitoresBundle:Privada:editarSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),'sesion' => $sesion, 'form' => $form->createView()));
+    }
+
+    private function changeStateNotification($id) {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        if ($repositoryN->getNotificacionEntidad($id, $this->getUser()->getId())) {
+            $repositoryN->getNotificacionEntidad($id, $this->getUser()->getId())[0]->setEstado("Leido");
+            $this->getDoctrine()->getManager()->flush();
+        }
+    }
+
+    private function getNewNotification() {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
+        $notificacionesSinLeer = array();
+        foreach ($notificaciones as $clave => $notificacion) {
+            if ($notificacion->getEstado() == "No leido") {
+                $notificacionesSinLeer[$clave] = $notificacion;
+            }
+        }
+        return $notificacionesSinLeer;
     }
 
 }

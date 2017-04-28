@@ -43,18 +43,19 @@
                         <li><a href="{{url('modulomonitores_monitores_sesionesDedicadas')}}">Sesiones privadas</a></li>
                     </ul>
                 </li>
+                <li><a href="{{url('modulomonitores_monitores_listadoAulas')}}">Ver aulas</a></li>
             </ul>
 
             {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                 <ul class="nav navbar-nav navbar-right">
                     {% if not notificacionesSinLeer|length %}  
                         <li><a href = "{{url('modulomonitores_monitores_notificacionesMonitor')}}"><img src="{{asset('images/campanaSN.png')}}" style="width: 18px;" /></a></li>
-                            {% else %}
-
+                    {% else %}
                         <li><a href = "{{url('modulomonitores_monitores_notificacionesMonitor')}}"><img src="{{asset('images/campanaCN.png')}}" style="width: 18px;" /></a></li>
-                            {% endif %}
-                    <li><a href = "{{url('modulomonitores_monitores_miperfilm')}}"><img src="{{asset('images/user-128.png')}}" style="width: 50%;" /></a></li>
-                    <li><a href="{{path('crivero_prueba_logout')}}"  style="margin-right: 12px"><img src="{{asset('images/logout-128.png')}}" style="width: 18px;" /></a></li>
+                    {% endif %}
+                    <li><a href = "{{path('modulomonitores_monitores_mensajes_recibidosMonitor')}}"><img src="{{asset('images/correo.png')}}" style="width: 18px;" /></a></li>
+                    <li><a href="{{url('modulomonitores_monitores_miperfilm', {id:app.user.id} )}}"><img src="{{asset('images/user-128.png')}}" style="width: 18px;" /></a></li>
+                    <li><a href="{{path('crivero_prueba_logout')}}" style="margin-right:12px;"><img src="{{asset('images/logout-128.png')}}" style="width: 18px;" /></a></li>
                 </ul>
             {% endif %}
             
