@@ -13,7 +13,11 @@ class SesionController extends Controller {
 
     public function sesionesAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        $sesiones = $repository->getSesionesGenerales();
+        
+        $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $sesiones = $repository->searchSesionesGeneralesByAdmin($searchQuery):
+                                 $sesiones = $repository->getSesionesGenerales();
+
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $sesiones, $request->query->getInt('page', 1), 5);

@@ -46,6 +46,11 @@
                                         <button type="submit" style="margin-bottom: 0" class="btn btn-info">Publicar evento</button>
                                         <input type="hidden" class="btn">
                                     </form>
+                                    <form class="btn-group-vertical" action="{{ path('crivero_prueba_nuevo') }}" method="post">
+                                        <input type="hidden" class="btn">
+                                        <button type="submit" style="margin-bottom: 0" class="btn btn-warning">Cambiar horario</button>
+                                        <input type="hidden" class="btn">
+                                    </form>
                                     <form class="btn-group-vertical" action="{{ path('crivero_prueba_logout') }}" method="post">
                                         <input type="hidden" class="btn">
                                         <button type="submit" class="btn btn-danger">Salir de sesión</button>

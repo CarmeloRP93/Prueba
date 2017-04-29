@@ -181,17 +181,19 @@ class CanchaController extends Controller {
     private function deleteCancha($em, $cancha) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosCanchas");
         $repository->removeHorariosCancha($cancha->getId());
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $repositoryN->removeNotificacionesEntidad($cancha->getId(), "Cancha");
         
         $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
         foreach ($usuarios as $usuario) {
-            if ($usuario->getTipo() == 3) {
+            if ($usuario->getTipo() == 2) {
                 $notificacion = new Notificaciones();
                 $notificacion->setIdDestinatario($usuario->getId());
                 $notificacion->setIdEntidad($cancha->getId());
                 $notificacion->setMensaje("La cancha " . $cancha->getTipo() . " ha sido eliminada del sistema");
                 $notificacion->setIdOrigen($this->getUser()->getId());
                 $notificacion->setEstado("No leido");
-                $notificacion->setConcepto("Cancha");
+                $notificacion->setConcepto("Celiminada");
                 $em->persist($notificacion);
                 $em->flush();
             }

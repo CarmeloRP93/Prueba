@@ -196,17 +196,19 @@ class AulaController extends Controller {
     private function deleteAula($em, $aula) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
         $repository->removeHorariosAula($aula->getId());
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        $repositoryN->removeNotificacionesEntidad($aula->getId(), "Aula");
 
         $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
         foreach ($usuarios as $usuario) {
-            if ($usuario->getTipo() == 2) {
+            if ($usuario->getTipo() == 3) {
                 $notificacion = new Notificaciones();
                 $notificacion->setIdDestinatario($usuario->getId());
                 $notificacion->setIdEntidad($aula->getId());
                 $notificacion->setMensaje("El aula " . $aula->getNombre() . " ha sido eliminada del sistema");
                 $notificacion->setIdOrigen($this->getUser()->getId());
                 $notificacion->setEstado("No leido");
-                $notificacion->setConcepto("Aula");
+                $notificacion->setConcepto("Aeliminada");
                 $em->persist($notificacion);
                 $em->flush();
             }

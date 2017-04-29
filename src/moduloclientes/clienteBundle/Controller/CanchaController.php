@@ -15,6 +15,7 @@ use Crivero\PruebaBundle\Entity\Notificaciones;
 class CanchaController extends Controller {
 
     public function canchasClientesAction(Request $request) {
+        $this->changeStateNotification($request->get('id'));
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
 
         $searchQuery = $request->get('query');

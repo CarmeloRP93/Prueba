@@ -43,15 +43,15 @@ class __TwigTemplate_88734d48e8baa5987c76fe61257f0c3c032083c2ff4410d6d7b83477f4e
     public function block_contenido($context, array $blocks = array())
     {
         // line 4
-        echo "    <div class=\"container text-center\">
+        echo "    <div class=\"container\"><br>
         <div class=\"row\">
             <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-3 col-md-offset-3 col-lg-offset-3\">
-                <div class=\"panel panel-default text-center\">
+                <div class=\"panel panel-default\">
                     <div class=\"panel-heading\">
-                        <h1 class=\"t1\">Destinatario - ";
+                        <h2 class=\"t1\">Destinatario - ";
         // line 9
         echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, (isset($context["destino"]) ? $context["destino"] : $this->getContext($context, "destino"))), "html", null, true);
-        echo "</h1>   
+        echo "</h2>   
                     </div>
 
                     ";
@@ -118,7 +118,7 @@ class __TwigTemplate_88734d48e8baa5987c76fe61257f0c3c032083c2ff4410d6d7b83477f4e
                     </div>
 
                     <div class=\"panel-body\">  
-                        <div class=\"row\">
+                        <div class=\"row text-center\">
                             <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12\">
                                 ";
         // line 39
@@ -144,8 +144,8 @@ class __TwigTemplate_88734d48e8baa5987c76fe61257f0c3c032083c2ff4410d6d7b83477f4e
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "asunto", array()), 'errors');
         echo "</span>
                             </div>
-                        </div>
-                        <div class=\"row\">
+                        </div><br>
+                        <div class=\"row text-center\">
                             <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12\">
                                 ";
         // line 50
@@ -162,17 +162,18 @@ class __TwigTemplate_88734d48e8baa5987c76fe61257f0c3c032083c2ff4410d6d7b83477f4e
                             </div>
                         </div>
 
-                        <div class=\"form-group\">
-                            <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12\">
+                        <div class=\"form-group\" >
+                            <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 \" >
                                 <br>";
         // line 58
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "enviar", array()), 'widget', array("label" => "Enviar", "attr" => array("class" => "btn btn-success")));
         echo "
+                            <a class=\"btn btn-danger\" >Cancelar</a>
                             </div>     
                         </div>     
                     </div>     
                     ";
-        // line 62
+        // line 63
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
                 </div>     
@@ -194,6 +195,6 @@ class __TwigTemplate_88734d48e8baa5987c76fe61257f0c3c032083c2ff4410d6d7b83477f4e
 
     public function getDebugInfo()
     {
-        return array (  176 => 62,  169 => 58,  160 => 52,  156 => 51,  152 => 50,  143 => 45,  137 => 43,  131 => 41,  129 => 40,  125 => 39,  116 => 33,  112 => 32,  106 => 29,  102 => 28,  98 => 27,  92 => 24,  88 => 23,  84 => 22,  78 => 19,  74 => 18,  68 => 15,  64 => 14,  59 => 12,  53 => 9,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  177 => 63,  169 => 58,  160 => 52,  156 => 51,  152 => 50,  143 => 45,  137 => 43,  131 => 41,  129 => 40,  125 => 39,  116 => 33,  112 => 32,  106 => 29,  102 => 28,  98 => 27,  92 => 24,  88 => 23,  84 => 22,  78 => 19,  74 => 18,  68 => 15,  64 => 14,  59 => 12,  53 => 9,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

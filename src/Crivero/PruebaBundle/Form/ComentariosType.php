@@ -19,7 +19,7 @@ class ComentariosType extends AbstractType
             ->add('idRemitente', 'hidden')
             ->add('destinatario', 'text' )
             ->add('asunto', 'text')
-            ->add('descripcion', 'textarea', array('attr' => array('cols' => '4', 'rows' => '4'), 
+            ->add('descripcion', 'textarea', array('attr' => array('cols' => '5', 'rows' => '5'), 
                                                    'label' => "Mensaje"))
             ->add('fecha', 'datetime')
             ->add('estado', 'hidden')

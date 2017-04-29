@@ -167,8 +167,23 @@ $context["notificacion"], "concepto", array()) == "Mensaje")) {
                                             </button>
                                         </form>
                                     ";
+                } elseif (($this->getAttribute(                // line 67
+$context["notificacion"], "concepto", array()) == "EliminadaC")) {
+                    // line 68
+                    echo "                                        <form action=\"";
+                    echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_canchasClientes");
+                    echo " \" method=\"GET\">
+                                            <input type=\"hidden\" name=\"id\" value=\"";
+                    // line 69
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "idEntidad", array()), "html", null, true);
+                    echo "\">
+                                            <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                Ver notificación
+                                            </button>
+                                        </form>
+                                    ";
                 }
-                // line 68
+                // line 75
                 echo "                                </td>
                             </tr>
                         ";
@@ -176,17 +191,17 @@ $context["notificacion"], "concepto", array()) == "Mensaje")) {
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['notificacion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 71
+            // line 78
             echo "                    </tbody>
                 </table>
             </div>
         ";
         }
-        // line 75
+        // line 82
         echo "        <div>
             <div class=\"navigation\"  >
                 ";
-        // line 77
+        // line 84
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
             </div>
@@ -207,6 +222,6 @@ $context["notificacion"], "concepto", array()) == "Mensaje")) {
 
     public function getDebugInfo()
     {
-        return array (  190 => 77,  186 => 75,  180 => 71,  172 => 68,  162 => 62,  160 => 61,  151 => 56,  149 => 55,  140 => 50,  138 => 49,  129 => 44,  127 => 43,  118 => 38,  116 => 37,  107 => 32,  105 => 31,  100 => 29,  96 => 28,  92 => 27,  87 => 26,  83 => 25,  74 => 19,  70 => 18,  66 => 17,  60 => 13,  56 => 11,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  205 => 84,  201 => 82,  195 => 78,  187 => 75,  178 => 69,  173 => 68,  171 => 67,  162 => 62,  160 => 61,  151 => 56,  149 => 55,  140 => 50,  138 => 49,  129 => 44,  127 => 43,  118 => 38,  116 => 37,  107 => 32,  105 => 31,  100 => 29,  96 => 28,  92 => 27,  87 => 26,  83 => 25,  74 => 19,  70 => 18,  66 => 17,  60 => 13,  56 => 11,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

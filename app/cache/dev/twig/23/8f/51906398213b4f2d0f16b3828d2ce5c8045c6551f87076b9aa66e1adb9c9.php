@@ -127,6 +127,14 @@ class __TwigTemplate_238f51906398213b4f2d0f16b3828d2ce5c8045c6551f87076b9aa66e1a
                                     </form>
                                     <form class=\"btn-group-vertical\" action=\"";
             // line 49
+            echo $this->env->getExtension('routing')->getPath("crivero_prueba_nuevo");
+            echo "\" method=\"post\">
+                                        <input type=\"hidden\" class=\"btn\">
+                                        <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-warning\">Cambiar horario</button>
+                                        <input type=\"hidden\" class=\"btn\">
+                                    </form>
+                                    <form class=\"btn-group-vertical\" action=\"";
+            // line 54
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
             echo "\" method=\"post\">
                                         <input type=\"hidden\" class=\"btn\">
@@ -136,7 +144,7 @@ class __TwigTemplate_238f51906398213b4f2d0f16b3828d2ce5c8045c6551f87076b9aa66e1a
 
                             ";
         }
-        // line 56
+        // line 61
         echo "                        </div>
                     </div>
                 </div>
@@ -159,6 +167,6 @@ class __TwigTemplate_238f51906398213b4f2d0f16b3828d2ce5c8045c6551f87076b9aa66e1a
 
     public function getDebugInfo()
     {
-        return array (  140 => 56,  130 => 49,  122 => 44,  115 => 40,  111 => 38,  109 => 37,  105 => 36,  101 => 35,  95 => 32,  91 => 31,  87 => 30,  83 => 29,  79 => 28,  66 => 18,  57 => 12,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
+        return array (  148 => 61,  138 => 54,  130 => 49,  122 => 44,  115 => 40,  111 => 38,  109 => 37,  105 => 36,  101 => 35,  95 => 32,  91 => 31,  87 => 30,  83 => 29,  79 => 28,  66 => 18,  57 => 12,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
     }
 }

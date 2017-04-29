@@ -29,4 +29,12 @@ class NotificacionesRepository extends EntityRepository {
                         ->getResult();
     }
 
+    public function removeNotificacionesEntidad($entidad, $concepto) {
+        $this->getEntityManager()
+                ->createQuery("DELETE FROM CriveroPruebaBundle:Notificaciones n WHERE n.idEntidad = :entidad AND n.concepto = :concepto")
+                ->setParameter('entidad', $entidad)
+                ->setParameter('concepto', $concepto)
+                ->execute();
+    }
+
 }

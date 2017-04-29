@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 class AulasController extends Controller {
 
     public function listadoAulasAction(Request $request) {
+        $this->changeStateNotification($request->get('id'));
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
 
         $searchQuery = $request->get('query');
