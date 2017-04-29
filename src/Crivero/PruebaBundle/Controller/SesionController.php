@@ -103,22 +103,43 @@ class SesionController extends Controller {
         if ($hoy > 28 && $limite == 30) {
             $mes++;
             $hoy = 1;
+            $fecha = '01' . '-' . $mes . '-' . date('Y');
+            $limite = (int) (date('t', strtotime($fecha)));
+            if ($mes < 10) $mes = '0' . $mes;
         } elseif ($hoy > 29 && $limite == 31) {
             $mes++;
+            $vuelta = 0;
             if ($mes == 13) {
                 $mes = 1;
+                $vuelta = 1;
             }
             $hoy = 1;
+            $fecha = '01' . '-' . $mes . '-' . date('Y') + $vuelta;
+            $limite = (int) (date('t', strtotime($fecha)));
+            if ($mes < 10) $mes = '0' . $mes;
         } elseif ($hoy > 26 && $mes == 02) {
             $mes++;
             $hoy = 1;
+            $fecha = '01' . '-' . $mes . '-' . date('Y');
+            $limite = (int) (date('t', strtotime($fecha)));
+            if ($mes < 10) $mes = '0' . $mes;
         }
 
         $repositoryHorarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
 
         $vuelta = 0;
+        $diasSelect = explode('&', $sesion->getDias());
         for ($i = $hoy + 2; $i <= $limite; $i++) {
+            $flagDiaSemana = false;
             if (!$this->isWeekend($i, $mes, $vuelta)) {
+                foreach ($diasSelect as $dia) {
+                    if (date('l', strtotime($i . '-' . $mes . '-' . date('Y'))) == $dia) {
+                        $flagDiaSemana = true;
+                        break;
+                    }
+                }
+                if (!$flagDiaSemana)
+                    continue;
                 $diaReserva = $repositoryHorarios->getDiaReserva($sesion->getAula(), $i);
                 if ($diaReserva[0]->getPeriodo() != null) {
                     $fechaReserva = $this->findFechaReserva($diaReserva[0], $mes);
@@ -129,7 +150,6 @@ class SesionController extends Controller {
                     $duracion--;
                     if ($duracion == 0)
                         break;
-                    $i++;
                 }
             }
             if ($i >= $limite) {
@@ -142,8 +162,8 @@ class SesionController extends Controller {
                 $mes++;
                 if ($mes < 10)
                     $mes = '0' . $mes;
-                $fecha = date('Y') + $vuelta . '-' . $mes . '-01';
-                $limite = date('t', strtotime($fecha));
+                $fecha = '01' . '-' . $mes . '-' . date('Y') + $vuelta;
+                $limite = (int) (date('t', strtotime($fecha)));
             }
         }
 
@@ -167,8 +187,8 @@ class SesionController extends Controller {
             }
             $notificacion->setIdOrigen($this->getUser()->getId());
             $notificacion->setEstado("No leido");
-            ($sesion->getCliente() == "normal") ? $notificacion->setConcepto("Publica"):
-                                                  $notificacion->setConcepto("Privada");
+            ($sesion->getCliente() == "normal") ? $notificacion->setConcepto("Publica") :
+                            $notificacion->setConcepto("Privada");
             $em->persist($notificacion);
             $em->flush();
         }
@@ -202,9 +222,7 @@ class SesionController extends Controller {
     }
 
     private function createCancelForm(Sesiones $entity) {
-        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
-        $aulas = $repository->findAll();
-        $form = $this->createForm(new SesionesType($aulas), $entity, array(
+        $form = $this->createForm(new SesionesType(array()), $entity, array(
             'action' => $this->generateUrl('crivero_prueba_cancelar', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));
@@ -250,9 +268,10 @@ class SesionController extends Controller {
                 $em->persist($aula);
                 $em->flush();
 
-                $idsUsuarios = explode('&', $sesion->getIdsClientes().'&'.$sesion->getIdMonitor());
+                $idsUsuarios = explode('&', $sesion->getIdsClientes() . '&' . $sesion->getIdMonitor());
                 foreach ($idsUsuarios as $idUsuario) {
-                    if ($idUsuario == 0) continue;
+                    if ($idUsuario == 0)
+                        continue;
                     $notificacion = new Notificaciones();
                     $notificacion->setIdDestinatario($idUsuario);
                     $notificacion->setIdEntidad($sesion->getId());
@@ -264,8 +283,8 @@ class SesionController extends Controller {
                     }
                     $notificacion->setIdOrigen($this->getUser()->getId());
                     $notificacion->setEstado("No leido");
-                    ($sesion->getCliente() == "normal") ? $notificacion->setConcepto("Publica"):
-                                                          $notificacion->setConcepto("Privada");
+                    ($sesion->getCliente() == "normal") ? $notificacion->setConcepto("Publica") :
+                                    $notificacion->setConcepto("Privada");
                     $em->persist($notificacion);
                     $em->flush();
                 }
@@ -324,8 +343,8 @@ class SesionController extends Controller {
                 $notificacion->setMensaje("Tu sesion " . $sesion->getNombre() . " ha sido rechazada");
                 $notificacion->setIdOrigen($this->getUser()->getId());
                 $notificacion->setEstado("No leido");
-                ($sesion->getCliente() == "normal") ? $notificacion->setConcepto("Publica"):
-                                                      $notificacion->setConcepto("Privada");
+                ($sesion->getCliente() == "normal") ? $notificacion->setConcepto("Publica") :
+                                $notificacion->setConcepto("Privada");
                 $em->persist($notificacion);
                 $em->flush();
 
@@ -386,7 +405,7 @@ class SesionController extends Controller {
     }
 
     private function isWeekend($dia, $mes, $cambio) {
-        $fecha = date('Y') + $cambio . '-' . $mes . '-' . $dia;
+        $fecha = $dia . '-' . $mes . '-' . date('Y') + $cambio;
         $diaS = date('w', strtotime($fecha));
         return ($diaS == 0 || $diaS == 6 );
     }

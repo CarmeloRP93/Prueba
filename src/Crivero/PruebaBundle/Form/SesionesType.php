@@ -21,23 +21,33 @@ class SesionesType extends AbstractType
         for($i=0; $i < count($this->aulas); $i++){
             $res[$i]= array($this->aulas[$i]->getId() => $this->aulas[$i]->getNombre());
         }
-        $builder
-            ->add('cliente', 'text')
-            ->add('nombre', 'text')
-            ->add('imagen', 'text')
-            ->add('ejercicios', 'textarea')
-            ->add('repeticiones', 'integer')
-            ->add('duracion', 'integer')
-            ->add('descanso', 'integer')
-            ->add('lClientes', 'integer')
-            ->add('nSesiones', 'integer')
-            ->add('objetivo', 'textarea')
-            ->add('observaciones', 'textarea', array('label' => 'Motivos',
-                                                      'attr' => array('cols' => '5', 'rows' => '5')))
-            ->add('motivos', 'textarea')
-            ->add('aula', 'choice', array('choices' => $res, 'expanded' => true))    
+        if($this->aulas != array()){
+            
+            $builder
+                    ->add('cliente', 'text')
+                    ->add('nombre', 'text')
+                    ->add('imagen', 'text')
+                    ->add('ejercicios', 'textarea')
+                    ->add('repeticiones', 'integer')
+                    ->add('duracion', 'integer')
+                    ->add('descanso', 'integer')
+                    ->add('lClientes', 'integer')
+                    ->add('nSesiones', 'integer')
+                    ->add('objetivo', 'textarea')
+                    ->add('observaciones', 'textarea', array('label' => 'Motivos',
+                        'attr' => array('cols' => '5', 'rows' => '5')))
+                    ->add('motivos', 'textarea')
+                    ->add('aula', 'choice', array('choices' => $res, 'expanded' => true))
+                    ->add('dias', 'choice', array('choices' => array('Monday' => 'Lunes', 'Tuesday' => 'Martes', 'Wednesday' => 'Miercoles'
+                            , 'Thursday' => 'Jueves', 'Friday' => 'Viernes'), 'expanded' => true, 'multiple' => true))
+                    ->add('confirmar', 'submit', array('label' => 'Confirmar'))
+            ;
+        }else{
+            $builder
+            ->add('observaciones', 'textarea')
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
-        ;
+                    ;
+        }
     }
     
     /**

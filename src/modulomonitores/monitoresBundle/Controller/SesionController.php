@@ -130,6 +130,23 @@ class SesionController extends Controller {
                 $form->get('duracion')->addError(new FormError('Máximo 60 minutos por sesión'));
                 return $this->render('modulomonitoresmonitoresBundle:Publica:nuevaSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
             }
+            
+            $dias = $form->get('dias')->getData();
+            $diasElegidos = "";
+            foreach ($dias as $dia) {
+                if($diasElegidos == ""){
+                    
+                    $diasElegidos = $dia;
+                }else{
+                    $diasElegidos = $diasElegidos . "&" . $dia;
+                    
+                }
+            }
+            if(count($dias) < 2 ){
+                $form->get('dias')->addError(new FormError('Seleccione mínimo dos días'));
+                return $this->render('modulomonitoresmonitoresBundle:Publica:nuevaSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
+            }
+            $sesion->setDias($diasElegidos);
             $lClientes = $form->get('lClientes')->getData();
             if ($lClientes != null) {
                 $em = $this->getDoctrine()->getManager();
@@ -143,7 +160,7 @@ class SesionController extends Controller {
                         $notificacion->setIdDestinatario($usuario->getId());
                         $notificacion->setIdEntidad($sesion->getId());
                         $notificacion->setMensaje("El monitor " . $this->getUser()->getUsername() . " ha"
-                                . " creado la sesión". $sesion->getNombre());
+                                . " creado la sesión" . $sesion->getNombre());
                         $notificacion->setIdOrigen($this->getUser()->getId());
                         $notificacion->setConcepto("Publica");
                         $notificacion->setEstado("No leido");
@@ -207,7 +224,7 @@ class SesionController extends Controller {
                 $sesion->setObservaciones("");
                 $em->persist($sesion);
                 $em->flush();
-                
+
                 $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
                 foreach ($usuarios as $usuario) {
                     if ($usuario->getTipo() == 1) {
@@ -223,17 +240,15 @@ class SesionController extends Controller {
                         $em->flush();
                     }
                 }
-                
+
                 $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido modificada con éxito.');
                 return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionesMonitores'));
             } else {
                 $form->get('lClientes')->addError(new FormError('Introduzca un valor correcto'));
             }
         }
-        return $this->render('modulomonitoresmonitoresBundle:Publica:editarSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),'sesion' => $sesion, 'form' => $form->createView()));
+        return $this->render('modulomonitoresmonitoresBundle:Publica:editarSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'sesion' => $sesion, 'form' => $form->createView()));
     }
-
-    
 
     public function suspenderAction($id) {
         $em = $this->getDoctrine()->getManager();
@@ -243,7 +258,7 @@ class SesionController extends Controller {
             throw $this->createNotFoundException("no encontrado");
         }
         $form = $this->createSuspenderSesionForm($sesion);
-        return $this->render('modulomonitoresmonitoresBundle:Publica:suspenderSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),'sesion' => $sesion, 'form' => $form->createView()));
+        return $this->render('modulomonitoresmonitoresBundle:Publica:suspenderSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'sesion' => $sesion, 'form' => $form->createView()));
     }
 
     private function createSuspenderSesionForm(Sesiones $entity) {
@@ -270,7 +285,7 @@ class SesionController extends Controller {
             $observaciones = $form->get('observaciones')->getData();
             if ($observaciones != null) {
                 $em->flush();
-                
+
                 foreach ($usuarios as $usuario) {
                     if ($usuario->getTipo() == 1) {
                         $notificacion = new Notificaciones();
@@ -286,12 +301,12 @@ class SesionController extends Controller {
                     }
                 }
                 $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido suspendida correctamente.');
-                return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionMonitores', array('notificacionesSinLeer' => $this->getNewNotification(),'id' => $sesion->getId())));
+                return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionMonitores', array('notificacionesSinLeer' => $this->getNewNotification(), 'id' => $sesion->getId())));
             } else {
                 $form->get('observaciones')->addError(new FormError('Rellene el campo gracias'));
             }
         }
-        return $this->render('modulomonitoresmonitoresBundle:Publica:suspenderSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),'sesion' => $sesion, 'form' => $form->createView()));
+        return $this->render('modulomonitoresmonitoresBundle:Publica:suspenderSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'sesion' => $sesion, 'form' => $form->createView()));
     }
 
     public function abandonarSesionAction($id, Request $request) {
@@ -354,9 +369,9 @@ class SesionController extends Controller {
         $em->persist($usuario);
         $em->flush();
         if (count($arrayClientes) > 0) {
-            return $this->redirect($this->generateUrl('modulomonitores_monitores_verParticipantes', array('notificacionesSinLeer' => $this->getNewNotification(),'id' => $id)));
+            return $this->redirect($this->generateUrl('modulomonitores_monitores_verParticipantes', array('notificacionesSinLeer' => $this->getNewNotification(), 'id' => $id)));
         } else {
-            return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionMonitores', array('notificacionesSinLeer' => $this->getNewNotification(),'id' => $id)));
+            return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionMonitores', array('notificacionesSinLeer' => $this->getNewNotification(), 'id' => $id)));
         }
     }
 
@@ -370,31 +385,29 @@ class SesionController extends Controller {
         $tipo = $sesion->getCliente();
         $em->persist($sesion);
         $em->flush();
-        
+
         foreach ($usuarios as $usuario) {
-                    if ($usuario->getTipo() == 1) {
-                        $notificacion = new Notificaciones();
-                        $notificacion->setIdDestinatario($usuario->getId());
-                        $notificacion->setIdEntidad($sesion->getId());
-                        $notificacion->setMensaje("La sesión " . $sesion->getNombre()
-                                . " del monitor " . $sesion->getMonitor() . " ha terminado");
-                        $notificacion->setIdOrigen($this->getUser()->getId());
-                        $notificacion->setConcepto("Publica");
-                        $notificacion->setEstado("No leido");
-                        $em->persist($notificacion);
-                        $em->flush();
-                    }
-                }
-        
+            if ($usuario->getTipo() == 1) {
+                $notificacion = new Notificaciones();
+                $notificacion->setIdDestinatario($usuario->getId());
+                $notificacion->setIdEntidad($sesion->getId());
+                $notificacion->setMensaje("La sesión " . $sesion->getNombre()
+                        . " del monitor " . $sesion->getMonitor() . " ha terminado");
+                $notificacion->setIdOrigen($this->getUser()->getId());
+                $notificacion->setConcepto("Publica");
+                $notificacion->setEstado("No leido");
+                $em->persist($notificacion);
+                $em->flush();
+            }
+        }
+
         $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido terminada con éxito');
         if ($tipo == "normal") {
-            return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionMonitores', array('notificacionesSinLeer' => $this->getNewNotification(),'id' => $sesion->getId())));
+            return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionMonitores', array('notificacionesSinLeer' => $this->getNewNotification(), 'id' => $sesion->getId())));
         } else {
-            return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionDedicada', array('notificacionesSinLeer' => $this->getNewNotification(),'id' => $sesion->getId())));
+            return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionDedicada', array('notificacionesSinLeer' => $this->getNewNotification(), 'id' => $sesion->getId())));
         }
     }
-
-    
 
     private function getNewNotification() {
         $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
@@ -407,15 +420,14 @@ class SesionController extends Controller {
         }
         return $notificacionesSinLeer;
     }
-     
-    private function changeStateNotification($id){
+
+    private function changeStateNotification($id) {
         $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
         if ($repositoryN->getNotificacionEntidad($id, $this->getUser()->getId())) {
             $repositoryN->getNotificacionEntidad($id, $this->getUser()->getId())[0]->setEstado("Leido");
             $this->getDoctrine()->getManager()->flush();
         }
     }
-    
 
     private function updateMonth($i, $mes, $vuelta, $limite) {
         $i = 0;

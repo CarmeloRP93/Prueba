@@ -87,6 +87,13 @@ class Sesiones {
      * @Assert\NotBlank(message="Rellene el campo.")
      */
     private $aula;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dias", type="string", length=200, nullable=true)
+     */
+    private $dias;
 
     /**
      * @var integer
@@ -567,6 +574,27 @@ class Sesiones {
      */
     public function setAula($aula) {
         $this->aula = $aula;
+
+        return $this;
+    }
+    
+    /**
+     * Get dias
+     *
+     * @return string 
+     */
+    public function getDias() {
+        return $this->dias;
+    }
+    
+     /**
+     * Set dias
+     *
+     * @param string $dias
+     * @return Sesiones
+     */
+    public function setDias($dias) {
+        $this->dias = $dias;
 
         return $this;
     }

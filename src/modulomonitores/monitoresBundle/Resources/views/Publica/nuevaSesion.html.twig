@@ -87,8 +87,12 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <label>Seleccione un aula para realizar la sesión</label> {{ form_widget(form.aula, { 'attr' : { 'placeholder' : 'Motivos de cancelación'} }) }}
+                            <label>Seleccione un aula para realizar la sesión</label> {{ form_widget(form.aula) }}
                             <span class="text-danger">{{ form_errors(form.aula) }}</span><br>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <label>Seleccione los días de la sesión</label> {{ form_widget(form.dias) }}
+                            <span class="text-danger">{{ form_errors(form.dias) }}</span><br>
                         </div>
                     </div>
                 </form><br>
