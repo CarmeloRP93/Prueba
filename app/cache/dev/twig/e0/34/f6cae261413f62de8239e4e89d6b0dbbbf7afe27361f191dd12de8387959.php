@@ -73,7 +73,7 @@ class __TwigTemplate_e034f6cae261413f62de8239e4e89d6b0dbbbf7afe27361f191dd12de83
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
                             <h4>Nombre </h4> <p>";
         // line 23
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "nombre", array()), "html", null, true);
+        echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "nombre", array())), "html", null, true);
         echo "</p>
                             <h4>E-mail </h4> <p>";
         // line 24
@@ -166,7 +166,7 @@ class __TwigTemplate_e034f6cae261413f62de8239e4e89d6b0dbbbf7afe27361f191dd12de83
             echo "                                <div style=\"display: inline-grid; margin-top: 16px\">
                                     <form class=\"btn-group-vertical\" action=\"";
             // line 58
-            echo $this->env->getExtension('routing')->getPath("crivero_prueba_enviarMensaje");
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_enviarMensaje", array("id" => $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "id", array()))), "html", null, true);
             echo "\" method=\"post\">
                                         <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-primary\">Enviar mensaje</button>
                                         <input type=\"hidden\" class=\"btn\">
