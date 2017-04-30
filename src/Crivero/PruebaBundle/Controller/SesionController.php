@@ -52,7 +52,7 @@ class SesionController extends Controller {
                     'username' => $sesiones[0]->getMonitor(), 'mId' => $id,
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
-
+    
     public function horariosSesionAction($id, Request $request) {
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repositorySesiones->find($id);
@@ -69,7 +69,10 @@ class SesionController extends Controller {
 
     public function dedicadasAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        $sesiones = $repository->getSesionesDedicadas();
+        
+        $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $sesiones = $repository->searchSesionesDedicadasByAdmin($searchQuery):
+                                 $sesiones = $repository->getSesionesDedicadas();
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(

@@ -29,7 +29,11 @@
                                 <td>{{ notificacion.fecha|date('d/m/Y H:i') }}</td>
                                 <td class="actions">
                                     {% if notificacion.concepto == "Publica"%}
-                                        <form action="{{ path('moduloclientes_cliente_sesionClientes', {id: notificacion.idEntidad}) }}">
+                                        {% if notificacion.idEntidad in app.user.sesiones %}
+                                            <form action="{{ path('moduloclientes_cliente_miSesionClientes', {id: notificacion.idEntidad}) }}">
+                                        {% else %}
+                                            <form action="{{ path('moduloclientes_cliente_sesionClientes', {id: notificacion.idEntidad}) }}">
+                                        {% endif %}
                                             <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
                                                 Ver notificación
                                             </button>

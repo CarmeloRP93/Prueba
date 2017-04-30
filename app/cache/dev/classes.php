@@ -1624,11 +1624,7 @@ $this->reader = $reader;
 }
 public function onKernelController(FilterControllerEvent $event)
 {
-$controller = $event->getController();
-if (!is_array($controller) && method_exists($controller,'__invoke')) {
-$controller = array($controller,'__invoke');
-}
-if (!is_array($controller)) {
+if (!is_array($controller = $event->getController())) {
 return;
 }
 $className = class_exists('Doctrine\Common\Util\ClassUtils') ? ClassUtils::getClass($controller[0]) : get_class($controller[0]);
@@ -1665,10 +1661,8 @@ foreach ($annotations as $configuration) {
 if ($configuration instanceof ConfigurationInterface) {
 if ($configuration->allowArray()) {
 $configurations['_'.$configuration->getAliasName()][] = $configuration;
-} elseif (!isset($configurations['_'.$configuration->getAliasName()])) {
-$configurations['_'.$configuration->getAliasName()] = $configuration;
 } else {
-throw new \LogicException(sprintf('Multiple "%s" annotations are not allowed.', $configuration->getAliasName()));
+$configurations['_'.$configuration->getAliasName()] = $configuration;
 }
 }
 }
@@ -1690,6 +1684,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 class HttpCacheListener implements EventSubscriberInterface
 {
 private $lastModifiedDates;
@@ -1721,7 +1716,6 @@ if ($response->isNotModified($request)) {
 $event->setController(function () use ($response) {
 return $response;
 });
-$event->stopPropagation();
 } else {
 if ($etag) {
 $this->etags[$request] = $etag;
@@ -1764,8 +1758,7 @@ $response->setVary($configuration->getVary());
 }
 if ($configuration->isPublic()) {
 $response->setPublic();
-}
-if ($configuration->isPrivate()) {
+} else {
 $response->setPrivate();
 }
 if (isset($this->lastModifiedDates[$request])) {
@@ -1809,12 +1802,10 @@ class ParamConverterListener implements EventSubscriberInterface
 {
 protected $manager;
 protected $autoConvert;
-private $isParameterTypeSupported;
 public function __construct(ParamConverterManager $manager, $autoConvert = true)
 {
 $this->manager = $manager;
 $this->autoConvert = $autoConvert;
-$this->isParameterTypeSupported = method_exists('ReflectionParameter','getType');
 }
 public function onKernelController(FilterControllerEvent $event)
 {
@@ -1841,25 +1832,19 @@ $this->manager->apply($request, $configurations);
 private function autoConfigure(\ReflectionFunctionAbstract $r, Request $request, $configurations)
 {
 foreach ($r->getParameters() as $param) {
-if ($param->getClass() && $param->getClass()->isInstance($request)) {
+if (!$param->getClass() || $param->getClass()->isInstance($request)) {
 continue;
 }
 $name = $param->getName();
-$class = $param->getClass();
-$hasType = $this->isParameterTypeSupported && $param->hasType();
-if ($class || $hasType) {
 if (!isset($configurations[$name])) {
 $configuration = new ParamConverter(array());
 $configuration->setName($name);
+$configuration->setClass($param->getClass()->getName());
 $configurations[$name] = $configuration;
+} elseif (null === $configurations[$name]->getClass()) {
+$configurations[$name]->setClass($param->getClass()->getName());
 }
-if ($class && null === $configurations[$name]->getClass()) {
-$configurations[$name]->setClass($class->getName());
-}
-}
-if (isset($configurations[$name])) {
-$configurations[$name]->setIsOptional($param->isOptional() || $param->isDefaultValueAvailable() || $hasType && $param->getType()->allowsNull());
-}
+$configurations[$name]->setIsOptional($param->isOptional());
 }
 return $configurations;
 }
@@ -1886,6 +1871,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 class SecurityListener implements EventSubscriberInterface
 {
+private $securityContext;
 private $tokenStorage;
 private $authChecker;
 private $language;
@@ -1893,6 +1879,7 @@ private $trustResolver;
 private $roleHierarchy;
 public function __construct(SecurityContextInterface $securityContext = null, ExpressionLanguage $language = null, AuthenticationTrustResolverInterface $trustResolver = null, RoleHierarchyInterface $roleHierarchy = null, TokenStorageInterface $tokenStorage = null, AuthorizationCheckerInterface $authChecker = null)
 {
+$this->securityContext = $securityContext;
 $this->tokenStorage = $tokenStorage ?: $securityContext;
 $this->authChecker = $authChecker ?: $securityContext;
 $this->language = $language;
@@ -1908,11 +1895,8 @@ return;
 if (null === $this->tokenStorage || null === $this->trustResolver) {
 throw new \LogicException('To use the @Security tag, you need to install the Symfony Security bundle.');
 }
-if (null === $this->tokenStorage->getToken()) {
-throw new \LogicException('To use the @Security tag, your controller needs to be behind a firewall.');
-}
 if (null === $this->language) {
-throw new \LogicException('To use the @Security tag, you need to use the Security component 2.4 or newer and install the ExpressionLanguage component.');
+throw new \LogicException('To use the @Security tag, you need to use the Security component 2.4 or newer and to install the ExpressionLanguage component.');
 }
 if (!$this->language->evaluate($configuration->getExpression(), $this->getVariables($request))) {
 throw new AccessDeniedException(sprintf('Expression "%s" denied access.', $configuration->getExpression()));
@@ -1939,7 +1923,6 @@ return array(KernelEvents::CONTROLLER =>'onKernelController');
 namespace Sensio\Bundle\FrameworkExtraBundle\EventListener
 {
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -1955,39 +1938,59 @@ $this->container = $container;
 }
 public function onKernelController(FilterControllerEvent $event)
 {
-$request = $event->getRequest();
-$template = $request->attributes->get('_template');
-if (!$template instanceof Template) {
+if (!is_array($controller = $event->getController())) {
 return;
 }
-$template->setOwner($controller = $event->getController());
-if (null === $template->getTemplate()) {
+$request = $event->getRequest();
+if (!$configuration = $request->attributes->get('_template')) {
+return;
+}
+if (!$configuration->getTemplate()) {
 $guesser = $this->container->get('sensio_framework_extra.view.guesser');
-$template->setTemplate($guesser->guessTemplateName($controller, $request, $template->getEngine()));
+$configuration->setTemplate($guesser->guessTemplateName($controller, $request, $configuration->getEngine()));
+}
+$request->attributes->set('_template', $configuration->getTemplate());
+$request->attributes->set('_template_vars', $configuration->getVars());
+$request->attributes->set('_template_streamable', $configuration->isStreamable());
+if (!$configuration->getVars()) {
+$r = new \ReflectionObject($controller[0]);
+$vars = array();
+foreach ($r->getMethod($controller[1])->getParameters() as $param) {
+$vars[] = $param->getName();
+}
+$request->attributes->set('_template_default_vars', $vars);
 }
 }
 public function onKernelView(GetResponseForControllerResultEvent $event)
 {
 $request = $event->getRequest();
-$template = $request->attributes->get('_template');
-if (!$template instanceof Template) {
+$parameters = $event->getControllerResult();
+$templating = $this->container->get('templating');
+if (null === $parameters) {
+if (!$vars = $request->attributes->get('_template_vars')) {
+if (!$vars = $request->attributes->get('_template_default_vars')) {
 return;
 }
-$parameters = $event->getControllerResult();
-$owner = $template->getOwner();
-list($controller, $action) = $owner;
-if (null === $parameters) {
-$parameters = $this->resolveDefaultParameters($request, $template, $controller, $action);
 }
-$templating = $this->container->get('templating');
-if ($template->isStreamable()) {
+$parameters = array();
+foreach ($vars as $var) {
+$parameters[$var] = $request->attributes->get($var);
+}
+}
+if (!is_array($parameters)) {
+return $parameters;
+}
+if (!$template = $request->attributes->get('_template')) {
+return $parameters;
+}
+if (!$request->attributes->get('_template_streamable')) {
+$event->setResponse($templating->renderResponse($template, $parameters));
+} else {
 $callback = function () use ($templating, $template, $parameters) {
-return $templating->stream($template->getTemplate(), $parameters);
+return $templating->stream($template, $parameters);
 };
 $event->setResponse(new StreamedResponse($callback));
 }
-$template->setOwner(array());
-$event->setResponse($templating->renderResponse($template->getTemplate(), $parameters));
 }
 public static function getSubscribedEvents()
 {
@@ -1995,26 +1998,6 @@ return array(
 KernelEvents::CONTROLLER => array('onKernelController', -128),
 KernelEvents::VIEW =>'onKernelView',
 );
-}
-private function resolveDefaultParameters(Request $request, Template $template, $controller, $action)
-{
-$parameters = array();
-$arguments = $template->getVars();
-if (0 === count($arguments)) {
-$r = new \ReflectionObject($controller);
-$arguments = array();
-foreach ($r->getMethod($action)->getParameters() as $param) {
-$arguments[] = $param;
-}
-}
-foreach ($arguments as $argument) {
-if ($argument instanceof \ReflectionParameter) {
-$parameters[$name = $argument->getName()] = !$request->attributes->has($name) && $argument->isDefaultValueAvailable() ? $argument->getDefaultValue() : $request->attributes->get($name);
-} else {
-$parameters[$argument] = $request->attributes->get($argument);
-}
-}
-return $parameters;
 }
 }
 }
@@ -2050,11 +2033,11 @@ return false;
 if (isset($options['format'])) {
 $date = DateTime::createFromFormat($options['format'], $value);
 if (!$date) {
-throw new NotFoundHttpException(sprintf('Invalid date given for parameter "%s".', $param));
+throw new NotFoundHttpException('Invalid date given.');
 }
 } else {
 if (false === strtotime($value)) {
-throw new NotFoundHttpException(sprintf('Invalid date given for parameter "%s".', $param));
+throw new NotFoundHttpException('Invalid date given.');
 }
 $date = new DateTime($value);
 }
@@ -2066,7 +2049,7 @@ public function supports(ParamConverter $configuration)
 if (null === $configuration->getClass()) {
 return false;
 }
-return'DateTime'=== $configuration->getClass();
+return"DateTime"=== $configuration->getClass();
 }
 }
 }
@@ -2097,7 +2080,7 @@ if (false === $object = $this->findOneBy($class, $request, $options)) {
 if ($configuration->isOptional()) {
 $object = null;
 } else {
-throw new \LogicException(sprintf('Unable to guess how to get a Doctrine instance from the request information for parameter "%s".', $name));
+throw new \LogicException('Unable to guess how to get a Doctrine instance from the request information.');
 }
 }
 }
@@ -2225,7 +2208,7 @@ $em = $this->getManager($options['entity_manager'], $configuration->getClass());
 if (null === $em) {
 return false;
 }
-return !$em->getMetadataFactory()->isTransient($configuration->getClass());
+return ! $em->getMetadataFactory()->isTransient($configuration->getClass());
 }
 protected function getOptions(ParamConverter $configuration)
 {

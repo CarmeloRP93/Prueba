@@ -429,14 +429,19 @@
     <parameter key="assetic.use_controller_worker.class">Symfony\Bundle\AsseticBundle\Factory\Worker\UseControllerWorker</parameter>
     <parameter key="assetic.request_listener.class">Symfony\Bundle\AsseticBundle\EventListener\RequestListener</parameter>
     <parameter key="doctrine_cache.apc.class">Doctrine\Common\Cache\ApcCache</parameter>
-    <parameter key="doctrine_cache.apcu.class">Doctrine\Common\Cache\ApcuCache</parameter>
     <parameter key="doctrine_cache.array.class">Doctrine\Common\Cache\ArrayCache</parameter>
-    <parameter key="doctrine_cache.chain.class">Doctrine\Common\Cache\ChainCache</parameter>
-    <parameter key="doctrine_cache.couchbase.class">Doctrine\Common\Cache\CouchbaseCache</parameter>
-    <parameter key="doctrine_cache.couchbase.connection.class">Couchbase</parameter>
-    <parameter key="doctrine_cache.couchbase.hostnames">localhost:8091</parameter>
     <parameter key="doctrine_cache.file_system.class">Doctrine\Common\Cache\FilesystemCache</parameter>
     <parameter key="doctrine_cache.php_file.class">Doctrine\Common\Cache\PhpFileCache</parameter>
+    <parameter key="doctrine_cache.mongodb.class">Doctrine\Common\Cache\MongoDBCache</parameter>
+    <parameter key="doctrine_cache.mongodb.collection.class">MongoCollection</parameter>
+    <parameter key="doctrine_cache.mongodb.connection.class">MongoClient</parameter>
+    <parameter key="doctrine_cache.mongodb.server">localhost:27017</parameter>
+    <parameter key="doctrine_cache.riak.class">Doctrine\Common\Cache\RiakCache</parameter>
+    <parameter key="doctrine_cache.riak.bucket.class">Riak\Bucket</parameter>
+    <parameter key="doctrine_cache.riak.connection.class">Riak\Connection</parameter>
+    <parameter key="doctrine_cache.riak.bucket_property_list.class">Riak\BucketPropertyList</parameter>
+    <parameter key="doctrine_cache.riak.host">localhost</parameter>
+    <parameter key="doctrine_cache.riak.port">8087</parameter>
     <parameter key="doctrine_cache.memcache.class">Doctrine\Common\Cache\MemcacheCache</parameter>
     <parameter key="doctrine_cache.memcache.connection.class">Memcache</parameter>
     <parameter key="doctrine_cache.memcache.host">localhost</parameter>
@@ -445,27 +450,13 @@
     <parameter key="doctrine_cache.memcached.connection.class">Memcached</parameter>
     <parameter key="doctrine_cache.memcached.host">localhost</parameter>
     <parameter key="doctrine_cache.memcached.port">11211</parameter>
-    <parameter key="doctrine_cache.mongodb.class">Doctrine\Common\Cache\MongoDBCache</parameter>
-    <parameter key="doctrine_cache.mongodb.collection.class">MongoCollection</parameter>
-    <parameter key="doctrine_cache.mongodb.connection.class">MongoClient</parameter>
-    <parameter key="doctrine_cache.mongodb.server">localhost:27017</parameter>
-    <parameter key="doctrine_cache.predis.client.class">Predis\Client</parameter>
-    <parameter key="doctrine_cache.predis.scheme">tcp</parameter>
-    <parameter key="doctrine_cache.predis.host">localhost</parameter>
-    <parameter key="doctrine_cache.predis.port">6379</parameter>
     <parameter key="doctrine_cache.redis.class">Doctrine\Common\Cache\RedisCache</parameter>
     <parameter key="doctrine_cache.redis.connection.class">Redis</parameter>
     <parameter key="doctrine_cache.redis.host">localhost</parameter>
     <parameter key="doctrine_cache.redis.port">6379</parameter>
-    <parameter key="doctrine_cache.riak.class">Doctrine\Common\Cache\RiakCache</parameter>
-    <parameter key="doctrine_cache.riak.bucket.class">Riak\Bucket</parameter>
-    <parameter key="doctrine_cache.riak.connection.class">Riak\Connection</parameter>
-    <parameter key="doctrine_cache.riak.bucket_property_list.class">Riak\BucketPropertyList</parameter>
-    <parameter key="doctrine_cache.riak.host">localhost</parameter>
-    <parameter key="doctrine_cache.riak.port">8087</parameter>
-    <parameter key="doctrine_cache.sqlite3.class">Doctrine\Common\Cache\SQLite3Cache</parameter>
-    <parameter key="doctrine_cache.sqlite3.connection.class">SQLite3</parameter>
-    <parameter key="doctrine_cache.void.class">Doctrine\Common\Cache\VoidCache</parameter>
+    <parameter key="doctrine_cache.couchbase.class">Doctrine\Common\Cache\CouchbaseCache</parameter>
+    <parameter key="doctrine_cache.couchbase.connection.class">Couchbase</parameter>
+    <parameter key="doctrine_cache.couchbase.hostnames">localhost:8091</parameter>
     <parameter key="doctrine_cache.wincache.class">Doctrine\Common\Cache\WinCacheCache</parameter>
     <parameter key="doctrine_cache.xcache.class">Doctrine\Common\Cache\XcacheCache</parameter>
     <parameter key="doctrine_cache.zenddata.class">Doctrine\Common\Cache\ZendDataCache</parameter>
@@ -1679,7 +1670,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5905cf2972382</argument>
+            <argument>5906271bf06a3</argument>
           </service>
         </argument>
         <argument type="service">
@@ -1913,7 +1904,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>5905cf2972382</argument>
+            <argument>5906271bf06a3</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>

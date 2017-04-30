@@ -29,9 +29,9 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <h4>Teléfono </h4> <p>{{monitor.telefono}}</p>
                         </div>
-                    </div>
+                    </div><br>
                     {% if app.request.headers.get('referer') %}
-                        {% if app.request.headers.get('referer') == path('moduloclientes_cliente_miSesionClientes', {id : app.request.headers.get('referer')|last }) %}
+                        {% if app.request.headers.get('referer') == url('moduloclientes_cliente_miSesionClientes', {id : app.request.headers.get('referer')|last }) %}
                             <div class="row">
                                 <a class="btn btn-default" href="{{ path('moduloclientes_cliente_enviarMensajeMonitor', { id : monitor.id } ) }}">Enviar mensaje</a>
                             </div>

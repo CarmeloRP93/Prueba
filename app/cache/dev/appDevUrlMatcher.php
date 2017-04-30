@@ -1202,6 +1202,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_sesiones_monitor')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::sesionesMonitorAction',));
         }
 
+        // crivero_prueba_sesiones_aula
+        if (0 === strpos($pathinfo, '/aula') && preg_match('#^/aula/(?P<id>[^/]++)/sesiones$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_sesiones_aula')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\AulaController::sesionesAulaAction',));
+        }
+
         if (0 === strpos($pathinfo, '/sesion')) {
             // crivero_prueba_sesion
             if (preg_match('#^/sesion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {

@@ -251,6 +251,10 @@ crivero_prueba_sesiones_monitor:
     pattern: /monitor/{id}/sesiones
     defaults: { _controller: CriveroPruebaBundle:Sesion:sesionesMonitor }
 
+crivero_prueba_sesiones_aula:
+    pattern: /aula/{id}/sesiones
+    defaults: { _controller: CriveroPruebaBundle:Aula:sesionesAula }
+
 crivero_prueba_sesion:
     pattern:  /sesion/{id}
     defaults: { _controller: CriveroPruebaBundle:Sesion:sesion }

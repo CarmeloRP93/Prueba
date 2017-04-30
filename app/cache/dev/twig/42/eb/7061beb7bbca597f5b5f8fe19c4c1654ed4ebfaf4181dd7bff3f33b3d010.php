@@ -132,7 +132,7 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
                 // line 44
                 if (($this->getAttribute($context["cancha"], "disponibilidad", array()) != "Disponible")) {
                     // line 45
-                    echo "                                                <a href=\"\" class=\"btn btn-sm btn-info\" disabled>Ver</a>
+                    echo "                                                <button class=\"btn btn-sm btn-info\" disabled>Ver</button>
                                             ";
                 } else {
                     // line 46

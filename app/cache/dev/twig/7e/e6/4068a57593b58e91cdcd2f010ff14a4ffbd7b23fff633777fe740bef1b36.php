@@ -114,10 +114,15 @@ class __TwigTemplate_7ee64068a57593b58e91cdcd2f010ff14a4ffbd7b23fff633777fe740be
                 // line 37
                 if ((($this->getAttribute($context["sesion"], "estado", array()) == "pendiente") || ($this->getAttribute($context["sesion"], "estado", array()) == "modificada"))) {
                     // line 38
-                    echo "                                        <a href=\"#\" class=\"btn btn-sm btn-success\">
+                    echo "                                        <a href=\"";
+                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_aceptarSesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
+                    echo "\" class=\"btn btn-sm btn-success\">
                                             Aceptar
                                         </a>
-                                        <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
+                                        <a href=\"";
+                    // line 41
+                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_rechazarSesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
+                    echo "\" class=\"btn btn-sm btn-danger btn-delete\">
                                             Rechazar
                                         </a>
                                     ";
@@ -168,6 +173,6 @@ $context["sesion"], "estado", array()) == "validada")) {
 
     public function getDebugInfo()
     {
-        return array (  152 => 57,  149 => 56,  143 => 52,  135 => 49,  127 => 45,  125 => 44,  117 => 38,  115 => 37,  109 => 34,  103 => 31,  99 => 30,  95 => 29,  91 => 28,  88 => 27,  84 => 26,  76 => 21,  72 => 20,  68 => 19,  64 => 18,  58 => 14,  54 => 12,  52 => 11,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  157 => 57,  154 => 56,  148 => 52,  140 => 49,  132 => 45,  130 => 44,  124 => 41,  117 => 38,  115 => 37,  109 => 34,  103 => 31,  99 => 30,  95 => 29,  91 => 28,  88 => 27,  84 => 26,  76 => 21,  72 => 20,  68 => 19,  64 => 18,  58 => 14,  54 => 12,  52 => 11,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
     }
 }

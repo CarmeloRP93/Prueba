@@ -105,6 +105,7 @@ class SesionController extends Controller {
     }
 
     public function miSesionClientesAction($id) {
+        $this->changeStateNotification($id);
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repository->find($id);
         return $this->render('moduloclientesclienteBundle:Sesiones:miSesionClientes.html.twig', array("sesion" => $sesion,

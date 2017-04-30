@@ -42,7 +42,7 @@
                                             <td><div class="hidden-xs">{{cancha.horario}}</div></td>
                                             <td class="actions">
                                             {% if cancha.disponibilidad != 'Disponible' %}
-                                                <a href="" class="btn btn-sm btn-info" disabled>Ver</a>
+                                                <button class="btn btn-sm btn-info" disabled>Ver</button>
                                             {% else %}                                              
                                                 <a href="{{ path('moduloclientes_cliente_canchaClientes', { id: cancha.id }) }}" class="btn btn-sm btn-info">
                                                     Ver

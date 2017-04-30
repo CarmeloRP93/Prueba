@@ -47,6 +47,21 @@ class AulaController extends Controller {
                     "sesiones" => $sesionesAula, "delete_form" => $deleteForm->createView(),
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
+    
+    public function sesionesAulaAction($id, Request $request) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+        $aula = $repository->find($id);
+        
+        $idsSesiones = explode('&', $aula->getSesiones());
+        $repositoryS = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesiones = $this->getArrayEntidades($repositoryS, $idsSesiones);
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 7);
+
+        return $this->render('CriveroPruebaBundle:Sesiones:sesionesAula.html.twig', array("pagination" => $pagination,
+                    'aula' => $aula, 'notificacionesSinLeer' => $this->getNewNotification()));
+    }
 
     public function nuevaAulaAction() {
         $aula = new Aulas();
