@@ -12,14 +12,20 @@
                         <th> Nombre </th>
                         <th> Dorsal </th>
                         <th> Incidencia </th>
+                        <th> Acción </th>
                     </tr>
                 </thead>
                 {% for jugador in jugadores %}
                     {% if equipo.id == jugador.idEquipo%}
-                        <tr>
+                        <tr data-id="{{jugador.id}}">
                             <td>  {{jugador.nombre}}  </td>
                             <td>   {{jugador.Dorsal}}   </td>
                             <td>   {{jugador.incidencia}}   </td>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                    Eliminar
+                                </a>
+                            </td>
                         </tr>
                     {%endif%}
                 {%endfor%}
@@ -32,6 +38,17 @@
             <a href="{{ path('moduloclientes_cliente_equipo_editar', { id: equipo.id }) }}" class="btn btn-sm btn-primary">
                 Editar Equipo
             </a>
+            <p>
+               {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar equipo" })}}
+            </p>
         </div>
+        <a class="btn btn-default" href="{{ path('moduloclientes_cliente_equiposClientes') }}">Volver atrás</a>
     </div>
+    {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form_ajax, nombre: "Eliminar jugador",
+       id:'form-delete',with_submit:false })}}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/criveroprueba/js/delete-jugador.js') }}"></script>
 {% endblock %}

@@ -555,12 +555,34 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
             not_moduloclientes_cliente_equipo_editar:
 
+            // moduloclientes_cliente_equipo_eliminar
+            if (0 === strpos($pathinfo, '/eliminarEquipoCliente') && preg_match('#^/eliminarEquipoCliente/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                    $allow = array_merge($allow, array('POST', 'DELETE'));
+                    goto not_moduloclientes_cliente_equipo_eliminar;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_equipo_eliminar')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::eliminarEquipoAction',));
+            }
+            not_moduloclientes_cliente_equipo_eliminar:
+
         }
 
         // moduloclientes_cliente_jugador_nuevo
         if (0 === strpos($pathinfo, '/nuevoJugadorCliente') && preg_match('#^/nuevoJugadorCliente/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_jugador_nuevo')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\JugadorController::nuevoAction',));
         }
+
+        // moduloclientes_cliente_jugador_eliminar
+        if (0 === strpos($pathinfo, '/eliminarJugadorCliente') && preg_match('#^/eliminarJugadorCliente/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                $allow = array_merge($allow, array('POST', 'DELETE'));
+                goto not_moduloclientes_cliente_jugador_eliminar;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_jugador_eliminar')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::eliminarJugadorAction',));
+        }
+        not_moduloclientes_cliente_jugador_eliminar:
 
         // moduloclientes_cliente_jugador_crear
         if ($pathinfo === '/crearJugador') {

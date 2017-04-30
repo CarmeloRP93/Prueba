@@ -12,6 +12,7 @@
                 Crear Equipo 
                 <span class="glyphicon glyphicon-plus"></span></a>
         </div>
+        <a class="btn btn-default" href="{{ path('moduloclientes_cliente_competicionesClientes') }}">Volver atrás</a>
         {%endif%}
         {% if competicion.estadoCompeticion == "Jugandose"%}
             <div class="table-responsive">
@@ -41,16 +42,41 @@
             <a href="{{ path('moduloclientes_cliente_partidosClientes',{ id: competicion.id }) }}" class="btn btn-sm btn-info">
                 Ver Partidos
             </a>
+            <a class="btn btn-default" href="{{ path('moduloclientes_cliente_competicionesClientes') }}">Volver atrás</a>
         {%endif%}
     </div>
     <div>
         <ul class="container text-center">
             {%if competicion.estadoCompeticion == "Finalizado" %}
                 <h3 class="t3">Resumen del {{competicion.nombre}}</h3>
-                <p>Equipos</p>
+                <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th> Posición </th>
+                            <th> Equipo  </th>
+                            <th> Puntos   </th>
+                            <th> Victorias </th>
+                            <th> Derrotas </th>
+                            <th> Empates  </th>
+                        </tr>
+                    </thead>
+                    {%for equipo in equipos%}
+                        <tr>
+                            <td>   {{equipo.clasificacion}}º  </td>
+                            <td>   {{equipo.nombre}}           </td>
+                            <td>   {{equipo.puntuacion}}   </td>
+                            <td>   {{equipo.victorias}}   </td>
+                            <td>   {{equipo.derrotas}}  </td>
+                            <td>   {{equipo.empates}}   </td>
+                        </tr>
+                    {%endfor%}
+                </table>
+            </div>
                 <a href="{{ path('moduloclientes_cliente_partidosClientes',{ id: competicion.id }) }}" class="btn btn-sm btn-info">
                     Ver Partidos
                 </a>
+                <a class="btn btn-default" href="{{ path('moduloclientes_cliente_competicionesClientes') }}">Volver atrás</a>
             {%endif%}
         </ul>
     </div>

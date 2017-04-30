@@ -10,75 +10,7 @@
                 {% else %}
                     <h2 class="t1">Partido {{ partido.estadoPartido }}</h2>
                 {% endif %}
-            </div>  
-
-            {% if partido.estadoPartido == 'Pendiente' %}  
-                <div class="panel-body">  
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                            <h4>Fecha prevista</h4> <p>El {{ partido.fechaInicio|date('d/m/Y') }} a las {{ partido.fechaInicio|date('H:i') }}</p>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                            <h4>Cancha</h4> <p>{{ cancha.tipo }}</p>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                            <h4>Árbitro designado</h4> <p>{{ partido.arbitro }}</p>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-
-            {% if partido.estadoPartido == 'Jugandose' %}
-                <div class="panel-body">  
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <h4>Arbitro pitando: {{ partido.arbitro }}</h4>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                            <h4>{{ equipoLocal.nombre }}</h4>
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <th>Jugador</th>
-                                        <th>Dorsal</th>
-                                    </tr>
-                                    {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
-                                        <tr>
-                                            <td>{{ jugador.nombre }}</td>
-                                            <td>{{ jugador.dorsal }}</td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                            <h4>Vs</h4>
-                        </div>      
-
-                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                            <h4>{{ equipoVisitante.nombre }}</h4>
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <th>Jugador</th>
-                                        <th>Dorsal</th>
-                                    </tr>
-                                    {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
-                                        <tr>
-                                            <td>{{ jugador.nombre }}</td>
-                                            <td>{{ jugador.dorsal }}</td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-
+            </div>
             {% if partido.estadoPartido == 'Finalizado' %}  
                 <div class="panel-body">  
                     <h4>Arbitrado por {{ partido.arbitro }}</h4>
@@ -130,6 +62,75 @@
                         </div>
                     </div>
                 </div>
+                <a class="btn btn-default" href="{{ path('moduloclientes_cliente_partidosClientes', {id: competicion.id}) }}">Volver atrás</a>
+            {% endif %}
+            {% if partido.estadoPartido == 'Pendiente' %}  
+                <div class="panel-body">  
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            <h4>Fecha prevista</h4> <p>El {{ partido.fechaInicio|date('d/m/Y') }} a las {{ partido.fechaInicio|date('H:i') }}</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            <h4>Cancha</h4> <p>{{ cancha.tipo }}</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            <h4>Árbitro designado</h4> <p>{{ partido.arbitro }}</p>
+                        </div>
+                    </div>
+                </div>
+                <a class="btn btn-default" href="{{ path('moduloclientes_cliente_partidosClientes', {id: competicion.id}) }}">Volver atrás</a>
+            {% endif %}
+
+            {% if partido.estadoPartido == 'Jugandose' %}
+                <div class="panel-body">  
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <h4>Arbitro pitando: {{ partido.arbitro }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                            <h4>{{ equipoLocal.nombre }}</h4>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>Jugador</th>
+                                        <th>Dorsal</th>
+                                    </tr>
+                                    {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
+                                        <tr>
+                                            <td>{{ jugador.nombre }}</td>
+                                            <td>{{ jugador.dorsal }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                            <h4>Vs</h4>
+                        </div>      
+
+                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                            <h4>{{ equipoVisitante.nombre }}</h4>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>Jugador</th>
+                                        <th>Dorsal</th>
+                                    </tr>
+                                    {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
+                                        <tr>
+                                            <td>{{ jugador.nombre }}</td>
+                                            <td>{{ jugador.dorsal }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <a class="btn btn-default" href="{{ path('moduloclientes_cliente_partidosClientes', {id: competicion.id}) }}">Volver atrás</a>
             {% endif %}
         </div>
     </div>

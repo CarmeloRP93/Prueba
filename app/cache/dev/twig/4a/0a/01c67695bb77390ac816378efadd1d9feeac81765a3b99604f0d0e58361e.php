@@ -20,6 +20,7 @@ class __TwigTemplate_4a0a01c67695bb77390ac816378efadd1d9feeac81765a3b99604f0d0e5
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'contenido' => array($this, 'block_contenido'),
+            'javascripts' => array($this, 'block_javascripts'),
         );
     }
 
@@ -59,57 +60,94 @@ class __TwigTemplate_4a0a01c67695bb77390ac816378efadd1d9feeac81765a3b99604f0d0e5
                         <th> Nombre </th>
                         <th> Dorsal </th>
                         <th> Incidencia </th>
+                        <th> Acción </th>
                     </tr>
                 </thead>
                 ";
-        // line 17
+        // line 18
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["jugadores"]) ? $context["jugadores"] : $this->getContext($context, "jugadores")));
         foreach ($context['_seq'] as $context["_key"] => $context["jugador"]) {
-            // line 18
+            // line 19
             echo "                    ";
             if (($this->getAttribute((isset($context["equipo"]) ? $context["equipo"] : $this->getContext($context, "equipo")), "id", array()) == $this->getAttribute($context["jugador"], "idEquipo", array()))) {
-                // line 19
-                echo "                        <tr>
-                            <td>  ";
                 // line 20
+                echo "                        <tr data-id=\"";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "id", array()), "html", null, true);
+                echo "\">
+                            <td>  ";
+                // line 21
                 echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "nombre", array()), "html", null, true);
                 echo "  </td>
                             <td>   ";
-                // line 21
+                // line 22
                 echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "Dorsal", array()), "html", null, true);
                 echo "   </td>
                             <td>   ";
-                // line 22
+                // line 23
                 echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "incidencia", array()), "html", null, true);
                 echo "   </td>
+                            <td>
+                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
+                                    Eliminar
+                                </a>
+                            </td>
                         </tr>
                     ";
             }
-            // line 25
+            // line 31
             echo "                ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['jugador'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 26
+        // line 32
         echo "            </table>
         </div>
         <div class=\"container\">
             <a href=\"";
-        // line 29
+        // line 35
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_jugador_nuevo", array("id" => $this->getAttribute((isset($context["equipo"]) ? $context["equipo"] : $this->getContext($context, "equipo")), "id", array()))), "html", null, true);
         echo "\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">
                 Añadir jugador 
                 <span class=\"glyphicon glyphicon-plus\"></span></a>
             <a href=\"";
-        // line 32
+        // line 38
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_equipo_editar", array("id" => $this->getAttribute((isset($context["equipo"]) ? $context["equipo"] : $this->getContext($context, "equipo")), "id", array()))), "html", null, true);
         echo "\" class=\"btn btn-sm btn-primary\">
                 Editar Equipo
             </a>
+            <p>
+               ";
+        // line 42
+        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form")), "nombre" => "Eliminar equipo"));
+        echo "
+            </p>
         </div>
+        <a class=\"btn btn-default\" href=\"";
+        // line 45
+        echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_equiposClientes");
+        echo "\">Volver atrás</a>
     </div>
+    ";
+        // line 47
+        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "nombre" => "Eliminar jugador", "id" => "form-delete", "with_submit" => false));
+        // line 48
+        echo "
+";
+    }
+
+    // line 51
+    public function block_javascripts($context, array $blocks = array())
+    {
+        // line 52
+        echo "    ";
+        $this->displayParentBlock("javascripts", $context, $blocks);
+        echo "
+    <script src=\"";
+        // line 53
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/criveroprueba/js/delete-jugador.js"), "html", null, true);
+        echo "\"></script>
 ";
     }
 
@@ -125,6 +163,6 @@ class __TwigTemplate_4a0a01c67695bb77390ac816378efadd1d9feeac81765a3b99604f0d0e5
 
     public function getDebugInfo()
     {
-        return array (  107 => 32,  101 => 29,  96 => 26,  90 => 25,  84 => 22,  80 => 21,  76 => 20,  73 => 19,  70 => 18,  66 => 17,  53 => 7,  49 => 6,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
+        return array (  149 => 53,  144 => 52,  141 => 51,  136 => 48,  134 => 47,  129 => 45,  123 => 42,  116 => 38,  110 => 35,  105 => 32,  99 => 31,  88 => 23,  84 => 22,  80 => 21,  75 => 20,  72 => 19,  68 => 18,  54 => 7,  50 => 6,  47 => 5,  44 => 4,  38 => 3,  11 => 1,);
     }
 }

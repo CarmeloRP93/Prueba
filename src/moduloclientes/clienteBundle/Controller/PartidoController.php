@@ -9,14 +9,13 @@ class PartidoController extends Controller {
 
     public function partidosClientesAction($id, Request $request) {
         $repositoryPartidos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Partidos");
-        $partidos=$repositoryPartidos->findAll();
+        $partidos=$repositoryPartidos->getPartidosPorCompeticion($id);
         $repositoryCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
         $repositoryEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
         $repositoryCanchas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
-        $idCompeticion= $id;
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $partidos, $request->query->getInt('page', 1), 10);
+                $partidos, $request->query->getInt('page', 1), 4);
 
         foreach ($partidos as $partido=>$valor){
             $competiciones[$partido] = $repositoryCompeticiones->find($valor->getIdCompeticion());   
@@ -28,7 +27,7 @@ class PartidoController extends Controller {
                 array("notificacionesSinLeer"=>$this->getNewNotification(),
                     "partidos"=>$pagination, "competiciones"=>$competiciones,
                     "equiposLocales"=>$equiposLocales,"equiposVisitantes"=>$equiposVisitantes,
-                    "canchas"=>$canchas, "idCompeticion"=>$idCompeticion));
+                    "canchas"=>$canchas));
     }
 
     public function partidoClientesAction($id) {

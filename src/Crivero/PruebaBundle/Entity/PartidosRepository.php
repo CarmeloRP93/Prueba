@@ -12,4 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class PartidosRepository extends EntityRepository
 {
+    public function getPartidosPorCompeticion($id) {
+        return $this->getEntityManager()
+                        ->createQuery('SELECT p FROM CriveroPruebaBundle:Partidos p WHERE p.idCompeticion= :id')
+                        ->setParameter('id', $id)
+                        ->getResult();
+    }
 }

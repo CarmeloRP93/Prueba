@@ -13,7 +13,7 @@
                 <thead>
                     <tr>
                         <th>{{ knp_pagination_sortable(partidos, 'Competición', 'partidos.idCompeticion') }}</th>
-                        <th>{{ knp_pagination_sortable(partidos, 'Equipo Locar', 'partidos.idEquipoLocal') }}</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Equipo Local', 'partidos.idEquipoLocal') }}</th>
                         <th>{{ knp_pagination_sortable(partidos, 'Equipo Visitante', 'partidos.idEquipoVisitante') }}</th>
                         <th>{{ knp_pagination_sortable(partidos, 'Lugar del partido', 'partidos.idCancha') }}</th>
                         <th>Fecha Inicio</th>
@@ -23,7 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for partido in partidos if partido.idCompeticion == idCompeticion %}
+                    {% for partido in partidos %}
                         <tr>
                             <td>{{competiciones[partido.id-1].nombre}}</td>
                             <td>{{equiposLocales[partido.id-1].nombre}}</td>
@@ -45,5 +45,6 @@
         <div class="navigation">
             {{ knp_pagination_render(partidos) }}
         </div>
+        <a class="btn btn-default" href="{{ path('moduloclientes_cliente_competicionClientes', {id: app.request.get('id')}) }}">Volver atrás</a>
     </div>
 {% endblock %}

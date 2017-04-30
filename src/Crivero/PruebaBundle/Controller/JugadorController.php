@@ -12,7 +12,7 @@ class JugadorController extends Controller {
        $jugadores=$RepositorioJugadores->findAll();
        $paginator = $this->get('knp_paginator');
        $pagination = $paginator->paginate(
-                $jugadores, $request->query->getInt('page', 1), 8);
+                $jugadores, $request->query->getInt('page', 1), 5);
        $RepositorioEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
        $equipos=$RepositorioEquipos->findAll();
        return $this->render('CriveroPruebaBundle:Competiciones:jugadores.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),"pagination"=>$pagination,"equipos"=>$equipos));
@@ -38,5 +38,5 @@ class JugadorController extends Controller {
             }
         }
         return $notificacionesSinLeer;
-    }
+    }    
 }

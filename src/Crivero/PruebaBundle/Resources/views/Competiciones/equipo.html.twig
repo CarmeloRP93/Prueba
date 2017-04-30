@@ -12,6 +12,7 @@
                             <th> Nombre y apellidos </th>
                             <th> Dorsal </th>
                             <th> Incidencia </th>
+                            <th> Acciones </th>
                         </tr>
                     </thead>
                     {% for jugador in jugadores %}
@@ -20,10 +21,16 @@
                             <td>  {{jugador.nombre}}  </td>
                             <td>   {{jugador.Dorsal}}   </td>
                             <td>   {{jugador.incidencia}}   </td>
+                            <td> <a href="{{ path('crivero_prueba_jugador', { id: jugador.id })  }}" class="btn btn-sm btn-info">
+                                    Ver Detalles
+                                </a>
+                            <td>
                         </tr>
                         {%endif%}
                     {%endfor%}
                 </table>
             </div>
+        <a class="btn btn-default" href="{{ path('crivero_prueba_competicion',{id:equipo.idCompeticion}) }}">Ver competición</a>        
+        <a class="btn btn-default" href="{{ path('crivero_prueba_equipos') }}">Volver a Equipos</a>        
     </div>
 {% endblock %}

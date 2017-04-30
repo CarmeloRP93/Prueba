@@ -58,7 +58,7 @@ class __TwigTemplate_d354397de892ff617cd2f52224457a71cc7aefa32593027bc5bd0e36efb
         $this->displayBlock('body', $context, $blocks);
         // line 23
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 30
+        // line 31
         echo "</body>
 </html>
 ";
@@ -124,6 +124,10 @@ class __TwigTemplate_d354397de892ff617cd2f52224457a71cc7aefa32593027bc5bd0e36efb
         // line 28
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/bootbox.min.js"), "html", null, true);
         echo "\"></script>
+    <script src=\"";
+        // line 29
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/jquery-3.2.1.min.js"), "html", null, true);
+        echo "\"></script>
 ";
     }
 
@@ -139,6 +143,6 @@ class __TwigTemplate_d354397de892ff617cd2f52224457a71cc7aefa32593027bc5bd0e36efb
 
     public function getDebugInfo()
     {
-        return array (  125 => 28,  121 => 27,  117 => 26,  113 => 25,  108 => 24,  105 => 23,  100 => 22,  96 => 19,  93 => 18,  89 => 15,  86 => 14,  82 => 11,  77 => 9,  74 => 8,  68 => 6,  62 => 30,  60 => 23,  58 => 22,  54 => 20,  52 => 18,  48 => 16,  46 => 14,  42 => 12,  40 => 8,  36 => 7,  32 => 6,  25 => 1,);
+        return array (  129 => 29,  125 => 28,  121 => 27,  117 => 26,  113 => 25,  108 => 24,  105 => 23,  100 => 22,  96 => 19,  93 => 18,  89 => 15,  86 => 14,  82 => 11,  77 => 9,  74 => 8,  68 => 6,  62 => 31,  60 => 23,  58 => 22,  54 => 20,  52 => 18,  48 => 16,  46 => 14,  42 => 12,  40 => 8,  36 => 7,  32 => 6,  25 => 1,);
     }
 }

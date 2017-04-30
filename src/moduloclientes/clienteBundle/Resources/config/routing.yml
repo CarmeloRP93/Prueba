@@ -67,9 +67,21 @@ moduloclientes_cliente_equipo_editar:
     requirements:
         _method: POST|PUT|GET
         
+moduloclientes_cliente_equipo_eliminar:
+    pattern:  /eliminarEquipoCliente/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Equipo:eliminarEquipo }
+    requirements:
+        _method: POST|DELETE
+        
 moduloclientes_cliente_jugador_nuevo:
     pattern:  /nuevoJugadorCliente/{id}
     defaults: { _controller: moduloclientesclienteBundle:Jugador:nuevo }
+    
+moduloclientes_cliente_jugador_eliminar:
+    pattern:  /eliminarJugadorCliente/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Equipo:eliminarJugador }
+    requirements:
+        _method: POST|DELETE
             
 moduloclientes_cliente_jugador_crear:
     pattern:  /crearJugador

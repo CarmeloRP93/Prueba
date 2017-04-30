@@ -168,7 +168,7 @@ $context["notificacion"], "concepto", array()) == "Mensaje")) {
                                         </form>
                                     ";
                 } elseif (($this->getAttribute(                // line 67
-$context["notificacion"], "concepto", array()) == "EliminadaC")) {
+$context["notificacion"], "concepto", array()) == "Celiminada")) {
                     // line 68
                     echo "                                        <form action=\"";
                     echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_canchasClientes");

@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Crivero\PruebaBundle\Entity\Jugadores;
 use Crivero\PruebaBundle\Form\JugadoresType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class JugadorController extends Controller {
     
@@ -38,6 +39,43 @@ class JugadorController extends Controller {
         }
         return $this->render('moduloclientesclienteBundle:Competiciones:nuevoJugadorCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
             'form' => $form->createView()));
+    }
+    private function createCustomForm($id, $method, $route) {
+        return $this->createFormBuilder()
+                        ->setAction($this->generateUrl($route, array('id' => $id)))
+                        ->setMethod($method)
+                        ->getForm();
+    }
+    
+    public function eliminarAction(Request $request, $id){
+        $em = $this->getDoctrine()->getManager();
+        $jugador = $em->getRepository('CriveroPruebaBundle:Jugadores')->find($id);
+        if(!$jugador){
+            $mensaje= 'Jugador no encontrado';
+            throw $this->createNotFoundException($mensaje);
+        }
+//        $form = $this->createDeleteForm($jugador);
+        $form = $this->createCustomForm($jugador->getId(),'DELETE','moduloclientes_cliente_jugador_eliminar');
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid()){
+            if ($request->isXmlHttpRequest()) {
+                $res = $this->deleteJugador($em, $jugador);
+                return new Response(
+                        json_encode(array('removed' => $res['removed'], 'message' => $res['message'])), 200, array('Content-Type' => 'application/json')
+                );
+            }
+            $res=$this->deleteJugador($em, $jugador);
+            return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));
+        }
+    }
+    
+    private function deleteJugador($em, $jugador) {
+        $em->remove($jugador);
+        $em->flush();
+        $message = 'El jugador ha sido eliminado con éxito.';
+        $remove = 1;
+        return array('removed' => $remove, 'message' => $message);
     }
     
     private function getNewNotification() {
