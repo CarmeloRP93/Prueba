@@ -98,42 +98,18 @@ class SesionController extends Controller {
         $aula = $this->findEntity($sesion->getAula(), $em, 'CriveroPruebaBundle:Aulas');
         ($aula->getSesiones() == null) ? $aula->setSesiones($sesion->getId()) :
                         $aula->setSesiones($aula->getSesiones() . "&" . $sesion->getId());
-
-        $hoy = date('j');
-        $mes = date('m');
-        $limite = date('t');
+        
+        $hoy = date_format($sesion->getFechaInicio(), 'd');
+        $mes = date_format($sesion->getFechaInicio(), 'm');
+        $limite = date_format($sesion->getFechaInicio(), 't');
         $duracion = $sesion->getNSesiones();
         //$this->actualizarValores($hoy, $mes, $limite);
-        if ($hoy > 28 && $limite == 30) {
-            $mes++;
-            $hoy = 1;
-            $fecha = '01' . '-' . $mes . '-' . date('Y');
-            $limite = (int) (date('t', strtotime($fecha)));
-            if ($mes < 10) $mes = '0' . $mes;
-        } elseif ($hoy > 29 && $limite == 31) {
-            $mes++;
-            $vuelta = 0;
-            if ($mes == 13) {
-                $mes = 1;
-                $vuelta = 1;
-            }
-            $hoy = 1;
-            $fecha = '01' . '-' . $mes . '-' . date('Y') + $vuelta;
-            $limite = (int) (date('t', strtotime($fecha)));
-            if ($mes < 10) $mes = '0' . $mes;
-        } elseif ($hoy > 26 && $mes == 02) {
-            $mes++;
-            $hoy = 1;
-            $fecha = '01' . '-' . $mes . '-' . date('Y');
-            $limite = (int) (date('t', strtotime($fecha)));
-            if ($mes < 10) $mes = '0' . $mes;
-        }
 
         $repositoryHorarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
 
         $vuelta = 0;
         $diasSelect = explode('&', $sesion->getDias());
-        for ($i = $hoy + 2; $i <= $limite; $i++) {
+        for ($i = $hoy; $i <= $limite; $i++) {
             $flagDiaSemana = false;
             if (!$this->isWeekend($i, $mes, $vuelta)) {
                 foreach ($diasSelect as $dia) {
@@ -317,9 +293,7 @@ class SesionController extends Controller {
     }
 
     private function createRechForm(Sesiones $entity) {
-        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
-        $aulas = $repository->findAll();
-        $form = $this->createForm(new SesionesType($aulas), $entity, array(
+        $form = $this->createForm(new SesionesType(array()), $entity, array(
             'action' => $this->generateUrl('crivero_prueba_rechazar', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));

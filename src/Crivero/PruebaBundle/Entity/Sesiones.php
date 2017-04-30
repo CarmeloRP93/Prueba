@@ -172,9 +172,17 @@ class Sesiones {
     /**
      * @var string
      *
-     * @ORM\Column(name="motivos", type="string", length=255, nullable=true)
+     * @ORM\Column(name="excluidos", type="string", length=255, nullable=true)
      */
-    private $motivos;
+    private $excluidos;
+    
+    /**
+     * @var Date
+     *
+     * @ORM\Column(name="fechaInicio", type="date")
+     * @Assert\NotBlank()
+     */
+    private $fechaInicio;
     
     /**
      * Get id
@@ -516,22 +524,22 @@ class Sesiones {
     }
     
     /**
-     * Get motivos
+     * Get excluidos
      *
      * @return string 
      */
-    public function getMotivos() {
-        return $this->motivos;
+    public function getExcluidos() {
+        return $this->excluidos;
     }
     
     /**
-     * Set motivos
+     * Set excluidos
      *
-     * @param string $motivos
+     * @param string $excluidos
      * @return Sesiones
      */
-    public function setMotivos($motivos) {
-        $this->motivos = $motivos;
+    public function setExcluidos($excluidos) {
+        $this->excluidos = $excluidos;
 
         return $this;
     }
@@ -639,5 +647,26 @@ class Sesiones {
      */
     public function getNSesiones() {
         return $this->nSesiones;
+    }
+    
+    /**
+     * Set fechaInicio
+     *
+     * @param Date $fechaInicio
+     * @return Sesiones
+     */
+    public function setFechaInicio($fechaInicio) {
+        $this->fechaInicio = $fechaInicio;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaInicio
+     *
+     * @return Date 
+     */
+    public function getFechaInicio() {
+        return $this->fechaInicio;
     }
 }

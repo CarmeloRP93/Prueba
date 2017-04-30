@@ -153,7 +153,7 @@ class __TwigTemplate_c42917da8ff7894da2db525c906eecba93885b73d707643be5c594851a0
             echo "                <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
                     <a href=\"";
             // line 51
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_terminar", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array()))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_terminarDe", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-warning text-center center-block img-responsive\" style=\"width: 180px;\">Terminar sesión</a>
                 </div>
                 <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">

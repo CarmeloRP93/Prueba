@@ -48,7 +48,7 @@ class Notificaciones {
     /**
      * @var string
      *
-     * @ORM\Column(name="concepto", type="string", length=10)
+     * @ORM\Column(name="concepto", type="string", length=100)
      */
     private $concepto;
 

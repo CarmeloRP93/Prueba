@@ -104,7 +104,7 @@ modulomonitores_monitores_participante:
     pattern:  /miSesionMonitores/{id}/verParticipantes/{idUsuario}
     defaults: { _controller: modulomonitoresmonitoresBundle:Participantes:participante }
 modulomonitores_monitores_participantePrivado:
-    pattern:  /miSesionMonitores/{id}/participantePrivado
+    pattern:  /miSesionDedicada/{id}/participantePrivado
     defaults: { _controller: modulomonitoresmonitoresBundle:Participantes:participantePrivado }
 modulomonitores_monitores_abandonarSesion:
     pattern:  /abandonarSesion/{id}
@@ -120,6 +120,12 @@ modulomonitores_monitores_terminar:
     requirements:
         _method:  POST|PUT|GET
 
+
+modulomonitores_monitores_terminarDe:
+    pattern:  /terminarDe/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Dedicada:terminarDe }
+    requirements:
+        _method:  POST|PUT|GET
 modulomonitores_monitores_notificacionesMonitor:
     pattern:  /notificacionesMonitor
     defaults: { _controller: modulomonitoresmonitoresBundle:Notificaciones:notificacionesMonitor }

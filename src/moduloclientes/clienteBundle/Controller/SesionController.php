@@ -16,13 +16,14 @@ class SesionController extends Controller {
     public function sesionesClientesAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesiones = $repository->getSesionesGeneralesDisponibles();
-        $paginator = $this->get('knp_paginator');
         $resultado = array();
         foreach ($sesiones as $i => $sesion) {
-            if (strpos($sesion->getIdsClientes(), strval($this->getUser()->getId())) === false) {
+            if (strpos($sesion->getIdsClientes(), strval($this->getUser()->getId())) === false &&
+                    strpos($sesion->getExcluidos(), strval($this->getUser()->getId())) === false) {
                 $resultado[$i] = $sesion;
             }
         }
+        $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($resultado, $request->query->getInt('page', 1), 5);
         return $this->render('moduloclientesclienteBundle:Sesiones:sesionesClientes.html.twig', array("pagination" => $pagination,
                     'notificacionesSinLeer' => $this->getNewNotification()));
@@ -147,9 +148,9 @@ class SesionController extends Controller {
         $notificacion->setIdOrigen($this->getUser()->getId());
         $notificacion->setEstado("No leido");
         if ($sesion->getCliente() == 'normal') {
-            $notificacion->setConcepto("Publica");
+            $notificacion->setConcepto("NuevoParticipantePublica");
         } else {
-            $notificacion->setConcepto("Privada");
+            $notificacion->setConcepto("NuevoParticipantePrivada");
         }
         $em->persist($notificacion);
         $em->flush();
@@ -195,6 +196,7 @@ class SesionController extends Controller {
         } else {
             // Si no está cancelada, el estadoCliente volverá a disponible (esté completa o no)
             $sesion->setEstadoCliente('disponible');
+            $sesion->setExcluidos($this->getUser()->getId() . "&");
             $em->persist($sesion);
         }
 
@@ -207,11 +209,7 @@ class SesionController extends Controller {
         $notificacion->setMensaje("El usuario " . $usuario->getUsername() . " ha abandonado la sesión " . $sesion->getNombre());
         $notificacion->setIdOrigen($this->getUser()->getId());
         $notificacion->setEstado("No leido");
-        if ($sesion->getCliente() == 'normal') {
-            $notificacion->setConcepto("Publica");
-        } else {
-            $notificacion->setConcepto("Privada");
-        }
+        $notificacion->setConcepto("AbandonoPublica");
         $em->persist($notificacion);
         $em->flush();
 

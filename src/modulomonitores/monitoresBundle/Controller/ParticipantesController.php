@@ -24,6 +24,7 @@ public function verParticipantesAction($id, Request $request) {
     }
 
     public function participanteAction($id, $idUsuario) {
+        $this->changeStateNotification($id, $idUsuario);
         $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $cliente = $repositoryUsuarios->find($idUsuario);
 
@@ -31,6 +32,7 @@ public function verParticipantesAction($id, Request $request) {
     }
 
     public function participantePrivadoAction($id) {
+        $this->changeStateNotificationPrivado($id);
         $em = $this->getDoctrine()->getManager();
         $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
         $idUsuario = $sesion->getIdsClientes();
@@ -55,5 +57,19 @@ public function verParticipantesAction($id, Request $request) {
             }
         }
         return $notificacionesSinLeer;
+    }
+    private function changeStateNotification($id,$idUsuario) {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        if ($repositoryN->getNotificacionEntidadParticipantes($id, $idUsuario, $this->getUser()->getId())) {
+            $repositoryN->getNotificacionEntidadParticipantes($id, $idUsuario, $this->getUser()->getId())[0]->setEstado("Leido");
+            $this->getDoctrine()->getManager()->flush();
+        }
+    }
+    private function changeStateNotificationPrivado($id) {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        if ($repositoryN->getNotificacionEntidad($id, $this->getUser()->getId())) {
+            $repositoryN->getNotificacionEntidad($id, $this->getUser()->getId())[0]->setEstado("Leido");
+            $this->getDoctrine()->getManager()->flush();
+        }
     }
 }

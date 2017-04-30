@@ -61,6 +61,25 @@
                                                 Ver notificación
                                             </button>
                                         </form>
+                                    {% elseif notificacion.concepto == "AbandonoPublica"%}
+                                        <form action="{{ path('modulomonitores_monitores_misSesionesMonitores') }} " method="GET">
+                                            <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
+                                            <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                Ver notificación
+                                            </button>
+                                        </form>
+                                    {% elseif notificacion.concepto == "NuevoParticipantePublica"%}  
+                                        <form action="{{'http://localhost/Prueba/web/app_dev.php/miSesionMonitores/'~notificacion.idEntidad~'/verParticipantes/'~notificacion.idOrigen}}">
+                                            <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                Ver notificación
+                                            </button>
+                                        </form>
+                                    {% elseif notificacion.concepto == "NuevoParticipantePrivada"%}  
+                                        <form action="{{path('modulomonitores_monitores_participantePrivado', {id: notificacion.idEntidad})}}">
+                                            <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                Ver notificación
+                                            </button>
+                                        </form>
                                     {% endif %}
                                 </td>
                             </tr>

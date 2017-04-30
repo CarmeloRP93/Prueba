@@ -24,9 +24,6 @@
                         {{ form_widget(form.observaciones, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Motivos de cancelación'} }) }}
                         <span class="text-danger">{{ form_errors(form.observaciones) }}</span>
 
-                        {{ form_label(form.motivos) }}
-                        {{ form_widget(form.motivos, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Motivos de cancelación'} }) }}
-                        <span class="text-danger">{{ form_errors(form.motivos) }}</span>
                     </div>
 
                     <div class="row">
@@ -87,6 +84,17 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <label>Seleccione un aula para realizar la sesión</label> {{ form_widget(form.aula, { 'attr' : { 'placeholder' : 'Motivos de cancelación'} }) }}
                             <span class="text-danger">{{ form_errors(form.aula) }}</span><br>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <label>Seleccione los días de la sesión</label> {{ form_widget(form.dias) }}
+                            <span class="text-danger">{{ form_errors(form.dias) }}</span><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <label>Seleccione el día de comienzo</label> 
+                            {{ form_widget(form.fechaInicio) }}
+                            <span class="text-danger">{{ form_errors(form.fechaInicio) }}</span><br>
                         </div>
                     </div>
                 </form><br>

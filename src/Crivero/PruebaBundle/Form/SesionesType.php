@@ -33,10 +33,10 @@ class SesionesType extends AbstractType
                     ->add('descanso', 'integer')
                     ->add('lClientes', 'integer')
                     ->add('nSesiones', 'integer')
+                    ->add('fechaInicio', 'date', array('widget' => "single_text"))
                     ->add('objetivo', 'textarea')
                     ->add('observaciones', 'textarea', array('label' => 'Motivos',
                         'attr' => array('cols' => '5', 'rows' => '5')))
-                    ->add('motivos', 'textarea')
                     ->add('aula', 'choice', array('choices' => $res, 'expanded' => true))
                     ->add('dias', 'choice', array('choices' => array('Monday' => 'Lunes', 'Tuesday' => 'Martes', 'Wednesday' => 'Miercoles'
                             , 'Thursday' => 'Jueves', 'Friday' => 'Viernes'), 'expanded' => true, 'multiple' => true))
@@ -44,7 +44,8 @@ class SesionesType extends AbstractType
             ;
         }else{
             $builder
-            ->add('observaciones', 'textarea')
+            ->add('observaciones', 'textarea', array('label' => 'Motivos',
+                        'attr' => array('cols' => '5', 'rows' => '5')))
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
                     ;
         }

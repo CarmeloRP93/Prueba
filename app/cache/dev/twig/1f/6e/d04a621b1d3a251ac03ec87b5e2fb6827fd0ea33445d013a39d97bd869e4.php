@@ -162,8 +162,47 @@ $context["notificacion"], "concepto", array()) == "Aeliminada")) {
                                             </button>
                                         </form>
                                     ";
+                } elseif (($this->getAttribute(                // line 64
+$context["notificacion"], "concepto", array()) == "AbandonoPublica")) {
+                    // line 65
+                    echo "                                        <form action=\"";
+                    echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_misSesionesMonitores");
+                    echo " \" method=\"GET\">
+                                            <input type=\"hidden\" name=\"id\" value=\"";
+                    // line 66
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "idEntidad", array()), "html", null, true);
+                    echo "\">
+                                            <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                Ver notificación
+                                            </button>
+                                        </form>
+                                    ";
+                } elseif (($this->getAttribute(                // line 71
+$context["notificacion"], "concepto", array()) == "NuevoParticipantePublica")) {
+                    echo "  
+                                        <form action=\"";
+                    // line 72
+                    echo twig_escape_filter($this->env, ((("http://localhost/Prueba/web/app_dev.php/miSesionMonitores/" . $this->getAttribute($context["notificacion"], "idEntidad", array())) . "/verParticipantes/") . $this->getAttribute($context["notificacion"], "idOrigen", array())), "html", null, true);
+                    echo "\">
+                                            <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                Ver notificación
+                                            </button>
+                                        </form>
+                                    ";
+                } elseif (($this->getAttribute(                // line 77
+$context["notificacion"], "concepto", array()) == "NuevoParticipantePrivada")) {
+                    echo "  
+                                        <form action=\"";
+                    // line 78
+                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_participantePrivado", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array()))), "html", null, true);
+                    echo "\">
+                                            <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                Ver notificación
+                                            </button>
+                                        </form>
+                                    ";
                 }
-                // line 65
+                // line 84
                 echo "                                </td>
                             </tr>
                         ";
@@ -171,17 +210,17 @@ $context["notificacion"], "concepto", array()) == "Aeliminada")) {
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['notificacion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 68
+            // line 87
             echo "                    </tbody>
                 </table>
             </div>
         ";
         }
-        // line 72
+        // line 91
         echo "        <div>
             <div class=\"navigation\"  >
                 ";
-        // line 74
+        // line 93
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
             </div>
@@ -204,6 +243,6 @@ $context["notificacion"], "concepto", array()) == "Aeliminada")) {
 
     public function getDebugInfo()
     {
-        return array (  185 => 74,  181 => 72,  175 => 68,  167 => 65,  158 => 59,  153 => 58,  151 => 57,  143 => 52,  139 => 51,  131 => 46,  127 => 45,  118 => 40,  116 => 39,  107 => 34,  105 => 33,  100 => 31,  96 => 30,  92 => 29,  87 => 28,  83 => 27,  74 => 21,  70 => 20,  66 => 19,  60 => 15,  56 => 13,  54 => 12,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  224 => 93,  220 => 91,  214 => 87,  206 => 84,  197 => 78,  193 => 77,  185 => 72,  181 => 71,  173 => 66,  168 => 65,  166 => 64,  158 => 59,  153 => 58,  151 => 57,  143 => 52,  139 => 51,  131 => 46,  127 => 45,  118 => 40,  116 => 39,  107 => 34,  105 => 33,  100 => 31,  96 => 30,  92 => 29,  87 => 28,  83 => 27,  74 => 21,  70 => 20,  66 => 19,  60 => 15,  56 => 13,  54 => 12,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

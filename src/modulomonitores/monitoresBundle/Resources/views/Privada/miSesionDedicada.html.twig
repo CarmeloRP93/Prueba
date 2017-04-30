@@ -48,7 +48,7 @@
         <div class="text-center">         
             {% if sesion.estado == "validada" %}
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <a href="{{path('modulomonitores_monitores_terminar', {id: sesion.id})}}" class="btn btn-warning text-center center-block img-responsive" style="width: 180px;">Terminar sesión</a>
+                    <a href="{{path('modulomonitores_monitores_terminarDe', {id: sesion.id})}}" class="btn btn-warning text-center center-block img-responsive" style="width: 180px;">Terminar sesión</a>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <a href="{{path('modulomonitores_monitores_suspenderSesionDedicada', {id: sesion.id})}}" class="btn btn-danger text-center center-block img-responsive" style="width: 180px;">Suspender sesión</a> 
