@@ -30,6 +30,7 @@ class PartidoController extends Controller {
     }
 
     public function partidoAction($id) {
+        $this->changeStateNotification($id);
         $repositoryPartido = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Partidos");
         $repositoryCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
         $repositoryEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
@@ -100,7 +101,7 @@ class PartidoController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $em->persist($partido);
             $em->flush();
-            return $this->redirect($this->generateUrl('crivero_prueba_partidos'));
+            return $this->redirect($this->generateUrl('crivero_prueba_partido',array('id'=>$partido->getId())));
         }
         return $this->render('CriveroPruebaBundle:Competiciones:editarPartido.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
             'form' => $form->createView()));
@@ -126,5 +127,13 @@ class PartidoController extends Controller {
             }
         }
         return $notificacionesSinLeer;
+    }
+    
+    private function changeStateNotification($idEntidad) {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        if ($repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())) {
+            $repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())[0]->setEstado("Leido");
+            $this->getDoctrine()->getManager()->flush();
+        }
     }
 }

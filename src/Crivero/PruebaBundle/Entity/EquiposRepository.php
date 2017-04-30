@@ -20,6 +20,15 @@ class EquiposRepository extends EntityRepository
             ->setParameter('idCliente', $idCliente)
             ->getResult();
     }
+    
+    public function findEquipoJugador($idEquipoJugador)
+    {
+        return $this->getEntityManager()
+            ->createQuery('SELECT equipos FROM CriveroPruebaBundle:Equipos equipos
+                           WHERE  equipos.id = :idEquipoJugador')
+            ->setParameter('idEquipoJugador', $idEquipoJugador)
+            ->getResult();
+    }
     public function getEquiposCompeticion($idCompeticion){
         return $this->getEntityManager()
             ->createQuery('SELECT equipos FROM CriveroPruebaBundle:Equipos equipos

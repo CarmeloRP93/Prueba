@@ -1,6 +1,6 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
 
-{% block title %} Vista de mis equipos {% endblock %}             
+{% block title %} Vista de mis equipo {% endblock %}             
 {% block contenido %}
     <div class="container text-center">
         <h1 class="t1">Deporte: {{equipo.deporte}}</h1>
@@ -9,14 +9,13 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th> Nombre </th>
-                        <th> Dorsal </th>
-                        <th> Incidencia </th>
+                        <th> {{ knp_pagination_sortable(jugadores, 'Nombre', 'jugadores.nombre') }}</th>
+                        <th> {{ knp_pagination_sortable(jugadores, 'Dorsal', 'jugadores.Dorsal') }}</th>
+                        <th>{{ knp_pagination_sortable(jugadores, 'Incidencias', 'jugadores.incidencia') }}</th>
                         <th> Acción </th>
                     </tr>
                 </thead>
                 {% for jugador in jugadores %}
-                    {% if equipo.id == jugador.idEquipo%}
                         <tr data-id="{{jugador.id}}">
                             <td>  {{jugador.nombre}}  </td>
                             <td>   {{jugador.Dorsal}}   </td>
@@ -27,7 +26,6 @@
                                 </a>
                             </td>
                         </tr>
-                    {%endif%}
                 {%endfor%}
             </table>
         </div>
@@ -35,14 +33,17 @@
             <a href="{{path('moduloclientes_cliente_jugador_nuevo',{'id': equipo.id})}}" class="btn btn-success" style="height: 30px; width: 150px;">
                 Añadir jugador 
                 <span class="glyphicon glyphicon-plus"></span></a>
-            <a href="{{ path('moduloclientes_cliente_equipo_editar', { id: equipo.id }) }}" class="btn btn-sm btn-primary">
+            <a href="{{ path('moduloclientes_cliente_equipo_editar', { 'id': equipo.id }) }}" class="btn btn-sm btn-primary">
                 Editar Equipo
             </a>
             <p>
                {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar equipo" })}}
             </p>
         </div>
-        <a class="btn btn-default" href="{{ path('moduloclientes_cliente_equiposClientes') }}">Volver atrás</a>
+        <a class="btn btn-default text-center" href="{{ path('moduloclientes_cliente_equiposClientes') }}">Volver atrás</a>
+        <div class="navigation text-center">
+            {{ knp_pagination_render(jugadores) }}
+        </div>
     </div>
     {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form_ajax, nombre: "Eliminar jugador",
        id:'form-delete',with_submit:false })}}

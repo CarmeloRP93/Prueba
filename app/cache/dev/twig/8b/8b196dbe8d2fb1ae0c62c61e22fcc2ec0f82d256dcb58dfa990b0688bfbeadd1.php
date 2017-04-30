@@ -29,7 +29,7 @@ class __TwigTemplate_d47ec9eefbb80965ac6e539bc295a4931423034f021689ac85691641eaf
             // line 5
             echo "        <input type=\"button\" value=\"";
             echo twig_escape_filter($this->env, (isset($context["nombre"]) ? $context["nombre"] : $this->getContext($context, "nombre")), "html", null, true);
-            echo "\" class=\"btn btn-danger\" 
+            echo "\" class=\"btn btn-danger active\" 
                onclick=\"confirmarEliminar()\" >
     ";
         }
@@ -40,6 +40,10 @@ class __TwigTemplate_d47ec9eefbb80965ac6e539bc295a4931423034f021689ac85691641eaf
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
 
+<script src=\"";
+        // line 11
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("js/bootbox.min.js"), "html", null, true);
+        echo "\"></script>
 <script>
     function confirmarEliminar() {
         bootbox.confirm ('¿Estas seguro?', function(result) {
@@ -64,7 +68,7 @@ class __TwigTemplate_d47ec9eefbb80965ac6e539bc295a4931423034f021689ac85691641eaf
 
     public function getDebugInfo()
     {
-        return array (  40 => 9,  37 => 8,  30 => 5,  28 => 4,  24 => 3,  19 => 1,);
+        return array (  45 => 11,  40 => 9,  37 => 8,  30 => 5,  28 => 4,  24 => 3,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -81,12 +85,13 @@ class __TwigTemplate_d47ec9eefbb80965ac6e539bc295a4931423034f021689ac85691641eaf
 
     {{ form_widget(form) }}
     {% if with_submit is not defined or with_submit == true %}
-        <input type=\"button\" value=\"{{ nombre }}\" class=\"btn btn-danger\" 
+        <input type=\"button\" value=\"{{ nombre }}\" class=\"btn btn-danger active\" 
                onclick=\"confirmarEliminar()\" >
     {% endif %}
 
 {{ form_end(form) }}
 
+<script src=\"{{ asset('js/bootbox.min.js') }}\"></script>
 <script>
     function confirmarEliminar() {
         bootbox.confirm ('¿Estas seguro?', function(result) {

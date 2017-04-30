@@ -24,7 +24,7 @@ class __TwigTemplate_a7b5d0a3cd069fd5228626da017ca21c87be02124c319d2d69c5bf32eff
             echo "    <div id=\"sfMiniToolbar-";
             echo twig_escape_filter($this->env, (isset($context["token"]) ? $context["token"] : $this->getContext($context, "token")), "html", null, true);
             echo "\" class=\"sf-minitoolbar\" data-no-turbolink>
-        <a href=\"javascript:void(0);\" title=\"Show Symfony toolbar\" onclick=\"
+        <a href=\"javascript:void(0);\" title=\"Show Symfony toolbar\" tabindex=\"-1\" accesskey=\"D\" onclick=\"
             var elem = this.parentNode;
             if (elem.style.display == 'none') {
                 document.getElementById('sfToolbarMainContent-";
@@ -96,7 +96,7 @@ $context["name"])), "method"), "html", null, true);
         // line 38
         if (("normal" != (isset($context["position"]) ? $context["position"] : $this->getContext($context, "position")))) {
             // line 39
-            echo "        <a class=\"hide-button\" title=\"Close Toolbar\" onclick=\"
+            echo "        <a class=\"hide-button\" title=\"Close Toolbar\" tabindex=\"-1\" accesskey=\"D\" onclick=\"
             var p = this.parentNode;
             p.style.display = 'none';
             (p.previousElementSibling || p.previousSibling).style.display = 'none';
@@ -142,7 +142,7 @@ $context["name"])), "method"), "html", null, true);
         return new Twig_Source("<!-- START of Symfony Web Debug Toolbar -->
 {% if 'normal' != position %}
     <div id=\"sfMiniToolbar-{{ token }}\" class=\"sf-minitoolbar\" data-no-turbolink>
-        <a href=\"javascript:void(0);\" title=\"Show Symfony toolbar\" onclick=\"
+        <a href=\"javascript:void(0);\" title=\"Show Symfony toolbar\" tabindex=\"-1\" accesskey=\"D\" onclick=\"
             var elem = this.parentNode;
             if (elem.style.display == 'none') {
                 document.getElementById('sfToolbarMainContent-{{ token }}').style.display = 'none';
@@ -177,7 +177,7 @@ $context["name"])), "method"), "html", null, true);
     {% endfor %}
 
     {% if 'normal' != position %}
-        <a class=\"hide-button\" title=\"Close Toolbar\" onclick=\"
+        <a class=\"hide-button\" title=\"Close Toolbar\" tabindex=\"-1\" accesskey=\"D\" onclick=\"
             var p = this.parentNode;
             p.style.display = 'none';
             (p.previousElementSibling || p.previousSibling).style.display = 'none';

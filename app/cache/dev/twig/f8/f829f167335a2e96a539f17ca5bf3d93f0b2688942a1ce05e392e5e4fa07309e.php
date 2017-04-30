@@ -111,9 +111,9 @@ class __TwigTemplate_3d36c690a71e95d051b43f6df6b4b46eb05203caff291467328ce892da4
 }
 
 .sf-toolbar-block .sf-toolbar-info-piece .sf-toolbar-status {
-    padding: 0px 5px;
+    padding: 0 5px;
     border-radius: 5px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     vertical-align: top;
 }
 
@@ -147,13 +147,11 @@ class __TwigTemplate_3d36c690a71e95d051b43f6df6b4b46eb05203caff291467328ce892da4
     display: none;
     position: absolute;
     background-color: #fff;
-    border: 1px solid #bbb;
     padding: 9px 0;
     margin-left: -1px;
 
     bottom: 38px;
-    border-bottom-width: 0;
-    border-bottom: 1px solid #bbb;
+    border: 1px solid #bbb;
     border-radius: 4px 4px 0 0;
 }
 
@@ -183,7 +181,7 @@ class __TwigTemplate_3d36c690a71e95d051b43f6df6b4b46eb05203caff291467328ce892da4
 }
 
 .sf-toolbar-block .sf-toolbar-status-green {
-    background-color: #759e1a;
+    background-color: #5e8014;
 }
 
 .sf-toolbar-block .sf-toolbar-status-red {
@@ -216,7 +214,7 @@ class __TwigTemplate_3d36c690a71e95d051b43f6df6b4b46eb05203caff291467328ce892da4
 }
 
 .sf-toolbar-block .sf-toolbar-icon > a,
-.sf-toolbar-block .sf-toolbar-icon > a:link
+.sf-toolbar-block .sf-toolbar-icon > a:link,
 .sf-toolbar-block .sf-toolbar-icon > a:hover {
     color: black !important;
 }
@@ -303,9 +301,9 @@ class __TwigTemplate_3d36c690a71e95d051b43f6df6b4b46eb05203caff291467328ce892da4
 
 /***** Override the setting when the toolbar is on the top *****/
 ";
-        // line 287
+        // line 285
         if (((isset($context["position"]) ? $context["position"] : $this->getContext($context, "position")) == "top")) {
-            // line 288
+            // line 286
             echo "    .sf-minitoolbar {
         top: 0;
         bottom: auto;
@@ -347,12 +345,12 @@ class __TwigTemplate_3d36c690a71e95d051b43f6df6b4b46eb05203caff291467328ce892da4
     }
 ";
         }
-        // line 328
+        // line 326
         echo "
 ";
-        // line 329
+        // line 327
         if ( !(isset($context["floatable"]) ? $context["floatable"] : $this->getContext($context, "floatable"))) {
-            // line 330
+            // line 328
             echo "    .sf-toolbarreset {
         position: static;
         background: #cbcbcb;
@@ -364,7 +362,7 @@ class __TwigTemplate_3d36c690a71e95d051b43f6df6b4b46eb05203caff291467328ce892da4
     }
 ";
         }
-        // line 340
+        // line 338
         echo "
 /***** Media query *****/
 @media screen and (max-width: 779px) {
@@ -424,7 +422,7 @@ class __TwigTemplate_3d36c690a71e95d051b43f6df6b4b46eb05203caff291467328ce892da4
 
     public function getDebugInfo()
     {
-        return array (  368 => 340,  356 => 330,  354 => 329,  351 => 328,  309 => 288,  307 => 287,  19 => 1,);
+        return array (  366 => 338,  354 => 328,  352 => 327,  349 => 326,  307 => 286,  305 => 285,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -532,9 +530,9 @@ class __TwigTemplate_3d36c690a71e95d051b43f6df6b4b46eb05203caff291467328ce892da4
 }
 
 .sf-toolbar-block .sf-toolbar-info-piece .sf-toolbar-status {
-    padding: 0px 5px;
+    padding: 0 5px;
     border-radius: 5px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     vertical-align: top;
 }
 
@@ -568,13 +566,11 @@ class __TwigTemplate_3d36c690a71e95d051b43f6df6b4b46eb05203caff291467328ce892da4
     display: none;
     position: absolute;
     background-color: #fff;
-    border: 1px solid #bbb;
     padding: 9px 0;
     margin-left: -1px;
 
     bottom: 38px;
-    border-bottom-width: 0;
-    border-bottom: 1px solid #bbb;
+    border: 1px solid #bbb;
     border-radius: 4px 4px 0 0;
 }
 
@@ -604,7 +600,7 @@ class __TwigTemplate_3d36c690a71e95d051b43f6df6b4b46eb05203caff291467328ce892da4
 }
 
 .sf-toolbar-block .sf-toolbar-status-green {
-    background-color: #759e1a;
+    background-color: #5e8014;
 }
 
 .sf-toolbar-block .sf-toolbar-status-red {
@@ -637,7 +633,7 @@ class __TwigTemplate_3d36c690a71e95d051b43f6df6b4b46eb05203caff291467328ce892da4
 }
 
 .sf-toolbar-block .sf-toolbar-icon > a,
-.sf-toolbar-block .sf-toolbar-icon > a:link
+.sf-toolbar-block .sf-toolbar-icon > a:link,
 .sf-toolbar-block .sf-toolbar-icon > a:hover {
     color: black !important;
 }

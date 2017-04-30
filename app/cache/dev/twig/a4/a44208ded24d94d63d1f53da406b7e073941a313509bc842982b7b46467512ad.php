@@ -56,71 +56,73 @@ class __TwigTemplate_927b0ab6d83594ddf413d257d9f99b9ca8687124169182a83c918be8481
     public function block_contenido($context, array $blocks = array())
     {
         // line 13
-        echo "    <div class=\"carousel slide carousel-fade\" data-ride=\"carousel\">
-        <!-- Indicators -->
-        <ol class=\"carousel-indicators\">
-            <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>
-            <li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>
-            <li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>
-            <li data-target=\"#myCarousel\" data-slide-to=\"3\"></li>
-        </ol>
+        echo "    <body style=\" margin: 0px\">
+        <div class=\"carousel slide carousel-fade\" data-ride=\"carousel\">
+            <!-- Indicators -->
+            <ol class=\"carousel-indicators\">
+                <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>
+                <li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>
+                <li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>
+                <li data-target=\"#myCarousel\" data-slide-to=\"3\"></li>
+            </ol>
 
-        <!-- Wrapper for slides -->
-        <div class=\"carousel-inner\" role=\"listbox\">
-            <div class=\"item active\">
-";
-        // line 26
-        echo "            </div>
+            <!-- Wrapper for slides -->
+            <div class=\"carousel-inner\" role=\"listbox\">
+                <div class=\"item active\">
+                    ";
+        // line 27
+        echo "                </div>
 
-            <div class=\"item\">
-";
-        // line 30
-        echo "            </div>
-            <div class=\"item\">
-";
-        // line 33
-        echo "            </div>
-        </div>
-    </div>  
-    <br> 
-    <div class=\"container\" text=\"center\">
-        <div id=\"login-form\" class=\"loginmodal-container\">
-            <form action=\"";
-        // line 39
+                <div class=\"item\">
+                    ";
+        // line 31
+        echo "                </div>
+                <div class=\"item\">
+                    ";
+        // line 34
+        echo "                </div>
+            </div>
+        </div>  
+        <br> 
+        <div class=\"container\" text=\"center\">
+            <div id=\"login-form\" class=\"loginmodal-container\">
+                <form action=\"";
+        // line 40
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_login_check");
         echo "\" method=\"post\" class=\"form-signin\">
-                <h3>Inicio de sesión</h3>
-                ";
-        // line 41
+                    <h3>Inicio de sesión</h3>
+                    ";
+        // line 42
         if ((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error"))) {
-            // line 42
-            echo "                    <div class=\"text-danger\">
-                        <p>
-                        <h4>
-                            ";
-            // line 45
+            // line 43
+            echo "                        <div class=\"text-danger\">
+                            <p>
+                            <h4>
+                                ";
+            // line 46
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans($this->getAttribute((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error")), "messageKey", array()), $this->getAttribute((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error")), "messageData", array()), "security"), "html", null, true);
             echo "
-                        </h4>
-                        </p>
-                    </div>
-                ";
+                            </h4>
+                            </p>
+                        </div>
+                    ";
         }
-        // line 50
+        // line 51
         echo "
-                <fieldset>
-                    <input type=\"text\" id=\"username\" class=\"form-control\" name=\"_username\" value=\"";
-        // line 52
+                    <fieldset>
+                        <input type=\"text\" id=\"username\" class=\"form-control\" name=\"_username\" value=\"";
+        // line 53
         echo twig_escape_filter($this->env, (isset($context["last_username"]) ? $context["last_username"] : $this->getContext($context, "last_username")), "html", null, true);
         echo "\" placeholder=\"Usuario\" required autofocus />
-                    <input type=\"password\" id=\"password\" class=\"form-control\" name=\"_password\" placeholder=\"Pass\" required />
-                    <input type=\"hidden\" name=\"_target_path\" value=\"crivero_prueba_home\" />
-                    <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">Entrar</button>   
+                        <input type=\"password\" id=\"password\" class=\"form-control\" name=\"_password\" placeholder=\"Pass\" required />
+                        <input type=\"hidden\" name=\"_target_path\" value=\"crivero_prueba_home\" />
+                        <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">Entrar</button>   
 
-                </fieldset>
-            </form>
-        </div> <!-- /login-form -->
-    </div> <!-- /container -->
+                    </fieldset>
+                </form>
+            </div> <!-- /login-form -->
+        </div> <!-- /container -->
+    </div> <!-- /body -->
 ";
     }
 
@@ -136,7 +138,7 @@ class __TwigTemplate_927b0ab6d83594ddf413d257d9f99b9ca8687124169182a83c918be8481
 
     public function getDebugInfo()
     {
-        return array (  114 => 52,  110 => 50,  102 => 45,  97 => 42,  95 => 41,  90 => 39,  82 => 33,  78 => 30,  73 => 26,  59 => 13,  56 => 12,  51 => 10,  45 => 9,  38 => 6,  36 => 5,  34 => 4,  31 => 3,  11 => 1,);
+        return array (  115 => 53,  111 => 51,  103 => 46,  98 => 43,  96 => 42,  91 => 40,  83 => 34,  79 => 31,  74 => 27,  59 => 13,  56 => 12,  51 => 10,  45 => 9,  38 => 6,  36 => 5,  34 => 4,  31 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -161,54 +163,56 @@ class __TwigTemplate_927b0ab6d83594ddf413d257d9f99b9ca8687124169182a83c918be8481
 {% block navegation %}{% endblock %}
 
 {% block contenido %}
-    <div class=\"carousel slide carousel-fade\" data-ride=\"carousel\">
-        <!-- Indicators -->
-        <ol class=\"carousel-indicators\">
-            <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>
-            <li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>
-            <li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>
-            <li data-target=\"#myCarousel\" data-slide-to=\"3\"></li>
-        </ol>
+    <body style=\" margin: 0px\">
+        <div class=\"carousel slide carousel-fade\" data-ride=\"carousel\">
+            <!-- Indicators -->
+            <ol class=\"carousel-indicators\">
+                <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>
+                <li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>
+                <li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>
+                <li data-target=\"#myCarousel\" data-slide-to=\"3\"></li>
+            </ol>
 
-        <!-- Wrapper for slides -->
-        <div class=\"carousel-inner\" role=\"listbox\">
-            <div class=\"item active\">
-{#                <img src=\"{{ asset('images/campo.jpg') }}\"  width=\"100%\" background-size=\"cover\"/>#}
+            <!-- Wrapper for slides -->
+            <div class=\"carousel-inner\" role=\"listbox\">
+                <div class=\"item active\">
+                    {#                <img src=\"{{ asset('images/campo.jpg') }}\"  width=\"100%\" background-size=\"cover\"/>#}
+                </div>
+
+                <div class=\"item\">
+                    {#                <img src=\"{{ asset('images/basket.jpg') }}\"  width=\"100%\" background-size=\"cover\"/>#}
+                </div>
+                <div class=\"item\">
+                    {#                <img src=\"{{ asset('images/basket.jpg') }}\"  width=\"100%\" background-size=\"cover\"/>#}
+                </div>
             </div>
+        </div>  
+        <br> 
+        <div class=\"container\" text=\"center\">
+            <div id=\"login-form\" class=\"loginmodal-container\">
+                <form action=\"{{ path('crivero_prueba_login_check') }}\" method=\"post\" class=\"form-signin\">
+                    <h3>Inicio de sesión</h3>
+                    {% if error %}
+                        <div class=\"text-danger\">
+                            <p>
+                            <h4>
+                                {{ error.messageKey|trans(error.messageData, 'security') }}
+                            </h4>
+                            </p>
+                        </div>
+                    {% endif %}
 
-            <div class=\"item\">
-{#                <img src=\"{{ asset('images/basket.jpg') }}\"  width=\"100%\" background-size=\"cover\"/>#}
-            </div>
-            <div class=\"item\">
-{#                <img src=\"{{ asset('images/basket.jpg') }}\"  width=\"100%\" background-size=\"cover\"/>#}
-            </div>
-        </div>
-    </div>  
-    <br> 
-    <div class=\"container\" text=\"center\">
-        <div id=\"login-form\" class=\"loginmodal-container\">
-            <form action=\"{{ path('crivero_prueba_login_check') }}\" method=\"post\" class=\"form-signin\">
-                <h3>Inicio de sesión</h3>
-                {% if error %}
-                    <div class=\"text-danger\">
-                        <p>
-                        <h4>
-                            {{ error.messageKey|trans(error.messageData, 'security') }}
-                        </h4>
-                        </p>
-                    </div>
-                {% endif %}
+                    <fieldset>
+                        <input type=\"text\" id=\"username\" class=\"form-control\" name=\"_username\" value=\"{{last_username}}\" placeholder=\"Usuario\" required autofocus />
+                        <input type=\"password\" id=\"password\" class=\"form-control\" name=\"_password\" placeholder=\"Pass\" required />
+                        <input type=\"hidden\" name=\"_target_path\" value=\"crivero_prueba_home\" />
+                        <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">Entrar</button>   
 
-                <fieldset>
-                    <input type=\"text\" id=\"username\" class=\"form-control\" name=\"_username\" value=\"{{last_username}}\" placeholder=\"Usuario\" required autofocus />
-                    <input type=\"password\" id=\"password\" class=\"form-control\" name=\"_password\" placeholder=\"Pass\" required />
-                    <input type=\"hidden\" name=\"_target_path\" value=\"crivero_prueba_home\" />
-                    <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">Entrar</button>   
-
-                </fieldset>
-            </form>
-        </div> <!-- /login-form -->
-    </div> <!-- /container -->
+                    </fieldset>
+                </form>
+            </div> <!-- /login-form -->
+        </div> <!-- /container -->
+    </div> <!-- /body -->
 {% endblock %}", "CriveroPruebaBundle:Usuarios:login.html.twig", "C:\\xampp\\htdocs\\Prueba\\src\\Crivero\\PruebaBundle/Resources/views/Usuarios/login.html.twig");
     }
 }

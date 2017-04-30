@@ -36,15 +36,20 @@
                                 <a href="{{ path('moduloclientes_cliente_partidoClientes', { id: partido.id }) }}" class="btn btn-sm btn-info">
                                     Ver
                                 </a>
+                                <a href="{{path('moduloclientes_cliente_notificacion_nueva',{id : partido.id})}}" class="btn btn-sm btn-warning">
+                                    Cambio o sugerencia
+                                </a>
                             </td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
-        <div class="navigation">
+        <div class="navigation text-center">
             {{ knp_pagination_render(partidos) }}
         </div>
-        <a class="btn btn-default" href="{{ path('moduloclientes_cliente_competicionClientes', {id: app.request.get('id')}) }}">Volver atrás</a>
+        <div class="text-center">
+            <a class="btn btn-default" href="{{ path('moduloclientes_cliente_competicionClientes', {id: app.request.get('id')}) }}">Volver atrás</a>
+        </div>
     </div>
 {% endblock %}

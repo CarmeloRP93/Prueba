@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class JugadoresRepository extends EntityRepository
 {
+     public function findJugadoresEquipo($idEquipo)
+    {
+        return $this->getEntityManager()
+            ->createQuery('SELECT jugadores FROM CriveroPruebaBundle:Jugadores jugadores
+                           WHERE  jugadores.idEquipo = :idEquipo')
+            ->setParameter('idEquipo', $idEquipo)
+            ->getResult();
+    }
 }

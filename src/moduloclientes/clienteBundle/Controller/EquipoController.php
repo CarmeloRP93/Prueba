@@ -17,15 +17,18 @@ class EquipoController extends Controller {
         return $this->render('moduloclientesclienteBundle:Competiciones:equiposClientes.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),"equipos" => $equipos));
     }
 
-    public function equipoClientesAction($id) {
+    public function equipoClientesAction(Request $request,$id) {
         $repositoryEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
         $equipo = $repositoryEquipos->find($id);
         $repositoryJugadores = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Jugadores");
-        $jugadores = $repositoryJugadores->findAll();
+        $jugadores = $repositoryJugadores->findJugadoresEquipo($id);
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $jugadores, $request->query->getInt('page', 1), 4);
         $deleteForm = $this->createCustomForm($equipo->getId(),'DELETE','moduloclientes_cliente_equipo_eliminar');
         $deleteFormAjax = $this->createCustomForm(':JUGADOR_ID','DELETE','moduloclientes_cliente_jugador_eliminar');
         return $this->render('moduloclientesclienteBundle:Competiciones:equipoClientes.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
-            "equipo" => $equipo, "jugadores"=>$jugadores,"delete_form_ajax"=>$deleteFormAjax->createView() ,"delete_form"=>$deleteForm->createView()));
+            "equipo" => $equipo, "jugadores"=>$pagination,"delete_form_ajax"=>$deleteFormAjax->createView() ,"delete_form"=>$deleteForm->createView()));
     }
      
     public function eliminarJugadorAction(Request $request, $id){

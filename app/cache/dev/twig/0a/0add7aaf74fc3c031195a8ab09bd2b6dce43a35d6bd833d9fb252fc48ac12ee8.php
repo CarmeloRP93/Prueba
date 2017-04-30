@@ -278,7 +278,7 @@ class __TwigTemplate_e7ba37888e19f1c80f44b33e517145d649d7d159b7f7983da90b4bc4ef4
                 echo " selected=\"selected\"";
             }
             echo ">";
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans((isset($context["empty_value"]) ? $context["empty_value"] : $this->getContext($context, "empty_value")), array(), (isset($context["translation_domain"]) ? $context["translation_domain"] : $this->getContext($context, "translation_domain"))), "html", null, true);
+            echo twig_escape_filter($this->env, ((((isset($context["empty_value"]) ? $context["empty_value"] : $this->getContext($context, "empty_value")) != "")) ? ($this->env->getExtension('Symfony\Bridge\Twig\Extension\TranslationExtension')->trans((isset($context["empty_value"]) ? $context["empty_value"] : $this->getContext($context, "empty_value")), array(), (isset($context["translation_domain"]) ? $context["translation_domain"] : $this->getContext($context, "translation_domain")))) : ("")), "html", null, true);
             echo "</option>";
         }
         // line 62
@@ -873,7 +873,7 @@ $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttri
             echo twig_escape_filter($this->env, $context["attrname"], "html", null, true);
             echo "=\"";
             echo twig_escape_filter($this->env, $context["attrvalue"], "html", null, true);
-            echo "\"";
+            echo "\" ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['attrname'], $context['attrvalue'], $context['_parent'], $context['loop']);
@@ -986,7 +986,7 @@ $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttri
     {%- endif -%}
     <select {{ block('widget_attributes') }}{% if multiple %} multiple=\"multiple\"{% endif %}>
         {%- if empty_value is not none -%}
-            <option value=\"\"{% if required and value is empty %} selected=\"selected\"{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
+            <option value=\"\"{% if required and value is empty %} selected=\"selected\"{% endif %}>{{ empty_value != '' ? empty_value|trans({}, translation_domain) }}</option>
         {%- endif -%}
         {%- if preferred_choices|length > 0 -%}
             {% set options = preferred_choices %}
@@ -1124,7 +1124,7 @@ $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttri
 {# Labels #}
 
 {%- block form_label -%}
-    {% if label is not sameas(false) %}
+    {% if label is not same as(false) %}
         {%- if not compound -%}
             {% set label_attr = label_attr|merge({'for': id}) %}
         {%- endif -%}
@@ -1233,7 +1233,7 @@ $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttri
 
 {%- block widget_container_attributes -%}
     {% if id is not empty %}id=\"{{ id }}\" {% endif %}
-    {%- for attrname, attrvalue in attr %}{{ attrname }}=\"{{ attrvalue }}\" {%- endfor -%}
+    {%- for attrname, attrvalue in attr %}{{ attrname }}=\"{{ attrvalue }}\" {% endfor -%}
 {%- endblock widget_container_attributes -%}
 
 {%- block button_attributes -%}

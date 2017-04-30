@@ -116,9 +116,7 @@ class __TwigTemplate_3efd1bacc3519295227295bf49d30d640097945474b88d764074b0e746b
             },
 
             toggle: function(selector, elOn, elOff) {
-                var i,
-                    style,
-                    tmp = elOn.style.display,
+                var tmp = elOn.style.display,
                     el = document.getElementById(selector);
 
                 elOn.style.display = elOff.style.display;
@@ -256,9 +254,7 @@ class __TwigTemplate_3efd1bacc3519295227295bf49d30d640097945474b88d764074b0e746b
             },
 
             toggle: function(selector, elOn, elOff) {
-                var i,
-                    style,
-                    tmp = elOn.style.display,
+                var tmp = elOn.style.display,
                     el = document.getElementById(selector);
 
                 elOn.style.display = elOff.style.display;

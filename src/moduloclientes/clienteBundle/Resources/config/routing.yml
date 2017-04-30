@@ -57,6 +57,16 @@ moduloclientes_cliente_equipo_crear:
     requirements:
         _method:  POST|GET
         
+moduloclientes_cliente_notificacion_nueva:
+    pattern:  /nuevaNotificacionCliente/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Partido:nuevaNotificacion }
+    
+moduloclientes_cliente_notificacion_crear:
+    pattern:  /crearNotificacion
+    defaults: { _controller: moduloclientesclienteBundle:Partido:crearNotificacion }
+    requirements:
+        _method:  POST|GET
+        
 moduloclientes_cliente_editarEquipo:
     pattern:  /editarEquipo/{id}
     defaults: { _controller: moduloclientesclienteBundle:Equipo:editarEquipo }

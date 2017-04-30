@@ -22,7 +22,7 @@ class JugadorController extends Controller {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Jugadores");
         $jugador = $repository->find($id);
         $RepositorioEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
-        $equipos=$RepositorioEquipos->findAll();
+        $equipos=$RepositorioEquipos->findEquipoJugador($jugador->getIdEquipo());
         $RepositorioCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
         $competiciones=$RepositorioCompeticiones->findAll();
         return $this->render('CriveroPruebaBundle:Competiciones:jugador.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),"jugador"=>$jugador,"equipos"=>$equipos,"competiciones"=>$competiciones));

@@ -79,7 +79,7 @@ class __TwigTemplate_119e56fcd30720ea062d86dfd94d63b6ca9cc36a78e23ed31c783008f51
             // line 28
             echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Creado", "u.registro");
             echo "</th>
-                            <th>Acciones</th>
+                            <th class=\"t3\">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -93,10 +93,10 @@ class __TwigTemplate_119e56fcd30720ea062d86dfd94d63b6ca9cc36a78e23ed31c783008f51
                 echo "                            <tr data-id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "id", array()), "html", null, true);
                 echo "\">
-                                <td>";
+                                <td><strong>";
                 // line 36
                 echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "username", array()), "html", null, true);
-                echo "</td>
+                echo "</strong></td>
                                 <td>";
                 // line 37
                 echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "nombre", array()), "html", null, true);
@@ -233,14 +233,14 @@ class __TwigTemplate_119e56fcd30720ea062d86dfd94d63b6ca9cc36a78e23ed31c783008f51
                             <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'u.nombre') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'Correo electrónico', 'u.email') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'Creado', 'u.registro') }}</th>
-                            <th>Acciones</th>
+                            <th class=\"t3\">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         {% for usuario in pagination %}
                             <tr data-id=\"{{ usuario.id }}\">
-                                <td>{{usuario.username}}</td>
+                                <td><strong>{{usuario.username}}</strong></td>
                                 <td>{{usuario.nombre}}</td>
                                 <td>{{usuario.email}}</td>
                                 <td>{{usuario.registro|date('d/m/Y')}}</td>

@@ -54,6 +54,12 @@
                                                 Ver notificación
                                             </button>
                                         </form>
+                                    {% elseif notificacion.concepto == "Partido"%}
+                                        <form action="{{ path('crivero_prueba_editarPartido', {id: notificacion.idEntidad}) }}">
+                                            <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                Editar partido
+                                            </button>
+                                        </form>
                                     {% elseif notificacion.concepto == "Usuario"%}
                                         <form action="{{ path('crivero_prueba_cliente', {id: notificacion.idEntidad}) }}">
                                             <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">

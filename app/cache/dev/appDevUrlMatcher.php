@@ -538,6 +538,22 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_moduloclientes_cliente_equipo_crear:
 
+        // moduloclientes_cliente_notificacion_nueva
+        if (0 === strpos($pathinfo, '/nuevaNotificacionCliente') && preg_match('#^/nuevaNotificacionCliente/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_notificacion_nueva')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\PartidoController::nuevaNotificacionAction',));
+        }
+
+        // moduloclientes_cliente_notificacion_crear
+        if ($pathinfo === '/crearNotificacion') {
+            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                goto not_moduloclientes_cliente_notificacion_crear;
+            }
+
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\PartidoController::crearNotificacionAction',  '_route' => 'moduloclientes_cliente_notificacion_crear',);
+        }
+        not_moduloclientes_cliente_notificacion_crear:
+
         if (0 === strpos($pathinfo, '/e')) {
             // moduloclientes_cliente_editarEquipo
             if (0 === strpos($pathinfo, '/editarEquipo') && preg_match('#^/editarEquipo/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {

@@ -44,13 +44,31 @@ class __TwigTemplate_f6bb3ddf28d31418b07421968ae5b6f473b2e5b7432b659592a97c0e1b1
             <table class=\"table table-hover\">
                 <thead>
                     <tr>
-                        <th>Nombre Competición</th>
-                        <th>Equipo Local</th>
-                        <th>Equipo Visitante</th>
-                        <th>Lugar del partido</th>
-                        <th>Fecha de inicio</th>
-                        <th>Resultados</th>
-                        <th>Estados de los partidos</th>
+                        <th>";
+        // line 15
+        echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Competición", "partidos.idCompeticion");
+        echo "</th>
+                        <th>";
+        // line 16
+        echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Equipo Local", "partidos.idEquipoLocal");
+        echo "</th>
+                        <th>";
+        // line 17
+        echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Equipo Visitante", "partidos.idEquipoVisitante");
+        echo "</th>
+                        <th>";
+        // line 18
+        echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Lugar del partido", "partidos.idCancha");
+        echo "</th>
+                        <th>Fecha Inicio</th>
+                        <th>";
+        // line 20
+        echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Resultado", "partidos.resultado");
+        echo "</th>
+                        <th>";
+        // line 21
+        echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")), "Estado de los partidos", "partidos.estadoPartido");
+        echo "</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -80,7 +98,7 @@ class __TwigTemplate_f6bb3ddf28d31418b07421968ae5b6f473b2e5b7432b659592a97c0e1b1
             echo "</td>
                             <td><strong>";
             // line 32
-            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["partido"], "fechaInicio", array()), "d/m/Y H:i:s"), "html", null, true);
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["partido"], "fechaInicio", array()), "d/m/Y"), "html", null, true);
             echo "</strong></td>
                             <td>";
             // line 33
@@ -97,9 +115,13 @@ class __TwigTemplate_f6bb3ddf28d31418b07421968ae5b6f473b2e5b7432b659592a97c0e1b1
             echo "\" class=\"btn btn-sm btn-info\">
                                     Ver
                                 </a>
-                                ";
-            // line 42
-            echo "                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
+                                <a href=\"";
+            // line 39
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_editarPartido", array("id" => $this->getAttribute($context["partido"], "id", array()))), "html", null, true);
+            echo "\" class=\"btn btn-sm btn-primary\">
+                                    Editar
+                                </a>
+                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
                                     Eliminar
                                 </a>
                             </td>
@@ -115,7 +137,13 @@ class __TwigTemplate_f6bb3ddf28d31418b07421968ae5b6f473b2e5b7432b659592a97c0e1b1
         </div>
         ";
         // line 56
-        echo "    </div>
+        echo "        <div class=\"navigation text-center\">
+            ";
+        // line 57
+        echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["partidos"]) ? $context["partidos"] : $this->getContext($context, "partidos")));
+        echo "
+        </div>
+    </div>
 ";
     }
 
@@ -131,7 +159,7 @@ class __TwigTemplate_f6bb3ddf28d31418b07421968ae5b6f473b2e5b7432b659592a97c0e1b1
 
     public function getDebugInfo()
     {
-        return array (  118 => 56,  113 => 48,  102 => 42,  96 => 36,  91 => 34,  87 => 33,  83 => 32,  79 => 31,  75 => 30,  71 => 29,  67 => 28,  64 => 27,  60 => 26,  38 => 6,  35 => 5,  29 => 3,  11 => 1,);
+        return array (  143 => 57,  140 => 56,  135 => 48,  120 => 39,  114 => 36,  109 => 34,  105 => 33,  101 => 32,  97 => 31,  93 => 30,  89 => 29,  85 => 28,  82 => 27,  78 => 26,  70 => 21,  66 => 20,  61 => 18,  57 => 17,  53 => 16,  49 => 15,  38 => 6,  35 => 5,  29 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -158,13 +186,13 @@ class __TwigTemplate_f6bb3ddf28d31418b07421968ae5b6f473b2e5b7432b659592a97c0e1b1
             <table class=\"table table-hover\">
                 <thead>
                     <tr>
-                        <th>Nombre Competición</th>
-                        <th>Equipo Local</th>
-                        <th>Equipo Visitante</th>
-                        <th>Lugar del partido</th>
-                        <th>Fecha de inicio</th>
-                        <th>Resultados</th>
-                        <th>Estados de los partidos</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Competición', 'partidos.idCompeticion') }}</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Equipo Local', 'partidos.idEquipoLocal') }}</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Equipo Visitante', 'partidos.idEquipoVisitante') }}</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Lugar del partido', 'partidos.idCancha') }}</th>
+                        <th>Fecha Inicio</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Resultado', 'partidos.resultado') }}</th>
+                        <th>{{ knp_pagination_sortable(partidos, 'Estado de los partidos', 'partidos.estadoPartido') }}</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -175,16 +203,16 @@ class __TwigTemplate_f6bb3ddf28d31418b07421968ae5b6f473b2e5b7432b659592a97c0e1b1
                             <td>{{equiposLocales[partido.id-1].nombre}}</td>
                             <td>{{equiposVisitantes[partido.id-1].nombre}}</td>
                             <td>{{canchas[partido.id-1].tipo}}</td>
-                            <td><strong>{{partido.fechaInicio|date('d/m/Y H:i:s')}}</strong></td>
+                            <td><strong>{{partido.fechaInicio|date('d/m/Y')}}</strong></td>
                             <td>{{partido.resultado}}</td>
                             <td>{{partido.estadoPartido}}</td>
                             <td class=\"actions\">
                                 <a href=\"{{ path('crivero_prueba_partido', { id: partido.id }) }}\" class=\"btn btn-sm btn-info\">
                                     Ver
                                 </a>
-                                {#<a href=\"{{ path('crivero_prueba_editarPartido', { id: partido.id }) }}\" class=\"btn btn-sm btn-primary\">
+                                <a href=\"{{ path('crivero_prueba_editarPartido', { id: partido.id }) }}\" class=\"btn btn-sm btn-primary\">
                                     Editar
-                                </a>#}
+                                </a>
                                 <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
                                     Eliminar
                                 </a>
@@ -199,6 +227,9 @@ class __TwigTemplate_f6bb3ddf28d31418b07421968ae5b6f473b2e5b7432b659592a97c0e1b1
                 Nuevo Partido
              <span class=\"glyphicon glyphicon-plus\"></span></a>
         </div>#}
+        <div class=\"navigation text-center\">
+            {{ knp_pagination_render(partidos)}}
+        </div>
     </div>
 {% endblock %}", "CriveroPruebaBundle:Competiciones:partidos.html.twig", "C:\\xampp\\htdocs\\Prueba\\src\\Crivero\\PruebaBundle/Resources/views/Competiciones/partidos.html.twig");
     }

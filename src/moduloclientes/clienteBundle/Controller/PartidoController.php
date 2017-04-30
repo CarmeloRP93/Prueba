@@ -3,6 +3,8 @@
 namespace moduloclientes\clienteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Crivero\PruebaBundle\Entity\Notificaciones;
+use Crivero\PruebaBundle\Form\NotificacionesType;
 use Symfony\Component\HttpFoundation\Request;
 
 class PartidoController extends Controller {
@@ -46,6 +48,40 @@ class PartidoController extends Controller {
             "partido"=>$partido, "competicion"=>$competicion,
             "equipoLocal"=>$equipoLocal, "equipoVisitante"=>$equipoVisitante,
             "cancha"=>$cancha, "jugadores"=>$jugadores));
+    }
+    
+    public function nuevaNotificacionAction($id){
+        $notificacion = new Notificaciones();
+        $form = $this->createCreateForm($notificacion);
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevaNotificacionCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+            'form' => $form->createView(),'id'=>$id));
+    }
+
+    private function createCreateForm(Notificaciones $entity) {
+        $form = $this->createForm(new NotificacionesType(), $entity, array(
+            'action' => $this->generateUrl('moduloclientes_cliente_notificacion_crear'),
+            'method' => 'POST'
+        ));
+        return $form;
+    }
+    
+    public function crearNotificacionAction(Request $request) {
+        $notificacion = new Notificaciones();
+        $form = $this->createCreateForm($notificacion);
+        $form->handleRequest($request);
+        if ($form->isValid()&& $form->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager();
+            $notificacion->setIdEntidad($form->get('idEntidad')->getData());
+            $notificacion->setConcepto('Partido');
+            $notificacion->setIdDestinatario(17);
+            $notificacion->setEstado('No leido');
+            $notificacion->setIdOrigen($this->getUser()->getId());
+            $em->persist($notificacion);
+            $em->flush();
+            return $this->redirect($this->generateUrl('moduloclientes_cliente_competicionesClientes'));
+        }
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevaNotificacionCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+            'form' => $form->createView()));
     }
     
     private function getNewNotification() {
