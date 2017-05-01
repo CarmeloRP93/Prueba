@@ -18,7 +18,10 @@ class PartidoController extends Controller {
         $repositoryCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
         $repositoryEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
         $repositoryCanchas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
-
+        $competiciones=array();
+        $equiposLocales=array();
+        $equiposVisitantes=array();
+        $canchas=array();
         foreach ($partidos as $partido=>$valor){
             $competiciones[$partido] = $repositoryCompeticiones->find($valor->getIdCompeticion());   
             $equiposLocales[$partido] = $repositoryEquipos->find($valor->getIdEquipoLocal());

@@ -18,7 +18,10 @@ class PartidoController extends Controller {
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $partidos, $request->query->getInt('page', 1), 4);
-
+        $competiciones=array();
+        $equiposLocales=array();
+        $equiposVisitantes=array();
+        $canchas=array();
         foreach ($partidos as $partido=>$valor){
             $competiciones[$partido] = $repositoryCompeticiones->find($valor->getIdCompeticion());   
             $equiposLocales[$partido] = $repositoryEquipos->find($valor->getIdEquipoLocal());
