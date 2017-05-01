@@ -16,6 +16,7 @@
                             <thead>
                                 <tr>
                                     <th>{{ knp_pagination_sortable(pagination, 'Nombre de la sesión', 'pagination.nombre') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Monitor', 'pagination.monitor') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Número de clientes', 'pagination.nClientes') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Número de sesiones', 'pagination.nSesiones') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Aula asignada', 'pagination.aula') }}</th>
@@ -26,6 +27,7 @@
                                 {% for sesion in pagination %}
                                     <tr data-id="{{ sesion.id }}">
                                         <td>{{sesion.nombre}}</td>
+                                        <td>{{sesion.monitor}}</td>
                                         <td>{{sesion.nClientes}} Clientes</td>
                                         <td>{{sesion.nSesiones}} Sesiones</td>
                                         <td>{{aulas[loop.index-1].nombre}}</td>

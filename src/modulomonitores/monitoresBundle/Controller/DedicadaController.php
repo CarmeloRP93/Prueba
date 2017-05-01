@@ -83,6 +83,20 @@ class DedicadaController extends Controller {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
+            foreach ($usuarios as $usuario) {
+                if ($usuario->getTipo() == 1) {
+                    $notificacion = new Notificaciones();
+                    $notificacion->setIdDestinatario($usuario->getId());
+                    $notificacion->setIdEntidad($sesion->getId());
+                    $notificacion->setMensaje("La sesión " . $sesion->getNombre() . " ha sido eliminada del sistema por ". $sesion->getMonitor());
+                    $notificacion->setIdOrigen($this->getUser()->getId());
+                    $notificacion->setEstado("No leido");
+                    $notificacion->setConcepto("PrivadaEliminada");
+                    $em->persist($notificacion);
+                    $em->flush();
+                }
+            }
             $em->remove($sesion);
             $em->flush();
             $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido eliminada con éxito.');

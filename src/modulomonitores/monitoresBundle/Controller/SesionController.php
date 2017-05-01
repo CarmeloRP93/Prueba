@@ -86,6 +86,20 @@ class SesionController extends Controller {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
+            foreach ($usuarios as $usuario) {
+                if ($usuario->getTipo() == 1) {
+                    $notificacion = new Notificaciones();
+                    $notificacion->setIdDestinatario($usuario->getId());
+                    $notificacion->setIdEntidad($sesion->getId());
+                    $notificacion->setMensaje("La sesión " . $sesion->getNombre() . " ha sido eliminada del sistema por " . $sesion->getMonitor());
+                    $notificacion->setIdOrigen($this->getUser()->getId());
+                    $notificacion->setEstado("No leido");
+                    $notificacion->setConcepto("PublicaEliminada");
+                    $em->persist($notificacion);
+                    $em->flush();
+                }
+            }
             $em->remove($sesion);
             $em->flush();
             $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido eliminada con éxito.');
@@ -365,7 +379,11 @@ class SesionController extends Controller {
 
 
         $sesion->setEstadoCliente('disponible');
-        $sesion->setExcluidos($idUsuario . "&");
+        if ($sesion->getExcluidos() == NULL) {
+            $sesion->setExcluidos($this->getUser()->getId());
+        } else {
+            $sesion->setExcluidos($sesion->getExcluidos() . '&' . $this->getUser()->getId());
+        }
         $em->persist($sesion);
 
 
@@ -380,6 +398,26 @@ class SesionController extends Controller {
         $notificacion->setEstado("No leido");
         $em->persist($notificacion);
         $em->flush();
+
+        if ($sesion->getNClientes() + 1 == $sesion->getLClientes()) {
+            $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
+            foreach ($usuarios as $usuario) {
+                if ($usuario->getTipo() == 2) {
+                    if (strpos($sesion->getIdsClientes(), strval($usuario->getId())) !== false || strpos($sesion->getExcluidos(), strval($usuario->getId())) !== false) {
+                        continue;
+                    }
+                    $notificacion = new Notificaciones();
+                    $notificacion->setIdDestinatario($usuario->getId());
+                    $notificacion->setIdEntidad($sesion->getId());
+                    $notificacion->setMensaje("Hay dispononibilidad en la sesión " . $sesion->getNombre());
+                    $notificacion->setIdOrigen($this->getUser()->getId());
+                    $notificacion->setEstado("No leido");
+                    $notificacion->setConcepto("AbandonoPublica");
+                    $em->persist($notificacion);
+                    $em->flush();
+                }
+            }
+        }
         if (count($arrayClientes) > 0) {
             return $this->redirect($this->generateUrl('modulomonitores_monitores_verParticipantes', array('notificacionesSinLeer' => $this->getNewNotification(), 'id' => $id)));
         } else {

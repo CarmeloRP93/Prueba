@@ -91,7 +91,7 @@ class Sesiones {
     /**
      * @var string
      *
-     * @ORM\Column(name="dias", type="string", length=200, nullable=true)
+     * @ORM\Column(name="dias", type="string", length=200)
      */
     private $dias;
 
@@ -180,7 +180,7 @@ class Sesiones {
      * @var Date
      *
      * @ORM\Column(name="fechaInicio", type="date")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Seleccione una fecha")
      */
     private $fechaInicio;
     

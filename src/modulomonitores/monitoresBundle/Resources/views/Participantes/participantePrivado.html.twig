@@ -24,6 +24,30 @@
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <h4>Teléfono </h4> <p>{{cliente.telefono}}</p>
+                            <h4>Sesiones en activo</h4>
+                            <div>
+                                <ul style="list-style: none">
+                                    {% for sesion in sesiones %}
+                                        {% if sesion.estado == 'validada' %}
+                                            <li>
+                                                {% if sesion.cliente == 'normal' %}
+                                                    <p>Sesión{{sesion.nombre}} 
+                                                        <a href="{{ path('modulomonitores_monitores_miSesionMonitores', { id: sesion.id }) }}" class="btn btn-sm btn-primary">
+                                                            Ver más información
+                                                        </a>
+                                                    </p>
+                                                {% else %}
+                                                    <p>Sesión{{sesion.nombre}} 
+                                                        <a href="{{ path('modulomonitores_monitores_miSesionDedicada', { id: sesion.id }) }}" class="btn btn-sm btn-primary">
+                                                            Ver más información
+                                                        </a>
+                                                    </p>
+                                                </li>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
                             <a class="btn btn-default" href="{{ path('modulomonitores_monitores_enviarMensajeCliente', { id : cliente.id } ) }}">Enviar mensaje</a>
                         </div>
                     </div>

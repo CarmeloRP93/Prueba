@@ -12,6 +12,7 @@ use Symfony\Component\Form\FormError;
 class SesionController extends Controller {
 
     public function sesionesAction(Request $request) {
+        $this->changeStateNotification($request->get('id'));
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         
         $searchQuery = $request->get('query');
@@ -68,6 +69,7 @@ class SesionController extends Controller {
     }
 
     public function dedicadasAction(Request $request) {
+        $this->changeStateNotification($request->get('id'));
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         
         $searchQuery = $request->get('query');
@@ -101,8 +103,8 @@ class SesionController extends Controller {
         $aula = $this->findEntity($sesion->getAula(), $em, 'CriveroPruebaBundle:Aulas');
         ($aula->getSesiones() == null) ? $aula->setSesiones($sesion->getId()) :
                         $aula->setSesiones($aula->getSesiones() . "&" . $sesion->getId());
-        
-        $hoy = date_format($sesion->getFechaInicio(), 'd');
+
+        $hoy = (int) date_format($sesion->getFechaInicio(), 'd');
         $mes = date_format($sesion->getFechaInicio(), 'm');
         $limite = date_format($sesion->getFechaInicio(), 't');
         $duracion = $sesion->getNSesiones();
@@ -113,6 +115,7 @@ class SesionController extends Controller {
         $vuelta = 0;
         $diasSelect = explode('&', $sesion->getDias());
         for ($i = $hoy; $i <= $limite; $i++) {
+            print_r($i);
             $flagDiaSemana = false;
             if (!$this->isWeekend($i, $mes, $vuelta)) {
                 foreach ($diasSelect as $dia) {
@@ -121,8 +124,22 @@ class SesionController extends Controller {
                         break;
                     }
                 }
-                if (!$flagDiaSemana)
+                if (!$flagDiaSemana) {
+                    if ($i >= $limite) {
+                        // $this->updateMonth($i, $mes, $vuelta, $limite);
+                        $i = 0;
+                        if ($mes == 12) {
+                            $mes = 0;
+                            $vuelta = 1;
+                        }
+                        $mes++;
+                        if ($mes < 10)
+                            $mes = '0' . $mes;
+                        $fecha = '01' . '-' . $mes . '-' . date('Y') + $vuelta;
+                        $limite = (int) (date('t', strtotime($fecha)));
+                    }
                     continue;
+                }
                 $diaReserva = $repositoryHorarios->getDiaReserva($sesion->getAula(), $i);
                 if ($diaReserva[0]->getPeriodo() != null) {
                     $fechaReserva = $this->findFechaReserva($diaReserva[0], $mes);

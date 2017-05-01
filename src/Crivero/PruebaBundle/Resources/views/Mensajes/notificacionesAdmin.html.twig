@@ -66,6 +66,20 @@
                                                 Ver notificación
                                             </button>
                                         </form>
+                                            {% elseif notificacion.concepto == "PublicaEliminada"%}
+                                        <form action="{{ path('crivero_prueba_sesiones') }} " method="GET">
+                                            <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
+                                            <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                Ver notificación
+                                            </button>
+                                        </form>
+                                    {% elseif notificacion.concepto == "PrivadaEliminada"%}
+                                        <form action="{{ path('crivero_prueba_dedicadas') }} " method="GET">
+                                            <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
+                                            <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                Ver notificación
+                                            </button>
+                                        </form>
                                     {% endif %}
                                 </td>
                             </tr>

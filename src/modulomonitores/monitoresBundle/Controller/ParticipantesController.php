@@ -1,15 +1,13 @@
 <?php
 
-
-
 namespace modulomonitores\monitoresBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-
 class ParticipantesController extends Controller {
-public function verParticipantesAction($id, Request $request) {
+   
+    public function verParticipantesAction($id, Request $request) {
         $em = $this->getDoctrine()->getManager();
         $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
         $arrayClientes = explode('&', $sesion->getIdsClientes());
@@ -27,8 +25,11 @@ public function verParticipantesAction($id, Request $request) {
         $this->changeStateNotification($id, $idUsuario);
         $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $cliente = $repositoryUsuarios->find($idUsuario);
+        $idsSesionesCliente = explode('&', $cliente->getSesiones());
+        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesionesCliente = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente, $this->getUser()->getId());
 
-        return $this->render('modulomonitoresmonitoresBundle:Participantes:participante.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),"cliente" => $cliente, "id" => $id, "idUsuario" => $idUsuario));
+        return $this->render('modulomonitoresmonitoresBundle:Participantes:participante.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "cliente" => $cliente, "sesiones"=>$sesionesCliente,"id" => $id, "idUsuario" => $idUsuario));
     }
 
     public function participantePrivadoAction($id) {
@@ -38,8 +39,21 @@ public function verParticipantesAction($id, Request $request) {
         $idUsuario = $sesion->getIdsClientes();
         $repositoryu = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $cliente = $repositoryu->find($idUsuario);
-        return $this->render('modulomonitoresmonitoresBundle:Participantes:participantePrivado.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),"idSesion" => $id, "cliente" => $cliente));
+        $idsSesionesCliente = explode('&', $cliente->getSesiones());
+        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesionesCliente = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente, $this->getUser()->getId());
+
+        return $this->render('modulomonitoresmonitoresBundle:Participantes:participantePrivado.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "sesiones"=>$sesionesCliente, "idSesion" => $id, "cliente" => $cliente));
     }
+
+    private function getArrayEntidades($repository, $array, $idMonitor) {
+        for ($i = 0; $i < count($array); $i++) {
+            if ($repository->find($array[$i])->getIdMonitor() == $idMonitor)
+                $resultado[$i] = $repository->find($array[$i]);
+        }
+        return $resultado;
+    }
+
     private function findEntity($id, $em, $repository) {
         $entity = $em->getRepository($repository)->find($id);
         if (!$entity) {
@@ -47,6 +61,7 @@ public function verParticipantesAction($id, Request $request) {
         }
         return $entity;
     }
+
     private function getNewNotification() {
         $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
         $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
@@ -58,13 +73,15 @@ public function verParticipantesAction($id, Request $request) {
         }
         return $notificacionesSinLeer;
     }
-    private function changeStateNotification($id,$idUsuario) {
+
+    private function changeStateNotification($id, $idUsuario) {
         $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
         if ($repositoryN->getNotificacionEntidadParticipantes($id, $idUsuario, $this->getUser()->getId())) {
             $repositoryN->getNotificacionEntidadParticipantes($id, $idUsuario, $this->getUser()->getId())[0]->setEstado("Leido");
             $this->getDoctrine()->getManager()->flush();
         }
     }
+
     private function changeStateNotificationPrivado($id) {
         $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
         if ($repositoryN->getNotificacionEntidad($id, $this->getUser()->getId())) {
@@ -72,4 +89,5 @@ public function verParticipantesAction($id, Request $request) {
             $this->getDoctrine()->getManager()->flush();
         }
     }
+
 }
