@@ -1,7 +1,7 @@
 <?php
 
 namespace Crivero\PruebaBundle\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,21 +30,23 @@ class Jugadores {
 
     /**
      * @var string
-     *
+     * 
      * @ORM\Column(name="username", type="string", length=255, nullable=true)
      */
     private $username;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *          message="Elija un nombre de usuario del listado o añadalo manualmente")
      * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
 
     /**
      * @var integer
-     *
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
      * @ORM\Column(name="dorsal", type="integer", nullable=true)
      */
     private $dorsal;

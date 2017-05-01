@@ -48,33 +48,36 @@ class PartidoController extends Controller {
     
     public function nuevoAction($id) {
         $partido = new Partidos();
-        $form = $this->createCreateForm($partido);
-        return $this->render('CriveroPruebaBundle:Competiciones:nuevoPartido.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),'form' => $form->createView(),'idCompeticion'=>$id));
+        $form = $this->createCreateForm($partido,$id);
+        return $this->render('CriveroPruebaBundle:Competiciones:nuevoPartido.html.twig',
+            array("notificacionesSinLeer"=>$this->getNewNotification(),
+            'form' => $form->createView(),'id'=>$id));
     }
     
-    private function createCreateForm(Partidos $entity) {
+    private function createCreateForm(Partidos $entity, $id) {
         $competiciones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones")->findAll();
         $canchas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas")->findAll();
         $equipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos")->findAll();
         $form = $this->createForm(new PartidosType($competiciones,$equipos,$canchas), $entity, array(
-            'action' => $this->generateUrl('crivero_prueba_partido_crear'),
+            'action' => $this->generateUrl('crivero_prueba_partido_crear',array('id'=>$id)),
             'method' => 'POST'
         ));
         return $form;
     }
     
-    public function crearAction(Request $request) {
+    public function crearAction(Request $request,$id) {
         $partido = new Partidos();
-        $form = $this->createCreateForm($partido);
+        $form = $this->createCreateForm($partido,$id);
         $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $partido->setResultado("Pendiente");
             $em->persist($partido);
             $em->flush();
             return $this->redirect($this->generateUrl('crivero_prueba_partidos'));
         }
         return $this->render('CriveroPruebaBundle:Competiciones:nuevoPartido.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
-            'form' => $form->createView()));
+            'form' => $form->createView(), 'id'=>$id));
     }
     
     public function editarPartidoAction($id) {

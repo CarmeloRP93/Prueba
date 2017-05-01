@@ -158,9 +158,39 @@ $context["notificacion"], "concepto", array()) == "Usuario")) {
                                                 Ver notificación
                                             </button>
                                         </form>
+                                            ";
+                } elseif (($this->getAttribute(                // line 69
+$context["notificacion"], "concepto", array()) == "PublicaEliminada")) {
+                    // line 70
+                    echo "                                        <form action=\"";
+                    echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_sesiones");
+                    echo " \" method=\"GET\">
+                                            <input type=\"hidden\" name=\"id\" value=\"";
+                    // line 71
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "idEntidad", array()), "html", null, true);
+                    echo "\">
+                                            <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                Ver notificación
+                                            </button>
+                                        </form>
+                                    ";
+                } elseif (($this->getAttribute(                // line 76
+$context["notificacion"], "concepto", array()) == "PrivadaEliminada")) {
+                    // line 77
+                    echo "                                        <form action=\"";
+                    echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_dedicadas");
+                    echo " \" method=\"GET\">
+                                            <input type=\"hidden\" name=\"id\" value=\"";
+                    // line 78
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "idEntidad", array()), "html", null, true);
+                    echo "\">
+                                            <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                Ver notificación
+                                            </button>
+                                        </form>
                                     ";
                 }
-                // line 70
+                // line 84
                 echo "                                </td>
                             </tr>
                         ";
@@ -168,17 +198,17 @@ $context["notificacion"], "concepto", array()) == "Usuario")) {
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['notificacion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 73
+            // line 87
             echo "                    </tbody>
                 </table>
             </div>
         ";
         }
-        // line 77
+        // line 91
         echo "        <div>
             <div class=\"navigation\"  >
                 ";
-        // line 79
+        // line 93
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
             </div>
@@ -201,7 +231,7 @@ $context["notificacion"], "concepto", array()) == "Usuario")) {
 
     public function getDebugInfo()
     {
-        return array (  182 => 79,  178 => 77,  172 => 73,  164 => 70,  154 => 64,  152 => 63,  143 => 58,  141 => 57,  132 => 52,  130 => 51,  121 => 46,  119 => 45,  110 => 40,  108 => 39,  99 => 34,  97 => 33,  92 => 31,  88 => 30,  84 => 29,  79 => 28,  75 => 27,  66 => 21,  62 => 20,  58 => 19,  52 => 15,  48 => 13,  46 => 12,  38 => 6,  35 => 5,  29 => 3,  11 => 1,);
+        return array (  212 => 93,  208 => 91,  202 => 87,  194 => 84,  185 => 78,  180 => 77,  178 => 76,  170 => 71,  165 => 70,  163 => 69,  154 => 64,  152 => 63,  143 => 58,  141 => 57,  132 => 52,  130 => 51,  121 => 46,  119 => 45,  110 => 40,  108 => 39,  99 => 34,  97 => 33,  92 => 31,  88 => 30,  84 => 29,  79 => 28,  75 => 27,  66 => 21,  62 => 20,  58 => 19,  52 => 15,  48 => 13,  46 => 12,  38 => 6,  35 => 5,  29 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -278,6 +308,20 @@ $context["notificacion"], "concepto", array()) == "Usuario")) {
                                         </form>
                                     {% elseif notificacion.concepto == \"Usuario\"%}
                                         <form action=\"{{ path('crivero_prueba_cliente', {id: notificacion.idEntidad}) }}\">
+                                            <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                Ver notificación
+                                            </button>
+                                        </form>
+                                            {% elseif notificacion.concepto == \"PublicaEliminada\"%}
+                                        <form action=\"{{ path('crivero_prueba_sesiones') }} \" method=\"GET\">
+                                            <input type=\"hidden\" name=\"id\" value=\"{{ notificacion.idEntidad }}\">
+                                            <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                Ver notificación
+                                            </button>
+                                        </form>
+                                    {% elseif notificacion.concepto == \"PrivadaEliminada\"%}
+                                        <form action=\"{{ path('crivero_prueba_dedicadas') }} \" method=\"GET\">
+                                            <input type=\"hidden\" name=\"id\" value=\"{{ notificacion.idEntidad }}\">
                                             <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
                                                 Ver notificación
                                             </button>

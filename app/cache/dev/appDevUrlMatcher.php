@@ -528,13 +528,13 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // moduloclientes_cliente_equipo_crear
-        if ($pathinfo === '/crearEquipo') {
+        if (0 === strpos($pathinfo, '/crearEquipo') && preg_match('#^/crearEquipo/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
                 $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
                 goto not_moduloclientes_cliente_equipo_crear;
             }
 
-            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::crearAction',  '_route' => 'moduloclientes_cliente_equipo_crear',);
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_equipo_crear')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::crearAction',));
         }
         not_moduloclientes_cliente_equipo_crear:
 
@@ -544,13 +544,13 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // moduloclientes_cliente_notificacion_crear
-        if ($pathinfo === '/crearNotificacion') {
+        if (0 === strpos($pathinfo, '/crearNotificacion') && preg_match('#^/crearNotificacion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
                 $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
                 goto not_moduloclientes_cliente_notificacion_crear;
             }
 
-            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\PartidoController::crearNotificacionAction',  '_route' => 'moduloclientes_cliente_notificacion_crear',);
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_notificacion_crear')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\PartidoController::crearNotificacionAction',));
         }
         not_moduloclientes_cliente_notificacion_crear:
 
@@ -589,6 +589,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_jugador_nuevo')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\JugadorController::nuevoAction',));
         }
 
+        // moduloclientes_cliente_jugador_crear
+        if (0 === strpos($pathinfo, '/crearJugador') && preg_match('#^/crearJugador/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                goto not_moduloclientes_cliente_jugador_crear;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_jugador_crear')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\JugadorController::crearAction',));
+        }
+        not_moduloclientes_cliente_jugador_crear:
+
         // moduloclientes_cliente_jugador_eliminar
         if (0 === strpos($pathinfo, '/eliminarJugadorCliente') && preg_match('#^/eliminarJugadorCliente/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
@@ -599,17 +610,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_jugador_eliminar')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\EquipoController::eliminarJugadorAction',));
         }
         not_moduloclientes_cliente_jugador_eliminar:
-
-        // moduloclientes_cliente_jugador_crear
-        if ($pathinfo === '/crearJugador') {
-            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
-                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
-                goto not_moduloclientes_cliente_jugador_crear;
-            }
-
-            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\JugadorController::crearAction',  '_route' => 'moduloclientes_cliente_jugador_crear',);
-        }
-        not_moduloclientes_cliente_jugador_crear:
 
         if (0 === strpos($pathinfo, '/sesiones')) {
             // moduloclientes_cliente_sesionesClientes
@@ -1083,13 +1083,13 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // crivero_prueba_partido_crear
-        if ($pathinfo === '/crearPartido') {
+        if (0 === strpos($pathinfo, '/crearPartido') && preg_match('#^/crearPartido/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
                 $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
                 goto not_crivero_prueba_partido_crear;
             }
 
-            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PartidoController::crearAction',  '_route' => 'crivero_prueba_partido_crear',);
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_partido_crear')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PartidoController::crearAction',));
         }
         not_crivero_prueba_partido_crear:
 

@@ -86,22 +86,22 @@ class EquipoController extends Controller {
 
     public function nuevoAction($id) {
         $equipo = new Equipos();
-        $form = $this->createCreateForm($equipo);
+        $form = $this->createCreateForm($equipo,$id);
         return $this->render('moduloclientesclienteBundle:Competiciones:nuevoEquipoCliente.html.twig', array("notificacionesSinLeer" => $this->getNewNotification(),
                     'form' => $form->createView(), 'id' => $id));
     }
 
-    private function createCreateForm(Equipos $entity) {
+    private function createCreateForm(Equipos $entity,$id) {
         $form = $this->createForm(new EquiposType(), $entity, array(
-            'action' => $this->generateUrl('moduloclientes_cliente_equipo_crear'),
+            'action' => $this->generateUrl('moduloclientes_cliente_equipo_crear',array('id'=>$id)),
             'method' => 'POST'
         ));
         return $form;
     }
 
-    public function crearAction(Request $request) {
+    public function crearAction(Request $request,$id) {
         $equipo = new Equipos();
-        $form = $this->createCreateForm($equipo);
+        $form = $this->createCreateForm($equipo,$id);
         $form->handleRequest($request);
         $competicion = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones")->find($form->get('idCompeticion')->getData());
         if ($form->isValid()) {
@@ -119,7 +119,7 @@ class EquipoController extends Controller {
             return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));
         }
         return $this->render('moduloclientesclienteBundle:Competiciones:nuevoEquipoCliente.html.twig', array("notificacionesSinLeer" => $this->getNewNotification(),
-                    'form' => $form->createView()));
+                    'form' => $form->createView(),'id'=>$id));
     }
 
     public function editarEquipoAction($id) {

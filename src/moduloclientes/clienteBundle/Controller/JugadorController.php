@@ -12,23 +12,23 @@ class JugadorController extends Controller {
     
       public function nuevoAction($id) {
         $jugador = new Jugadores();
-        $form = $this->createCreateForm($jugador);
+        $form = $this->createCreateForm($jugador,$id);
         return $this->render('moduloclientesclienteBundle:Competiciones:nuevoJugadorCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
             'form' => $form->createView(),'id' => $id));
     }
     
-    private function createCreateForm(Jugadores $entity) {
+    private function createCreateForm(Jugadores $entity,$id) {
         $clientes = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->getClientesJugadores();
         $form = $this->createForm(new JugadoresType($clientes), $entity, array(
-            'action' => $this->generateUrl('moduloclientes_cliente_jugador_crear'),
+            'action' => $this->generateUrl('moduloclientes_cliente_jugador_crear',array('id'=>$id)),
             'method' => 'POST'
         ));
         return $form;
     }
     
-    public function crearAction(Request $request) {
+    public function crearAction(Request $request,$id) {
         $jugador = new Jugadores();
-        $form = $this->createCreateForm($jugador);
+        $form = $this->createCreateForm($jugador,$id);
         $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -47,7 +47,7 @@ class JugadorController extends Controller {
             return $this->redirect($this->generateUrl('moduloclientes_cliente_equipoClientes', array('id'=>$form->get('idEquipo')->getData())));
         }
         return $this->render('moduloclientesclienteBundle:Competiciones:nuevoJugadorCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
-            'form' => $form->createView()));
+            'form' => $form->createView(),'id' => $id));
     }
     private function createCustomForm($id, $method, $route) {
         return $this->createFormBuilder()

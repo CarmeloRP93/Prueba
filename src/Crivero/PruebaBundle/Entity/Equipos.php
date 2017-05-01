@@ -1,7 +1,7 @@
 <?php
 
 namespace Crivero\PruebaBundle\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,7 +37,8 @@ class Equipos
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
      * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
      */
     private $nombre;

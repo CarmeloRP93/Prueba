@@ -110,7 +110,7 @@ class __TwigTemplate_17f3dae74b9139408ff4655364616c851308fa4609b47f0a53b9b768a27
         echo "
                         ";
         // line 38
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "dorsal", array()), 'widget', array("attr" => array("class" => "form-control")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "dorsal", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Recuerde introducir un dorsal")));
         echo "
                         <span class=\"text-danger\">";
         // line 39
@@ -196,7 +196,7 @@ class __TwigTemplate_17f3dae74b9139408ff4655364616c851308fa4609b47f0a53b9b768a27
 
                     <div class=\"col-xs-12 col-sm-6 col-md-3 col-lg-3\">
                         {{ form_label(form.dorsal) }}
-                        {{ form_widget(form.dorsal, {'attr' : {'class' : 'form-control'}  } ) }}
+                        {{ form_widget(form.dorsal, {'attr' : {'class' : 'form-control','placeholder' : 'Recuerde introducir un dorsal'}  } ) }}
                         <span class=\"text-danger\">{{ form_errors(form.dorsal) }}</span>
                     </div>
                     <div class=\"col-xs-12 col-sm-6 col-md-3 col-lg-3\"><br>

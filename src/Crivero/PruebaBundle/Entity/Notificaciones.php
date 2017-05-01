@@ -61,7 +61,8 @@ class Notificaciones {
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
      * @ORM\Column(name="mensaje", type="string", length=255)
      */
     private $mensaje;

@@ -52,7 +52,7 @@ moduloclientes_cliente_equipo_nuevo:
     defaults: { _controller: moduloclientesclienteBundle:Equipo:nuevo }
     
 moduloclientes_cliente_equipo_crear:
-    pattern:  /crearEquipo
+    pattern:  /crearEquipo/{id}
     defaults: { _controller: moduloclientesclienteBundle:Equipo:crear }
     requirements:
         _method:  POST|GET
@@ -62,7 +62,7 @@ moduloclientes_cliente_notificacion_nueva:
     defaults: { _controller: moduloclientesclienteBundle:Partido:nuevaNotificacion }
     
 moduloclientes_cliente_notificacion_crear:
-    pattern:  /crearNotificacion
+    pattern:  /crearNotificacion/{id}
     defaults: { _controller: moduloclientesclienteBundle:Partido:crearNotificacion }
     requirements:
         _method:  POST|GET
@@ -87,17 +87,18 @@ moduloclientes_cliente_jugador_nuevo:
     pattern:  /nuevoJugadorCliente/{id}
     defaults: { _controller: moduloclientesclienteBundle:Jugador:nuevo }
     
+moduloclientes_cliente_jugador_crear:
+    pattern:  /crearJugador/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Jugador:crear }
+    requirements:
+        _method:  POST|GET
+        
 moduloclientes_cliente_jugador_eliminar:
     pattern:  /eliminarJugadorCliente/{id}
     defaults: { _controller: moduloclientesclienteBundle:Equipo:eliminarJugador }
     requirements:
         _method: POST|DELETE
             
-moduloclientes_cliente_jugador_crear:
-    pattern:  /crearJugador
-    defaults: { _controller: moduloclientesclienteBundle:Jugador:crear }
-    requirements:
-        _method:  POST|GET
 #-------------------------------------------------------------------------------------------
     
 moduloclientes_cliente_sesionesClientes:

@@ -28,7 +28,7 @@ class __TwigTemplate_30ca32159862267618169873e332d499b76e982cae3cf58baf8aedeeb6f
     // line 2
     public function block_title($context, array $blocks = array())
     {
-        echo " Reservas ";
+        echo " Mis reservas ";
     }
 
     // line 3
@@ -158,7 +158,7 @@ class __TwigTemplate_30ca32159862267618169873e332d499b76e982cae3cf58baf8aedeeb6f
     public function getSourceContext()
     {
         return new Twig_Source("{% extends 'moduloclientesclienteBundle::main.html.twig' %}
-{% block title %} Reservas {% endblock %}
+{% block title %} Mis reservas {% endblock %}
 {% block contenido %}
     <div class=\"progress no-border hidden\" id=\"delete-progress\" style=\"margin-top: -20px\">
         <div class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"45\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 100%\">

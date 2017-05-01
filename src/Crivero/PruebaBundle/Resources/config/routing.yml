@@ -169,7 +169,7 @@ crivero_prueba_partido_nuevo:
     defaults: { _controller: CriveroPruebaBundle:Partido:nuevo }
     
 crivero_prueba_partido_crear:
-    pattern:  /crearPartido
+    pattern:  /crearPartido/{id}
     defaults: { _controller: CriveroPruebaBundle:Partido:crear }
     requirements:
         _method:  POST|GET

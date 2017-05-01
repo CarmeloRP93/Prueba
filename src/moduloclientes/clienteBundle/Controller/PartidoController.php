@@ -52,22 +52,23 @@ class PartidoController extends Controller {
     
     public function nuevaNotificacionAction($id){
         $notificacion = new Notificaciones();
-        $form = $this->createCreateForm($notificacion);
-        return $this->render('moduloclientesclienteBundle:Competiciones:nuevaNotificacionCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+        $form = $this->createCreateForm($notificacion,$id);
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevaNotificacionCliente.html.twig',
+            array("notificacionesSinLeer"=>$this->getNewNotification(),
             'form' => $form->createView(),'id'=>$id));
     }
 
-    private function createCreateForm(Notificaciones $entity) {
+    private function createCreateForm(Notificaciones $entity, $id) {
         $form = $this->createForm(new NotificacionesType(), $entity, array(
-            'action' => $this->generateUrl('moduloclientes_cliente_notificacion_crear'),
+            'action' => $this->generateUrl('moduloclientes_cliente_notificacion_crear', array('id'=>$id)),
             'method' => 'POST'
         ));
         return $form;
     }
     
-    public function crearNotificacionAction(Request $request) {
+    public function crearNotificacionAction(Request $request,$id) {
         $notificacion = new Notificaciones();
-        $form = $this->createCreateForm($notificacion);
+        $form = $this->createCreateForm($notificacion,$id);
         $form->handleRequest($request);
         if ($form->isValid()&& $form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();
@@ -81,7 +82,7 @@ class PartidoController extends Controller {
             return $this->redirect($this->generateUrl('moduloclientes_cliente_competicionesClientes'));
         }
         return $this->render('moduloclientesclienteBundle:Competiciones:nuevaNotificacionCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
-            'form' => $form->createView()));
+            'form' => $form->createView(),'id'=>$id));
     }
     
     private function getNewNotification() {

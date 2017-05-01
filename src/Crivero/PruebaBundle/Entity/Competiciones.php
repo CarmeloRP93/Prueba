@@ -26,7 +26,8 @@ class Competiciones
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
      */
     private $nombre;
 

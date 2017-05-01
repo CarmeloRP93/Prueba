@@ -1,7 +1,7 @@
 <?php
 
 namespace Crivero\PruebaBundle\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -44,7 +44,8 @@ class Partidos
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
      * @ORM\Column(name="fechaInicio", type="datetime")
      */
     private $fechaInicio;
@@ -72,7 +73,8 @@ class Partidos
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
      * @ORM\Column(name="arbitro", type="string", length=255)
      */
     private $arbitro;
