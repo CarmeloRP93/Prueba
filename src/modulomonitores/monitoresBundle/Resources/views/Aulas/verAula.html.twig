@@ -1,32 +1,38 @@
 {% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
-
 {% block title %} {{aula.nombre}} {% endblock %}
 {% block contenido %}
     <div class="container text-center">
-        <h3>Detalles del Aula</h3>
-    </div>
+        <div class="page-header">
+            <h1 class="t1">{{aula.nombre}}</h1>
+        </div>
 
-    <div class="text-center">
-        <h4>{{aula.nombre}}</h4>
-    </div>
-
-    <div class="col-md-6 col-xs-12">
-
-        <div class="text-center">
-            <img src="{{ asset('images/' ~ aula.imagen) }}" style="width:250px; height: 150px"  class="img-rounded"/><br>
-
-            <br>{% if aula.disponibilidad == "Disponible" %}
-            <div class="text-center">
-                <button class="btn btn-success">{{aula.disponibilidad}}</button>
-            </div>
-            {% else %}
-                <div class="text-center">
-                    <button class="btn btn-danger">{{aula.disponibilidad}}</button>
-                </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <img src="{{ asset('images/' ~ aula.imagen) }}" class="img-responsive center-block" style="max-width: 340px; margin-bottom:20px"/>
+                {% if aula.disponibilidad == "Disponible" %}
+                    <button style="width:340px;" class="btn btn-success active" >{{aula.disponibilidad}}</button>
+                {% else %}
+                    <button style="width:340px;" class="btn btn-danger active">{{aula.disponibilidad}}</button>
                 {% endif %}
-                </div><br>
-
             </div>
 
-           
+            <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0 col-lg-6 col-lg-offset-0"> 
+                <div class="panel panel-default">                  
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <h4>Disponibilidad </h4><p>{{aula.horario}} </p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <h4>Tamaño </h4><p>{{aula.dimensiones ~ 'm²'}} </p>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <h4>Descripción </h4><p>{{ aula.descripcion }} </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
 {% endblock %}

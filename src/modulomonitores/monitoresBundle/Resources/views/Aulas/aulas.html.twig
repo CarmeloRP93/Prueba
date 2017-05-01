@@ -1,50 +1,49 @@
 {% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
-
 {% block title %} Aulas {% endblock %}
-
 {% block contenido %} 
 
     <div class="container">
         <div class="page-header">
             <h1 class="t1">Aulas</h1>
         </div>
-        {% if not pagination|length %}
-            <h2>No se encontraron aulas.</h2>
-        {% else %}
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'pagination.nombre') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Estado', 'pagination.disponibilidad') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Horario', 'pagination.horario') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Área', 'pagination.dimensiones') }}</th>
-                            <th class="t3">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for aula in pagination %}
-                            <tr data-id="{{ aula.id }}">
-                                <td>{{aula.nombre}}</td>
-                                <td><strong>{{aula.disponibilidad}}</strong></td>
-                                <td>{{aula.horario}}</td>
-                                <td>{{aula.dimensiones ~ 'm²'}}</td>
-                                <td class="actions">
-                                    <a href="{{ path('modulomonitores_monitores_verAula', { id: aula.id }) }}" class="btn btn-sm btn-primary">
-                                        Ver más información
-                                    </a>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        {% endif %}
-            <div class="navigation">
-                {{ knp_pagination_render(pagination) }}
+        <div class="panel panel-default text-center">
+            <div class="panel-body myelement">
+                {% if not pagination|length %}
+                    <h2>No se encontraron aulas.</h2>
+                {% else %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'pagination.nombre') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Estado', 'pagination.disponibilidad') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Horario', 'pagination.horario') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Área', 'pagination.dimensiones') }}</th>
+                                    <th class="t3">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for aula in pagination %}
+                                    <tr data-id="{{ aula.id }}">
+                                        <td>{{aula.nombre}}</td>
+                                        <td><strong>{{aula.disponibilidad}}</strong></td>
+                                        <td>{{aula.horario}}</td>
+                                        <td>{{aula.dimensiones ~ 'm²'}}</td>
+                                        <td class="actions">
+                                            <a href="{{ path('modulomonitores_monitores_verAula', { id: aula.id }) }}" class="btn btn-sm btn-primary">
+                                                Ver más información
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                <div class="navigation text-center">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
             </div>
         </div>
     </div>
-
-
 {% endblock %} 

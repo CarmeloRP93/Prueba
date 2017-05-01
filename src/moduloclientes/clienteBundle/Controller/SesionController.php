@@ -201,7 +201,11 @@ class SesionController extends Controller {
         } else {
             // Si no está cancelada, el estadoCliente volverá a disponible (esté completa o no)
             $sesion->setEstadoCliente('disponible');
-            $sesion->setExcluidos($this->getUser()->getId() . "&");
+            if ($sesion->getExcluidos() == NULL) {
+                $sesion->setExcluidos($this->getUser()->getId());               
+            } else {
+                $sesion->setExcluidos($sesion->getExcluidos() .'&'. $this->getUser()->getId());               
+            }
             $em->persist($sesion);
         }
 
@@ -211,12 +215,32 @@ class SesionController extends Controller {
         $notificacion = new Notificaciones();
         $notificacion->setIdDestinatario($sesion->getIdMonitor());
         $notificacion->setIdEntidad($sesion->getId());
-        $notificacion->setMensaje("El usuario " . $usuario->getUsername() . " ha abandonado la sesión " . $sesion->getNombre());
+        $notificacion->setMensaje("El usuario " . $usuario->getUsername() . " ha abandonado tu sesión " . $sesion->getNombre());
         $notificacion->setIdOrigen($this->getUser()->getId());
         $notificacion->setEstado("No leido");
         $notificacion->setConcepto("AbandonoPublica");
         $em->persist($notificacion);
         $em->flush();
+
+        if ($sesion->getNClientes() + 1 == $sesion->getLClientes()) {
+            $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
+            foreach ($usuarios as $usuario) {
+                if ($usuario->getTipo() == 2) {
+                    if (strpos($sesion->getIdsClientes(), strval($usuario->getId())) !== false || strpos($sesion->getExcluidos(), strval($usuario->getId())) !== false) {
+                        continue;
+                    }
+                    $notificacion = new Notificaciones();
+                    $notificacion->setIdDestinatario($usuario->getId());
+                    $notificacion->setIdEntidad($sesion->getId());
+                    $notificacion->setMensaje("Hay dispononibilidad en la sesión " . $sesion->getNombre());
+                    $notificacion->setIdOrigen($this->getUser()->getId());
+                    $notificacion->setEstado("No leido");
+                    $notificacion->setConcepto("AbandonoPublica");
+                    $em->persist($notificacion);
+                    $em->flush();
+                }
+            }
+        }
 
         return $this->redirect($this->generateUrl('moduloclientes_cliente_misSesionesClientes'));
     }

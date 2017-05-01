@@ -8,7 +8,7 @@
                     <h1 class="t1">Mensajes enviados</h1>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><br>
-                    <div class="dropdown">
+                    <div class="dropdown" style="float: left">
                         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Mensajes Enviados<span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li><a href="{{path('moduloclientes_cliente_mensajes_recibidosCliente')}}">Mensajes Recibidos</a></li>
@@ -38,7 +38,7 @@
                                     <tr data-id="{{ mensaje.id }}">
                                         <td><strong>{{ mensaje.destinatario }}</strong></td>
                                         {% if mensaje.asunto == null %}
-                                            <td>Sin asunto</td>
+                                            <td><div class="hidden-xs">Sin asunto</div></td>
                                         {% else %}
                                             <td><div class="hidden-xs">{{mensaje.asunto}}</div></td>
                                             {% endif %}
@@ -56,10 +56,8 @@
                         </table>
                     </div>
                 {% endif %}
-                <div>
-                    <div class="navigation"  >
-                        {{ knp_pagination_render(pagination) }}
-                    </div>
+                <div class="navigation"  >
+                    {{ knp_pagination_render(pagination) }}
                 </div>
             </div>
         </div>

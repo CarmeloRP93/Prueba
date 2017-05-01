@@ -38,10 +38,14 @@
         {% if sesion.estadoCliente == "disponible" %}
             <a href="{{path('moduloclientes_cliente_sesionesClientes_apuntarse', {id: sesion.id})}}" 
                class="btn btn-primary text-center center-block img-responsive" style="width: 180px;">Apuntarse <span class="glyphicon glyphicon-pencil"></span></a>
-            {% elseif sesion.estadoCliente == "completo" %}
+        {% elseif sesion.estadoCliente == "Completo" %}
             <button class="btn btn-danger text-center center-block img-responsive" style="width: 180px;" disabled="disabled">Completo</button>
         {% elseif sesion.estadoCliente == "cancelada" %}
             <button class="btn btn-danger text-center center-block img-responsive" style="width: 180px;" disabled="disabled">Cancelada</button>
+        {% elseif sesion.estado == "terminada" %}
+            <button class="btn btn-warning text-center center-block img-responsive" style="width: 180px;" disabled>Sesión terminada</button>
+        {% elseif sesion.estado == "suspendida" %}
+            <button class="btn btn-danger text-center center-block img-responsive" style="width: 180px;" disabled="disabled">Suspendida</button>
         {% endif %}<br>
         {% if app.request.headers.get('referer') %}
             <a class="btn btn-default" href="{{ path('moduloclientes_cliente_sesionesClientes') }}">Volver atrás</a>
