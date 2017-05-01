@@ -12,11 +12,20 @@ class JugadoresType extends AbstractType
      * @param FormBuilderInterface $builder
      * @param array $options
      */
+    private $clientes;
+    public function __construct(array $clientes) {
+        $this->clientes = $clientes;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $resClientes = array(count($this->clientes)+1);
+        $resClientes[0] = 'No seleccionado';
+        for($i=0; $i < count($this->clientes); $i++){
+            $resClientes[$i+1]= array($this->clientes[$i]->getUserName()=> $this->clientes[$i]->getNombre());
+        }
         $builder
             ->add('idEquipo','hidden')
-            ->add('username','text', array('label' => 'Usuario'))
+            ->add('username','choice', array('choices' => $resClientes))
             ->add('nombre','text', array('label' => 'Nombre y Apellidos'))
             ->add('dorsal','integer')
             ->add('incidencia','text')

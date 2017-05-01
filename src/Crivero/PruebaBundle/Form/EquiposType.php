@@ -17,8 +17,7 @@ class EquiposType extends AbstractType
         $builder
             ->add('idCompeticion', 'hidden')
             ->add('nombre', 'text')
-            ->add('deporte','choice', array('choices' => array("Fútbol"=>'Fútbol', 
-                                                               "Padel"=>'Padel')))
+            ->add('deporte','hidden')
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;
     }

@@ -18,7 +18,8 @@ class JugadorController extends Controller {
     }
     
     private function createCreateForm(Jugadores $entity) {
-        $form = $this->createForm(new JugadoresType(), $entity, array(
+        $clientes = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->getClientesJugadores();
+        $form = $this->createForm(new JugadoresType($clientes), $entity, array(
             'action' => $this->generateUrl('moduloclientes_cliente_jugador_crear'),
             'method' => 'POST'
         ));
@@ -33,9 +34,17 @@ class JugadorController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $jugador->setIdEquipo($form->get('idEquipo')->getData());
             $jugador->setIncidencia('Ninguna');
-            $em->persist($jugador);
-            $em->flush();
-            return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));
+            if(($form->get('username')->getData() != 'No selecionado')){
+                $cliente =$this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->getNombreCliente($form->get('username')->getData());
+                $jugador->setNombre($cliente[0]['nombre']);
+                $em->persist($jugador);
+                $em->flush();
+            }else{
+                $jugador->setUsername(null);
+                $em->persist($jugador);
+                $em->flush();
+            }
+            return $this->redirect($this->generateUrl('moduloclientes_cliente_equipoClientes', array('id'=>$form->get('idEquipo')->getData())));
         }
         return $this->render('moduloclientesclienteBundle:Competiciones:nuevoJugadorCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
             'form' => $form->createView()));
@@ -54,7 +63,6 @@ class JugadorController extends Controller {
             $mensaje= 'Jugador no encontrado';
             throw $this->createNotFoundException($mensaje);
         }
-//        $form = $this->createDeleteForm($jugador);
         $form = $this->createCustomForm($jugador->getId(),'DELETE','moduloclientes_cliente_jugador_eliminar');
         $form->handleRequest($request);
         

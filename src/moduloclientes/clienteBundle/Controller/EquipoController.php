@@ -103,13 +103,14 @@ class EquipoController extends Controller {
         $equipo = new Equipos();
         $form = $this->createCreateForm($equipo);
         $form->handleRequest($request);
+        $competicion = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones")->find($form->get('idCompeticion')->getData());
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $equipo->setIdCliente($this->getUser()->getId());
             $equipo->setClasificacion(0);
             $equipo->setPuntuacion(0);
             $equipo->setIdCompeticion($form->get('idCompeticion')->getData());
-//            $equipo->setDeporte($form->get('deporte')->getData());
+            $equipo->setDeporte($competicion->getDeporte());
             $equipo->setVictorias(0);
             $equipo->setEmpates(0);
             $equipo->setDerrotas(0);

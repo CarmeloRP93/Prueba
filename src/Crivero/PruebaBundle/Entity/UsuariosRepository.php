@@ -65,10 +65,22 @@ class UsuariosRepository extends EntityRepository {
                         ->getResult();
     }
     
+    public function getClientesJugadores() {
+        return $this->getEntityManager()
+                        ->createQuery('SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=2')
+                        ->getResult();
+    }
+    
+    public function getNombreCliente($username){
+        return $this->getEntityManager()
+                        ->createQuery('SELECT u.nombre FROM CriveroPruebaBundle:Usuarios u WHERE u.username = :username')
+                        ->setParameter('username', $username)
+                        ->getResult();
+    }
+    
     public function getDirector() {
         return $this->getEntityManager()
                         ->createQuery('SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.tipo=4')
                         ->getResult();
     }
-    
 }

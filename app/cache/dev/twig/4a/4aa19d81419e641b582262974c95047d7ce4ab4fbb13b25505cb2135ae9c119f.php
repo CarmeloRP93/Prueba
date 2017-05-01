@@ -28,7 +28,7 @@ class __TwigTemplate_b259899a6161e6c50f2b6b7d19a785060f5c280e071546167b6a2f0c483
     // line 2
     public function block_title($context, array $blocks = array())
     {
-        echo "Vista de ";
+        echo " ";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "nombre", array()), "html", null, true);
         echo " ";
     }
@@ -38,42 +38,40 @@ class __TwigTemplate_b259899a6161e6c50f2b6b7d19a785060f5c280e071546167b6a2f0c483
     {
         // line 4
         echo "    <div class=\"container\">
-         <h1 class=\"t1\">Detalles del ";
+         <h1 class=\"t1\"> ";
         // line 5
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "tipoCompeticion", array()), "html", null, true);
+        echo " ";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "nombre", array()), "html", null, true);
+        echo " de ";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "deporte", array()), "html", null, true);
         echo "</h1>
 
         ";
         // line 7
         if (($this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "estadoCompeticion", array()) == "Validado")) {
             // line 8
-            echo "         <h3 class=\"t3\">Bienvenido a la ";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "nombre", array()), "html", null, true);
-            echo ". Esta competicion es para aquellos que quieran apuntarse a jugar a ";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "deporte", array()), "html", null, true);
-            echo "</h3>
-        <h4>Le fecha de comienzo es el ";
-            // line 9
+            echo "        <h4>Le fecha de comienzo es el ";
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "fechaInicio", array()), "d/m/Y"), "html", null, true);
             echo ". Después de esta fecha la fase de inscripción quedará cerrada.</h4>
         <div class=\"nuevoEquipo\">
             <a href=\"";
-            // line 11
+            // line 10
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_equipo_nuevo", array("id" => $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-success\">
                 Crear Equipo 
                 <span class=\"glyphicon glyphicon-plus\"></span></a>
         </div>
         <a class=\"btn btn-default\" href=\"";
-            // line 15
+            // line 14
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_competicionesClientes");
             echo "\">Volver atrás</a>
         ";
         }
-        // line 17
+        // line 16
         echo "        ";
         if (($this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "estadoCompeticion", array()) == "Jugandose")) {
-            // line 18
+            // line 17
             echo "            <div class=\"table-responsive\">
                 <table class=\"table table-bordered\">
                     <thead>
@@ -87,34 +85,34 @@ class __TwigTemplate_b259899a6161e6c50f2b6b7d19a785060f5c280e071546167b6a2f0c483
                         </tr>
                     </thead>
                     ";
-            // line 30
+            // line 29
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["equipos"]) ? $context["equipos"] : $this->getContext($context, "equipos")));
             foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
-                // line 31
+                // line 30
                 echo "                        <tr>
                             <td>   ";
-                // line 32
+                // line 31
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "clasificacion", array()), "html", null, true);
                 echo "º  </td>
                             <td>   ";
-                // line 33
+                // line 32
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "nombre", array()), "html", null, true);
                 echo "           </td>
                             <td>   ";
-                // line 34
+                // line 33
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "puntuacion", array()), "html", null, true);
                 echo "   </td>
                             <td>   ";
-                // line 35
+                // line 34
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "victorias", array()), "html", null, true);
                 echo "   </td>
                             <td>   ";
-                // line 36
+                // line 35
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "derrotas", array()), "html", null, true);
                 echo "  </td>
                             <td>   ";
-                // line 37
+                // line 36
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "empates", array()), "html", null, true);
                 echo "   </td>
                         </tr>
@@ -123,29 +121,29 @@ class __TwigTemplate_b259899a6161e6c50f2b6b7d19a785060f5c280e071546167b6a2f0c483
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 40
+            // line 39
             echo "                </table>
             </div>
             <a href=\"";
-            // line 42
+            // line 41
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_partidosClientes", array("id" => $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-info\">
                 Ver Partidos
             </a>
             <a class=\"btn btn-default\" href=\"";
-            // line 45
+            // line 44
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_competicionesClientes");
             echo "\">Volver atrás</a>
         ";
         }
-        // line 47
+        // line 46
         echo "    </div>
     <div>
         <ul class=\"container text-center\">
             ";
-        // line 50
+        // line 49
         if (($this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "estadoCompeticion", array()) == "Finalizado")) {
-            // line 51
+            // line 50
             echo "                <h3 class=\"t3\">Resumen del ";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "nombre", array()), "html", null, true);
             echo "</h3>
@@ -162,34 +160,34 @@ class __TwigTemplate_b259899a6161e6c50f2b6b7d19a785060f5c280e071546167b6a2f0c483
                         </tr>
                     </thead>
                     ";
-            // line 64
+            // line 63
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["equipos"]) ? $context["equipos"] : $this->getContext($context, "equipos")));
             foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
-                // line 65
+                // line 64
                 echo "                        <tr>
                             <td>   ";
-                // line 66
+                // line 65
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "clasificacion", array()), "html", null, true);
                 echo "º  </td>
                             <td>   ";
-                // line 67
+                // line 66
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "nombre", array()), "html", null, true);
                 echo "           </td>
                             <td>   ";
-                // line 68
+                // line 67
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "puntuacion", array()), "html", null, true);
                 echo "   </td>
                             <td>   ";
-                // line 69
+                // line 68
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "victorias", array()), "html", null, true);
                 echo "   </td>
                             <td>   ";
-                // line 70
+                // line 69
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "derrotas", array()), "html", null, true);
                 echo "  </td>
                             <td>   ";
-                // line 71
+                // line 70
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "empates", array()), "html", null, true);
                 echo "   </td>
                         </tr>
@@ -198,22 +196,22 @@ class __TwigTemplate_b259899a6161e6c50f2b6b7d19a785060f5c280e071546167b6a2f0c483
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 74
+            // line 73
             echo "                </table>
             </div>
                 <a href=\"";
-            // line 76
+            // line 75
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_partidosClientes", array("id" => $this->getAttribute((isset($context["competicion"]) ? $context["competicion"] : $this->getContext($context, "competicion")), "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-sm btn-info\">
                     Ver Partidos
                 </a>
                 <a class=\"btn btn-default\" href=\"";
-            // line 79
+            // line 78
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_competicionesClientes");
             echo "\">Volver atrás</a>
             ";
         }
-        // line 81
+        // line 80
         echo "        </ul>
     </div>
 ";
@@ -231,7 +229,7 @@ class __TwigTemplate_b259899a6161e6c50f2b6b7d19a785060f5c280e071546167b6a2f0c483
 
     public function getDebugInfo()
     {
-        return array (  217 => 81,  212 => 79,  206 => 76,  202 => 74,  193 => 71,  189 => 70,  185 => 69,  181 => 68,  177 => 67,  173 => 66,  170 => 65,  166 => 64,  149 => 51,  147 => 50,  142 => 47,  137 => 45,  131 => 42,  127 => 40,  118 => 37,  114 => 36,  110 => 35,  106 => 34,  102 => 33,  98 => 32,  95 => 31,  91 => 30,  77 => 18,  74 => 17,  69 => 15,  62 => 11,  57 => 9,  50 => 8,  48 => 7,  43 => 5,  40 => 4,  37 => 3,  29 => 2,  11 => 1,);
+        return array (  215 => 80,  210 => 78,  204 => 75,  200 => 73,  191 => 70,  187 => 69,  183 => 68,  179 => 67,  175 => 66,  171 => 65,  168 => 64,  164 => 63,  147 => 50,  145 => 49,  140 => 46,  135 => 44,  129 => 41,  125 => 39,  116 => 36,  112 => 35,  108 => 34,  104 => 33,  100 => 32,  96 => 31,  93 => 30,  89 => 29,  75 => 17,  72 => 16,  67 => 14,  60 => 10,  54 => 8,  52 => 7,  43 => 5,  40 => 4,  37 => 3,  29 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -245,13 +243,12 @@ class __TwigTemplate_b259899a6161e6c50f2b6b7d19a785060f5c280e071546167b6a2f0c483
     public function getSourceContext()
     {
         return new Twig_Source("{% extends 'moduloclientesclienteBundle::main.html.twig' %}
-{% block title %}Vista de {{competicion.nombre}} {% endblock %}
+{% block title %} {{competicion.nombre}} {% endblock %}
 {% block contenido %}
     <div class=\"container\">
-         <h1 class=\"t1\">Detalles del {{competicion.nombre}}</h1>
+         <h1 class=\"t1\"> {{competicion.tipoCompeticion}} {{competicion.nombre}} de {{competicion.deporte}}</h1>
 
         {% if competicion.estadoCompeticion == \"Validado\"%}
-         <h3 class=\"t3\">Bienvenido a la {{competicion.nombre}}. Esta competicion es para aquellos que quieran apuntarse a jugar a {{competicion.deporte}}</h3>
         <h4>Le fecha de comienzo es el {{competicion.fechaInicio|date('d/m/Y')}}. Después de esta fecha la fase de inscripción quedará cerrada.</h4>
         <div class=\"nuevoEquipo\">
             <a href=\"{{path('moduloclientes_cliente_equipo_nuevo',{'id':competicion.id})}}\" class=\"btn btn-success\">

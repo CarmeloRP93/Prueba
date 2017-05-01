@@ -12,9 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class CompeticionesRepository extends EntityRepository {
 
-    public function getCompeticionesValidadas() {
+    public function getCompeticionesMostrables() {
         return $this->getEntityManager()
-                        ->createQuery("SELECT c FROM CriveroPruebaBundle:Competiciones c WHERE c.estadocompeticion='Validado'")
+                        ->createQuery("SELECT c "
+                                . "FROM CriveroPruebaBundle:Competiciones c "
+                                . "WHERE c.estadocompeticion='Validado'"
+                                . " OR c.estadocompeticion='Jugandose'"
+                                . " OR c.estadocompeticion='Finalizada'"
+                                . " OR c.estadocompeticion='Cancelada'")
                         ->getResult();
     }
 

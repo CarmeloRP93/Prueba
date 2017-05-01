@@ -17,6 +17,7 @@
                                     <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'c.nombre') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Deporte', 'c.deporte') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Tipo', 'c.tipoCompeticion') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Estado', 'c.estadoCompeticion') }}</th>
                                     <th class="t3">Acciones</th>
                                 </tr>
                             </thead>
@@ -26,6 +27,7 @@
                                         <td>{{competicion.nombre}}</td>
                                         <td>{{competicion.deporte}}</td>
                                         <td>{{competicion.tipoCompeticion}}</td>
+                                        <td>{{competicion.estadoCompeticion}}</td>
                                         <td class="actions">
                                             {% if competicion.estadoCompeticion == 'Cancelado' %}
                                                 <button class="btn btn-sm btn-info" disabled>Ver</button>
