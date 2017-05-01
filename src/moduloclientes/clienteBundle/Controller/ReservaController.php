@@ -12,12 +12,10 @@ use Crivero\PruebaBundle\Entity\Notificaciones;
 class ReservaController extends Controller {
 
     public function reservasClientesAction(Request $request) {
-
-
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas");
         $cliente = $this->getUser();
         $searchQuery = $request->get('query');
-        (!empty($searchQuery)) ? $reservas = $repository->searchCanchas($searchQuery) :
+        (!empty($searchQuery)) ? $reservas = $repository->searchReservasCliente($searchQuery, $cliente->getId()) :
                         $reservas = $repository->getReservasCliente($cliente->getId());
 
         $paginator = $this->get('knp_paginator');

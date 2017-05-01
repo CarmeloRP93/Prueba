@@ -36,7 +36,7 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
     // line 2
     public function block_title($context, array $blocks = array())
     {
-        echo " Vista de Canchas ";
+        echo " Canchas ";
     }
 
     // line 3
@@ -159,13 +159,11 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
         }
         // line 55
         echo "        
-                <div>
-                    <div class=\"navigation\">
-                        ";
-        // line 58
+                <div class=\"navigation\">
+                    ";
+        // line 57
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
-                    </div>
                 </div>
             </div>                     
         </div>                     
@@ -185,6 +183,6 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
 
     public function getDebugInfo()
     {
-        return array (  166 => 58,  161 => 55,  155 => 52,  147 => 49,  140 => 45,  137 => 44,  133 => 43,  131 => 42,  125 => 40,  120 => 38,  117 => 37,  111 => 36,  109 => 35,  105 => 34,  101 => 33,  96 => 32,  92 => 31,  84 => 26,  80 => 25,  76 => 24,  72 => 23,  66 => 19,  62 => 17,  60 => 16,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  165 => 57,  161 => 55,  155 => 52,  147 => 49,  140 => 45,  137 => 44,  133 => 43,  131 => 42,  125 => 40,  120 => 38,  117 => 37,  111 => 36,  109 => 35,  105 => 34,  101 => 33,  96 => 32,  92 => 31,  84 => 26,  80 => 25,  76 => 24,  72 => 23,  66 => 19,  62 => 17,  60 => 16,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

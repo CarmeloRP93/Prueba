@@ -36,7 +36,7 @@ class __TwigTemplate_bb40d53c344bb177c672bf5660bf373a9bcad42cd3fc316d52aeef1b903
     // line 2
     public function block_title($context, array $blocks = array())
     {
-        echo " Vista de entrenamiento ";
+        echo " Mis sesiones ";
     }
 
     // line 3

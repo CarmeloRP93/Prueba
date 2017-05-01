@@ -48,5 +48,16 @@ class NotificacionesRepository extends EntityRepository {
                 ->setParameter('concepto', $concepto)
                 ->execute();
     }
+    
+    public function removeNotificacionesEntidadUsuario($id, $entidad, $concepto) {
+        $this->getEntityManager()
+                ->createQuery("DELETE FROM CriveroPruebaBundle:Notificaciones n WHERE n.idEntidad = :entidad "
+                        . "AND n.concepto = :concepto "
+                        . "AND n.idDestinatario = :id ")
+                ->setParameter('id', id)
+                ->setParameter('entidad', $entidad)
+                ->setParameter('concepto', $concepto)
+                ->execute();
+    }
 
 }

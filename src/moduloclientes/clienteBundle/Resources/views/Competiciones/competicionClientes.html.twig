@@ -1,11 +1,10 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
-{% block title %}Vista de {{competicion.nombre}} {% endblock %}
+{% block title %} {{competicion.nombre}} {% endblock %}
 {% block contenido %}
     <div class="container">
-         <h1 class="t1">Detalles del {{competicion.nombre}}</h1>
+         <h1 class="t1"> {{competicion.tipoCompeticion}} {{competicion.nombre}} de {{competicion.deporte}}</h1>
 
         {% if competicion.estadoCompeticion == "Validado"%}
-         <h3 class="t3">Bienvenido a la {{competicion.nombre}}. Esta competicion es para aquellos que quieran apuntarse a jugar a {{competicion.deporte}}</h3>
         <h4>Le fecha de comienzo es el {{competicion.fechaInicio|date('d/m/Y')}}. Después de esta fecha la fase de inscripción quedará cerrada.</h4>
         <div class="nuevoEquipo">
             <a href="{{path('moduloclientes_cliente_equipo_nuevo',{'id':competicion.id})}}" class="btn btn-success">

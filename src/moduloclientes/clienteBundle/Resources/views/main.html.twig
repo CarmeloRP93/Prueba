@@ -31,6 +31,8 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{url('moduloclientes_cliente_competicionesClientes')}}">Competiciones </a></li>
                         <li><a href="{{url('moduloclientes_cliente_equiposClientes')}}"> Mis equipos </a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{url('moduloclientes_cliente_competicion_nueva')}}">Crear competición</a></li>
                     </ul>
                 </li>
 
@@ -55,21 +57,25 @@
                 <ul class="nav navbar-nav navbar-right">
                     {% if not notificacionesSinLeer|length %}  
                         <li><a href = "{{url('moduloclientes_cliente_notificacionesCliente')}}"><img src="{{asset('images/campanaSN.png')}}" style="width: 18px;" /></a></li>
-                    {% else %}
+                            {% else %}
                         <li><a href = "{{url('moduloclientes_cliente_notificacionesCliente')}}"><img src="{{asset('images/campanaCN.png')}}" style="width: 18px;" /></a></li>
-                    {% endif %}
+                            {% endif %}
                     <li><a href = "{{path('moduloclientes_cliente_mensajes_recibidosCliente')}}"><img src="{{asset('images/correo.png')}}" style="width: 18px;" /></a></li>
                     <li><a href="{{url('moduloclientes_cliente_miPerfil', {id:app.user.id} )}}"><img src="{{asset('images/user-128.png')}}" style="width: 18px;" /></a></li>
                     <li><a href="{{path('crivero_prueba_logout')}}" style="margin-right:12px;"><img src="{{asset('images/logout-128.png')}}" style="width: 18px;" /></a></li>
                 </ul>
             {% endif %}
 
-            <form class="navbar-form navbar-center" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Nombre, cancha...">
+            <form method="GET" class="navbar-form navbar-center" role="search">
+                <div class="input-group">
+                    <input type="text" name="query" class="form-control" value="{{app.request.get('query')}}" 
+                           placeholder="Buscar usuarios, reservas" >
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default">
+                            <img src="{{asset('images/search-128.png')}}" style="width: 15px;" />  
+                        </button>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-default" style="margin-bottom: 0px">Buscar</button>
-
             </form>
         </div>
     </nav>

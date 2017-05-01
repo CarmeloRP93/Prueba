@@ -15,7 +15,11 @@ class SesionController extends Controller {
 
     public function sesionesClientesAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        $sesiones = $repository->getSesionesGeneralesMostrables();
+
+        $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $sesiones = $repository->searchSesionesGeneralesByCliente($searchQuery) :
+                        $sesiones = $repository->getSesionesGeneralesMostrables();
+
         $resultado = array();
         foreach ($sesiones as $i => $sesion) {
             if (strpos($sesion->getIdsClientes(), strval($this->getUser()->getId())) === false &&
@@ -31,7 +35,11 @@ class SesionController extends Controller {
 
     public function sesionesPrivadasClientesAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        $sesiones = $repository->getSesionesClientesDedicadas($this->getUser()->getId());
+
+        $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $sesiones = $repository->searchSesionesDedicadasByCliente($searchQuery) :
+                        $sesiones = $repository->getSesionesClientesDedicadas($this->getUser()->getId());
+
         $resultado = array();
         foreach ($sesiones as $i => $sesion) {
             $resultado[$i] = $sesion;
@@ -202,9 +210,9 @@ class SesionController extends Controller {
             // Si no está cancelada, el estadoCliente volverá a disponible (esté completa o no)
             $sesion->setEstadoCliente('disponible');
             if ($sesion->getExcluidos() == NULL) {
-                $sesion->setExcluidos($this->getUser()->getId());               
+                $sesion->setExcluidos($this->getUser()->getId());
             } else {
-                $sesion->setExcluidos($sesion->getExcluidos() .'&'. $this->getUser()->getId());               
+                $sesion->setExcluidos($sesion->getExcluidos() . '&' . $this->getUser()->getId());
             }
             $em->persist($sesion);
         }

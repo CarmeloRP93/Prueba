@@ -138,7 +138,8 @@ class DedicadaController extends Controller {
                         $em->flush();
                     }
                 }
-                return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionDedicada', array('id' => $sesion->getId())));
+                $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido suspendida correctamente.');
+                return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionDedicada', array('notificacionesSinLeer' => $this->getNewNotification(), 'id' => $sesion->getId())));
             } else {
                 $form->get('observaciones')->addError(new FormError('Rellene el campo gracias'));
             }

@@ -1,9 +1,11 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
-{% block title %}Vista de {{cancha.tipo}} {% endblock %}
+{% block title %} Cancha {{cancha.tipo}} {% endblock %}
 {% block contenido %}
-    <h1 class="t1">Cancha {{cancha.tipo}}</h1><br>
-    <div class="container text-center">
-
+    <div id="sesiondat" class="container text-center">
+        <div class="page-header">    
+            <h1 class="t1">Cancha {{cancha.tipo}}</h1>
+        </div>
+        <br>
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <img src="{{ asset(cancha.imagen) }}" class="img-responsive center-block" style="max-width: 340px; margin-bottom:20px"/>
@@ -28,7 +30,14 @@
                                 <h4>Dimensiones: </h4><p>{{cancha.dimensiones}} m²</p>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <h4>Valoracion: </h4><p>{{cancha.valoracion|round (0, 'common')}}</p>
+                                <h4>Valoracion: </h4>
+                                {% if cancha.valoracion|round (0, 'common') != 0 %}
+                                    {% for i in 1..cancha.valoracion|round (0, 'common') %}
+                                        <img src="{{asset('images/star-icon.png')}}" style="width: 18px;" />
+                                    {% endfor %}
+                                {% else %}
+                                    <p>Sin valoraciones</p>
+                                {% endif %}
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                 <h4>Dirección: </h4><p>{{cancha.direccion}}</p>
@@ -44,21 +53,29 @@
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-xs">
-                <h3 class="t3 text-center">Horarios disponibles de los próximos 7 días</h3>               
-                <table class="table {#table-condensed#}">
-                    <tbody>
-                        {% for horario in horarios  %}
-                            <tr>
-                                <th>Día {{ horario.fechaInicio|split('-')[0] }}</th>
-                                    {% for horitas in horario.periodo|split('&')  %}
-                                    <td>{{ horitas }}</td>
+                <h3 class="t3 text-center">Horarios disponibles de los próximos 7 días</h3>
+                <div class="panel panel-default">                  
+                    <div class="panel-body">
+                        <table class="table {#table-condensed#}">
+                            <tbody>
+                                {% for horario in horarios  %}
+                                    <tr>
+                                        <th>Día {{ horario.fechaInicio|split('-')[0] }}</th>
+                                            {% for horitas in "09:00-10:00&10:00-11:00&11:00-12:00&12:00-13:00&13:00-14:00&14:00-15:00&15:00-16:00&16:00-17:00&17:00-18:00&18:00-19:00&19:00-20:00&20:00-21:00&21:00-22:00"|split('&')  %}
+                                                {% if not (horitas in horario.periodo)  %}
+                                                <td><font color="red">{{ horitas }}</font></td>
+                                                {% else %}
+                                                <td>{{ horitas }}</td>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tr>
                                 {% endfor %}
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
         <a class="btn btn-default" href="{{ path('moduloclientes_cliente_canchasClientes') }}">Volver atrás</a>
-    </div>
+    </div><br>
 {% endblock %}

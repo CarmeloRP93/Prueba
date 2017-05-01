@@ -10,14 +10,19 @@ use Symfony\Component\HttpFoundation\Response;
 
 class EquipoController extends Controller {
 
-    public function equiposClientesAction() {
+    public function equiposClientesAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
         $idCliente = $this->getUser()->getId();
         $equipos = $repository->findAllMisEquipos($idCliente);
-        return $this->render('moduloclientesclienteBundle:Competiciones:equiposClientes.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),"equipos" => $equipos));
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $equipos, $request->query->getInt('page', 1), 5);
+
+        return $this->render('moduloclientesclienteBundle:Competiciones:equiposClientes.html.twig', array("pagination" => $pagination, "notificacionesSinLeer" => $this->getNewNotification()));
     }
 
-    public function equipoClientesAction(Request $request,$id) {
+    public function equipoClientesAction(Request $request, $id) {
         $repositoryEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
         $equipo = $repositoryEquipos->find($id);
         $repositoryJugadores = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Jugadores");
@@ -25,35 +30,35 @@ class EquipoController extends Controller {
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $jugadores, $request->query->getInt('page', 1), 4);
-        $deleteForm = $this->createCustomForm($equipo->getId(),'DELETE','moduloclientes_cliente_equipo_eliminar');
-        $deleteFormAjax = $this->createCustomForm(':JUGADOR_ID','DELETE','moduloclientes_cliente_jugador_eliminar');
-        return $this->render('moduloclientesclienteBundle:Competiciones:equipoClientes.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
-            "equipo" => $equipo, "jugadores"=>$pagination,"delete_form_ajax"=>$deleteFormAjax->createView() ,"delete_form"=>$deleteForm->createView()));
+        $deleteForm = $this->createCustomForm($equipo->getId(), 'DELETE', 'moduloclientes_cliente_equipo_eliminar');
+        $deleteFormAjax = $this->createCustomForm(':JUGADOR_ID', 'DELETE', 'moduloclientes_cliente_jugador_eliminar');
+        return $this->render('moduloclientesclienteBundle:Competiciones:equipoClientes.html.twig', array("notificacionesSinLeer" => $this->getNewNotification(),
+                    "equipo" => $equipo, "jugadores" => $pagination, "delete_form_ajax" => $deleteFormAjax->createView(), "delete_form" => $deleteForm->createView()));
     }
-     
-    public function eliminarJugadorAction(Request $request, $id){
+
+    public function eliminarJugadorAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
         $jugador = $em->getRepository('CriveroPruebaBundle:Jugadores')->find($id);
-        if(!$jugador){
-            $mensaje= 'Jugador no encontrado';
+        if (!$jugador) {
+            $mensaje = 'Jugador no encontrado';
             throw $this->createNotFoundException($mensaje);
         }
 //        $form = $this->createDeleteForm($jugador);
-        $form = $this->createCustomForm($jugador->getId(),'DELETE','moduloclientes_cliente_jugador_eliminar');
+        $form = $this->createCustomForm($jugador->getId(), 'DELETE', 'moduloclientes_cliente_jugador_eliminar');
         $form->handleRequest($request);
-        
-        if($form->isSubmitted() && $form->isValid()){
+
+        if ($form->isSubmitted() && $form->isValid()) {
             if ($request->isXmlHttpRequest()) {
                 $res = $this->deleteJugador($em, $jugador);
                 return new Response(
                         json_encode(array('removed' => $res['removed'], 'message' => $res['message'])), 200, array('Content-Type' => 'application/json')
                 );
             }
-            $res=$this->deleteJugador($em, $jugador);
+            $res = $this->deleteJugador($em, $jugador);
             return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));
         }
     }
-    
+
     private function deleteJugador($em, $jugador) {
         $em->remove($jugador);
         $em->flush();
@@ -61,31 +66,31 @@ class EquipoController extends Controller {
         $remove = 1;
         return array('removed' => $remove, 'message' => $message);
     }
-    
-    public function eliminarEquipoAction(Request $request, $id){
+
+    public function eliminarEquipoAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
         $equipo = $em->getRepository('CriveroPruebaBundle:Equipos')->find($id);
-        if(!$equipo){
-            $mensaje= 'Equipo no encontrado';
+        if (!$equipo) {
+            $mensaje = 'Equipo no encontrado';
             throw $this->createNotFoundException($mensaje);
         }
-        $form =$this->createCustomForm($equipo->getId(),'DELETE','moduloclientes_cliente_equipo_eliminar');
+        $form = $this->createCustomForm($equipo->getId(), 'DELETE', 'moduloclientes_cliente_equipo_eliminar');
         $form->handleRequest($request);
-        
-        if($form->isSubmitted() && $form->isValid()){
+
+        if ($form->isSubmitted() && $form->isValid()) {
             $em->remove($equipo);
             $em->flush();
             return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));
         }
     }
-   
+
     public function nuevoAction($id) {
         $equipo = new Equipos();
         $form = $this->createCreateForm($equipo);
-        return $this->render('moduloclientesclienteBundle:Competiciones:nuevoEquipoCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
-            'form' => $form->createView(),'id'=>$id));
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevoEquipoCliente.html.twig', array("notificacionesSinLeer" => $this->getNewNotification(),
+                    'form' => $form->createView(), 'id' => $id));
     }
-    
+
     private function createCreateForm(Equipos $entity) {
         $form = $this->createForm(new EquiposType(), $entity, array(
             'action' => $this->generateUrl('moduloclientes_cliente_equipo_crear'),
@@ -93,7 +98,7 @@ class EquipoController extends Controller {
         ));
         return $form;
     }
-    
+
     public function crearAction(Request $request) {
         $equipo = new Equipos();
         $form = $this->createCreateForm($equipo);
@@ -112,10 +117,10 @@ class EquipoController extends Controller {
             $em->flush();
             return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));
         }
-        return $this->render('moduloclientesclienteBundle:Competiciones:nuevoEquipoCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
-            'form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevoEquipoCliente.html.twig', array("notificacionesSinLeer" => $this->getNewNotification(),
+                    'form' => $form->createView()));
     }
-    
+
     public function editarEquipoAction($id) {
         $em = $this->getDoctrine()->getManager();
         $equipo = $em->getRepository('CriveroPruebaBundle:Equipos')->find($id);
@@ -124,8 +129,8 @@ class EquipoController extends Controller {
             throw $this->createNotFoundException("No encontrado");
         }
         $form = $this->createEditForm($equipo);
-        return $this->render('moduloclientesclienteBundle:Competiciones:editarEquipoCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
-            'equipo' => $equipo, 'form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Competiciones:editarEquipoCliente.html.twig', array("notificacionesSinLeer" => $this->getNewNotification(),
+                    'equipo' => $equipo, 'form' => $form->createView()));
     }
 
     public function editarAction($id, Request $request) {
@@ -142,10 +147,10 @@ class EquipoController extends Controller {
             $em->flush();
             return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));
         }
-        return $this->render('moduloclientesclienteBundle:Competiciones:editarEquipoCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
-            'form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Competiciones:editarEquipoCliente.html.twig', array("notificacionesSinLeer" => $this->getNewNotification(),
+                    'form' => $form->createView()));
     }
-    
+
     private function createEditForm(Equipos $entity) {
         $form = $this->createForm(new EquiposType(), $entity, array(
             'action' => $this->generateUrl('moduloclientes_cliente_equipo_editar', array('id' => $entity->getId())),
@@ -153,7 +158,7 @@ class EquipoController extends Controller {
         ));
         return $form;
     }
-    
+
     private function getNewNotification() {
         $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
         $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
@@ -165,11 +170,12 @@ class EquipoController extends Controller {
         }
         return $notificacionesSinLeer;
     }
-    
+
     private function createCustomForm($id, $method, $route) {
         return $this->createFormBuilder()
                         ->setAction($this->generateUrl($route, array('id' => $id)))
                         ->setMethod($method)
                         ->getForm();
     }
+
 }

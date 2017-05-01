@@ -36,7 +36,7 @@ class __TwigTemplate_ca5830256a792a656033d404e9a0f523947beb321c924995d169d4faca5
     // line 2
     public function block_title($context, array $blocks = array())
     {
-        echo " Reservas ";
+        echo " Mis reservas ";
     }
 
     // line 3

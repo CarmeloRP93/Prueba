@@ -1,37 +1,50 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
-
-{% block title %} Vista de Competiciones {% endblock %}             
+{% block title %} Competiciones {% endblock %}             
 {% block contenido %}
     <div class="container">
-        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-heading text-center">
-                     <h1 class="t1">Listado de competiciones </h1>
+        <div class="page-header">
+            <h1 class="t1">Competiciones</h1>
+        </div>
+        <div class="panel panel-default text-center">
+            <div class="panel-body myelement">
+                {% if not pagination|length %}
+                    <h2>No se encontraron competiciones</h2>
+                {% else %}  
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'c.nombre') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Deporte', 'c.deporte') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Tipo', 'c.tipoCompeticion') }}</th>
+                                    <th class="t3">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for competicion in pagination %}
+                                    <tr data-id="{{ competicion.id }}">
+                                        <td>{{competicion.nombre}}</td>
+                                        <td>{{competicion.deporte}}</td>
+                                        <td>{{competicion.tipoCompeticion}}</td>
+                                        <td class="actions">
+                                            {% if competicion.estadoCompeticion == 'Cancelado' %}
+                                                <button class="btn btn-sm btn-info" disabled>Ver</button>
+                                            {% else %}                                              
+                                                <a href="{{ path('moduloclientes_cliente_competicionClientes', {id: competicion.id}) }}"  class="btn btn-sm btn-info">
+                                                    Ver
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
                 </div>
-                <label class="label label-default">En inscripción: </label>
-                {% for competicion in competiciones %}
-                    {% if competicion.estadoCompeticion == "Validado" %}
-                        <a href="{{url('moduloclientes_cliente_competicionClientes', {'id': competicion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ competicion.nombre }}</a>
-                    {%endif%}
-                {% endfor %}
-                <label class="label label-success">En curso: </label>
-                {% for competicion in competiciones %}
-                    {% if competicion.estadoCompeticion == "Jugandose" %}
-                        <a href="{{url('moduloclientes_cliente_competicionClientes', {'id': competicion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ competicion.nombre }}</a>
-                    {%endif%}
-                {% endfor %}
-                <label class="label label-danger">Finalizado: </label>
-                {% for competicion in competiciones %}
-                    {% if competicion.estadoCompeticion == "Finalizado" %}
-                        <a href="{{url('moduloclientes_cliente_competicionClientes', {'id': competicion.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ competicion.nombre }}</a>
-                    {%endif%}
-                {% endfor %}
-            </div>
-            <div class="nuevaCompeticion">
-                <a href="{{path('moduloclientes_cliente_competicion_nueva')}}" class="btn btn-success" style="height: 30px; width: 150px;">
-                    Nueva Competicion 
-                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
         </div>
-    </div>
+    </div>                            
 {% endblock %}

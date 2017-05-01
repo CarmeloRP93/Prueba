@@ -1,5 +1,5 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
-{% block title %} Vista de Canchas {% endblock %}
+{% block title %} Canchas {% endblock %}
 {% block contenido %}          
     <div class="progress no-border hidden" id="delete-progress" style="margin-top: -20px">
         <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
@@ -53,10 +53,8 @@
                         </table>
                     </div>
                 {% endif %}        
-                <div>
-                    <div class="navigation">
-                        {{ knp_pagination_render(pagination) }}
-                    </div>
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
                 </div>
             </div>                     
         </div>                     

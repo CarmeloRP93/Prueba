@@ -9,28 +9,33 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CompeticionController extends Controller {
 
-    public function competicionesClientesAction() {
+    public function competicionesClientesAction(Request $request) {
         $repositoryCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
-        $competiciones = $repositoryCompeticiones->findAll();
-        return $this->render('moduloclientesclienteBundle:Competiciones:competicionesClientes.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),"competiciones" => $competiciones));
+        $competiciones = $repositoryCompeticiones->getCompeticionesValidadas();
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $competiciones, $request->query->getInt('page', 1), 5);
+
+        return $this->render('moduloclientesclienteBundle:Competiciones:competicionesClientes.html.twig', array("pagination" => $pagination, "notificacionesSinLeer" => $this->getNewNotification()));
     }
 
     public function competicionClientesAction($id) {
         $repositoryCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
         $competicion = $repositoryCompeticiones->find($id);
         $repositoryEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
-        $equipos = $repositoryEquipos ->getEquiposCompeticion($id);
-        return $this->render('moduloclientesclienteBundle:Competiciones:competicionClientes.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
-            "competicion" => $competicion, "equipos"=>$equipos));
+        $equipos = $repositoryEquipos->getEquiposCompeticion($id);
+        return $this->render('moduloclientesclienteBundle:Competiciones:competicionClientes.html.twig', array("notificacionesSinLeer" => $this->getNewNotification(),
+                    "competicion" => $competicion, "equipos" => $equipos));
     }
-    
+
     public function nuevaAction() {
         $competicion = new Competiciones();
         $form = $this->createCreateForm($competicion);
-        return $this->render('moduloclientesclienteBundle:Competiciones:nuevaCompeticionClientes.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
-            'form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevaCompeticionClientes.html.twig', array("notificacionesSinLeer" => $this->getNewNotification(),
+                    'form' => $form->createView()));
     }
-    
+
     private function createCreateForm(Competiciones $entity) {
         $form = $this->createForm(new CompeticionesType(), $entity, array(
             'action' => $this->generateUrl('moduloclientes_cliente_competicion_crear'),
@@ -38,7 +43,7 @@ class CompeticionController extends Controller {
         ));
         return $form;
     }
-    
+
     public function crearAction(Request $request) {
         $competicion = new Competiciones();
         $form = $this->createCreateForm($competicion);
@@ -50,10 +55,10 @@ class CompeticionController extends Controller {
             $em->flush();
             return $this->redirect($this->generateUrl('moduloclientes_cliente_competicionesClientes'));
         }
-        return $this->render('moduloclientesclienteBundle:Competiciones:nuevaCompeticionClientes.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
-            'form' => $form->createView()));
+        return $this->render('moduloclientesclienteBundle:Competiciones:nuevaCompeticionClientes.html.twig', array("notificacionesSinLeer" => $this->getNewNotification(),
+                    'form' => $form->createView()));
     }
-    
+
     private function getNewNotification() {
         $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
         $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());
@@ -65,4 +70,5 @@ class CompeticionController extends Controller {
         }
         return $notificacionesSinLeer;
     }
+
 }

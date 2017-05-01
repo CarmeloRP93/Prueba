@@ -1,9 +1,11 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
 {% block title %}Reserva de {{reserva.cancha}} {% endblock %}
 {% block contenido %}
-    <div class="container text-center">
-        <h1 class="t1">Reserva de la cancha {{cancha.tipo}}</h1><br>
-
+    <div id="sesiondat" class="container text-center">
+        <div class="page-header">    
+            <h1 class="t1">Reserva de la cancha {{cancha.tipo}}</h1>
+        </div>
+        <br>
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div class="text-center">
@@ -41,19 +43,21 @@
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                 <h4>Valoracion </h4>
-                                <p>{{cancha.valoracion|round (0, 'common')}}</p>
+                                {% for i in 1..cancha.valoracion|round (0, 'common') %}
+                                    <img src="{{asset('images/star-icon.png')}}" style="width: 18px;" />
+                                {% endfor %}
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <h4>Dirección </h4><p>{{cancha.direccion}}</p>
+                                </div><br>
                             </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <h4>Dirección </h4><p>{{cancha.direccion}}</p>
-                            </div><br>
                         </div>
                     </div>
+                    <div class="text-center">
+                        <a href="{{path('moduloclientes_cliente_valorar', {'id': reserva.id})}}" class="btn btn-primary" style="height: 30px; width: 150px;"> Valorar cancha </a>
+                    </div><br>
                 </div>
-                <div class="text-center">
-                    <a href="{{path('moduloclientes_cliente_valorar', {'id': reserva.id})}}" class="btn btn-primary" style="height: 30px; width: 150px;"> Valorar cancha </a>
-                </div><br>
             </div>
+            <a class="btn btn-default" href="{{ path('moduloclientes_cliente_reservasClientes') }}">Volver atrás</a>
         </div>
-        <a class="btn btn-default" href="{{ path('moduloclientes_cliente_reservasClientes') }}">Volver atrás</a>
-    </div>
-{% endblock %}
+        {% endblock %}

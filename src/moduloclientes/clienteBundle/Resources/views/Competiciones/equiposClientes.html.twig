@@ -1,31 +1,66 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
-
-{% block title %} Vista de Equipos {% endblock %}
+{% block title %} Mis equipos {% endblock %}
 {% block contenido %}
     <div class="container">
-        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-heading text-center">
-                    {# <div id="buscador">
-                         <form>
-                             <input type="search" name="equipo" placeholder="Buscar equipo"/>
-                         </form>
-                     </div>#}
-                    <h1 class="t1">Listado de Equipos</h1>
+        <div class="page-header">
+            <h1 class="t1">Mis equipos</h1>
+        </div>
+        <div class="panel panel-default text-center">
+            <div class="panel-body myelement">
+                {% if not pagination|length %}
+                    <h2>No se encontraron equipos</h2>
+                {% else %}  
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'equipos.nombre') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Deporte', 'equipos.deporte') }}</th>
+                                    <th class="t3">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for equipo in pagination %}
+                                    <tr data-id="{{ equipo.id }}">
+                                        <td>{{equipo.nombre}}</td>
+                                        <td>{{equipo.deporte}}</td>
+                                        <td class="actions">                                               
+                                            <a href="{{ path('moduloclientes_cliente_equipoClientes', {id: equipo.id}) }}"  class="btn btn-sm btn-info">
+                                                Ver
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
                 </div>
-                <h3>Fútbol</h3>
-                {% for equipo in equipos %}
-                    {%if equipo.deporte =='Fútbol'%}
-                        <a href="{{url('moduloclientes_cliente_equipoClientes', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ equipo.nombre }}</a>
-                    {%endif%}
-                {% endfor %}
-                <h3>Padel</h3>
-                {% for equipo in equipos %}
-                    {%if equipo.deporte =='Padel'%}
-                        <a href="{{url('moduloclientes_cliente_equipoClientes', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ equipo.nombre }}</a>
-                    {%endif%}
-                {% endfor %}
             </div>
         </div>
-    </div>
+    </div>  
+
+    {#   <div class="container">
+           <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+               <div class="panel panel-default">
+                   <div class="panel-heading text-center">
+                       <h1 class="t1">Listado de Equipos</h1>
+                   </div>
+                   <h3>Fútbol</h3>
+                   {% for equipo in equipos %}
+                       {%if equipo.deporte =='Fútbol'%}
+                           <a href="{{url('moduloclientes_cliente_equipoClientes', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ equipo.nombre }}</a>
+                       {%endif%}
+                   {% endfor %}
+                   <h3>Padel</h3>
+                   {% for equipo in equipos %}
+                       {%if equipo.deporte =='Padel'%}
+                           <a href="{{url('moduloclientes_cliente_equipoClientes', {'id': equipo.id})}}" class="fila {{cycle(["par","impar"], loop.index)}}">{{ equipo.nombre }}</a>
+                       {%endif%}
+                   {% endfor %}
+               </div>
+           </div>
+       </div>#}
 {% endblock %}

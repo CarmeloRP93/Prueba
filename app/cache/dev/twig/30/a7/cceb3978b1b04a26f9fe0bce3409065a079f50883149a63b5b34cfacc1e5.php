@@ -36,7 +36,7 @@ class __TwigTemplate_30a7cceb3978b1b04a26f9fe0bce3409065a079f50883149a63b5b34cfa
     // line 2
     public function block_title($context, array $blocks = array())
     {
-        echo "Vista de ";
+        echo "Sesión - ";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "nombre", array()), "html", null, true);
         echo " ";
     }

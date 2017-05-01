@@ -36,7 +36,7 @@ class __TwigTemplate_812f09b96dd1e3ccf6ab2bfd73da4d2681113917b6b722965a24b60297b
     // line 2
     public function block_title($context, array $blocks = array())
     {
-        echo " Vista de sesiones privadas ";
+        echo " Sesiones privadas ";
     }
 
     // line 3
