@@ -2,40 +2,37 @@
 {% block title %} {{aula.nombre}} {% endblock %}
 {% block contenido %}
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
-    <div class="container">
-
-        <div class="page-header text-center">
-            <h2 class="t1">{{aula.nombre}}</h2>
+    <div class="container text-center">
+        <div class="page-header">
+            <h1 class="t1">{{aula.nombre}}</h1>
         </div>
 
-        <div class="col-md-5 col-xs-12">
-            <img src="{{ asset('images/' ~ aula.imagen) }}" style="width:400px; margin-bottom: 2px"  class="img-rounded"/><br>
-            {% if aula.disponibilidad == "Disponible" %}
-                <button style="width:400px;" class="btn btn-success active" >{{aula.disponibilidad}}</button>
-            {% else %}
-                <button style="width:400px;" class="btn btn-danger active">{{aula.disponibilidad}}</button>
-            {% endif %}
-        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <img src="{{ asset('images/' ~ aula.imagen) }}" class="img-responsive center-block" style="max-width: 340px; margin-bottom:20px"/>
+                {% if aula.disponibilidad == "Disponible" %}
+                    <button style="width:340px;" class="btn btn-success active" >{{aula.disponibilidad}}</button>
+                {% else %}
+                    <button style="width:340px;" class="btn btn-danger active">{{aula.disponibilidad}}</button>
+                {% endif %}
+            </div>
 
-        <div class="col-xs-12 col-sm-8 col-md-6">
-            <div class="panel panel-default text-center">
-                <div class="panel-body">
-
-                    <div class="col-md-6 col-xs-12">
-                        <div class="text-center">
-                            <h4>Disponibilidad </h4>
-                            <p>{{aula.horario}} </p>
-                            <h4>Tamaño </h4>
-                            <p>{{aula.dimensiones ~ 'm²'}} </p>
-                            <h4>Descripción </h4>
-                            <p>{{ aula.descripcion }} </p>
-
-
+            <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0 col-lg-6 col-lg-offset-0"> 
+                <div class="panel panel-default">                  
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                                <h4>Disponibilidad </h4><p>{{aula.horario}} </p>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                                <h4>Tamaño </h4><p>{{aula.dimensiones ~ 'm²'}} </p>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <h4>Descripción </h4><p>{{ aula.descripcion }} </p>
+                            </div>
                         </div>
-                    </div>
-                    <div  class="col-xs-12 col-sm-6 col-md-6 col-lg-6 ">
-                        <h4>Sesiones </h4> 
-                        <div>
+                        <div  class="row">
+                            <h4>Sesiones </h4> 
                             {% if aula.sesiones != null %}
                                 <ul>
                                     {% set i = 0 %}
@@ -53,24 +50,28 @@
                                 <form action="{{ path('crivero_prueba_sesiones_aula', { id: aula.id }) }}" method="post" class="form-signin">
                                     <button type="submit" class="btn btn-sm btn-outline-success">Ver sesiones</button>
                                 </form>
+                            {% else %}
+                                <p style="color: red"><strong>Sin sesiones asignadas.</strong></p>
+                            {% endif %}
+                        </div><br>
+                        <div  class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                <form action="#" method="post" class="alinear btn-group">
+                                    <button type="submit" class="btn btn-primary">Disponibilidad</button>
+                                    <input type="hidden" class="btn">
+                                </form>
                             </div>
-                        {% else %}
-                            <p style="color: red"><strong>Sin sesiones asignadas.</strong></p>
-                        {% endif %}<br>
-                        {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar aula" })}}
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                <form action="{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}" method="post" class="alinear btn-group">
+                                    <input type="hidden" class="btn">
+                                    <button type="submit" class="btn btn-warning">Modificar aula</button>
+                                </form>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar aula" })}}
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-12 col-xs-12" style="margin-top: 14px">
-                        <form style="margin-right: -3px" action="#" method="post" class="alinear btn-group">
-                            <button type="submit" class="btn btn-primary">Disponibilidad</button>
-                            <input type="hidden" class="btn">
-                        </form>
-                        <form style="" action="{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}" method="post" class="alinear btn-group">
-                            <input type="hidden" class="btn">
-                            <button type="submit" class="btn btn-warning">Modificar aula</button>
-                        </form>
-                    </div>
-
-
                 </div>
             </div>
         </div>

@@ -130,7 +130,7 @@ class DedicadaController extends Controller {
                         $notificacion->setIdDestinatario($usuario->getId());
                         $notificacion->setIdEntidad($sesion->getId());
                         $notificacion->setMensaje("El monitor " . $this->getUser()->getUsername() . " ha"
-                                . " suspendido la sesión" . $sesion->getNombre());
+                                . " suspendido la sesión " . $sesion->getNombre());
                         $notificacion->setIdOrigen($this->getUser()->getId());
                         $notificacion->setConcepto("Privada");
                         $notificacion->setEstado("No leido");
@@ -172,6 +172,7 @@ class DedicadaController extends Controller {
             $sesion->setEstado("pendiente");
             $sesion->setEstadoCliente("no disponible");
             $sesion->setnClientes(0);
+            $sesion->setIdsClientes("");
             $sesion->setCliente("sin participante");
             $sesion->setlClientes(1);
             $sesion->setImagen("images/" . mt_rand(1, 5) . "m.jpg");

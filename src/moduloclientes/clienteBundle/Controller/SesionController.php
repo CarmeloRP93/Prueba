@@ -15,7 +15,7 @@ class SesionController extends Controller {
 
     public function sesionesClientesAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        $sesiones = $repository->getSesionesGeneralesDisponibles();
+        $sesiones = $repository->getSesionesGeneralesMostrables();
         $resultado = array();
         foreach ($sesiones as $i => $sesion) {
             if (strpos($sesion->getIdsClientes(), strval($this->getUser()->getId())) === false &&
@@ -32,8 +32,12 @@ class SesionController extends Controller {
     public function sesionesPrivadasClientesAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesiones = $repository->getSesionesClientesDedicadas($this->getUser()->getId());
+        $resultado = array();
+        foreach ($sesiones as $i => $sesion) {
+            $resultado[$i] = $sesion;
+        }
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 5);
+        $pagination = $paginator->paginate($resultado, $request->query->getInt('page', 1), 5);
         return $this->render('moduloclientesclienteBundle:Sesiones:sesionesPrivadasClientes.html.twig', array("pagination" => $pagination,
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }

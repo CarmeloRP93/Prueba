@@ -54,24 +54,23 @@ class __TwigTemplate_0db255f66f4c8730b8097ac9da46603d5a441d6b0f36003f9e51acf08be
         // line 11
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("attr" => array("novalidate" => "novalidate", "role" => "form")));
         echo "
-                <form role=\"form\">
                 ";
-        // line 13
+        // line 12
         if (((isset($context["mensaje"]) ? $context["mensaje"] : $this->getContext($context, "mensaje")) != null)) {
-            // line 14
+            // line 13
             echo "                    <h3 class=\"terr\">";
             echo twig_escape_filter($this->env, (isset($context["mensaje"]) ? $context["mensaje"] : $this->getContext($context, "mensaje")), "html", null, true);
             echo "</h3>
                 ";
         }
-        // line 16
+        // line 15
         echo "                <div class=\"hidden\">
                     ";
-        // line 17
+        // line 16
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "idCancha", array()), 'widget', array("value" => (isset($context["id"]) ? $context["id"] : $this->getContext($context, "id"))));
         echo "
                     <span class=\"text-danger\">";
-        // line 18
+        // line 17
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "idCancha", array()), 'errors');
         echo "</span>
                 </div>
@@ -79,25 +78,18 @@ class __TwigTemplate_0db255f66f4c8730b8097ac9da46603d5a441d6b0f36003f9e51acf08be
                     <div class=\"row\">
                         <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3\">
                             ";
-        // line 23
+        // line 22
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fechaInicio", array()), 'label');
         echo "
                             ";
-        // line 24
+        // line 23
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fechaInicio", array()), 'widget', array("value" => (isset($context["fecha"]) ? $context["fecha"] : $this->getContext($context, "fecha")), "attr" => array("class" => "form-control")));
         echo "
                             <span class=\"text-danger\">";
-        // line 25
+        // line 24
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "fechaInicio", array()), 'errors');
         echo "</span>
-                        </div> 
-                        </form>                        
-                            <form id=\"lcoo\" action=\"";
-        // line 28
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_actualizarHoras", array("id" => (isset($context["id"]) ? $context["id"] : $this->getContext($context, "id")))), "html", null, true);
-        echo "\"> 
-                                <button class=\"btn\" type=\"submit\" >ddddd</button>
-                            </form>
+                        </div>                         
                     </div>
                 </div>
             </div>
@@ -111,25 +103,25 @@ class __TwigTemplate_0db255f66f4c8730b8097ac9da46603d5a441d6b0f36003f9e51acf08be
                 <div class=\"panel-body\">  
                     <div class=\"row\">
                         <h4>";
-        // line 43
+        // line 38
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horario", array()), 'label');
         echo "</h4>
                         ";
-        // line 44
+        // line 39
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horario", array()), 'widget');
         echo "
                          <span class=\"text-danger\">";
-        // line 45
+        // line 40
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horario", array()), 'errors');
         echo "</span>
                         <br>";
-        // line 46
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success", "id" => "papi")));
+        // line 41
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
                     </div>
                 </div>
                 ";
-        // line 49
+        // line 44
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
             </div>
@@ -150,6 +142,6 @@ class __TwigTemplate_0db255f66f4c8730b8097ac9da46603d5a441d6b0f36003f9e51acf08be
 
     public function getDebugInfo()
     {
-        return array (  133 => 49,  127 => 46,  123 => 45,  119 => 44,  115 => 43,  97 => 28,  91 => 25,  87 => 24,  83 => 23,  75 => 18,  71 => 17,  68 => 16,  62 => 14,  60 => 13,  55 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  125 => 44,  119 => 41,  115 => 40,  111 => 39,  107 => 38,  90 => 24,  86 => 23,  82 => 22,  74 => 17,  70 => 16,  67 => 15,  61 => 13,  59 => 12,  55 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

@@ -1,60 +1,61 @@
-{# empty Twig template #}
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
-
 {% block title %} Sesiones Privadas{% endblock %}
-
 {% block contenido %}
     <div class="container">
         <div class="page-header">
             <h1 class="t1">Sesiones Privadas</h1>
         </div>
-        {% if not pagination|length %}
-            <h2>No se encontraron sesiones privadas.</h2>
-        {% else %}
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>{{ knp_pagination_sortable(pagination, 'Nombre', 's.nombre') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Estado', 's.estado') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Monitor', 's.monitor') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Cliente', 's.cliente') }}</th>
-                            <th class="t3">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for sesion in pagination %}
-                            <tr>
-                                <td>{{sesion.nombre}}</td>
-                                <td><strong>{{sesion.estado}}</strong></td>
-                                <td>{{sesion.monitor}}</td>
-                                <td>{{sesion.cliente}}</td>
+        <div class="panel panel-default">
+            <div class="panel-body myelement">
+                {% if not pagination|length %}
+                    <h2>No se encontraron sesiones privadas</h2>
+                {% else %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Nombre', 's.nombre') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Estado', 's.estado') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Monitor', 's.monitor') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Cliente', 's.cliente') }}</th>
+                                    <th class="t3">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for sesion in pagination %}
+                                    <tr>
+                                        <td>{{sesion.nombre}}</td>
+                                        <td><strong>{{sesion.estado}}</strong></td>
+                                        <td>{{sesion.monitor}}</td>
+                                        <td>{{sesion.cliente}}</td>
 
-                                <td class="actions">
-                                    <a href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}" class="btn btn-sm btn-info">
-                                        Ver
-                                    </a>
-                                    {% if sesion.estado == 'pendiente' or sesion.estado == 'modificada' %}
-                                        <a href="{{path('crivero_prueba_aceptarSesion', {id: sesion.id})}}" class="btn btn-sm btn-success">
-                                            Aceptar
-                                        </a>
-                                        <a href="{{path('crivero_prueba_rechazarSesion', {id: sesion.id})}}" class="btn btn-sm btn-danger btn-delete">
-                                            Rechazar
-                                        </a>
-                                    {% elseif sesion.estado == 'validada' %}
-                                        <a href="{{path('crivero_prueba_cancelarSesion', {id: sesion.id})}}" class="btn btn-sm btn-danger btn-delete">
-                                            Cancelar
-                                        </a>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                                        <td class="actions">
+                                            <a href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}" class="btn btn-sm btn-info">
+                                                Ver
+                                            </a>
+                                            {% if sesion.estado == 'pendiente' or sesion.estado == 'modificada' %}
+                                                <a href="{{path('crivero_prueba_aceptarSesion', {id: sesion.id})}}" class="btn btn-sm btn-success">
+                                                    Aceptar
+                                                </a>
+                                                <a href="{{path('crivero_prueba_rechazarSesion', {id: sesion.id})}}" class="btn btn-sm btn-danger btn-delete">
+                                                    Rechazar
+                                                </a>
+                                            {% elseif sesion.estado == 'validada' %}
+                                                <a href="{{path('crivero_prueba_cancelarSesion', {id: sesion.id})}}" class="btn btn-sm btn-danger btn-delete">
+                                                    Cancelar
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                <div class="navigation text-center">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
             </div>
-        {% endif %}
-        <div class="navigation">
-            {{ knp_pagination_render(pagination) }}
         </div>
     </div>
 {% endblock %}

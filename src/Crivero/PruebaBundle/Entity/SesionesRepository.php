@@ -18,9 +18,9 @@ class SesionesRepository extends EntityRepository {
                         ->getResult();
     }
 
-    public function getSesionesGeneralesDisponibles() {
+    public function getSesionesGeneralesMostrables() {
         return $this->getEntityManager()
-                        ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.cliente='normal' AND s.estadoCliente='disponible'")
+                        ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.cliente='normal' AND s.estadoCliente!='no disponible'")
                         ->getResult();
     }
 
@@ -33,8 +33,8 @@ class SesionesRepository extends EntityRepository {
     public function getSesionesClientesDedicadas($id) {
         return $this->getEntityManager()
                         ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.cliente!='normal' "
-                                . "AND s.estadoCliente='disponible' "
-                                . "AND s.idsClientes != :id")
+                                . "AND s.estadoCliente!='no disponible' "
+                                . "AND s.idsClientes != :id ")
                         ->setParameter('id', $id)
                         ->getResult();
     }

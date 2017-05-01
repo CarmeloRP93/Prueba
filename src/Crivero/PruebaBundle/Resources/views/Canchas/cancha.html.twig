@@ -2,48 +2,47 @@
 {% block title %} {{cancha.tipo}} {% endblock %}
 {% block contenido %}
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
-     <div class="container text-center">
-        <h3>Detalles de Cancha</h3>
-    </div>
-        
-         <div class="text-center">
-           <h4>{{cancha.tipo}}</h4>
-        </div>
+    <h1 class="t1">Cancha {{cancha.tipo}}</h1><br>
+    <div class="container text-center">
 
-        <div class="col-md-6 col-xs-12">
-
-            <div class="text-center">
-                <img src="{{ asset(cancha.imagen) }}" width="180px" class="img-rounded"/><br>
-
-                <br>{% if cancha.disponibilidad == "Disponible" %}
-                      <div class="text-center">
-                        <button class="btn btn-success">{{cancha.disponibilidad}}</button>
-                      </div>
-                      {% else %}
-                      <div class="text-center">
-                        <button class="btn btn-danger">{{cancha.disponibilidad}}</button>
-                      </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <img src="{{ asset(cancha.imagen) }}" class="img-responsive center-block" style="max-width: 340px; margin-bottom:20px"/>
+                {% if cancha.disponibilidad == "Disponible" %}
+                    <button class="btn btn-success">{{cancha.disponibilidad}}</button>
+                {% else %}
+                    <button class="btn btn-danger">{{cancha.disponibilidad}}</button>
                 {% endif %}
-            </div><br>
+            </div>
 
+
+            <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0 col-lg-6 col-lg-offset-0"> 
+                <div class="panel panel-default">                  
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                                <h4>Horario: </h4> <p>{{cancha.horario}}</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                                <h4>Deporte: </h4><p>{{cancha.deporte}}</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                                <h4>Dimensiones: </h4><p>{{cancha.dimensiones}} m²</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <h4>Valoracion: </h4><p>{{cancha.valoracion|round (0, 'common')}}</p>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <h4>Dirección: </h4><p>{{cancha.direccion}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="{{ path('crivero_prueba_cancha_editar', { id: cancha.id }) }}" class="btn btn-primary">Editar info</a>
+                    {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar cancha" })}}
+                </div>
+            </div>
         </div>
-
-        <div class="col-md-6 col-xs-12">
-            <div class="text-center">
-                <label class="control-label span7 text-left">Horario: </label>
-                <label class="control-label span7 text-right">{{cancha.horario}} </label>
-            </div>
-
-            <div class="text-center">
-                <label class="control-label span7 text-left">Valoracion: </label>
-                <label class=" text-right">{{cancha.valoracion}}</label>
-            </div><br>
-
-            <div class="text-center">
-              <a href="{{ path('crivero_prueba_cancha_editar', { id: cancha.id }) }}" class="btn btn-primary">Editar info</a>
-              {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar cancha" })}}
-            </div>
-
-
     </div>
 {% endblock %}

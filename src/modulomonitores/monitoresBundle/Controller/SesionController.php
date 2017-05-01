@@ -294,7 +294,7 @@ class SesionController extends Controller {
                         $notificacion->setIdDestinatario($usuario->getId());
                         $notificacion->setIdEntidad($sesion->getId());
                         $notificacion->setMensaje("El monitor " . $this->getUser()->getUsername() . " ha"
-                                . " suspendido la sesión" . $sesion->getNombre());
+                                . " suspendido la sesión " . $sesion->getNombre());
                         $notificacion->setIdOrigen($this->getUser()->getId());
                         $notificacion->setConcepto("Publica");
                         $notificacion->setEstado("No leido");

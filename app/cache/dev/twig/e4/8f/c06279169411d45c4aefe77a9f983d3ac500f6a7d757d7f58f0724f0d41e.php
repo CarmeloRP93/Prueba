@@ -58,7 +58,7 @@ class __TwigTemplate_e48fc06279169411d45c4aefe77a9f983d3ac500f6a7d757d7f58f0724f
         </div>
 
         <div class=\"row\">
-            <div class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6\" >  
+            <div class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center\" >  
                 <img src=\"";
         // line 13
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "imagen", array())), "html", null, true);

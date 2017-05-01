@@ -1,68 +1,71 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
-
 {% block title %} Mensajes Recibidos {% endblock %}
-
 {% block contenido %}
-
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
-    <div class="container" style="margin-top: -21px">
-        <div class="page-header">
-            <div class="dropdown " style="float: left">
-                <button style="margin-bottom: 0" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Mensajes Recibidos
-                    <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li><a href="{{path('crivero_prueba_mensajes_enviados')}}">Mensajes Enviados</a></li>
-                    <li class="active"><a href="#">Mensajes Recibidos</a></li>
-                </ul>
+    <div class="container">
+        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+            <div class="page-header">
+                <div class="row text-center">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <h1 class="t1">Mensajes recibidos</h1>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><br>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Mensajes Recibidos<span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{path('crivero_prueba_mensajes_enviados')}}">Mensajes Enviados</a></li>
+                                <li class="active"><a href="#">Mensajes Recibidos</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h1 class="t1" style="margin-right: 4.5em">Mensajes Recibidos </h1>
-        </div>
-        {% if not pagination|length %}
-            <h2>No se encontraron mensajes.</h2>
-        {% else %}
-            <div class="table-responsive">
-                <table class="table table-hover table-condensed">
-                    <thead>
-                        <tr>
-                            <th>{{ knp_pagination_sortable(pagination, 'Remitente', 'm.idRemitente') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Asunto', 'm.asunto') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Recibido', 'm.fecha') }}</th>
-                            <th class="t3">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        {% for mensaje in pagination %}
-                            {{ (mensaje.estado == "nuevo") ? "<tr data-id='{{ mensaje.id }}' style='font-weight: bold'>"|raw : 
+            <div class="panel panel-default text-center">
+                <div class="panel-body myelement">
+                    {% if not pagination|length %}
+                        <h2>No se encontraron mensajes</h2>
+                    {% else %}
+                        <div class="table-responsive">
+                            <table class="table table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>{{ knp_pagination_sortable(pagination, 'Remitente', 'm.idRemitente') }}</th>
+                                        <th><div class="hidden-xs">{{ knp_pagination_sortable(pagination, 'Asunto', 'm.asunto') }}</div></th>
+                                        <th>{{ knp_pagination_sortable(pagination, 'Recibido', 'm.fecha') }}</th>
+                                        <th class="t3">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for mensaje in pagination %}
+                                        {{ (mensaje.estado == "nuevo") ? "<tr data-id='{{ mensaje.id }}' style='font-weight: bold'>"|raw : 
                                                              "<tr data-id='{{ mensaje.id }}'>"|raw }}
-                                <td>{{ remitentes[loop.index0] }}</td>
-                                {% if mensaje.asunto == null %}
-                                    <td>Sin asunto</td>
-                                {% else %}
-                                    <td>{{mensaje.asunto}}</td>
-                                {% endif %}
-                                <td>{{ mensaje.fecha|date('d/m/Y H:i') }}</td>
-                                <td class="actions">
-                                    <form action="{{ path('crivero_prueba_mensaje', {id: mensaje.id}) }}">
-                                        <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
-                                            Ver mensaje
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        {% endif %}
-        <div>
-            <div class="navigation">
-                {{ knp_pagination_render(pagination) }}
+                                    <td>{{ remitentes[loop.index0] }}</td>
+                                    {% if mensaje.asunto == null %}
+                                        <td>Sin asunto</td>
+                                    {% else %}
+                                        <td><div class="hidden-xs">{{mensaje.asunto}}</div></td>
+                                        {% endif %}
+                                    <td>{{ mensaje.fecha|date('d/m/Y H:i') }}</td>
+                                    <td class="actions">
+                                        <form action="{{ path('crivero_prueba_mensaje', {id: mensaje.id}) }}">
+                                            <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                Ver mensaje
+                                            </button>
+                                        </form>
+                                    </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
             </div>
         </div>
     </div>
-
-
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

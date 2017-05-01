@@ -1,58 +1,54 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
-
 {% block title %} Reservas {% endblock %}
-
 {% block contenido %}
-        <div class="progress no-border hidden" id="delete-progress" style="margin-top: -20px">
-            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div> 
+    <div class="progress no-border hidden" id="delete-progress" style="margin-top: -20px">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div> 
 
-        <div class="container">
-            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
-                <div class="page-header">
-                    <h1 class="t1">Mis reservas</h1>
-                </div>
-                <div class="panel panel-default text-center">
-                <div class="panel-body myelement">
-                    {% if not pagination|length %}
-                        <h2>No se encontraron reservas</h2>
-                    {% else %}
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>{{ knp_pagination_sortable(pagination, 'Código', 'r.id') }}</th>
-                                        <th>{{ knp_pagination_sortable(pagination, 'Cancha', 'r.cancha') }}</th>
-                                        <th>{{ knp_pagination_sortable(pagination, 'Fecha', 'r.fechaInicio') }}</th>
-                                        <th class="t3">Acciones</th>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="t1">Mis reservas</h1>
+        </div>
+        <div class="panel panel-default text-center">
+            <div class="panel-body myelement">
+                {% if not pagination|length %}
+                    <h2>No se encontraron reservas</h2>
+                {% else %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Código', 'r.id') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Cancha', 'r.cancha') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Fecha', 'r.fechaInicio') }}</th>
+                                    <th class="t3">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for reserva in pagination %}
+                                    <tr data-id="{{ reserva.id }}">
+                                        <td>{{reserva.id}}</td>
+                                        <td>{{reserva.cancha}}</td>
+                                        <td><strong>{{reserva.fechaInicio|date('d-m-Y')}}</strong></td>
+                                        <td class="actions">
+                                            <a href="{{ path('moduloclientes_cliente_reservaClientes', { id: reserva.id }) }}" class="btn btn-sm btn-info">
+                                                Ver
+                                            </a>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    {% for reserva in pagination %}
-                                        <tr data-id="{{ reserva.id }}">
-                                            <td>{{reserva.id}}</td>
-                                            <td>{{reserva.cancha}}</td>
-                                            <td><strong>{{reserva.fechaInicio|date('d-m-Y')}}</strong></td>
-                                            <td class="actions">
-                                                <a href="{{ path('moduloclientes_cliente_reservaClientes', { id: reserva.id }) }}" class="btn btn-sm btn-info">
-                                                    Ver
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    {% endif %}        
-                    <div>
-                        <div class="navigation">
-                            {{ knp_pagination_render(pagination) }}
-                        </div>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
-                </div>                     
+                {% endif %}        
+                <div>
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
             </div>                     
-        </div>             
+        </div>                     
     </div>             
 {% endblock %}

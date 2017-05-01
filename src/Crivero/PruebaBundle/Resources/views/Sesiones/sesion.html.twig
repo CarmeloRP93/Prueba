@@ -9,7 +9,7 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >  
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center" >  
                 <img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block" style="max-width: 450px; margin-bottom:20px"/>        
                 {% if sesion.estado == 'validada' %}
                     <a href="{{path('crivero_prueba_cancelarSesion', {id: sesion.id})}}" class="btn btn-danger text-center center-block btn-block" style="width: 450px;">Cancelar</a>

@@ -14,7 +14,7 @@
                     {% elseif sesion.estado == "cancelada" %}
                         <h4 class="terr">Motivos: {{sesion.observaciones}}</h4>
                     {% elseif sesion.estado == "terminada" %}
-                        <h4 class="terr">¡Gracias por su participación! </h4>
+                        <h4>¡Gracias por su participación! </h4>
                     {% elseif sesion.estado == "rechazada" %}
                         <h4 class="terr">Motivos: {{sesion.observaciones}}</h4>
                     {% endif %}

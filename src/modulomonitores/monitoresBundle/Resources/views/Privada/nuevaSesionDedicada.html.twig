@@ -2,7 +2,6 @@
 {% block title %}Nueva sesión privada{% endblock %}
 {% block contenido %}
     <div class="container center-block">
-
         <div class="panel panel-default">
             <div class="panel-heading text-center">
                 <h1 class="t1">Nueva sesión privada</h1>                       
@@ -35,7 +34,6 @@
                             {{ form_widget(form.nombre, {'attr': {'class': 'form-control', 'placeholder' : 'Introduzca nombre de la sesión'}}) }}
                             <span class="text-danger">{{ form_errors(form.nombre) }}</span>
                         </div>
-
 
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" > 
                             <label>Número total de sesiones</label>
@@ -77,9 +75,10 @@
                             {{ form_widget(form.duracion, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Introduzca la duracion de cada sesión'} }) }}
                             <span class="text-danger">{{ form_errors(form.duracion) }}</span>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
-                            <label>Seleccione un aula para realizar la sesión</label> {{ form_widget(form.aula, { 'attr' : { 'placeholder' : 'Motivos de cancelación'} }) }}
-                            <span class="text-danger">{{ form_errors(form.aula) }}</span><br>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <label>Seleccione el día de comienzo</label> 
+                            {{ form_widget(form.fechaInicio, { 'attr' : {'class' : 'form-control'} }) }}
+                            <span class="text-danger">{{ form_errors(form.fechaInicio) }}</span><br>
                         </div>
                     </div>
                     <div class="row">
@@ -87,16 +86,14 @@
                             <label>Seleccione los días de la sesión</label> {{ form_widget(form.dias) }}
                             <span class="text-danger">{{ form_errors(form.dias) }}</span><br>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <label>Seleccione el día de comienzo</label> 
-                            {{ form_widget(form.fechaInicio) }}
-                            <span class="text-danger">{{ form_errors(form.fechaInicio) }}</span><br>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
+                            <label>Seleccione un aula para realizar la sesión</label> {{ form_widget(form.aula, { 'attr' : { 'placeholder' : 'Motivos de cancelación'} }) }}
+                            <span class="text-danger">{{ form_errors(form.aula) }}</span><br>
                         </div>
                     </div>
                 </form><br>
+
                 <div class="text-center">
-
-
                     {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
                     <form class="alinear" action="{{ path("modulomonitores_monitores_misSesionesDedicadas") }}">
                         <button type="submit" class="btn btn-danger" >Cancelar</button>
@@ -105,6 +102,5 @@
                 {{ form_end(form) }}                   
             </div>
         </div>
-
     </div>
 {% endblock %}

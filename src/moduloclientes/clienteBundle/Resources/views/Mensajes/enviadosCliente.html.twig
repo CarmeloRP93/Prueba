@@ -2,65 +2,63 @@
 {% block title %} Mensajes Enviados {% endblock %}
 {% block contenido %}
     <div class="container">
-        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
-            <div class="page-header">
-                <div class="row text-center">
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <h1 class="t1">Mensajes enviados</h1>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><br>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Mensajes Enviados<span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{path('moduloclientes_cliente_mensajes_recibidosCliente')}}">Mensajes Recibidos</a></li>
-                                <li class="active"><a href="#">Mensajes Enviados</a></li>
-                            </ul>
-                        </div>
+        <div class="page-header">
+            <div class="row text-center">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <h1 class="t1">Mensajes enviados</h1>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><br>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Mensajes Enviados<span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{path('moduloclientes_cliente_mensajes_recibidosCliente')}}">Mensajes Recibidos</a></li>
+                            <li class="active"><a href="#">Mensajes Enviados</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default text-center">
-                <div class="panel-body myelement">
-                    {% if not pagination|length %}
-                        <h2>No se encontraron mensajes</h2>
-                    {% else %}
-                        <div class="table-responsive">
-                            <table class="table table-hover table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>{{ knp_pagination_sortable(pagination, 'Destino', 'm.destinatario') }}</th>
-                                        <th><div class="hidden-xs">{{ knp_pagination_sortable(pagination, 'Asunto', 'm.asunto') }}</div></th>
-                                        <th>{{ knp_pagination_sortable(pagination, 'Enviado', 'm.fecha') }}</th>
-                                        <th class="t3">Acciones</th>
+        </div>
+        <div class="panel panel-default text-center">
+            <div class="panel-body myelement">
+                {% if not pagination|length %}
+                    <h2>No se encontraron mensajes</h2>
+                {% else %}
+                    <div class="table-responsive">
+                        <table class="table table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Destino', 'm.destinatario') }}</th>
+                                    <th><div class="hidden-xs">{{ knp_pagination_sortable(pagination, 'Asunto', 'm.asunto') }}</div></th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Enviado', 'm.fecha') }}</th>
+                                    <th class="t3">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for mensaje in pagination %}
+                                    <tr data-id="{{ mensaje.id }}">
+                                        <td><strong>{{ mensaje.destinatario }}</strong></td>
+                                        {% if mensaje.asunto == null %}
+                                            <td>Sin asunto</td>
+                                        {% else %}
+                                            <td><div class="hidden-xs">{{mensaje.asunto}}</div></td>
+                                            {% endif %}
+                                        <td>{{ mensaje.fecha|date('d/m/Y H:i') }}</td>
+                                        <td class="actions">
+                                            <form action="{{ path('moduloclientes_cliente_mensajeCliente', {id: mensaje.id}) }}">
+                                                <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                    Ver mensaje
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    {% for mensaje in pagination %}
-                                        <tr data-id="{{ mensaje.id }}">
-                                            <td><strong>{{ mensaje.destinatario }}</strong></td>
-                                            {% if mensaje.asunto == null %}
-                                                <td>Sin asunto</td>
-                                            {% else %}
-                                                <td><div class="hidden-xs">{{mensaje.asunto}}</div></td>
-                                                {% endif %}
-                                            <td>{{ mensaje.fecha|date('d/m/Y H:i') }}</td>
-                                            <td class="actions">
-                                                <form action="{{ path('moduloclientes_cliente_mensajeCliente', {id: mensaje.id}) }}">
-                                                    <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
-                                                        Ver mensaje
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    {% endif %}
-                    <div>
-                        <div class="navigation"  >
-                            {{ knp_pagination_render(pagination) }}
-                        </div>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                <div>
+                    <div class="navigation"  >
+                        {{ knp_pagination_render(pagination) }}
                     </div>
                 </div>
             </div>

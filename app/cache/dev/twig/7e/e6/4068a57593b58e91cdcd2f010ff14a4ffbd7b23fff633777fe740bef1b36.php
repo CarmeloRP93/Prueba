@@ -7,12 +7,12 @@ class __TwigTemplate_7ee64068a57593b58e91cdcd2f010ff14a4ffbd7b23fff633777fe740be
     {
         parent::__construct($env);
 
-        // line 2
+        // line 1
         try {
             $this->parent = $this->env->loadTemplate("CriveroPruebaBundle::main.html.twig");
         } catch (Twig_Error_Loader $e) {
             $e->setTemplateFile($this->getTemplateName());
-            $e->setTemplateLine(2);
+            $e->setTemplateLine(1);
 
             throw $e;
         }
@@ -33,129 +33,133 @@ class __TwigTemplate_7ee64068a57593b58e91cdcd2f010ff14a4ffbd7b23fff633777fe740be
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 4
+    // line 2
     public function block_title($context, array $blocks = array())
     {
         echo " Sesiones Privadas";
     }
 
-    // line 6
+    // line 3
     public function block_contenido($context, array $blocks = array())
     {
-        // line 7
+        // line 4
         echo "    <div class=\"container\">
         <div class=\"page-header\">
             <h1 class=\"t1\">Sesiones Privadas</h1>
         </div>
-        ";
-        // line 11
+        <div class=\"panel panel-default\">
+            <div class=\"panel-body myelement\">
+                ";
+        // line 10
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
-            // line 12
-            echo "            <h2>No se encontraron sesiones privadas.</h2>
-        ";
+            // line 11
+            echo "                    <h2>No se encontraron sesiones privadas</h2>
+                ";
         } else {
-            // line 14
-            echo "            <div class=\"table-responsive\">
-                <table class=\"table table-hover\">
-                    <thead>
-                        <tr>
-                            <th>";
-            // line 18
+            // line 13
+            echo "                    <div class=\"table-responsive\">
+                        <table class=\"table table-hover\">
+                            <thead>
+                                <tr>
+                                    <th>";
+            // line 17
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre", "s.nombre");
             echo "</th>
-                            <th>";
-            // line 19
+                                    <th>";
+            // line 18
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Estado", "s.estado");
             echo "</th>
-                            <th>";
-            // line 20
+                                    <th>";
+            // line 19
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Monitor", "s.monitor");
             echo "</th>
-                            <th>";
-            // line 21
+                                    <th>";
+            // line 20
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Cliente", "s.cliente");
             echo "</th>
-                            <th class=\"t3\">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ";
-            // line 26
+                                    <th class=\"t3\">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ";
+            // line 25
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
             foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
+                // line 26
+                echo "                                    <tr>
+                                        <td>";
                 // line 27
-                echo "                            <tr>
-                                <td>";
-                // line 28
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
                 echo "</td>
-                                <td><strong>";
-                // line 29
+                                        <td><strong>";
+                // line 28
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "estado", array()), "html", null, true);
                 echo "</strong></td>
-                                <td>";
-                // line 30
+                                        <td>";
+                // line 29
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "monitor", array()), "html", null, true);
                 echo "</td>
-                                <td>";
-                // line 31
+                                        <td>";
+                // line 30
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "cliente", array()), "html", null, true);
                 echo "</td>
 
-                                <td class=\"actions\">
-                                    <a href=\"";
-                // line 34
+                                        <td class=\"actions\">
+                                            <a href=\"";
+                // line 33
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_sesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-info\">
-                                        Ver
-                                    </a>
-                                    ";
-                // line 37
+                                                Ver
+                                            </a>
+                                            ";
+                // line 36
                 if ((($this->getAttribute($context["sesion"], "estado", array()) == "pendiente") || ($this->getAttribute($context["sesion"], "estado", array()) == "modificada"))) {
-                    // line 38
-                    echo "                                        <a href=\"";
+                    // line 37
+                    echo "                                                <a href=\"";
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_aceptarSesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
                     echo "\" class=\"btn btn-sm btn-success\">
-                                            Aceptar
-                                        </a>
-                                        <a href=\"";
-                    // line 41
+                                                    Aceptar
+                                                </a>
+                                                <a href=\"";
+                    // line 40
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_rechazarSesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
                     echo "\" class=\"btn btn-sm btn-danger btn-delete\">
-                                            Rechazar
-                                        </a>
-                                    ";
-                } elseif (($this->getAttribute(                // line 44
+                                                    Rechazar
+                                                </a>
+                                            ";
+                } elseif (($this->getAttribute(                // line 43
 $context["sesion"], "estado", array()) == "validada")) {
-                    // line 45
-                    echo "                                        <a href=\"";
+                    // line 44
+                    echo "                                                <a href=\"";
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancelarSesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
                     echo "\" class=\"btn btn-sm btn-danger btn-delete\">
-                                            Cancelar
-                                        </a>
-                                    ";
+                                                    Cancelar
+                                                </a>
+                                            ";
                 }
-                // line 49
-                echo "                                </td>
-                            </tr>
-                        ";
+                // line 48
+                echo "                                        </td>
+                                    </tr>
+                                ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 52
-            echo "                    </tbody>
-                </table>
-            </div>
-        ";
+            // line 51
+            echo "                            </tbody>
+                        </table>
+                    </div>
+                ";
         }
+        // line 55
+        echo "                <div class=\"navigation text-center\">
+                    ";
         // line 56
-        echo "        <div class=\"navigation\">
-            ";
-        // line 57
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
+                </div>
+            </div>
         </div>
     </div>
 ";
@@ -173,6 +177,6 @@ $context["sesion"], "estado", array()) == "validada")) {
 
     public function getDebugInfo()
     {
-        return array (  157 => 57,  154 => 56,  148 => 52,  140 => 49,  132 => 45,  130 => 44,  124 => 41,  117 => 38,  115 => 37,  109 => 34,  103 => 31,  99 => 30,  95 => 29,  91 => 28,  88 => 27,  84 => 26,  76 => 21,  72 => 20,  68 => 19,  64 => 18,  58 => 14,  54 => 12,  52 => 11,  46 => 7,  43 => 6,  37 => 4,  11 => 2,);
+        return array (  159 => 56,  156 => 55,  150 => 51,  142 => 48,  134 => 44,  132 => 43,  126 => 40,  119 => 37,  117 => 36,  111 => 33,  105 => 30,  101 => 29,  97 => 28,  93 => 27,  90 => 26,  86 => 25,  78 => 20,  74 => 19,  70 => 18,  66 => 17,  60 => 13,  56 => 11,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }
