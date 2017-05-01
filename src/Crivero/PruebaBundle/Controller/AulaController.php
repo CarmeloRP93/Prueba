@@ -48,6 +48,21 @@ class AulaController extends Controller {
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
     
+    public function disponibilidadAulaAction($id) {
+        $aula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas")->find($id);
+        $repositoryH = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
+        
+        for ($i = 1; $i < 8; $i++) {
+            $dia = date('d') + $i;
+            if ($dia > date('t')) $dia = $dia - date('t');
+            if ($dia < 10) $dia = '0' . $dia;
+
+            $horarios[$i] = $repositoryH->getDiaReserva($id, $dia)[0];
+        }
+        return $this->render('CriveroPruebaBundle:Aulas:disponibilidadAula.html.twig', array("horarios" => $horarios,
+                    'aula' => $aula, 'notificacionesSinLeer' => $this->getNewNotification()));
+    }
+    
     public function sesionesAulaAction($id, Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $aula = $repository->find($id);

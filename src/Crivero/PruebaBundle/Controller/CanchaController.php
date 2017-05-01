@@ -41,6 +41,43 @@ class CanchaController extends Controller {
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
+    public function canchaReservasAction($id, Request $request) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas");
+        $reservas = $repository->getReservasCancha($id);
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $reservas, $request->query->getInt('page', 1), 5);
+
+        return $this->render('CriveroPruebaBundle:Reservas:reservasCancha.html.twig', array("pagination" => $pagination,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
+    }
+
+    public function disponibilidadCanchaAction($id) {
+        $cancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas")->find($id);
+        $repositoryH = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosCanchas");
+        
+        $mes = date('m');
+        $cambio = false;
+        for ($i = 1; $i < 8; $i++) {
+            $dia = date('d') + $i;
+            if ($dia > date('t')) {
+                $dia = $dia - date('t');
+                if ($cambio == false) {
+                    $mes++;
+                    if ($mes < 10) $mes = '0' . $mes;
+                    $cambio = true;
+                }
+            }
+            if ($dia < 10) $dia = '0' . $dia;
+            $diaMes = $dia . '-' . $mes;
+
+            $horarios[$i] = $repositoryH->getInstancia($id, $diaMes)[0];
+        }
+        return $this->render('CriveroPruebaBundle:Canchas:disponibilidadCancha.html.twig', array("horarios" => $horarios,
+                    'cancha' => $cancha, 'notificacionesSinLeer' => $this->getNewNotification()));
+    }
+
     public function nuevaCanchaAction() {
         $cancha = new Canchas();
         $form = $this->createCreateForm($cancha);
@@ -183,7 +220,7 @@ class CanchaController extends Controller {
         $repository->removeHorariosCancha($cancha->getId());
         $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
         $repositoryN->removeNotificacionesEntidad($cancha->getId(), "Cancha");
-        
+
         $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
         foreach ($usuarios as $usuario) {
             if ($usuario->getTipo() == 2) {

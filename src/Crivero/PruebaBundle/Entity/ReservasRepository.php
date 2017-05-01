@@ -49,5 +49,15 @@ class ReservasRepository extends EntityRepository {
                 ->setParameter('cancha', $searchQuery)
                 ->getResult();
     }
+    
+    public function getReservasCancha($id) {
+        return $this->getEntityManager()
+                        ->createQueryBuilder()->select('r')
+                        ->from('CriveroPruebaBundle:Reservas', 'r')
+                        ->where("r.estadoReserva = 'Reservado'")
+                        ->andWhere("r.idCancha = :id")
+                        ->setParameter('id', $id)
+                        ->getQuery();
+    }
 
 }

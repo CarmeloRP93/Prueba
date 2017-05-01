@@ -2,37 +2,38 @@
 {% block title %} {{aula.nombre}} {% endblock %}
 {% block contenido %}
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
-    <div class="container text-center">
-        <div class="page-header">
-            <h1 class="t1">{{aula.nombre}}</h1>
+    <div class="container">
+
+        <h1 class="page-header t1">{{aula.nombre}}</h1><br>
+
+        <div class="col-md-5 col-sm-10 col-sm-offset-2 col-xs-12 col-lg-offset-1">
+            <img src="{{ asset('images/' ~ aula.imagen) }}" style="width:400px; margin-bottom: 5px"  class="img-rounded"/><br>
+            {% if aula.disponibilidad == "Disponible" %}
+                <button style="width:400px;" class="btn btn-success active" >{{aula.disponibilidad}}</button>
+            {% else %}
+                <button style="width:400px;" class="btn btn-danger active">{{aula.disponibilidad}}</button>
+            {% endif %}
         </div>
 
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <img src="{{ asset('images/' ~ aula.imagen) }}" class="img-responsive center-block" style="max-width: 340px; margin-bottom:20px"/>
-                {% if aula.disponibilidad == "Disponible" %}
-                    <button style="width:340px;" class="btn btn-success active" >{{aula.disponibilidad}}</button>
-                {% else %}
-                    <button style="width:340px;" class="btn btn-danger active">{{aula.disponibilidad}}</button>
-                {% endif %}
-            </div>
+        <div class="col-xs-12 col-sm-9 col-sm-offset-1 col-md-6 col-md-offset-1 col-lg-6 col-lg-offset-0">
+            <div class="panel panel-default text-center">
+                <div class="panel-body">
 
-            <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0 col-lg-6 col-lg-offset-0"> 
-                <div class="panel panel-default">                  
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                                <h4>Disponibilidad </h4><p>{{aula.horario}} </p>
-                            </div>
-                            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                                <h4>Tamaño </h4><p>{{aula.dimensiones ~ 'm²'}} </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                <h4>Descripción </h4><p>{{ aula.descripcion }} </p>
-                            </div>
+                    <div class="col-md-6 col-xs-12">
+                        <div class="text-center">
+                            <h4>Disponibilidad </h4>
+                            <p>{{aula.horario}} </p>
+                            <h4>Descripción </h4>
+                            <p>{{ aula.descripcion }} </p>
+
+
                         </div>
-                        <div  class="row">
-                            <h4>Sesiones </h4> 
+                    </div>
+                    <div  class="col-xs-12 col-sm-12 col-md-6 col-lg-6 ">
+                        <h4>Dimensiones </h4>
+                        <p>{{aula.dimensiones ~ ' m²'}} </p>
+                        <h4>Sesiones </h4> 
+                        <div>
                             {% if aula.sesiones != null %}
                                 <ul>
                                     {% set i = 0 %}
@@ -48,44 +49,43 @@
                                     {% endfor %}
                                 </ul>
                                 <form action="{{ path('crivero_prueba_sesiones_aula', { id: aula.id }) }}" method="post" class="form-signin">
-                                    <button type="submit" class="btn btn-sm btn-outline-success">Ver sesiones</button>
+                                    <button type="submit" class="btn btn-sm btn-success">Ver sesiones</button>
                                 </form>
                             {% else %}
                                 <p style="color: red"><strong>Sin sesiones asignadas.</strong></p>
                             {% endif %}
-                        </div><br>
-                        <div  class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                <form action="#" method="post" class="alinear btn-group">
-                                    <button type="submit" class="btn btn-primary">Disponibilidad</button>
-                                    <input type="hidden" class="btn">
-                                </form>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                <form action="{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}" method="post" class="alinear btn-group">
-                                    <input type="hidden" class="btn">
-                                    <button type="submit" class="btn btn-warning">Modificar aula</button>
-                                </form>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar aula" })}}
-                            </div>
                         </div>
                     </div>
+                    {% if aula.sesiones == null %}
+                        <div style="display: inline-grid; margin-top: 16px">
+                            <form class="btn-group-vertical" action="{{ path('crivero_prueba_aula_disponibilidad', { id: aula.id }) }}" method="post" class="alinear btn-group">
+                                <button type="submit" style="margin-bottom: 1px" class="btn btn-primary">Disponibilidad</button>
+                                <input type="hidden" class="btn">
+                            </form>
+                            <form  class="btn-group-vertical" action="{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}" method="post" class="alinear btn-group">
+                                <input type="hidden" class="btn">
+                                <button type="submit" class="btn btn-warning">Modificar aula</button>
+                            </form>
+                        </div>
+                    {% else %}
+                        <div class="col-md-12 col-xs-12" style="margin-top: 14px; margin-bottom: 7px">
+                            <form style="margin-right: -2px" action="{{ path('crivero_prueba_aula_disponibilidad', { id: aula.id }) }}" method="post" class="alinear btn-group">
+                                <button type="submit" class="btn btn-primary" style="margin-bottom: 0px">Disponibilidad</button>
+                                <input type="hidden" class="btn">
+                            </form>
+                            <form style="margin-left: -2px" action="{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}" method="post" class="alinear btn-group">
+                                <input type="hidden" class="btn">
+                                <button type="submit" class="btn btn-warning" style="margin-bottom: 0px">Modificar aula</button>
+                            </form>
+                        </div>
+                    {% endif %}    
+
                 </div>
+
+            </div>
+            <div class="col-xs-offset-4 col-sm-offset-5 col-md-offset-5 col-lg-offset-5 ">
+                {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar aula" })}}
             </div>
         </div>
     </div>
-{% endblock %}
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-        function confirmarEliminar() {
-            bootbox.confirm('¿Estas seguro?', function (result) {
-                if (result === true) {
-                    document.getElementById("form").submit();
-                }
-            });
-        }
-    </script>
 {% endblock %}

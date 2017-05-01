@@ -958,6 +958,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 }
                 not_crivero_prueba_cancha_eliminar:
 
+                // crivero_prueba_cancha_reservas
+                if (preg_match('#^/cancha/(?P<id>[^/]++)/reservas$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_reservas')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::canchaReservasAction',));
+                }
+
+                // crivero_prueba_cancha_disponibilidad
+                if (preg_match('#^/cancha/(?P<id>[^/]++)/disponibilidad$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_disponibilidad')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::disponibilidadCanchaAction',));
+                }
+
             }
 
         }
@@ -971,6 +981,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             // crivero_prueba_aula
             if (preg_match('#^/aula/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_aula')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\AulaController::aulaAction',));
+            }
+
+            // crivero_prueba_aula_disponibilidad
+            if (preg_match('#^/aula/(?P<id>[^/]++)/disponibilidad$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_aula_disponibilidad')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\AulaController::disponibilidadAulaAction',));
             }
 
         }

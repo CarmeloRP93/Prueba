@@ -48,29 +48,29 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
         echo "    ";
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:messages/success.html.twig");
         echo "
-    <h1 class=\"t1\">Cancha ";
-        // line 5
+    <div class=\"container text-center\">
+        <h1 class=\"t1 page-header\">Cancha ";
+        // line 6
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "tipo", array()), "html", null, true);
         echo "</h1><br>
-    <div class=\"container text-center\">
 
         <div class=\"row\">
             <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
                 <img src=\"";
         // line 10
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "imagen", array())), "html", null, true);
-        echo "\" class=\"img-responsive center-block\" style=\"max-width: 340px; margin-bottom:20px\"/>
+        echo "\" class=\"img-responsive center-block\" style=\"max-width: 340px; margin-bottom:5px\"/>
                 ";
         // line 11
         if (($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()) == "Disponible")) {
             // line 12
-            echo "                    <button class=\"btn btn-success\">";
+            echo "                    <button class=\"btn btn-success active\" style=\"width: 340px\">";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()), "html", null, true);
             echo "</button>
                 ";
         } else {
             // line 14
-            echo "                    <button class=\"btn btn-danger\">";
+            echo "                    <button class=\"btn btn-danger active\" style=\"width: 340px\">";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()), "html", null, true);
             echo "</button>
                 ";
@@ -84,45 +84,87 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
                     <div class=\"panel-body\">
                         <div class=\"row\">
                             <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\">
-                                <h4>Horario: </h4> <p>";
+                                <h4>Horario </h4> <p>";
         // line 24
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "horario", array()), "html", null, true);
         echo "</p>
                             </div>
                             <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\">
-                                <h4>Deporte: </h4><p>";
+                                <h4>Deporte </h4><p>";
         // line 27
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "deporte", array()), "html", null, true);
         echo "</p>
                             </div>
                             <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\">
-                                <h4>Dimensiones: </h4><p>";
+                                <h4>Dimensiones </h4><p>";
         // line 30
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "dimensiones", array()), "html", null, true);
         echo " m²</p>
                             </div>
                             <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
-                                <h4>Valoracion: </h4><p>";
-        // line 33
-        echo twig_escape_filter($this->env, twig_round($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "valoracion", array()), 0, "common"), "html", null, true);
-        echo "</p>
-                            </div>
+                                <h4>Valoración </h4>
+                                ";
+        // line 34
+        if ((twig_round($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "valoracion", array()), 0, "common") != 0)) {
+            // line 35
+            echo "                                    ";
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable(range(1, twig_round($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "valoracion", array()), 0, "common")));
+            foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
+                // line 36
+                echo "                                        <img src=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/star-icon.png"), "html", null, true);
+                echo "\" style=\"width: 18px;\" />
+                                    ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 38
+            echo "                                ";
+        } else {
+            // line 39
+            echo "                                    <p>Sin valoraciones</p>
+                                ";
+        }
+        // line 41
+        echo "                            </div>
                             <div class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6\">
-                                <h4>Dirección: </h4><p>";
-        // line 36
+                                <h4>Dirección </h4><p>";
+        // line 43
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "direccion", array()), "html", null, true);
         echo "</p>
                             </div>
                         </div>
                     </div>
+                    <div class=\"\" style=\"margin-bottom: 10px;margin-top: 10px\">
+                        <form style=\"margin-right: -2px\" action=\"";
+        // line 48
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha_disponibilidad", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
+        echo "\" method=\"post\" class=\"alinear btn-group\">
+                            <button type=\"submit\" class=\"btn btn-primary\">Disponibilidad</button>
+                            <input type=\"hidden\" class=\"btn\">
+                        </form>
+                        <form style=\"margin-left: -2px; margin-right: -2px\" action=\"";
+        // line 52
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha_editar", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
+        echo "\" method=\"post\" class=\"alinear btn-group\">
+                            <input type=\"hidden\" class=\"btn\">
+                            <button type=\"submit\" class=\"btn btn-warning\">Editar cancha</button>
+                            <input type=\"hidden\" class=\"btn\"> 
+                        </form>
+                        <form style=\"margin-left: -2px\" action=\"";
+        // line 57
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha_reservas", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
+        echo "\" method=\"post\" class=\"alinear btn-group\">
+                            <input type=\"hidden\" class=\"btn\">
+                            <button type=\"submit\" class=\"btn btn-success\">Ver reservas</button>
+                        </form>
+                    </div>
                 </div>
                 <div class=\"text-center\">
-                    <a href=\"";
-        // line 42
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha_editar", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
-        echo "\" class=\"btn btn-primary\">Editar info</a>
                     ";
-        // line 43
+        // line 64
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form")), "nombre" => "Eliminar cancha"));
         echo "
                 </div>
@@ -144,6 +186,6 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
 
     public function getDebugInfo()
     {
-        return array (  126 => 43,  122 => 42,  113 => 36,  107 => 33,  101 => 30,  95 => 27,  89 => 24,  79 => 16,  73 => 14,  67 => 12,  65 => 11,  61 => 10,  53 => 5,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  168 => 64,  158 => 57,  150 => 52,  143 => 48,  135 => 43,  131 => 41,  127 => 39,  124 => 38,  115 => 36,  110 => 35,  108 => 34,  101 => 30,  95 => 27,  89 => 24,  79 => 16,  73 => 14,  67 => 12,  65 => 11,  61 => 10,  54 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

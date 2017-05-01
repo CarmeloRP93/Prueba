@@ -1,0 +1,35 @@
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
+
+{% block title %} {{ aula.nombre|capitalize }} - Disponibilidad {% endblock %}
+
+{% block contenido %}
+    <div class="container">
+        <div class="page-header "> 
+            <h2 class="t1">{{ aula.nombre|capitalize }} - Horarios disponibles de los próximos 7 días</h2>
+        </div><br>
+        <div class="table-responsive">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-xs">
+                    <table class="table table-hover {#table-condensed#}">
+                        <tbody>
+                            {% for horario in horarios  %}
+                                <tr >
+                                    <td style="padding-top: 14px;padding-bottom: 14px"><strong>Día {{ (horario.fechaInicio < 10) ? '0'~horario.fechaInicio : horario.fechaInicio }}</strong></td>
+                                    {% for horitas in horario.periodo|split('&')  %}
+                                        <td style="padding-top: 14px;padding-bottom: 14px;">{{ horitas }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div><br>
+
+        <div>
+            <a class="btn btn-default" href="{{ path('crivero_prueba_aula', { id: aula.id }) }}">Volver atrás</a>
+        </div>
+    </div>
+{% endblock %} 
+
+

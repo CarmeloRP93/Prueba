@@ -87,6 +87,14 @@ crivero_prueba_cancha_eliminar:
     defaults: { _controller: CriveroPruebaBundle:Cancha:eliminarCancha }
     methods: [POST, DELETE]
     
+crivero_prueba_cancha_reservas:
+    pattern:  /cancha/{id}/reservas
+    defaults: { _controller: CriveroPruebaBundle:Cancha:canchaReservas }
+    
+crivero_prueba_cancha_disponibilidad:
+    pattern:  /cancha/{id}/disponibilidad
+    defaults: { _controller: CriveroPruebaBundle:Cancha:disponibilidadCancha }
+    
 crivero_prueba_aulas:
     pattern:  /aulas
     defaults: { _controller: CriveroPruebaBundle:Aula:aulas }
@@ -94,6 +102,10 @@ crivero_prueba_aulas:
 crivero_prueba_aula:
     pattern:  /aula/{id}
     defaults: { _controller: CriveroPruebaBundle:Aula:aula }
+    
+crivero_prueba_aula_disponibilidad:
+    pattern:  /aula/{id}/disponibilidad
+    defaults: { _controller: CriveroPruebaBundle:Aula:disponibilidadAula }
     
 crivero_prueba_aula_nueva:
     pattern:  /nuevaAula

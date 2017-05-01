@@ -4,9 +4,7 @@
 {% block contenido %}
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div id="sesiondat" class="container">
-        <div class="page-header">
-            <h1 class="t1">{{ (sesion.cliente == 'normal') ? 'Sesión pública ': 'Sesión privada '}} {{sesion.nombre|lower}}</h1>
-        </div>
+        <h1 class="t1 page-header">{{ (sesion.cliente == 'normal') ? 'Sesión pública ': 'Sesión privada '}} {{sesion.nombre|lower}}</h1><br>
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center" >  
