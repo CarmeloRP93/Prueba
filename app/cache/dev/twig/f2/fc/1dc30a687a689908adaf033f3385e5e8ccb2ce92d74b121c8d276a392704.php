@@ -18,7 +18,6 @@ class __TwigTemplate_f2fc1dc30a687a689908adaf033f3385e5e8ccb2ce92d74b121c8d276a3
         }
 
         $this->blocks = array(
-            'stylesheets' => array($this, 'block_stylesheets'),
             'title' => array($this, 'block_title'),
             'navegation' => array($this, 'block_navegation'),
             'contenido' => array($this, 'block_contenido'),
@@ -35,36 +34,22 @@ class __TwigTemplate_f2fc1dc30a687a689908adaf033f3385e5e8ccb2ce92d74b121c8d276a3
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 3
-    public function block_stylesheets($context, array $blocks = array())
-    {
-        // line 4
-        echo "    ";
-        // line 5
-        echo "    ";
-        // line 6
-        echo "    <link href=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("css/loginstyle.css"), "html", null, true);
-        echo "\" type=\"text/css\" rel=\"stylesheet\">
-";
-    }
-
-    // line 9
+    // line 2
     public function block_title($context, array $blocks = array())
     {
         echo "Login";
     }
 
-    // line 10
+    // line 3
     public function block_navegation($context, array $blocks = array())
     {
     }
 
-    // line 12
+    // line 4
     public function block_contenido($context, array $blocks = array())
     {
-        // line 13
-        echo "    <body style=\" margin: 0px\">
+        // line 5
+        echo "    <body style=\"margin-top: -70px\">
         <div class=\"carousel slide carousel-fade\" data-ride=\"carousel\">
             <!-- Indicators -->
             <ol class=\"carousel-indicators\">
@@ -73,64 +58,69 @@ class __TwigTemplate_f2fc1dc30a687a689908adaf033f3385e5e8ccb2ce92d74b121c8d276a3
                 <li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>
                 <li data-target=\"#myCarousel\" data-slide-to=\"3\"></li>
             </ol>
-
             <!-- Wrapper for slides -->
             <div class=\"carousel-inner\" role=\"listbox\">
                 <div class=\"item active\">
                     ";
-        // line 27
+        // line 18
         echo "                </div>
 
                 <div class=\"item\">
                     ";
-        // line 31
+        // line 22
         echo "                </div>
                 <div class=\"item\">
                     ";
-        // line 34
+        // line 25
         echo "                </div>
             </div>
         </div>  
-        <br> 
-        <div class=\"container\" text=\"center\">
-            <div id=\"login-form\" class=\"loginmodal-container\">
-                <form action=\"";
-        // line 40
+        <br>
+        <div class=\"container text-center\">
+            <div class=\"col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xs-offset-0 col-sm-offset-3 col-md-offset-4 col-lg-offset-4\">
+                <div class=\"panel panel-default\">
+                    <img src=\"";
+        // line 32
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/logo.png"), "html", null, true);
+        echo "\" style=\"width: 200px; margin-top: 10px\">           
+                    <form action=\"";
+        // line 33
         echo $this->env->getExtension('routing')->getPath("crivero_prueba_login_check");
         echo "\" method=\"post\" class=\"form-signin\">
-                    <h3>Inicio de sesión</h3>
-                    ";
-        // line 42
+                        <h3 class=\"t3\">Inicio de sesión</h3>
+                        <div class=\"panel-body\">  
+                            ";
+        // line 36
         if ((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error"))) {
-            // line 43
-            echo "                        <div class=\"text-danger\">
-                            <p>
-                            <h4>
-                                ";
-            // line 46
+            // line 37
+            echo "                                <div class=\"text-danger\">
+                                    <p>
+                                    <h4>
+                                        ";
+            // line 40
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans($this->getAttribute((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error")), "messageKey", array()), $this->getAttribute((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error")), "messageData", array()), "security"), "html", null, true);
             echo "
-                            </h4>
-                            </p>
-                        </div>
-                    ";
+                                    </h4>
+                                    </p>
+                                </div>
+                            ";
         }
-        // line 51
-        echo "
-                    <fieldset>
-                        <input type=\"text\" id=\"username\" class=\"form-control\" name=\"_username\" value=\"";
-        // line 53
+        // line 45
+        echo "                            <fieldset>
+                                <input type=\"text\" id=\"username\" class=\"form-control\" name=\"_username\" value=\"";
+        // line 46
         echo twig_escape_filter($this->env, (isset($context["last_username"]) ? $context["last_username"] : $this->getContext($context, "last_username")), "html", null, true);
         echo "\" placeholder=\"Usuario\" required autofocus />
-                        <input type=\"password\" id=\"password\" class=\"form-control\" name=\"_password\" placeholder=\"Pass\" required />
-                        <input type=\"hidden\" name=\"_target_path\" value=\"crivero_prueba_home\" />
-                        <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">Entrar</button>   
-
-                    </fieldset>
-                </form>
-            </div> <!-- /login-form -->
-        </div> <!-- /container -->
-    </div> <!-- /body -->
+                                <input type=\"password\" id=\"password\" class=\"form-control\" name=\"_password\" placeholder=\"Contraseña\" required style=\"margin-top: 10px\"/>
+                                <input type=\"hidden\" name=\"_target_path\" value=\"crivero_prueba_home\"/>
+                                <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">Entrar</button>   
+                            </fieldset>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
 ";
     }
 
@@ -146,6 +136,6 @@ class __TwigTemplate_f2fc1dc30a687a689908adaf033f3385e5e8ccb2ce92d74b121c8d276a3
 
     public function getDebugInfo()
     {
-        return array (  123 => 53,  119 => 51,  111 => 46,  106 => 43,  104 => 42,  99 => 40,  91 => 34,  87 => 31,  82 => 27,  67 => 13,  64 => 12,  59 => 10,  53 => 9,  46 => 6,  44 => 5,  42 => 4,  39 => 3,  11 => 1,);
+        return array (  112 => 46,  109 => 45,  101 => 40,  96 => 37,  94 => 36,  88 => 33,  84 => 32,  75 => 25,  71 => 22,  66 => 18,  52 => 5,  49 => 4,  44 => 3,  38 => 2,  11 => 1,);
     }
 }

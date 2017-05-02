@@ -1,16 +1,8 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
-
-{% block stylesheets %}
-    {#    <link rel="stylesheet" href="{{ asset('public/css/signin.css') }}">#}
-    {#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">#}
-    <link href="{{ asset('css/loginstyle.css') }}" type="text/css" rel="stylesheet">
-{% endblock %}
-
 {% block title %}Login{% endblock %}
 {% block navegation %}{% endblock %}
-
 {% block contenido %}
-    <body style=" margin: 0px">
+    <body style="margin-top: -70px">
         <div class="carousel slide carousel-fade" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -19,7 +11,6 @@
                 <li data-target="#myCarousel" data-slide-to="2"></li>
                 <li data-target="#myCarousel" data-slide-to="3"></li>
             </ol>
-
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
@@ -34,30 +25,33 @@
                 </div>
             </div>
         </div>  
-        <br> 
-        <div class="container" text="center">
-            <div id="login-form" class="loginmodal-container">
-                <form action="{{ path('crivero_prueba_login_check') }}" method="post" class="form-signin">
-                    <h3>Inicio de sesión</h3>
-                    {% if error %}
-                        <div class="text-danger">
-                            <p>
-                            <h4>
-                                {{ error.messageKey|trans(error.messageData, 'security') }}
-                            </h4>
-                            </p>
+        <br>
+        <div class="container text-center">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xs-offset-0 col-sm-offset-3 col-md-offset-4 col-lg-offset-4">
+                <div class="panel panel-default">
+                    <img src="{{ asset('images/logo.png') }}" style="width: 200px; margin-top: 10px">           
+                    <form action="{{ path('crivero_prueba_login_check') }}" method="post" class="form-signin">
+                        <h3 class="t3">Inicio de sesión</h3>
+                        <div class="panel-body">  
+                            {% if error %}
+                                <div class="text-danger">
+                                    <p>
+                                    <h4>
+                                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                                    </h4>
+                                    </p>
+                                </div>
+                            {% endif %}
+                            <fieldset>
+                                <input type="text" id="username" class="form-control" name="_username" value="{{last_username}}" placeholder="Usuario" required autofocus />
+                                <input type="password" id="password" class="form-control" name="_password" placeholder="Contraseña" required style="margin-top: 10px"/>
+                                <input type="hidden" name="_target_path" value="crivero_prueba_home"/>
+                                <button type="submit" class="btn btn-lg btn-primary btn-block">Entrar</button>   
+                            </fieldset>
                         </div>
-                    {% endif %}
-
-                    <fieldset>
-                        <input type="text" id="username" class="form-control" name="_username" value="{{last_username}}" placeholder="Usuario" required autofocus />
-                        <input type="password" id="password" class="form-control" name="_password" placeholder="Pass" required />
-                        <input type="hidden" name="_target_path" value="crivero_prueba_home" />
-                        <button type="submit" class="btn btn-lg btn-primary btn-block">Entrar</button>   
-
-                    </fieldset>
-                </form>
-            </div> <!-- /login-form -->
-        </div> <!-- /container -->
-    </div> <!-- /body -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
 {% endblock %}

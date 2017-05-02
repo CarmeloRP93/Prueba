@@ -1,0 +1,51 @@
+{% extends 'moduloclientesclienteBundle::main.html.twig' %}
+{% block title %} Pago reserva {% endblock %}
+{% block contenido %}
+    <div class="container text-center">
+        <div class="panel panel-default text-center">
+            <div class="panel-heading">
+                <h1 class="t1">Pago reserva</h1>
+            </div>
+
+            {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+            <div class="hidden">
+                {{ form_widget(form.idCliente) }}
+                {{ form_widget(form.fechaPago) }}
+                {{ form_widget(form.idConcepto) }}
+                {{ form_widget(form.concepto) }}
+                {{ form_widget(form.cuantia) }}
+            </div>
+            <div class="panel-body">  
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <label>N.º de tarjeta</label>
+                        <input type="text" class="form-control" disabled/>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <label>Fecha de caducidad</label>
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                                <input type="text" class="form-control" placeholder="MM" disabled/>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control" placeholder="YY" disabled/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <label>Código de seguridad CVV</label>
+                        <input type="text" class="form-control" disabled/>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <label>Nombre del titular</label>
+                        <input type="text" class="form-control" disabled/>
+                    </div>
+                </div><br>
+                <div class="row">
+                    {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

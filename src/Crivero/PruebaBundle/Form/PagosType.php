@@ -17,9 +17,9 @@ class PagosType extends AbstractType
         $builder
             ->add('idCliente', 'hidden')
             ->add('fechaPago', 'hidden')
-            ->add('tipoSuscripcion', 'choice', array('choices' => array('Mensual' => 'Pago mensual (4,95 €)', 'Trimestral' => 'Pago trimestral (10,95 €)', 'Anual' => 'Pago anual (29,95 €)')))
-            ->add('tipoPago', 'choice', array('choices' => array('Tarjeta' => 'Tarjeta', 'Paypal' => 'Paypal', 'Efectivo' => 'Efectivo')))
-            ->add('cuantia', 'number')
+            ->add('idConcepto', 'hidden')
+            ->add('concepto', 'hidden')
+            ->add('cuantia', 'hidden')
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;
     }

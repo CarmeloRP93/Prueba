@@ -130,40 +130,42 @@ class __TwigTemplate_b2e0dedd2a8bd8d36a4aa87f7f0a7d035ec97ec43237f3b254fef3ef91f
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "descripcion", array()), 'errors');
         echo "</span>
                             </div>
-                        </div>
+                        </div><br>
                         <div class=\"row\">
-                            <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12\">
-                                <br>";
+                            <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
+                                ";
         // line 46
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "enviar", array()), 'widget', array("label" => "Enviar", "attr" => array("class" => "btn btn-success")));
         echo "
                             </div>      
+                            <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
+                                ";
+        // line 49
+        if ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")) {
+            // line 50
+            echo "                                    <a class=\"btn btn-danger\" href=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method"), "html", null, true);
+            echo "\">Cancelar</a>
+                                ";
+        } else {
+            // line 52
+            echo "                                    <a class=\"btn btn-danger\" href=\"";
+            echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_canchasClientes");
+            echo "\">Cancelar</a>
+                                ";
+        }
+        // line 53
+        echo "                              
+                            </div>      
                         </div>      
                     </div>      
                     ";
-        // line 50
+        // line 57
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
                 </div>      
             </div> 
         </div> 
-        ";
-        // line 54
-        if ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")) {
-            // line 55
-            echo "            <a class=\"btn btn-default\" href=\"";
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method"), "html", null, true);
-            echo "\">Volver atrás</a>
-        ";
-        } else {
-            // line 57
-            echo "            <a class=\"btn btn-default\" href=\"";
-            echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_canchasClientes");
-            echo "\">Volver atrás</a>
-        ";
-        }
-        // line 58
-        echo "  
     </div>      
 ";
     }
@@ -180,6 +182,6 @@ class __TwigTemplate_b2e0dedd2a8bd8d36a4aa87f7f0a7d035ec97ec43237f3b254fef3ef91f
 
     public function getDebugInfo()
     {
-        return array (  166 => 58,  160 => 57,  154 => 55,  152 => 54,  145 => 50,  138 => 46,  130 => 41,  126 => 40,  122 => 39,  114 => 34,  110 => 33,  106 => 32,  97 => 26,  93 => 25,  89 => 24,  83 => 21,  79 => 20,  75 => 19,  69 => 16,  65 => 15,  61 => 14,  56 => 12,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  164 => 57,  158 => 53,  152 => 52,  146 => 50,  144 => 49,  138 => 46,  130 => 41,  126 => 40,  122 => 39,  114 => 34,  110 => 33,  106 => 32,  97 => 26,  93 => 25,  89 => 24,  83 => 21,  79 => 20,  75 => 19,  69 => 16,  65 => 15,  61 => 14,  56 => 12,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

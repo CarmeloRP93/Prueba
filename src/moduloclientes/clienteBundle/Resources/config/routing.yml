@@ -113,9 +113,13 @@ moduloclientes_cliente_pagoSesion:
     pattern:  /pagoSesion
     defaults: { _controller: moduloclientesclienteBundle:Sesion:pagoSesion }
     
-moduloclientes_cliente_pagar:
-    pattern:  /pagar
-    defaults: { _controller: moduloclientesclienteBundle:Sesion:pagar }
+moduloclientes_cliente_pagoReserva:
+    pattern:  /pagoReserva/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Reserva:pagoReserva }
+    
+moduloclientes_cliente_comprobarReserva:
+    pattern:  /comprobarReserva/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Reserva:comprobarReserva }
     requirements:
         _method:  POST|GET
     

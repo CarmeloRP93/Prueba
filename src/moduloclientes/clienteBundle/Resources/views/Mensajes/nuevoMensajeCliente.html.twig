@@ -51,20 +51,23 @@
                                 {{ form_widget(form.descripcion, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba el mensaje...'} }) }}
                                 <span class="text-danger">{{ form_errors(form.descripcion) }}</span>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <br>{{ form_widget(form.enviar, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
-                            </div>     
-                        </div>     
+                        </div><br>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                {{ form_widget(form.enviar, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
+                            </div>      
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                {% if app.request.headers.get('referer') %}
+                                    <a class="btn btn-danger" href="{{ app.request.headers.get('referer') }}">Cancelar</a>
+                                {% else %}
+                                    <a class="btn btn-danger" href="{{ path('moduloclientes_cliente_mensajes_recibidosCliente') }}">Cancelar</a>
+                                {% endif %}                              
+                            </div>      
+                        </div>       
                     </div>     
                     {{ form_end(form) }}
                 </div>     
             </div>     
-        </div>
-        <div class="text-center">
-            <a class="btn btn-default" href="{{ path('moduloclientes_cliente_mensajes_recibidosCliente') }}">Volver atrás</a>
         </div>
     </div>
 {% endblock %}

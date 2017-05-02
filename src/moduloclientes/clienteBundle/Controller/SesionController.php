@@ -100,13 +100,6 @@ class SesionController extends Controller {
             $pago->setIdCliente($idCliente);
             
             $tipoSuscripcion = $form->get('tipoSuscripcion')->getData();
-            if ($tipoSuscripcion == 'Mensual') {               
-                $cliente->setFechaPagar(date('d') . date('m')+1 . date('Y'));
-            } elseif ($tipoSuscripcion == 'Trimestral') {
-                $cliente->setFechaPagar(date('d') . date('m')+3 . date('Y'));           
-            } else {            
-                $cliente->setFechaPagar(date('d') . date('m') . date('Y')+1);           
-            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($cliente);

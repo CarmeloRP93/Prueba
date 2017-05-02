@@ -639,24 +639,29 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/pag')) {
+        if (0 === strpos($pathinfo, '/pago')) {
             // moduloclientes_cliente_pagoSesion
             if ($pathinfo === '/pagoSesion') {
                 return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::pagoSesionAction',  '_route' => 'moduloclientes_cliente_pagoSesion',);
             }
 
-            // moduloclientes_cliente_pagar
-            if ($pathinfo === '/pagar') {
-                if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
-                    $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
-                    goto not_moduloclientes_cliente_pagar;
-                }
-
-                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::pagarAction',  '_route' => 'moduloclientes_cliente_pagar',);
+            // moduloclientes_cliente_pagoReserva
+            if (0 === strpos($pathinfo, '/pagoReserva') && preg_match('#^/pagoReserva/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_pagoReserva')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::pagoReservaAction',));
             }
-            not_moduloclientes_cliente_pagar:
 
         }
+
+        // moduloclientes_cliente_comprobarReserva
+        if (0 === strpos($pathinfo, '/comprobarReserva') && preg_match('#^/comprobarReserva/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                goto not_moduloclientes_cliente_comprobarReserva;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_comprobarReserva')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::comprobarReservaAction',));
+        }
+        not_moduloclientes_cliente_comprobarReserva:
 
         // moduloclientes_cliente_sesionClientes
         if (0 === strpos($pathinfo, '/sesionClientes') && preg_match('#^/sesionClientes/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {

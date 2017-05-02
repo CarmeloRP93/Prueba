@@ -1,99 +1,95 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
-
 {% block title %} Notificaciones {% endblock %}
-
 {% block contenido %}
-
-    <div class="container" style="margin-top: -21px">
+    <div class="container">
         <div class="page-header">
-
-            <h1 class="t1" style="margin-right: 4.5em">Notificaciones</h1>
+            <h1 class="t1">Notificaciones</h1>
         </div>
-        {% if not pagination|length %}
-            <h2>No hay notificaciones.</h2>
-        {% else %}
-            <div class="table-responsive">
-                <table class="table table-hover table-condensed">
-                    <thead>
-                        <tr>
-                            <th>{{ knp_pagination_sortable(pagination, 'Mensaje', 'pagination.mensaje') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Estado', 'pagination.estado') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Enviado', 'pagination.fecha') }}</th>
-                            <th class="t3">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+        <div class="panel panel-default text-center">
+            <div class="panel-body myelement">
+                {% if not pagination|length %}
+                    <h2>No hay notificaciones</h2>
+                {% else %}
+                    <div class="table-responsive">
+                        <table class="table table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Mensaje', 'pagination.mensaje') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Estado', 'pagination.estado') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Enviado', 'pagination.fecha') }}</th>
+                                    <th class="t3">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                        {% for notificacion in pagination %}
-                            <tr data-id="{{ notificacion.id }}">
-                                <td><strong>{{ notificacion.mensaje }}</strong></td>
-                                <td>{{ notificacion.estado}}</td>
-                                <td>{{ notificacion.fecha|date('d/m/Y H:i') }}</td>
-                                <td class="actions">
-                                    {% if notificacion.concepto == "Publica"%}
-                                        <form action="{{ path('crivero_prueba_sesion', {id: notificacion.idEntidad}) }}">
-                                            <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
-                                                Ver notificación
-                                            </button>
-                                        </form>
-                                    {% elseif notificacion.concepto == "Privada"%}
-                                        <form action="{{ path('crivero_prueba_sesion', {id: notificacion.idEntidad}) }}">
-                                            <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
-                                                Ver notificación
-                                            </button>
-                                        </form>
-                                    {% elseif notificacion.concepto == "Mensaje"%}
-                                        <form action="{{ path('crivero_prueba_mensaje', {id: notificacion.idEntidad}) }}">
-                                            <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
-                                                Ver notificación
-                                            </button>
-                                        </form>
-                                    {% elseif notificacion.concepto == "Reserva"%}
-                                        <form action="{{ path('crivero_prueba_reservas_cliente', {id: notificacion.idEntidad}) }}">
-                                            <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
-                                                Ver notificación
-                                            </button>
-                                        </form>
-                                    {% elseif notificacion.concepto == "Partido"%}
-                                        <form action="{{ path('crivero_prueba_editarPartido', {id: notificacion.idEntidad}) }}">
-                                            <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
-                                                Editar partido
-                                            </button>
-                                        </form>
-                                    {% elseif notificacion.concepto == "Usuario"%}
-                                        <form action="{{ path('crivero_prueba_cliente', {id: notificacion.idEntidad}) }}">
-                                            <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
-                                                Ver notificación
-                                            </button>
-                                        </form>
+                                {% for notificacion in pagination %}
+                                    <tr data-id="{{ notificacion.id }}">
+                                        <td><strong>{{ notificacion.mensaje }}</strong></td>
+                                        <td>{{ notificacion.estado}}</td>
+                                        <td>{{ notificacion.fecha|date('d/m/Y H:i') }}</td>
+                                        <td class="actions">
+                                            {% if notificacion.concepto == "Publica"%}
+                                                <form action="{{ path('crivero_prueba_sesion', {id: notificacion.idEntidad}) }}">
+                                                    <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                        Ver notificación
+                                                    </button>
+                                                </form>
+                                            {% elseif notificacion.concepto == "Privada"%}
+                                                <form action="{{ path('crivero_prueba_sesion', {id: notificacion.idEntidad}) }}">
+                                                    <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                        Ver notificación
+                                                    </button>
+                                                </form>
+                                            {% elseif notificacion.concepto == "Mensaje"%}
+                                                <form action="{{ path('crivero_prueba_mensaje', {id: notificacion.idEntidad}) }}">
+                                                    <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                        Ver notificación
+                                                    </button>
+                                                </form>
+                                            {% elseif notificacion.concepto == "Reserva"%}
+                                                <form action="{{ path('crivero_prueba_reservas_cliente', {id: notificacion.idEntidad}) }}">
+                                                    <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                        Ver notificación
+                                                    </button>
+                                                </form>
+                                            {% elseif notificacion.concepto == "Partido"%}
+                                                <form action="{{ path('crivero_prueba_editarPartido', {id: notificacion.idEntidad}) }}">
+                                                    <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                        Editar partido
+                                                    </button>
+                                                </form>
+                                            {% elseif notificacion.concepto == "Usuario"%}
+                                                <form action="{{ path('crivero_prueba_cliente', {id: notificacion.idEntidad}) }}">
+                                                    <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                        Ver notificación
+                                                    </button>
+                                                </form>
                                             {% elseif notificacion.concepto == "PublicaEliminada"%}
-                                        <form action="{{ path('crivero_prueba_sesiones') }} " method="GET">
-                                            <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
-                                            <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
-                                                Ver notificación
-                                            </button>
-                                        </form>
-                                    {% elseif notificacion.concepto == "PrivadaEliminada"%}
-                                        <form action="{{ path('crivero_prueba_dedicadas') }} " method="GET">
-                                            <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
-                                            <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
-                                                Ver notificación
-                                            </button>
-                                        </form>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        {% endif %}
-        <div>
-            <div class="navigation"  >
-                {{ knp_pagination_render(pagination) }}
+                                                <form action="{{ path('crivero_prueba_sesiones') }} " method="GET">
+                                                    <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
+                                                    <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                        Ver notificación
+                                                    </button>
+                                                </form>
+                                            {% elseif notificacion.concepto == "PrivadaEliminada"%}
+                                                <form action="{{ path('crivero_prueba_dedicadas') }} " method="GET">
+                                                    <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
+                                                    <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                        Ver notificación
+                                                    </button>
+                                                </form>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                <div class="navigation text-center">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
             </div>
         </div>
     </div>
-
-
 {% endblock %}

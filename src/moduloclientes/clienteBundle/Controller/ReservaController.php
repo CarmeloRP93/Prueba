@@ -4,6 +4,8 @@ namespace moduloclientes\clienteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Crivero\PruebaBundle\Entity\Reservas;
+use Crivero\PruebaBundle\Entity\Pagos;
+use Crivero\PruebaBundle\Form\PagosType;
 use Crivero\PruebaBundle\Form\ReservasType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormError;
@@ -45,109 +47,12 @@ class ReservaController extends Controller {
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
-    public function elegirHoraAction($id, $fecha) {
-        $reserva = new Reservas();
-        $form = $this->createCreateFormHora($reserva, $id, $fecha);
-        $fecha2 = $fecha . '-' . date('Y');
-        $fecha = date('Y-m-d', strtotime($fecha2));
-        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'fecha' => $fecha, 'mensaje' => null,
-                    'notificacionesSinLeer' => $this->getNewNotification()));
-    }
-
-    private function createCreateFormHora(Reservas $entity, $id, $fecha) {
-        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosCanchas");
-        $horas = $repository->getHorario($id, $fecha);
-        $horass = implode("", $horas[0]);
-        $horasss = explode("&", $horass);
-        $form = $this->createForm(new ReservasType($horasss), $entity, array(
-            'action' => $this->get('router')->generate('moduloclientes_cliente_crearReserva', array('id' => $id, 'fechaInicio' => $fecha)),
-            'method' => 'POST'
-        ));
-        return $form;
-    }
-
     private function createCreateForm(Reservas $entity, $id) {
         $form = $this->createForm(new ReservasType(array()), $entity, array(
             'action' => $this->generateUrl('moduloclientes_cliente_mostrarHoras', array('id' => $id)),
             'method' => 'POST'
         ));
         return $form;
-    }
-
-    public function crearReservaAction($id, Request $request) {
-
-        //AquÃ­ cogemos la fecha de reserva que escogimos en la vista de nueva reserva, le damos el formato
-        $reserva = new Reservas();
-        $fechaTime = $this->getRequest()->query->get('fechaInicio') . '-' . date('Y');
-        $fecha = date('Y-m-d', strtotime($fechaTime));
-        $form = $this->createCreateFormHora($reserva, $id, $this->getRequest()->query->get('fechaInicio'));
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted()) {
-            $cliente = $this->getUser();
-            $reserva->setIdCliente($cliente->getId());
-            $reserva->setCliente($cliente->getUsername());
-
-            //Cogemos el id de la cancha escogida previamente y cambiamos el estado a reservado en la tabla reservas
-            $reserva->setIdCancha($id);
-            $cancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas")->find($id);
-            $reserva->setCancha($cancha->getTipo());
-            $reserva->setEstadoReserva("Reservado");
-
-            //Comprobamos si se ha seleccionado algÃºn horario
-            if (count($form->get('horario')->getData()) == 0) {
-                $form->get('horario')->addError(new FormError('Seleccione una o más opciones.'));
-                return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null, 'fecha' => $fecha,
-                                'notificacionesSinLeer' => $this->getNewNotification()));
-            }
-
-            //Concatenamos en horitas las horas seleccionadas en una string
-            $horitas = "";
-            for ($i = 0; $i < count($form->get('horario')->getData()); $i++) {
-
-                //Esto es para comprobar que no se puedan escoger horas que no sean contiguas
-                if ($i != count($form->get('horario')->getData()) - 1) {
-                    if ((int) substr(strval($form->get('horario')->getData()[$i]), 0, 2) + 1 != (int) substr(strval($form->get('horario')->getData()[$i + 1]), 0, 2)) {
-                        $mensaje = 'Seleccione horas contiguas. Para escoger horas no contiguas realice distintas reservas';
-                        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => $mensaje, 'fecha' => $fecha,
-                                'notificacionesSinLeer' => $this->getNewNotification()));
-                    }
-                }
-
-                $horitas .= strval($form->get('horario')->getData()[$i]) . "&";
-            }
-
-            //Escribimos en la base de datos de reserva la fecha y la horas
-            $reserva->setFechaInicio(date_create($fecha));
-            $reserva->setHorario($horitas);
-
-            //Aqui cogemos todas las horas disponible, comparamos con las seleccionadas y eliminamos de la tabla cancha las horas ya reservadas
-            $horarioscancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Horarioscanchas")->getHorario($id, $this->getRequest()->query->get('fechaInicio'));
-            $horarioscancha2 = implode("", $horarioscancha[0]);
-            $horariosArray = explode('&', $horarioscancha2);
-            $horitasArray = array_filter(explode('&', $horitas));
-            $aux = $horariosArray;
-            for ($i = 0; $i < count($aux); $i++) {
-                foreach ($horitasArray as $valor) {
-                    if ($aux[$i] == $valor) {
-                        unset($horariosArray[$i]);
-                        break;
-                    }
-                }
-            }
-            $instancia = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Horarioscanchas")->getInstancia($id, $this->getRequest()->query->get('fechaInicio'));
-            $instancia[0]->setPeriodo(implode('&', $horariosArray));
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($reserva);
-            $em->persist($instancia[0]);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('moduloclientes_cliente_reservasClientes'));
-        }
-
-        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null,
-                                'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function mostrarHorasAction($id, Request $request) {
@@ -171,6 +76,141 @@ class ReservaController extends Controller {
             return $this->elegirHoraAction($id, $fecha);
         }
         return $this->render('moduloclientesclienteBundle:Reservas:nuevaReserva.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
+    }
+
+    public function elegirHoraAction($id, $fecha) {
+        $reserva = new Reservas();
+        $form = $this->createCreateFormHora($reserva, $id, $fecha);
+        $fecha2 = $fecha . '-' . date('Y');
+        $fecha = date('Y-m-d', strtotime($fecha2));
+        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'fecha' => $fecha, 'mensaje' => null,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
+    }
+
+    private function createCreateFormHora(Reservas $entity, $id, $fecha) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosCanchas");
+        $horas = $repository->getHorario($id, $fecha);
+        $horass = implode("", $horas[0]);
+        $horasss = explode("&", $horass);
+        $form = $this->createForm(new ReservasType($horasss), $entity, array(
+            'action' => $this->get('router')->generate('moduloclientes_cliente_comprobarReserva', array('id' => $id, 'fechaInicio' => $fecha)),
+            'method' => 'POST'
+        ));
+        return $form;
+    }
+
+    public function comprobarReservaAction($id, Request $request) {
+        //Aquí cogemos la fecha de reserva que escogimos en la vista de nueva reserva, le damos el formato
+        $reserva = new Reservas();
+        $fechaTime = $this->getRequest()->query->get('fechaInicio') . '-' . date('Y');
+        $fecha = date('Y-m-d', strtotime($fechaTime));
+        $form = $this->createCreateFormHora($reserva, $id, $this->getRequest()->query->get('fechaInicio'));
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            //Cogemos el id de la cancha escogida previamente y cambiamos el estado a reservado en la tabla reservas
+            $cancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas")->find($id);
+
+            //Comprobamos si se ha seleccionado algún horario
+            if (count($form->get('horario')->getData()) == 0) {
+                $form->get('horario')->addError(new FormError('Seleccione una o más opciones.'));
+                return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null, 'fecha' => $fecha,
+                            'notificacionesSinLeer' => $this->getNewNotification()));
+            }
+
+            //Concatenamos en horitas las horas seleccionadas en una string
+            $horitas = "";
+            for ($i = 0; $i < count($form->get('horario')->getData()); $i++) {
+
+                //Esto es para comprobar que no se puedan escoger horas que no sean contiguas
+                if ($i != count($form->get('horario')->getData()) - 1) {
+                    if ((int) substr(strval($form->get('horario')->getData()[$i]), 0, 2) + 1 != (int) substr(strval($form->get('horario')->getData()[$i + 1]), 0, 2)) {
+                        $mensaje = 'Seleccione horas contiguas. Para escoger horas no contiguas realice distintas reservas';
+                        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => $mensaje, 'fecha' => $fecha,
+                                    'notificacionesSinLeer' => $this->getNewNotification()));
+                    }
+                }
+
+                $horitas .= strval($form->get('horario')->getData()[$i]) . "&";
+            }
+            return $this->pagoReservaAction($id, $fecha, $horitas);
+        }
+
+        return $this->render('moduloclientesclienteBundle:Reservas:elegirHora.html.twig', array('form' => $form->createView(), 'id' => $id, 'mensaje' => null,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
+    }
+
+    public function pagoReservaAction($idCancha, $fecha, $horitas) {
+        $pago = new Pagos();
+        $form = $this->createPagoForm($pago, $idCancha, $fecha, $horitas);
+        return $this->render('moduloclientesclienteBundle:Reservas:pagoReserva.html.twig', array('form' => $form->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
+    }
+
+    private function createPagoForm(Pagos $entity, $idCancha, $fecha, $horitas) {
+        $form = $this->createForm(new PagosType(), $entity, array(
+            'action' => $this->generateUrl('moduloclientes_cliente_crearReserva', array('id' => $idCancha, 'fecha' => $fecha, 'horitas' => $horitas)),
+            'method' => 'POST'
+        ));
+        return $form;
+    }
+
+    public function crearReservaAction($id, Request $request) {
+        $horitas = $this->getRequest()->query->get('horitas');
+        $fecha = explode('-', $this->getRequest()->query->get('fecha'));
+        $fechaForm = $fecha[2] . '-' . $fecha[1];
+        $pago = new Pagos();
+        $reserva = new Reservas();
+        $form = $this->createPagoForm($pago, $id, $fecha, $horitas);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $cliente = $this->getUser();
+            $reserva->setIdCliente($cliente->getId());
+            $reserva->setCliente($cliente->getUsername());
+            $pago->setIdCliente($cliente->getId());
+            $pago->setIdConcepto($id);
+            $pago->setConcepto('Cancha');
+
+            //Cogemos el id de la cancha escogida previamente y cambiamos el estado a reservado en la tabla reservas
+            $reserva->setIdCancha($id);
+            $cancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas")->find($id);
+            $reserva->setCancha($cancha->getTipo());
+            $reserva->setEstadoReserva("Reservado");
+
+            //Escribimos en la base de datos de reserva la fecha y la horas
+            $reserva->setFechaInicio(date_create($this->getRequest()->query->get('fecha')));
+            $reserva->setHorario($horitas);
+
+            //Aqui cogemos todas las horas disponible, comparamos con las seleccionadas y eliminamos de la tabla cancha las horas ya reservadas
+            $horarioscancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Horarioscanchas")->getHorario($id, $fechaForm);
+            $horarioscancha2 = implode("", $horarioscancha[0]);
+            $horariosArray = explode('&', $horarioscancha2);
+            $horitasArray = array_filter(explode('&', $horitas));
+            $aux = $horariosArray;
+            for ($i = 0; $i < count($aux); $i++) {
+                foreach ($horitasArray as $valor) {
+                    if ($aux[$i] == $valor) {
+                        unset($horariosArray[$i]);
+                        break;
+                    }
+                }
+            }
+            $instancia = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Horarioscanchas")->getInstancia($id, $fechaForm);
+            $instancia[0]->setPeriodo(implode('&', $horariosArray));
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($cliente);
+            $em->persist($pago);
+            $em->persist($reserva);
+            $em->persist($instancia[0]);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('moduloclientes_cliente_reservasClientes'));
+        }
+
+        return $this->render('moduloclientesclienteBundle:Reservas:pagoReserva.html.twig', array('form' => $form->createView(),
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
 

@@ -206,13 +206,11 @@ $context["notificacion"], "concepto", array()) == "AbandonoPublica")) {
                 ";
         }
         // line 89
-        echo "                <div>
-                    <div class=\"navigation text-center\"  >
-                        ";
-        // line 91
+        echo "                <div class=\"navigation text-center\"  >
+                    ";
+        // line 90
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
-                    </div>
                 </div>
             </div>
         </div>
@@ -232,6 +230,6 @@ $context["notificacion"], "concepto", array()) == "AbandonoPublica")) {
 
     public function getDebugInfo()
     {
-        return array (  213 => 91,  209 => 89,  203 => 85,  195 => 82,  185 => 76,  183 => 75,  175 => 70,  170 => 69,  168 => 68,  159 => 63,  157 => 62,  148 => 57,  146 => 56,  137 => 51,  135 => 50,  126 => 45,  124 => 44,  115 => 39,  113 => 38,  107 => 34,  101 => 32,  95 => 30,  92 => 29,  90 => 28,  85 => 26,  81 => 25,  76 => 24,  72 => 23,  60 => 13,  56 => 11,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  212 => 90,  209 => 89,  203 => 85,  195 => 82,  185 => 76,  183 => 75,  175 => 70,  170 => 69,  168 => 68,  159 => 63,  157 => 62,  148 => 57,  146 => 56,  137 => 51,  135 => 50,  126 => 45,  124 => 44,  115 => 39,  113 => 38,  107 => 34,  101 => 32,  95 => 30,  92 => 29,  90 => 28,  85 => 26,  81 => 25,  76 => 24,  72 => 23,  60 => 13,  56 => 11,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

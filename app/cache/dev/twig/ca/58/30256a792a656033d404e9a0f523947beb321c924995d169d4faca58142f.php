@@ -111,25 +111,27 @@ class __TwigTemplate_ca5830256a792a656033d404e9a0f523947beb321c924995d169d4faca5
                 echo "\" class=\"btn btn-sm btn-info\">
                                                 Ver
                                             </a>
-                                        </td>
+";
+                // line 42
+                echo "                                        </td>
                                     </tr>
                                 ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['reserva'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 42
+            // line 45
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 45
+        // line 48
         echo "        
                 <div>
                     <div class=\"navigation\">
                         ";
-        // line 48
+        // line 51
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                     </div>
@@ -152,6 +154,6 @@ class __TwigTemplate_ca5830256a792a656033d404e9a0f523947beb321c924995d169d4faca5
 
     public function getDebugInfo()
     {
-        return array (  133 => 48,  128 => 45,  122 => 42,  110 => 36,  105 => 34,  101 => 33,  97 => 32,  92 => 31,  88 => 30,  80 => 25,  76 => 24,  72 => 23,  66 => 19,  62 => 17,  60 => 16,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  135 => 51,  130 => 48,  124 => 45,  116 => 42,  110 => 36,  105 => 34,  101 => 33,  97 => 32,  92 => 31,  88 => 30,  80 => 25,  76 => 24,  72 => 23,  66 => 19,  62 => 17,  60 => 16,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

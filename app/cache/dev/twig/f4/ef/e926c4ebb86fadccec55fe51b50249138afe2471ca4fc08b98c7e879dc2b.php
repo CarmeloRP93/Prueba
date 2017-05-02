@@ -160,29 +160,41 @@ class __TwigTemplate_f4efe926c4ebb86fadccec55fe51b50249138afe2471ca4fc08b98c7e87
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "descripcion", array()), 'errors');
         echo "</span>
                             </div>
-                        </div>
-
-                        <div class=\"form-group\">
-                            <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12\">
-                                <br>";
-        // line 58
+                        </div><br>
+                        <div class=\"row\">
+                            <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
+                                ";
+        // line 57
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "enviar", array()), 'widget', array("label" => "Enviar", "attr" => array("class" => "btn btn-success")));
         echo "
-                            </div>     
-                        </div>     
+                            </div>      
+                            <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
+                                ";
+        // line 60
+        if ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")) {
+            // line 61
+            echo "                                    <a class=\"btn btn-danger\" href=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method"), "html", null, true);
+            echo "\">Cancelar</a>
+                                ";
+        } else {
+            // line 63
+            echo "                                    <a class=\"btn btn-danger\" href=\"";
+            echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_mensajes_recibidosCliente");
+            echo "\">Cancelar</a>
+                                ";
+        }
+        // line 64
+        echo "                              
+                            </div>      
+                        </div>       
                     </div>     
                     ";
-        // line 62
+        // line 68
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
                 </div>     
             </div>     
-        </div>
-        <div class=\"text-center\">
-            <a class=\"btn btn-default\" href=\"";
-        // line 67
-        echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_mensajes_recibidosCliente");
-        echo "\">Volver atrás</a>
         </div>
     </div>
 ";
@@ -200,6 +212,6 @@ class __TwigTemplate_f4efe926c4ebb86fadccec55fe51b50249138afe2471ca4fc08b98c7e87
 
     public function getDebugInfo()
     {
-        return array (  184 => 67,  176 => 62,  169 => 58,  160 => 52,  156 => 51,  152 => 50,  143 => 45,  137 => 43,  131 => 41,  129 => 40,  125 => 39,  116 => 33,  112 => 32,  106 => 29,  102 => 28,  98 => 27,  92 => 24,  88 => 23,  84 => 22,  78 => 19,  74 => 18,  68 => 15,  64 => 14,  59 => 12,  53 => 9,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  194 => 68,  188 => 64,  182 => 63,  176 => 61,  174 => 60,  168 => 57,  160 => 52,  156 => 51,  152 => 50,  143 => 45,  137 => 43,  131 => 41,  129 => 40,  125 => 39,  116 => 33,  112 => 32,  106 => 29,  102 => 28,  98 => 27,  92 => 24,  88 => 23,  84 => 22,  78 => 19,  74 => 18,  68 => 15,  64 => 14,  59 => 12,  53 => 9,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

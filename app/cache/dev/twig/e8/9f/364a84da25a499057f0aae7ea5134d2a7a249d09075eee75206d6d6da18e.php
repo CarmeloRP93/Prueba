@@ -145,8 +145,9 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
 
         <div class=\"row\">
             <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-xs\">
-                <h3 class=\"t3 text-center\">Horarios disponibles de los próximos 7 días</h3>
-                <div class=\"panel panel-default\">                  
+";
+        // line 57
+        echo "                <div class=\"panel panel-default\">                  
                     <div class=\"panel-body\">
                         <table class=\"table ";
         // line 59
@@ -223,6 +224,6 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
 
     public function getDebugInfo()
     {
-        return array (  208 => 79,  200 => 73,  193 => 71,  187 => 70,  181 => 68,  175 => 66,  172 => 65,  168 => 64,  164 => 63,  161 => 62,  157 => 61,  153 => 59,  140 => 49,  131 => 43,  127 => 41,  123 => 39,  120 => 38,  111 => 36,  106 => 35,  104 => 34,  97 => 30,  91 => 27,  85 => 24,  76 => 17,  72 => 15,  66 => 13,  64 => 12,  60 => 11,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  209 => 79,  201 => 73,  194 => 71,  188 => 70,  182 => 68,  176 => 66,  173 => 65,  169 => 64,  165 => 63,  162 => 62,  158 => 61,  154 => 59,  150 => 57,  140 => 49,  131 => 43,  127 => 41,  123 => 39,  120 => 38,  111 => 36,  106 => 35,  104 => 34,  97 => 30,  91 => 27,  85 => 24,  76 => 17,  72 => 15,  66 => 13,  64 => 12,  60 => 11,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

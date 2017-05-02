@@ -77,9 +77,11 @@ class __TwigTemplate_d354397de892ff617cd2f52224457a71cc7aefa32593027bc5bd0e36efb
         echo "            <link href=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("css/main.css"), "html", null, true);
         echo "\" type=\"text/css\" rel=\"stylesheet\">
-            ";
-        // line 11
-        echo "        ";
+            <link href=\"";
+        // line 10
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("css/loginstyle.css"), "html", null, true);
+        echo "\" type=\"text/css\" rel=\"stylesheet\">
+        ";
     }
 
     // line 14
@@ -143,6 +145,6 @@ class __TwigTemplate_d354397de892ff617cd2f52224457a71cc7aefa32593027bc5bd0e36efb
 
     public function getDebugInfo()
     {
-        return array (  129 => 29,  125 => 28,  121 => 27,  117 => 26,  113 => 25,  108 => 24,  105 => 23,  100 => 22,  96 => 19,  93 => 18,  89 => 15,  86 => 14,  82 => 11,  77 => 9,  74 => 8,  68 => 6,  62 => 31,  60 => 23,  58 => 22,  54 => 20,  52 => 18,  48 => 16,  46 => 14,  42 => 12,  40 => 8,  36 => 7,  32 => 6,  25 => 1,);
+        return array (  131 => 29,  127 => 28,  123 => 27,  119 => 26,  115 => 25,  110 => 24,  107 => 23,  102 => 22,  98 => 19,  95 => 18,  91 => 15,  88 => 14,  82 => 10,  77 => 9,  74 => 8,  68 => 6,  62 => 31,  60 => 23,  58 => 22,  54 => 20,  52 => 18,  48 => 16,  46 => 14,  42 => 12,  40 => 8,  36 => 7,  32 => 6,  25 => 1,);
     }
 }

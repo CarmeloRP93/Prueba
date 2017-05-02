@@ -33,23 +33,23 @@ class Pagos
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="FechaPago", type="datetime")
+     * @ORM\Column(name="fechaPago", type="datetime")
      */
     private $fechaPago;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="tipoSuscripcion", type="string", length=255)
+     * @ORM\Column(name="idConcepto", type="integer")
      */
-    private $tipoSuscripcion;
+    private $idConcepto;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tipoPago", type="string", length=255)
+     * @ORM\Column(name="concepto", type="string", length=255)
      */
-    private $tipoPago;
+    private $concepto;
 
     /**
      * @var integer
@@ -111,49 +111,49 @@ class Pagos
     }
 
     /**
-     * Set tipoSuscripcion
+     * Set idConcepto
      *
-     * @param string $tipoSuscripcion
+     * @param integer $idConcepto
      * @return Pagos
      */
-    public function setTipoSuscripcion($tipoSuscripcion)
+    public function setIdConcepto($idConcepto)
     {
-        $this->tipoSuscripcion = $tipoSuscripcion;
+        $this->idConcepto = $idConcepto;
 
         return $this;
     }
 
     /**
-     * Get tipoSuscripcion
+     * Get idConcepto
      *
-     * @return string 
+     * @return integer 
      */
-    public function getTipoSuscripcion()
+    public function getIdConcepto()
     {
-        return $this->tipoSuscripcion;
+        return $this->idConcepto;
     }
-
+    
     /**
-     * Set tipoPago
+     * Set concepto
      *
-     * @param string $tipoPago
+     * @param string $concepto
      * @return Pagos
      */
-    public function setTipoPago($tipoPago)
+    public function setConcepto($concepto)
     {
-        $this->tipoPago = $tipoPago;
+        $this->concepto = $concepto;
 
         return $this;
     }
 
     /**
-     * Get tipoPago
+     * Get concepto
      *
      * @return string 
      */
-    public function getTipoPago()
+    public function getConcepto()
     {
-        return $this->tipoPago;
+        return $this->concepto;
     }
 
     /**

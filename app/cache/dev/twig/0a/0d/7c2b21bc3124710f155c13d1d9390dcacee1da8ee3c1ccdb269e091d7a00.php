@@ -62,33 +62,20 @@ class __TwigTemplate_0a0d7c2b21bc3124710f155c13d1d9390dcacee1da8ee3c1ccdb269e091
         } elseif (($this->getAttribute($this->getAttribute(        // line 10
 (isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 2)) {
             // line 11
-            echo "            ";
-            if ((twig_date_format_filter($this->env, "now", "dmY") >= $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "fechaPagar", array()))) {
-                // line 12
-                echo "                <form id=\"formu\" action=\"";
-                echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_pagar");
-                echo "\" method=\"post\">
-                </form>
-            ";
-            } else {
-                // line 15
-                echo "                <form id=\"formu\" action=\"";
-                echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_reservasClientes");
-                echo "\" method=\"post\">
-                </form>
-            ";
-            }
-            // line 18
-            echo "        ";
+            echo "            <form id=\"formu\" action=\"";
+            echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_reservasClientes");
+            echo "\" method=\"post\">
+            </form>
+        ";
         } else {
-            // line 19
+            // line 14
             echo "            <form id=\"formu\" action=\"";
             echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_misSesionesMonitores");
             echo "\" method=\"post\">
             </form>
         ";
         }
-        // line 22
+        // line 17
         echo "        <img src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/loading.gif"), "html", null, true);
         echo "\" class=\"centradoV\" style=\"width: 10%; top: 50%\" />
@@ -114,6 +101,6 @@ class __TwigTemplate_0a0d7c2b21bc3124710f155c13d1d9390dcacee1da8ee3c1ccdb269e091
 
     public function getDebugInfo()
     {
-        return array (  92 => 22,  85 => 19,  82 => 18,  75 => 15,  68 => 12,  65 => 11,  63 => 10,  57 => 8,  55 => 7,  52 => 6,  49 => 5,  43 => 4,  38 => 3,  11 => 1,);
+        return array (  79 => 17,  72 => 14,  65 => 11,  63 => 10,  57 => 8,  55 => 7,  52 => 6,  49 => 5,  43 => 4,  38 => 3,  11 => 1,);
     }
 }
