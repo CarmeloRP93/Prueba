@@ -89,7 +89,7 @@ class DedicadaController extends Controller {
                     $notificacion = new Notificaciones();
                     $notificacion->setIdDestinatario($usuario->getId());
                     $notificacion->setIdEntidad($sesion->getId());
-                    $notificacion->setMensaje("La sesión " . $sesion->getNombre() . " ha sido eliminada del sistema por ". $sesion->getMonitor());
+                    $notificacion->setMensaje("La sesión " . $sesion->getNombre() . " ha sido eliminada del sistema por " . $sesion->getMonitor());
                     $notificacion->setIdOrigen($this->getUser()->getId());
                     $notificacion->setEstado("No leido");
                     $notificacion->setConcepto("PrivadaEliminada");
@@ -171,7 +171,15 @@ class DedicadaController extends Controller {
     private function createCreateFormDedicado(Sesiones $entity) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $aulas = $repository->findAll();
-        $form = $this->createForm(new SesionesType($aulas), $entity, array(
+        $aulasD = array();
+        $contador = 0;
+        foreach ($aulas as $clave => $aula) {
+            if ($aula->getDisponibilidad() == "Disponible") {
+                $aulasD[$contador] = $aula;
+                $contador++;
+            }
+        }
+        $form = $this->createForm(new SesionesType($aulasD), $entity, array(
             'action' => $this->generateUrl('modulomonitores_monitores_crearSesionDedicada'),
             'method' => 'POST'
         ));
@@ -250,6 +258,8 @@ class DedicadaController extends Controller {
     public function editarSesionDedicadaAction($id) {
         $em = $this->getDoctrine()->getManager();
         $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
+        $sesion->setDias(null);
+        $em->flush();
 
         if (!$sesion) {
             throw $this->createNotFoundException("no encontrado");
@@ -261,7 +271,15 @@ class DedicadaController extends Controller {
     private function createEdiDediForm(Sesiones $entity) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $aulas = $repository->findAll();
-        $form = $this->createForm(new SesionesType($aulas), $entity, array(
+        $aulasD=array();
+        $contador = 0;
+        foreach ($aulas as $clave => $aula) {
+            if ($aula->getDisponibilidad() == "Disponible") {
+                $aulasD[$contador] = $aula;
+                $contador++;
+            }
+        }
+        $form = $this->createForm(new SesionesType($aulasD), $entity, array(
             'action' => $this->generateUrl('modulomonitores_monitores_editarDedicada', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));
@@ -287,6 +305,21 @@ class DedicadaController extends Controller {
                 $form->get('duracion')->addError(new FormError('Máximo 60 minutos por sesión'));
                 return $this->render('modulomonitoresmonitoresBundle:Privada:editarSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
             }
+            $dias = $form->get('dias')->getData();
+            $diasElegidos = "";
+            foreach ($dias as $dia) {
+                if ($diasElegidos == "") {
+
+                    $diasElegidos = $dia;
+                } else {
+                    $diasElegidos = $diasElegidos . "&" . $dia;
+                }
+            }
+            if (count($dias) < 2) {
+                $form->get('dias')->addError(new FormError('Seleccione mínimo dos días'));
+                return $this->render('modulomonitoresmonitoresBundle:Privada:editarSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
+            }
+            $sesion->setDias($diasElegidos);
             $em->flush();
 
             $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();

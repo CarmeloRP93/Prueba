@@ -28,7 +28,7 @@ class PerfilController extends Controller {
     
     public function createEditpmForm(Usuarios $entity) {
         $form = $this->createForm(new UsuariosType(), $entity, array(
-            'action' => $this->generateUrl('modulomonitores_monitores_actualizarmiperfilm', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('modulomonitores_monitores_actualizarmiperfilm'),
             'method' => 'PUT'));
         return $form;
     }

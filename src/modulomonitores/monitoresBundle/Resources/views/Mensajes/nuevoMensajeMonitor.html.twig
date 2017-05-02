@@ -57,8 +57,14 @@
                         <div class="form-group">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <br>{{ form_widget(form.enviar, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
+                                {% if flag == true %}
+                                    {% set ruta = path("modulomonitores_monitores_listadoParticipantes") %}
+                                {% else %}
+                                    {% set ruta = path("modulomonitores_monitores_miperfilm") %}
+                                {% endif %}
+                                <a href="{{ ruta }}" class="btn btn-danger">Cancelar</a>
                             </div>     
-                        </div>     
+                        </div>    
                     </div>     
                     {{ form_end(form) }}
                 </div>     

@@ -168,11 +168,30 @@ class __TwigTemplate_6b06483f1ea9372e5c21ba8fb00d1b23e45d35453b3ec6d0df34c6b55f8
         // line 59
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "enviar", array()), 'widget', array("label" => "Enviar", "attr" => array("class" => "btn btn-success")));
         echo "
+                                ";
+        // line 60
+        if (((isset($context["flag"]) ? $context["flag"] : $this->getContext($context, "flag")) == true)) {
+            // line 61
+            echo "                                    ";
+            $context["ruta"] = $this->env->getExtension('routing')->getPath("modulomonitores_monitores_listadoParticipantes");
+            // line 62
+            echo "                                ";
+        } else {
+            // line 63
+            echo "                                    ";
+            $context["ruta"] = $this->env->getExtension('routing')->getPath("modulomonitores_monitores_miperfilm");
+            // line 64
+            echo "                                ";
+        }
+        // line 65
+        echo "                                <a href=\"";
+        echo twig_escape_filter($this->env, (isset($context["ruta"]) ? $context["ruta"] : $this->getContext($context, "ruta")), "html", null, true);
+        echo "\" class=\"btn btn-danger\">Cancelar</a>
                             </div>     
-                        </div>     
+                        </div>    
                     </div>     
                     ";
-        // line 63
+        // line 69
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
                 </div>     
@@ -180,7 +199,7 @@ class __TwigTemplate_6b06483f1ea9372e5c21ba8fb00d1b23e45d35453b3ec6d0df34c6b55f8
         </div>
         <div class=\"text-center\">
             <a class=\"btn btn-default\" href=\"";
-        // line 68
+        // line 74
         echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_mensajes_recibidosMonitor");
         echo "\">Volver a mensajes</a>
         </div>
@@ -200,6 +219,6 @@ class __TwigTemplate_6b06483f1ea9372e5c21ba8fb00d1b23e45d35453b3ec6d0df34c6b55f8
 
     public function getDebugInfo()
     {
-        return array (  184 => 68,  176 => 63,  169 => 59,  160 => 53,  156 => 52,  152 => 51,  143 => 46,  137 => 44,  131 => 42,  129 => 41,  125 => 40,  116 => 34,  112 => 33,  106 => 30,  102 => 29,  98 => 28,  92 => 25,  88 => 24,  84 => 23,  78 => 20,  74 => 19,  68 => 16,  64 => 15,  59 => 13,  53 => 10,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
+        return array (  203 => 74,  195 => 69,  187 => 65,  184 => 64,  181 => 63,  178 => 62,  175 => 61,  173 => 60,  169 => 59,  160 => 53,  156 => 52,  152 => 51,  143 => 46,  137 => 44,  131 => 42,  129 => 41,  125 => 40,  116 => 34,  112 => 33,  106 => 30,  102 => 29,  98 => 28,  92 => 25,  88 => 24,  84 => 23,  78 => 20,  74 => 19,  68 => 16,  64 => 15,  59 => 13,  53 => 10,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
     }
 }

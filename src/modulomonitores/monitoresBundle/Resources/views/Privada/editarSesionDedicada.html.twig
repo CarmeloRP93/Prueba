@@ -18,10 +18,10 @@
                         {{ form_label(form.imagen) }}
                         {{ form_widget(form.imagen, { 'attr' : {'class' : 'form-control', 'placeholder' : 'imagen'} }) }}
                         <span class="text-danger">{{ form_errors(form.imagen) }}</span>
-
+                        
                         {{ form_label(form.observaciones) }}
                         {{ form_widget(form.observaciones, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Motivos de cancelación'} }) }}
-                        <span class="text-danger">{{ form_errors(form.observaciones) }}</span>
+                        <span class="text-danger">{{ form_errors(form.observaciones) }}</span>   
 
                         {{ form_label(form.lClientes) }}
                         {{ form_widget(form.lClientes, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Motivos de cancelación'} }) }}
@@ -87,7 +87,7 @@
                             <span class="text-danger">{{ form_errors(form.dias) }}</span><br>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
-                            <label>Seleccione un aula para realizar la sesión</label> {{ form_widget(form.aula, { 'attr' : { 'placeholder' : 'Motivos de cancelación'} }) }}
+                            <label>Seleccione un aula para realizar la sesión</label> {{ form_widget(form.aula) }}
                             <span class="text-danger">{{ form_errors(form.aula) }}</span><br>
                         </div>
                     </div>

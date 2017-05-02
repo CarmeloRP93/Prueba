@@ -193,8 +193,8 @@ class __TwigTemplate_4508881605a24bd39b878bd816af4423935625e117026a263b64f78cc50
         // line 77
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
-                        
-                        
+
+
                         <form class=\"alinear\" action=\"";
         // line 80
         echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_miperfilm");

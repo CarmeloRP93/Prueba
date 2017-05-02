@@ -117,7 +117,15 @@ class SesionController extends Controller {
     private function createCreateForm(Sesiones $entity) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $aulas = $repository->findAll();
-        $form = $this->createForm(new SesionesType($aulas), $entity, array(
+        $aulasD = array();
+        $contador = 0;
+        foreach ($aulas as $clave => $aula) {
+            if ($aula->getDisponibilidad() == "Disponible") {
+                $aulasD[$contador] = $aula;
+                $contador++;
+            }
+        }
+        $form = $this->createForm(new SesionesType($aulasD), $entity, array(
             'action' => $this->generateUrl('modulomonitores_monitores_crearSesion'),
             'method' => 'POST'
         ));
@@ -167,6 +175,10 @@ class SesionController extends Controller {
             $sesion->setDias($diasElegidos);
             $lClientes = $form->get('lClientes')->getData();
             if ($lClientes != null) {
+                if ($lClientes > 30) {
+                    $form->get('lClientes')->addError(new FormError('Máximo 30 participantes'));
+                    return $this->render('modulomonitoresmonitoresBundle:Publica:nuevaSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
+                }
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($sesion);
                 $em->flush();
@@ -199,7 +211,8 @@ class SesionController extends Controller {
     public function editarSesionAction($id) {
         $em = $this->getDoctrine()->getManager();
         $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
-
+        $sesion->setDias(null);
+        $em->flush();
         if (!$sesion) {
             throw $this->createNotFoundException("no encontrado");
         }
@@ -210,7 +223,15 @@ class SesionController extends Controller {
     private function createEdiForm(Sesiones $entity) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $aulas = $repository->findAll();
-        $form = $this->createForm(new SesionesType($aulas), $entity, array(
+        $aulasD = array();
+        $contador = 0;
+        foreach ($aulas as $clave => $aula) {
+            if ($aula->getDisponibilidad() == "Disponible") {
+                $aulasD[$contador] = $aula;
+                $contador++;
+            }
+        }
+        $form = $this->createForm(new SesionesType($aulasD), $entity, array(
             'action' => $this->generateUrl('modulomonitores_monitores_editar', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));
@@ -234,8 +255,28 @@ class SesionController extends Controller {
                 $form->get('duracion')->addError(new FormError('Máximo 60 minutos por sesión'));
                 return $this->render('modulomonitoresmonitoresBundle:Publica:editarSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
             }
+
+            $dias = $form->get('dias')->getData();
+            $diasElegidos = "";
+            foreach ($dias as $dia) {
+                if ($diasElegidos == "") {
+
+                    $diasElegidos = $dia;
+                } else {
+                    $diasElegidos = $diasElegidos . "&" . $dia;
+                }
+            }
+            if (count($dias) < 2) {
+                $form->get('dias')->addError(new FormError('Seleccione mínimo dos días'));
+                return $this->render('modulomonitoresmonitoresBundle:Publica:editarSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
+            }
+            $sesion->setDias($diasElegidos);
             $lClientes = $form->get('lClientes')->getData();
             if ($lClientes != null) {
+                if ($lClientes > 30) {
+                    $form->get('lClientes')->addError(new FormError('Máximo 30 participantes'));
+                    return $this->render('modulomonitoresmonitoresBundle:Publica:editarSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
+                }
                 $em = $this->getDoctrine()->getManager();
                 $sesion->setEstado("modificada");
                 $sesion->setEstadoCliente("no disponible");

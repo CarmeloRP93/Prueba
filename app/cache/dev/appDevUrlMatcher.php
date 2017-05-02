@@ -446,6 +446,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_disponibilidadM')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\AulasController::disponibilidadMAction',));
         }
 
+        // modulomonitores_monitores_listadoParticipantes
+        if ($pathinfo === '/listadoParticipantes') {
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\ParticipantesController::listadoParticipantesAction',  '_route' => 'modulomonitores_monitores_listadoParticipantes',);
+        }
+
+        // modulomonitores_monitores_participanteListado
+        if (0 === strpos($pathinfo, '/participanteListado') && preg_match('#^/participanteListado/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_participanteListado')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\ParticipantesController::participanteListadoAction',));
+        }
+
         if (0 === strpos($pathinfo, '/cancha')) {
             // moduloclientes_cliente_canchasClientes
             if ($pathinfo === '/canchasClientes') {

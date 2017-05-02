@@ -179,3 +179,10 @@ modulomonitores_monitores_verAula:
 modulomonitores_monitores_disponibilidadM:
     pattern:  /aula/{id}/disponibilidadM
     defaults: { _controller: modulomonitoresmonitoresBundle:Aulas:disponibilidadM }
+    
+modulomonitores_monitores_listadoParticipantes:
+    pattern:  /listadoParticipantes
+    defaults: { _controller: modulomonitoresmonitoresBundle:Participantes:listadoParticipantes }
+modulomonitores_monitores_participanteListado:
+    pattern:  /participanteListado/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Participantes:participanteListado }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace modulomonitores\monitoresBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,8 +16,9 @@ class MensajeriaController extends Controller {
         $destino = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($id)->getUsername();
 
         $form = $this->createMessageForm($id, $comentario);
+        $flag = true;
         return $this->render('modulomonitoresmonitoresBundle:Mensajes:nuevoMensajeMonitor.html.twig', array('form' => $form->createView(),
-                    'destino' => $destino, 'notificacionesSinLeer' => $this->getNewNotification()));
+                    'destino' => $destino, 'flag' => $flag, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function mensajearAdministradorMonitorAction() {
@@ -26,8 +26,9 @@ class MensajeriaController extends Controller {
         $destino = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->getAdmin()[0];
 
         $form = $this->createMessageForm($destino->getId(), $comentario);
+        $flag = false;
         return $this->render('modulomonitoresmonitoresBundle:Mensajes:nuevoMensajeMonitor.html.twig', array('form' => $form->createView(),
-                    'destino' => $destino->getUsername(), 'notificacionesSinLeer' => $this->getNewNotification()));
+                    'destino' => $destino->getUsername(), 'flag' => $flag, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function createMessageForm($id, Comentarios $entity) {

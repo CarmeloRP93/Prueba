@@ -99,7 +99,7 @@ class __TwigTemplate_de437512c58909dae4292a8e495a80603c0bbaaf2fe3cb876fd571610e5
                                 <a href=\"";
         // line 32
         echo twig_escape_filter($this->env, (isset($context["ruta"]) ? $context["ruta"] : $this->getContext($context, "ruta")), "html", null, true);
-        echo "\" class=\"btn btn-danger\">Anular</a>
+        echo "\" class=\"btn btn-danger\">Cancelar</a>
                             </div>                
                         </div>
                     </div>

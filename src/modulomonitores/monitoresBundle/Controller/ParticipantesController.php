@@ -6,7 +6,46 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class ParticipantesController extends Controller {
-   
+
+    public function listadoParticipantesAction(Request $request) {
+        $repositoryU = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $usuarios = $repositoryU->findAll();
+        $clientes=array();
+        foreach ($usuarios as $clave => $usuario) {
+            if ($usuario->getTipo() == 2)
+                $clientes[$clave] = $usuario;
+        }
+        $repositoryS = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesiones = $repositoryS->findAll();
+        $contador = 0;
+        $clienteConMonitor = array();
+        foreach ($clientes as $cliente) {
+            foreach ($sesiones as $sesion) {
+                if (strpos($sesion->getIdsClientes(), strval($cliente->getId())) !== false &&
+                        $sesion->getIdMonitor() == $this->getUser()->getId()) {
+                    $clienteConMonitor[$contador] = $cliente;
+                    $contador++;
+                    break;
+                }
+            }
+        }
+        $flag = false;
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $clienteConMonitor, $request->query->getInt('page', 1), 5);
+        return $this->render('modulomonitoresmonitoresBundle:Participantes:participantes.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "flag" => $flag,  "pagination" => $pagination));
+    }
+    
+    public function participanteListadoAction($id) {
+        $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $cliente = $repositoryUsuarios->find($id);
+        $idsSesionesCliente = explode('&', $cliente->getSesiones());
+        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesionesCliente = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente, $this->getUser()->getId());
+
+        return $this->render('modulomonitoresmonitoresBundle:Participantes:participanteListado.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "cliente" => $cliente, "sesiones" => $sesionesCliente));
+    }
+
     public function verParticipantesAction($id, Request $request) {
         $em = $this->getDoctrine()->getManager();
         $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
@@ -18,7 +57,8 @@ class ParticipantesController extends Controller {
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $clientes, $request->query->getInt('page', 1), 5);
-        return $this->render('modulomonitoresmonitoresBundle:Participantes:participantes.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),"idSesion" => $id, "pagination" => $pagination));
+        $flag = true;
+        return $this->render('modulomonitoresmonitoresBundle:Participantes:participantes.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "idSesion" => $id, "flag" => $flag, "pagination" => $pagination));
     }
 
     public function participanteAction($id, $idUsuario) {
@@ -29,7 +69,7 @@ class ParticipantesController extends Controller {
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesionesCliente = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente, $this->getUser()->getId());
 
-        return $this->render('modulomonitoresmonitoresBundle:Participantes:participante.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "cliente" => $cliente, "sesiones"=>$sesionesCliente,"id" => $id, "idUsuario" => $idUsuario));
+        return $this->render('modulomonitoresmonitoresBundle:Participantes:participante.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "cliente" => $cliente, "sesiones" => $sesionesCliente, "id" => $id, "idUsuario" => $idUsuario));
     }
 
     public function participantePrivadoAction($id) {
@@ -43,7 +83,7 @@ class ParticipantesController extends Controller {
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesionesCliente = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente, $this->getUser()->getId());
 
-        return $this->render('modulomonitoresmonitoresBundle:Participantes:participantePrivado.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "sesiones"=>$sesionesCliente, "idSesion" => $id, "cliente" => $cliente));
+        return $this->render('modulomonitoresmonitoresBundle:Participantes:participantePrivado.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "sesiones" => $sesionesCliente, "idSesion" => $id, "cliente" => $cliente));
     }
 
     private function getArrayEntidades($repository, $array, $idMonitor) {

@@ -1,12 +1,15 @@
 {% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
-{% block title %} Participantes {% endblock %}
+{% block title %} Mis participantes {% endblock %}
 {% block contenido %}
     <div class="container text-center">
         <div class="page-header">
-            <h1 class="t1">Participantes</h1>
+            <h1 class="t1">Mis participantes</h1>
         </div>
         <div class="panel panel-default text-center">
             <div class="panel-body myelement">
+			{% if not pagination|length %}
+            <h2>No se encontraron participantes</h2>
+        {% else %}
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
@@ -18,27 +21,38 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for cliente in pagination %}
-                                <tr data-id="{{ cliente.id }}">
-                                    <td>{{cliente.nombre}}</td>
-                                    <td><div class="hidden-xs">{{cliente.telefono}}</div></td>
-                                    <td>{{cliente.email}}</td>
-                                    <td class="actions">
+
+                        {% for cliente in pagination %}
+                            <tr data-id="{{ cliente.id }}">
+                                <td>{{cliente.nombre}}</td>
+                                <td>{{cliente.telefono}}</td>
+                                <td>{{cliente.email}}</td>
+                                <td class="actions">
+                                    {% if (flag)%}
                                         <a href="{{'http://localhost/Prueba/web/app_dev.php/miSesionMonitores/'~idSesion~'/verParticipantes/'~cliente.id}}" class="btn btn-sm btn-primary">
-                                            Ver
+                                            Ver más información
                                         </a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
+                                    {% else %}
+                                         <a href="{{ path('modulomonitores_monitores_participanteListado', { id: cliente.id }) }}" class="btn btn-sm btn-primary">
+                                            Ver más información
+                                        </a>
+                                    {% endif %}
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+                    </tbody>
                     </table>
                 </div>
-                <div class="navigation">
+				{% endif %}
+                <div class="navigation text-center">
                     {{ knp_pagination_render(pagination) }}
                 </div>
             </div>
         </div>
+		{% if (flag)%}
         <a href="{{path('modulomonitores_monitores_miSesionMonitores', {id: idSesion})}}"class="btn btn-default">Volver a la sesión</a>
-    </div>
+    {% endif %}
+	</div>
 {% endblock %}
 

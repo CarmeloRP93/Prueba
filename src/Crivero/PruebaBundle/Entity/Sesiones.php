@@ -83,7 +83,7 @@ class Sesiones {
     /**
      * @var integer
      *
-     * @ORM\Column(name="aula", type="integer")
+     * @ORM\Column(name="aula", type="integer", nullable=true)
      * @Assert\NotBlank(message="Rellene el campo.")
      */
     private $aula;
@@ -91,7 +91,7 @@ class Sesiones {
     /**
      * @var string
      *
-     * @ORM\Column(name="dias", type="string", length=200)
+     * @ORM\Column(name="dias", type="string", length=200, nullable=true)
      */
     private $dias;
 

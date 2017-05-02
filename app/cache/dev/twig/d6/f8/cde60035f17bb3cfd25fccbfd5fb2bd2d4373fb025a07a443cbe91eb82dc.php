@@ -58,12 +58,12 @@ class __TwigTemplate_d6f8cde60035f17bb3cfd25fccbfd5fb2bd2d4373fb025a07a443cbe91e
         echo "\" class=\"img-circle\" style=\"width:60px;\" />        
                         </div>
                         <div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4\">
-                            <h3>Perfil</h3>
+                            <h3>Mi perfil</h3>
                         </div>
                         <div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4\" style=\"margin-top: 18px;\">
                             <a href = \"";
         // line 17
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_editarmiperfilm", array("id" => $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "id", array()))), "html", null, true);
+        echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_editarmiperfilm");
         echo "\" class=\"btn btn-default active\">Editar</a>
                         </div>
                     </div>
