@@ -72,7 +72,7 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
         <div class=\"collapse navbar-collapse navbar-ex1-collapse\">
             <ul class=\"nav navbar-nav\">
                 <li class=\"dropdown\">
-                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">mis Sesiones <b class=\"caret\"></b></a>
+                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Mis sesiones <b class=\"caret\"></b></a>
                     <ul class=\"dropdown-menu\">
                         <li><a href=\"";
         // line 27
@@ -114,7 +114,7 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
                 <li><a href=\"";
         // line 46
         echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_listadoAulas");
-        echo "\">Ver aulas</a></li>
+        echo "\">Aulas</a></li>
             </ul>
 
             ";

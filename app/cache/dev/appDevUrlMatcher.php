@@ -381,7 +381,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // modulomonitores_monitores_enviarMensajeCliente
-        if (0 === strpos($pathinfo, '/enviarMensajeMonitor') && preg_match('#^/enviarMensajeMonitor/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+        if (0 === strpos($pathinfo, '/enviarMensajeCliente') && preg_match('#^/enviarMensajeCliente/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_enviarMensajeCliente')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\MensajeriaController::enviarMensajeClienteAction',));
         }
 
@@ -439,6 +439,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         // modulomonitores_monitores_verAula
         if (0 === strpos($pathinfo, '/verAula') && preg_match('#^/verAula/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_verAula')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\AulasController::verAulaAction',));
+        }
+
+        // modulomonitores_monitores_disponibilidadM
+        if (0 === strpos($pathinfo, '/aula') && preg_match('#^/aula/(?P<id>[^/]++)/disponibilidadM$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_disponibilidadM')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\AulasController::disponibilidadMAction',));
         }
 
         if (0 === strpos($pathinfo, '/cancha')) {

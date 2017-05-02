@@ -43,54 +43,65 @@ class __TwigTemplate_106a97a5e9fc35c0d8a0b79247ff8f4d9909c903b502fc7aeae75fde994
     public function block_contenido($context, array $blocks = array())
     {
         // line 4
-        echo "    <div class=\"container centradoV\">
-        <h1 class=\"t1\">Cancelar reserva</h1>
-
-        ";
-        // line 7
+        echo "    <div class=\"container text-center\">
+        <div class=\"row\">
+            <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-3 col-md-offset-3 col-lg-offset-3\">
+                <div class=\"panel panel-default text-center\">
+                    <div class=\"panel-heading\">
+                        <h1 class=\"t1\">Cancelar reserva</h1>
+                    </div>
+                    ";
+        // line 11
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("attr" => array("novalidate" => "novalidate", "role" => "form")));
         echo "
-
-        <div class=\"form-group\">
-            ";
-        // line 10
+                    ";
+        // line 12
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "cliente", array()), 'widget', array("value" => (isset($context["ref"]) ? $context["ref"] : $this->getContext($context, "ref"))));
         echo "
-            <span class=\"text-danger\">";
-        // line 11
+                    <span class=\"text-danger\">";
+        // line 13
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "cliente", array()), 'errors');
         echo "</span>
-        </div>
 
-        <div class=\"form-group\">
-            ";
-        // line 15
+                    <div class=\"panel-body\">  
+                        <div class=\"row\">
+                            <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12\">
+                                ";
+        // line 18
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "motivos", array()), 'label');
         echo "
-            ";
-        // line 16
+                                ";
+        // line 19
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "motivos", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Escriba los motivos de cancelación..."), "value" => ""));
         echo "
-            <span class=\"text-danger\">";
-        // line 17
+                                <span class=\"text-danger\">";
+        // line 20
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "motivos", array()), 'errors');
         echo "</span>
-        </div>
-        <div>
-            ";
-        // line 20
+                            </div>
+                        </div><br>
+                        <div class=\"row\">
+                            <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
+                                ";
+        // line 25
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
-            <a href=\"";
-        // line 21
+                            </div>                
+                            <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
+                                <a href=\"";
+        // line 28
         echo twig_escape_filter($this->env, (isset($context["ref"]) ? $context["ref"] : $this->getContext($context, "ref")), "html", null, true);
         echo "\" class=\"btn btn-danger\">Anular</a>
-        </div>                
-
-        ";
-        // line 24
+                            </div>                
+                        </div>                
+                    </div>                
+                    ";
+        // line 32
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
+                </div>
+            </div>
+        </div>
     </div>
 ";
     }
@@ -107,6 +118,6 @@ class __TwigTemplate_106a97a5e9fc35c0d8a0b79247ff8f4d9909c903b502fc7aeae75fde994
 
     public function getDebugInfo()
     {
-        return array (  92 => 24,  86 => 21,  82 => 20,  76 => 17,  72 => 16,  68 => 15,  61 => 11,  57 => 10,  51 => 7,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  100 => 32,  93 => 28,  87 => 25,  79 => 20,  75 => 19,  71 => 18,  63 => 13,  59 => 12,  55 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

@@ -5,34 +5,37 @@
         <div class="page-header">
             <h1 class="t1">{{aula.nombre}}</h1>
         </div>
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xs-offset-0 col-sm-offset-1 col-md-offset-2 col-lg-offset-0">
+            <img src="{{ asset('images/' ~ aula.imagen) }}" style="width:400px; margin-bottom: 5px"  class="img-rounded"/><br>
+            {% if aula.disponibilidad == "Disponible" %}
+                <button style="width:400px;" class="btn btn-success active" >{{aula.disponibilidad}}</button>
+            {% else %}
+                <button style="width:400px;" class="btn btn-danger active">{{aula.disponibilidad}}</button>
+            {% endif %}
+        </div>
 
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <img src="{{ asset('images/' ~ aula.imagen) }}" class="img-responsive center-block" style="max-width: 340px; margin-bottom:20px"/>
-                {% if aula.disponibilidad == "Disponible" %}
-                    <button style="width:340px;" class="btn btn-success active" >{{aula.disponibilidad}}</button>
-                {% else %}
-                    <button style="width:340px;" class="btn btn-danger active">{{aula.disponibilidad}}</button>
-                {% endif %}
-            </div>
-
-            <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0 col-lg-6 col-lg-offset-0"> 
-                <div class="panel panel-default">                  
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <h4>Disponibilidad </h4><p>{{aula.horario}} </p>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <h4>Tamaño </h4><p>{{aula.dimensiones ~ 'm²'}} </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <h4>Descripción </h4><p>{{ aula.descripcion }} </p>
-                            </div>
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xs-offset-0 col-sm-offset-1 col-md-offset-2 col-lg-offset-0">
+            <div class="panel panel-default text-center">
+                <div class="panel-body">
+                    <div class="col-md-6 col-xs-12">
+                        <div class="text-center">
+                            <h4>Disponibilidad </h4><p>{{ aula.horario }}</p>
+                            <h4>Descripción</h4><p>{{ aula.descripcion }}</p>
                         </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <h4>Dimensiones </h4><p>{{aula.dimensiones ~ ' m²'}} </p>
+                        <h4>Sesiones </h4>
+                    </div>
+                    <div style="display: inline-grid; margin-top: 16px">
+                        <form class="btn-group-vertical" action="{{ path('modulomonitores_monitores_disponibilidadM', { id: aula.id }) }}" method="post" class="alinear btn-group">
+                            <button type="submit" style="margin-bottom: 1px" class="btn btn-primary">Disponibilidad</button>
+                            <input type="hidden" class="btn">
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>  
+        <a class="btn btn-default" href="{{ path('modulomonitores_monitores_listadoAulas', { id: aula.id }) }}">Volver atrás</a>
+    </div>
 {% endblock %}

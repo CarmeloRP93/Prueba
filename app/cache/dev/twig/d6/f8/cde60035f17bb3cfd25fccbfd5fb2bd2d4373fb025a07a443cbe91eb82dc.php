@@ -33,16 +33,16 @@ class __TwigTemplate_d6f8cde60035f17bb3cfd25fccbfd5fb2bd2d4373fb025a07a443cbe91e
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 3
+    // line 2
     public function block_title($context, array $blocks = array())
     {
         echo " Mi perfil ";
     }
 
-    // line 4
+    // line 3
     public function block_contenido($context, array $blocks = array())
     {
-        // line 5
+        // line 4
         echo "    ";
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:messages/success2.html.twig");
         echo "
@@ -53,16 +53,16 @@ class __TwigTemplate_d6f8cde60035f17bb3cfd25fccbfd5fb2bd2d4373fb025a07a443cbe91e
                     <div class=\"row\">
                         <div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4\">
                             <img src=\"";
-        // line 12
+        // line 11
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("images/" . $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "imagen", array()))), "html", null, true);
         echo "\" class=\"img-circle\" style=\"width:60px;\" />        
                         </div>
                         <div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4\">
-                            <h3 style=\"font-weight: 600\">Perfil</h3>
+                            <h3>Perfil</h3>
                         </div>
                         <div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4\" style=\"margin-top: 18px;\">
                             <a href = \"";
-        // line 18
+        // line 17
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_editarmiperfilm", array("id" => $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "id", array()))), "html", null, true);
         echo "\" class=\"btn btn-default active\">Editar</a>
                         </div>
@@ -74,36 +74,36 @@ class __TwigTemplate_d6f8cde60035f17bb3cfd25fccbfd5fb2bd2d4373fb025a07a443cbe91e
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
 
                             <h4>Nombre </h4> <p>";
-        // line 27
+        // line 26
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "nombre", array()), "html", null, true);
         echo "</p>
                             <h4>Fecha nacimiento </h4> <p>";
-        // line 28
+        // line 27
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "fNacimiento", array()), "html", null, true);
         echo "</p>
                             <h4>E-mail </h4> <p>";
-        // line 29
+        // line 28
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "email", array()), "html", null, true);
         echo "</p>
                         </div>
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6 \" >
                             <h4>Nombre de usuario</h4> <p>";
-        // line 32
+        // line 31
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "username", array()), "html", null, true);
         echo "</p>        
                             <h4>Registro </h4> <p>";
-        // line 33
+        // line 32
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "registro", array()), "d/m/Y"), "html", null, true);
         echo "</p>
                             <h4>Teléfono </h4> <p>";
-        // line 34
+        // line 33
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "telefono", array()), "html", null, true);
         echo "</p>
                         </div>
                     </div>
                         <div style=\"display: inline-grid\">
                         <form class=\"btn-group-vertical\" action=\"";
-        // line 38
+        // line 37
         echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_mensajearAdministradorMonitor");
         echo "\" method=\"post\">
                             <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-primary\">Mensaje a administrador</button>
@@ -111,7 +111,7 @@ class __TwigTemplate_d6f8cde60035f17bb3cfd25fccbfd5fb2bd2d4373fb025a07a443cbe91e
                         </form>
                         
                         <form class=\"btn-group-vertical\" action=\"";
-        // line 43
+        // line 42
         echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
         echo "\" method=\"post\">
                             <input type=\"hidden\" class=\"btn\">
@@ -139,6 +139,6 @@ class __TwigTemplate_d6f8cde60035f17bb3cfd25fccbfd5fb2bd2d4373fb025a07a443cbe91e
 
     public function getDebugInfo()
     {
-        return array (  115 => 43,  107 => 38,  100 => 34,  96 => 33,  92 => 32,  86 => 29,  82 => 28,  78 => 27,  66 => 18,  57 => 12,  46 => 5,  43 => 4,  37 => 3,  11 => 1,);
+        return array (  115 => 42,  107 => 37,  100 => 33,  96 => 32,  92 => 31,  86 => 28,  82 => 27,  78 => 26,  66 => 17,  57 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

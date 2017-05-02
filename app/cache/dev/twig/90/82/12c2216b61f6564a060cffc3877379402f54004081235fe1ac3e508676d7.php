@@ -70,10 +70,14 @@ class __TwigTemplate_908212c2216b61f6564a060cffc3877379402f54004081235fe1ac3e508
             echo "</th>
                                     <th>";
             // line 19
-            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Número de sesiones", "pagination.nSesiones");
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Monitor", "pagination.monitor");
             echo "</th>
                                     <th>";
             // line 20
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Número de sesiones", "pagination.nSesiones");
+            echo "</th>
+                                    <th>";
+            // line 21
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Aula asignada", "pagination.aula");
             echo "</th>
                                     <th></th>
@@ -81,7 +85,7 @@ class __TwigTemplate_908212c2216b61f6564a060cffc3877379402f54004081235fe1ac3e508
                             </thead>
                             <tbody>
                                 ";
-            // line 25
+            // line 26
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
             $context['loop'] = array(
@@ -98,26 +102,30 @@ class __TwigTemplate_908212c2216b61f6564a060cffc3877379402f54004081235fe1ac3e508
                 $context['loop']['last'] = 1 === $length;
             }
             foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
-                // line 26
+                // line 27
                 echo "                                    <tr data-id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "id", array()), "html", null, true);
                 echo "\">
                                         <td>";
-                // line 27
+                // line 28
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
                 echo "</td>
                                         <td>";
-                // line 28
+                // line 29
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "monitor", array()), "html", null, true);
+                echo "</td>
+                                        <td>";
+                // line 30
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nSesiones", array()), "html", null, true);
                 echo " Sesiones</td>
                                         <td>";
-                // line 29
+                // line 31
                 echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["aulas"]) ? $context["aulas"] : $this->getContext($context, "aulas")), ($this->getAttribute($context["loop"], "index", array()) - 1), array(), "array"), "nombre", array()), "html", null, true);
                 echo "</td>
                                         <td class=\"actions\">
 
                                             <a href=\"";
-                // line 32
+                // line 34
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_sesionDedicada", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-primary\">
                                                 Ver más información
@@ -137,16 +145,16 @@ class __TwigTemplate_908212c2216b61f6564a060cffc3877379402f54004081235fe1ac3e508
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 38
+            // line 40
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 42
+        // line 44
         echo "                <div class=\"navigation text-center\">
                     ";
-        // line 43
+        // line 45
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                 </div>
@@ -168,6 +176,6 @@ class __TwigTemplate_908212c2216b61f6564a060cffc3877379402f54004081235fe1ac3e508
 
     public function getDebugInfo()
     {
-        return array (  150 => 43,  147 => 42,  141 => 38,  121 => 32,  115 => 29,  111 => 28,  107 => 27,  102 => 26,  85 => 25,  77 => 20,  73 => 19,  69 => 18,  63 => 14,  59 => 12,  57 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  158 => 45,  155 => 44,  149 => 40,  129 => 34,  123 => 31,  119 => 30,  115 => 29,  111 => 28,  106 => 27,  89 => 26,  81 => 21,  77 => 20,  73 => 19,  69 => 18,  63 => 14,  59 => 12,  57 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

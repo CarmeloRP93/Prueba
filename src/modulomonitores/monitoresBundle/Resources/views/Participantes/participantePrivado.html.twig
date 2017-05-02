@@ -1,8 +1,7 @@
 {% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
-
 {% block title %} Cliente {{cliente.nombre}} {% endblock %}
 {% block contenido %}
-    <div class="container">
+    <div class="container text-center">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
             <div class="panel panel-default text-center">
                 <div class="panel-heading">
@@ -11,7 +10,7 @@
                             <img src="{{ asset('images/'~cliente.imagen) }}" class="img-circle" style="width:60px;" />        
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                            <h3 style="font-weight: 600">{{ cliente.nombre|capitalize }}</h3>
+                            <h3>{{ cliente.nombre|capitalize }}</h3>
                         </div>
                     </div>
                 </div>
@@ -25,36 +24,33 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <h4>Teléfono </h4> <p>{{cliente.telefono}}</p>
                             <h4>Sesiones en activo</h4>
-                            <div>
-                                <ul style="list-style: none">
-                                    {% for sesion in sesiones %}
-                                        {% if sesion.estado == 'validada' %}
-                                            <li>
-                                                {% if sesion.cliente == 'normal' %}
-                                                    <p>Sesión{{sesion.nombre}} 
-                                                        <a href="{{ path('modulomonitores_monitores_miSesionMonitores', { id: sesion.id }) }}" class="btn btn-sm btn-primary">
-                                                            Ver más información
-                                                        </a>
-                                                    </p>
-                                                {% else %}
-                                                    <p>Sesión{{sesion.nombre}} 
-                                                        <a href="{{ path('modulomonitores_monitores_miSesionDedicada', { id: sesion.id }) }}" class="btn btn-sm btn-primary">
-                                                            Ver más información
-                                                        </a>
-                                                    </p>
-                                                </li>
-                                            {% endif %}
+                            <ul style="list-style: none">
+                                {% for sesion in sesiones %}
+                                    {% if sesion.estado == 'validada' %}
+                                        <li>
+                                            {% if sesion.cliente == 'normal' %}
+                                                <p>Sesión{{sesion.nombre}} 
+                                                    <a href="{{ path('modulomonitores_monitores_miSesionMonitores', { id: sesion.id }) }}" class="btn btn-sm btn-primary">
+                                                        Ver más información
+                                                    </a>
+                                                </p>
+                                            {% else %}
+                                                <p>Sesión{{sesion.nombre}} 
+                                                    <a href="{{ path('modulomonitores_monitores_miSesionDedicada', { id: sesion.id }) }}" class="btn btn-sm btn-primary">
+                                                        Ver más información
+                                                    </a>
+                                                </p>
+                                            </li>
                                         {% endif %}
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            <a class="btn btn-default" href="{{ path('modulomonitores_monitores_enviarMensajeCliente', { id : cliente.id } ) }}">Enviar mensaje</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
                         </div>
+                        <a class="btn btn-default" href="{{ path('modulomonitores_monitores_enviarMensajeCliente', { id : cliente.id } ) }}">Enviar mensaje</a>
                     </div>
                 </div>
-                        <div id="colder" class="col-md-8"><a href="{{'http://localhost/Prueba/web/app_dev.php/miSesionDedicada/'~idSesion}}" style="height: 30px; width: 190px; margin-top: 10px;" class="btn btn-success">Volver a lista de participantes</a></div>
             </div>
+            <a href="{{'http://localhost/Prueba/web/app_dev.php/miSesionDedicada/'~idSesion}}" class="btn btn-default">Volver a lista de participantes</a>
         </div>
     </div>
-</div>
 {% endblock %}

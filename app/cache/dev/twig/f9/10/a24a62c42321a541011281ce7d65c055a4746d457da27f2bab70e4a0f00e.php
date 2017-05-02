@@ -74,50 +74,58 @@ class __TwigTemplate_f910a24a62c42321a541011281ce7d65c055a4746d457da27f2bab70e4a
             // line 19
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Tipo", "c.tipoCompeticion");
             echo "</th>
+                                    <th>";
+            // line 20
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Estado", "c.estadoCompeticion");
+            echo "</th>
                                     <th class=\"t3\">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 ";
-            // line 24
+            // line 25
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
             foreach ($context['_seq'] as $context["_key"] => $context["competicion"]) {
-                // line 25
+                // line 26
                 echo "                                    <tr data-id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["competicion"], "id", array()), "html", null, true);
                 echo "\">
                                         <td>";
-                // line 26
+                // line 27
                 echo twig_escape_filter($this->env, $this->getAttribute($context["competicion"], "nombre", array()), "html", null, true);
                 echo "</td>
                                         <td>";
-                // line 27
+                // line 28
                 echo twig_escape_filter($this->env, $this->getAttribute($context["competicion"], "deporte", array()), "html", null, true);
                 echo "</td>
                                         <td>";
-                // line 28
+                // line 29
                 echo twig_escape_filter($this->env, $this->getAttribute($context["competicion"], "tipoCompeticion", array()), "html", null, true);
+                echo "</td>
+                                        <td>";
+                // line 30
+                echo twig_escape_filter($this->env, $this->getAttribute($context["competicion"], "estadoCompeticion", array()), "html", null, true);
                 echo "</td>
                                         <td class=\"actions\">
                                             ";
-                // line 30
+                // line 32
                 if (($this->getAttribute($context["competicion"], "estadoCompeticion", array()) == "Cancelado")) {
-                    // line 31
+                    // line 33
                     echo "                                                <button class=\"btn btn-sm btn-info\" disabled>Ver</button>
                                             ";
                 } else {
-                    // line 32
+                    // line 34
                     echo "                                              
                                                 <a href=\"";
-                    // line 33
+                    // line 35
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_competicionClientes", array("id" => $this->getAttribute($context["competicion"], "id", array()))), "html", null, true);
                     echo "\"  class=\"btn btn-sm btn-info\">
                                                     Ver
                                                 </a>
                                             ";
                 }
-                // line 37
+                // line 39
                 echo "                                        </td>
                                     </tr>
                                 ";
@@ -125,16 +133,16 @@ class __TwigTemplate_f910a24a62c42321a541011281ce7d65c055a4746d457da27f2bab70e4a
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['competicion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 40
+            // line 42
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 44
+        // line 46
         echo "                <div class=\"navigation\">
                     ";
-        // line 45
+        // line 47
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                 </div>
@@ -156,6 +164,6 @@ class __TwigTemplate_f910a24a62c42321a541011281ce7d65c055a4746d457da27f2bab70e4a
 
     public function getDebugInfo()
     {
-        return array (  138 => 45,  135 => 44,  129 => 40,  121 => 37,  114 => 33,  111 => 32,  107 => 31,  105 => 30,  100 => 28,  96 => 27,  92 => 26,  87 => 25,  83 => 24,  75 => 19,  71 => 18,  67 => 17,  60 => 12,  56 => 11,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  146 => 47,  143 => 46,  137 => 42,  129 => 39,  122 => 35,  119 => 34,  115 => 33,  113 => 32,  108 => 30,  104 => 29,  100 => 28,  96 => 27,  91 => 26,  87 => 25,  79 => 20,  75 => 19,  71 => 18,  67 => 17,  60 => 12,  56 => 11,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

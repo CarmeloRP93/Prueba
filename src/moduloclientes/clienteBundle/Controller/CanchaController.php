@@ -143,7 +143,11 @@ class CanchaController extends Controller {
             if ($this->getDoctrine()->getRepository("CriveroPruebaBundle:Valoraciones")->findCliente($idCliente) != null) {
                 $valoracion = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Valoraciones")->findCliente($idCliente)[0];
                 $puntuacionAntigua = $valoracion->getPuntuacion();
-                $puntuacionActualizada = ($votosActuales * $valoracionAntigua - $puntuacionAntigua + $puntuacionCliente) / $votosActuales;
+                if ($votosActuales == 0) {
+                    $puntuacionActualizada = $puntuacionCliente;
+                } else {
+                    $puntuacionActualizada = ($votosActuales * $valoracionAntigua - $puntuacionAntigua + $puntuacionCliente) / $votosActuales;
+                }
                 $valoracion->setPuntuacion($puntuacionCliente);
             } else {
                 $puntuacionActualizada = ($votosActuales * $valoracionAntigua + $puntuacionCliente) / ($votosActuales + 1);

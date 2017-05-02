@@ -19,28 +19,27 @@
                 {{ form_widget(form.fechaPago, {'attr': {'class': 'form-control'} }) }}
                 <span class="text-danger">{{ form_errors(form.fechaPago) }}</span>
             </div>
+            <div class="hidden">
+                {{ form_label(form.cuantia) }}
+                {{ form_widget(form.cuantia, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Cantidad a pagar'} }) }}
+                <span class="text-danger">{{ form_errors(form.cuantia) }}</span>
+            </div>
 
             <div class="panel-body">  
                 <div class="row">
-                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                        {{ form_label(form.concepto) }}
-                        {{ form_widget(form.concepto, {'attr': {'class': 'form-control', 'placeholder' : 'Concepto'}}) }}
-                        <span class="text-danger">{{ form_errors(form.concepto) }}</span>
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        {{ form_label(form.tipoSuscripcion) }}
+                        {{ form_widget(form.tipoSuscripcion, {'attr': {'class': 'form-control'}}) }}
+                        <span class="text-danger">{{ form_errors(form.tipoSuscripcion) }}</span>
                     </div>
-                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 
                         {{ form_label(form.tipoPago) }}
                         {{ form_widget(form.tipoPago, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Tipo de pago'} }) }}
                         <span class="text-danger">{{ form_errors(form.tipoPago) }}</span>
                     </div>
-                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
 
-                        {{ form_label(form.cuantia) }}
-                        {{ form_widget(form.cuantia, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Cantidad a pagar'} }) }}
-                        <span class="text-danger">{{ form_errors(form.cuantia) }}</span>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3"><br>
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4"><br>
                         {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
                     </div>
                 </div>

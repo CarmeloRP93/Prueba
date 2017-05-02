@@ -144,43 +144,53 @@ class __TwigTemplate_9f750e601dff22ac03890f9fa9e50f47cdb25f83f63fda30a5978ee53c1
                                 <h4>Valoracion </h4>
                                 ";
         // line 46
-        $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable(range(1, twig_round($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "valoracion", array()), 0, "common")));
-        foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
+        if ((twig_round($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "valoracion", array()), 0, "common") != 0)) {
             // line 47
-            echo "                                    <img src=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/star-icon.png"), "html", null, true);
-            echo "\" style=\"width: 18px;\" />
+            echo "                                    ";
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable(range(1, twig_round($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "valoracion", array()), 0, "common")));
+            foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
+                // line 48
+                echo "                                        <img src=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/star-icon.png"), "html", null, true);
+                echo "\" style=\"width: 18px;\" />
+                                    ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 50
+            echo "                                ";
+        } else {
+            // line 51
+            echo "                                    <p>Sin valoraciones</p>
                                 ";
         }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 49
-        echo "                                </div>
-                                <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
-                                    <h4>Dirección </h4><p>";
-        // line 51
+        // line 53
+        echo "                            </div>
+                            <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
+                                <h4>Dirección </h4><p>";
+        // line 55
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "direccion", array()), "html", null, true);
         echo "</p>
-                                </div><br>
-                            </div>
+                            </div><br>
                         </div>
                     </div>
-                    <div class=\"text-center\">
-                        <a href=\"";
-        // line 57
+                </div>
+                <div class=\"text-center\">
+                    <a href=\"";
+        // line 61
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_valorar", array("id" => $this->getAttribute((isset($context["reserva"]) ? $context["reserva"] : $this->getContext($context, "reserva")), "id", array()))), "html", null, true);
         echo "\" class=\"btn btn-primary\" style=\"height: 30px; width: 150px;\"> Valorar cancha </a>
-                    </div><br>
-                </div>
+                </div><br>
             </div>
-            <a class=\"btn btn-default\" href=\"";
-        // line 61
+        </div>
+        <a class=\"btn btn-default\" href=\"";
+        // line 65
         echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_reservasClientes");
         echo "\">Volver atrás</a>
-        </div>
-        ";
+    </div>
+";
     }
 
     public function getTemplateName()
@@ -195,6 +205,6 @@ class __TwigTemplate_9f750e601dff22ac03890f9fa9e50f47cdb25f83f63fda30a5978ee53c1
 
     public function getDebugInfo()
     {
-        return array (  180 => 61,  173 => 57,  164 => 51,  160 => 49,  151 => 47,  147 => 46,  140 => 42,  134 => 39,  131 => 38,  125 => 36,  118 => 34,  114 => 33,  109 => 32,  107 => 31,  103 => 30,  99 => 29,  87 => 21,  81 => 19,  79 => 18,  74 => 17,  68 => 15,  66 => 14,  61 => 12,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  190 => 65,  183 => 61,  174 => 55,  170 => 53,  166 => 51,  163 => 50,  154 => 48,  149 => 47,  147 => 46,  140 => 42,  134 => 39,  131 => 38,  125 => 36,  118 => 34,  114 => 33,  109 => 32,  107 => 31,  103 => 30,  99 => 29,  87 => 21,  81 => 19,  79 => 18,  74 => 17,  68 => 15,  66 => 14,  61 => 12,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

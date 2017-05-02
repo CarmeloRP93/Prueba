@@ -43,21 +43,25 @@
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                 <h4>Valoracion </h4>
-                                {% for i in 1..cancha.valoracion|round (0, 'common') %}
-                                    <img src="{{asset('images/star-icon.png')}}" style="width: 18px;" />
-                                {% endfor %}
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                    <h4>Dirección </h4><p>{{cancha.direccion}}</p>
-                                </div><br>
+                                {% if cancha.valoracion|round (0, 'common') != 0 %}
+                                    {% for i in 1..cancha.valoracion|round (0, 'common') %}
+                                        <img src="{{asset('images/star-icon.png')}}" style="width: 18px;" />
+                                    {% endfor %}
+                                {% else %}
+                                    <p>Sin valoraciones</p>
+                                {% endif %}
                             </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <h4>Dirección </h4><p>{{cancha.direccion}}</p>
+                            </div><br>
                         </div>
                     </div>
-                    <div class="text-center">
-                        <a href="{{path('moduloclientes_cliente_valorar', {'id': reserva.id})}}" class="btn btn-primary" style="height: 30px; width: 150px;"> Valorar cancha </a>
-                    </div><br>
                 </div>
+                <div class="text-center">
+                    <a href="{{path('moduloclientes_cliente_valorar', {'id': reserva.id})}}" class="btn btn-primary" style="height: 30px; width: 150px;"> Valorar cancha </a>
+                </div><br>
             </div>
-            <a class="btn btn-default" href="{{ path('moduloclientes_cliente_reservasClientes') }}">Volver atrás</a>
         </div>
-        {% endblock %}
+        <a class="btn btn-default" href="{{ path('moduloclientes_cliente_reservasClientes') }}">Volver atrás</a>
+    </div>
+{% endblock %}

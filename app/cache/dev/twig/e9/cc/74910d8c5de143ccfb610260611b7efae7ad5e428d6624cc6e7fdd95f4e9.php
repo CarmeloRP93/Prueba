@@ -166,9 +166,39 @@ $context["notificacion"], "concepto", array()) == "Usuario")) {
                                                 Ver notificación
                                             </button>
                                         </form>
+                                            ";
+                } elseif (($this->getAttribute(                // line 69
+$context["notificacion"], "concepto", array()) == "PublicaEliminada")) {
+                    // line 70
+                    echo "                                        <form action=\"";
+                    echo $this->env->getExtension('routing')->getPath("crivero_prueba_sesiones");
+                    echo " \" method=\"GET\">
+                                            <input type=\"hidden\" name=\"id\" value=\"";
+                    // line 71
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "idEntidad", array()), "html", null, true);
+                    echo "\">
+                                            <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                Ver notificación
+                                            </button>
+                                        </form>
+                                    ";
+                } elseif (($this->getAttribute(                // line 76
+$context["notificacion"], "concepto", array()) == "PrivadaEliminada")) {
+                    // line 77
+                    echo "                                        <form action=\"";
+                    echo $this->env->getExtension('routing')->getPath("crivero_prueba_dedicadas");
+                    echo " \" method=\"GET\">
+                                            <input type=\"hidden\" name=\"id\" value=\"";
+                    // line 78
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "idEntidad", array()), "html", null, true);
+                    echo "\">
+                                            <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                Ver notificación
+                                            </button>
+                                        </form>
                                     ";
                 }
-                // line 70
+                // line 84
                 echo "                                </td>
                             </tr>
                         ";
@@ -176,17 +206,17 @@ $context["notificacion"], "concepto", array()) == "Usuario")) {
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['notificacion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 73
+            // line 87
             echo "                    </tbody>
                 </table>
             </div>
         ";
         }
-        // line 77
+        // line 91
         echo "        <div>
             <div class=\"navigation\"  >
                 ";
-        // line 79
+        // line 93
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
             </div>
@@ -209,6 +239,6 @@ $context["notificacion"], "concepto", array()) == "Usuario")) {
 
     public function getDebugInfo()
     {
-        return array (  190 => 79,  186 => 77,  180 => 73,  172 => 70,  162 => 64,  160 => 63,  151 => 58,  149 => 57,  140 => 52,  138 => 51,  129 => 46,  127 => 45,  118 => 40,  116 => 39,  107 => 34,  105 => 33,  100 => 31,  96 => 30,  92 => 29,  87 => 28,  83 => 27,  74 => 21,  70 => 20,  66 => 19,  60 => 15,  56 => 13,  54 => 12,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  220 => 93,  216 => 91,  210 => 87,  202 => 84,  193 => 78,  188 => 77,  186 => 76,  178 => 71,  173 => 70,  171 => 69,  162 => 64,  160 => 63,  151 => 58,  149 => 57,  140 => 52,  138 => 51,  129 => 46,  127 => 45,  118 => 40,  116 => 39,  107 => 34,  105 => 33,  100 => 31,  96 => 30,  92 => 29,  87 => 28,  83 => 27,  74 => 21,  70 => 20,  66 => 19,  60 => 15,  56 => 13,  54 => 12,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

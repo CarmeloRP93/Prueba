@@ -40,9 +40,9 @@ class Pagos
     /**
      * @var string
      *
-     * @ORM\Column(name="concepto", type="string", length=255)
+     * @ORM\Column(name="tipoSuscripcion", type="string", length=255)
      */
-    private $concepto;
+    private $tipoSuscripcion;
 
     /**
      * @var string
@@ -54,8 +54,7 @@ class Pagos
     /**
      * @var integer
      *
-     * @ORM\Column(name="cuantia", type="integer")
-     * @Assert\NotBlank()
+     * @ORM\Column(name="cuantia", type="integer", nullable=true)
      */
     private $cuantia;
 
@@ -112,26 +111,26 @@ class Pagos
     }
 
     /**
-     * Set concepto
+     * Set tipoSuscripcion
      *
-     * @param string $concepto
+     * @param string $tipoSuscripcion
      * @return Pagos
      */
-    public function setConcepto($concepto)
+    public function setTipoSuscripcion($tipoSuscripcion)
     {
-        $this->concepto = $concepto;
+        $this->tipoSuscripcion = $tipoSuscripcion;
 
         return $this;
     }
 
     /**
-     * Get concepto
+     * Get tipoSuscripcion
      *
      * @return string 
      */
-    public function getConcepto()
+    public function getTipoSuscripcion()
     {
-        return $this->concepto;
+        return $this->tipoSuscripcion;
     }
 
     /**

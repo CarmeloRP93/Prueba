@@ -1,25 +1,32 @@
 {% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
-
 {% block title %} Vista de Horario {% endblock %}
 {% block contenido %}
-    <div class="container">
-        <center>
-            <table border="3" width="50%" HEIGHT="50"> 
-                <caption><H1>Horario</H1></caption>
-                <tr>
-                    <td width="50%" HEIGHT="50"><strong>Número de la sesión</strong></td>
-                    <td width="50%" HEIGHT="50"><strong>Día y hora</strong></td>
-                </tr>
-                {% set i = 0 %}
-                {% for hora in horario %}
-                    <tr>
-                        {% set i = i + 1 %}
-                        <td width="50%" HEIGHT="50">{{i}}</td>
-                        <td width="50%" HEIGHT="50">{{hora}}</td>
-                    </tr>
-                {% endfor %}
-            </table>
-        <div id="colder" class="col-md-8"><a href="{{path('modulomonitores_monitores_miSesionMonitores', {id: id})}}" style="height: 30px; width: 190px; margin-top: 10px;" class="btn btn-success">Volver atrás</a></div>
-        </center>
+    <div class="container text-center">
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-2 col-md-offset-2 col-lg-offset-2"> 
+            <div class="page-header">
+                <h1 class="t1">Horario</h1>
+            </div>
+            <div class="panel panel-default text-center">
+                <div class="panel-body myelement">    
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tr>
+                                <td><strong>Número de la sesión</strong></td>
+                                <td><strong>Día y hora</strong></td>
+                            </tr>
+                            {% set i = 0 %}
+                            {% for hora in horario %}
+                                <tr>
+                                    {% set i = i + 1 %}
+                                    <td>{{i}}</td>
+                                    <td>{{hora}}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <a href="{{path('modulomonitores_monitores_miSesionMonitores', {id: id})}}" class="btn btn-default">Volver atrás</a>
+        </div>
     </div>
 {% endblock %}

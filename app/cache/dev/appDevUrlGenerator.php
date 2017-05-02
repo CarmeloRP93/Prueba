@@ -12,17 +12,7 @@ use Psr\Log\LoggerInterface;
  */
 class appDevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerator
 {
-    private static $declaredRoutes;
-
-    /**
-     * Constructor.
-     */
-    public function __construct(RequestContext $context, LoggerInterface $logger = null)
-    {
-        $this->context = $context;
-        $this->logger = $logger;
-        if (null === self::$declaredRoutes) {
-            self::$declaredRoutes = array(
+    private static $declaredRoutes = array(
         '_wdt' => array (  0 =>   array (    0 => 'token',  ),  1 =>   array (    '_controller' => 'web_profiler.controller.profiler:toolbarAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'token',    ),    1 =>     array (      0 => 'text',      1 => '/_wdt',    ),  ),  4 =>   array (  ),),
         '_profiler_home' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'web_profiler.controller.profiler:homeAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/_profiler/',    ),  ),  4 =>   array (  ),),
         '_profiler_search' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'web_profiler.controller.profiler:searchAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/_profiler/search',    ),  ),  4 =>   array (  ),),
@@ -72,7 +62,7 @@ class appDevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         'modulomonitores_monitores_terminarDe' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DedicadaController::terminarDeAction',  ),  2 =>   array (    '_method' => 'POST|PUT|GET',  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/terminarDe',    ),  ),  4 =>   array (  ),),
         'modulomonitores_monitores_notificacionesMonitor' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\NotificacionesController::notificacionesMonitorAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/notificacionesMonitor',    ),  ),  4 =>   array (  ),),
         'modulomonitores_monitores_verHorario' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\HorarioController::verHorarioAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/verHorario',    ),  ),  4 =>   array (  ),),
-        'modulomonitores_monitores_enviarMensajeCliente' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\MensajeriaController::enviarMensajeClienteAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/enviarMensajeMonitor',    ),  ),  4 =>   array (  ),),
+        'modulomonitores_monitores_enviarMensajeCliente' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\MensajeriaController::enviarMensajeClienteAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/enviarMensajeCliente',    ),  ),  4 =>   array (  ),),
         'modulomonitores_monitores_mensajearAdministradorMonitor' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\MensajeriaController::mensajearAdministradorMonitorAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/mensajearAdministradorMonitor',    ),  ),  4 =>   array (  ),),
         'modulomonitores_monitores_enviandoMonitor' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\MensajeriaController::enviandoMonitorAction',  ),  2 =>   array (    '_method' => 'POST|GET',  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/enviandoMonitor',    ),  ),  4 =>   array (  ),),
         'modulomonitores_monitores_responderMensajeMonitor' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\MensajeriaController::responderMensajeMonitorAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/mensaje/responderMonitor',    ),  ),  4 =>   array (  ),),
@@ -81,6 +71,7 @@ class appDevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         'modulomonitores_monitores_mensajeMonitor' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\MensajeriaController::mensajeMonitorAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/mensajeMonitor',    ),  ),  4 =>   array (  ),),
         'modulomonitores_monitores_listadoAulas' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\AulasController::listadoAulasAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/listadoAulas/',    ),  ),  4 =>   array (  ),),
         'modulomonitores_monitores_verAula' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\AulasController::verAulaAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/verAula',    ),  ),  4 =>   array (  ),),
+        'modulomonitores_monitores_disponibilidadM' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\AulasController::disponibilidadMAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/disponibilidadM',    ),    1 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    2 =>     array (      0 => 'text',      1 => '/aula',    ),  ),  4 =>   array (  ),),
         'moduloclientes_cliente_canchasClientes' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::canchasClientesAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/canchasClientes',    ),  ),  4 =>   array (  ),),
         'moduloclientes_cliente_canchaClientes' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'moduloclientes\\clienteBundle\\Controller\\CanchaController::canchaClientesAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/canchaClientes',    ),  ),  4 =>   array (  ),),
         'moduloclientes_cliente_reservasClientes' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'moduloclientes\\clienteBundle\\Controller\\ReservaController::reservasClientesAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/reservasClientes',    ),  ),  4 =>   array (  ),),
@@ -209,7 +200,14 @@ class appDevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         'crivero_prueba_mensaje' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::mensajeAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/mensaje',    ),  ),  4 =>   array (  ),),
         'crivero_prueba_notificacionesAdmin' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::notificacionesAdminAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/notificacionesAdmin',    ),  ),  4 =>   array (  ),),
     );
-        }
+
+    /**
+     * Constructor.
+     */
+    public function __construct(RequestContext $context, LoggerInterface $logger = null)
+    {
+        $this->context = $context;
+        $this->logger = $logger;
     }
 
     public function generate($name, $parameters = array(), $referenceType = self::ABSOLUTE_PATH)

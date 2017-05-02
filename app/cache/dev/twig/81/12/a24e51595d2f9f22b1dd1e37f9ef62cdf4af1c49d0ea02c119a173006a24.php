@@ -44,69 +44,56 @@ class __TwigTemplate_8112a24e51595d2f9f22b1dd1e37f9ef62cdf4af1c49d0ea02c119a1730
     {
         // line 4
         echo "    <div class=\"container\">
-        <div class=\"panel panel-default text-center\">
-            <div class=\"panel-heading\">
-                <h1 class=\"t1\">Nuevo equipo</h1>
-            </div>
+        <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-3 col-md-offset-3 col-lg-offset-3\">
+            <div class=\"panel panel-default text-center\">
+                <div class=\"panel-heading\">
+                    <h1 class=\"t1\">Nuevo equipo</h1>
+                </div>
 
-            ";
-        // line 10
+                ";
+        // line 11
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("attr" => array("novalidate" => "novalidate", "role" => "form")));
         echo "
-            <div class=\"hidden\">
-                ";
-        // line 12
+                <div class=\"hidden\">
+                    ";
+        // line 13
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "idCompeticion", array()), 'widget', array("value" => (isset($context["id"]) ? $context["id"] : $this->getContext($context, "id"))));
         echo "
-                <span class=\"text-danger\">";
-        // line 13
+                    <span class=\"text-danger\">";
+        // line 14
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "idCompeticion", array()), 'errors');
         echo "</span>
-            </div>
+                </div>
 
-            <div class=\"panel-body\">  
-                <div class=\"row\">
-                    <div class=\"col-xs-12 col-sm-4 col-md-4 col-lg-4\">
-                        ";
-        // line 19
+                <div class=\"panel-body\">  
+                    <div class=\"row\">
+                        <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
+                            ";
+        // line 20
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'label');
         echo "
-                        ";
-        // line 20
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'widget', array("attr" => array("class" => "form-control")));
-        echo "
-                        <span class=\"text-danger\">";
+                            ";
         // line 21
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Nombre del equipo")));
+        echo "
+                            <span class=\"text-danger\">";
+        // line 22
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'errors');
         echo "</span>
-                    </div>
-
-                    <div class=\"col-xs-12 col-sm-4 col-md-4 col-lg-4\">
-                        ";
+                        </div>
+                        <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\"><br>
+                            ";
         // line 25
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "deporte", array()), 'label');
-        echo "
-                        ";
-        // line 26
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "deporte", array()), 'widget', array("attr" => array("class" => "form-control")));
-        echo "
-                        <span class=\"text-danger\">";
-        // line 27
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "deporte", array()), 'errors');
-        echo "</span>
-                    </div>
-                    <div class=\"col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center\"><br>
-                        ";
-        // line 30
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
+                        </div>
                     </div>
                 </div>
-            </div>
-            ";
-        // line 34
+                ";
+        // line 29
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
+            </div>
         </div>
     </div>
 ";
@@ -124,6 +111,6 @@ class __TwigTemplate_8112a24e51595d2f9f22b1dd1e37f9ef62cdf4af1c49d0ea02c119a1730
 
     public function getDebugInfo()
     {
-        return array (  108 => 34,  101 => 30,  95 => 27,  91 => 26,  87 => 25,  80 => 21,  76 => 20,  72 => 19,  63 => 13,  59 => 12,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  94 => 29,  87 => 25,  81 => 22,  77 => 21,  73 => 20,  64 => 14,  60 => 13,  55 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

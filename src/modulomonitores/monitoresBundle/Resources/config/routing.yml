@@ -138,7 +138,7 @@ modulomonitores_monitores_verHorario:
     
     
 modulomonitores_monitores_enviarMensajeCliente:
-    pattern: /enviarMensajeMonitor/{id}
+    pattern: /enviarMensajeCliente/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Mensajeria:enviarMensajeCliente }
 
 modulomonitores_monitores_mensajearAdministradorMonitor:
@@ -175,3 +175,7 @@ modulomonitores_monitores_listadoAulas:
 modulomonitores_monitores_verAula:
     pattern: /verAula/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Aulas:verAula }
+    
+modulomonitores_monitores_disponibilidadM:
+    pattern:  /aula/{id}/disponibilidadM
+    defaults: { _controller: modulomonitoresmonitoresBundle:Aulas:disponibilidadM }

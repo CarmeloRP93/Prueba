@@ -1,30 +1,36 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
 {% block title %}Cancelar sesión{% endblock %}
 {% block contenido %}
-    <div class="container centradoV">
-        <h1 class="t1">Cancelar sesión</h1>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <h1 class="t1">Cancelar sesión</h1>
+                    </div>
+                    {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+                    <div class="panel-body">  
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                {{ form_label(form.observaciones) }}
+                                {{ form_widget(form.observaciones, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba los motivos de cancelación...'}, 'value': "" }) }}
+                                <span class="text-danger">{{ form_errors(form.observaciones) }}</span>
+                            </div><br>
 
-        {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
-        
-
-        
-
-        <div class="form-group">
-            {{ form_label(form.observaciones) }}
-            {{ form_widget(form.observaciones, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Escriba los motivos de cancelación...'}, 'value': "" }) }}
-            <span class="text-danger">{{ form_errors(form.observaciones) }}</span>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                {% if sesion.cliente == 'normal' %}
+                                    {% set ruta = path("crivero_prueba_sesion", {id: sesion.id}) %}
+                                {% else %}
+                                    {% set ruta = path("crivero_prueba_dedicadas", {id: sesion.id}) %}
+                                {% endif %}
+                                <br>{{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
+                                <a href="{{ ruta }}" class="btn btn-danger">Anular</a>
+                            </div>                
+                        </div>                
+                    </div>                
+                    {{ form_end(form) }}
+                </div>
+            </div>
         </div>
-        
-        <div>
-            {% if sesion.cliente == 'normal' %}
-                {% set ruta = path("crivero_prueba_sesion", {id: sesion.id}) %}
-            {% else %}
-                {% set ruta = path("crivero_prueba_dedicadas", {id: sesion.id}) %}
-            {% endif %}
-            {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
-            <a href="{{ ruta }}" class="btn btn-danger">Anular</a>
-        </div>                
-
-        {{ form_end(form) }}
     </div>
 {% endblock %}

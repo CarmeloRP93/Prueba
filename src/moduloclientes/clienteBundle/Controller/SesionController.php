@@ -96,9 +96,20 @@ class SesionController extends Controller {
         if ($form->isValid()) {
             $cliente = $this->getUser();
             $idCliente = $cliente->getId();
+            $pago->setFechaPago(date('d-m-Y'));
             $pago->setIdCliente($idCliente);
+            
+            $tipoSuscripcion = $form->get('tipoSuscripcion')->getData();
+            if ($tipoSuscripcion == 'Mensual') {               
+                $cliente->setFechaPagar(date('d') . date('m')+1 . date('Y'));
+            } elseif ($tipoSuscripcion == 'Trimestral') {
+                $cliente->setFechaPagar(date('d') . date('m')+3 . date('Y'));           
+            } else {            
+                $cliente->setFechaPagar(date('d') . date('m') . date('Y')+1);           
+            }
 
             $em = $this->getDoctrine()->getManager();
+            $em->persist($cliente);
             $em->persist($pago);
             $em->flush();
             $request->getSession()->getFlashBag()->add('mensaje', 'Pago realizado con éxito.');
