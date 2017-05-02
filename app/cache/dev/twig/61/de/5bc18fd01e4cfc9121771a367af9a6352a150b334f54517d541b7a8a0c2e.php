@@ -130,53 +130,75 @@ class __TwigTemplate_61de5bc18fd01e4cfc9121771a367af9a6352a150b334f54517d541b7a8
                 echo "\" class=\"btn btn-sm btn-primary\">
                                                 Editar
                                             </a>
-                                            <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
-                                                Eliminar
-                                            </a>
-                                        </td>
+                                            
+                                            ";
+                // line 46
+                if (($this->getAttribute((isset($context["flags"]) ? $context["flags"] : $this->getContext($context, "flags")), $this->getAttribute($context["cancha"], "id", array()), array(), "array") == 0)) {
+                    // line 47
+                    echo "                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
+                                                    Eliminar
+                                                </a>
+                                            ";
+                } else {
+                    // line 51
+                    echo "                                                 <a onclick=\"warningEliminar()\" class=\"btn btn-sm btn-danger\">
+                                                    Eliminar
+                                                </a>
+                                            ";
+                }
+                // line 55
+                echo "                                        </td>
                                     </tr>
                                 ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cancha'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 51
+            // line 58
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 54
+        // line 61
         echo "        
                 <div class=\"navigation text-center\">
                     ";
-        // line 56
+        // line 63
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                 </div>
-                ";
-        // line 61
-        echo "            </div>
+            </div>
         </div>
     </div>
     ";
-        // line 64
+        // line 68
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "id" => "form-delete", "with_submit" => false));
         echo "
 ";
     }
 
-    // line 66
+    // line 70
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 67
+        // line 71
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <script src=\"";
-        // line 68
+        // line 72
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/criveroprueba/js/delete-cancha.js"), "html", null, true);
         echo "\"></script>
+    <script>
+        function warningEliminar(){
+            var dialog=bootbox.dialog({
+                title: '<h4 class=\"text-center\" style=\"font-weight: 600; color: red\">¡ATENCIÓN!</h4>',
+                message: '<p class=\"text-center\" >No es posible eliminar una cancha con reservas asignadas.</p>',
+                closeButton: false
+            });
+            setTimeout(function (){dialog.modal('hide');}, 4000);
+        }
+    </script>
 ";
     }
 
@@ -192,6 +214,6 @@ class __TwigTemplate_61de5bc18fd01e4cfc9121771a367af9a6352a150b334f54517d541b7a8
 
     public function getDebugInfo()
     {
-        return array (  178 => 68,  173 => 67,  170 => 66,  164 => 64,  159 => 61,  154 => 56,  150 => 54,  144 => 51,  129 => 42,  123 => 39,  118 => 37,  114 => 36,  110 => 35,  106 => 34,  101 => 33,  97 => 32,  89 => 27,  85 => 26,  81 => 25,  77 => 24,  71 => 20,  67 => 18,  65 => 17,  55 => 10,  47 => 4,  44 => 3,  38 => 2,  11 => 1,);
+        return array (  190 => 72,  185 => 71,  182 => 70,  176 => 68,  168 => 63,  164 => 61,  158 => 58,  150 => 55,  144 => 51,  138 => 47,  136 => 46,  129 => 42,  123 => 39,  118 => 37,  114 => 36,  110 => 35,  106 => 34,  101 => 33,  97 => 32,  89 => 27,  85 => 26,  81 => 25,  77 => 24,  71 => 20,  67 => 18,  65 => 17,  55 => 10,  47 => 4,  44 => 3,  38 => 2,  11 => 1,);
     }
 }

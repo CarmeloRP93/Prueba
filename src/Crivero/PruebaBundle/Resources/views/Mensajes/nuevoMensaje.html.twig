@@ -55,8 +55,12 @@
 
                         <div class="form-group" >
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 " >
-                                <br>{{ form_widget(form.enviar, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
-                            <a class="btn btn-danger" >Cancelar</a>
+                                <br>{{ form_widget(form.enviar, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success' } }) }}
+                                {% if usuario.tipo == 2 %}
+                                    <a class="btn btn-danger" href="{{ path('crivero_prueba_cliente', { id: usuario.id }) }}">Cancelar</a>
+                                {% else %}
+                                    <a class="btn btn-danger" href="{{ path('crivero_prueba_monitor', { id: usuario.id }) }}">Cancelar</a>
+                                {% endif %}
                             </div>     
                         </div>     
                     </div>     

@@ -163,14 +163,38 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
                     </div>
                 </div>
                 <div class=\"text-center\">
-                    ";
+                   ";
         // line 64
-        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form")), "nombre" => "Eliminar cancha"));
-        echo "
-                </div>
+        if (((isset($context["nReservas"]) ? $context["nReservas"] : $this->getContext($context, "nReservas")) > 0)) {
+            // line 65
+            echo "                        <form action=\"#\">
+                            <input type=\"button\" value=\"Eliminar cancha\" class=\"btn btn-danger active\" 
+                                   onclick=\"warningEliminar()\" >
+                        </form>
+                    ";
+        } else {
+            // line 70
+            echo "                        ";
+            echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form")), "nombre" => "Eliminar cancha"));
+            echo "
+                    ";
+        }
+        // line 72
+        echo "                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function warningEliminar(){
+            var dialog=bootbox.dialog({
+                title: '<h4 class=\"text-center\" style=\"font-weight: 600; color: red\">¡ATENCIÓN!</h4>',
+                message: '<p class=\"text-center\" >No es posible eliminar una cancha con reservas asignadas.</p>',
+                closeButton: false
+            });
+            setTimeout(function (){dialog.modal('hide');}, 4000);
+        }
+    </script>
 ";
     }
 
@@ -186,6 +210,6 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
 
     public function getDebugInfo()
     {
-        return array (  168 => 64,  158 => 57,  150 => 52,  143 => 48,  135 => 43,  131 => 41,  127 => 39,  124 => 38,  115 => 36,  110 => 35,  108 => 34,  101 => 30,  95 => 27,  89 => 24,  79 => 16,  73 => 14,  67 => 12,  65 => 11,  61 => 10,  54 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  183 => 72,  177 => 70,  170 => 65,  168 => 64,  158 => 57,  150 => 52,  143 => 48,  135 => 43,  131 => 41,  127 => 39,  124 => 38,  115 => 36,  110 => 35,  108 => 34,  101 => 30,  95 => 27,  89 => 24,  79 => 16,  73 => 14,  67 => 12,  65 => 11,  61 => 10,  54 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

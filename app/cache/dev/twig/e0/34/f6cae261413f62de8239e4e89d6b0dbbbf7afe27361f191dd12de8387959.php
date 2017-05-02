@@ -168,7 +168,7 @@ class __TwigTemplate_e034f6cae261413f62de8239e4e89d6b0dbbbf7afe27361f191dd12de83
             // line 58
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_enviarMensaje", array("id" => $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "id", array()))), "html", null, true);
             echo "\" method=\"post\">
-                                        <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-primary\">Enviar mensaje</button>
+                                        <button type=\"submit\" style=\"margin-bottom: 1px\" class=\"btn btn-primary\">Enviar mensaje</button>
                                         <input type=\"hidden\" class=\"btn\">
                                     </form>
                                     <form class=\"btn-group-vertical\" action=\"";

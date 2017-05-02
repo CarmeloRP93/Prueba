@@ -1,22 +1,43 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
+
 {% block title %} {{ aula.nombre|capitalize }} - Disponibilidad {% endblock %}
+
 {% block contenido %}
     <div class="container text-center">
         <div class="page-header "> 
             <h2 class="t1">{{ aula.nombre|capitalize }} - Horarios disponibles de los próximos 7 días</h2>
         </div><br>
+        
         <div class="panel panel-default">                  
-            <div class="panel-body">
+            <div class="panel-body" style="padding-bottom: 0px">
                 <div class="table-responsive">
-                    <table class="table {#table-condensed#}">
+                    <table class="table table-hover {#table-condensed#}">
                         <tbody>
+                            {% set i = 1 %}
                             {% for horario in horarios  %}
                                 <tr>
-                                    <td style="padding-top: 14px;padding-bottom: 14px"><strong>Día {{ (horario.fechaInicio < 10) ? '0'~horario.fechaInicio : horario.fechaInicio }}</strong></td>
-                                    {% for horitas in horario.periodo|split('&')  %}
-                                        <td style="padding-top: 14px;padding-bottom: 14px;">{{ horitas }}</td>
+                                    {% if i == 1 %}
+                                        <td style="border: none; padding-top: 14px;padding-bottom: 14px"><strong>Día {{ (horario.fechaInicio < 10) ? '0'~horario.fechaInicio : horario.fechaInicio }}</strong></td>
+                                    {% else %}
+                                        <td style="padding-top: 14px;padding-bottom: 14px"><strong>Día {{ (horario.fechaInicio < 10) ? '0'~horario.fechaInicio : horario.fechaInicio }}</strong></td>
+                                    {% endif %}
+                                    {% for horitas in "09:00-10:00&10:00-11:00&11:00-12:00&12:00-13:00&16:00-17:00&17:00-18:00&18:00-19:00&19:00-20:00&20:00-21:00&21:00-22:00&"|split('&') %}
+                                        {% if not (horitas in horario.periodo)  %}
+                                            {% if i == 1 %}
+                                                <td style="border: none; padding-top: 14px; padding-bottom: 14px; color: red">{{ horitas }}</td>
+                                            {% else %}
+                                                <td style="padding-top: 14px; padding-bottom: 14px; color: red">{{ horitas }}</td>
+                                            {% endif %}
+                                        {% else %}
+                                            {% if i == 1 %}
+                                                <td style="border: none; padding-top: 14px; padding-bottom: 14px;">{{ horitas }}</td>
+                                            {% else %}
+                                                <td style="padding-top: 14px; padding-bottom: 14px;">{{ horitas }}</td>
+                                            {% endif %}
+                                        {% endif %}
                                     {% endfor %}
                                 </tr>
+                                {% set i = i+1 %}
                             {% endfor %}
                         </tbody>
                     </table>

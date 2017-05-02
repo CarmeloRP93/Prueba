@@ -3,9 +3,8 @@
 {% block contenido %}
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class="container text-center">
-        <div class="page-header">
-            <h1 class="t1">{{aula.nombre}}</h1>
-        </div>
+        <h1 class="t1 page-header">{{aula.nombre}}</h1><br>
+
         <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xs-offset-0 col-sm-offset-1 col-md-offset-2 col-lg-offset-0">
             <img src="{{ asset('images/' ~ aula.imagen) }}" style="width:400px; margin-bottom: 5px"  class="img-rounded"/><br>
             {% if aula.disponibilidad == "Disponible" %}
@@ -73,7 +72,25 @@
                     {% endif %}    
                 </div>
             </div>
-            {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar aula" })}}
+            {% if aula.sesiones != null %}
+                <form action="#">
+                    <input type="button" value="Eliminar aula" class="btn btn-danger active" 
+                           onclick="warningEliminar()" >
+                </form>
+            {% else %}
+                {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar aula" })}}
+            {% endif %}
         </div>
     </div>
+            
+    <script>
+        function warningEliminar(){
+            var dialog=bootbox.dialog({
+                title: '<h4 class="text-center" style="font-weight: 600; color: red">¡ATENCIÓN!</h4>',
+                message: '<p class="text-center" >No es posible eliminar un aula con sesiones asignadas.</p>',
+                closeButton: false
+            });
+            setTimeout(function (){dialog.modal('hide');}, 5000);
+        }
+    </script>
 {% endblock %}

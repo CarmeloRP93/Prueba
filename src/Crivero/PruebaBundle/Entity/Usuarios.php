@@ -123,13 +123,6 @@ class Usuarios implements AdvancedUserInterface, \Serializable {
     private $imagen;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="fechaPagar", type="string")
-     */
-    private $fechaPagar;
-
-    /**
      * Set fNacimiento
      *
      * @param string $fNacimiento
@@ -187,25 +180,6 @@ class Usuarios implements AdvancedUserInterface, \Serializable {
         return $this->sesiones;
     }
     
-    /**
-     * Set fechaPagar
-     *
-     * @param string $fechaPagar
-     * @return Usuarios
-     */
-    public function setFechaPagar($fechaPagar) {
-        $this->fechaPagar = $fechaPagar;
-    }
-  
-    /**
-     * Get fechaPagar
-     *
-     * @return string 
-     */
-    public function getFechaPagar() {
-        return $this->fechaPagar;
-    }
-
     public function getId() {
         return $this->id;
     }

@@ -61,9 +61,27 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar cancha" })}}
+                   {% if nReservas > 0 %}
+                        <form action="#">
+                            <input type="button" value="Eliminar cancha" class="btn btn-danger active" 
+                                   onclick="warningEliminar()" >
+                        </form>
+                    {% else %}
+                        {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar cancha" })}}
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function warningEliminar(){
+            var dialog=bootbox.dialog({
+                title: '<h4 class="text-center" style="font-weight: 600; color: red">¡ATENCIÓN!</h4>',
+                message: '<p class="text-center" >No es posible eliminar una cancha con reservas asignadas.</p>',
+                closeButton: false
+            });
+            setTimeout(function (){dialog.modal('hide');}, 4000);
+        }
+    </script>
 {% endblock %}

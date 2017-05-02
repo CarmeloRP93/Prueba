@@ -43,7 +43,7 @@ class __TwigTemplate_106a97a5e9fc35c0d8a0b79247ff8f4d9909c903b502fc7aeae75fde994
     public function block_contenido($context, array $blocks = array())
     {
         // line 4
-        echo "    <div class=\"container text-center\">
+        echo "    <div class=\"container text-center\"><br>
         <div class=\"row\">
             <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-3 col-md-offset-3 col-lg-offset-3\">
                 <div class=\"panel panel-default text-center\">

@@ -51,59 +51,114 @@ class __TwigTemplate_ffaba263885dfdecf71143743c36eb28b894e456b05eaeeeaac6e634e48
         // line 8
         echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "tipo", array())), "html", null, true);
         echo " - Horarios disponibles de los próximos 7 días</h2>
-        </div><br>
-        <div class=\"table-responsive\">
-            <div class=\"row\">
-                <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-xs\">
+        </div>
+
+        <div class=\"panel panel-default\">                  
+            <div class=\"panel-body\" style=\"padding-bottom: 0px\">
+                <div class=\"table-responsive\">
                     <table class=\"table table-hover ";
-        // line 13
+        // line 14
         echo "\">
                         <tbody>
                             ";
-        // line 15
+        // line 16
+        $context["i"] = 1;
+        // line 17
+        echo "                            ";
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["horarios"]) ? $context["horarios"] : $this->getContext($context, "horarios")));
         foreach ($context['_seq'] as $context["_key"] => $context["horario"]) {
-            // line 16
-            echo "                                <tr>
-                                    <td><strong>Día ";
-            // line 17
-            echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute($context["horario"], "fechaInicio", array()), "-"), 0, array(), "array"), "html", null, true);
-            echo "</strong></td>
-                                        ";
             // line 18
-            $context['_parent'] = (array) $context;
-            $context['_seq'] = twig_ensure_traversable(twig_split_filter($this->env, $this->getAttribute($context["horario"], "periodo", array()), "&"));
-            foreach ($context['_seq'] as $context["_key"] => $context["horitas"]) {
-                // line 19
-                echo "                                        <td>";
-                echo twig_escape_filter($this->env, $context["horitas"], "html", null, true);
-                echo "</td>
+            echo "                                <tr>
                                     ";
+            // line 19
+            if (((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) == 1)) {
+                // line 20
+                echo "                                        <td style='border: none'><strong>Día ";
+                echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute($context["horario"], "fechaInicio", array()), "-"), 0, array(), "array"), "html", null, true);
+                echo "</strong></td>
+                                    ";
+            } else {
+                // line 22
+                echo "                                        <td><strong>Día ";
+                echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute($context["horario"], "fechaInicio", array()), "-"), 0, array(), "array"), "html", null, true);
+                echo "</strong></td>
+                                    ";
+            }
+            // line 24
+            echo "                                    ";
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable(twig_split_filter($this->env, "09:00-10:00&10:00-11:00&11:00-12:00&12:00-13:00&13:00-14:00&14:00-15:00&15:00-16:00&16:00-17:00&17:00-18:00&18:00-19:00&19:00-20:00&20:00-21:00&21:00-22:00", "&"));
+            foreach ($context['_seq'] as $context["_key"] => $context["horitas"]) {
+                // line 25
+                echo "                                        ";
+                if ( !twig_in_filter($context["horitas"], $this->getAttribute($context["horario"], "periodo", array()))) {
+                    // line 26
+                    echo "                                            ";
+                    if (((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) == 1)) {
+                        // line 27
+                        echo "                                                <td style=\"border: none; color: red\">";
+                        echo twig_escape_filter($this->env, $context["horitas"], "html", null, true);
+                        echo "</td>
+                                            ";
+                    } else {
+                        // line 29
+                        echo "                                                <td style=\"color: red\">";
+                        echo twig_escape_filter($this->env, $context["horitas"], "html", null, true);
+                        echo "</td>
+                                            ";
+                    }
+                    // line 31
+                    echo "                                        ";
+                } else {
+                    // line 32
+                    echo "                                            ";
+                    if (((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) == 1)) {
+                        // line 33
+                        echo "                                                <td style=\"border: none;\">";
+                        echo twig_escape_filter($this->env, $context["horitas"], "html", null, true);
+                        echo "</td>
+                                            ";
+                    } else {
+                        // line 35
+                        echo "                                                <td>";
+                        echo twig_escape_filter($this->env, $context["horitas"], "html", null, true);
+                        echo "</td>
+                                            ";
+                    }
+                    // line 37
+                    echo "                                        ";
+                }
+                // line 38
+                echo "                                    ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['horitas'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 21
+            // line 39
             echo "                                </tr>
-                            ";
+                                ";
+            // line 40
+            $context["i"] = ((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) + 1);
+            // line 41
+            echo "                            ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['horario'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 23
+        // line 42
         echo "                        </tbody>
                     </table>
                 </div>
             </div>
-        </div><br>
+        </div>
 
-        <div>
+        <div class=\"text-center\">
             <a class=\"btn btn-default\" href=\"";
-        // line 30
+        // line 49
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
         echo "\">Volver atrás</a>
-        </div>
+        </div><br>
     </div>
 ";
     }
@@ -120,6 +175,6 @@ class __TwigTemplate_ffaba263885dfdecf71143743c36eb28b894e456b05eaeeeaac6e634e48
 
     public function getDebugInfo()
     {
-        return array (  104 => 30,  95 => 23,  88 => 21,  79 => 19,  75 => 18,  71 => 17,  68 => 16,  64 => 15,  60 => 13,  52 => 8,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
+        return array (  159 => 49,  150 => 42,  144 => 41,  142 => 40,  139 => 39,  133 => 38,  130 => 37,  124 => 35,  118 => 33,  115 => 32,  112 => 31,  106 => 29,  100 => 27,  97 => 26,  94 => 25,  89 => 24,  83 => 22,  77 => 20,  75 => 19,  72 => 18,  67 => 17,  65 => 16,  61 => 14,  52 => 8,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
     }
 }

@@ -56,7 +56,7 @@
                             {% if app.user.id != monitor.id and app.user.tipo == 1 %}
                                 <div style="display: inline-grid; margin-top: 16px">
                                     <form class="btn-group-vertical" action="{{ path('crivero_prueba_enviarMensaje', { id: monitor.id }) }}" method="post">
-                                        <button type="submit" style="margin-bottom: 0" class="btn btn-primary">Enviar mensaje</button>
+                                        <button type="submit" style="margin-bottom: 1px" class="btn btn-primary">Enviar mensaje</button>
                                         <input type="hidden" class="btn">
                                     </form>
                                     <form class="btn-group-vertical" action="{{ path('crivero_prueba_editarUsuario', { id: monitor.id }) }}" method="post">

@@ -20,7 +20,7 @@ class UsuariosType extends AbstractType
             ->add('email', 'email')
             ->add('password', 'password')
             ->add('telefono', 'text', array('label' => 'Teléfono'))
-            ->add('tipo', 'choice', array('choices' => array(1 => 'Administrador', 2 => 'Cliente', 3 => 'Monitor'), 
+            ->add('tipo', 'choice', array('choices' => array(2 => 'Cliente', 3 => 'Monitor', 1 => 'Administrador'), 
                                           'label' => 'Rol'))
             ->add('fNacimiento', 'text', array('label' => 'Fecha nacimiento'))
             ->add('imagen', 'file',  array('data_class' => null))

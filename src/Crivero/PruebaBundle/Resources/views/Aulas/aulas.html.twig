@@ -32,11 +32,6 @@
                                 {% for aula in pagination %}
                                     <tr data-id="{{ aula.id }}">
                                         <td>{{aula.nombre}}</td>
-                                        {#<td>{% if hoy == 0 or hoy == 6 %}
-                                            <strong>No disponible</strong>
-                                            {% else %}
-                                                <strong>{{ estados[aula.id-1].estado }}</strong>
-                                            {% endif %}</td>#}
                                         <td><strong>{{aula.disponibilidad}}</strong></td>
                                         <td>{{aula.horario}}</td>
                                         <td>{{aula.dimensiones ~ 'm²'}}</td>
@@ -47,9 +42,15 @@
                                             <a href="{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}" class="btn btn-sm btn-primary">
                                                 Editar
                                             </a>
-                                            <a href="#" class="btn btn-sm btn-danger btn-delete">
-                                                Eliminar
-                                            </a>
+                                            {% if aula.sesiones == null %}
+                                                <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                                    Eliminar
+                                                </a>
+                                            {% else %}
+                                                <a onclick="warningEliminar()" class="btn btn-sm btn-danger">
+                                                    Eliminar
+                                                </a>
+                                            {% endif %}
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -61,9 +62,6 @@
                     {{ knp_pagination_render(pagination) }}
                 </div>
             </div>
-            {#<div class="nuevoUsuario text-center">
-                    <a href="{{path('crivero_prueba_aula_nueva')}}" class="btn btn-success" style="width: 150px;"> Nueva aula <span class="glyphicon glyphicon-plus"></span></a>
-            </div>#}
         </div>
     </div>
     {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form_ajax, id: "form-delete", with_submit: false })}}
@@ -71,4 +69,14 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('bundles/criveroprueba/js/delete-aula.js') }}"></script>
+    <script>
+        function warningEliminar(){
+            var dialog=bootbox.dialog({
+                title: '<h4 class="text-center" style="font-weight: 600; color: red">¡ATENCIÓN!</h4>',
+                message: '<p class="text-center" >No es posible eliminar un aula con sesiones asignadas.</p>',
+                closeButton: false
+            });
+            setTimeout(function (){dialog.modal('hide');}, 4000);
+        }
+    </script>
 {% endblock %}

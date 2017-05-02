@@ -42,9 +42,16 @@
                                             <a href="{{ path('crivero_prueba_cancha_editar', { id: cancha.id }) }}" class="btn btn-sm btn-primary">
                                                 Editar
                                             </a>
-                                            <a href="#" class="btn btn-sm btn-danger btn-delete">
-                                                Eliminar
-                                            </a>
+                                            
+                                            {% if flags[cancha.id] == 0 %}
+                                                <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                                    Eliminar
+                                                </a>
+                                            {% else %}
+                                                 <a onclick="warningEliminar()" class="btn btn-sm btn-danger">
+                                                    Eliminar
+                                                </a>
+                                            {% endif %}
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -55,9 +62,6 @@
                 <div class="navigation text-center">
                     {{ knp_pagination_render(pagination) }}
                 </div>
-                {#<div class="nuevoUsuario text-center">
-                    <a href="{{path('crivero_prueba_cancha_nueva')}}" class="btn btn-success" style="width: 150px;"> Nueva cancha <span class="glyphicon glyphicon-plus"></span></a>
-                </div>#}
             </div>
         </div>
     </div>
@@ -66,4 +70,14 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('bundles/criveroprueba/js/delete-cancha.js') }}"></script>
+    <script>
+        function warningEliminar(){
+            var dialog=bootbox.dialog({
+                title: '<h4 class="text-center" style="font-weight: 600; color: red">¡ATENCIÓN!</h4>',
+                message: '<p class="text-center" >No es posible eliminar una cancha con reservas asignadas.</p>',
+                closeButton: false
+            });
+            setTimeout(function (){dialog.modal('hide');}, 4000);
+        }
+    </script>
 {% endblock %}

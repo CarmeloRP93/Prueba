@@ -15,11 +15,12 @@ class MensajeriaController extends Controller {
 
     public function enviarMensajeAction($id) {
         $comentario = new Comentarios();
-        $destino = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($id)->getUsername();
+        $usuario = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($id);
 
         $form = $this->createMessageForm($id, $comentario);
         return $this->render('CriveroPruebaBundle:Mensajes:nuevoMensaje.html.twig', array('form' => $form->createView(),
-                    'destino' => $destino, 'notificacionesSinLeer' => $this->getNewNotification()));
+                    'destino' => $usuario->getUsername(), 'notificacionesSinLeer' => $this->getNewNotification(), 
+                    'usuario' => $usuario));
     }
 
     public function mensajearDirectorAction() {

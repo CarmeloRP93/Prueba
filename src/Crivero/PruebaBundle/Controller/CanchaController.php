@@ -20,24 +20,35 @@ class CanchaController extends Controller {
         $searchQuery = $request->get('query');
         (!empty($searchQuery)) ? $canchas = $repository->searchCanchas($searchQuery) :
                         $canchas = $repository->getCanchas();
-
+        
+        $flags = array();
+        foreach ($canchas as $cancha) {
+            $nReservas = count($this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas")->getAllReservasCancha($cancha->getId()));
+            if ($nReservas > 0) {
+                $flags[$cancha->getId()] = 1;
+            } else {
+                $flags[$cancha->getId()] = 0;
+            }
+        }
+        
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $canchas, $request->query->getInt('page', 1), 5);
 
         $deleteFormAjax = $this->createCustomForm(':CANCHA_ID', 'DELETE', 'crivero_prueba_cancha_eliminar');
         return $this->render('CriveroPruebaBundle:Canchas:canchas.html.twig', array("pagination" => $pagination,
-                    "delete_form_ajax" => $deleteFormAjax->createView(),
+                    "delete_form_ajax" => $deleteFormAjax->createView(), 'flags' => $flags,
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function canchaAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
         $cancha = $repository->find($id);
+        $nReservas = count($this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas")->getAllReservasCancha($id));
 
         $deleteForm = $this->createCustomForm($cancha->getId(), 'DELETE', 'crivero_prueba_cancha_eliminar');
         return $this->render('CriveroPruebaBundle:Canchas:cancha.html.twig', array("cancha" => $cancha,
-                    "delete_form" => $deleteForm->createView(),
+                    "delete_form" => $deleteForm->createView(), 'nReservas' => $nReservas,
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
