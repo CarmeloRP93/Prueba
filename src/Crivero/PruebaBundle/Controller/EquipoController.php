@@ -9,16 +9,20 @@ class EquipoController extends Controller {
     
     public function equiposAction(Request $request) {
        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
-       $equipos=$repository->findAll();
+       $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $equipos = $repository->searchEquipos($searchQuery) :
+                                 $equipos = $repository->findAll();
        $paginator = $this->get('knp_paginator');
        $pagination = $paginator->paginate(
                 $equipos, $request->query->getInt('page', 1), 5);
        $repositoryCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
        $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+       $competiciones = array();
+       $representantes = array();
        foreach ($equipos as $equipo=>$valor){
-            $competiciones[$equipo] = $repositoryCompeticiones->find($valor->getIdCompeticion())->getNombre();   
-            $representantes[$equipo] = $repositoryUsuarios->find($valor->getIdCliente())->getNombre();
-        }
+            $competiciones[$valor->getIdCompeticion()] = $repositoryCompeticiones->find($valor->getIdCompeticion());
+            $representantes[$valor->getIdCliente()] = $repositoryUsuarios->find($valor->getIdCliente());
+       }
        return $this->render('CriveroPruebaBundle:Competiciones:equipos.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),"equipos"=>$pagination,
            "competiciones"=>$competiciones,"representantes"=>$representantes));
     }

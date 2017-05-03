@@ -13,8 +13,9 @@ class EquipoController extends Controller {
     public function equiposClientesAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
         $idCliente = $this->getUser()->getId();
-        $equipos = $repository->findAllMisEquipos($idCliente);
-
+        $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $equipos = $repository->searchEquiposCliente($searchQuery,$idCliente) :
+                       $equipos = $repository->findAllMisEquipos($idCliente);
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $equipos, $request->query->getInt('page', 1), 5);
@@ -26,10 +27,14 @@ class EquipoController extends Controller {
         $repositoryEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
         $equipo = $repositoryEquipos->find($id);
         $repositoryJugadores = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Jugadores");
-        $jugadores = $repositoryJugadores->findJugadoresEquipo($id);
+        $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $jugadores = $repositoryJugadores->searchJugadoresEquipo($searchQuery,$id) :
+                        $jugadores = $repositoryJugadores->findJugadoresEquipo($id);
+        
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $jugadores, $request->query->getInt('page', 1), 4);
+        
         $deleteForm = $this->createCustomForm($equipo->getId(), 'DELETE', 'moduloclientes_cliente_equipo_eliminar');
         $deleteFormAjax = $this->createCustomForm(':JUGADOR_ID', 'DELETE', 'moduloclientes_cliente_jugador_eliminar');
         return $this->render('moduloclientesclienteBundle:Competiciones:equipoClientes.html.twig', array("notificacionesSinLeer" => $this->getNewNotification(),
@@ -43,7 +48,6 @@ class EquipoController extends Controller {
             $mensaje = 'Jugador no encontrado';
             throw $this->createNotFoundException($mensaje);
         }
-//        $form = $this->createDeleteForm($jugador);
         $form = $this->createCustomForm($jugador->getId(), 'DELETE', 'moduloclientes_cliente_jugador_eliminar');
         $form->handleRequest($request);
 

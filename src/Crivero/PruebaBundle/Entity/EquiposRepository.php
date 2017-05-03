@@ -37,4 +37,25 @@ class EquiposRepository extends EntityRepository
             ->setParameter('idCompeticion', $idCompeticion)
             ->getResult();
     }
+    
+    public function searchEquipos($searchQuery) {
+        return $this->getEntityManager()
+            ->createQuery("SELECT equipos FROM CriveroPruebaBundle:Equipos equipos"
+                    . " WHERE equipos.nombre= :nombre"
+                    . " OR equipos.deporte = :deporte")
+            ->setParameter('nombre', $searchQuery)
+            ->setParameter('deporte', $searchQuery)
+            ->getResult();
+    }
+    
+    public function searchEquiposCliente($searchQuery,$idCliente) {
+        return $this->getEntityManager()
+            ->createQuery("SELECT equipos FROM CriveroPruebaBundle:Equipos equipos"
+                    . " WHERE equipos.idCliente = :idCliente AND"
+                    . " (equipos.nombre = :nombre OR equipos.deporte = :deporte)")
+            ->setParameter('idCliente', $idCliente)
+            ->setParameter('nombre', $searchQuery)
+            ->setParameter('deporte', $searchQuery)
+            ->getResult();
+    }
 }

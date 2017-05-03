@@ -12,22 +12,22 @@ class PartidoController extends Controller {
     public function partidosClientesAction($id, Request $request) {
         $repositoryPartidos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Partidos");
         $partidos=$repositoryPartidos->getPartidosPorCompeticion($id);
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $partidos, $request->query->getInt('page', 1), 5);
         $repositoryCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
         $repositoryEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
         $repositoryCanchas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-                $partidos, $request->query->getInt('page', 1), 4);
         $competiciones=array();
         $equiposLocales=array();
         $equiposVisitantes=array();
         $canchas=array();
-        foreach ($partidos as $partido=>$valor){
-            $competiciones[$partido] = $repositoryCompeticiones->find($valor->getIdCompeticion());   
-            $equiposLocales[$partido] = $repositoryEquipos->find($valor->getIdEquipoLocal());
-            $equiposVisitantes[$partido] = $repositoryEquipos->find($valor->getIdEquipoVisitante());
-            $canchas[$partido] = $repositoryCanchas->find($valor->getIdCancha());
-        }     
+        foreach ($partidos as $clave=>$valor){
+            $competiciones[$valor->getIdCompeticion()] = $repositoryCompeticiones->find($valor->getIdCompeticion());   
+            $equiposLocales[$valor->getIdEquipoLocal()] = $repositoryEquipos->find($valor->getIdEquipoLocal());
+            $equiposVisitantes[$valor->getIdEquipoVisitante()] = $repositoryEquipos->find($valor->getIdEquipoVisitante());
+            $canchas[$valor->getIdCancha()] = $repositoryCanchas->find($valor->getIdCancha());
+        }    
         return $this->render('moduloclientesclienteBundle:Competiciones:partidosClientes.html.twig',
                 array("notificacionesSinLeer"=>$this->getNewNotification(),
                     "partidos"=>$pagination, "competiciones"=>$competiciones,

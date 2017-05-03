@@ -8,13 +8,15 @@ use Symfony\Component\HttpFoundation\Request;
 class JugadorController extends Controller {
     
     public function jugadoresAction(Request $request) {
-       $RepositorioJugadores = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Jugadores");
-       $jugadores=$RepositorioJugadores->findAll();
+       $repositorioJugadores = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Jugadores");
+       $repositorioEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
+       $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $jugadores = $repositorioJugadores->searchJugadores($searchQuery) :
+                        $jugadores = $repositorioJugadores->findAll();
        $paginator = $this->get('knp_paginator');
        $pagination = $paginator->paginate(
                 $jugadores, $request->query->getInt('page', 1), 5);
-       $RepositorioEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
-       $equipos=$RepositorioEquipos->findAll();
+       $equipos=$repositorioEquipos->findAll();
        return $this->render('CriveroPruebaBundle:Competiciones:jugadores.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),"pagination"=>$pagination,"equipos"=>$equipos));
     }
     

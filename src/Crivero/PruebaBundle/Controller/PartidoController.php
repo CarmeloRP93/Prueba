@@ -22,12 +22,12 @@ class PartidoController extends Controller {
         $equiposLocales=array();
         $equiposVisitantes=array();
         $canchas=array();
-        foreach ($partidos as $partido=>$valor){
-            $competiciones[$partido] = $repositoryCompeticiones->find($valor->getIdCompeticion());   
-            $equiposLocales[$partido] = $repositoryEquipos->find($valor->getIdEquipoLocal());
-            $equiposVisitantes[$partido] = $repositoryEquipos->find($valor->getIdEquipoVisitante());
-            $canchas[$partido] = $repositoryCanchas->find($valor->getIdCancha());
-        }     
+        foreach ($partidos as $clave=>$valor){
+            $competiciones[$valor->getIdCompeticion()] = $repositoryCompeticiones->find($valor->getIdCompeticion());   
+            $equiposLocales[$valor->getIdEquipoLocal()] = $repositoryEquipos->find($valor->getIdEquipoLocal());
+            $equiposVisitantes[$valor->getIdEquipoVisitante()] = $repositoryEquipos->find($valor->getIdEquipoVisitante());
+            $canchas[$valor->getIdCancha()] = $repositoryCanchas->find($valor->getIdCancha());
+        }
         return $this->render('CriveroPruebaBundle:Competiciones:partidos.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),"partidos"=>$pagination, "competiciones"=>$competiciones,
                              "equiposLocales"=>$equiposLocales,"equiposVisitantes"=>$equiposVisitantes, "canchas"=>$canchas));
     }

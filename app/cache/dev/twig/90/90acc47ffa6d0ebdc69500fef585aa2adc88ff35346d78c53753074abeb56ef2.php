@@ -77,9 +77,11 @@ class __TwigTemplate_81aef3ef0aa3352fe3b69c4442204262ca3daa2ba6608a038c9640459c3
         echo "            <link href=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("css/main.css"), "html", null, true);
         echo "\" type=\"text/css\" rel=\"stylesheet\">
-            ";
-        // line 11
-        echo "        ";
+            <link href=\"";
+        // line 10
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("css/loginstyle.css"), "html", null, true);
+        echo "\" type=\"text/css\" rel=\"stylesheet\">
+        ";
     }
 
     // line 14
@@ -143,7 +145,7 @@ class __TwigTemplate_81aef3ef0aa3352fe3b69c4442204262ca3daa2ba6608a038c9640459c3
 
     public function getDebugInfo()
     {
-        return array (  129 => 29,  125 => 28,  121 => 27,  117 => 26,  113 => 25,  108 => 24,  105 => 23,  100 => 22,  96 => 19,  93 => 18,  89 => 15,  86 => 14,  82 => 11,  77 => 9,  74 => 8,  68 => 6,  62 => 31,  60 => 23,  58 => 22,  54 => 20,  52 => 18,  48 => 16,  46 => 14,  42 => 12,  40 => 8,  36 => 7,  32 => 6,  25 => 1,);
+        return array (  131 => 29,  127 => 28,  123 => 27,  119 => 26,  115 => 25,  110 => 24,  107 => 23,  102 => 22,  98 => 19,  95 => 18,  91 => 15,  88 => 14,  82 => 10,  77 => 9,  74 => 8,  68 => 6,  62 => 31,  60 => 23,  58 => 22,  54 => 20,  52 => 18,  48 => 16,  46 => 14,  42 => 12,  40 => 8,  36 => 7,  32 => 6,  25 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -165,7 +167,7 @@ class __TwigTemplate_81aef3ef0aa3352fe3b69c4442204262ca3daa2ba6608a038c9640459c3
         <link rel=\"icon\" type=\"image/x-icon\" href=\"{{ asset('favicon.ico') }}\" />
         {% block stylesheets %}
             <link href=\"{{ asset('css/main.css') }}\" type=\"text/css\" rel=\"stylesheet\">
-            {#            <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css\" integrity=\"sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp\" crossorigin=\"anonymous\">#}
+            <link href=\"{{ asset('css/loginstyle.css') }}\" type=\"text/css\" rel=\"stylesheet\">
         {% endblock %}
 
     <div id=\"cabecera\">
