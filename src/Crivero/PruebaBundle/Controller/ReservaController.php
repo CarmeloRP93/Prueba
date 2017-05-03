@@ -31,7 +31,7 @@ class ReservaController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $reservas, $request->query->getInt('page', 1), 7);
+                $reservas, $request->query->getInt('page', 1), 6);
 
         return $this->render('CriveroPruebaBundle:Reservas:reservasCliente.html.twig', array("pagination" => $pagination,
                     'notificacionesSinLeer' => $this->getNewNotification()));

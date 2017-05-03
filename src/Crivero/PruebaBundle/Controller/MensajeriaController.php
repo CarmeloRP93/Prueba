@@ -97,7 +97,7 @@ class MensajeriaController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $mensajesRecibidos, $request->query->getInt('page', 1), 9);
+                $mensajesRecibidos, $request->query->getInt('page', 1), 8);
 
         $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $remitentes = array();
@@ -115,7 +115,7 @@ class MensajeriaController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $mensajesEnviados, $request->query->getInt('page', 1), 9);
+                $mensajesEnviados, $request->query->getInt('page', 1), 8);
 
         $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $destinatarios = null;

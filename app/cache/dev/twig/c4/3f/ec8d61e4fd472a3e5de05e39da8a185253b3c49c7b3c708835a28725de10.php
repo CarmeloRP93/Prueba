@@ -147,7 +147,7 @@ class __TwigTemplate_c43fec8d61e4fd472a3e5de05e39da8a185253b3c49c7b3c708835a2872
                 ";
         }
         // line 59
-        echo "                <div class=\"navigation text-center\"  >
+        echo "                <div class=\"navigation text-center\" style=\"margin: -10px\">
                     ";
         // line 60
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));

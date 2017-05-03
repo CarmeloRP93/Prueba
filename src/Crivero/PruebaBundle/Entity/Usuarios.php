@@ -288,7 +288,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable {
      * Set imagen
      *
      * @param string $imagen
-     * @return Canchas
+     * @return Usuarios
      */
     public function setImagen($imagen) {
         $this->imagen = $imagen;

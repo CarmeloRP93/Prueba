@@ -89,12 +89,12 @@ class __TwigTemplate_9856cb3c9693313f2d84ec370803e5677b16c4882914cc16d0e6f9a3805
             // line 32
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Asunto", "m.asunto");
             echo "</div></th>
-                                    <th>";
+                            <th>";
             // line 33
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Recibido", "m.fecha");
             echo "</th>
-                                    <th class=\"t3\">Acciones</th>
-                                </tr>
+                            <th class=\"t3\">Acciones</th>
+                            </tr>
                             </thead>
                             <tbody>
                                 ";
@@ -151,12 +151,12 @@ class __TwigTemplate_9856cb3c9693313f2d84ec370803e5677b16c4882914cc16d0e6f9a3805
                 ";
         }
         // line 61
-        echo "            </div>
-            <div class=\"navigation text-center\">
-                ";
-        // line 63
+        echo "                <div class=\"navigation text-center\" style=\"margin: -10px\">
+                    ";
+        // line 62
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
+                </div>
             </div>
         </div>
     </div>
@@ -189,6 +189,6 @@ class __TwigTemplate_9856cb3c9693313f2d84ec370803e5677b16c4882914cc16d0e6f9a3805
 
     public function getDebugInfo()
     {
-        return array (  175 => 70,  170 => 69,  167 => 68,  158 => 63,  154 => 61,  148 => 57,  134 => 49,  128 => 47,  122 => 45,  118 => 43,  116 => 42,  112 => 41,  109 => 40,  106 => 39,  102 => 38,  94 => 33,  90 => 32,  86 => 31,  80 => 27,  76 => 25,  74 => 24,  62 => 15,  47 => 4,  44 => 3,  38 => 2,  11 => 1,);
+        return array (  175 => 70,  170 => 69,  167 => 68,  157 => 62,  154 => 61,  148 => 57,  134 => 49,  128 => 47,  122 => 45,  118 => 43,  116 => 42,  112 => 41,  109 => 40,  106 => 39,  102 => 38,  94 => 33,  90 => 32,  86 => 31,  80 => 27,  76 => 25,  74 => 24,  62 => 15,  47 => 4,  44 => 3,  38 => 2,  11 => 1,);
     }
 }

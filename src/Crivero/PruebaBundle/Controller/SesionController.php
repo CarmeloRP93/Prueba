@@ -35,7 +35,7 @@ class SesionController extends Controller {
         $sesiones = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
 
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 7);
+        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 6);
 
         return $this->render('CriveroPruebaBundle:Sesiones:sesionesCliente.html.twig', array("pagination" => $pagination,
                     'username' => $cliente->getUsername(), 'cId' => $id,
@@ -47,7 +47,7 @@ class SesionController extends Controller {
         $sesiones = $repository->getSesionesMonitor($id);
 
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 7);
+        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 6);
 
         return $this->render('CriveroPruebaBundle:Sesiones:sesionesMonitor.html.twig', array("pagination" => $pagination,
                     'username' => $sesiones[0]->getMonitor(), 'mId' => $id,
@@ -232,7 +232,6 @@ class SesionController extends Controller {
     public function cancelarAction($id, Request $request) {
         $em = $this->getDoctrine()->getManager();
         $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
-        $aula = $this->findEntity($sesion->getAula(), $em, 'CriveroPruebaBundle:Aulas');
 
         $form = $this->createCancelForm($sesion);
         $form->handleRequest($request);
@@ -263,9 +262,6 @@ class SesionController extends Controller {
                         $em->persist($diaReserva[0]);
                     }
                 }
-
-                $this->removeSesionId($aula, $id);
-                $em->persist($aula);
                 $em->flush();
 
                 $idsUsuarios = explode('&', $sesion->getIdsClientes() . '&' . $sesion->getIdMonitor());
@@ -369,13 +365,6 @@ class SesionController extends Controller {
             $resultado[$i] = $repository->find($array[$i]);
         }
         return $resultado;
-    }
-
-    private function removeSesionId($entity, $id) {
-        $pos = strpos($entity->getSesiones(), strval($id));
-        $cifra = strlen(strval($id));
-        ($pos > 0) ? $entity->setSesiones(substr($entity->getSesiones(), 0, $pos - 1) . substr($entity->getSesiones(), $pos + $cifra)) :
-                        $entity->setSesiones(substr($entity->getSesiones(), $pos + ($cifra + 1)));
     }
 
     private function actualizarValores($hoy, $mes, $limite) {

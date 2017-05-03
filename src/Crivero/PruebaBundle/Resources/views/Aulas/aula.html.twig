@@ -17,75 +17,86 @@
         <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xs-offset-0 col-sm-offset-1 col-md-offset-2 col-lg-offset-0">
             <div class="panel panel-default text-center">
                 <div class="panel-body">
-                    <div class="col-md-6 col-xs-12">
+                    <div class="row">
                         <div class="text-center">
-                            <h4>Disponibilidad </h4><p>{{ aula.horario }}</p>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                                <h4>Disponibilidad </h4><p>{{ aula.horario }}</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                                <h4>Aforo</h4><p>{{ aula.aforo }} personas</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                                <h4>Dimensiones </h4><p>{{aula.dimensiones ~ ' m²'}} </p>
+                            </div>
+                        </div>
+                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 text-center">
                             <h4>Descripción</h4><p>{{ aula.descripcion }}</p>
                         </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <h4>Dimensiones </h4><p>{{aula.dimensiones ~ ' m²'}} </p>
-                        <h4>Sesiones </h4> 
-                        {% if aula.sesiones != null %}
-                            <ul>
-                                {% set i = 0 %}
-                                {% for sesion in sesiones if i < 3 %}
-                                    {% set i = i+1 %}
-                                    <li style="list-style: none">
-                                        <p>{{ sesion.nombre }} - {{sesion.monitor|capitalize}}
-                                            {% if sesion.estado == 'validada' %}
-                                                <a style="margin-bottom: 0; padding: 1px 1px; line-height: 0;" class="btn btn-xs btn-primary" href="{{path('crivero_prueba_horarios_sesion', { id: sesion.id })}}">
-                                                    <img src="{{ asset("images/clock.png") }}" style="width: 13px" />
-                                                </a>
-                                            {% else %}
-                                                <button style="margin-bottom: 0; padding: 1px 1px; line-height: 0;" class="btn btn-xs btn-danger" disabled>
-                                                    <img src="{{ asset("images/clock.png") }}" style="width: 13px" />
-                                                </button>
-                                            {% endif %}
-                                        </p>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                            <form action="{{ path('crivero_prueba_sesiones_aula', { id: aula.id }) }}" method="post" class="form-signin">
-                                <button type="submit" class="btn btn-sm btn-success">Ver sesiones</button>
-                            </form>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <h4>Sesiones </h4> 
+                            {% if aula.sesiones != null %}
+                                <ul>
+                                    {% set i = 0 %}
+                                    {% for sesion in sesiones if i < 3 %}
+                                        {% set i = i+1 %}
+                                        <li style="list-style: none">
+                                            <p>{{ sesion.nombre }} - {{sesion.monitor|capitalize}}
+                                                {% if sesion.estado == 'validada' %}
+                                                    <a style="margin-bottom: 0; padding: 1px 1px; line-height: 0;" class="btn btn-xs btn-primary active" href="{{path('crivero_prueba_horarios_sesion', { id: sesion.id })}}">
+                                                        <img src="{{ asset("images/clock.png") }}" style="width: 13px" />
+                                                    </a>
+                                                {% else %}
+                                                    <button style="margin-bottom: 0; padding: 1px 1px; line-height: 0;" class="btn btn-xs btn-danger" disabled>
+                                                        <img src="{{ asset("images/clock.png") }}" style="width: 13px" />
+                                                    </button>
+                                                {% endif %}
+                                            </p>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                                <form action="{{ path('crivero_prueba_sesiones_aula', { id: aula.id }) }}" method="post" class="form-signin">
+                                    <button type="submit" class="btn btn-sm btn-success">Ver sesiones</button>
+                                </form>
+                            {% else %}
+                                <p style="color: red"><strong>Sin sesiones asignadas.</strong></p>
+                            {% endif %}
+                        </div>
+                        
+                        {% if aula.sesiones == null %}
+                            <div style="display: inline-grid; margin-top: 16px">
+                                <form class="btn-group-vertical" action="{{ path('crivero_prueba_aula_disponibilidad', { id: aula.id }) }}" method="post" class="alinear btn-group">
+                                    <button type="submit" style="margin-bottom: 1px" class="btn btn-primary">Disponibilidad</button>
+                                    <input type="hidden" class="btn">
+                                </form>
+                                <form  class="btn-group-vertical" action="{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}" method="post" class="alinear btn-group">
+                                    <input type="hidden" class="btn">
+                                    <button type="submit" class="btn btn-warning">Modificar aula</button>
+                                </form>
+                            </div>
                         {% else %}
-                            <p style="color: red"><strong>Sin sesiones asignadas.</strong></p>
-                        {% endif %}
+                            <div class="col-md-12 col-xs-12" style="margin-top: 14px; margin-bottom: 7px">
+                                <form style="margin-right: -2px" action="{{ path('crivero_prueba_aula_disponibilidad', { id: aula.id }) }}" method="post" class="alinear btn-group">
+                                    <button type="submit" class="btn btn-primary" style="margin-bottom: 0px">Disponibilidad</button>
+                                    <input type="hidden" class="btn">
+                                </form>
+                                <form style="margin-left: -2px" action="{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}" method="post" class="alinear btn-group">
+                                    <input type="hidden" class="btn">
+                                    <button type="submit" class="btn btn-warning" style="margin-bottom: 0px">Modificar aula</button>
+                                </form>
+                            </div>
+                        {% endif %} 
+
                     </div>
-                    {% if aula.sesiones == null %}
-                        <div style="display: inline-grid; margin-top: 16px">
-                            <form class="btn-group-vertical" action="{{ path('crivero_prueba_aula_disponibilidad', { id: aula.id }) }}" method="post" class="alinear btn-group">
-                                <button type="submit" style="margin-bottom: 1px" class="btn btn-primary">Disponibilidad</button>
-                                <input type="hidden" class="btn">
-                            </form>
-                            <form  class="btn-group-vertical" action="{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}" method="post" class="alinear btn-group">
-                                <input type="hidden" class="btn">
-                                <button type="submit" class="btn btn-warning">Modificar aula</button>
-                            </form>
-                        </div>
-                    {% else %}
-                        <div class="col-md-12 col-xs-12" style="margin-top: 14px; margin-bottom: 7px">
-                            <form style="margin-right: -2px" action="{{ path('crivero_prueba_aula_disponibilidad', { id: aula.id }) }}" method="post" class="alinear btn-group">
-                                <button type="submit" class="btn btn-primary" style="margin-bottom: 0px">Disponibilidad</button>
-                                <input type="hidden" class="btn">
-                            </form>
-                            <form style="margin-left: -2px" action="{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}" method="post" class="alinear btn-group">
-                                <input type="hidden" class="btn">
-                                <button type="submit" class="btn btn-warning" style="margin-bottom: 0px">Modificar aula</button>
-                            </form>
-                        </div>
-                    {% endif %}    
                 </div>
             </div>
-            {% if aula.sesiones != null %}
-                <form action="#">
-                    <input type="button" value="Eliminar aula" class="btn btn-danger active" 
-                           onclick="warningEliminar()" >
-                </form>
-            {% else %}
-                {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar aula" })}}
-            {% endif %}
+                {% if aula.sesiones != null %}
+                    <form action="#">
+                        <input type="button" value="Eliminar aula" class="btn btn-danger active" 
+                               onclick="warningEliminar()" >
+                    </form>
+                {% else %}
+                    {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar aula" })}}
+                {% endif %}
         </div>
     </div>
 

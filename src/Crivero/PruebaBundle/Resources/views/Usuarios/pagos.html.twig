@@ -10,39 +10,43 @@
             <h1 class="t1">{{ usuario.username|capitalize }} - Pagos </h1>
         </div>
 
-        {% if not pagination|length %}
-            <h2>Este cliente aún no ha realizado pagos</h2>
-        {% else %}
-            <div class="table-responsive">
-                <table class="table table-hover table-bordered">
-                    <thead>
-                        <tr>
-                            <th>{{ knp_pagination_sortable(pagination, 'Fecha', 'p.fechaPago') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Tipo', 'p.tipoPago') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Concepto', 'p.concepto') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Cuantia', 'p.cuantia') }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+        <div class="panel panel-default">
+            <div class="panel-body myelement">
+                {% if not pagination|length %}
+                    <h2>Este cliente aún no ha realizado pagos</h2>
+                {% else %}
+                    <div class="table-responsive">
+                        <table class="table table-hover ">
+                            <thead>
+                                <tr>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Fecha de pago', 'p.fechaPago') }}</th>
+                                        {#                            <th>{{ knp_pagination_sortable(pagination, 'Tipo', 'p.tipoPago') }}</th>#}
+                                    <th>{{ knp_pagination_sortable(pagination, 'Concepto', 'p.concepto') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Asunto', 'p.idConcepto') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Importe', 'p.cuantia') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                        {% for pago in pagination %}
-                            <tr data-id="{{ pago.id }}">
-                                <td>{{pago.fechaPago|date('d/m/Y')}}</td>
-                                <td>{{pago.tipoPago}}</td>
-                                <td>{{pago.concepto}}</td>
-                                <td>{{pago.cuantia}}€</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        {% endif %}
-        <div>
-            <a class="btn btn-default" href="{{ path('crivero_prueba_cliente', { id: usuario.id }) }}">Volver atrás</a>
-            <div class="navigation" style="float: right">
-                {{ knp_pagination_render(pagination) }}
+                                {% for pago in pagination %}
+                                    <tr data-id="{{ pago.id }}">
+                                        <td>{{pago.fechaPago|date('d/m/Y')}}</td>
+                                        {#                                <td>{{pago.tipoPago}}</td>#}
+                                        <td>{{pago.concepto}}</td>
+                                        <td>{{entidades[pago.id]}}</td>
+                                        <td>{{pago.cuantia}}€</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                <div class="navigation text-center" style="margin: -10px">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
             </div>
         </div>
+        <a class="btn btn-default" href="{{ path('crivero_prueba_cliente', { id: usuario.id }) }}">Volver atrás</a>
     </div>
 
 {% endblock %}

@@ -58,88 +58,92 @@ class __TwigTemplate_f23249b136e4fba630ab8f4be0674b9981ef55ce0b4b796f58af5c53b87
         echo " - Pagos </h1>
         </div>
 
-        ";
-        // line 13
+        <div class=\"panel panel-default\">
+            <div class=\"panel-body myelement\">
+                ";
+        // line 15
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
-            // line 14
-            echo "            <h2>Este cliente aún no ha realizado pagos</h2>
-        ";
-        } else {
             // line 16
-            echo "            <div class=\"table-responsive\">
-                <table class=\"table table-hover table-bordered\">
-                    <thead>
-                        <tr>
-                            <th>";
-            // line 20
-            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Fecha", "p.fechaPago");
-            echo "</th>
-                            <th>";
-            // line 21
-            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Tipo", "p.tipoPago");
-            echo "</th>
-                            <th>";
+            echo "                    <h2>Este cliente aún no ha realizado pagos</h2>
+                ";
+        } else {
+            // line 18
+            echo "                    <div class=\"table-responsive\">
+                        <table class=\"table table-hover \">
+                            <thead>
+                                <tr>
+                                    <th>";
             // line 22
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Fecha de pago", "p.fechaPago");
+            echo "</th>
+                                        ";
+            // line 24
+            echo "                                    <th>";
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Concepto", "p.concepto");
             echo "</th>
-                            <th>";
-            // line 23
-            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Cuantia", "p.cuantia");
+                                    <th>";
+            // line 25
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Asunto", "p.idConcepto");
             echo "</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                                    <th>";
+            // line 26
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Importe", "p.cuantia");
+            echo "</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                        ";
-            // line 28
+                                ";
+            // line 31
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
             foreach ($context['_seq'] as $context["_key"] => $context["pago"]) {
-                // line 29
-                echo "                            <tr data-id=\"";
+                // line 32
+                echo "                                    <tr data-id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["pago"], "id", array()), "html", null, true);
                 echo "\">
-                                <td>";
-                // line 30
+                                        <td>";
+                // line 33
                 echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["pago"], "fechaPago", array()), "d/m/Y"), "html", null, true);
                 echo "</td>
-                                <td>";
-                // line 31
-                echo twig_escape_filter($this->env, $this->getAttribute($context["pago"], "tipoPago", array()), "html", null, true);
-                echo "</td>
-                                <td>";
-                // line 32
+                                        ";
+                // line 35
+                echo "                                        <td>";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["pago"], "concepto", array()), "html", null, true);
                 echo "</td>
-                                <td>";
-                // line 33
+                                        <td>";
+                // line 36
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entidades"]) ? $context["entidades"] : $this->getContext($context, "entidades")), $this->getAttribute($context["pago"], "id", array()), array(), "array"), "html", null, true);
+                echo "</td>
+                                        <td>";
+                // line 37
                 echo twig_escape_filter($this->env, $this->getAttribute($context["pago"], "cuantia", array()), "html", null, true);
                 echo "€</td>
-                            </tr>
-                        ";
+                                    </tr>
+                                ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pago'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 36
-            echo "                    </tbody>
-                </table>
-            </div>
-        ";
-        }
-        // line 40
-        echo "        <div>
-            <a class=\"btn btn-default\" href=\"";
-        // line 41
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "id", array()))), "html", null, true);
-        echo "\">Volver atrás</a>
-            <div class=\"navigation\" style=\"float: right\">
+            // line 40
+            echo "                            </tbody>
+                        </table>
+                    </div>
                 ";
-        // line 43
+        }
+        // line 44
+        echo "                <div class=\"navigation text-center\" style=\"margin: -10px\">
+                    ";
+        // line 45
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
+                </div>
             </div>
         </div>
+        <a class=\"btn btn-default\" href=\"";
+        // line 49
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "id", array()))), "html", null, true);
+        echo "\">Volver atrás</a>
     </div>
 
 ";
@@ -157,6 +161,6 @@ class __TwigTemplate_f23249b136e4fba630ab8f4be0674b9981ef55ce0b4b796f58af5c53b87
 
     public function getDebugInfo()
     {
-        return array (  139 => 43,  134 => 41,  131 => 40,  125 => 36,  116 => 33,  112 => 32,  108 => 31,  104 => 30,  99 => 29,  95 => 28,  87 => 23,  83 => 22,  79 => 21,  75 => 20,  69 => 16,  65 => 14,  63 => 13,  57 => 10,  51 => 7,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
+        return array (  145 => 49,  138 => 45,  135 => 44,  129 => 40,  120 => 37,  116 => 36,  111 => 35,  107 => 33,  102 => 32,  98 => 31,  90 => 26,  86 => 25,  81 => 24,  77 => 22,  71 => 18,  67 => 16,  65 => 15,  57 => 10,  51 => 7,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
     }
 }

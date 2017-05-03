@@ -30,9 +30,9 @@
                                 <tr>
                                     <th>{{ knp_pagination_sortable(pagination, 'Remitente', 'm.idRemitente') }}</th>
                                     <th><div class="hidden-xs">{{ knp_pagination_sortable(pagination, 'Asunto', 'm.asunto') }}</div></th>
-                                    <th>{{ knp_pagination_sortable(pagination, 'Recibido', 'm.fecha') }}</th>
-                                    <th class="t3">Acciones</th>
-                                </tr>
+                            <th>{{ knp_pagination_sortable(pagination, 'Recibido', 'm.fecha') }}</th>
+                            <th class="t3">Acciones</th>
+                            </tr>
                             </thead>
                             <tbody>
                                 {% for mensaje in pagination %}
@@ -58,9 +58,9 @@
                         </table>
                     </div>
                 {% endif %}
-            </div>
-            <div class="navigation text-center">
-                {{ knp_pagination_render(pagination) }}
+                <div class="navigation text-center" style="margin: -10px">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
             </div>
         </div>
     </div>

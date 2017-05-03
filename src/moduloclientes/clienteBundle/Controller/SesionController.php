@@ -220,6 +220,9 @@ class SesionController extends Controller {
 
         if ($restaCliente == 0 && $sesion->getEstado() == 'cancelada' && $sesion->getIdMonitor() == null) {
             $em->remove($sesion);
+            $aula = $this->findEntity($sesion->getAula(), $em, 'CriveroPruebaBundle:Aulas');
+            $this->removeSesionId($aula, $id);
+            $em->persist($aula);
         } else {
             // Si no está cancelada, el estadoCliente volverá a disponible (esté completa o no)
             $sesion->setEstadoCliente('disponible');
@@ -314,6 +317,13 @@ class SesionController extends Controller {
             $repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())[0]->setEstado("Leido");
             $this->getDoctrine()->getManager()->flush();
         }
+    }
+    
+    private function removeSesionId($entity, $id) {
+        $pos = strpos($entity->getSesiones(), strval($id));
+        $cifra = strlen(strval($id));
+        ($pos > 0) ? $entity->setSesiones(substr($entity->getSesiones(), 0, $pos - 1) . substr($entity->getSesiones(), $pos + $cifra)) :
+                        $entity->setSesiones(substr($entity->getSesiones(), $pos + ($cifra + 1)));
     }
 
 }

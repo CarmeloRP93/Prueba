@@ -8,50 +8,56 @@
             <h1 class="t1"> {{ username|capitalize }} - Sesiones</h1>
         </div>
 
-        <div class="table-responsive">
-            <table class="table table-hover table-bordered">
-                <thead>
-                    <tr>
-                        <th>{{ knp_pagination_sortable(pagination, 'Sesión', 's.nombre') }}</th>
-                        <th>{{ knp_pagination_sortable(pagination, 'Estado', 's.estado') }}</th>
-                        <th>{{ knp_pagination_sortable(pagination, 'Monitor', 's.monitor') }}</th>
-                        <th>{{ knp_pagination_sortable(pagination, 'Participantes', 's.nClientes') }}</th>
-                        <td><strong>Acciones</strong></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for sesion in pagination %}
-                        <tr>
-                            <td>{{sesion.nombre}}</td>
-                            {% if sesion.estado == 'cancelada' %}
-                                <td><strong style="color: red">{{sesion.estado}}</strong></td>
-                                {% else %}
-                                <td><strong>{{sesion.estado}}</strong></td>
-                            {% endif %}
-                            <td>{{sesion.monitor}}</td>
-                            <td>{{sesion.nClientes}}/{{sesion.lClientes}}</td>
+        <div class="panel panel-default">
+            <div class="panel-body myelement">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>{{ knp_pagination_sortable(pagination, 'Sesión', 's.nombre') }}</th>
+                                <th>{{ knp_pagination_sortable(pagination, 'Estado', 's.estado') }}</th>
+                                <th>{{ knp_pagination_sortable(pagination, 'Monitor', 's.monitor') }}</th>
+                                <th>{{ knp_pagination_sortable(pagination, 'Participantes', 's.nClientes') }}</th>
+                                <td><strong>Acciones</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for sesion in pagination %}
+                                <tr>
+                                    <td>{{sesion.nombre}}</td>
+                                    {% if sesion.estado == 'cancelada' or sesion.estado == 'suspendida' %}
+                                        <td><strong style="color: red">{{sesion.estado}}</strong></td>
+                                        {% elseif sesion.estado == 'validada' %}
+                                        <td><strong style="color: greenyellow">{{sesion.estado}}</strong></td>
+                                        {% else %}
+                                        <td><strong> {{sesion.estado}}</strong></td>
+                                    {% endif %}
+                                    <td>{{sesion.monitor}}</td>
+                                    <td>{{sesion.nClientes}}/{{sesion.lClientes}}</td>
 
-                            <td class="actions">
-                                <a href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}" class="btn btn-sm btn-info" style="margin-bottom: 0">
-                                    Ver
-                                </a>
-                                {% if sesion.estado != 'cancelada' %}    
-                                    <a href="{{path('crivero_prueba_horarios_sesion', {id: sesion.id})}}" class="btn btn-sm btn-primary" style="margin-bottom: 0">
-                                        Ver horarios
-                                    </a>
-                                {% endif %}
-                                {#<a href="{{path('crivero_prueba_cancelarSesion', {id: sesion.id})}}" class="btn btn-sm btn-danger btn-delete">
-                                    Cancelar
-                                </a>#}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                                    <td class="actions">
+                                        <a href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}" class="btn btn-sm btn-info" style="margin-bottom: 0">
+                                            Ver
+                                        </a>
+                                        {% if sesion.estado == 'validada' %}    
+                                            <a href="{{path('crivero_prueba_horarios_sesion', {id: sesion.id})}}" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                Ver horarios
+                                            </a>
+                                        {% endif %}
+                                        {#<a href="{{path('crivero_prueba_cancelarSesion', {id: sesion.id})}}" class="btn btn-sm btn-danger btn-delete">
+                                            Cancelar
+                                        </a>#}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="navigation text-center" style="margin: -10px">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
         </div>
         <a class="btn btn-default" href="{{ path('crivero_prueba_cliente', { id: cId }) }}">Volver atrás</a>
-        <div class="navigation" style="float: right">
-            {{ knp_pagination_render(pagination) }}
-        </div>
     </div>
 {% endblock %}
