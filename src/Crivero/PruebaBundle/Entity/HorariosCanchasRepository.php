@@ -34,6 +34,14 @@ class HorariosCanchasRepository extends EntityRepository {
                 ->setParameter('canchaId', $cancha)
                 ->execute();
     }
+    
+    public function getReservaSesion($cancha, $dia) {
+        return $this->getEntityManager()
+                        ->createQuery('SELECT h FROM CriveroPruebaBundle:HorariosCanchas h WHERE h.cancha = :canchaId AND h.fechaInicioSesion = :dia')
+                        ->setParameter('canchaId', $cancha)
+                        ->setParameter('dia', $dia)
+                        ->getResult();
+    }
 
 //    public function createEvent() {
 //        $qb= "CREATE DEFINER=`root`@`localhost` EVENT `rst` ON SCHEDULE EVERY 24 HOUR STARTS '2017-04-19 22:00:00' ON

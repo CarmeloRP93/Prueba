@@ -30,7 +30,13 @@
                         <li class="dropdown-submenu">
                             <a tabindex="-1" href="#">Nueva sesión</a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{url('modulomonitores_monitores_nuevaSesion')}}">Sesión pública</a></li> 
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Sesión Pública</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{url('modulomonitores_monitores_nuevaSesion')}}">Entrenamiento</a></li> 
+                                        <li><a href="{{url('modulomonitores_monitores_nuevaSesionDeportiva')}}">Deportiva</a></li> 
+                                    </ul>
+                                </li>   
                                 <li><a href="{{url('modulomonitores_monitores_nuevaSesionDedicada')}}">Sesión privada</a></li> 
                             </ul>
                         </li>   
@@ -51,22 +57,22 @@
                 <ul class="nav navbar-nav navbar-right">
                     {% if not notificacionesSinLeer|length %}  
                         <li><a href = "{{url('modulomonitores_monitores_notificacionesMonitor')}}"><img src="{{asset('images/campanaSN.png')}}" style="width: 18px;" /></a></li>
-                    {% else %}
+                            {% else %}
                         <li><a href = "{{url('modulomonitores_monitores_notificacionesMonitor')}}"><img src="{{asset('images/campanaCN.png')}}" style="width: 18px;" /></a></li>
-                    {% endif %}
+                            {% endif %}
                     <li><a href = "{{path('modulomonitores_monitores_mensajes_recibidosMonitor')}}"><img src="{{asset('images/correo.png')}}" style="width: 18px;" /></a></li>
                     <li><a href="{{path('modulomonitores_monitores_miperfilm')}}"><img src="{{asset('images/user-128.png')}}" style="width: 18px;" /></a></li>
                     <li><a href="{{path('crivero_prueba_logout')}}" style="margin-right:12px;"><img src="{{asset('images/logout-128.png')}}" style="width: 18px;" /></a></li>
                 </ul>
             {% endif %}
-            
+
             <form method="GET" class="navbar-form navbar-center" role="search">
                 <div class="input-group">
                     <input type="text" name="query" class="form-control" value="{{app.request.get('query')}}" 
                            placeholder="Buscar...">
                     <div class="input-group-btn">
                         <button type="submit" class="btn btn-default">
-                           <img src="{{asset('images/search-128.png')}}" style="width: 15px;" />  
+                            <img src="{{asset('images/search-128.png')}}" style="width: 15px;" />  
                         </button>
                     </div>
                 </div>

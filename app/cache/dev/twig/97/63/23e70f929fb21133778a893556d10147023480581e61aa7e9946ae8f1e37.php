@@ -92,19 +92,6 @@ class __TwigTemplate_976323e70f929fb21133778a893556d10147023480581e61aa7e9946ae8
             // line 27
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
-            $context['loop'] = array(
-              'parent' => $context['_parent'],
-              'index0' => 0,
-              'index'  => 1,
-              'first'  => true,
-            );
-            if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
-                $length = count($context['_seq']);
-                $context['loop']['revindex0'] = $length - 1;
-                $context['loop']['revindex'] = $length;
-                $context['loop']['length'] = $length;
-                $context['loop']['last'] = 1 === $length;
-            }
             foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
                 // line 28
                 echo "                                    <tr data-id=\"";
@@ -128,7 +115,7 @@ class __TwigTemplate_976323e70f929fb21133778a893556d10147023480581e61aa7e9946ae8
                 echo " Sesiones</td>
                                         <td>";
                 // line 33
-                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["aulas"]) ? $context["aulas"] : $this->getContext($context, "aulas")), ($this->getAttribute($context["loop"], "index", array()) - 1), array(), "array"), "nombre", array()), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["aulas"]) ? $context["aulas"] : $this->getContext($context, "aulas")), $this->getAttribute($context["sesion"], "id", array()), array(), "array"), "nombre", array()), "html", null, true);
                 echo "</td>
                                         <td class=\"actions\">
 
@@ -141,14 +128,6 @@ class __TwigTemplate_976323e70f929fb21133778a893556d10147023480581e61aa7e9946ae8
                                         </td>
                                     </tr>
                                 ";
-                ++$context['loop']['index0'];
-                ++$context['loop']['index'];
-                $context['loop']['first'] = false;
-                if (isset($context['loop']['length'])) {
-                    --$context['loop']['revindex0'];
-                    --$context['loop']['revindex'];
-                    $context['loop']['last'] = 0 === $context['loop']['revindex0'];
-                }
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
@@ -184,6 +163,6 @@ class __TwigTemplate_976323e70f929fb21133778a893556d10147023480581e61aa7e9946ae8
 
     public function getDebugInfo()
     {
-        return array (  166 => 47,  163 => 46,  157 => 42,  137 => 36,  131 => 33,  127 => 32,  123 => 31,  119 => 30,  115 => 29,  110 => 28,  93 => 27,  85 => 22,  81 => 21,  77 => 20,  73 => 19,  69 => 18,  63 => 14,  59 => 12,  57 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  145 => 47,  142 => 46,  136 => 42,  124 => 36,  118 => 33,  114 => 32,  110 => 31,  106 => 30,  102 => 29,  97 => 28,  93 => 27,  85 => 22,  81 => 21,  77 => 20,  73 => 19,  69 => 18,  63 => 14,  59 => 12,  57 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

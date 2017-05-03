@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\HorariosCanchasRepository")
  */
-class HorariosCanchas
-{
+class HorariosCanchas {
+
     /**
      * @var integer
      *
@@ -42,14 +42,19 @@ class HorariosCanchas
      */
     private $fechaInicio;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="fechaInicioSesion", type="integer")
+     */
+    private $fechaInicioSesion;
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -59,8 +64,7 @@ class HorariosCanchas
      * @param string $periodo
      * @return HorariosCanchas
      */
-    public function setPeriodo($periodo)
-    {
+    public function setPeriodo($periodo) {
         $this->periodo = $periodo;
 
         return $this;
@@ -71,8 +75,7 @@ class HorariosCanchas
      *
      * @return string 
      */
-    public function getPeriodo()
-    {
+    public function getPeriodo() {
         return $this->periodo;
     }
 
@@ -82,8 +85,7 @@ class HorariosCanchas
      * @param integer $cancha
      * @return HorariosCanchas
      */
-    public function setCancha($cancha)
-    {
+    public function setCancha($cancha) {
         $this->cancha = $cancha;
 
         return $this;
@@ -94,8 +96,7 @@ class HorariosCanchas
      *
      * @return integer 
      */
-    public function getCancha()
-    {
+    public function getCancha() {
         return $this->cancha;
     }
 
@@ -105,8 +106,7 @@ class HorariosCanchas
      * @param string $fechaInicio
      * @return HorariosCanchas
      */
-    public function setFechaInicio($fechaInicio)
-    {
+    public function setFechaInicio($fechaInicio) {
         $this->fechaInicio = $fechaInicio;
 
         return $this;
@@ -117,8 +117,29 @@ class HorariosCanchas
      *
      * @return string 
      */
-    public function getFechaInicio()
-    {
+    public function getFechaInicio() {
         return $this->fechaInicio;
     }
+
+    /**
+     * Set fechaInicioSesion
+     *
+     * @param integer $fechaInicioSesion
+     * @return HorariosCanchas
+     */
+    public function setFechaInicioSesion($fechaInicioSesion) {
+        $this->fechaInicioSesion = $fechaInicioSesion;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaInicioSesion
+     *
+     * @return integer 
+     */
+    public function getFechaInicioSesion() {
+        return $this->fechaInicioSesion;
+    }
+
 }

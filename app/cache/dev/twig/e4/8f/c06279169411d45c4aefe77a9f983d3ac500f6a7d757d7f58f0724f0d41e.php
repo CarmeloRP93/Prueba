@@ -68,7 +68,7 @@ class __TwigTemplate_e48fc06279169411d45c4aefe77a9f983d3ac500f6a7d757d7f58f0724f
             echo "                    <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancelarSesion", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-danger text-center center-block btn-block\" style=\"width: 450px;\">Cancelar</a>
-                    
+
                 ";
         } elseif (($this->getAttribute(        // line 15
 (isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()) == "cancelada")) {
@@ -80,7 +80,7 @@ class __TwigTemplate_e48fc06279169411d45c4aefe77a9f983d3ac500f6a7d757d7f58f0724f
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "observaciones", array()), "html", null, true);
             echo "</h4>   
                     </div>
-                    
+
                 ";
         } elseif (($this->getAttribute(        // line 21
 (isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()) == "rechazada")) {
@@ -92,7 +92,7 @@ class __TwigTemplate_e48fc06279169411d45c4aefe77a9f983d3ac500f6a7d757d7f58f0724f
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "observaciones", array()), "html", null, true);
             echo "</h4>
                     </div>
-                    
+
                 ";
         } elseif (($this->getAttribute(        // line 27
 (isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()) == "suspendida")) {
@@ -101,13 +101,13 @@ class __TwigTemplate_e48fc06279169411d45c4aefe77a9f983d3ac500f6a7d757d7f58f0724f
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "observaciones", array()), "html", null, true);
             echo "</h4>
                     <button class=\"btn btn-danger text-center center-block img-responsive\" style=\"width: 450px;\" disabled>Suspendida</button>
-                    
+
                 ";
         } elseif (($this->getAttribute(        // line 31
 (isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()) == "terminada")) {
             // line 32
             echo "                    <button class=\"btn btn-warning text-center center-block img-responsive\" style=\"width: 450px;\" disabled>Sesión terminada</button>
-                    
+
                 ";
         } else {
             // line 35
@@ -164,52 +164,67 @@ class __TwigTemplate_e48fc06279169411d45c4aefe77a9f983d3ac500f6a7d757d7f58f0724f
             // line 58
             if (($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()) == "validada")) {
                 // line 59
-                echo "                                    <h4>Aula de la sesión</h4> <p>";
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "nombre", array()), "html", null, true);
-                echo "</p>
-                                ";
+                echo "                                    <h4>Recinto de la sesión:</h4> 
+                                    ";
+                // line 60
+                if (($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "concepto", array()) == "aula")) {
+                    echo " 
+                                        <td>";
+                    // line 61
+                    echo twig_escape_filter($this->env, $this->getAttribute((isset($context["recinto"]) ? $context["recinto"] : $this->getContext($context, "recinto")), "nombre", array()), "html", null, true);
+                    echo "</td>
+                                    ";
+                } else {
+                    // line 63
+                    echo "                                        <td>";
+                    echo twig_escape_filter($this->env, $this->getAttribute((isset($context["recinto"]) ? $context["recinto"] : $this->getContext($context, "recinto")), "tipo", array()), "html", null, true);
+                    echo "</td>
+                                    ";
+                }
+                // line 65
+                echo "                                ";
             }
-            // line 61
+            // line 66
             echo "                            ";
         }
-        // line 62
+        // line 67
         echo "                        </div> 
 
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
                             <h4>Duración de cada sesión</h4> <p>";
-        // line 65
+        // line 70
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "duracion", array()), "html", null, true);
         echo " minutos</p>
                             <h4>Descanso entre ejercicios</h4> <p>";
-        // line 66
+        // line 71
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "descanso", array()), "html", null, true);
         echo " segundos </p>
                             <h4>Objetivo de la sesión</h4> <p>";
-        // line 67
+        // line 72
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "objetivo", array()), "html", null, true);
         echo "</p>
                             ";
-        // line 68
+        // line 73
         if (($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "cliente", array()) == "normal")) {
-            // line 69
+            // line 74
             echo "                                <h4>Límite de participantes</h4> <p>";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "lClientes", array()), "html", null, true);
             echo "</p>
                             ";
-        } elseif (($this->getAttribute(        // line 70
+        } elseif (($this->getAttribute(        // line 75
 (isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()) == "validada")) {
-            // line 71
+            // line 76
             echo "                                <h4>Aula de la sesión</h4> <p>";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "nombre", array()), "html", null, true);
             echo "</p>
                             ";
         }
-        // line 73
+        // line 78
         echo "
                             ";
-        // line 74
+        // line 79
         if (($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()) == "validada")) {
-            // line 75
+            // line 80
             echo "                                <form action=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_horarios_sesion", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array()))), "html", null, true);
             echo "\" method=\"post\" class=\"form-signin\">
@@ -217,18 +232,18 @@ class __TwigTemplate_e48fc06279169411d45c4aefe77a9f983d3ac500f6a7d757d7f58f0724f
                                 </form>
                             ";
         }
-        // line 79
+        // line 84
         echo "                        </div>
                         ";
-        // line 80
+        // line 85
         if (((($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()) == "pendiente") || ($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()) == "rechazada")) || ($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()) == "modificada"))) {
-            // line 81
+            // line 86
             echo "                            <h4>Fecha de inicio</h4> <p>";
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "fechaInicio", array()), "d/m/Y"), "html", null, true);
             echo "</p>
                         ";
         }
-        // line 83
+        // line 88
         echo "                    </div>
                 </div>
             </div>
@@ -250,6 +265,6 @@ class __TwigTemplate_e48fc06279169411d45c4aefe77a9f983d3ac500f6a7d757d7f58f0724f
 
     public function getDebugInfo()
     {
-        return array (  232 => 83,  226 => 81,  224 => 80,  221 => 79,  213 => 75,  211 => 74,  208 => 73,  202 => 71,  200 => 70,  195 => 69,  193 => 68,  189 => 67,  185 => 66,  181 => 65,  176 => 62,  173 => 61,  167 => 59,  165 => 58,  160 => 57,  154 => 55,  152 => 54,  147 => 52,  143 => 51,  139 => 50,  131 => 44,  124 => 40,  118 => 37,  114 => 35,  109 => 32,  107 => 31,  100 => 28,  98 => 27,  92 => 24,  88 => 22,  86 => 21,  80 => 18,  76 => 16,  74 => 15,  68 => 13,  66 => 12,  62 => 11,  53 => 7,  47 => 5,  44 => 4,  37 => 3,  11 => 1,);
+        return array (  247 => 88,  241 => 86,  239 => 85,  236 => 84,  228 => 80,  226 => 79,  223 => 78,  217 => 76,  215 => 75,  210 => 74,  208 => 73,  204 => 72,  200 => 71,  196 => 70,  191 => 67,  188 => 66,  185 => 65,  179 => 63,  174 => 61,  170 => 60,  167 => 59,  165 => 58,  160 => 57,  154 => 55,  152 => 54,  147 => 52,  143 => 51,  139 => 50,  131 => 44,  124 => 40,  118 => 37,  114 => 35,  109 => 32,  107 => 31,  100 => 28,  98 => 27,  92 => 24,  88 => 22,  86 => 21,  80 => 18,  76 => 16,  74 => 15,  68 => 13,  66 => 12,  62 => 11,  53 => 7,  47 => 5,  44 => 4,  37 => 3,  11 => 1,);
     }
 }

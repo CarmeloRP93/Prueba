@@ -28,7 +28,7 @@
                                         <td>{{sesion.nombre}}</td>
                                         <td>{{sesion.monitor}}</td>
                                         <td>{{sesion.nSesiones}} Sesiones</td>
-                                        <td>{{aulas[loop.index-1].nombre}}</td>
+                                        <td>{{aulas[sesion.id].nombre}}</td>
                                         <td class="actions">
 
                                             <a href="{{ path('modulomonitores_monitores_sesionDedicada', { id: sesion.id }) }}" class="btn btn-sm btn-primary">

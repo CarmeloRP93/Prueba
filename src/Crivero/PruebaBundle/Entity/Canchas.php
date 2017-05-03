@@ -41,6 +41,14 @@ class Canchas {
      */
     private $horario;
 
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sesiones", type="string", length=1000, nullable=true)
+     */
+    private $sesiones;
+    
     /**
      * @var float
      *
@@ -293,6 +301,27 @@ class Canchas {
     public function setPrecio($precio) {
         $this->precio = $precio;
         return $this;
+    }
+    
+    /**
+     * Set sesiones
+     *
+     * @param string $sesiones
+     * @return Aulas
+     */
+    public function setSesiones($sesiones) {
+        $this->sesiones = $sesiones;
+
+        return $this;
+    }
+
+    /**
+     * Get sesiones
+     *
+     * @return string 
+     */
+    public function getSesiones() {
+        return $this->sesiones;
     }
 
 }

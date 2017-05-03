@@ -14,10 +14,10 @@ class SesionController extends Controller {
     public function sesionesAction(Request $request) {
         $this->changeStateNotification($request->get('id'));
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        
+
         $searchQuery = $request->get('query');
-        (!empty($searchQuery)) ? $sesiones = $repository->searchSesionesGeneralesByAdmin($searchQuery):
-                                 $sesiones = $repository->getSesionesGenerales();
+        (!empty($searchQuery)) ? $sesiones = $repository->searchSesionesGeneralesByAdmin($searchQuery) :
+                        $sesiones = $repository->getSesionesGenerales();
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -53,7 +53,7 @@ class SesionController extends Controller {
                     'username' => $sesiones[0]->getMonitor(), 'mId' => $id,
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
-    
+
     public function horariosSesionAction($id, Request $request) {
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repositorySesiones->find($id);
@@ -61,20 +61,24 @@ class SesionController extends Controller {
 
 //        $paginator = $this->get('knp_paginator');
 //        $pagination = $paginator->paginate($horarios, $request->query->getInt('page', 1), 8);
-
-        $aula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas")->find($sesion->getAula())->getNombre();
-
+        $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+        $repositoryCancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
+        if ($sesion->getConcepto() == 'aula') {
+            $recinto = $repositoryAula->find($sesion->getAula());
+        } else {
+            $recinto = $repositoryCancha->find($sesion->getCancha());
+        }
         return $this->render('CriveroPruebaBundle:Sesiones:horariosSesion.html.twig', array("sesion" => $sesion,
-                    "pagination" => $horarios, 'aula' => $aula, 'notificacionesSinLeer' => $this->getNewNotification()));
+                    "pagination" => $horarios, 'recinto' => $recinto, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function dedicadasAction(Request $request) {
         $this->changeStateNotification($request->get('id'));
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        
+
         $searchQuery = $request->get('query');
-        (!empty($searchQuery)) ? $sesiones = $repository->searchSesionesDedicadasByAdmin($searchQuery):
-                                 $sesiones = $repository->getSesionesDedicadas();
+        (!empty($searchQuery)) ? $sesiones = $repository->searchSesionesDedicadasByAdmin($searchQuery) :
+                        $sesiones = $repository->getSesionesDedicadas();
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -87,11 +91,16 @@ class SesionController extends Controller {
         $this->changeStateNotification($id);
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repository->find($id);
+        $repositoryCancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
 
         $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
-        $aula = $repositoryAula->find($sesion->getAula());
+        if ($sesion->getConcepto() == 'aula') {
+            $recinto = $repositoryAula->find($sesion->getAula());
+        } else {
+            $recinto = $repositoryCancha->find($sesion->getCancha());
+        }
         return $this->render('CriveroPruebaBundle:Sesiones:sesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),
-                    "sesion" => $sesion, "aula" => $aula, 'notificacionesSinLeer' => $this->getNewNotification()));
+                    "sesion" => $sesion, "recinto" => $recinto, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function aceptarSesionAction($id, Request $request) {
@@ -100,9 +109,8 @@ class SesionController extends Controller {
         $sesion->setEstado("validada");
         $sesion->setEstadoCliente("disponible");
 
-        $aula = $this->findEntity($sesion->getAula(), $em, 'CriveroPruebaBundle:Aulas');
-        ($aula->getSesiones() == null) ? $aula->setSesiones($sesion->getId()) :
-                        $aula->setSesiones($aula->getSesiones() . "&" . $sesion->getId());
+
+
 
         $hoy = (int) date_format($sesion->getFechaInicio(), 'd');
         $mes = date_format($sesion->getFechaInicio(), 'm');
@@ -110,12 +118,11 @@ class SesionController extends Controller {
         $duracion = $sesion->getNSesiones();
         //$this->actualizarValores($hoy, $mes, $limite);
 
-        $repositoryHorarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
+
 
         $vuelta = 0;
         $diasSelect = explode('&', $sesion->getDias());
         for ($i = $hoy; $i <= $limite; $i++) {
-            print_r($i);
             $flagDiaSemana = false;
             if (!$this->isWeekend($i, $mes, $vuelta)) {
                 foreach ($diasSelect as $dia) {
@@ -140,17 +147,28 @@ class SesionController extends Controller {
                     }
                     continue;
                 }
-                $diaReserva = $repositoryHorarios->getDiaReserva($sesion->getAula(), $i);
-                if ($diaReserva[0]->getPeriodo() != null) {
-                    $fechaReserva = $this->findFechaReserva($diaReserva[0], $mes);
-                    ($sesion->getHorario() == null) ? $horarioCompleto = $fechaReserva :
-                                    $horarioCompleto = $sesion->getHorario() . "&" . $fechaReserva;
-                    $sesion->setHorario($horarioCompleto);
-                    $em->persist($diaReserva[0]);
-                    $duracion--;
-                    if ($duracion == 0)
-                        break;
+                $tiempo = false;
+                if ($sesion->getDuracion() > 60) {
+                    $tiempo = true;
                 }
+                if ($sesion->getConcepto() == 'cancha') {
+
+                    $repositoryHorariosCanchas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosCanchas");
+                    $diaReserva = $repositoryHorariosCanchas->getReservaSesion($sesion->getCancha(), $i);
+                } else {
+
+                    $repositoryHorariosAulas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
+                    $diaReserva = $repositoryHorariosAulas->getDiaReserva($sesion->getAula(), $i);
+                }
+                $horaComienzo = $sesion->getHoraComienzo();
+                $fechaReserva = $this->findFechaReserva($diaReserva[0], $mes, $horaComienzo, $tiempo, $sesion->getConcepto());
+                ($sesion->getHorario() == null) ? $horarioCompleto = $fechaReserva :
+                                $horarioCompleto = $sesion->getHorario() . "&" . $fechaReserva;
+                $sesion->setHorario($horarioCompleto);
+                $em->persist($diaReserva[0]);
+                $duracion--;
+                if ($duracion == 0)
+                    break;
             }
             if ($i >= $limite) {
                 // $this->updateMonth($i, $mes, $vuelta, $limite);
@@ -168,7 +186,17 @@ class SesionController extends Controller {
         }
 
         $em->persist($sesion);
-        $em->persist($aula);
+        if ($sesion->getConcepto() == 'cancha') {
+            $cancha = $this->findEntity($sesion->getCancha(), $em, 'CriveroPruebaBundle:Canchas');
+            ($cancha->getSesiones() == null) ? $cancha->setSesiones($sesion->getId()) :
+                            $cancha->setSesiones($cancha->getSesiones() . "&" . $sesion->getId());
+            $em->persist($cancha);
+        } else {
+            $aula = $this->findEntity($sesion->getAula(), $em, 'CriveroPruebaBundle:Aulas');
+            ($aula->getSesiones() == null) ? $aula->setSesiones($sesion->getId()) :
+                            $aula->setSesiones($aula->getSesiones() . "&" . $sesion->getId());
+            $em->persist($aula);
+        }
         $em->flush();
 
         $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
@@ -383,11 +411,34 @@ class SesionController extends Controller {
         }
     }
 
-    private function findFechaReserva($diaReserva, $mes) {
-        $pos = strpos($diaReserva->getPeriodo(), "&");
-        $horaReserva = substr($diaReserva->getPeriodo(), 0, $pos);
-        $diaReserva->setPeriodo(substr($diaReserva->getPeriodo(), $pos + 1));
-        $fechaReserva = $diaReserva->getFechaInicio() . "/" . $mes . " : " . $horaReserva;
+    private function findFechaReserva($diaReserva, $mes, $horaComienzo, $tiempo, $concepto) {
+        if ($tiempo) {
+            $periodo = explode('&', $diaReserva->getPeriodo());
+            $horaReserva = $periodo[$horaComienzo - 1] . $periodo[$horaComienzo];
+            $periodoComienzo = explode('-', $horaReserva);
+            $horaReserva = $periodoComienzo[0] . "-" . $periodoComienzo[count($periodoComienzo) - 1];
+            unset($periodo[$horaComienzo - 1]);
+            $arrayPeriodo = array_values($periodo);
+            unset($arrayPeriodo[$horaComienzo - 1]);
+            $arrayPeriodo1 = array_values($arrayPeriodo);
+            $diaReserva->setPeriodo(implode($arrayPeriodo1, '&'));
+            if ($concepto == 'cancha') {
+                $fechaReserva = $diaReserva->getFechaInicioSesion() . "/" . $mes . " : " . $horaReserva;
+            } else {
+                $fechaReserva = $diaReserva->getFechaInicio() . "/" . $mes . " : " . $horaReserva;
+            }
+            return $fechaReserva;
+        }
+        $periodo = explode('&', $diaReserva->getPeriodo());
+        $horaReserva = $periodo[$horaComienzo - 1];
+        unset($periodo[$horaComienzo - 1]);
+        $arrayPeriodo = array_values($periodo);
+        $diaReserva->setPeriodo(implode($arrayPeriodo, '&'));
+        if ($concepto == 'cancha') {
+            $fechaReserva = $diaReserva->getFechaInicioSesion() . "/" . $mes . " : " . $horaReserva;
+        } else {
+            $fechaReserva = $diaReserva->getFechaInicio() . "/" . $mes . " : " . $horaReserva;
+        }
         return $fechaReserva;
     }
 

@@ -166,9 +166,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // modulomonitores_monitores_nuevaSesion
-        if ($pathinfo === '/nuevaSesion') {
-            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::nuevaSesionAction',  '_route' => 'modulomonitores_monitores_nuevaSesion',);
+        if (0 === strpos($pathinfo, '/nuevaSesion')) {
+            // modulomonitores_monitores_nuevaSesion
+            if ($pathinfo === '/nuevaSesion') {
+                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::nuevaSesionAction',  '_route' => 'modulomonitores_monitores_nuevaSesion',);
+            }
+
+            // modulomonitores_monitores_nuevaSesionDeportiva
+            if ($pathinfo === '/nuevaSesionDeportiva') {
+                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::nuevaSesionDeportivaAction',  '_route' => 'modulomonitores_monitores_nuevaSesionDeportiva',);
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/editarSesion')) {
@@ -227,16 +235,30 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\DedicadaController::nuevaSesionDedicadaAction',  '_route' => 'modulomonitores_monitores_nuevaSesionDedicada',);
         }
 
-        // modulomonitores_monitores_crearSesion
-        if ($pathinfo === '/crearSesion') {
-            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
-                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
-                goto not_modulomonitores_monitores_crearSesion;
-            }
+        if (0 === strpos($pathinfo, '/crearSesion')) {
+            // modulomonitores_monitores_crearSesion
+            if ($pathinfo === '/crearSesion') {
+                if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                    goto not_modulomonitores_monitores_crearSesion;
+                }
 
-            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::crearSesionAction',  '_route' => 'modulomonitores_monitores_crearSesion',);
+                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::crearSesionAction',  '_route' => 'modulomonitores_monitores_crearSesion',);
+            }
+            not_modulomonitores_monitores_crearSesion:
+
+            // modulomonitores_monitores_crearSesionDeportiva
+            if ($pathinfo === '/crearSesionDeportiva') {
+                if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                    goto not_modulomonitores_monitores_crearSesionDeportiva;
+                }
+
+                return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::crearSesionDeportivaAction',  '_route' => 'modulomonitores_monitores_crearSesionDeportiva',);
+            }
+            not_modulomonitores_monitores_crearSesionDeportiva:
+
         }
-        not_modulomonitores_monitores_crearSesion:
 
         if (0 === strpos($pathinfo, '/editar')) {
             // modulomonitores_monitores_editar

@@ -23,8 +23,8 @@ class DedicadaController extends Controller {
         $pagination = $paginator->paginate(
                 $sesiones, $request->query->getInt('page', 1), 5);
         $aulas = null;
-        foreach ($sesiones as $clave => $sesion) {
-            $aulas[$clave] = $repositoryAula->find($sesion->getAula());
+        foreach ($sesiones as $sesion) {
+            $aulas[$sesion->getId()] = $repositoryAula->find($sesion->getAula());
         }
         return $this->render('modulomonitoresmonitoresBundle:Privada:sesionesDedicadas.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "pagination" => $pagination, "aulas" => $aulas));
     }
@@ -52,8 +52,8 @@ class DedicadaController extends Controller {
         $pagination = $paginator->paginate(
                 $sesiones, $request->query->getInt('page', 1), 5);
         $aulas = null;
-        foreach ($sesiones as $clave => $sesion) {
-            $aulas[$clave] = $repositoryAula->find($sesion->getAula());
+        foreach ($sesiones as  $sesion) {
+            $aulas[$sesion->getId()] = $repositoryAula->find($sesion->getAula());
         }
         return $this->render('modulomonitoresmonitoresBundle:Privada:misSesionesDedicadas.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "pagination" => $pagination, "aulas" => $aulas));
     }
@@ -62,10 +62,24 @@ class DedicadaController extends Controller {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $sesion = $repository->find($id);
+        $horario = explode('&', $sesion->getHorario());
+        $ultimaSesion = $horario[count($horario) - 1];
+        if ($ultimaSesion{1} == '/') {
+            $ultimaSesion = "0" . $ultimaSesion;
+        }
+        $dia = (int) substr($ultimaSesion, 0, 2);
+        $mes = (int) substr($ultimaSesion, 3, 2);
+
+        $flag = false;
+        if ((int) date("d") >= $dia && $mes == date("n")) {
+            $flag = true;
+        } elseif ($mes < date("n")) {
+            $flag = true;
+        }
         $this->changeStateNotification($id);
         $aula = $repositoryAula->find($sesion->getAula());
         $deleteForm = $this->createDeleteFormDedicada($sesion);
-        return $this->render('modulomonitoresmonitoresBundle:Privada:miSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "sesion" => $sesion, "aula" => $aula, 'delete_form' => $deleteForm->createView()));
+        return $this->render('modulomonitoresmonitoresBundle:Privada:miSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "sesion" => $sesion, "flag" => $flag, "aula" => $aula, 'delete_form' => $deleteForm->createView()));
     }
 
     private function createDeleteFormDedicada($sesion) {
@@ -172,16 +186,17 @@ class DedicadaController extends Controller {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $aulas = $repository->findAll();
         $aulasD = array();
-        $contador = 0;
-        foreach ($aulas as $clave => $aula) {
+        $contadorA = 0;
+        foreach ($aulas as $aula) {
             if ($aula->getDisponibilidad() == "Disponible") {
-                $aulasD[$contador] = $aula;
-                $contador++;
+                $aulasD[$contadorA] = $aula;
+                $contadorA++;
             }
         }
-        $form = $this->createForm(new SesionesType($aulasD), $entity, array(
-            'action' => $this->generateUrl('modulomonitores_monitores_crearSesionDedicada'),
-            'method' => 'POST'
+        $flag = true;
+        $form = $this->createForm(new SesionesType($aulasD, $flag), $entity, array(
+            'action' => $this->generateUrl('modulomonitores_monitores_editarDedicada', array('id' => $entity->getId())),
+            'method' => 'PUT'
         ));
         return $form;
     }
@@ -209,9 +224,13 @@ class DedicadaController extends Controller {
                 $form->get('fechaInicio')->addError(new FormError('Seleccione una fecha válida'));
                 return $this->render('modulomonitoresmonitoresBundle:Privada:nuevaSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
             }
-            if ($form->get('duracion')->getData() > 60) {
-                $form->get('duracion')->addError(new FormError('Máximo 60 minutos por sesión'));
+            if ($form->get('duracion')->getData() > 120) {
+                $form->get('duracion')->addError(new FormError('Máximo 120 minutos por sesión'));
                 return $this->render('modulomonitoresmonitoresBundle:Privada:nuevaSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
+            }
+            if ($form->get('aula')->getData() === null) {
+                $form->get('aula')->addError(new FormError('Seleccione un aula'));
+                return $this->render('modulomonitoresmonitoresBundle:Publica:nuevaSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
             }
             $dias = $form->get('dias')->getData();
             $diasElegidos = "";
@@ -223,8 +242,8 @@ class DedicadaController extends Controller {
                     $diasElegidos = $diasElegidos . "&" . $dia;
                 }
             }
-            if (count($dias) < 2) {
-                $form->get('dias')->addError(new FormError('Seleccione mínimo dos días'));
+            if (count($dias) < 1) {
+                $form->get('dias')->addError(new FormError('Seleccione mínimo un día'));
                 return $this->render('modulomonitoresmonitoresBundle:Privada:nuevaSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
             }
             $sesion->setDias($diasElegidos);
@@ -271,15 +290,16 @@ class DedicadaController extends Controller {
     private function createEdiDediForm(Sesiones $entity) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $aulas = $repository->findAll();
-        $aulasD=array();
-        $contador = 0;
-        foreach ($aulas as $clave => $aula) {
+        $aulasD = array();
+        $contadorA = 0;
+        foreach ($aulas as $aula) {
             if ($aula->getDisponibilidad() == "Disponible") {
-                $aulasD[$contador] = $aula;
-                $contador++;
+                $aulasD[$contadorA] = $aula;
+                $contadorA++;
             }
         }
-        $form = $this->createForm(new SesionesType($aulasD), $entity, array(
+        $flag = true;
+        $form = $this->createForm(new SesionesType($aulasD, $flag), $entity, array(
             'action' => $this->generateUrl('modulomonitores_monitores_editarDedicada', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));
@@ -301,8 +321,8 @@ class DedicadaController extends Controller {
                 $form->get('nSesiones')->addError(new FormError('El límite son 20 sesiones'));
                 return $this->render('modulomonitoresmonitoresBundle:Privada:editarSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
             }
-            if ($form->get('duracion')->getData() > 60) {
-                $form->get('duracion')->addError(new FormError('Máximo 60 minutos por sesión'));
+            if ($form->get('duracion')->getData() > 120) {
+                $form->get('duracion')->addError(new FormError('Máximo 120 minutos por sesión'));
                 return $this->render('modulomonitoresmonitoresBundle:Privada:editarSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
             }
             $dias = $form->get('dias')->getData();
@@ -315,8 +335,8 @@ class DedicadaController extends Controller {
                     $diasElegidos = $diasElegidos . "&" . $dia;
                 }
             }
-            if (count($dias) < 2) {
-                $form->get('dias')->addError(new FormError('Seleccione mínimo dos días'));
+            if (count($dias) < 1) {
+                $form->get('dias')->addError(new FormError('Seleccione mínimo un día'));
                 return $this->render('modulomonitoresmonitoresBundle:Privada:editarSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
             }
             $sesion->setDias($diasElegidos);

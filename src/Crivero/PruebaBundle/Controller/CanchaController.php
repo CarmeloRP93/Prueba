@@ -23,7 +23,7 @@ class CanchaController extends Controller {
         
         $flags = array();
         foreach ($canchas as $cancha) {
-            $nReservas = count($this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas")->getAllReservasCancha($cancha->getId()));
+            $nReservas = count($this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas")->getAllReservasCancha($cancha->getId())->getResult());
             if ($nReservas > 0) {
                 $flags[$cancha->getId()] = 1;
             } else {
@@ -274,7 +274,7 @@ class CanchaController extends Controller {
         $cont = 1;
         $mes = date('m');
         $limite = date('t');
-        for ($i = date('d') + 1; $cont < 31; $i++) {
+        for ($i = (int) date('d'); $cont <= 31; $i++) {
             if ($i == $limite + 1) {
                 $i = 1;
                 if ($mes == 12)
@@ -288,6 +288,7 @@ class CanchaController extends Controller {
             $horario->setCancha($canchaId);
             ($i <= 9) ? $dia = "0" . $i : $dia = $i;
             $horario->setFechaInicio($dia . "-" . $mes);
+            $horario->setFechaInicioSesion($dia);
             $em->persist($horario);
             $cont++;
         }

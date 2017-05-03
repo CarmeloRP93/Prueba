@@ -63,6 +63,12 @@ class Sesiones {
      * @ORM\Column(name="imagen", type="string", length=255)
      */
     private $imagen;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="concepto", type="string", length=255)
+     */
+    private $concepto;
 
     /**
      * @var string
@@ -84,9 +90,14 @@ class Sesiones {
      * @var integer
      *
      * @ORM\Column(name="aula", type="integer", nullable=true)
-     * @Assert\NotBlank(message="Rellene el campo.")
      */
     private $aula;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cancha", type="integer", nullable=true)
+     */
+    private $cancha;
     
     /**
      * @var string
@@ -161,6 +172,13 @@ class Sesiones {
      * @Assert\NotBlank(message="Rellene el campo.")
      */
     private $nSesiones;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="horaComienzo", type="integer", nullable=true)
+     */
+    private $horaComienzo;
 
     /**
      * @var string
@@ -309,6 +327,28 @@ class Sesiones {
     public function getImagen()
     {
         return $this->imagen;
+    }
+    /**
+     * Set concepto
+     *
+     * @param string $concepto
+     * @return Sesiones
+     */
+    public function setConcepto($concepto)
+    {
+        $this->concepto = $concepto;
+
+        return $this;
+    }
+
+    /**
+     * Get concepto
+     *
+     * @return string 
+     */
+    public function getConcepto()
+    {
+        return $this->concepto;
     }
 
     /**
@@ -585,6 +625,26 @@ class Sesiones {
 
         return $this;
     }
+    /**
+     * Get Cancha
+     *
+     * @return integer 
+     */
+    public function getCancha() {
+        return $this->cancha;
+    }
+    
+     /**
+     * Set Cancha
+     *
+     * @param integer $cancha
+     * @return Sesiones
+     */
+    public function setCancha($cancha) {
+        $this->cancha = $cancha;
+
+        return $this;
+    }
     
     /**
      * Get dias
@@ -647,6 +707,26 @@ class Sesiones {
      */
     public function getNSesiones() {
         return $this->nSesiones;
+    }
+    /**
+     * Set horaComienzo
+     *
+     * @param integer $horaComienzo
+     * @return Sesiones
+     */
+    public function setHoraComienzo($horaComienzo) {
+        $this->horaComienzo = $horaComienzo;
+
+        return $this;
+    }
+
+    /**
+     * Get horaComienzo
+     *
+     * @return integer 
+     */
+    public function getHoraComienzo() {
+        return $this->horaComienzo;
     }
     
     /**

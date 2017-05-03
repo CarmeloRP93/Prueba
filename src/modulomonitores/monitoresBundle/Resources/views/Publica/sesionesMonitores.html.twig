@@ -30,7 +30,11 @@
                                         <td>{{sesion.monitor}}</td>
                                         <td>{{sesion.nClientes}} Clientes</td>
                                         <td>{{sesion.nSesiones}} Sesiones</td>
-                                        <td>{{aulas[loop.index-1].nombre}}</td>
+                                        {% if sesion.concepto == "aula" %} 
+                                        <td>{{recinto[sesion.id].nombre}}</td>
+                                        {% else %}
+                                        <td>{{recinto[sesion.id].tipo}}</td>
+                                        {% endif %}
                                         <td class="actions">
 
                                             <a href="{{ path('modulomonitores_monitores_sesionMonitores', { id: sesion.id }) }}" class="btn btn-sm btn-primary">

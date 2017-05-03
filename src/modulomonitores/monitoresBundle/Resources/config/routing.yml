@@ -32,6 +32,9 @@ modulomonitores_monitores_miSesionDedicada:
 modulomonitores_monitores_nuevaSesion:
     pattern:  /nuevaSesion
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:nuevaSesion }
+modulomonitores_monitores_nuevaSesionDeportiva:
+    pattern:  /nuevaSesionDeportiva
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:nuevaSesionDeportiva }
 modulomonitores_monitores_editarSesion:
     pattern:  /editarSesion/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:editarSesion }
@@ -60,6 +63,11 @@ modulomonitores_monitores_nuevaSesionDedicada:
 modulomonitores_monitores_crearSesion:
     pattern:  /crearSesion
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:crearSesion }
+    requirements:
+        _method:  POST|GET
+modulomonitores_monitores_crearSesionDeportiva:
+    pattern:  /crearSesionDeportiva
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:crearSesionDeportiva }
     requirements:
         _method:  POST|GET
 modulomonitores_monitores_editar:

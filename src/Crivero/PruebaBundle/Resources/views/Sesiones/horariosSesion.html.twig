@@ -7,7 +7,13 @@
         <div class="page-header">
             <h1 class="t1">Sesión {{ sesion.nombre }} - Horarios</h1>
         </div>
-        <h4 class="t3">*Las sesiones se realizarán en el aula: {{aula}}</h4>
+        <h4 class="t3">Recinto de la sesión: 
+            {% if sesion.concepto == "aula" %} 
+                <td>{{recinto.nombre}}</td>
+            {% else %}
+                <td>{{recinto.tipo}}</td>
+            {% endif %}
+        </h4>
         <div>
             <table id="differentTable" class="table table-hover table-bordered table-condensed" >
                 <thead>
