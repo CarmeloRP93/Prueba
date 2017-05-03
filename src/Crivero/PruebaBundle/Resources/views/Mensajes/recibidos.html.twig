@@ -38,7 +38,7 @@
                                 {% for mensaje in pagination %}
                                     {{ (mensaje.estado == "nuevo") ? "<tr data-id='{{ mensaje.id }}' style='font-weight: bold'>"|raw : 
                                                              "<tr data-id='{{ mensaje.id }}'>"|raw }}
-                                <td>{{ remitentes[loop.index0] }}</td>
+                                <td>{{ remitentes[mensaje.id] }}</td>
                                 {% if mensaje.asunto == null %}
                                     <td>Sin asunto</td>
                                 {% else %}

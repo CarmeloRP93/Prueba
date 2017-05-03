@@ -66,7 +66,7 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
             <a class=\"navbar-brand\" href=\"#\"> <img src=\"";
         // line 18
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/logo.png"), "html", null, true);
-        echo "\" style=\"width: 30px\"> </a>
+        echo "\" style=\"width: 30px; margin-top: -5px\"> </a>
         </div>
 
 

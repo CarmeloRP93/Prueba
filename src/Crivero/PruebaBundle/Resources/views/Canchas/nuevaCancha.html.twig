@@ -41,19 +41,31 @@
                             </div>
 
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                 <div class="form-group">
+                                <div class="form-group">
+                                    {{ form_label(form.direccion) }}
+                                    {{ form_widget(form.direccion, {'attr': {'class': 'form-control', 'placeholder' : 'Localización de la cancha'}}) }}
+                                    <span class="text-danger">{{ form_errors(form.direccion) }}</span>
+                                </div> 
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
                                     {{ form_label(form.dimensiones) }}
-                                    {{ form_widget(form.dimensiones, {'attr': {'class': 'form-control', 'placeholder' : 'Tamaño cancha'}}) }}
+                                    {{ form_widget(form.dimensiones, {'attr': {'class': 'form-control', 'placeholder' : 'Tamaño de la cancha'}}) }}
                                     <span class="text-danger">{{ form_errors(form.dimensiones) }}</span>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    {{ form_label(form.precio) }}
+                                    {{ form_widget(form.precio, {'attr': {'class': 'form-control', 'placeholder' : 'Coste de reserva por hora. Ej: 5.25'}}) }}
+                                    <span class="text-danger">{{ form_errors(form.precio) }}</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            {{ form_label(form.direccion) }}
-                            {{ form_widget(form.direccion, {'attr': {'class': 'form-control', 'placeholder' : 'Localización de la cancha'}}) }}
-                            <span class="text-danger">{{ form_errors(form.direccion) }}</span>
-                        </div>
+
 
                         <div class="form-group">
                             {{ form_label(form.imagen) }}

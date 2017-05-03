@@ -93,15 +93,16 @@ class MensajeriaController extends Controller {
     public function mensajesRecibidosAction(Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Comentarios");
         $mensajesRecibidos = $repository->getMensajesRecibidos($this->getUser()->getId());
+        $mensajesRecibidosNO = $repository->getMensajesRecibidosNoOrden($this->getUser()->getId());
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $mensajesRecibidos, $request->query->getInt('page', 1), 9);
 
         $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
-        $remitentes = null;
-        foreach ($mensajesRecibidos->getResult() as $clave => $mensaje) {
-            $remitentes[$clave] = $repositoryUsuarios->find($mensaje->getIdRemitente())->getUsername();
+        $remitentes = array();
+        foreach ($mensajesRecibidosNO as $mensaje) {
+            $remitentes[$mensaje->getId()] = $repositoryUsuarios->find($mensaje->getIdRemitente())->getUsername();
         }
 
         return $this->render('CriveroPruebaBundle:Mensajes:recibidos.html.twig', array('pagination' => $pagination,

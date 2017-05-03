@@ -101,19 +101,6 @@ class __TwigTemplate_9856cb3c9693313f2d84ec370803e5677b16c4882914cc16d0e6f9a3805
             // line 38
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
-            $context['loop'] = array(
-              'parent' => $context['_parent'],
-              'index0' => 0,
-              'index'  => 1,
-              'first'  => true,
-            );
-            if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
-                $length = count($context['_seq']);
-                $context['loop']['revindex0'] = $length - 1;
-                $context['loop']['revindex'] = $length;
-                $context['loop']['length'] = $length;
-                $context['loop']['last'] = 1 === $length;
-            }
             foreach ($context['_seq'] as $context["_key"] => $context["mensaje"]) {
                 // line 39
                 echo "                                    ";
@@ -122,7 +109,7 @@ class __TwigTemplate_9856cb3c9693313f2d84ec370803e5677b16c4882914cc16d0e6f9a3805
                 echo "
                                 <td>";
                 // line 41
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["remitentes"]) ? $context["remitentes"] : $this->getContext($context, "remitentes")), $this->getAttribute($context["loop"], "index0", array()), array(), "array"), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["remitentes"]) ? $context["remitentes"] : $this->getContext($context, "remitentes")), $this->getAttribute($context["mensaje"], "id", array()), array(), "array"), "html", null, true);
                 echo "</td>
                                 ";
                 // line 42
@@ -153,14 +140,6 @@ class __TwigTemplate_9856cb3c9693313f2d84ec370803e5677b16c4882914cc16d0e6f9a3805
                                 </td>
                                 </tr>
                             ";
-                ++$context['loop']['index0'];
-                ++$context['loop']['index'];
-                $context['loop']['first'] = false;
-                if (isset($context['loop']['length'])) {
-                    --$context['loop']['revindex0'];
-                    --$context['loop']['revindex'];
-                    $context['loop']['last'] = 0 === $context['loop']['revindex0'];
-                }
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['mensaje'], $context['_parent'], $context['loop']);
@@ -210,6 +189,6 @@ class __TwigTemplate_9856cb3c9693313f2d84ec370803e5677b16c4882914cc16d0e6f9a3805
 
     public function getDebugInfo()
     {
-        return array (  196 => 70,  191 => 69,  188 => 68,  179 => 63,  175 => 61,  169 => 57,  147 => 49,  141 => 47,  135 => 45,  131 => 43,  129 => 42,  125 => 41,  122 => 40,  119 => 39,  102 => 38,  94 => 33,  90 => 32,  86 => 31,  80 => 27,  76 => 25,  74 => 24,  62 => 15,  47 => 4,  44 => 3,  38 => 2,  11 => 1,);
+        return array (  175 => 70,  170 => 69,  167 => 68,  158 => 63,  154 => 61,  148 => 57,  134 => 49,  128 => 47,  122 => 45,  118 => 43,  116 => 42,  112 => 41,  109 => 40,  106 => 39,  102 => 38,  94 => 33,  90 => 32,  86 => 31,  80 => 27,  76 => 25,  74 => 24,  62 => 15,  47 => 4,  44 => 3,  38 => 2,  11 => 1,);
     }
 }

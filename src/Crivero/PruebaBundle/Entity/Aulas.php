@@ -80,6 +80,15 @@ class Aulas {
      *          message="Rellene el campo.")
      */
     private $descripcion;
+   
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="aforo", type="integer", nullable=false)
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
+     */
+    private $aforo;
 
     /**
      * Get id
@@ -232,6 +241,26 @@ class Aulas {
      */
     public function setDescripcion($descripcion) {
         $this->descripcion = $descripcion;
+        return $this;
+    }
+    
+    /**
+     * Get aforo
+     *
+     * @return integer 
+     */
+    public function getAforo() {
+        return $this->aforo;
+    }
+    
+    /**
+     * Set aforo
+     *
+     * @param integer $aforo
+     * @return Aulas
+     */
+    public function setAforo($aforo) {
+        $this->aforo = $aforo;
         return $this;
     }
 }

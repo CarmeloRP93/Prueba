@@ -86,6 +86,19 @@ class Canchas {
      *          message="Rellene el campo.")
      */
     private $dimensiones;
+    
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="precio", type="float", nullable=false)
+     * @Assert\NotBlank(
+     *          message="Rellene el campo.")
+     * @Assert\Regex(
+     *     pattern="/^[0-9]+((\.[0-9]{1,2})?)$/",
+     *     message="Introduzca un precio válido.")
+     * 
+     */
+    private $precio;
 
     /**
      * Get id
@@ -260,6 +273,26 @@ class Canchas {
      */
     public function getDimensiones() {
         return $this->dimensiones;
+    }
+    
+    /**
+     * Get precio
+     *
+     * @return float
+     */
+    public function getPrecio() {
+        return $this->precio;
+    }
+    
+    /**
+     * Set precio
+     *
+     * @param float $precio
+     * @return Canchas
+     */
+    public function setPrecio($precio) {
+        $this->precio = $precio;
+        return $this;
     }
 
 }

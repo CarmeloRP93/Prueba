@@ -21,6 +21,15 @@ class ComentariosRepository extends EntityRepository {
                         ->orderBy("m.fecha", 'DESC')
                         ->getQuery();
     }
+    
+    public function getMensajesRecibidosNoOrden($usuarioId) {
+        return $this->getEntityManager()
+                        ->createQueryBuilder()->select('m')
+                        ->from('CriveroPruebaBundle:Comentarios', 'm')
+                        ->where("m.idDestinatario = :dest")
+                        ->setParameter('dest', $usuarioId)
+                        ->getQuery()->getResult();
+    }
 
     public function getMensajesEnviados($usuarioId) {
         return $this->getEntityManager()

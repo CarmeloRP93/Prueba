@@ -24,6 +24,7 @@ class CanchasType extends AbstractType
                                                                        "No disponible" => 'No disponible')))
             ->add('direccion', 'text', array('label' => 'Dirección (recinto u otra)'))
             ->add('dimensiones', 'integer', array('label' => 'Dimensiones (m²)'))
+            ->add('precio', 'text', array('label' => 'Precio (€)'))
             ->add('imagen', 'file',  array('data_class' => null))
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;

@@ -15,12 +15,14 @@
                 {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
                 <div class="panel-body">
                     <form role="form">
-                        <div class="form-group">
-                            {{ form_label(form.nombre) }}
-                            {{ form_widget(form.nombre, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Nombre del aula'} }) }}
-                            <span class="text-danger">{{ form_errors(form.nombre) }}</span>
-                        </div>
                         <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    {{ form_label(form.nombre) }}
+                                    {{ form_widget(form.nombre, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Nombre del aula'} }) }}
+                                    <span class="text-danger">{{ form_errors(form.nombre) }}</span>
+                                </div>
+                            </div>
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
                                 <div class="form-group">
@@ -29,12 +31,23 @@
                                     <span class="text-danger">{{ form_errors(form.disponibilidad) }}</span>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
                                 <div class="form-group">
                                     {{ form_label(form.dimensiones) }}
-                                    {{ form_widget(form.dimensiones, { 'attr' : {'class' : 'form-control', 'placeholder': "Tamaño aula"} }) }}
+                                    {{ form_widget(form.dimensiones, { 'attr' : {'class' : 'form-control', 'placeholder': "Tamaño del aula"} }) }}
                                     <span class="text-danger">{{ form_errors(form.dimensiones) }}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                                <div class="form-group">
+                                    {{ form_label(form.aforo) }}
+                                    {{ form_widget(form.aforo, { 'attr' : {'class' : 'form-control', 'placeholder': "Capacidad del aula"} }) }}
+                                    <span class="text-danger">{{ form_errors(form.aforo) }}</span>
                                 </div>
 
                             </div>
@@ -45,7 +58,7 @@
                             {{ form_widget(form.descripcion, { 'attr' : {'class' : 'form-control', 'placeholder': "Escriba una descripción del aula..."} }) }}
                             <span class="text-danger">{{ form_errors(form.descripcion) }}</span>
                         </div>
-                        
+
                         <div class="form-group">
                             {{ form_label(form.imagen) }}
                             {{ form_widget(form.imagen) }}
@@ -64,7 +77,8 @@
                 </div>
             </div>
         </div>
-    </div>               
+    </div>
+</div>               
 </div>
 </div>           
 
