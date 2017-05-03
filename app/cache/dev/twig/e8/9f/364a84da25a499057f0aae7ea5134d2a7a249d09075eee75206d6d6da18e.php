@@ -145,59 +145,99 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
 
         <div class=\"row\">
             <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-xs\">
-";
-        // line 57
-        echo "                <div class=\"panel panel-default\">                  
+                <div class=\"panel panel-default\">                  
                     <div class=\"panel-body\">
                         <table class=\"table ";
-        // line 59
+        // line 58
         echo "\">
                             <tbody>
                                 ";
+        // line 60
+        $context["i"] = 1;
         // line 61
+        echo "                                ";
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["horarios"]) ? $context["horarios"] : $this->getContext($context, "horarios")));
         foreach ($context['_seq'] as $context["_key"] => $context["horario"]) {
             // line 62
             echo "                                    <tr>
-                                        <th>Día ";
+                                        ";
             // line 63
-            echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute($context["horario"], "fechaInicio", array()), "-"), 0, array(), "array"), "html", null, true);
-            echo "</th>
-                                            ";
-            // line 64
+            if (((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) == 1)) {
+                // line 64
+                echo "                                            <td style='border: none'><strong>Día ";
+                echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute($context["horario"], "fechaInicio", array()), "-"), 0, array(), "array"), "html", null, true);
+                echo "</strong></td>
+                                        ";
+            } else {
+                // line 66
+                echo "                                            <td><strong>Día ";
+                echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute($context["horario"], "fechaInicio", array()), "-"), 0, array(), "array"), "html", null, true);
+                echo "</strong></td>
+                                        ";
+            }
+            // line 68
+            echo "                                        ";
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable(twig_split_filter($this->env, "09:00-10:00&10:00-11:00&11:00-12:00&12:00-13:00&13:00-14:00&14:00-15:00&15:00-16:00&16:00-17:00&17:00-18:00&18:00-19:00&19:00-20:00&20:00-21:00&21:00-22:00", "&"));
             foreach ($context['_seq'] as $context["_key"] => $context["horitas"]) {
-                // line 65
-                echo "                                                ";
+                // line 69
+                echo "                                            ";
                 if ( !twig_in_filter($context["horitas"], $this->getAttribute($context["horario"], "periodo", array()))) {
-                    // line 66
-                    echo "                                                <td><font color=\"red\">";
-                    echo twig_escape_filter($this->env, $context["horitas"], "html", null, true);
-                    echo "</font></td>
+                    // line 70
+                    echo "                                                ";
+                    if (((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) == 1)) {
+                        // line 71
+                        echo "                                                    <td style=\"border: none; color: red\">";
+                        echo twig_escape_filter($this->env, $context["horitas"], "html", null, true);
+                        echo "</td>
                                                 ";
+                    } else {
+                        // line 73
+                        echo "                                                    <td style=\"color: red\">";
+                        echo twig_escape_filter($this->env, $context["horitas"], "html", null, true);
+                        echo "</td>
+                                                ";
+                    }
+                    // line 75
+                    echo "                                            ";
                 } else {
-                    // line 68
-                    echo "                                                <td>";
-                    echo twig_escape_filter($this->env, $context["horitas"], "html", null, true);
-                    echo "</td>
-                                            ";
+                    // line 76
+                    echo "                                                ";
+                    if (((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) == 1)) {
+                        // line 77
+                        echo "                                                    <td style=\"border: none;\">";
+                        echo twig_escape_filter($this->env, $context["horitas"], "html", null, true);
+                        echo "</td>
+                                                ";
+                    } else {
+                        // line 79
+                        echo "                                                    <td>";
+                        echo twig_escape_filter($this->env, $context["horitas"], "html", null, true);
+                        echo "</td>
+                                                ";
+                    }
+                    // line 81
+                    echo "                                            ";
                 }
-                // line 70
+                // line 82
                 echo "                                        ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['horitas'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 71
+            // line 83
             echo "                                    </tr>
-                                ";
+                                    ";
+            // line 84
+            $context["i"] = ((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) + 1);
+            // line 85
+            echo "                                ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['horario'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 73
+        // line 86
         echo "                            </tbody>
                         </table>
                     </div>
@@ -205,7 +245,7 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
             </div>
         </div>
         <a class=\"btn btn-default\" href=\"";
-        // line 79
+        // line 92
         echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_canchasClientes");
         echo "\">Volver atrás</a>
     </div><br>
@@ -224,6 +264,6 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
 
     public function getDebugInfo()
     {
-        return array (  209 => 79,  201 => 73,  194 => 71,  188 => 70,  182 => 68,  176 => 66,  173 => 65,  169 => 64,  165 => 63,  162 => 62,  158 => 61,  154 => 59,  150 => 57,  140 => 49,  131 => 43,  127 => 41,  123 => 39,  120 => 38,  111 => 36,  106 => 35,  104 => 34,  97 => 30,  91 => 27,  85 => 24,  76 => 17,  72 => 15,  66 => 13,  64 => 12,  60 => 11,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  249 => 92,  241 => 86,  235 => 85,  233 => 84,  230 => 83,  224 => 82,  221 => 81,  215 => 79,  209 => 77,  206 => 76,  203 => 75,  197 => 73,  191 => 71,  188 => 70,  185 => 69,  180 => 68,  174 => 66,  168 => 64,  166 => 63,  163 => 62,  158 => 61,  156 => 60,  152 => 58,  140 => 49,  131 => 43,  127 => 41,  123 => 39,  120 => 38,  111 => 36,  106 => 35,  104 => 34,  97 => 30,  91 => 27,  85 => 24,  76 => 17,  72 => 15,  66 => 13,  64 => 12,  60 => 11,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

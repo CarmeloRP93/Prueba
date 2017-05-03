@@ -52,13 +52,23 @@ class SesionController extends Controller {
 
     public function misSesionesAction(Request $request) {
         $idsSesionesCliente = explode('&', $this->getUser()->getSesiones());
+        $searchQuery = $request->get('query');
         $sesiones = array();
+        $resultado = array();
         if ($idsSesionesCliente[0] != null) {
             $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-            $sesiones = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
+            if (!empty($searchQuery)) {
+                $sesiones = $this->getArrayEntidadesBusqueda($repositorySesiones, $idsSesionesCliente, $searchQuery);
+            } else {
+                $sesiones = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
+            }
+            foreach ($sesiones as $i => $sesion) {
+                $resultado[$i] = $sesion;
+            }
         }
+
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 5);
+        $pagination = $paginator->paginate($resultado, $request->query->getInt('page', 1), 5);
         return $this->render('moduloclientesclienteBundle:Sesiones:misSesiones.html.twig', array("pagination" => $pagination,
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
@@ -98,7 +108,7 @@ class SesionController extends Controller {
             $idCliente = $cliente->getId();
             $pago->setFechaPago(date('d-m-Y'));
             $pago->setIdCliente($idCliente);
-            
+
             $tipoSuscripcion = $form->get('tipoSuscripcion')->getData();
 
             $em = $this->getDoctrine()->getManager();
@@ -269,6 +279,19 @@ class SesionController extends Controller {
         $resultado = array();
         for ($i = 0; $i < count($array); $i++) {
             $resultado[$i] = $repository->find($array[$i]);
+        }
+        return $resultado;
+    }
+
+    private function getArrayEntidadesBusqueda($repository, $array, $searchQuery) {
+        $resultado = array();
+        $n = 0;
+        for ($i = 0; $i < count($array); $i++) {
+            if ($repository->searchMisSesiones($searchQuery, $array[$i]) == array()) {
+                continue;
+            }
+            $resultado[$n] = $repository->searchMisSesiones($searchQuery, $array[$i])[0];
+            $n++;
         }
         return $resultado;
     }
