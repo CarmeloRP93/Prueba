@@ -44,7 +44,8 @@ class CanchaController extends Controller {
     public function canchaAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
         $cancha = $repository->find($id);
-        $nReservas = count($this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas")->getAllReservasCancha($id));
+        $nReservas = count($this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas")
+                           ->getAllReservasCancha($id)->getResult());
 
         $deleteForm = $this->createCustomForm($cancha->getId(), 'DELETE', 'crivero_prueba_cancha_eliminar');
         return $this->render('CriveroPruebaBundle:Canchas:cancha.html.twig', array("cancha" => $cancha,
@@ -54,7 +55,7 @@ class CanchaController extends Controller {
 
     public function canchaReservasAction($id, Request $request) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas");
-        $reservas = $repository->getReservasCancha($id);
+        $reservas = $repository->getAllReservasCancha($id);
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(

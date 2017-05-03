@@ -66,18 +66,8 @@ class ReservasRepository extends EntityRepository {
                     ->from('CriveroPruebaBundle:Reservas', 'r')
                     ->where("r.idCancha = :id")
                     ->setParameter('id', $id)
-                    ->getQuery()->getResult();
+                    ->getQuery();
     }
-    
-    public function getUltimaReservaCliente($id) {
-        return $this->getEntityManager()
-                        ->createQueryBuilder()->select('r')
-                        ->from('CriveroPruebaBundle:Reservas', 'r')
-                        ->where("r.estadoReserva = 'Reservado'")
-                        ->andWhere("r.idCliente = :idCliente")
-                        ->orderBy("r.id", 'DESC')
-                        ->setParameter('idCliente', $id)
-                        ->getQuery();
-    }
+
 
 }

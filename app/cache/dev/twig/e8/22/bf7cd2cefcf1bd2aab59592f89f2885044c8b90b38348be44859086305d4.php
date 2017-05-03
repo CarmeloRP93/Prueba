@@ -105,47 +105,58 @@ class __TwigTemplate_e822bf7cd2cefcf1bd2aab59592f89f2885044c8b90b38348be44859086
                 // line 34
                 echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "nombre", array()), "html", null, true);
                 echo "</td>
-                                        <td><strong>";
+                                        ";
                 // line 35
-                echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "disponibilidad", array()), "html", null, true);
-                echo "</strong></td>
-                                        <td>";
-                // line 36
+                if (($this->getAttribute($context["aula"], "disponibilidad", array()) == "Disponible")) {
+                    // line 36
+                    echo "                                            <td><strong>";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "disponibilidad", array()), "html", null, true);
+                    echo "</strong></td>
+                                        ";
+                } else {
+                    // line 38
+                    echo "                                            <td><strong style=\"color: red\">";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "disponibilidad", array()), "html", null, true);
+                    echo "</strong></td>
+                                        ";
+                }
+                // line 40
+                echo "                                        <td>";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "horario", array()), "html", null, true);
                 echo "</td>
                                         <td>";
-                // line 37
+                // line 41
                 echo twig_escape_filter($this->env, ($this->getAttribute($context["aula"], "dimensiones", array()) . "m²"), "html", null, true);
                 echo "</td>
                                         <td class=\"actions\">
                                             <a href=\"";
-                // line 39
+                // line 43
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_aula", array("id" => $this->getAttribute($context["aula"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-info\">
                                                 Ver
                                             </a>
                                             <a href=\"";
-                // line 42
+                // line 46
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_aula_editar", array("id" => $this->getAttribute($context["aula"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-primary\">
                                                 Editar
                                             </a>
                                             ";
-                // line 45
+                // line 49
                 if (($this->getAttribute($context["aula"], "sesiones", array()) == null)) {
-                    // line 46
+                    // line 50
                     echo "                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
                                                     Eliminar
                                                 </a>
                                             ";
                 } else {
-                    // line 50
+                    // line 54
                     echo "                                                <a onclick=\"warningEliminar()\" class=\"btn btn-sm btn-danger\">
                                                     Eliminar
                                                 </a>
                                             ";
                 }
-                // line 54
+                // line 58
                 echo "                                        </td>
                                     </tr>
                                 ";
@@ -153,16 +164,16 @@ class __TwigTemplate_e822bf7cd2cefcf1bd2aab59592f89f2885044c8b90b38348be44859086
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['aula'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 57
+            // line 61
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 61
+        // line 65
         echo "                <div class=\"navigation text-center\">
                     ";
-        // line 62
+        // line 66
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                 </div>
@@ -170,21 +181,21 @@ class __TwigTemplate_e822bf7cd2cefcf1bd2aab59592f89f2885044c8b90b38348be44859086
         </div>
     </div>
     ";
-        // line 67
+        // line 71
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "id" => "form-delete", "with_submit" => false));
         echo "
 ";
     }
 
-    // line 69
+    // line 73
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 70
+        // line 74
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <script src=\"";
-        // line 71
+        // line 75
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/criveroprueba/js/delete-aula.js"), "html", null, true);
         echo "\"></script>
     <script>
@@ -212,6 +223,6 @@ class __TwigTemplate_e822bf7cd2cefcf1bd2aab59592f89f2885044c8b90b38348be44859086
 
     public function getDebugInfo()
     {
-        return array (  188 => 71,  183 => 70,  180 => 69,  174 => 67,  166 => 62,  163 => 61,  157 => 57,  149 => 54,  143 => 50,  137 => 46,  135 => 45,  129 => 42,  123 => 39,  118 => 37,  114 => 36,  110 => 35,  106 => 34,  101 => 33,  97 => 32,  89 => 27,  85 => 26,  81 => 25,  77 => 24,  71 => 20,  67 => 18,  65 => 17,  55 => 10,  44 => 3,  38 => 2,  11 => 1,);
+        return array (  199 => 75,  194 => 74,  191 => 73,  185 => 71,  177 => 66,  174 => 65,  168 => 61,  160 => 58,  154 => 54,  148 => 50,  146 => 49,  140 => 46,  134 => 43,  129 => 41,  124 => 40,  118 => 38,  112 => 36,  110 => 35,  106 => 34,  101 => 33,  97 => 32,  89 => 27,  85 => 26,  81 => 25,  77 => 24,  71 => 20,  67 => 18,  65 => 17,  55 => 10,  44 => 3,  38 => 2,  11 => 1,);
     }
 }

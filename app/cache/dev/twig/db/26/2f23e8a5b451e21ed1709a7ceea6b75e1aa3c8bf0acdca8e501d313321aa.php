@@ -92,16 +92,27 @@ class __TwigTemplate_db262f23e8a5b451e21ed1709a7ceea6b75e1aa3c8bf0acdca8e501d313
                 // line 27
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
                 echo "</td>
-                                        <td><strong>";
+                                        ";
                 // line 28
-                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "estado", array()), "html", null, true);
-                echo "</strong></td>
-                                        <td>";
-                // line 29
+                if (($this->getAttribute($context["sesion"], "estado", array()) == "cancelada")) {
+                    // line 29
+                    echo "                                            <td><strong style=\"color: red\">";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "estado", array()), "html", null, true);
+                    echo "</strong></td>
+                                            ";
+                } else {
+                    // line 31
+                    echo "                                            <td><strong>";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "estado", array()), "html", null, true);
+                    echo "</strong></td>
+                                        ";
+                }
+                // line 33
+                echo "                                        <td>";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "monitor", array()), "html", null, true);
                 echo "</td>
                                         <td>";
-                // line 30
+                // line 34
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nClientes", array()), "html", null, true);
                 echo "/";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "lClientes", array()), "html", null, true);
@@ -109,30 +120,30 @@ class __TwigTemplate_db262f23e8a5b451e21ed1709a7ceea6b75e1aa3c8bf0acdca8e501d313
 
                                         <td class=\"actions\">
                                             <a href=\"";
-                // line 33
+                // line 37
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_sesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-info\">
                                                 Ver
                                             </a>
                                             ";
-                // line 36
+                // line 40
                 if (($this->getAttribute($context["sesion"], "estado", array()) == "pendiente")) {
-                    // line 37
+                    // line 41
                     echo "                                                <a href=\"";
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_aceptarSesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
                     echo "\" class=\"btn btn-sm btn-success\">
                                                     Aceptar
                                                 </a>
                                                 <a href=\"";
-                    // line 40
+                    // line 44
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_rechazarSesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
                     echo "\" class=\"btn btn-sm btn-danger btn-delete\">
                                                     Rechazar
                                                 </a>
                                             ";
-                } elseif (($this->getAttribute(                // line 43
+                } elseif (($this->getAttribute(                // line 47
 $context["sesion"], "estado", array()) == "validada")) {
-                    // line 44
+                    // line 48
                     echo "                                                <a href=\"";
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancelarSesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
                     echo "\" class=\"btn btn-sm btn-danger btn-delete\">
@@ -140,7 +151,7 @@ $context["sesion"], "estado", array()) == "validada")) {
                                                 </a>
                                             ";
                 }
-                // line 48
+                // line 52
                 echo "                                        </td>
                                     </tr>
                                 ";
@@ -148,16 +159,16 @@ $context["sesion"], "estado", array()) == "validada")) {
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 51
+            // line 55
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 55
+        // line 59
         echo "                <div class=\"navigation text-center\">
                     ";
-        // line 56
+        // line 60
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                 </div>
@@ -179,6 +190,6 @@ $context["sesion"], "estado", array()) == "validada")) {
 
     public function getDebugInfo()
     {
-        return array (  161 => 56,  158 => 55,  152 => 51,  144 => 48,  136 => 44,  134 => 43,  128 => 40,  121 => 37,  119 => 36,  113 => 33,  105 => 30,  101 => 29,  97 => 28,  93 => 27,  90 => 26,  86 => 25,  78 => 20,  74 => 19,  70 => 18,  66 => 17,  60 => 13,  56 => 11,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  172 => 60,  169 => 59,  163 => 55,  155 => 52,  147 => 48,  145 => 47,  139 => 44,  132 => 41,  130 => 40,  124 => 37,  116 => 34,  111 => 33,  105 => 31,  99 => 29,  97 => 28,  93 => 27,  90 => 26,  86 => 25,  78 => 20,  74 => 19,  70 => 18,  66 => 17,  60 => 13,  56 => 11,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

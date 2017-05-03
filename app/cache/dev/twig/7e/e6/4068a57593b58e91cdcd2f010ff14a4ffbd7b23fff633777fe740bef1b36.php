@@ -92,45 +92,56 @@ class __TwigTemplate_7ee64068a57593b58e91cdcd2f010ff14a4ffbd7b23fff633777fe740be
                 // line 27
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
                 echo "</td>
-                                        <td><strong>";
+                                        ";
                 // line 28
-                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "estado", array()), "html", null, true);
-                echo "</strong></td>
-                                        <td>";
-                // line 29
+                if (($this->getAttribute($context["sesion"], "estado", array()) == "cancelada")) {
+                    // line 29
+                    echo "                                            <td><strong style=\"color: red\">";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "estado", array()), "html", null, true);
+                    echo "</strong></td>
+                                            ";
+                } else {
+                    // line 31
+                    echo "                                            <td><strong>";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "estado", array()), "html", null, true);
+                    echo "</strong></td>
+                                        ";
+                }
+                // line 33
+                echo "                                        <td>";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "monitor", array()), "html", null, true);
                 echo "</td>
                                         <td>";
-                // line 30
+                // line 34
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "cliente", array()), "html", null, true);
                 echo "</td>
 
                                         <td class=\"actions\">
                                             <a href=\"";
-                // line 33
+                // line 37
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_sesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-info\">
                                                 Ver
                                             </a>
                                             ";
-                // line 36
+                // line 40
                 if ((($this->getAttribute($context["sesion"], "estado", array()) == "pendiente") || ($this->getAttribute($context["sesion"], "estado", array()) == "modificada"))) {
-                    // line 37
+                    // line 41
                     echo "                                                <a href=\"";
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_aceptarSesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
                     echo "\" class=\"btn btn-sm btn-success\">
                                                     Aceptar
                                                 </a>
                                                 <a href=\"";
-                    // line 40
+                    // line 44
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_rechazarSesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
                     echo "\" class=\"btn btn-sm btn-danger btn-delete\">
                                                     Rechazar
                                                 </a>
                                             ";
-                } elseif (($this->getAttribute(                // line 43
+                } elseif (($this->getAttribute(                // line 47
 $context["sesion"], "estado", array()) == "validada")) {
-                    // line 44
+                    // line 48
                     echo "                                                <a href=\"";
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancelarSesion", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
                     echo "\" class=\"btn btn-sm btn-danger btn-delete\">
@@ -138,7 +149,7 @@ $context["sesion"], "estado", array()) == "validada")) {
                                                 </a>
                                             ";
                 }
-                // line 48
+                // line 52
                 echo "                                        </td>
                                     </tr>
                                 ";
@@ -146,16 +157,16 @@ $context["sesion"], "estado", array()) == "validada")) {
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 51
+            // line 55
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 55
+        // line 59
         echo "                <div class=\"navigation text-center\">
                     ";
-        // line 56
+        // line 60
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                 </div>
@@ -177,6 +188,6 @@ $context["sesion"], "estado", array()) == "validada")) {
 
     public function getDebugInfo()
     {
-        return array (  159 => 56,  156 => 55,  150 => 51,  142 => 48,  134 => 44,  132 => 43,  126 => 40,  119 => 37,  117 => 36,  111 => 33,  105 => 30,  101 => 29,  97 => 28,  93 => 27,  90 => 26,  86 => 25,  78 => 20,  74 => 19,  70 => 18,  66 => 17,  60 => 13,  56 => 11,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  170 => 60,  167 => 59,  161 => 55,  153 => 52,  145 => 48,  143 => 47,  137 => 44,  130 => 41,  128 => 40,  122 => 37,  116 => 34,  111 => 33,  105 => 31,  99 => 29,  97 => 28,  93 => 27,  90 => 26,  86 => 25,  78 => 20,  74 => 19,  70 => 18,  66 => 17,  60 => 13,  56 => 11,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

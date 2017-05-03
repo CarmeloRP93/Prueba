@@ -109,44 +109,55 @@ class __TwigTemplate_61de5bc18fd01e4cfc9121771a367af9a6352a150b334f54517d541b7a8
                 // line 35
                 echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "deporte", array()), "html", null, true);
                 echo "</td>
-                                        <td><strong>";
+                                        ";
                 // line 36
-                echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
-                echo "</strong></td>
-                                        <td>";
-                // line 37
+                if (($this->getAttribute($context["cancha"], "disponibilidad", array()) == "Disponible")) {
+                    // line 37
+                    echo "                                            <td><strong>";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
+                    echo "</strong></td>
+                                        ";
+                } else {
+                    // line 39
+                    echo "                                            <td><strong style=\"color: red\">";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
+                    echo "</strong></td>
+                                        ";
+                }
+                // line 41
+                echo "                                        <td>";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "horario", array()), "html", null, true);
                 echo "</td>
                                         <td class=\"actions\">
                                             <a href=\"";
-                // line 39
+                // line 43
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-info\">
                                                 Ver
                                             </a>
                                             <a href=\"";
-                // line 42
+                // line 46
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha_editar", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-primary\">
                                                 Editar
                                             </a>
                                             
                                             ";
-                // line 46
+                // line 50
                 if (($this->getAttribute((isset($context["flags"]) ? $context["flags"] : $this->getContext($context, "flags")), $this->getAttribute($context["cancha"], "id", array()), array(), "array") == 0)) {
-                    // line 47
+                    // line 51
                     echo "                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
                                                     Eliminar
                                                 </a>
                                             ";
                 } else {
-                    // line 51
+                    // line 55
                     echo "                                                 <a onclick=\"warningEliminar()\" class=\"btn btn-sm btn-danger\">
                                                     Eliminar
                                                 </a>
                                             ";
                 }
-                // line 55
+                // line 59
                 echo "                                        </td>
                                     </tr>
                                 ";
@@ -154,17 +165,17 @@ class __TwigTemplate_61de5bc18fd01e4cfc9121771a367af9a6352a150b334f54517d541b7a8
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cancha'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 58
+            // line 62
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 61
+        // line 65
         echo "        
                 <div class=\"navigation text-center\">
                     ";
-        // line 63
+        // line 67
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                 </div>
@@ -172,21 +183,21 @@ class __TwigTemplate_61de5bc18fd01e4cfc9121771a367af9a6352a150b334f54517d541b7a8
         </div>
     </div>
     ";
-        // line 68
+        // line 72
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "id" => "form-delete", "with_submit" => false));
         echo "
 ";
     }
 
-    // line 70
+    // line 74
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 71
+        // line 75
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <script src=\"";
-        // line 72
+        // line 76
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/criveroprueba/js/delete-cancha.js"), "html", null, true);
         echo "\"></script>
     <script>
@@ -214,6 +225,6 @@ class __TwigTemplate_61de5bc18fd01e4cfc9121771a367af9a6352a150b334f54517d541b7a8
 
     public function getDebugInfo()
     {
-        return array (  190 => 72,  185 => 71,  182 => 70,  176 => 68,  168 => 63,  164 => 61,  158 => 58,  150 => 55,  144 => 51,  138 => 47,  136 => 46,  129 => 42,  123 => 39,  118 => 37,  114 => 36,  110 => 35,  106 => 34,  101 => 33,  97 => 32,  89 => 27,  85 => 26,  81 => 25,  77 => 24,  71 => 20,  67 => 18,  65 => 17,  55 => 10,  47 => 4,  44 => 3,  38 => 2,  11 => 1,);
+        return array (  201 => 76,  196 => 75,  193 => 74,  187 => 72,  179 => 67,  175 => 65,  169 => 62,  161 => 59,  155 => 55,  149 => 51,  147 => 50,  140 => 46,  134 => 43,  128 => 41,  122 => 39,  116 => 37,  114 => 36,  110 => 35,  106 => 34,  101 => 33,  97 => 32,  89 => 27,  85 => 26,  81 => 25,  77 => 24,  71 => 20,  67 => 18,  65 => 17,  55 => 10,  47 => 4,  44 => 3,  38 => 2,  11 => 1,);
     }
 }

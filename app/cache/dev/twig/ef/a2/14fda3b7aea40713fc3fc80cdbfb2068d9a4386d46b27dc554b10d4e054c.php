@@ -60,7 +60,10 @@ class __TwigTemplate_efa214fda3b7aea40713fc3fc80cdbfb2068d9a4386d46b27dc554b10d4
                         <div class=\"row\">
                             <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
                                 <div class=\"form-group\">
-                                    <label>Nombre</label>
+                                    ";
+        // line 20
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "tipo", array()), 'label');
+        echo "
                                     ";
         // line 21
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "tipo", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Nombre de cancha")));
@@ -213,6 +216,6 @@ class __TwigTemplate_efa214fda3b7aea40713fc3fc80cdbfb2068d9a4386d46b27dc554b10d4
 
     public function getDebugInfo()
     {
-        return array (  194 => 83,  187 => 79,  183 => 78,  175 => 73,  171 => 72,  167 => 71,  156 => 63,  152 => 62,  148 => 61,  139 => 55,  135 => 54,  131 => 53,  122 => 47,  118 => 46,  114 => 45,  105 => 39,  101 => 38,  97 => 37,  86 => 29,  82 => 28,  78 => 27,  70 => 22,  66 => 21,  56 => 14,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  197 => 83,  190 => 79,  186 => 78,  178 => 73,  174 => 72,  170 => 71,  159 => 63,  155 => 62,  151 => 61,  142 => 55,  138 => 54,  134 => 53,  125 => 47,  121 => 46,  117 => 45,  108 => 39,  104 => 38,  100 => 37,  89 => 29,  85 => 28,  81 => 27,  73 => 22,  69 => 21,  65 => 20,  56 => 14,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

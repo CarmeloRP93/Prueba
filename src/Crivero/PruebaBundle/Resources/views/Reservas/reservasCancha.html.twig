@@ -6,9 +6,9 @@
 {% block contenido %}
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class="container">
-            <div class="page-header "> 
-                <h1 class="t1">{{ pagination[0].cancha|capitalize }} - Reservas</h1>
-            </div>
+        <div class="page-header "> 
+            <h1 class="t1">{{ pagination[0].cancha|capitalize }} - Reservas</h1>
+        </div>
         {% if not pagination|length %}
             <h2>No se encontraron reservas.</h2>
         {% else %}
@@ -17,6 +17,7 @@
                     <thead>
                         <tr>
                             <th>{{ knp_pagination_sortable(pagination, 'Cliente', 'r.cliente') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Estado', 'r.estadoReserva') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'Fecha', 'r.fechaInicio') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'Horario', 'r.horario') }}</th>
                             <td><strong>Acciones</strong></td>
@@ -26,6 +27,11 @@
                         {% for reserva in pagination %}
                             <tr>
                                 <td><strong><a class="atd" href="{{ path('crivero_prueba_cliente', { id: reserva.idCliente }) }}" >{{reserva.cliente}}</a></strong></td>
+                                {% if reserva.estadoReserva == 'Reservado' %}
+                                    <td><strong style="color: greenyellow">{{reserva.estadoReserva}}</strong></td>
+                                {% else %}
+                                    <td><strong style="color: red">{{reserva.estadoReserva}}</strong></td>
+                                {% endif %}
                                 <td>{{reserva.fechaInicio|date('d/m/Y')}}</td>
                                 {% set horario = reserva.horario|split('&') %} 
                                 {% if horario|length > 2 %}
@@ -35,18 +41,24 @@
                                 {% else %}
                                     <td>{{horario[0]}}</td>
                                 {% endif %}
-                                
+
                                 <td class="actions">
-                                    <a href="{{path('crivero_prueba_reserva_cancelar', {id: reserva.id})}}" class="btn btn-sm btn-danger" style="margin-bottom: 0">
-                                        Cancelar
-                                    </a>
+                                    {% if reserva.estadoReserva == 'Reservado' %}
+                                        <a href="{{path('crivero_prueba_reserva_cancelar', {id: reserva.id})}}" class="btn btn-sm btn-danger" style="margin-bottom: 0">
+                                            Cancelar
+                                        </a>
+                                    {% else %}
+                                        <a href="{{path('crivero_prueba_enviarMensaje', {id: reserva.idCliente})}}" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                            Enviar mensaje
+                                        </a>
+                                    {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
-                
+
         {% endif %}
         <div>
             <a class="btn btn-default" href="{{ path('crivero_prueba_cancha', { id: pagination[0].idCancha }) }}">Volver atrás</a>

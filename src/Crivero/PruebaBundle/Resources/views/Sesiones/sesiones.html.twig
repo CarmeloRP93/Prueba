@@ -25,7 +25,11 @@
                                 {% for sesion in pagination %}
                                     <tr>
                                         <td>{{sesion.nombre}}</td>
-                                        <td><strong>{{sesion.estado}}</strong></td>
+                                        {% if sesion.estado == 'cancelada' %}
+                                            <td><strong style="color: red">{{sesion.estado}}</strong></td>
+                                            {% else %}
+                                            <td><strong>{{sesion.estado}}</strong></td>
+                                        {% endif %}
                                         <td>{{sesion.monitor}}</td>
                                         <td>{{sesion.nClientes}}/{{sesion.lClientes}}</td>
 

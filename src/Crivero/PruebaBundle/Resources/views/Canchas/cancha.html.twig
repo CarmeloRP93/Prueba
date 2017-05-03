@@ -9,7 +9,9 @@
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <img src="{{ asset(cancha.imagen) }}" class="img-responsive center-block" style="max-width: 340px; margin-bottom:5px"/>
                 {% if cancha.disponibilidad == "Disponible" %}
-                    <button class="btn btn-success active" style="width: 340px">{{cancha.disponibilidad}}</button>
+                    <button class="btn btn-success active" style="width: 340px">
+                        {{cancha.disponibilidad}} {{ (cancha.precio|length == 3 and '.' in cancha.precio|trans) ? '('~cancha.precio~'0 €/hora)': '('~cancha.precio~' €/hora)'}}
+                    </button>
                 {% else %}
                     <button class="btn btn-danger active" style="width: 340px">{{cancha.disponibilidad}}</button>
                 {% endif %}
@@ -52,12 +54,14 @@
                         <form style="margin-left: -2px; margin-right: -2px" action="{{ path('crivero_prueba_cancha_editar', { id: cancha.id }) }}" method="post" class="alinear btn-group">
                             <input type="hidden" class="btn">
                             <button type="submit" class="btn btn-warning">Editar cancha</button>
-                            <input type="hidden" class="btn"> 
+                            {% if nReservas > 0 %}<input type="hidden" class="btn">{% endif %} 
                         </form>
-                        <form style="margin-left: -2px" action="{{ path('crivero_prueba_cancha_reservas', { id: cancha.id }) }}" method="post" class="alinear btn-group">
-                            <input type="hidden" class="btn">
-                            <button type="submit" class="btn btn-success">Ver reservas</button>
-                        </form>
+                        {% if nReservas > 0 %}
+                            <form style="margin-left: -2px" action="{{ path('crivero_prueba_cancha_reservas', { id: cancha.id }) }}" method="post" class="alinear btn-group">
+                                <input type="hidden" class="btn">
+                                <button type="submit" class="btn btn-success">Ver reservas</button>
+                            </form>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="text-center">

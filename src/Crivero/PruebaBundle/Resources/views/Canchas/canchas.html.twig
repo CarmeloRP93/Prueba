@@ -33,7 +33,11 @@
                                     <tr data-id="{{ cancha.id }}">
                                         <td>{{cancha.tipo}}</td>
                                         <td>{{cancha.deporte}}</td>
-                                        <td><strong>{{cancha.disponibilidad}}</strong></td>
+                                        {% if cancha.disponibilidad == 'Disponible' %}
+                                            <td><strong>{{cancha.disponibilidad}}</strong></td>
+                                        {% else %}
+                                            <td><strong style="color: red">{{cancha.disponibilidad}}</strong></td>
+                                        {% endif %}
                                         <td>{{cancha.horario}}</td>
                                         <td class="actions">
                                             <a href="{{ path('crivero_prueba_cancha', { id: cancha.id }) }}" class="btn btn-sm btn-info">

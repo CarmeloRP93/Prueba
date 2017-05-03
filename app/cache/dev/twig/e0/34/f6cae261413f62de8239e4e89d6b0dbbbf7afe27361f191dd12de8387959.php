@@ -146,8 +146,13 @@ class __TwigTemplate_e034f6cae261413f62de8239e4e89d6b0dbbbf7afe27361f191dd12de83
             $context = array_intersect_key($context, $_parent) + $_parent;
             // line 48
             echo "                                    </ul>
-                                    <form action=\"";
+                                    ";
             // line 49
+            if (((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) == 0)) {
+                echo " <p style=\"color: red\"><strong>Sin sesiones validadas.</strong></p>";
+            }
+            // line 50
+            echo "                                    <form action=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_sesiones_monitor", array("id" => $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "id", array()))), "html", null, true);
             echo "\" method=\"post\" class=\"form-signin\">
                                         <button type=\"submit\" class=\"btn btn-sm btn-outline-success\">Ver sesiones</button>
@@ -155,24 +160,24 @@ class __TwigTemplate_e034f6cae261413f62de8239e4e89d6b0dbbbf7afe27361f191dd12de83
                                 </div>
                             ";
         } else {
-            // line 54
+            // line 55
             echo "                                <p style=\"color: red\"><strong>Sin sesiones actualmente.</strong></p>
                             ";
         }
-        // line 56
+        // line 57
         echo "                            ";
         if ((($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()) != $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "id", array())) && ($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 1))) {
-            // line 57
+            // line 58
             echo "                                <div style=\"display: inline-grid; margin-top: 16px\">
                                     <form class=\"btn-group-vertical\" action=\"";
-            // line 58
+            // line 59
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_enviarMensaje", array("id" => $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "id", array()))), "html", null, true);
             echo "\" method=\"post\">
                                         <button type=\"submit\" style=\"margin-bottom: 1px\" class=\"btn btn-primary\">Enviar mensaje</button>
                                         <input type=\"hidden\" class=\"btn\">
                                     </form>
                                     <form class=\"btn-group-vertical\" action=\"";
-            // line 62
+            // line 63
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_editarUsuario", array("id" => $this->getAttribute((isset($context["monitor"]) ? $context["monitor"] : $this->getContext($context, "monitor")), "id", array()))), "html", null, true);
             echo "\" method=\"post\">
                                         <input type=\"hidden\" class=\"btn\">
@@ -180,13 +185,13 @@ class __TwigTemplate_e034f6cae261413f62de8239e4e89d6b0dbbbf7afe27361f191dd12de83
                                         <input type=\"hidden\" class=\"btn\">
                                     </form>
                                     ";
-            // line 67
+            // line 68
             echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form2.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form")), "nombre" => "Eliminar usuario"));
             echo "
                                 </div>
                             ";
         }
-        // line 70
+        // line 71
         echo "                        </div>
                     </div>
                 </div>
@@ -209,6 +214,6 @@ class __TwigTemplate_e034f6cae261413f62de8239e4e89d6b0dbbbf7afe27361f191dd12de83
 
     public function getDebugInfo()
     {
-        return array (  190 => 70,  184 => 67,  176 => 62,  169 => 58,  166 => 57,  163 => 56,  159 => 54,  151 => 49,  148 => 48,  141 => 47,  133 => 42,  129 => 41,  123 => 40,  120 => 39,  117 => 38,  114 => 37,  108 => 36,  106 => 35,  102 => 33,  100 => 32,  92 => 27,  88 => 26,  84 => 25,  80 => 24,  76 => 23,  65 => 15,  59 => 12,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  195 => 71,  189 => 68,  181 => 63,  174 => 59,  171 => 58,  168 => 57,  164 => 55,  155 => 50,  151 => 49,  148 => 48,  141 => 47,  133 => 42,  129 => 41,  123 => 40,  120 => 39,  117 => 38,  114 => 37,  108 => 36,  106 => 35,  102 => 33,  100 => 32,  92 => 27,  88 => 26,  84 => 25,  80 => 24,  76 => 23,  65 => 15,  59 => 12,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }

@@ -14,52 +14,65 @@
                 {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
                 <div class="panel-body">
                     <form role="form">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <div class="form-group">
-                                {{ form_label(form.tipo) }}
-                                {{ form_widget(form.tipo, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Nombre de cancha'} }) }}
-                                <span class="text-danger">{{ form_errors(form.tipo) }}</span>
+             <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    {{ form_label(form.tipo) }}
+                                    {{ form_widget(form.tipo, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Nombre de cancha'} }) }}
+                                    <span class="text-danger">{{ form_errors(form.tipo) }}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    {{ form_label(form.deporte) }}
+                                    {{ form_widget(form.deporte, {'attr': {'class': 'form-control'}}) }}
+                                    <span class="text-danger">{{ form_errors(form.deporte) }}</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <div class="form-group">
-                                {{ form_label(form.deporte) }}
-                                {{ form_widget(form.deporte, {'attr': {'class': 'form-control'}}) }}
-                                <span class="text-danger">{{ form_errors(form.deporte) }}</span>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <div class="form-group">
-                                {{ form_label(form.disponibilidad) }}
-                                {{ form_widget(form.disponibilidad, {'attr': {'class': 'form-control'}}) }}
-                                <span class="text-danger">{{ form_errors(form.disponibilidad) }}</span>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    {{ form_label(form.disponibilidad) }}
+                                    {{ form_widget(form.disponibilidad, {'attr': {'class': 'form-control'}}) }}
+                                    <span class="text-danger">{{ form_errors(form.disponibilidad) }}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    {{ form_label(form.direccion) }}
+                                    {{ form_widget(form.direccion, {'attr': {'class': 'form-control', 'placeholder' : 'Localización de la cancha'}}) }}
+                                    <span class="text-danger">{{ form_errors(form.direccion) }}</span>
+                                </div> 
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    {{ form_label(form.dimensiones) }}
+                                    {{ form_widget(form.dimensiones, {'attr': {'class': 'form-control', 'placeholder' : 'Tamaño de la cancha'}}) }}
+                                    <span class="text-danger">{{ form_errors(form.dimensiones) }}</span>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    {{ form_label(form.precio) }}
+                                    {{ form_widget(form.precio, {'attr': {'class': 'form-control', 'placeholder' : 'Coste de reserva por hora. Ej: 5.25'}}) }}
+                                    <span class="text-danger">{{ form_errors(form.precio) }}</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <div class="form-group">
-                                {{ form_label(form.dimensiones) }}
-                                {{ form_widget(form.dimensiones, {'attr': {'class': 'form-control', 'placeholder' : 'Inserta una cifra'}}) }}
-                                <span class="text-danger">{{ form_errors(form.dimensiones) }}</span>
-                            </div>
+
+
+
+                        <div class="form-group">
+                            {{ form_label(form.imagen) }}
+                            {{ form_widget(form.imagen) }}
+                            <span class="text-danger">{{ form_errors(form.imagen) }}</span>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        {{ form_label(form.direccion) }}
-                        {{ form_widget(form.direccion, {'attr': {'class': 'form-control', 'placeholder' : 'dirección cancha'}}) }}
-                        <span class="text-danger">{{ form_errors(form.direccion) }}</span>
-                    </div>
-
-                    <div class="form-group">
-                        {{ form_label(form.imagen) }}
-                        {{ form_widget(form.imagen) }}
-                        <span class="text-danger">{{ form_errors(form.imagen) }}</span>
-                    </div>
-                    
                     </form><br>
                     <div class="text-center">
                         {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
