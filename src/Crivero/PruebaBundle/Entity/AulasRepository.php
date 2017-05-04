@@ -24,8 +24,7 @@ class AulasRepository extends EntityRepository {
     
     public function searchAulas($searchQuery) {
         return $this->getEntityManager()
-            ->createQuery("SELECT a FROM CriveroPruebaBundle:Aulas a WHERE a.nombre= :nombre")
-            ->setParameter('nombre', $searchQuery)
-            ->getResult();
+            ->createQuery("SELECT a FROM CriveroPruebaBundle:Aulas a WHERE a.nombre LIKE '%{$searchQuery}%'"
+                        . "OR a.aforo LIKE '%{$searchQuery}%'");
     }
 }

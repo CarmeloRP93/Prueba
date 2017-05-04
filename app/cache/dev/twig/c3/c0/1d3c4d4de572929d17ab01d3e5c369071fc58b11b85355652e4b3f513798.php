@@ -166,49 +166,61 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
                         ";
         // line 59
         if (((isset($context["nReservas"]) ? $context["nReservas"] : $this->getContext($context, "nReservas")) > 0)) {
-            // line 60
-            echo "                            <form style=\"margin-left: -2px\" action=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha_reservas", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
-            echo "\" method=\"post\" class=\"alinear btn-group\">
+            // line 61
+            echo "                                <input type=\"hidden\" class=\"btn\">
+                                <div class=\"btn-group\" style=\"margin-left: -1px\">
                                 <input type=\"hidden\" class=\"btn\">
-                                <button type=\"submit\" class=\"btn btn-success\">Ver reservas</button>
-                            </form>
-                        ";
+                                    <button type=\"submit\" class=\"btn btn-success dropdown-toggle\" data-toggle=\"dropdown\">
+                                        Ver reservas <span class=\"caret\"></span></button>
+                                    <ul class=\"dropdown-menu\" role=\"menu\" style=\"margin-top: -12px\">
+                                        <li><a href=\"";
+            // line 67
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha_reservas", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
+            echo "\">Clientes</a></li>
+                                        <li><a href=\"#\">Monitores</a></li>
+                                    </ul>
+                                </div>
+                                                                
+";
+            // line 73
+            echo "                        ";
         }
-        // line 65
+        // line 74
         echo "                    </div>
                 </div>
                 <div class=\"text-center\">
-                   ";
-        // line 68
+                    ";
+        // line 77
         if (((isset($context["nReservas"]) ? $context["nReservas"] : $this->getContext($context, "nReservas")) > 0)) {
-            // line 69
+            // line 78
             echo "                        <form action=\"#\">
                             <input type=\"button\" value=\"Eliminar cancha\" class=\"btn btn-danger active\" 
                                    onclick=\"warningEliminar()\" >
                         </form>
                     ";
         } else {
-            // line 74
+            // line 83
             echo "                        ";
             echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form")), "nombre" => "Eliminar cancha"));
             echo "
                     ";
         }
-        // line 76
+        // line 85
         echo "                </div>
             </div>
         </div>
     </div>
 
     <script>
-        function warningEliminar(){
-            var dialog=bootbox.dialog({
+        function warningEliminar() {
+            var dialog = bootbox.dialog({
                 title: '<h4 class=\"text-center\" style=\"font-weight: 600; color: red\">¡ATENCIÓN!</h4>',
                 message: '<p class=\"text-center\" >No es posible eliminar una cancha con reservas asignadas.</p>',
                 closeButton: false
             });
-            setTimeout(function (){dialog.modal('hide');}, 4000);
+            setTimeout(function () {
+                dialog.modal('hide');
+            }, 4000);
         }
     </script>
 ";
@@ -226,6 +238,6 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
 
     public function getDebugInfo()
     {
-        return array (  199 => 76,  193 => 74,  186 => 69,  184 => 68,  179 => 65,  170 => 60,  168 => 59,  161 => 57,  155 => 54,  148 => 50,  140 => 45,  136 => 43,  132 => 41,  129 => 40,  120 => 38,  115 => 37,  113 => 36,  106 => 32,  100 => 29,  94 => 26,  84 => 18,  78 => 16,  70 => 13,  67 => 12,  65 => 11,  61 => 10,  54 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  209 => 85,  203 => 83,  196 => 78,  194 => 77,  189 => 74,  186 => 73,  178 => 67,  170 => 61,  168 => 59,  161 => 57,  155 => 54,  148 => 50,  140 => 45,  136 => 43,  132 => 41,  129 => 40,  120 => 38,  115 => 37,  113 => 36,  106 => 32,  100 => 29,  94 => 26,  84 => 18,  78 => 16,  70 => 13,  67 => 12,  65 => 11,  61 => 10,  54 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

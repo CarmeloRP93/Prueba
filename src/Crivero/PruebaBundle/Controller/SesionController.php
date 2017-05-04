@@ -266,7 +266,7 @@ class SesionController extends Controller {
     }
 
     private function createCancelForm(Sesiones $entity) {
-        $form = $this->createForm(new SesionesType(array()), $entity, array(
+        $form = $this->createForm(new SesionesType(array(), null), $entity, array(
             'action' => $this->generateUrl('crivero_prueba_cancelar', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));
@@ -297,16 +297,83 @@ class SesionController extends Controller {
                     $horas[$clave] = substr($horario, 8);
                 }
 
-                $horariosAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
                 for ($i = 0; $i < count($dias); $i++) {
-                    $diaReserva = $horariosAula->getDiaReserva($sesion->getAula(), (int) $dias[$i]);
-                    $horarioNoAsig = $diaReserva[0]->getPeriodo();
-                    if (strpos($horarioNoAsig, $horas[$i]) === false) {
-                        $diaReserva[0]->setPeriodo($horarioNoAsig . $horas[$i] . '&');
-                        $em->persist($diaReserva[0]);
+                    if ($sesion->getConcepto() == 'cancha') {
+                        $horarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosCanchas");
+                        $diaReservado = $horarios->getDiaReserva($sesion->getCancha(), $dias[$i])[0];
+                    } else {
+                        $horarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
+                        $diaReservado = $horarios->getDiaReserva($sesion->getAula(), $dias[$i])[0];
                     }
+
+                    if ($diaReservado->getPeriodo() == null) {
+                        $res = $horas[$i];
+                    } else {
+                        $horasNoUsadas = explode('&', $diaReservado->getPeriodo());
+                        $flag = 0;
+                        $res = "";
+                        for ($j = 0; $j < count($horasNoUsadas); $j++) {
+                            if ((int) substr($horasNoUsadas[$j], 0, 2) > (int) substr($horas[$i], 0, 2) && $flag == 0) {
+                                if ($sesion->getConcepto() == 'cancha') {
+                                    if ($sesion->getDuracion() > 60) {
+                                        $resAux = explode('-', $horas[$i]);
+                                        $auxT = explode(':', $resAux[1])[0] - 1;
+                                        ($auxT < 10) ? $auxT2 = '0' . $auxT : $auxT2 = $auxT;
+
+                                        $res .= $resAux[0] . '-' . $auxT2 . ':00';
+                                        $res .= '&' . $auxT2 . ':00-' . $resAux[1] . '&';
+                                    } else {
+                                        $res .= $horas[$i] . '&';
+                                    }
+                                } else {
+                                    if ($sesion->getDuracion() > 60) {
+                                        $resAux = explode('-', $horas[$i]);
+                                        $auxT = explode(':', $resAux[1])[0] - 1;
+                                        ($auxT < 10) ? $auxT2 = '0' . $auxT : $auxT2 = $auxT;
+
+                                        $res .= $resAux[0] . '-' . $auxT2 . ':00';
+                                        $res .= '&' . $auxT2 . ':00-' . $resAux[1] . '&';
+                                    } else {
+                                        $res .= $horas[$i] . '&';
+                                    }
+                                }
+                                $flag = 1;
+                            }
+                            ($j == count($horasNoUsadas) - 1) ? $res .= $horasNoUsadas[$j] : $res .= $horasNoUsadas[$j] . '&';
+
+                            if ($j == count($horasNoUsadas) - 1 && $flag == 0) {
+                                if ($sesion->getConcepto() == 'cancha') {
+
+                                    if ($sesion->getDuracion() > 60) {
+                                        $resAux = explode('-', $horas[$i]);
+                                        $auxT = explode(':', $resAux[1])[0] - 1;
+                                        ($auxT < 10) ? $auxT2 = '0' . $auxT : $auxT2 = $auxT;
+
+                                        $res .= '&' . $resAux[0] . '-' . $auxT2 . ':00';
+                                        $res .= '&' . $auxT2 . ':00-' . $resAux[1];
+                                    } else {
+                                        $res .= '&' . $horas[$i];
+                                    }
+                                } else {
+
+                                    if ($sesion->getDuracion() > 60) {
+                                        $resAux = explode('-', $horas[$i]);
+                                        $auxT = explode(':', $resAux[1])[0] - 1;
+                                        ($auxT < 10) ? $auxT2 = '0' . $auxT : $auxT2 = $auxT;
+
+                                        $res .= $resAux[0] . '-' . $auxT2 . ':00';
+                                        $res .= '&' . $auxT2 . ':00-' . $resAux[1] . '&';
+                                    } else {
+                                        $res .= $horas[$i] . '&';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    $diaReservado->setPeriodo($res);
+                    $em->persist($diaReservado);
+                    $em->flush();
                 }
-                $em->flush();
 
                 $idsUsuarios = explode('&', $sesion->getIdsClientes() . '&' . $sesion->getIdMonitor());
                 foreach ($idsUsuarios as $idUsuario) {
@@ -336,6 +403,7 @@ class SesionController extends Controller {
                 $form->get('observaciones')->addError(new FormError('Rellene el campo.'));
             }
         }
+
         return $this->render('CriveroPruebaBundle:Sesiones:cancelarSesion.html.twig', array('sesion' => $sesion,
                     'form' => $form->createView(), 'notificacionesSinLeer' => $this->getNewNotification()));
     }
@@ -444,7 +512,6 @@ class SesionController extends Controller {
                         if ((int) $horaReservaNumerico[0] + 1 == (int) $periodoComienzoNumerico[0]) {
                             $horaReserva = $horaReservaNumerico[0] . ":00-" . $periodoComienzo[1];
                             break;
-                        
                         }
                     }
                 }
@@ -460,7 +527,7 @@ class SesionController extends Controller {
                         if ((int) $horaReservaNumerico[0] + 1 == (int) $periodoComienzoNumerico[0]) {
                             $horaReserva = $horaReservaNumerico[0] . ":00-" . $periodoComienzo[1];
                             break;
-                        } 
+                        }
                     }
                 }
             }

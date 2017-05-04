@@ -57,15 +57,24 @@
                             {% if nReservas > 0 %}<input type="hidden" class="btn">{% endif %} 
                         </form>
                         {% if nReservas > 0 %}
-                            <form style="margin-left: -2px" action="{{ path('crivero_prueba_cancha_reservas', { id: cancha.id }) }}" method="post" class="alinear btn-group">
+{#                            <form style="margin-left: -2px" action="{{ path('crivero_prueba_cancha_reservas', { id: cancha.id }) }}" method="post" class="alinear btn-group">#}
                                 <input type="hidden" class="btn">
-                                <button type="submit" class="btn btn-success">Ver reservas</button>
-                            </form>
+                                <div class="btn-group" style="margin-left: -1px">
+                                <input type="hidden" class="btn">
+                                    <button type="submit" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                        Ver reservas <span class="caret"></span></button>
+                                    <ul class="dropdown-menu" role="menu" style="margin-top: -12px">
+                                        <li><a href="{{ path('crivero_prueba_cancha_reservas', { id: cancha.id }) }}">Clientes</a></li>
+                                        <li><a href="#">Monitores</a></li>
+                                    </ul>
+                                </div>
+                                                                
+{#                            </form>#}
                         {% endif %}
                     </div>
                 </div>
                 <div class="text-center">
-                   {% if nReservas > 0 %}
+                    {% if nReservas > 0 %}
                         <form action="#">
                             <input type="button" value="Eliminar cancha" class="btn btn-danger active" 
                                    onclick="warningEliminar()" >
@@ -79,13 +88,15 @@
     </div>
 
     <script>
-        function warningEliminar(){
-            var dialog=bootbox.dialog({
+        function warningEliminar() {
+            var dialog = bootbox.dialog({
                 title: '<h4 class="text-center" style="font-weight: 600; color: red">¡ATENCIÓN!</h4>',
                 message: '<p class="text-center" >No es posible eliminar una cancha con reservas asignadas.</p>',
                 closeButton: false
             });
-            setTimeout(function (){dialog.modal('hide');}, 4000);
+            setTimeout(function () {
+                dialog.modal('hide');
+            }, 4000);
         }
     </script>
 {% endblock %}

@@ -19,6 +19,14 @@ class HorariosCanchasRepository extends EntityRepository {
                         ->setParameter('dia', $dia)
                         ->getResult();
     }
+    
+    public function getDiaReserva($cancha, $dia) {
+        return $this->getEntityManager()
+                        ->createQuery('SELECT h FROM CriveroPruebaBundle:HorariosCanchas h WHERE h.cancha = :canchaId AND h.fechaInicioSesion = :dia')
+                        ->setParameter('canchaId', $cancha)
+                        ->setParameter('dia', $dia)
+                        ->getResult();
+    }
 
     public function getInstancia($cancha, $dia) {
         return $this->getEntityManager()

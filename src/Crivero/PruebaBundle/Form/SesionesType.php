@@ -28,50 +28,54 @@ class SesionesType extends AbstractType {
                 $resRecinto[$i] = array($this->reciento[$i]->getId() => $this->reciento[$i]->getTipo());
             }
         }
-        if ($this->flag) {
 
-            $builder
-                    ->add('cliente', 'text')
-                    ->add('nombre', 'text')
-                    ->add('imagen', 'text')
-                    ->add('ejercicios', 'textarea')
-                    ->add('repeticiones', 'integer')
-                    ->add('duracion', 'integer')
-                    ->add('descanso', 'integer')
-                    ->add('lClientes', 'integer')
-                    ->add('nSesiones', 'integer')
-                    ->add('fechaInicio', 'date', array('widget' => "single_text"))
-                    ->add('objetivo', 'textarea')
-                    ->add('observaciones', 'textarea', array('label' => 'Motivos',
-                        'attr' => array('cols' => '5', 'rows' => '5')))
-                    ->add('aula', 'choice', array('choices' => $resRecinto, 'expanded' => true))
-                    ->add('dias', 'choice', array('choices' => array('Monday' => 'Lunes', 'Tuesday' => 'Martes', 'Wednesday' => 'Miercoles'
-                            , 'Thursday' => 'Jueves', 'Friday' => 'Viernes'), 'expanded' => true, 'multiple' => true))
-                    ->add('horaComienzo', 'choice', array('choices' => array(1 => 'Turno de mañana', 2 => 'Turno de tarde')))
-                    ->add('confirmar', 'submit', array('label' => 'Confirmar'))
-            ;
-        } elseif (!$this->flag) {
+        if ($this->reciento != array()) {
+            
+            if ($this->flag) {
 
-            $builder
-                    ->add('cliente', 'text')
-                    ->add('nombre', 'text')
-                    ->add('imagen', 'text')
-                    ->add('ejercicios', 'textarea')
-                    ->add('repeticiones', 'integer')
-                    ->add('duracion', 'integer')
-                    ->add('descanso', 'integer')
-                    ->add('lClientes', 'integer')
-                    ->add('nSesiones', 'integer')
-                    ->add('fechaInicio', 'date', array('widget' => "single_text"))
-                    ->add('objetivo', 'textarea')
-                    ->add('observaciones', 'textarea', array('label' => 'Motivos',
-                        'attr' => array('cols' => '5', 'rows' => '5')))
-                    ->add('cancha', 'choice', array('choices' => $resRecinto, 'expanded' => true))
-                    ->add('dias', 'choice', array('choices' => array('Monday' => 'Lunes', 'Tuesday' => 'Martes', 'Wednesday' => 'Miercoles'
-                            , 'Thursday' => 'Jueves', 'Friday' => 'Viernes'), 'expanded' => true, 'multiple' => true))
-                    ->add('horaComienzo', 'choice', array('choices' => array(1 => 'Turno de mañana', 2 => 'Turno de tarde')))
-                    ->add('confirmar', 'submit', array('label' => 'Confirmar'))
-            ;
+                $builder
+                        ->add('cliente', 'text')
+                        ->add('nombre', 'text')
+                        ->add('imagen', 'text')
+                        ->add('ejercicios', 'textarea')
+                        ->add('repeticiones', 'integer')
+                        ->add('duracion', 'integer')
+                        ->add('descanso', 'integer')
+                        ->add('lClientes', 'integer')
+                        ->add('nSesiones', 'integer')
+                        ->add('fechaInicio', 'date', array('widget' => "single_text"))
+                        ->add('objetivo', 'textarea')
+                        ->add('observaciones', 'textarea', array('label' => 'Motivos',
+                            'attr' => array('cols' => '5', 'rows' => '5')))
+                        ->add('aula', 'choice', array('choices' => $resRecinto, 'expanded' => true))
+                        ->add('dias', 'choice', array('choices' => array('Monday' => 'Lunes', 'Tuesday' => 'Martes', 'Wednesday' => 'Miercoles'
+                                , 'Thursday' => 'Jueves', 'Friday' => 'Viernes'), 'expanded' => true, 'multiple' => true))
+                        ->add('horaComienzo', 'choice', array('choices' => array(1 => 'Turno de mañana', 2 => 'Turno de tarde')))
+                        ->add('confirmar', 'submit', array('label' => 'Confirmar'))
+                ;
+            } elseif (!$this->flag) {
+
+                $builder
+                        ->add('cliente', 'text')
+                        ->add('nombre', 'text')
+                        ->add('imagen', 'text')
+                        ->add('ejercicios', 'textarea')
+                        ->add('repeticiones', 'integer')
+                        ->add('duracion', 'integer')
+                        ->add('descanso', 'integer')
+                        ->add('lClientes', 'integer')
+                        ->add('nSesiones', 'integer')
+                        ->add('fechaInicio', 'date', array('widget' => "single_text"))
+                        ->add('objetivo', 'textarea')
+                        ->add('observaciones', 'textarea', array('label' => 'Motivos',
+                            'attr' => array('cols' => '5', 'rows' => '5')))
+                        ->add('cancha', 'choice', array('choices' => $resRecinto, 'expanded' => true))
+                        ->add('dias', 'choice', array('choices' => array('Monday' => 'Lunes', 'Tuesday' => 'Martes', 'Wednesday' => 'Miercoles'
+                                , 'Thursday' => 'Jueves', 'Friday' => 'Viernes'), 'expanded' => true, 'multiple' => true))
+                        ->add('horaComienzo', 'choice', array('choices' => array(1 => 'Turno de mañana', 2 => 'Turno de tarde')))
+                        ->add('confirmar', 'submit', array('label' => 'Confirmar'))
+                ;
+            }
         } else {
             $builder
                     ->add('observaciones', 'textarea', array('label' => 'Motivos',

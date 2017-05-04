@@ -17,12 +17,13 @@ class ReservaController extends Controller {
         $searchQuery = $request->get('query');
         (!empty($searchQuery)) ? $reservas = $repository->searchReservas($searchQuery) :
                         $reservas = $repository->getReservas();
-
+        
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $reservas, $request->query->getInt('page', 1), 5);
+
         return $this->render('CriveroPruebaBundle:Reservas:reservas.html.twig', array("pagination" => $pagination,
-                    'notificacionesSinLeer' => $this->getNewNotification()));
+                      'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function reservasClienteAction($id, Request $request) {

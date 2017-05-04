@@ -78,18 +78,13 @@ class SesionesRepository extends EntityRepository {
 
     public function searchSesionesGeneralesByAdmin($searchQuery) {
         return $this->getEntityManager()
-                        ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.cliente = 'normal' AND (s.nombre = :nombre OR s.monitor = :monitor)")
-                        ->setParameter('nombre', $searchQuery)
-                        ->setParameter('monitor', $searchQuery)
+                        ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.cliente = 'normal' AND (s.nombre LIKE '%{$searchQuery}%' OR s.monitor LIKE '%{$searchQuery}%') ")
                         ->getResult();
     }
 
     public function searchSesionesDedicadasByAdmin($searchQuery) {
         return $this->getEntityManager()
-                        ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.cliente != 'normal' AND (s.nombre = :nombre OR s.monitor = :monitor OR s.cliente = :cliente)")
-                        ->setParameter('nombre', $searchQuery)
-                        ->setParameter('monitor', $searchQuery)
-                        ->setParameter('cliente', $searchQuery)
+                        ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.cliente != 'normal' AND (s.nombre LIKE '%{$searchQuery}%' OR s.monitor LIKE '%{$searchQuery}%' OR s.cliente LIKE '%{$searchQuery}%') ")
                         ->getResult();
     }
 

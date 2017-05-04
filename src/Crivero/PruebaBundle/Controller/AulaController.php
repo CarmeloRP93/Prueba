@@ -19,10 +19,6 @@ class AulaController extends Controller {
         $searchQuery = $request->get('query');
         (!empty($searchQuery)) ? $aulas = $repository->searchAulas($searchQuery) :
                         $aulas = $repository->getAulas();
-        //$repositoryHorarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
-        //$hoy = date('j');
-        //$nombreHoy = date('w');
-        //$estados = $repositoryHorarios->getEstadosAulas($hoy); 
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(

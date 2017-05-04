@@ -86,7 +86,7 @@ class __TwigTemplate_e822bf7cd2cefcf1bd2aab59592f89f2885044c8b90b38348be44859086
             echo "</th>
                                     <th>";
             // line 27
-            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Área", "a.dimensiones");
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Aforo", "a.aforo");
             echo "</th>
                                     <th class=\"t3\">Acciones</th>
                                 </tr>
@@ -126,7 +126,7 @@ class __TwigTemplate_e822bf7cd2cefcf1bd2aab59592f89f2885044c8b90b38348be44859086
                 echo "</td>
                                         <td>";
                 // line 41
-                echo twig_escape_filter($this->env, ($this->getAttribute($context["aula"], "dimensiones", array()) . "m²"), "html", null, true);
+                echo twig_escape_filter($this->env, ($this->getAttribute($context["aula"], "aforo", array()) . " plazas"), "html", null, true);
                 echo "</td>
                                         <td class=\"actions\">
                                             <a href=\"";
