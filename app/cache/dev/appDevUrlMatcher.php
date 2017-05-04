@@ -478,6 +478,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_participanteListado')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\ParticipantesController::participanteListadoAction',));
         }
 
+        // modulomonitores_monitores_recintoPublico
+        if ($pathinfo === '/recintoPublico') {
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::recintoPublicoAction',  '_route' => 'modulomonitores_monitores_recintoPublico',);
+        }
+
         if (0 === strpos($pathinfo, '/cancha')) {
             // moduloclientes_cliente_canchasClientes
             if ($pathinfo === '/canchasClientes') {
@@ -682,8 +687,8 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         if (0 === strpos($pathinfo, '/pago')) {
             // moduloclientes_cliente_pagoSesion
-            if ($pathinfo === '/pagoSesion') {
-                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::pagoSesionAction',  '_route' => 'moduloclientes_cliente_pagoSesion',);
+            if (0 === strpos($pathinfo, '/pagoSesion') && preg_match('#^/pagoSesion/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_pagoSesion')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::pagoSesionAction',));
             }
 
             // moduloclientes_cliente_pagoReserva
@@ -884,9 +889,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\UsuarioController::pagosClienteAction',  '_route' => 'moduloclientes_cliente_pagosCliente',);
         }
 
-        // crivero_prueba_home
-        if ($pathinfo === '/home') {
-            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::homeAction',  '_route' => 'crivero_prueba_home',);
+        if (0 === strpos($pathinfo, '/home')) {
+            // moduloclientes_cliente_homeCliente
+            if ($pathinfo === '/homeCliente') {
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\UsuarioController::homeClienteAction',  '_route' => 'moduloclientes_cliente_homeCliente',);
+            }
+
+            // crivero_prueba_home
+            if ($pathinfo === '/home') {
+                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::homeAction',  '_route' => 'crivero_prueba_home',);
+            }
+
         }
 
         // crivero_prueba_perfil
@@ -1369,6 +1382,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_rechazarSesion')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::rechazarSesionAction',));
             }
 
+        }
+
+        // crivero_prueba_tarifas
+        if ($pathinfo === '/tarifas') {
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::tarifasAction',  '_route' => 'crivero_prueba_tarifas',);
+        }
+
+        // crivero_prueba_actualizarTarifas
+        if ($pathinfo === '/actualizarTarifas') {
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\SesionController::actualizarTarifasAction',  '_route' => 'crivero_prueba_actualizarTarifas',);
         }
 
         // crivero_prueba_enviarMensaje

@@ -153,114 +153,119 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
                         <li><a href=\"";
         // line 63
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_sesiones");
-        echo "\">S.Públicas</a></li>
+        echo "\">Públicas</a></li>
                         <li><a href=\"";
         // line 64
         echo $this->env->getExtension('routing')->getUrl("crivero_prueba_dedicadas");
-        echo "\">S.Privadas</a></li>
+        echo "\">Privadas</a></li>
+                        <li role=\"separator\" class=\"divider\"></li>
+                        <li><a href=\"";
+        // line 66
+        echo $this->env->getExtension('routing')->getUrl("crivero_prueba_tarifas");
+        echo "\">Tarifas</a></li>
                     </ul>
                 </li>
             </ul>
 
             ";
-        // line 69
+        // line 71
         if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_FULLY")) {
-            // line 70
+            // line 72
             echo "                <ul class=\"nav navbar-nav navbar-right\">
                     ";
-            // line 71
+            // line 73
             if (($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "username", array()) == "director")) {
-                // line 72
+                // line 74
                 echo "                        <li><a href = \"";
                 echo $this->env->getExtension('routing')->getUrl("crivero_prueba_enviarMensaje");
                 echo "\">enviar mensaje</a></li>
                     ";
             }
-            // line 73
+            // line 75
             echo " 
                     ";
-            // line 74
+            // line 76
             if ( !twig_length_filter($this->env, (isset($context["notificacionesSinLeer"]) ? $context["notificacionesSinLeer"] : $this->getContext($context, "notificacionesSinLeer")))) {
                 echo "  
                         <li><a href = \"";
-                // line 75
+                // line 77
                 echo $this->env->getExtension('routing')->getUrl("crivero_prueba_notificacionesAdmin");
                 echo "\"><img src=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/campanaSN.png"), "html", null, true);
                 echo "\" style=\"width: 18px;\" /></a></li>
                     ";
             } else {
-                // line 77
+                // line 79
                 echo "                        <li class=\"dropdown hidden-xs\">
                             <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><img src=\"";
-                // line 78
+                // line 80
                 echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/campanaCN.png"), "html", null, true);
                 echo "\" style=\"width: 18px;\" /></a>
                             <ul class=\"dropdown-menu\" style=\"background-color: rgba(67, 152, 147, 0.46); border-radius: 15px 15px;\">
                                 ";
-                // line 80
+                // line 82
                 $context["n"] = 0;
                 echo " 
                                 ";
-                // line 81
+                // line 83
                 $context['_parent'] = (array) $context;
                 $context['_seq'] = twig_ensure_traversable((isset($context["notificacionesSinLeer"]) ? $context["notificacionesSinLeer"] : $this->getContext($context, "notificacionesSinLeer")));
                 foreach ($context['_seq'] as $context["_key"] => $context["notificacion"]) {
                     if (((isset($context["n"]) ? $context["n"] : $this->getContext($context, "n")) < 5)) {
                         echo "  
                                     ";
-                        // line 82
+                        // line 84
                         if (($this->getAttribute($context["notificacion"], "concepto", array()) == "Publica")) {
-                            // line 83
+                            // line 85
                             echo "                                       ";
                             $context["ruta"] = $this->env->getExtension('routing')->getUrl("crivero_prueba_sesion", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
                             echo "      
                                     ";
-                        } elseif (($this->getAttribute(                        // line 84
+                        } elseif (($this->getAttribute(                        // line 86
 $context["notificacion"], "concepto", array()) == "Privada")) {
-                            // line 85
-                            echo "                                        ";
-                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("crivero_prueba_sesion", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
-                            // line 86
-                            echo "                                    ";
-                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Reserva")) {
                             // line 87
                             echo "                                        ";
-                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("crivero_prueba_reservas_cliente", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
+                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("crivero_prueba_sesion", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
                             // line 88
                             echo "                                    ";
-                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Usuario")) {
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Reserva")) {
                             // line 89
                             echo "                                        ";
-                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("crivero_prueba_cliente", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
+                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("crivero_prueba_reservas_cliente", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
                             // line 90
                             echo "                                    ";
-                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Partido")) {
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Usuario")) {
                             // line 91
                             echo "                                        ";
-                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("crivero_prueba_editarPartido", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
+                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("crivero_prueba_cliente", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
                             // line 92
                             echo "                                    ";
-                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Mensaje")) {
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Partido")) {
                             // line 93
                             echo "                                        ";
-                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("crivero_prueba_mensaje", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
+                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("crivero_prueba_editarPartido", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
                             // line 94
                             echo "                                    ";
-                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "PublicaEliminada")) {
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Mensaje")) {
                             // line 95
                             echo "                                        ";
-                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("crivero_prueba_sesiones");
+                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("crivero_prueba_mensaje", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
                             // line 96
                             echo "                                    ";
-                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "PrivadaEliminada")) {
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "PublicaEliminada")) {
                             // line 97
                             echo "                                        ";
-                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("crivero_prueba_dedicadas", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
+                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("crivero_prueba_sesiones");
                             // line 98
                             echo "                                    ";
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "PrivadaEliminada")) {
+                            // line 99
+                            echo "                                        ";
+                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("crivero_prueba_dedicadas", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
+                            // line 100
+                            echo "                                    ";
                         }
-                        // line 99
+                        // line 101
                         echo "                                        <li class=\"text-center\"><a style=\"color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;\" href=\"";
                         echo twig_escape_filter($this->env, (isset($context["ruta"]) ? $context["ruta"] : $this->getContext($context, "ruta")), "html", null, true);
                         echo "\">";
@@ -268,43 +273,43 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
                         echo "</a></li>
                                         <li role=\"separator\" class=\"divider\" style=\"background-color: #cecdcd\"></li>
                                     ";
-                        // line 101
+                        // line 103
                         $context["n"] = ((isset($context["n"]) ? $context["n"] : $this->getContext($context, "n")) + 1);
-                        // line 102
+                        // line 104
                         echo "                                ";
                     }
                 }
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['notificacion'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 103
+                // line 105
                 echo "                                <li class=\"text-center\"><a href = \"";
                 echo $this->env->getExtension('routing')->getUrl("crivero_prueba_notificacionesAdmin");
                 echo "\"><font color=\"blue\"><strong>Ver todas</strong></font></a></li>
                             </ul>
                         </li>
                         <li><a class=\"hidden-sm hidden-md hidden-lg\" href = \"";
-                // line 106
+                // line 108
                 echo $this->env->getExtension('routing')->getUrl("crivero_prueba_notificacionesAdmin");
                 echo "\"><img  src=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/campanaCN.png"), "html", null, true);
                 echo "\" style=\"width: 18px\"/></a></li>                       
                     ";
             }
-            // line 108
+            // line 110
             echo "                    <li><a href = \"";
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_mensajes_recibidos");
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/correo.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
                     <li><a href = \"";
-            // line 109
+            // line 111
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_perfil");
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/user.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
                     <li><a href=\"";
-            // line 110
+            // line 112
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
             echo "\" style=\"margin-right: 12px\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/logout.png"), "html", null, true);
@@ -312,19 +317,19 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
                 </ul>
             ";
         }
-        // line 113
+        // line 115
         echo "
             <form method=\"GET\" class=\"navbar-form navbar-center\" role=\"search\">
                 <div class=\"input-group\">
                     <input type=\"text\" name=\"query\" class=\"form-control\" value=\"";
-        // line 116
+        // line 118
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "get", array(0 => "query"), "method"), "html", null, true);
         echo "\" 
                            placeholder=\"Buscar usuarios, reservas\" >
                     <div class=\"input-group-btn\">
                         <button type=\"submit\" class=\"btn btn-default\">
                             <img src=\"";
-        // line 120
+        // line 122
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/search.png"), "html", null, true);
         echo "\" style=\"width: 15px;\" />  
                         </button>
@@ -336,16 +341,16 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
 ";
     }
 
-    // line 128
+    // line 130
     public function block_body($context, array $blocks = array())
     {
-        // line 129
+        // line 131
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 131
-        $this->displayBlock('contenido', $context, $blocks);
         // line 133
+        $this->displayBlock('contenido', $context, $blocks);
+        // line 135
         echo "        </div>
 
     </div>
@@ -353,17 +358,17 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
 ";
     }
 
-    // line 131
+    // line 133
     public function block_contenido($context, array $blocks = array())
     {
-        // line 132
+        // line 134
         echo "            ";
     }
 
-    // line 139
+    // line 141
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 140
+        // line 142
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
@@ -382,6 +387,6 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
 
     public function getDebugInfo()
     {
-        return array (  367 => 140,  364 => 139,  360 => 132,  357 => 131,  349 => 133,  347 => 131,  343 => 129,  340 => 128,  328 => 120,  321 => 116,  316 => 113,  308 => 110,  302 => 109,  295 => 108,  288 => 106,  281 => 103,  274 => 102,  272 => 101,  264 => 99,  261 => 98,  258 => 97,  255 => 96,  252 => 95,  249 => 94,  246 => 93,  243 => 92,  240 => 91,  237 => 90,  234 => 89,  231 => 88,  228 => 87,  225 => 86,  222 => 85,  220 => 84,  215 => 83,  213 => 82,  206 => 81,  202 => 80,  197 => 78,  194 => 77,  187 => 75,  183 => 74,  180 => 73,  174 => 72,  172 => 71,  169 => 70,  167 => 69,  159 => 64,  155 => 63,  146 => 57,  141 => 55,  137 => 54,  133 => 53,  129 => 52,  122 => 48,  114 => 43,  110 => 42,  102 => 37,  98 => 36,  89 => 30,  84 => 28,  80 => 27,  68 => 18,  55 => 7,  52 => 6,  47 => 4,  41 => 2,  11 => 1,);
+        return array (  372 => 142,  369 => 141,  365 => 134,  362 => 133,  354 => 135,  352 => 133,  348 => 131,  345 => 130,  333 => 122,  326 => 118,  321 => 115,  313 => 112,  307 => 111,  300 => 110,  293 => 108,  286 => 105,  279 => 104,  277 => 103,  269 => 101,  266 => 100,  263 => 99,  260 => 98,  257 => 97,  254 => 96,  251 => 95,  248 => 94,  245 => 93,  242 => 92,  239 => 91,  236 => 90,  233 => 89,  230 => 88,  227 => 87,  225 => 86,  220 => 85,  218 => 84,  211 => 83,  207 => 82,  202 => 80,  199 => 79,  192 => 77,  188 => 76,  185 => 75,  179 => 74,  177 => 73,  174 => 72,  172 => 71,  164 => 66,  159 => 64,  155 => 63,  146 => 57,  141 => 55,  137 => 54,  133 => 53,  129 => 52,  122 => 48,  114 => 43,  110 => 42,  102 => 37,  98 => 36,  89 => 30,  84 => 28,  80 => 27,  68 => 18,  55 => 7,  52 => 6,  47 => 4,  41 => 2,  11 => 1,);
     }
 }

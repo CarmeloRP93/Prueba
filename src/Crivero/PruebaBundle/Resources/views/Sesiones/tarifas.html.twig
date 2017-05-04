@@ -1,0 +1,46 @@
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
+{% block title %} Tarifas de sesiones  {% endblock %}
+{% block contenido %}
+    <div class="container text-center"><br>
+        <div class="col-xs-12 col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h2 class="t3">Establecer tarifas de sesiones (€/hora)</h2>
+                </div>
+                {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <div class="form-group">
+                                    {{ form_label(form.entrenamiento) }}
+                                    {{ form_widget(form.entrenamiento, { 'attr' : {'class' : 'form-control', 'placeholder' : '€/hora'} }) }}
+                                    <span class="text-danger">{{ form_errors(form.entrenamiento) }}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <div class="form-group">
+                                    {{ form_label(form.deportiva) }}
+                                    {{ form_widget(form.deportiva, {'attr' : {'class' : 'form-control', 'placeholder' : '€/hora'}}) }}
+                                    <span class="text-danger">{{ form_errors(form.deportiva) }}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <div class="form-group">
+                                    {{ form_label(form.privada) }}
+                                    {{ form_widget(form.privada, {'attr' : {'class' : 'form-control', 'placeholder' : '€/hora'}}) }}
+                                    <span class="text-danger">{{ form_errors(form.privada) }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form><br>
+                    <div class="text-center">
+                        {{ form_widget(form.confirmar, {'label' : 'Actualizar', 'attr': {'class': 'btn btn-success'}}) }}
+                        <a class="btn btn-danger" href="{{ path('crivero_prueba_sesiones') }}">Cancelar</a>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>               
+        </div>
+    </div>           
+{% endblock %}

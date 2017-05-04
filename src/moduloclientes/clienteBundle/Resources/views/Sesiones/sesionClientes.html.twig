@@ -1,7 +1,6 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
 {% block title %}Sesión - {{sesion.nombre}} {% endblock %}
 {% block contenido %}
-
     <div id="sesiondat" class="container text-center">
         <div class="page-header">    
             <h1 class="t1">Sesión - {{sesion.nombre}}</h1>
@@ -22,24 +21,22 @@
                             <h4>Repeticiones</h4> <p>{{sesion.repeticiones}} por ejercicio</p>
                             <h4>Estado</h4> <p>{{sesion.estadoCliente|capitalize}}</p>
                             <h4>Objetivo</h4> <p>{{sesion.objetivo}}</p>
+                            <h4>Monitor</h4> 
+                            <a href="{{path('moduloclientes_cliente_verMonitor', {id: sesion.idMonitor})}}" 
+                               class="btn btn-success text-center center-block img-responsive" style="width: 180px;">{{sesion.monitor}}</a>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <h4>Tiempo estimado</h4> <p>{{sesion.duracion}} minutos</p>
                             <h4>Descanso entre ejercicios</h4> <p>{{sesion.descanso}} minutos</p>
                             <h4>Ejercicios</h4> <p>{{sesion.ejercicios}}</p>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <h4>Monitor</h4> 
-                            <a href="{{path('moduloclientes_cliente_verMonitor', {id: sesion.idMonitor})}}" 
-                               class="btn btn-success text-center center-block img-responsive" style="width: 180px;">{{sesion.monitor}}</a>
+                            <h4>Precio</h4> <p>{{sesion.precio}} €</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         {% if sesion.estadoCliente == "disponible" %}
-            <a href="{{path('moduloclientes_cliente_sesionesClientes_apuntarse', {id: sesion.id})}}" 
+            <a href="{{path('moduloclientes_cliente_pagoSesion', {id: sesion.id})}}" 
                class="btn btn-primary text-center center-block img-responsive" style="width: 180px;">Apuntarse <span class="glyphicon glyphicon-pencil"></span></a>
         {% elseif sesion.estadoCliente == "Completo" %}
             <button class="btn btn-danger text-center center-block img-responsive" style="width: 180px;" disabled="disabled">Completo</button>

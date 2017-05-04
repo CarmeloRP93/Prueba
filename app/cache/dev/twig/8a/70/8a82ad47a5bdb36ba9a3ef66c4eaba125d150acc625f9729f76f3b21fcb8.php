@@ -31,7 +31,7 @@ class __TwigTemplate_8a708a82ad47a5bdb36ba9a3ef66c4eaba125d150acc625f9729f76f3b2
                 // line 25
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath((isset($context["route"]) ? $context["route"] : $this->getContext($context, "route")), twig_array_merge((isset($context["query"]) ? $context["query"] : $this->getContext($context, "query")), array((isset($context["pageParameterName"]) ? $context["pageParameterName"] : $this->getContext($context, "pageParameterName")) => (isset($context["previous"]) ? $context["previous"] : $this->getContext($context, "previous"))))), "html", null, true);
                 echo "\">&laquo; ";
-                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Previous"), "html", null, true);
+                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("anterior"), "html", null, true);
                 echo "</a>
                  </li>
         ";
@@ -41,7 +41,7 @@ class __TwigTemplate_8a708a82ad47a5bdb36ba9a3ef66c4eaba125d150acc625f9729f76f3b2
                 <a>
                     &laquo; ";
                 // line 30
-                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Previous"), "html", null, true);
+                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("anterior"), "html", null, true);
                 echo "
                 </a>
             </li>
@@ -179,7 +179,7 @@ class __TwigTemplate_8a708a82ad47a5bdb36ba9a3ef66c4eaba125d150acc625f9729f76f3b2
                 echo "\">
                     ";
                 // line 87
-                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Next"), "html", null, true);
+                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("siguiente"), "html", null, true);
                 echo " &nbsp;&raquo;
                 </a>
             </li>
@@ -190,7 +190,7 @@ class __TwigTemplate_8a708a82ad47a5bdb36ba9a3ef66c4eaba125d150acc625f9729f76f3b2
                 <a>
                     ";
                 // line 93
-                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Next"), "html", null, true);
+                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("siguiente"), "html", null, true);
                 echo " &nbsp;&raquo;
                 </a>
             </li>

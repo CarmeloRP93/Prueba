@@ -60,7 +60,7 @@ class __TwigTemplate_144b139039b5fcb79908fb5f0f3025916e95f8db4df161d321c1c4bbbdb
         echo "
                 ";
         // line 13
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "idCompeticion", array()), 'widget', array("value" => (isset($context["idCompeticion"]) ? $context["idCompeticion"] : $this->getContext($context, "idCompeticion"))));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "idCompeticion", array()), 'widget', array("value" => (isset($context["id"]) ? $context["id"] : $this->getContext($context, "id"))));
         echo "
                 <span class=\"text-danger\">";
         // line 14
@@ -132,7 +132,7 @@ class __TwigTemplate_144b139039b5fcb79908fb5f0f3025916e95f8db4df161d321c1c4bbbdb
                 </div>
 
                 <div class=\"row\">
-                    <div class=\"col-xs-12 col-sm-4 col-md-4 col-lg-4\">
+                    <div class=\"hidden\">
                         ";
         // line 46
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "resultado", array()), 'label');

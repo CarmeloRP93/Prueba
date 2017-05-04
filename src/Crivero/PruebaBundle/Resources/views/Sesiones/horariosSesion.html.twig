@@ -1,10 +1,8 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
-
 {% block title %} Sesión {{ sesion.nombre }} - Horarios {% endblock %}
-
 {% block contenido %}
-    <div class="container">
-        <div class="page-header">
+    <div id="sesiondat" class="container text-center">
+        <div class="page-header">    
             <h1 class="t1">Sesión {{ sesion.nombre }} - Horarios</h1>
         </div>
         <h4 class="t3">Recinto de la sesión: 
@@ -14,40 +12,34 @@
                 <td>{{recinto.tipo}}</td>
             {% endif %}
         </h4>
-        <div>
-            <table id="differentTable" class="table table-hover table-bordered table-condensed" >
-                <thead>
-                    <tr>
-                        <th>Nº Sesión</th>
-                        <th>Día y hora</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {#  {% set page = app.request.uri|last %}
-                      {% if page matches '/^\\d+$/' %}
-                          {% set i = page %}
-                      {% else %}
-                          {% set i = 1 %}
-                      {% endif %}#}
-                    {% for horario in pagination %}
-                        <tr>
-                            <td>{{ loop.index }}</td>
-                            <td>{{horario}}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-xs-offset-0 col-sm-offset-2 col-md-offset-3 col-lg-offset-4">
+                <div class="panel panel-default">                  
+                    <div class="panel-body">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Nº Sesión</th>
+                                    <th>Día y hora</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for horario in pagination %}
+                                    <tr>
+                                        <td>{{ loop.index }}</td>
+                                        <td>{{horario}}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% if app.request.headers.get('referer') %}    
+                    <a class="btn btn-default" href="{{ app.request.headers.get('referer') }}">Volver atrás</a>
+                {% else %}
+                    <a class="btn btn-default" href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}">Volver atrás</a>
+                {% endif %}
+            </div>
         </div>
-        <div style="margin: 14px">
-            {% if app.request.headers.get('referer') %}    
-                <a class="btn btn-default" href="{{ app.request.headers.get('referer') }}">Volver atrás</a>
-            {% else %}
-                <a class="btn btn-default" href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}">Volver atrás</a>
-            {% endif %}
-        </div>
-
-        {# <div class="navigation" style="float: right">
-             {{ knp_pagination_render(pagination) }}
-         </div>#}
     </div>
 {% endblock %}

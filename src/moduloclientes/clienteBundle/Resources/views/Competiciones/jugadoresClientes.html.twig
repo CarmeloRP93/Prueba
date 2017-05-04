@@ -19,24 +19,22 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>{{ knp_pagination_sortable(pagination, 'Usuario', 'u.username') }}</th>
+                                    <th></th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'u.nombre') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Correo electrónico', 'u.email') }}</th>
-                                    <th>{{ knp_pagination_sortable(pagination, 'Creado', 'u.registro') }}</th>
                                     <th class="t3">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for usuario in pagination %}
                                     <tr data-id="{{ usuario.id }}">
-                                        <td><strong>{{usuario.username}}</strong></td>
-                                        <td>{{usuario.nombre}}</td>
-                                        <td>{{usuario.email}}</td>
                                         {%if usuario.imagen != null%}
-                                            <td><img src="{{ asset('images/'~usuario.imagen) }}" class="img-responsive center-block" style="max-width: 100px; margin-bottom:20px"/></td>
+                                            <td><img src="{{ asset('images/'~usuario.imagen) }}" class="img-responsive center-block" style="max-width: 50px"/></td>
                                         {%else%}
                                             <td>Imagen no Disponible</td>
                                         {%endif%}
+                                        <td>{{usuario.nombre}}</td>
+                                        <td>{{usuario.email}}</td>
                                         <td class="actions">
                                             <a href="{{path('moduloclientes_cliente_jugador_validar', { 'id': usuario.id,'idEquipo':app.request.get('id')})}}" class="btn btn-sm btn-info">
                                                 Añadir nuevo

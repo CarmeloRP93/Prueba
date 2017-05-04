@@ -36,7 +36,7 @@ class __TwigTemplate_3d61783b3fdf3c7ced301ca9b9e258fb618abfdac341174066c0df0f7b4
     // line 2
     public function block_title($context, array $blocks = array())
     {
-        echo " Pago reserva ";
+        echo " Pago de la reserva ";
     }
 
     // line 3
@@ -46,7 +46,7 @@ class __TwigTemplate_3d61783b3fdf3c7ced301ca9b9e258fb618abfdac341174066c0df0f7b4
         echo "    <div class=\"container text-center\">
         <div class=\"panel panel-default text-center\">
             <div class=\"panel-heading\">
-                <h1 class=\"t1\">Pago reserva</h1>
+                <h1 class=\"t1\">Pago de la reserva</h1>
             </div>
 
             ";

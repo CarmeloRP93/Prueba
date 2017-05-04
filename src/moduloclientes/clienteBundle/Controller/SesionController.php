@@ -14,6 +14,7 @@ use Crivero\PruebaBundle\Entity\Notificaciones;
 class SesionController extends Controller {
 
     public function sesionesClientesAction(Request $request) {
+        $this->changeStateNotification($request->get('id'));
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
 
         $searchQuery = $request->get('query');
@@ -83,45 +84,6 @@ class SesionController extends Controller {
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
-    public function pagoSesionAction() {
-        $pago = new Pagos();
-        $form = $this->createCreateForm($pago);
-        return $this->render('moduloclientesclienteBundle:Sesiones:pagoSesion.html.twig', array('form' => $form->createView(),
-                    'notificacionesSinLeer' => $this->getNewNotification()));
-    }
-
-    private function createCreateForm(Pagos $entity) {
-        $form = $this->createForm(new PagosType(), $entity, array(
-            'action' => $this->generateUrl('moduloclientes_cliente_pagar'),
-            'method' => 'POST'
-        ));
-        return $form;
-    }
-
-    public function pagarAction(Request $request) {
-        $pago = new Pagos();
-        $form = $this->createCreateForm($pago);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $cliente = $this->getUser();
-            $idCliente = $cliente->getId();
-            $pago->setFechaPago(date('d-m-Y'));
-            $pago->setIdCliente($idCliente);
-
-            $tipoSuscripcion = $form->get('tipoSuscripcion')->getData();
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($cliente);
-            $em->persist($pago);
-            $em->flush();
-            $request->getSession()->getFlashBag()->add('mensaje', 'Pago realizado con éxito.');
-            return $this->render('CriveroPruebaBundle:Usuarios:home.html.twig', array('notificacionesSinLeer' => $this->getNewNotification()));
-        }
-        return $this->render('moduloclientesclienteBundle:Sesiones:pagoSesion.html.twig', array('form' => $form->createView(),
-                    'notificacionesSinLeer' => $this->getNewNotification()));
-    }
-
     public function sesionClientesAction($id) {
         $this->changeStateNotification($id);
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
@@ -138,50 +100,81 @@ class SesionController extends Controller {
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
-    public function apuntarseAction($id) {
+    public function pagoSesionAction($id) {
+        $pago = new Pagos();
+        $form = $this->createPagoForm($pago, $id);
+        return $this->render('moduloclientesclienteBundle:Sesiones:pagoSesion.html.twig', array('form' => $form->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
+    }
+
+    private function createPagoForm(Pagos $entity, $id) {
+        $form = $this->createForm(new PagosType(), $entity, array(
+            'action' => $this->generateUrl('moduloclientes_cliente_sesionesClientes_apuntarse', array('id' => $id)),
+            'method' => 'POST'
+        ));
+        return $form;
+    }
+
+    public function apuntarseAction($id, Request $request) {
         $em = $this->getDoctrine()->getManager();
         $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
-        $sumaCliente = $sesion->getNClientes();
-        $sumaCliente++;
-        $sesion->setNClientes($sumaCliente);
-        if ($sumaCliente == $sesion->getLClientes()) {
-            $sesion->setEstadoCliente("Completo");
+        $pago = new Pagos();
+        $cliente = $this->getUser();
+        $form = $this->createPagoForm($pago, $id);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $sumaCliente = $sesion->getNClientes();
+            $sumaCliente++;
+            $sesion->setNClientes($sumaCliente);
+            $pago->setIdCliente($cliente->getId());
+            $pago->setIdConcepto($id);
+            $pago->setConcepto('Sesion');
+            $pago->setCuantia($sesion->getPrecio());
+
+            if ($sumaCliente == $sesion->getLClientes()) {
+                $sesion->setEstadoCliente("Completo");
+            }
+
+            if ($sesion->getIdsClientes() == null) {
+                $sesion->setIdsClientes($this->getUser()->getId());
+            } else {
+                $sesion->setIdsClientes($sesion->getIdsClientes() . '&' . $this->getUser()->getId());
+            }
+
+            $usuario = $this->findEntity($this->getUser()->getId(), $em, 'CriveroPruebaBundle:Usuarios');
+            if ($sesion->getCliente() != 'normal') {
+                $sesion->setCliente($usuario->getUsername());
+            }
+            if ($usuario->getSesiones() == null) {
+                $usuario->setSesiones($sesion->getId());
+            } else {
+                $usuario->setSesiones($usuario->getSesiones() . '&' . $sesion->getId());
+            }
+
+            $em->persist($usuario);
+            $em->persist($sesion);
+            $em->persist($pago);
+            $em->flush();
+
+            $notificacion = new Notificaciones();
+            $notificacion->setIdDestinatario($sesion->getIdMonitor());
+            $notificacion->setIdEntidad($sesion->getId());
+            $notificacion->setMensaje("El usuario " . $usuario->getUsername() . " se ha unido a la sesión " . $sesion->getNombre());
+            $notificacion->setIdOrigen($this->getUser()->getId());
+            $notificacion->setEstado("No leido");
+            if ($sesion->getCliente() == 'normal') {
+                $notificacion->setConcepto("NuevoParticipantePublica");
+            } else {
+                $notificacion->setConcepto("NuevoParticipantePrivada");
+            }
+            $em->persist($notificacion);
+            $em->flush();
+            return $this->redirect($this->generateUrl('moduloclientes_cliente_misSesionesClientes'));
         }
 
-        if ($sesion->getIdsClientes() == null) {
-            $sesion->setIdsClientes($this->getUser()->getId());
-        } else {
-            $sesion->setIdsClientes($sesion->getIdsClientes() . '&' . $this->getUser()->getId());
-        }
-
-        $usuario = $this->findEntity($this->getUser()->getId(), $em, 'CriveroPruebaBundle:Usuarios');
-        if ($sesion->getCliente() != 'normal') {
-            $sesion->setCliente($usuario->getUsername());
-        }
-        if ($usuario->getSesiones() == null) {
-            $usuario->setSesiones($sesion->getId());
-        } else {
-            $usuario->setSesiones($usuario->getSesiones() . '&' . $sesion->getId());
-        }
-
-        $em->persist($usuario);
-        $em->persist($sesion);
-        $em->flush();
-
-        $notificacion = new Notificaciones();
-        $notificacion->setIdDestinatario($sesion->getIdMonitor());
-        $notificacion->setIdEntidad($sesion->getId());
-        $notificacion->setMensaje("El usuario " . $usuario->getUsername() . " se ha unido a la sesión " . $sesion->getNombre());
-        $notificacion->setIdOrigen($this->getUser()->getId());
-        $notificacion->setEstado("No leido");
-        if ($sesion->getCliente() == 'normal') {
-            $notificacion->setConcepto("NuevoParticipantePublica");
-        } else {
-            $notificacion->setConcepto("NuevoParticipantePrivada");
-        }
-        $em->persist($notificacion);
-        $em->flush();
-        return $this->redirect($this->generateUrl('moduloclientes_cliente_misSesionesClientes'));
+        return $this->render('moduloclientesclienteBundle:Reservas:pagoReserva.html.twig', array('form' => $form->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function abandonarAction($id) {
@@ -318,7 +311,7 @@ class SesionController extends Controller {
             $this->getDoctrine()->getManager()->flush();
         }
     }
-    
+
     private function removeSesionId($entity, $id) {
         $pos = strpos($entity->getSesiones(), strval($id));
         $cifra = strlen(strval($id));

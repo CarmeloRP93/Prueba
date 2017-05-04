@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="Crivero\PruebaBundle\Entity\SesionesRepository")
  */
 class Sesiones {
+
     /**
      * @var integer
      *
@@ -27,14 +28,14 @@ class Sesiones {
      * @ORM\Column(name="idMonitor", type="integer")
      */
     private $idMonitor;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="idsClientes", type="string", length=1000, nullable=true)
      */
     private $idsClientes;
-    
+
     /**
      * @var string
      *
@@ -48,7 +49,7 @@ class Sesiones {
      * @ORM\Column(name="cliente", type="string", length=200)
      */
     private $cliente;
-    
+
     /**
      * @var string
      *
@@ -63,6 +64,7 @@ class Sesiones {
      * @ORM\Column(name="imagen", type="string", length=255)
      */
     private $imagen;
+
     /**
      * @var string
      *
@@ -85,20 +87,21 @@ class Sesiones {
      * @Assert\NotBlank(message="Rellene el campo.")
      */
     private $repeticiones;
-    
+
     /**
      * @var integer
      *
      * @ORM\Column(name="aula", type="integer", nullable=true)
      */
     private $aula;
+
     /**
      * @var integer
      *
      * @ORM\Column(name="cancha", type="integer", nullable=true)
      */
     private $cancha;
-    
+
     /**
      * @var string
      *
@@ -113,7 +116,7 @@ class Sesiones {
      * @Assert\NotBlank(message="Rellene el campo.")
      */
     private $duracion;
-  
+
     /**
      * @var integer
      *
@@ -128,21 +131,21 @@ class Sesiones {
      * @ORM\Column(name="estado", type="string", length=200)
      */
     private $estado;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="horario", type="string", length=2000, nullable=true)
      */
     private $horario;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="estadoCliente", type="string", length=200)
      */
     private $estadoCliente;
-    
+
     /**
      * @var string
      *
@@ -150,21 +153,21 @@ class Sesiones {
      * @Assert\NotBlank(message="Rellene el campo.")
      */
     private $objetivo;
-    
+
     /**
      * @var integer
      *
      * @ORM\Column(name="nClientes", type="integer")
      */
     private $nClientes;
-    
+
     /**
      * @var integer
      *
      * @ORM\Column(name="lClientes", type="integer")
      */
     private $lClientes;
-    
+
     /**
      * @var integer
      *
@@ -172,7 +175,7 @@ class Sesiones {
      * @Assert\NotBlank(message="Rellene el campo.")
      */
     private $nSesiones;
-    
+
     /**
      * @var integer
      *
@@ -186,14 +189,14 @@ class Sesiones {
      * @ORM\Column(name="observaciones", type="string", length=255, nullable=true)
      */
     private $observaciones;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="excluidos", type="string", length=255, nullable=true)
      */
     private $excluidos;
-    
+
     /**
      * @var Date
      *
@@ -201,15 +204,24 @@ class Sesiones {
      * @Assert\NotBlank(message="Seleccione una fecha")
      */
     private $fechaInicio;
-    
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="precio", type="float", nullable=true)
+     * @Assert\Regex(
+     *     pattern="/^[0-9]+((\.[0-9]{1,2})?)$/",
+     *     message="Introduzca un precio válido.")
+     * 
+     */
+    private $precio;
+
     /**
      * Get id
      *
      * @return integer 
      */
-    
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -219,8 +231,7 @@ class Sesiones {
      * @param string $monitor
      * @return Sesiones
      */
-    public function setMonitor($monitor)
-    {
+    public function setMonitor($monitor) {
         $this->monitor = $monitor;
 
         return $this;
@@ -231,20 +242,17 @@ class Sesiones {
      *
      * @return string 
      */
-    public function getMonitor()
-    {
+    public function getMonitor() {
         return $this->monitor;
     }
-    
-    
+
     /**
      * Set horario
      *
      * @param string $horario
      * @return Sesiones
      */
-    public function setHorario($horario)
-    {
+    public function setHorario($horario) {
         $this->horario = $horario;
 
         return $this;
@@ -255,19 +263,17 @@ class Sesiones {
      *
      * @return string 
      */
-    public function getHorario()
-    {
+    public function getHorario() {
         return $this->horario;
     }
-    
+
     /**
      * Set cliente
      *
      * @param string $cliente
      * @return Sesiones
      */
-    public function setCliente($cliente)
-    {
+    public function setCliente($cliente) {
         $this->cliente = $cliente;
 
         return $this;
@@ -278,19 +284,17 @@ class Sesiones {
      *
      * @return string 
      */
-    public function getCliente()
-    {
+    public function getCliente() {
         return $this->cliente;
     }
-    
+
     /**
      * Set nombre
      *
      * @param string $nombre
      * @return Sesiones
      */
-    public function setNombre($nombre)
-    {
+    public function setNombre($nombre) {
         $this->nombre = $nombre;
 
         return $this;
@@ -301,8 +305,7 @@ class Sesiones {
      *
      * @return string 
      */
-    public function getNombre()
-    {
+    public function getNombre() {
         return $this->nombre;
     }
 
@@ -312,8 +315,7 @@ class Sesiones {
      * @param string $imagen
      * @return Sesiones
      */
-    public function setImagen($imagen)
-    {
+    public function setImagen($imagen) {
         $this->imagen = $imagen;
 
         return $this;
@@ -324,18 +326,17 @@ class Sesiones {
      *
      * @return string 
      */
-    public function getImagen()
-    {
+    public function getImagen() {
         return $this->imagen;
     }
+
     /**
      * Set concepto
      *
      * @param string $concepto
      * @return Sesiones
      */
-    public function setConcepto($concepto)
-    {
+    public function setConcepto($concepto) {
         $this->concepto = $concepto;
 
         return $this;
@@ -346,8 +347,7 @@ class Sesiones {
      *
      * @return string 
      */
-    public function getConcepto()
-    {
+    public function getConcepto() {
         return $this->concepto;
     }
 
@@ -357,8 +357,7 @@ class Sesiones {
      * @param string $ejercicios
      * @return Sesiones
      */
-    public function setEjercicios($ejercicios)
-    {
+    public function setEjercicios($ejercicios) {
         $this->ejercicios = $ejercicios;
 
         return $this;
@@ -369,8 +368,7 @@ class Sesiones {
      *
      * @return string 
      */
-    public function getEjercicios()
-    {
+    public function getEjercicios() {
         return $this->ejercicios;
     }
 
@@ -380,8 +378,7 @@ class Sesiones {
      * @param integer $repeticiones
      * @return Sesiones
      */
-    public function setRepeticiones($repeticiones)
-    {
+    public function setRepeticiones($repeticiones) {
         $this->repeticiones = $repeticiones;
 
         return $this;
@@ -395,7 +392,7 @@ class Sesiones {
     public function getRepeticiones() {
         return $this->repeticiones;
     }
-    
+
     /**
      * Set duracion
      *
@@ -416,6 +413,7 @@ class Sesiones {
     public function getDuracion() {
         return $this->duracion;
     }
+
     /**
      * Set descanso
      *
@@ -457,7 +455,7 @@ class Sesiones {
     public function getEstado() {
         return $this->estado;
     }
-    
+
     /**
      * Set estadoCliente
      *
@@ -478,7 +476,7 @@ class Sesiones {
     public function getEstadoCliente() {
         return $this->estadoCliente;
     }
-    
+
     /**
      * Set objetivo
      *
@@ -499,7 +497,7 @@ class Sesiones {
     public function getObjetivo() {
         return $this->objetivo;
     }
-    
+
     /**
      * Set nClientes
      *
@@ -520,7 +518,7 @@ class Sesiones {
     public function getNClientes() {
         return $this->nClientes;
     }
-    
+
     /**
      * Set lClientes
      *
@@ -541,7 +539,7 @@ class Sesiones {
     public function getLClientes() {
         return $this->lClientes;
     }
-    
+
     /**
      * Set observaciones
      *
@@ -562,7 +560,7 @@ class Sesiones {
     public function getObservaciones() {
         return $this->observaciones;
     }
-    
+
     /**
      * Get excluidos
      *
@@ -571,7 +569,7 @@ class Sesiones {
     public function getExcluidos() {
         return $this->excluidos;
     }
-    
+
     /**
      * Set excluidos
      *
@@ -592,8 +590,8 @@ class Sesiones {
     public function getIdMonitor() {
         return $this->idMonitor;
     }
-    
-     /**
+
+    /**
      * Set idMonitor
      *
      * @param integer $idMonitor
@@ -604,7 +602,7 @@ class Sesiones {
 
         return $this;
     }
-    
+
     /**
      * Get Aula
      *
@@ -613,8 +611,8 @@ class Sesiones {
     public function getAula() {
         return $this->aula;
     }
-    
-     /**
+
+    /**
      * Set Aula
      *
      * @param integer $aula
@@ -625,6 +623,7 @@ class Sesiones {
 
         return $this;
     }
+
     /**
      * Get Cancha
      *
@@ -633,8 +632,8 @@ class Sesiones {
     public function getCancha() {
         return $this->cancha;
     }
-    
-     /**
+
+    /**
      * Set Cancha
      *
      * @param integer $cancha
@@ -645,7 +644,7 @@ class Sesiones {
 
         return $this;
     }
-    
+
     /**
      * Get dias
      *
@@ -654,8 +653,8 @@ class Sesiones {
     public function getDias() {
         return $this->dias;
     }
-    
-     /**
+
+    /**
      * Set dias
      *
      * @param string $dias
@@ -666,7 +665,7 @@ class Sesiones {
 
         return $this;
     }
-    
+
     /**
      * Get idsClientes
      *
@@ -675,7 +674,7 @@ class Sesiones {
     public function getIdsClientes() {
         return $this->idsClientes;
     }
-    
+
     /**
      * Set idsClientes
      *
@@ -687,7 +686,7 @@ class Sesiones {
 
         return $this;
     }
-    
+
     /**
      * Set nSesiones
      *
@@ -708,6 +707,7 @@ class Sesiones {
     public function getNSesiones() {
         return $this->nSesiones;
     }
+
     /**
      * Set horaComienzo
      *
@@ -728,7 +728,7 @@ class Sesiones {
     public function getHoraComienzo() {
         return $this->horaComienzo;
     }
-    
+
     /**
      * Set fechaInicio
      *
@@ -749,4 +749,25 @@ class Sesiones {
     public function getFechaInicio() {
         return $this->fechaInicio;
     }
+
+    /**
+     * Get precio
+     *
+     * @return float
+     */
+    public function getPrecio() {
+        return $this->precio;
+    }
+
+    /**
+     * Set precio
+     *
+     * @param float $precio
+     * @return Canchas
+     */
+    public function setPrecio($precio) {
+        $this->precio = $precio;
+        return $this;
+    }
+
 }

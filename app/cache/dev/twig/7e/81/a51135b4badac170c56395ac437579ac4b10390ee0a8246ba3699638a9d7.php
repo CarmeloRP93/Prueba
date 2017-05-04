@@ -62,8 +62,10 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
                 <span class=\"icon-bar\"></span>
                 <span class=\"icon-bar\"></span>
             </button>
-            <a class=\"navbar-brand\" href=\"#\"> <img src=\"";
+            <a class=\"navbar-brand\" href=\"";
         // line 16
+        echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_homeCliente");
+        echo "\"> <img src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/logo.png"), "html", null, true);
         echo "\" style=\"width: 30px; margin-top: -5px\"> </a>
         </div>
@@ -213,10 +215,6 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
                             $context["ruta"] = $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_mensajeCliente", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
                             // line 81
                             echo "                                    ";
-                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Celiminada")) {
-                            // line 82
-                            echo "                                        ";
-                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_canchasClientes");
                             // line 83
                             echo "                                    ";
                         } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "AbandonoPublica")) {
@@ -225,8 +223,20 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
                             $context["ruta"] = $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_sesionClientes", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
                             // line 85
                             echo "                                    ";
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Tarifas")) {
+                            // line 86
+                            echo "                                        ";
+                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_sesionesClientes");
+                            // line 87
+                            echo "                                    ";
+                        } else {
+                            // line 88
+                            echo "                                        ";
+                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_notificacionesCliente", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
+                            // line 89
+                            echo "                                    ";
                         }
-                        // line 86
+                        // line 90
                         echo "                                        <li class=\"text-center\"><a style=\"color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;\" href=\"";
                         echo twig_escape_filter($this->env, (isset($context["ruta"]) ? $context["ruta"] : $this->getContext($context, "ruta")), "html", null, true);
                         echo "\">";
@@ -234,43 +244,43 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
                         echo "</a></li>
                                         <li role=\"separator\" class=\"divider\" style=\"background-color: #cecdcd\"></li>
                                     ";
-                        // line 88
+                        // line 92
                         $context["n"] = ((isset($context["n"]) ? $context["n"] : $this->getContext($context, "n")) + 1);
-                        // line 89
+                        // line 93
                         echo "                                ";
                     }
                 }
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['notificacion'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 90
+                // line 94
                 echo "                                    <li class=\"text-center\"><a href = \"";
                 echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_notificacionesCliente");
                 echo "\"><font color=\"blue\"><strong>Ver todas</strong></font></a></li>
                             </ul>
                         </li>
                         <li><a class=\"hidden-sm hidden-md hidden-lg\" href = \"";
-                // line 93
+                // line 97
                 echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_notificacionesCliente");
                 echo "\"><img  src=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/campanaCN.png"), "html", null, true);
                 echo "\" style=\"width: 18px\"/></a></li>
                     ";
             }
-            // line 95
+            // line 99
             echo "                    <li><a href = \"";
             echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_mensajes_recibidosCliente");
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/correo.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
                     <li><a href=\"";
-            // line 96
+            // line 100
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_miPerfil", array("id" => $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))), "html", null, true);
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/user.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
                     <li><a href=\"";
-            // line 97
+            // line 101
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
             echo "\" style=\"margin-right:12px;\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/logout.png"), "html", null, true);
@@ -278,19 +288,19 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
                 </ul>
             ";
         }
-        // line 100
+        // line 104
         echo "
             <form method=\"GET\" class=\"navbar-form navbar-center\" role=\"search\">
                 <div class=\"input-group\">
                     <input type=\"text\" name=\"query\" class=\"form-control\" value=\"";
-        // line 103
+        // line 107
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "get", array(0 => "query"), "method"), "html", null, true);
         echo "\" 
                            placeholder=\"Buscar usuarios, reservas\" >
                     <div class=\"input-group-btn\">
                         <button type=\"submit\" class=\"btn btn-default\">
                             <img src=\"";
-        // line 107
+        // line 111
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/search.png"), "html", null, true);
         echo "\" style=\"width: 15px;\" />  
                         </button>
@@ -303,25 +313,25 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
 ";
     }
 
-    // line 116
+    // line 120
     public function block_body($context, array $blocks = array())
     {
-        // line 117
+        // line 121
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 119
+        // line 123
         $this->displayBlock('contenido', $context, $blocks);
-        // line 121
+        // line 125
         echo "        </div>
     </div>
 ";
     }
 
-    // line 119
+    // line 123
     public function block_contenido($context, array $blocks = array())
     {
-        // line 120
+        // line 124
         echo "            ";
     }
 
@@ -337,6 +347,6 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
 
     public function getDebugInfo()
     {
-        return array (  325 => 120,  322 => 119,  316 => 121,  314 => 119,  310 => 117,  307 => 116,  294 => 107,  287 => 103,  282 => 100,  274 => 97,  268 => 96,  261 => 95,  254 => 93,  247 => 90,  240 => 89,  238 => 88,  230 => 86,  227 => 85,  224 => 84,  221 => 83,  218 => 82,  215 => 81,  212 => 80,  209 => 79,  206 => 78,  203 => 77,  200 => 76,  197 => 75,  194 => 74,  191 => 73,  188 => 72,  185 => 71,  182 => 70,  179 => 69,  176 => 68,  173 => 67,  170 => 66,  168 => 65,  161 => 64,  157 => 63,  152 => 61,  149 => 60,  142 => 58,  138 => 57,  135 => 56,  133 => 55,  123 => 48,  119 => 47,  111 => 42,  101 => 35,  96 => 33,  92 => 32,  84 => 27,  78 => 24,  67 => 16,  54 => 5,  51 => 4,  46 => 3,  40 => 2,  11 => 1,);
+        return array (  335 => 124,  332 => 123,  326 => 125,  324 => 123,  320 => 121,  317 => 120,  304 => 111,  297 => 107,  292 => 104,  284 => 101,  278 => 100,  271 => 99,  264 => 97,  257 => 94,  250 => 93,  248 => 92,  240 => 90,  237 => 89,  234 => 88,  231 => 87,  228 => 86,  225 => 85,  222 => 84,  219 => 83,  217 => 81,  214 => 80,  211 => 79,  208 => 78,  205 => 77,  202 => 76,  199 => 75,  196 => 74,  193 => 73,  190 => 72,  187 => 71,  184 => 70,  181 => 69,  178 => 68,  175 => 67,  172 => 66,  170 => 65,  163 => 64,  159 => 63,  154 => 61,  151 => 60,  144 => 58,  140 => 57,  137 => 56,  135 => 55,  125 => 48,  121 => 47,  113 => 42,  103 => 35,  98 => 33,  94 => 32,  86 => 27,  80 => 24,  67 => 16,  54 => 5,  51 => 4,  46 => 3,  40 => 2,  11 => 1,);
     }
 }

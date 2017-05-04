@@ -1,0 +1,39 @@
+{% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
+{% block title %} Elegir tipo {% endblock %}
+{% block contenido %}
+    <div class="container">
+        <div class="panel panel-default text-center">
+            <div class="panel-heading">
+                <h1 class="t1">Elegir tipo de sesión</h1>
+            </div>
+            <div class="panel-body myelement">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4 col-xs-offset-0 col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+                        <div class="panel panel-default text-center">
+                            <div class="panel-heading">
+                                <a href="{{url('modulomonitores_monitores_nuevaSesion')}}">
+                                    <h2 class="t1">Entrenamiento</h2>   
+                            </div>
+                            <div class="panel-body myelement">
+                                <img src="{{asset('images/kickboxing.jpg')}}" class="img-responsive center-block"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0">
+                        <div class="panel panel-default text-center">
+                            <div class="panel-heading">
+                                <a href="{{url('modulomonitores_monitores_nuevaSesionDeportiva')}}">
+                                    <h2 class="t1">Deportiva</h2>   
+                            </div>
+                            <div class="panel-body myelement">
+                                <img src="{{asset('images/futbol (1).jpg')}}" class="img-responsive center-block" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

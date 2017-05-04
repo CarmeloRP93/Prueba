@@ -147,6 +147,10 @@ class SesionController extends Controller {
         return $this->render('modulomonitoresmonitoresBundle:Publica:nuevaSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
     }
 
+    public function recintoPublicoAction() {
+        return $this->render('modulomonitoresmonitoresBundle:Publica:recintoPublico.html.twig', array('notificacionesSinLeer' => $this->getNewNotification()));
+    }
+
     public function nuevaSesionDeportivaAction() {
         $sesion = new Sesiones();
         $form = $this->createCreateDeportivaForm($sesion);

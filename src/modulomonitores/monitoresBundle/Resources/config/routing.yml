@@ -191,6 +191,11 @@ modulomonitores_monitores_disponibilidadM:
 modulomonitores_monitores_listadoParticipantes:
     pattern:  /listadoParticipantes
     defaults: { _controller: modulomonitoresmonitoresBundle:Participantes:listadoParticipantes }
+    
 modulomonitores_monitores_participanteListado:
     pattern:  /participanteListado/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Participantes:participanteListado }
+    
+modulomonitores_monitores_recintoPublico:
+    pattern:  /recintoPublico
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:recintoPublico }

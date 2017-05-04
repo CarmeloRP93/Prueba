@@ -222,7 +222,7 @@ class __TwigTemplate_835ad5fbf66363bc50224111ccfe1ffc3a7e2999b1b3ea6033b5b952cc6
         echo "</span><br>
                         </div>
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
-                            <label>Seleccione la hora de comienzo (Opcional)</label> 
+                            <label>Seleccione la hora de comienzo</label> 
                             ";
         // line 91
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horaComienzo", array()), 'widget', array("attr" => array("class" => "form-control")));

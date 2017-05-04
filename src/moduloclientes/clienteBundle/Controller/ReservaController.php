@@ -200,6 +200,7 @@ class ReservaController extends Controller {
             $instancia = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Horarioscanchas")->getInstancia($id, $fechaForm);
             $instancia[0]->setPeriodo(implode('&', $horariosArray));
 
+            $pago->setCuantia($cancha->getPrecio()*count($horitasArray));
             $em = $this->getDoctrine()->getManager();
             $em->persist($cliente);
             $em->persist($pago);

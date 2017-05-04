@@ -305,6 +305,14 @@ crivero_prueba_rechazarSesion:
     pattern:  /rechazarSesion/{id}
     defaults: { _controller: CriveroPruebaBundle:Sesion:rechazarSesion }
     
+crivero_prueba_tarifas:
+    pattern:  /tarifas
+    defaults: { _controller: CriveroPruebaBundle:Sesion:tarifas }  
+        
+crivero_prueba_actualizarTarifas:
+    pattern:  /actualizarTarifas
+    defaults: { _controller: CriveroPruebaBundle:Sesion:actualizarTarifas }
+    
 #---------------------------------------------------------------------------------
 # Otros
 

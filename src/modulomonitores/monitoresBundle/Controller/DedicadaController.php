@@ -195,7 +195,7 @@ class DedicadaController extends Controller {
         }
         $flag = true;
         $form = $this->createForm(new SesionesType($aulasD, $flag), $entity, array(
-            'action' => $this->generateUrl('modulomonitores_monitores_editarDedicada', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('modulomonitores_monitores_crearSesionDedicada', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));
         return $form;

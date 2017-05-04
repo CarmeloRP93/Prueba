@@ -7,19 +7,21 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="text-center">
-                    <img src="{{ asset(cancha.imagen) }}" class="img-responsive center-block" style="max-width: 340px; margin-bottom:20px"/>
-                </div><br>
-                {% if reserva.estadoReserva == 'Reservado' %}
-                    {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Cancelar reserva" })}}
-                {% else %}
-                    {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Cancelada (Pulsar para descartar reserva)" })}}
-                    {% if reserva.motivos != null %}
-                        <h4 class="terr">{{reserva.motivos}}</h4>
-                    {% endif %}
-                {% endif %}      
-            </div>                      
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-1">
+                <div class="panel panel-default">                  
+                    <div class="panel-body">
+                        <img src="{{ asset(cancha.imagen) }}" class="img-responsive center-block" style="width: 310px"/>
+                    </div>
+                    {% if reserva.estadoReserva == 'Reservado' %}
+                        {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Cancelar reserva" })}}
+                    {% else %}
+                        {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Cancelada (Pulsar para descartar reserva)" })}}
+                        {% if reserva.motivos != null %}
+                            <h4 class="terr">{{reserva.motivos}}</h4>
+                        {% endif %}
+                    {% endif %}      
+                </div>
+            </div>                     
 
             <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0 col-lg-6 col-lg-offset-0">
                 <div class="panel panel-default">                  
@@ -56,10 +58,10 @@
                             </div><br>
                         </div>
                     </div>
-                </div>
                 <div class="text-center">
                     <a href="{{path('moduloclientes_cliente_valorar', {'id': reserva.id})}}" class="btn btn-primary" style="height: 30px; width: 150px;"> Valorar cancha </a>
-                </div><br>
+                </div>
+                </div>
             </div>
         </div>
         <a class="btn btn-default" href="{{ path('moduloclientes_cliente_reservasClientes') }}">Volver atrás</a>

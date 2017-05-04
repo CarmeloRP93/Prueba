@@ -51,10 +51,11 @@ class Pagos
      */
     private $concepto;
 
-    /**
-     * @var integer
+     /**
+     * @var float
      *
-     * @ORM\Column(name="cuantia", type="integer", nullable=true)
+     * @ORM\Column(name="cuantia", type="float", nullable=false)
+     * 
      */
     private $cuantia;
 

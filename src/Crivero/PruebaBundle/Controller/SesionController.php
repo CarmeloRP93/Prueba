@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Crivero\PruebaBundle\Entity\Sesiones;
 use Crivero\PruebaBundle\Entity\Notificaciones;
 use Crivero\PruebaBundle\Form\SesionesType;
+use Crivero\PruebaBundle\Form\TarifasType;
+use Crivero\PruebaBundle\Entity\Tarifas;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormError;
 
@@ -109,16 +111,23 @@ class SesionController extends Controller {
         $sesion->setEstado("validada");
         $sesion->setEstadoCliente("disponible");
 
-
-
-
         $hoy = (int) date_format($sesion->getFechaInicio(), 'd');
         $mes = date_format($sesion->getFechaInicio(), 'm');
         $limite = date_format($sesion->getFechaInicio(), 't');
         $duracion = $sesion->getNSesiones();
         //$this->actualizarValores($hoy, $mes, $limite);
 
-
+        $tarifas = $this->findTarifas(1, $em);
+        $duracionSesion = ($sesion->getDuracion() > '60') ? 2 : 1;
+        if ($sesion->getCliente() != 'normal') {
+            $sesion->setPrecio($tarifas->getPrivada() * $duracionSesion);
+        } else {
+            if ($sesion->getConcepto() == 'aula') {
+                $sesion->setPrecio($tarifas->getEntrenamiento() * $duracionSesion);
+            } elseif ($sesion->getConcepto() == 'cancha') {                
+                $sesion->setPrecio($tarifas->getDeportiva() * $duracionSesion);
+            }
+        }
 
         $vuelta = 0;
         $diasSelect = explode('&', $sesion->getDias());
@@ -147,7 +156,7 @@ class SesionController extends Controller {
                 }
                 continue;
             }
-            
+
             $tiempo = false;
             if ($sesion->getDuracion() > 60) {
                 $tiempo = true;
@@ -464,6 +473,57 @@ class SesionController extends Controller {
         return $this->render('CriveroPruebaBundle:Sesiones:rechazarSesion.html.twig', array('sesion' => $sesion,
                     'form' => $form->createView(), 'notificacionesSinLeer' => $this->getNewNotification()));
     }
+    
+        public function tarifasAction() {
+        $em = $this->getDoctrine()->getManager();
+        $tarifas = $this->findTarifas(1, $em);
+        $form = $this->createEditTarifasForm($tarifas);
+        return $this->render('CriveroPruebaBundle:Sesiones:tarifas.html.twig', array(
+                    'form' => $form->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
+    }
+
+    public function createEditTarifasForm(Tarifas $entity) {
+        $form = $this->createForm(new TarifasType(), $entity, array(
+            'action' => $this->generateUrl('crivero_prueba_actualizarTarifas')));
+        return $form;
+    }
+
+    public function actualizarTarifasAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $tarifas = $this->findTarifas(1, $em);
+        $form = $this->createEditTarifasForm($tarifas);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $precioEntrenamiento = $form->get('entrenamiento')->getData();
+            $precioDeportiva = $form->get('deportiva')->getData();
+            $precioPrivada = $form->get('privada')->getData();
+
+            $tarifas->setEntrenamiento($precioEntrenamiento);
+            $tarifas->setDeportiva($precioDeportiva);
+            $tarifas->setPrivada($precioPrivada);
+            $em->persist($tarifas);
+
+            $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
+            foreach ($usuarios as $usuario) {
+                if ($usuario->getTipo() == 2) {
+                    $notificacion = new Notificaciones();
+                    $notificacion->setIdDestinatario($usuario->getId());
+                    $notificacion->setIdEntidad(1);
+                    $notificacion->setMensaje("Tarifas de sesiones actualizadas");
+                    $notificacion->setIdOrigen($this->getUser()->getId());
+                    $notificacion->setEstado("No leido");
+                    $notificacion->setConcepto("Tarifas");
+                    $em->persist($notificacion);
+                    $em->flush();
+                }
+            }
+            return $this->redirect($this->generateUrl('crivero_prueba_sesiones'));
+        }
+        return $this->render('CriveroPruebaBundle:Sesiones:tarifas.html.twig', array('form' => $form->createView(),
+                    'notificacionesSinLeer' => $this->getNewNotification()));
+    }
 
     private function findEntity($id, $em, $repository) {
         $entity = $em->getRepository($repository)->find($id);
@@ -604,6 +664,14 @@ class SesionController extends Controller {
             $repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())[0]->setEstado("Leido");
             $this->getDoctrine()->getManager()->flush();
         }
+    }
+
+    private function findTarifas($id, $em) {
+        $tarifas = $em->getRepository('CriveroPruebaBundle:Tarifas')->find($id);
+        if (!$tarifas) {
+            throw $this->createNotFoundException('Tarifas no encontradas');
+        }
+        return $tarifas;
     }
 
 }
