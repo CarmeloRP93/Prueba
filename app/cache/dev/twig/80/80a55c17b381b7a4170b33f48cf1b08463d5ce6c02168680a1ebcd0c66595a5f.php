@@ -58,7 +58,7 @@ class __TwigTemplate_a9742f6333c9985b74f27f550eb4e307982dd42301b5062c6da6033f8c1
             <a class=\"navbar-brand\" href=\"#\"> <img src=\"";
         // line 18
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/logo.png"), "html", null, true);
-        echo "\" style=\"width: 30px\"> </a>
+        echo "\" style=\"width: 30px; margin-top: -5px\"> </a>
         </div>
 
 
@@ -311,7 +311,7 @@ class __TwigTemplate_a9742f6333c9985b74f27f550eb4e307982dd42301b5062c6da6033f8c1
                 <span class=\"icon-bar\"></span>
                 <span class=\"icon-bar\"></span>
             </button>
-            <a class=\"navbar-brand\" href=\"#\"> <img src=\"{{ asset('images/logo.png') }}\" style=\"width: 30px\"> </a>
+            <a class=\"navbar-brand\" href=\"#\"> <img src=\"{{ asset('images/logo.png') }}\" style=\"width: 30px; margin-top: -5px\"> </a>
         </div>
 
 

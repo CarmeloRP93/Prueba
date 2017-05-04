@@ -57,6 +57,13 @@ class Jugadores {
      * @ORM\Column(name="incidencia", type="string", length=255)
      */
     private $incidencia;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="imagen", type="string", length=255, nullable=true)
+     */
+    private $imagen;
 
     /**
      * Get id
@@ -169,6 +176,26 @@ class Jugadores {
      */
     public function getIncidencia() {
         return $this->incidencia;
+    }
+    
+    /**
+     * Set imagen
+     *
+     * @param string $imagen
+     * @return Jugadores
+     */
+    public function setImagen($imagen) {
+        $this->imagen = $imagen;
+        return $this;
+    }
+
+    /**
+     * Get imagen
+     *
+     * @return string 
+     */
+    public function getImagen() {
+        return $this->imagen;
     }
 
 }

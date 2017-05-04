@@ -12,6 +12,7 @@
                         <th> {{ knp_pagination_sortable(jugadores, 'Nombre', 'jugadores.nombre') }}</th>
                         <th> {{ knp_pagination_sortable(jugadores, 'Dorsal', 'jugadores.Dorsal') }}</th>
                         <th>{{ knp_pagination_sortable(jugadores, 'Incidencias', 'jugadores.incidencia') }}</th>
+                        <th> Imágenes</th>
                         <th> Acción </th>
                     </tr>
                 </thead>
@@ -19,7 +20,12 @@
                         <tr data-id="{{jugador.id}}">
                             <td>  {{jugador.nombre}}  </td>
                             <td>   {{jugador.Dorsal}}   </td>
-                            <td>   {{jugador.incidencia}}   </td>
+                            <td>   {{jugador.incidencia}}</td>
+                            {%if jugador.imagen != null%}
+                                <td><img src="{{ asset('images/'~jugador.imagen) }}" class="img-responsive center-block" style="max-width: 140px; margin-bottom:20px"/></td>
+                            {%else%}
+                                <td>Imagen no Disponible</td>
+                            {%endif%}
                             <td>
                                 <a href="#" class="btn btn-sm btn-danger btn-delete">
                                     Eliminar
@@ -31,7 +37,10 @@
         </div>
         <div class="container">
             <a href="{{path('moduloclientes_cliente_jugador_nuevo',{'id': equipo.id})}}" class="btn btn-success" style="height: 30px; width: 150px;">
-                Añadir jugador 
+                Añadir invitado
+                <span class="glyphicon glyphicon-plus"></span></a>
+            <a href="{{path('moduloclientes_cliente_jugadoresClientes',{'id': equipo.id})}}" class="btn btn-success" style="height: 30px; width: 150px;">
+                Buscar jugador
                 <span class="glyphicon glyphicon-plus"></span></a>
             <a href="{{ path('moduloclientes_cliente_equipo_editar', { 'id': equipo.id }) }}" class="btn btn-sm btn-primary">
                 Editar Equipo

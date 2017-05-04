@@ -73,7 +73,7 @@ class __TwigTemplate_17f3dae74b9139408ff4655364616c851308fa4609b47f0a53b9b768a27
 
             <div class=\"panel-body\">  
                 <div class=\"row\">
-                    <div class=\"col-xs-12 col-sm-6 col-md-3 col-lg-3\">
+                    <div class=\"hidden\">
                         ";
         // line 25
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "username", array()), 'label');
@@ -87,46 +87,59 @@ class __TwigTemplate_17f3dae74b9139408ff4655364616c851308fa4609b47f0a53b9b768a27
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "username", array()), 'errors');
         echo "</span>
                     </div>
-
                     <div class=\"col-xs-12 col-sm-6 col-md-3 col-lg-3\">
                         ";
-        // line 31
+        // line 30
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'label');
         echo "
                         ";
-        // line 32
+        // line 31
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Introducir si no tiene usuario")));
         echo "
                         <span class=\"text-danger\">";
-        // line 33
+        // line 32
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "nombre", array()), 'errors');
         echo "</span>
                     </div>
 
                     <div class=\"col-xs-12 col-sm-6 col-md-3 col-lg-3\">
                         ";
-        // line 37
+        // line 36
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "dorsal", array()), 'label');
         echo "
                         ";
-        // line 38
+        // line 37
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "dorsal", array()), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Recuerde introducir un dorsal")));
         echo "
                         <span class=\"text-danger\">";
-        // line 39
+        // line 38
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "dorsal", array()), 'errors');
+        echo "</span>
+                    </div>
+                    <div class=\"col-xs-12 col-sm-6 col-md-3 col-lg-3\">
+                        ";
+        // line 41
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "imagen", array()), 'label');
+        echo "
+                        ";
+        // line 42
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "imagen", array()), 'widget');
+        echo "
+                        <span class=\"text-danger\">";
+        // line 43
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "imagen", array()), 'errors');
         echo "</span>
                     </div>
                     <div class=\"col-xs-12 col-sm-6 col-md-3 col-lg-3\"><br>
                         ";
-        // line 42
+        // line 46
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
                     </div>
                 </div>
             </div>
             ";
-        // line 46
+        // line 50
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
         </div>              
@@ -146,7 +159,7 @@ class __TwigTemplate_17f3dae74b9139408ff4655364616c851308fa4609b47f0a53b9b768a27
 
     public function getDebugInfo()
     {
-        return array (  130 => 46,  123 => 42,  117 => 39,  113 => 38,  109 => 37,  102 => 33,  98 => 32,  94 => 31,  87 => 27,  83 => 26,  79 => 25,  70 => 19,  66 => 18,  62 => 17,  55 => 13,  51 => 12,  46 => 10,  38 => 4,  35 => 3,  29 => 2,  11 => 1,);
+        return array (  143 => 50,  136 => 46,  130 => 43,  126 => 42,  122 => 41,  116 => 38,  112 => 37,  108 => 36,  101 => 32,  97 => 31,  93 => 30,  87 => 27,  83 => 26,  79 => 25,  70 => 19,  66 => 18,  62 => 17,  55 => 13,  51 => 12,  46 => 10,  38 => 4,  35 => 3,  29 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -182,12 +195,11 @@ class __TwigTemplate_17f3dae74b9139408ff4655364616c851308fa4609b47f0a53b9b768a27
 
             <div class=\"panel-body\">  
                 <div class=\"row\">
-                    <div class=\"col-xs-12 col-sm-6 col-md-3 col-lg-3\">
+                    <div class=\"hidden\">
                         {{ form_label(form.username) }}
                         {{ form_widget(form.username, {'attr' : {'class' : 'form-control', 'placeholder' : 'Introducir si tiene cuenta de usuario'}  } ) }}
                         <span class=\"text-danger\">{{ form_errors(form.username) }}</span>
                     </div>
-
                     <div class=\"col-xs-12 col-sm-6 col-md-3 col-lg-3\">
                         {{ form_label(form.nombre) }}
                         {{ form_widget(form.nombre, {'attr' : {'class' : 'form-control', 'placeholder' : 'Introducir si no tiene usuario'}  } ) }}
@@ -198,6 +210,11 @@ class __TwigTemplate_17f3dae74b9139408ff4655364616c851308fa4609b47f0a53b9b768a27
                         {{ form_label(form.dorsal) }}
                         {{ form_widget(form.dorsal, {'attr' : {'class' : 'form-control','placeholder' : 'Recuerde introducir un dorsal'}  } ) }}
                         <span class=\"text-danger\">{{ form_errors(form.dorsal) }}</span>
+                    </div>
+                    <div class=\"col-xs-12 col-sm-6 col-md-3 col-lg-3\">
+                        {{ form_label(form.imagen) }}
+                        {{ form_widget(form.imagen) }}
+                        <span class=\"text-danger\">{{ form_errors(form.imagen) }}</span>
                     </div>
                     <div class=\"col-xs-12 col-sm-6 col-md-3 col-lg-3\"><br>
                         {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}

@@ -43,9 +43,11 @@ class __TwigTemplate_b9e2e7f14ea359014bb72c8af4694d394484effc03b62efa13d04c29c07
                 <div class=\"panel-heading\">
                     <div class=\"row\">
                         <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
-                            ";
+                            <h3 style=\"font-weight: 600\">\"Foto\"</h3>
+                            <img src=\"";
         // line 11
-        echo "                          <h3 style=\"font-weight: 600\">\"Foto\"</h3>
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl(("images/" . $this->getAttribute((isset($context["jugador"]) ? $context["jugador"] : $this->getContext($context, "jugador")), "imagen", array()))), "html", null, true);
+        echo "\" class=\"img-circle\" style=\"width:60px;\" />        
                         </div>
                         <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
                             <h3 style=\"font-weight: 600\">";
@@ -145,7 +147,7 @@ class __TwigTemplate_b9e2e7f14ea359014bb72c8af4694d394484effc03b62efa13d04c29c07
 
     public function getDebugInfo()
     {
-        return array (  128 => 38,  124 => 37,  116 => 33,  106 => 31,  101 => 30,  97 => 28,  91 => 27,  81 => 25,  76 => 24,  71 => 23,  67 => 22,  63 => 21,  53 => 14,  48 => 11,  40 => 4,  37 => 3,  29 => 2,  11 => 1,);
+        return array (  130 => 38,  126 => 37,  118 => 33,  108 => 31,  103 => 30,  99 => 28,  93 => 27,  83 => 25,  78 => 24,  73 => 23,  69 => 22,  65 => 21,  55 => 14,  49 => 11,  40 => 4,  37 => 3,  29 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -167,8 +169,8 @@ class __TwigTemplate_b9e2e7f14ea359014bb72c8af4694d394484effc03b62efa13d04c29c07
                 <div class=\"panel-heading\">
                     <div class=\"row\">
                         <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
-                            {#                          <img src=\"{{ asset('images/' ~ jugador.imagen) }}\" class=\"img-circle\" style=\"width:60px;\" />        
-                            #}                          <h3 style=\"font-weight: 600\">\"Foto\"</h3>
+                            <h3 style=\"font-weight: 600\">\"Foto\"</h3>
+                            <img src=\"{{ asset('images/' ~ jugador.imagen) }}\" class=\"img-circle\" style=\"width:60px;\" />        
                         </div>
                         <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
                             <h3 style=\"font-weight: 600\">{{jugador.nombre}}</h3>

@@ -10,11 +10,47 @@ use Symfony\Component\HttpFoundation\Response;
 
 class JugadorController extends Controller {
     
-      public function nuevoAction($id) {
+    public function jugadoresClientesAction(Request $request, $id) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $jugadores = $repository->searchClientes($searchQuery) :
+                        $jugadores = $repository->getClientes();
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $jugadores, $request->query->getInt('page', 1), 5);
+        return $this->render('moduloclientesclienteBundle:Competiciones:jugadoresClientes.html.twig',
+            array('notificacionesSinLeer' => $this->getNewNotification(), "pagination" => $pagination));
+    }
+    
+    public function validarAction(Request $request,$id) {
+        $em = $this->getDoctrine()->getManager();
+        $usuario = $this->findEntity($id, $em, 'CriveroPruebaBundle:Usuarios');
         $jugador = new Jugadores();
-        $form = $this->createCreateForm($jugador,$id);
-        return $this->render('moduloclientesclienteBundle:Competiciones:nuevoJugadorCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
-            'form' => $form->createView(),'id' => $id));
+        $jugador -> setIdEquipo($request->get('idEquipo'));
+        $jugador -> setNombre($usuario->getNombre());
+        $jugador -> setUsername($usuario->getUsername());
+        $jugador -> setDorsal(rand(1, 100));
+        $jugador -> setIncidencia('Ninguna');
+        $jugador ->setImagen($usuario->getImagen());
+        $em->persist($jugador);
+        $em->flush();
+        return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));
+    }
+    
+    private function findEntity($id, $em, $repository) {
+        $entity = $em->getRepository($repository)->find($id);
+        if (!$entity) {
+            throw $this->createNotFoundException('Entidad no encontrada');
+        }
+        return $entity;
+    }
+    
+    public function nuevoAction($id) {
+      $jugador = new Jugadores();
+      $form = $this->createCreateForm($jugador,$id);
+      return $this->render('moduloclientesclienteBundle:Competiciones:nuevoJugadorCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),
+          'form' => $form->createView(),'id' => $id));
     }
     
     private function createCreateForm(Jugadores $entity,$id) {
@@ -32,15 +68,23 @@ class JugadorController extends Controller {
         $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $jugador->setIdEquipo($form->get('idEquipo')->getData());
-            $jugador->setIncidencia('Ninguna');
             if(($form->get('username')->getData() != 'No selecionado')){
                 $cliente =$this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->getNombreCliente($form->get('username')->getData());
                 $jugador->setNombre($cliente[0]['nombre']);
+                $jugador->setIdEquipo($form->get('idEquipo')->getData());
+                $jugador->setIncidencia('Ninguna');
+                $file = $form->get('imagen')->getData();
+                $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
+                $jugador->setImagen($file->getClientOriginalName());
                 $em->persist($jugador);
                 $em->flush();
             }else{
+                $jugador->setIdEquipo($form->get('idEquipo')->getData());
+                $jugador->setIncidencia('Ninguna');
                 $jugador->setUsername(null);
+                $file = $form->get('imagen')->getData();
+                $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
+                $jugador->setImagen($file->getClientOriginalName());
                 $em->persist($jugador);
                 $em->flush();
             }

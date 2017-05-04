@@ -54,33 +54,20 @@ class __TwigTemplate_053ca705518580c627ff0a18f2e5dda13dda5f726d7957748fe976caa28
         } elseif (($this->getAttribute($this->getAttribute(        // line 10
 (isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 2)) {
             // line 11
-            echo "            ";
-            if ((twig_date_format_filter($this->env, "now", "dmY") >= $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "fechaPagar", array()))) {
-                // line 12
-                echo "                <form id=\"formu\" action=\"";
-                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_pagar");
-                echo "\" method=\"post\">
-                </form>
-            ";
-            } else {
-                // line 15
-                echo "                <form id=\"formu\" action=\"";
-                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_reservasClientes");
-                echo "\" method=\"post\">
-                </form>
-            ";
-            }
-            // line 18
-            echo "        ";
+            echo "            <form id=\"formu\" action=\"";
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_reservasClientes");
+            echo "\" method=\"post\">
+            </form>
+        ";
         } else {
-            // line 19
+            // line 14
             echo "            <form id=\"formu\" action=\"";
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("modulomonitores_monitores_misSesionesMonitores");
             echo "\" method=\"post\">
             </form>
         ";
         }
-        // line 22
+        // line 17
         echo "        <img src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/loading.gif"), "html", null, true);
         echo "\" class=\"centradoV\" style=\"width: 10%; top: 50%\" />
@@ -106,7 +93,7 @@ class __TwigTemplate_053ca705518580c627ff0a18f2e5dda13dda5f726d7957748fe976caa28
 
     public function getDebugInfo()
     {
-        return array (  84 => 22,  77 => 19,  74 => 18,  67 => 15,  60 => 12,  57 => 11,  55 => 10,  49 => 8,  47 => 7,  44 => 6,  41 => 5,  35 => 4,  30 => 3,  11 => 1,);
+        return array (  71 => 17,  64 => 14,  57 => 11,  55 => 10,  49 => 8,  47 => 7,  44 => 6,  41 => 5,  35 => 4,  30 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -129,13 +116,8 @@ class __TwigTemplate_053ca705518580c627ff0a18f2e5dda13dda5f726d7957748fe976caa28
             <form id=\"formu\" action=\"{{ path('crivero_prueba_clientes') }}\" method=\"post\">
             </form>
         {% elseif app.user.tipo == 2 %}
-            {% if \"now\"|date('dmY') >= app.user.fechaPagar %}
-                <form id=\"formu\" action=\"{{ path('moduloclientes_cliente_pagar') }}\" method=\"post\">
-                </form>
-            {% else %}
-                <form id=\"formu\" action=\"{{ path('moduloclientes_cliente_reservasClientes') }}\" method=\"post\">
-                </form>
-            {% endif %}
+            <form id=\"formu\" action=\"{{ path('moduloclientes_cliente_reservasClientes') }}\" method=\"post\">
+            </form>
         {% else %}
             <form id=\"formu\" action=\"{{ path('modulomonitores_monitores_misSesionesMonitores') }}\" method=\"post\">
             </form>

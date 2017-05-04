@@ -29,6 +29,7 @@ class JugadoresType extends AbstractType
             ->add('nombre','text', array('label' => 'Nombre y Apellidos'))
             ->add('dorsal','integer')
             ->add('incidencia','text')
+            ->add('imagen', 'file',  array('data_class' => null))
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;
     }

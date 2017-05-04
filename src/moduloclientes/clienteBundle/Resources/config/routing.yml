@@ -10,7 +10,8 @@ moduloclientes_cliente_reservasClientes:
 moduloclientes_cliente_reservaClientes:
     pattern:  /reservaClientes/{id}
     defaults: { _controller: moduloclientesclienteBundle:Reserva:reservaClientes }
-#-------------------------------------------------------------------------------------------
+    
+#-------------------------------------------------------------------------------------------  
 #Competiciones, equipos, partidos y jugadores
 
 moduloclientes_cliente_partidosClientes:
@@ -82,7 +83,17 @@ moduloclientes_cliente_equipo_eliminar:
     defaults: { _controller: moduloclientesclienteBundle:Equipo:eliminarEquipo }
     requirements:
         _method: POST|DELETE
-        
+
+moduloclientes_cliente_jugador_validar:
+    pattern:  /jugador/validar/{id}
+    defaults: { _controller:  moduloclientesclienteBundle:Jugador:validar }
+    requirements:
+        _method:  POST|PUT|GET
+
+moduloclientes_cliente_jugadoresClientes:
+    pattern:  /jugadoresClientes/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Jugador:jugadoresClientes }
+       
 moduloclientes_cliente_jugador_nuevo:
     pattern:  /nuevoJugadorCliente/{id}
     defaults: { _controller: moduloclientesclienteBundle:Jugador:nuevo }
