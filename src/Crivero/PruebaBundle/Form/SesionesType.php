@@ -47,8 +47,7 @@ class SesionesType extends AbstractType {
                     ->add('aula', 'choice', array('choices' => $resRecinto, 'expanded' => true))
                     ->add('dias', 'choice', array('choices' => array('Monday' => 'Lunes', 'Tuesday' => 'Martes', 'Wednesday' => 'Miercoles'
                             , 'Thursday' => 'Jueves', 'Friday' => 'Viernes'), 'expanded' => true, 'multiple' => true))
-                    ->add('horaComienzo', 'choice', array('choices' => array(1 => '9:00', 2 => '10:00', 3 => '11:00', 4 => '12:00',
-                            5 => '16:00', 6 => '17:00', 7 => '18:00', 8 => '19:00', 9 => '20:00', 10 => '21:00')))
+                    ->add('horaComienzo', 'choice', array('choices' => array(1 => 'Turno de mañana', 2 => 'Turno de tarde')))
                     ->add('confirmar', 'submit', array('label' => 'Confirmar'))
             ;
         } elseif (!$this->flag) {
@@ -70,9 +69,7 @@ class SesionesType extends AbstractType {
                     ->add('cancha', 'choice', array('choices' => $resRecinto, 'expanded' => true))
                     ->add('dias', 'choice', array('choices' => array('Monday' => 'Lunes', 'Tuesday' => 'Martes', 'Wednesday' => 'Miercoles'
                             , 'Thursday' => 'Jueves', 'Friday' => 'Viernes'), 'expanded' => true, 'multiple' => true))
-                    ->add('horaComienzo', 'choice', array('choices' => array(1 => '9:00', 2 => '10:00', 3 => '11:00', 4 => '12:00',
-                        5 => '13:00', 6 => '14:00', 7 => '15:00', 8 => '16:00', 9 => '17:00', 10 => '18:00'
-                        , 11 => '19:00', 12 => '20:00', 13 => '21:00')))
+                    ->add('horaComienzo', 'choice', array('choices' => array(1 => 'Turno de mañana', 2 => 'Turno de tarde')))
                     ->add('confirmar', 'submit', array('label' => 'Confirmar'))
             ;
         } else {

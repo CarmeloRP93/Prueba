@@ -162,6 +162,22 @@ class SesionController extends Controller {
                 }
                 $horaComienzo = $sesion->getHoraComienzo();
                 $fechaReserva = $this->findFechaReserva($diaReserva[0], $mes, $horaComienzo, $tiempo, $sesion->getConcepto());
+                if ($fechaReserva === 0) {
+                    if ($i >= $limite) {
+                        // $this->updateMonth($i, $mes, $vuelta, $limite);
+                        $i = 0;
+                        if ($mes == 12) {
+                            $mes = 0;
+                            $vuelta = 1;
+                        }
+                        $mes++;
+                        if ($mes < 10)
+                            $mes = '0' . $mes;
+                        $fecha = '01' . '-' . $mes . '-' . date('Y') + $vuelta;
+                        $limite = (int) (date('t', strtotime($fecha)));
+                    }
+                    continue;
+                }
                 ($sesion->getHorario() == null) ? $horarioCompleto = $fechaReserva :
                                 $horarioCompleto = $sesion->getHorario() . "&" . $fechaReserva;
                 $sesion->setHorario($horarioCompleto);
@@ -414,12 +430,45 @@ class SesionController extends Controller {
     private function findFechaReserva($diaReserva, $mes, $horaComienzo, $tiempo, $concepto) {
         if ($tiempo) {
             $periodo = explode('&', $diaReserva->getPeriodo());
-            $horaReserva = $periodo[$horaComienzo - 1] . $periodo[$horaComienzo];
-            $periodoComienzo = explode('-', $horaReserva);
-            $horaReserva = $periodoComienzo[0] . "-" . $periodoComienzo[count($periodoComienzo) - 1];
-            unset($periodo[$horaComienzo - 1]);
+            $horaReservaAux = null;
+            $horaReserva = null;
+            if ($horaComienzo == 1) {
+                foreach ($periodo as $clave => $hora) {
+                    $periodoComienzo = explode('-', $hora);
+                    if ($periodoComienzo[0] < '12:00' && $horaReservaAux === null) {
+                        $horaReservaAux = $hora;
+                        $pos = $clave;
+                    } else {
+                        $horaReservaNumerico = explode(':', $horaReservaAux);
+                        $periodoComienzoNumerico = explode(':', $periodoComienzo[0]);
+                        if ((int) $horaReservaNumerico[0] + 1 == (int) $periodoComienzoNumerico[0]) {
+                            $horaReserva = $horaReservaNumerico[0] . ":00-" . $periodoComienzo[1];
+                            break;
+                        
+                        }
+                    }
+                }
+            } else {
+                foreach ($periodo as $clave => $hora) {
+                    $periodoComienzo = explode('-', $hora);
+                    if ($periodoComienzo[0] >= '16:00' && $periodoComienzo[0] <= '20:00' && $horaReservaAux === null) {
+                        $horaReservaAux = $hora;
+                        $pos = $clave;
+                    } else {
+                        $horaReservaNumerico = explode(':', $horaReservaAux);
+                        $periodoComienzoNumerico = explode(':', $periodoComienzo[0]);
+                        if ((int) $horaReservaNumerico[0] + 1 == (int) $periodoComienzoNumerico[0]) {
+                            $horaReserva = $horaReservaNumerico[0] . ":00-" . $periodoComienzo[1];
+                            break;
+                        } 
+                    }
+                }
+            }
+            if ($horaReserva === null)
+                return 0;
+            unset($periodo[$pos]);
             $arrayPeriodo = array_values($periodo);
-            unset($arrayPeriodo[$horaComienzo - 1]);
+            unset($arrayPeriodo[$pos]);
             $arrayPeriodo1 = array_values($arrayPeriodo);
             $diaReserva->setPeriodo(implode($arrayPeriodo1, '&'));
             if ($concepto == 'cancha') {
@@ -430,8 +479,29 @@ class SesionController extends Controller {
             return $fechaReserva;
         }
         $periodo = explode('&', $diaReserva->getPeriodo());
-        $horaReserva = $periodo[$horaComienzo - 1];
-        unset($periodo[$horaComienzo - 1]);
+        $horaReserva = null;
+        if ($horaComienzo == 1) {
+            foreach ($periodo as $clave => $hora) {
+                $periodoComienzo = explode('-', $hora);
+                if ($periodoComienzo[0] < '13:00') {
+                    $horaReserva = $hora;
+                    $pos = $clave;
+                    break;
+                }
+            }
+        } else {
+            foreach ($periodo as $clave => $hora) {
+                $periodoComienzo = explode('-', $hora);
+                if ($periodoComienzo[0] >= '16:00') {
+                    $horaReserva = $hora;
+                    $pos = $clave;
+                    break;
+                }
+            }
+        }
+        if ($horaReserva === null)
+            return 0;
+        unset($periodo[$pos]);
         $arrayPeriodo = array_values($periodo);
         $diaReserva->setPeriodo(implode($arrayPeriodo, '&'));
         if ($concepto == 'cancha') {

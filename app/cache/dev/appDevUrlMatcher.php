@@ -621,6 +621,25 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        if (0 === strpos($pathinfo, '/jugador')) {
+            // moduloclientes_cliente_jugador_validar
+            if (0 === strpos($pathinfo, '/jugador/validar') && preg_match('#^/jugador/validar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+                    goto not_moduloclientes_cliente_jugador_validar;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_jugador_validar')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\JugadorController::validarAction',));
+            }
+            not_moduloclientes_cliente_jugador_validar:
+
+            // moduloclientes_cliente_jugadoresClientes
+            if (0 === strpos($pathinfo, '/jugadoresClientes') && preg_match('#^/jugadoresClientes/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_jugadoresClientes')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\JugadorController::jugadoresClientesAction',));
+            }
+
+        }
+
         // moduloclientes_cliente_jugador_nuevo
         if (0 === strpos($pathinfo, '/nuevoJugadorCliente') && preg_match('#^/nuevoJugadorCliente/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_jugador_nuevo')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\JugadorController::nuevoAction',));
