@@ -27,7 +27,7 @@
                             <tbody>
                                 {% for reserva in pagination %}
                                     <tr>
-                                        <td><strong><a class="atd" href="{{ path('crivero_prueba_cancha', { id: reserva.idCancha }) }}" >{{reserva.cancha}}</a></strong></td>
+                                        <td><strong><a class="atd"  >{{reserva.cancha}}</a></strong></td>
                                         <td>{{reserva.fechaInicio|date('d/m/Y')}}</td>
                                         {% set horario = reserva.horario|split('&') %} 
                                         {% if horario|length > 2 %}
@@ -39,6 +39,9 @@
                                         {% endif %}
 
                                         <td class="actions">
+                                              <a href="{{ path('crivero_prueba_cancha', { id: reserva.idCancha }) }}" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                Cancha
+                                            </a>
                                             <a href="{{path('crivero_prueba_reserva_cancelar', {id: reserva.id})}}" class="btn btn-sm btn-danger" style="margin-bottom: 0">
                                                 Cancelar
                                             </a>

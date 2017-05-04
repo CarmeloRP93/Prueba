@@ -90,6 +90,10 @@ crivero_prueba_cancha_eliminar:
 crivero_prueba_cancha_reservas:
     pattern:  /cancha/{id}/reservas
     defaults: { _controller: CriveroPruebaBundle:Cancha:canchaReservas }
+
+crivero_prueba_cancha_sesiones:
+    pattern:  /cancha/{id}/sesiones
+    defaults: { _controller: CriveroPruebaBundle:Cancha:canchaSesiones }
     
 crivero_prueba_cancha_disponibilidad:
     pattern:  /cancha/{id}/disponibilidad

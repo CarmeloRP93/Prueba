@@ -5,13 +5,13 @@
 {% block contenido %}
     <div class="container">
         <div class="page-header "> 
-            <h2 class="t1">{{ cancha.tipo|capitalize }} - Horarios disponibles de los próximos 7 días</h2>
+            <h2 class="t1">{{ cancha.tipo|capitalize }} - Horarios disponibles de los próximos 18 días</h2>
         </div>
 
         <div class="panel panel-default">                  
             <div class="panel-body" style="padding-bottom: 0px">
                 <div class="table-responsive">
-                    <table class="table table-hover {#table-condensed#}">
+                    <table class="table table-hover">
                         <tbody>
                             {% set i = 1 %}
                             {% for horario in horarios  %}
@@ -42,12 +42,12 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="navigation text-center" style="margin-top: -10px">
+                    {{ knp_pagination_render(horarios) }}
+                </div>
             </div>
         </div>
-
-        <div class="text-center">
-            <a class="btn btn-default" href="{{ path('crivero_prueba_cancha', { id: cancha.id }) }}">Volver atrás</a>
-        </div><br>
+        <a class="btn btn-default" href="{{ path('crivero_prueba_cancha', { id: cancha.id }) }}">Volver atrás</a>
     </div>
 {% endblock %} 
 

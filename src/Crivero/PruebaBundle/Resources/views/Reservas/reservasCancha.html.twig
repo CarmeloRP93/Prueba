@@ -28,12 +28,12 @@
                             <tbody>
                                 {% for reserva in pagination %}
                                     <tr>
-                                        <td><strong><a class="atd" href="{{ path('crivero_prueba_cliente', { id: reserva.idCliente }) }}" >{{reserva.cliente}}</a></strong></td>
+                                        <td><strong>{{reserva.cliente}}</strong></td>
                                                 {% if reserva.estadoReserva == 'Reservado' %}
                                             <td><strong style="color: greenyellow">{{reserva.estadoReserva}}</strong></td>
                                             {% else %}
                                             <td><strong style="color: red">{{reserva.estadoReserva}}</strong></td>
-                                                {% endif %}
+                                            {% endif %}
                                         <td>{{reserva.fechaInicio|date('d/m/Y')}}</td>
                                         {% set horario = reserva.horario|split('&') %} 
                                         {% if horario|length > 2 %}
@@ -45,6 +45,10 @@
                                         {% endif %}
 
                                         <td class="actions">
+                                            
+                                            <a  href="{{ path('crivero_prueba_cliente', { id: reserva.idCliente }) }}" class="btn btn-sm btn-info" style="margin-bottom: 0">
+                                                Cliente
+                                            </a>
                                             {% if reserva.estadoReserva == 'Reservado' %}
                                                 <a href="{{path('crivero_prueba_reserva_cancelar', {id: reserva.id})}}" class="btn btn-sm btn-danger" style="margin-bottom: 0">
                                                     Cancelar

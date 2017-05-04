@@ -107,4 +107,11 @@ class SesionesRepository extends EntityRepository {
                         ->getResult();
     }
 
+    public function getSesionesCancha($cancha) {
+        return $this->getEntityManager()
+                        ->createQuery("SELECT s FROM CriveroPruebaBundle:Sesiones s WHERE s.cancha = :id")
+                        ->setParameter('id', $cancha)
+                        ->getResult();
+    }
+
 }

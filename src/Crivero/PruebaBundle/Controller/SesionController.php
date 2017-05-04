@@ -124,68 +124,69 @@ class SesionController extends Controller {
         $diasSelect = explode('&', $sesion->getDias());
         for ($i = $hoy; $i <= $limite; $i++) {
             $flagDiaSemana = false;
-            if (!$this->isWeekend($i, $mes, $vuelta)) {
-                foreach ($diasSelect as $dia) {
-                    if (date('l', strtotime($i . '-' . $mes . '-' . date('Y'))) == $dia) {
-                        $flagDiaSemana = true;
-                        break;
-                    }
-                }
-                if (!$flagDiaSemana) {
-                    if ($i >= $limite) {
-                        // $this->updateMonth($i, $mes, $vuelta, $limite);
-                        $i = 0;
-                        if ($mes == 12) {
-                            $mes = 0;
-                            $vuelta = 1;
-                        }
-                        $mes++;
-                        if ($mes < 10)
-                            $mes = '0' . $mes;
-                        $fecha = '01' . '-' . $mes . '-' . date('Y') + $vuelta;
-                        $limite = (int) (date('t', strtotime($fecha)));
-                    }
-                    continue;
-                }
-                $tiempo = false;
-                if ($sesion->getDuracion() > 60) {
-                    $tiempo = true;
-                }
-                if ($sesion->getConcepto() == 'cancha') {
 
-                    $repositoryHorariosCanchas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosCanchas");
-                    $diaReserva = $repositoryHorariosCanchas->getReservaSesion($sesion->getCancha(), $i);
-                } else {
-
-                    $repositoryHorariosAulas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
-                    $diaReserva = $repositoryHorariosAulas->getDiaReserva($sesion->getAula(), $i);
-                }
-                $horaComienzo = $sesion->getHoraComienzo();
-                $fechaReserva = $this->findFechaReserva($diaReserva[0], $mes, $horaComienzo, $tiempo, $sesion->getConcepto());
-                if ($fechaReserva === 0) {
-                    if ($i >= $limite) {
-                        // $this->updateMonth($i, $mes, $vuelta, $limite);
-                        $i = 0;
-                        if ($mes == 12) {
-                            $mes = 0;
-                            $vuelta = 1;
-                        }
-                        $mes++;
-                        if ($mes < 10)
-                            $mes = '0' . $mes;
-                        $fecha = '01' . '-' . $mes . '-' . date('Y') + $vuelta;
-                        $limite = (int) (date('t', strtotime($fecha)));
-                    }
-                    continue;
-                }
-                ($sesion->getHorario() == null) ? $horarioCompleto = $fechaReserva :
-                                $horarioCompleto = $sesion->getHorario() . "&" . $fechaReserva;
-                $sesion->setHorario($horarioCompleto);
-                $em->persist($diaReserva[0]);
-                $duracion--;
-                if ($duracion == 0)
+            foreach ($diasSelect as $dia) {
+                if (date('l', strtotime($i . '-' . $mes . '-' . date('Y'))) == $dia) {
+                    $flagDiaSemana = true;
                     break;
+                }
             }
+            if (!$flagDiaSemana) {
+                if ($i >= $limite) {
+                    // $this->updateMonth($i, $mes, $vuelta, $limite);
+                    $i = 0;
+                    if ($mes == 12) {
+                        $mes = 0;
+                        $vuelta = 1;
+                    }
+                    $mes++;
+                    if ($mes < 10)
+                        $mes = '0' . $mes;
+                    $fecha = '01' . '-' . $mes . '-' . date('Y') + $vuelta;
+                    $limite = (int) (date('t', strtotime($fecha)));
+                }
+                continue;
+            }
+            
+            $tiempo = false;
+            if ($sesion->getDuracion() > 60) {
+                $tiempo = true;
+            }
+            if ($sesion->getConcepto() == 'cancha') {
+
+                $repositoryHorariosCanchas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosCanchas");
+                $diaReserva = $repositoryHorariosCanchas->getReservaSesion($sesion->getCancha(), $i);
+            } else {
+
+                $repositoryHorariosAulas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
+                $diaReserva = $repositoryHorariosAulas->getDiaReserva($sesion->getAula(), $i);
+            }
+            $horaComienzo = $sesion->getHoraComienzo();
+            $fechaReserva = $this->findFechaReserva($diaReserva[0], $mes, $horaComienzo, $tiempo, $sesion->getConcepto());
+            if ($fechaReserva === 0) {
+                if ($i >= $limite) {
+                    // $this->updateMonth($i, $mes, $vuelta, $limite);
+                    $i = 0;
+                    if ($mes == 12) {
+                        $mes = 0;
+                        $vuelta = 1;
+                    }
+                    $mes++;
+                    if ($mes < 10)
+                        $mes = '0' . $mes;
+                    $fecha = '01' . '-' . $mes . '-' . date('Y') + $vuelta;
+                    $limite = (int) (date('t', strtotime($fecha)));
+                }
+                continue;
+            }
+            ($sesion->getHorario() == null) ? $horarioCompleto = $fechaReserva :
+                            $horarioCompleto = $sesion->getHorario() . "&" . $fechaReserva;
+            $sesion->setHorario($horarioCompleto);
+            $em->persist($diaReserva[0]);
+            $duracion--;
+            if ($duracion == 0)
+                break;
+
             if ($i >= $limite) {
                 // $this->updateMonth($i, $mes, $vuelta, $limite);
                 $i = 0;
@@ -421,7 +422,7 @@ class SesionController extends Controller {
     }
 
     private function createRechForm(Sesiones $entity) {
-        $form = $this->createForm(new SesionesType(array()), $entity, array(
+        $form = $this->createForm(new SesionesType(array(), null), $entity, array(
             'action' => $this->generateUrl('crivero_prueba_rechazar', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));
@@ -580,7 +581,7 @@ class SesionController extends Controller {
     }
 
     private function isWeekend($dia, $mes, $cambio) {
-        $fecha = $dia . '-' . $mes . '-' . date('Y') + $cambio;
+        $fecha = $dia . '-' . $mes . '-' . strval(date('Y') + $cambio);
         $diaS = date('w', strtotime($fecha));
         return ($diaS == 0 || $diaS == 6 );
     }

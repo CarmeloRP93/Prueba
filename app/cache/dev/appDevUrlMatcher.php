@@ -1029,6 +1029,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_reservas')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::canchaReservasAction',));
                 }
 
+                // crivero_prueba_cancha_sesiones
+                if (preg_match('#^/cancha/(?P<id>[^/]++)/sesiones$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_sesiones')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::canchaSesionesAction',));
+                }
+
                 // crivero_prueba_cancha_disponibilidad
                 if (preg_match('#^/cancha/(?P<id>[^/]++)/disponibilidad$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'crivero_prueba_cancha_disponibilidad')), array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\CanchaController::disponibilidadCanchaAction',));

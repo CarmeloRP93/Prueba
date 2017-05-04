@@ -3,15 +3,15 @@
 {% block title %} {{ aula.nombre|capitalize }} - Disponibilidad {% endblock %}
 
 {% block contenido %}
-    <div class="container text-center">
+    <div class="container ">
         <div class="page-header "> 
-            <h2 class="t1">{{ aula.nombre|capitalize }} - Horarios disponibles de los próximos 7 días</h2>
-        </div><br>
-        
+            <h2 class="t1">{{ aula.nombre|capitalize }} - Horarios disponibles de los próximos 21 días</h2>
+        </div>
+
         <div class="panel panel-default">                  
             <div class="panel-body" style="padding-bottom: 0px">
                 <div class="table-responsive">
-                    <table class="table table-hover {#table-condensed#}">
+                    <table class="table table-hover">
                         <tbody>
                             {% set i = 1 %}
                             {% for horario in horarios  %}
@@ -41,6 +41,9 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                </div>
+                <div class="navigation text-center" style="margin-top: -10px">
+                    {{ knp_pagination_render(horarios) }}
                 </div>
             </div>
         </div>

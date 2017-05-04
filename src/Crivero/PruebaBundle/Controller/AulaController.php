@@ -44,19 +44,48 @@ class AulaController extends Controller {
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
     
-    public function disponibilidadAulaAction($id) {
+    public function disponibilidadAulaAction($id, Request $request) {
         $aula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas")->find($id);
         $repositoryH = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
         
-        for ($i = 1; $i < 8; $i++) {
+        $mes = date('m');
+        $cambio = false;
+        $vuelta = 0;
+        $cont = 1;
+        for ($i = 1; $cont < 19; $i++) {
             $dia = date('d') + $i;
-            if ($dia > date('t')) $dia = $dia - date('t');
+            if ($dia > date('t')) {
+                $dia = $dia - date('t');
+                if ($cambio == false) {
+                    $mes++;
+                    if ($mes == 13) {
+                        $mes = 1;
+                        $vuelta = 1;
+                    }
+                    if ($mes < 10) $mes = '0' . $mes;
+                    $cambio = true;
+                }
+            }
             if ($dia < 10) $dia = '0' . $dia;
+            
+            if ($this->isWeekend($dia, $mes, $vuelta)) continue;
 
-            $horarios[$i] = $repositoryH->getDiaReserva($id, $dia)[0];
+            $horarios[$cont-1] = $repositoryH->getDiaReserva($id, $dia)[0];
+            $cont++;
         }
-        return $this->render('CriveroPruebaBundle:Aulas:disponibilidadAula.html.twig', array("horarios" => $horarios,
+        
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $horarios, $request->query->getInt('page', 1), 7);
+        
+        return $this->render('CriveroPruebaBundle:Aulas:disponibilidadAula.html.twig', array("horarios" => $pagination,
                     'aula' => $aula, 'notificacionesSinLeer' => $this->getNewNotification()));
+    }
+    
+     private function isWeekend($dia, $mes, $vuelta) {
+        $fecha = $dia . '-' . $mes . '-' . strval(date('Y') + $vuelta);
+        $diaS = date('w', strtotime($fecha));
+        return ($diaS == 0 || $diaS == 6 );
     }
     
     public function sesionesAulaAction($id, Request $request) {

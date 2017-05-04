@@ -54,27 +54,38 @@
                         <form style="margin-left: -2px; margin-right: -2px" action="{{ path('crivero_prueba_cancha_editar', { id: cancha.id }) }}" method="post" class="alinear btn-group">
                             <input type="hidden" class="btn">
                             <button type="submit" class="btn btn-warning">Editar cancha</button>
-                            {% if nReservas > 0 %}<input type="hidden" class="btn">{% endif %} 
+                            {% if nReservas > 0 or nSesiones > 0 %}<input type="hidden" class="btn">{% endif %} 
                         </form>
-                        {% if nReservas > 0 %}
-{#                            <form style="margin-left: -2px" action="{{ path('crivero_prueba_cancha_reservas', { id: cancha.id }) }}" method="post" class="alinear btn-group">#}
+                        {% if nReservas > 0 and nSesiones > 0 %}
+
+                            <div class="btn-group" style="margin-left: -1px">
                                 <input type="hidden" class="btn">
-                                <div class="btn-group" style="margin-left: -1px">
-                                <input type="hidden" class="btn">
-                                    <button type="submit" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                                        Ver reservas <span class="caret"></span></button>
-                                    <ul class="dropdown-menu" role="menu" style="margin-top: -12px">
-                                        <li><a href="{{ path('crivero_prueba_cancha_reservas', { id: cancha.id }) }}">Clientes</a></li>
-                                        <li><a href="#">Monitores</a></li>
-                                    </ul>
-                                </div>
-                                                                
-{#                            </form>#}
+                                <button type="submit" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                    Ver reservas <span class="caret"></span></button>
+                                <ul class="dropdown-menu" role="menu" style="margin-top: -12px">
+                                    <li><a href="{{ path('crivero_prueba_cancha_reservas', { id: cancha.id }) }}">Clientes</a></li>
+                                    <li><a href="{{ path('crivero_prueba_cancha_sesiones', { id: cancha.id }) }}">Profesionales</a></li>
+                                </ul>
+                            </div>
+
+                        {% else %}
+                            {% if nReservas > 0 %}
+                                <form style="margin-left: -1px" action="{{ path('crivero_prueba_cancha_reservas', { id: cancha.id }) }}" method="post" class="alinear btn-group">
+                                    <input type="hidden" class="btn">
+                                    <button type="submit" class="btn btn-success" >Ver reservas</button>
+                                </form>
+                            {% endif %}
+                            {% if nSesiones > 0 %}
+                                <form style="margin-left: -1px" action="{{ path('crivero_prueba_cancha_sesiones', { id: cancha.id }) }}" method="post" class="alinear btn-group">
+                                    <input type="hidden" class="btn">
+                                    <button type="submit" class="btn btn-success" >Ver sesiones</button>
+                                </form>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>
                 <div class="text-center">
-                    {% if nReservas > 0 %}
+                    {% if nReservas > 0 or nSesiones > 0 %}
                         <form action="#">
                             <input type="button" value="Eliminar cancha" class="btn btn-danger active" 
                                    onclick="warningEliminar()" >

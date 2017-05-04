@@ -158,54 +158,82 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
                             <button type=\"submit\" class=\"btn btn-warning\">Editar cancha</button>
                             ";
         // line 57
-        if (((isset($context["nReservas"]) ? $context["nReservas"] : $this->getContext($context, "nReservas")) > 0)) {
+        if ((((isset($context["nReservas"]) ? $context["nReservas"] : $this->getContext($context, "nReservas")) > 0) || ((isset($context["nSesiones"]) ? $context["nSesiones"] : $this->getContext($context, "nSesiones")) > 0))) {
             echo "<input type=\"hidden\" class=\"btn\">";
         }
         echo " 
                         </form>
                         ";
         // line 59
-        if (((isset($context["nReservas"]) ? $context["nReservas"] : $this->getContext($context, "nReservas")) > 0)) {
-            // line 61
-            echo "                                <input type=\"hidden\" class=\"btn\">
-                                <div class=\"btn-group\" style=\"margin-left: -1px\">
+        if ((((isset($context["nReservas"]) ? $context["nReservas"] : $this->getContext($context, "nReservas")) > 0) && ((isset($context["nSesiones"]) ? $context["nSesiones"] : $this->getContext($context, "nSesiones")) > 0))) {
+            // line 60
+            echo "
+                            <div class=\"btn-group\" style=\"margin-left: -1px\">
                                 <input type=\"hidden\" class=\"btn\">
-                                    <button type=\"submit\" class=\"btn btn-success dropdown-toggle\" data-toggle=\"dropdown\">
-                                        Ver reservas <span class=\"caret\"></span></button>
-                                    <ul class=\"dropdown-menu\" role=\"menu\" style=\"margin-top: -12px\">
-                                        <li><a href=\"";
-            // line 67
+                                <button type=\"submit\" class=\"btn btn-success dropdown-toggle\" data-toggle=\"dropdown\">
+                                    Ver reservas <span class=\"caret\"></span></button>
+                                <ul class=\"dropdown-menu\" role=\"menu\" style=\"margin-top: -12px\">
+                                    <li><a href=\"";
+            // line 66
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha_reservas", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
             echo "\">Clientes</a></li>
-                                        <li><a href=\"#\">Monitores</a></li>
-                                    </ul>
-                                </div>
-                                                                
-";
-            // line 73
+                                    <li><a href=\"";
+            // line 67
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha_sesiones", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
+            echo "\">Profesionales</a></li>
+                                </ul>
+                            </div>
+
+                        ";
+        } else {
+            // line 72
+            echo "                            ";
+            if (((isset($context["nReservas"]) ? $context["nReservas"] : $this->getContext($context, "nReservas")) > 0)) {
+                // line 73
+                echo "                                <form style=\"margin-left: -1px\" action=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha_reservas", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
+                echo "\" method=\"post\" class=\"alinear btn-group\">
+                                    <input type=\"hidden\" class=\"btn\">
+                                    <button type=\"submit\" class=\"btn btn-success\" >Ver reservas</button>
+                                </form>
+                            ";
+            }
+            // line 78
+            echo "                            ";
+            if (((isset($context["nSesiones"]) ? $context["nSesiones"] : $this->getContext($context, "nSesiones")) > 0)) {
+                // line 79
+                echo "                                <form style=\"margin-left: -1px\" action=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha_sesiones", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
+                echo "\" method=\"post\" class=\"alinear btn-group\">
+                                    <input type=\"hidden\" class=\"btn\">
+                                    <button type=\"submit\" class=\"btn btn-success\" >Ver sesiones</button>
+                                </form>
+                            ";
+            }
+            // line 84
             echo "                        ";
         }
-        // line 74
+        // line 85
         echo "                    </div>
                 </div>
                 <div class=\"text-center\">
                     ";
-        // line 77
-        if (((isset($context["nReservas"]) ? $context["nReservas"] : $this->getContext($context, "nReservas")) > 0)) {
-            // line 78
+        // line 88
+        if ((((isset($context["nReservas"]) ? $context["nReservas"] : $this->getContext($context, "nReservas")) > 0) || ((isset($context["nSesiones"]) ? $context["nSesiones"] : $this->getContext($context, "nSesiones")) > 0))) {
+            // line 89
             echo "                        <form action=\"#\">
                             <input type=\"button\" value=\"Eliminar cancha\" class=\"btn btn-danger active\" 
                                    onclick=\"warningEliminar()\" >
                         </form>
                     ";
         } else {
-            // line 83
+            // line 94
             echo "                        ";
             echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form")), "nombre" => "Eliminar cancha"));
             echo "
                     ";
         }
-        // line 85
+        // line 96
         echo "                </div>
             </div>
         </div>
@@ -238,6 +266,6 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
 
     public function getDebugInfo()
     {
-        return array (  209 => 85,  203 => 83,  196 => 78,  194 => 77,  189 => 74,  186 => 73,  178 => 67,  170 => 61,  168 => 59,  161 => 57,  155 => 54,  148 => 50,  140 => 45,  136 => 43,  132 => 41,  129 => 40,  120 => 38,  115 => 37,  113 => 36,  106 => 32,  100 => 29,  94 => 26,  84 => 18,  78 => 16,  70 => 13,  67 => 12,  65 => 11,  61 => 10,  54 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  237 => 96,  231 => 94,  224 => 89,  222 => 88,  217 => 85,  214 => 84,  205 => 79,  202 => 78,  193 => 73,  190 => 72,  182 => 67,  178 => 66,  170 => 60,  168 => 59,  161 => 57,  155 => 54,  148 => 50,  140 => 45,  136 => 43,  132 => 41,  129 => 40,  120 => 38,  115 => 37,  113 => 36,  106 => 32,  100 => 29,  94 => 26,  84 => 18,  78 => 16,  70 => 13,  67 => 12,  65 => 11,  61 => 10,  54 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

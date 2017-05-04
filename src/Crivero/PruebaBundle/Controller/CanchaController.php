@@ -20,17 +20,18 @@ class CanchaController extends Controller {
         $searchQuery = $request->get('query');
         (!empty($searchQuery)) ? $canchas = $repository->searchCanchas($searchQuery) :
                         $canchas = $repository->getCanchas();
-        
+
         $flags = array();
         foreach ($canchas as $cancha) {
             $nReservas = count($this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas")->getAllReservasCancha($cancha->getId())->getResult());
-            if ($nReservas > 0) {
+            $nSesiones = count($this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones")->getSesionesCancha($cancha->getId()));
+            if ($nReservas > 0 || $nSesiones > 0) {
                 $flags[$cancha->getId()] = 1;
             } else {
                 $flags[$cancha->getId()] = 0;
             }
         }
-        
+
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $canchas, $request->query->getInt('page', 1), 5);
@@ -44,12 +45,15 @@ class CanchaController extends Controller {
     public function canchaAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
         $cancha = $repository->find($id);
+
         $nReservas = count($this->getDoctrine()->getRepository("CriveroPruebaBundle:Reservas")
-                           ->getAllReservasCancha($id)->getResult());
+                        ->getAllReservasCancha($id)->getResult());
+        $nSesiones = count($this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones")
+                        ->getSesionesCancha($id));
 
         $deleteForm = $this->createCustomForm($cancha->getId(), 'DELETE', 'crivero_prueba_cancha_eliminar');
         return $this->render('CriveroPruebaBundle:Canchas:cancha.html.twig', array("cancha" => $cancha,
-                    "delete_form" => $deleteForm->createView(), 'nReservas' => $nReservas,
+                    "delete_form" => $deleteForm->createView(), 'nReservas' => $nReservas, 'nSesiones' => $nSesiones,
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
@@ -65,29 +69,62 @@ class CanchaController extends Controller {
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
-    public function disponibilidadCanchaAction($id) {
+    public function canchaSesionesAction($id, Request $request) {
+        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesiones = $repository->getSesionesCancha($id);
+        $cancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas")->find($id);
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $sesiones, $request->query->getInt('page', 1), 6);
+
+        return $this->render('CriveroPruebaBundle:Sesiones:sesionesCancha.html.twig', array("pagination" => $pagination,
+                    'cancha' => $cancha, 'notificacionesSinLeer' => $this->getNewNotification()));
+    }
+
+    public function disponibilidadCanchaAction($id, Request $request) {
         $cancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas")->find($id);
         $repositoryH = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosCanchas");
-        
+
         $mes = date('m');
         $cambio = false;
-        for ($i = 1; $i < 8; $i++) {
+        $vuelta = 0;
+        $cont = 1;
+        for ($i = 1; $cont < 19; $i++) {
             $dia = date('d') + $i;
             if ($dia > date('t')) {
                 $dia = $dia - date('t');
                 if ($cambio == false) {
                     $mes++;
-                    if ($mes < 10) $mes = '0' . $mes;
+                    if ($mes == 13) {
+                        $mes = 1;
+                        $vuelta = 1;
+                    }
+                    if ($mes < 10)
+                        $mes = '0' . $mes;
                     $cambio = true;
                 }
             }
             if ($dia < 10) $dia = '0' . $dia;
+            
+            if ($this->isWeekend($dia, $mes, $vuelta)) continue;
+            
             $diaMes = $dia . '-' . $mes;
 
-            $horarios[$i] = $repositoryH->getInstancia($id, $diaMes)[0];
+            $horarios[$cont-1] = $repositoryH->getInstancia($id, $diaMes)[0];
+            $cont++;
         }
-        return $this->render('CriveroPruebaBundle:Canchas:disponibilidadCancha.html.twig', array("horarios" => $horarios,
-                    'cancha' => $cancha, 'notificacionesSinLeer' => $this->getNewNotification()));
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $horarios, $request->query->getInt('page', 1), 6);
+        return $this->render('CriveroPruebaBundle:Canchas:disponibilidadCancha.html.twig', array(
+            "horarios" => $pagination, 'cancha' => $cancha, 'notificacionesSinLeer' => $this->getNewNotification()));
+    }
+
+    private function isWeekend($dia, $mes, $vuelta) {
+        $fecha = $dia . '-' . $mes . '-' . strval(date('Y') + $vuelta);
+        $diaS = date('w', strtotime($fecha));
+        return ($diaS == 0 || $diaS == 6 );
     }
 
     public function nuevaCanchaAction() {

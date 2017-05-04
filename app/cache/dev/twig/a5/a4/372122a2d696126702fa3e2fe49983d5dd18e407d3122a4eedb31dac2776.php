@@ -45,20 +45,18 @@ class __TwigTemplate_a5a4372122a2d696126702fa3e2fe49983d5dd18e407d3122a4eedb31da
     public function block_contenido($context, array $blocks = array())
     {
         // line 6
-        echo "    <div class=\"container text-center\">
+        echo "    <div class=\"container \">
         <div class=\"page-header \"> 
             <h2 class=\"t1\">";
         // line 8
         echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "nombre", array())), "html", null, true);
-        echo " - Horarios disponibles de los próximos 7 días</h2>
-        </div><br>
-        
+        echo " - Horarios disponibles de los próximos 21 días</h2>
+        </div>
+
         <div class=\"panel panel-default\">                  
             <div class=\"panel-body\" style=\"padding-bottom: 0px\">
                 <div class=\"table-responsive\">
-                    <table class=\"table table-hover ";
-        // line 14
-        echo "\">
+                    <table class=\"table table-hover\">
                         <tbody>
                             ";
         // line 16
@@ -150,10 +148,16 @@ class __TwigTemplate_a5a4372122a2d696126702fa3e2fe49983d5dd18e407d3122a4eedb31da
         echo "                        </tbody>
                     </table>
                 </div>
+                <div class=\"navigation text-center\" style=\"margin-top: -10px\">
+                    ";
+        // line 46
+        echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["horarios"]) ? $context["horarios"] : $this->getContext($context, "horarios")));
+        echo "
+                </div>
             </div>
         </div>
         <a class=\"btn btn-default\" href=\"";
-        // line 47
+        // line 50
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_aula", array("id" => $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "id", array()))), "html", null, true);
         echo "\">Volver atrás</a>
     </div>
@@ -172,6 +176,6 @@ class __TwigTemplate_a5a4372122a2d696126702fa3e2fe49983d5dd18e407d3122a4eedb31da
 
     public function getDebugInfo()
     {
-        return array (  157 => 47,  150 => 42,  144 => 41,  142 => 40,  139 => 39,  133 => 38,  130 => 37,  124 => 35,  118 => 33,  115 => 32,  112 => 31,  106 => 29,  100 => 27,  97 => 26,  94 => 25,  89 => 24,  83 => 22,  77 => 20,  75 => 19,  72 => 18,  67 => 17,  65 => 16,  61 => 14,  52 => 8,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
+        return array (  161 => 50,  154 => 46,  148 => 42,  142 => 41,  140 => 40,  137 => 39,  131 => 38,  128 => 37,  122 => 35,  116 => 33,  113 => 32,  110 => 31,  104 => 29,  98 => 27,  95 => 26,  92 => 25,  87 => 24,  81 => 22,  75 => 20,  73 => 19,  70 => 18,  65 => 17,  63 => 16,  52 => 8,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
     }
 }
