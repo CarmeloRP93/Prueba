@@ -69,7 +69,7 @@ class __TwigTemplate_893fa59010b61b619e20af9c868dccc71bdc874957e6975ef8986e3c587
         // line 23
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
             // line 24
-            echo "                    <h2>No se encontraron mensajes.</h2>
+            echo "                    <h2>No se encontraron mensajes</h2>
                 ";
         } else {
             // line 26

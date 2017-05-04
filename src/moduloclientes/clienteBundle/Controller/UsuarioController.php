@@ -83,6 +83,29 @@ class UsuarioController extends Controller {
         return $currentPass;
     }
 
+    public function pagosClienteAction(Request $request) {
+        $pagos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Pagos")->getPagos($this->getUser()->getId());
+        $usuario = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->find($this->getUser()->getId());
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $pagos, $request->query->getInt('page', 1), 5);
+
+        $entidades = array();
+        foreach ($pagos->getResult() as $pago) {
+            if ($pago->getConcepto() == 'Cancha') {
+                $nombre = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas")->find($pago->getIdConcepto())->getTipo();
+            } else {
+                $nombre = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones")->find($pago->getIdConcepto())->getNombre();
+            }
+            $entidades[$pago->getId()] = $nombre;
+        }
+
+        return $this->render('moduloclientesclienteBundle:Usuarios:pagosCliente.html.twig', array('pagination' => $pagination,
+                    'usuario' => $usuario, 'entidades' => $entidades,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
+    }
+
     private function getNewNotification() {
         $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
         $notificaciones = $repositoryN->getNotificaciones($this->getUser()->getId());

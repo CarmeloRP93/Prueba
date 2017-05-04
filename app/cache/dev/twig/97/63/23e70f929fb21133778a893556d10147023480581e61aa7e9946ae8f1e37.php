@@ -113,14 +113,27 @@ class __TwigTemplate_976323e70f929fb21133778a893556d10147023480581e61aa7e9946ae8
                 // line 32
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nSesiones", array()), "html", null, true);
                 echo " Sesiones</td>
-                                        <td>";
+                                        ";
                 // line 33
-                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["aulas"]) ? $context["aulas"] : $this->getContext($context, "aulas")), $this->getAttribute($context["sesion"], "id", array()), array(), "array"), "nombre", array()), "html", null, true);
-                echo "</td>
-                                        <td class=\"actions\">
+                if (($this->getAttribute($context["sesion"], "concepto", array()) == "aula")) {
+                    echo " 
+                                        <td>";
+                    // line 34
+                    echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["recinto"]) ? $context["recinto"] : $this->getContext($context, "recinto")), $this->getAttribute($context["sesion"], "id", array()), array(), "array"), "nombre", array()), "html", null, true);
+                    echo "</td>
+                                        ";
+                } else {
+                    // line 36
+                    echo "                                        <td>";
+                    echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["recinto"]) ? $context["recinto"] : $this->getContext($context, "recinto")), $this->getAttribute($context["sesion"], "id", array()), array(), "array"), "tipo", array()), "html", null, true);
+                    echo "</td>
+                                        ";
+                }
+                // line 38
+                echo "                                        <td class=\"actions\">
 
                                             <a href=\"";
-                // line 36
+                // line 40
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_sesionMonitores", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-primary\">
                                                 Ver más información
@@ -132,16 +145,16 @@ class __TwigTemplate_976323e70f929fb21133778a893556d10147023480581e61aa7e9946ae8
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 42
+            // line 46
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 46
+        // line 50
         echo "                <div class=\"navigation text-center\">
                     ";
-        // line 47
+        // line 51
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                 </div>
@@ -163,6 +176,6 @@ class __TwigTemplate_976323e70f929fb21133778a893556d10147023480581e61aa7e9946ae8
 
     public function getDebugInfo()
     {
-        return array (  145 => 47,  142 => 46,  136 => 42,  124 => 36,  118 => 33,  114 => 32,  110 => 31,  106 => 30,  102 => 29,  97 => 28,  93 => 27,  85 => 22,  81 => 21,  77 => 20,  73 => 19,  69 => 18,  63 => 14,  59 => 12,  57 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  158 => 51,  155 => 50,  149 => 46,  137 => 40,  133 => 38,  127 => 36,  122 => 34,  118 => 33,  114 => 32,  110 => 31,  106 => 30,  102 => 29,  97 => 28,  93 => 27,  85 => 22,  81 => 21,  77 => 20,  73 => 19,  69 => 18,  63 => 14,  59 => 12,  57 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

@@ -53,7 +53,7 @@ class __TwigTemplate_db262f23e8a5b451e21ed1709a7ceea6b75e1aa3c8bf0acdca8e501d313
         // line 10
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
             // line 11
-            echo "                    <h2>No se encontraron sesiones públicas.</h2>
+            echo "                    <h2>No se encontraron sesiones públicas</h2>
                 ";
         } else {
             // line 13

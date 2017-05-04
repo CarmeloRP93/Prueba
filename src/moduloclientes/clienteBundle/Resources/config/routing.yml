@@ -237,3 +237,7 @@ moduloclientes_cliente_mensajes_enviadosCliente:
 moduloclientes_cliente_mensajeCliente:
     pattern: /mensajeCliente/{id}
     defaults: { _controller: moduloclientesclienteBundle:Mensajeria:mensajeCliente }
+    
+moduloclientes_cliente_pagosCliente:
+    pattern: /pagosCliente
+    defaults: { _controller: moduloclientesclienteBundle:Usuario:pagosCliente }

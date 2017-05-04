@@ -115,7 +115,10 @@ class __TwigTemplate_381ae7ebbd93e6c077a7976a00ccfa9ebcc2fdc41a282abca8dbb69f27d
                             <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-primary\">Mensaje a administrador</button>
                             <input type=\"hidden\" class=\"btn\">
                         </form>
-                        <form class=\"btn-group-vertical\" method=\"post\">
+                        <form class=\"btn-group-vertical\" action=\"";
+        // line 47
+        echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_pagosCliente");
+        echo "\" method=\"post\">
                             <input type=\"hidden\" class=\"btn\">
                             <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-info\">Ver mis pagos</button>
                             <input type=\"hidden\" class=\"btn\">
@@ -153,6 +156,6 @@ class __TwigTemplate_381ae7ebbd93e6c077a7976a00ccfa9ebcc2fdc41a282abca8dbb69f27d
 
     public function getDebugInfo()
     {
-        return array (  125 => 52,  113 => 43,  106 => 39,  99 => 35,  93 => 32,  85 => 27,  79 => 24,  68 => 16,  62 => 13,  56 => 10,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  128 => 52,  120 => 47,  113 => 43,  106 => 39,  99 => 35,  93 => 32,  85 => 27,  79 => 24,  68 => 16,  62 => 13,  56 => 10,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

@@ -145,51 +145,143 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
                 echo "\"><img src=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/campanaSN.png"), "html", null, true);
                 echo "\" style=\"width: 18px;\" /></a></li>
-                            ";
+                    ";
             } else {
                 // line 61
-                echo "                        <li><a href = \"";
-                echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_notificacionesMonitor");
-                echo "\"><img src=\"";
+                echo "                        <li class=\"dropdown hidden-xs\">
+                            <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><img src=\"";
+                // line 62
                 echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/campanaCN.png"), "html", null, true);
-                echo "\" style=\"width: 18px;\" /></a></li>
-                            ";
+                echo "\" style=\"width: 18px;\" /></a>
+                            <ul class=\"dropdown-menu\" style=\"background-color: rgba(67, 152, 147, 0.46); border-radius: 15px 15px;\">
+                                ";
+                // line 64
+                $context["n"] = 0;
+                echo " 
+                                ";
+                // line 65
+                $context['_parent'] = (array) $context;
+                $context['_seq'] = twig_ensure_traversable((isset($context["notificacionesSinLeer"]) ? $context["notificacionesSinLeer"] : $this->getContext($context, "notificacionesSinLeer")));
+                foreach ($context['_seq'] as $context["_key"] => $context["notificacion"]) {
+                    if (((isset($context["n"]) ? $context["n"] : $this->getContext($context, "n")) < 5)) {
+                        echo "  
+                                    ";
+                        // line 66
+                        if (($this->getAttribute($context["notificacion"], "concepto", array()) == "Publica")) {
+                            // line 67
+                            echo "                                        ";
+                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_miSesionMonitores", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
+                            // line 68
+                            echo "                                    ";
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Privada")) {
+                            // line 69
+                            echo "                                        ";
+                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_miSesionDedicada", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
+                            // line 70
+                            echo "                                    ";
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Mensaje")) {
+                            // line 71
+                            echo "                                        ";
+                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_mensajeMonitor", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
+                            // line 72
+                            echo "                                    ";
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Aula")) {
+                            // line 73
+                            echo "                                        ";
+                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_verAula", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
+                            // line 74
+                            echo "                                    ";
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Aeliminada")) {
+                            // line 75
+                            echo "                                        ";
+                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_listadoAulas", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
+                            // line 76
+                            echo "                                    ";
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "AbandonoPublica")) {
+                            // line 77
+                            echo "                                        ";
+                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_misSesionesMonitores", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
+                            // line 78
+                            echo "                                    ";
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "NuevoParticipantePublica")) {
+                            // line 79
+                            echo "                                        ";
+                            $context["ruta"] = ((("http://localhost/Prueba/web/app_dev.php/miSesionMonitores/" . $this->getAttribute($context["notificacion"], "idEntidad", array())) . "/verParticipantes/") . $this->getAttribute($context["notificacion"], "idOrigen", array()));
+                            // line 80
+                            echo "                                    ";
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "NuevoParticipantePrivada")) {
+                            // line 81
+                            echo "                                        ";
+                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_participantePrivado", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
+                            // line 82
+                            echo "                                    ";
+                        }
+                        // line 83
+                        echo "                                        <li class=\"text-center\"><a style=\"color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;\" href=\"";
+                        echo twig_escape_filter($this->env, (isset($context["ruta"]) ? $context["ruta"] : $this->getContext($context, "ruta")), "html", null, true);
+                        echo "\">";
+                        echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "mensaje", array()), "html", null, true);
+                        echo "</a></li>
+                                        <li role=\"separator\" class=\"divider\" style=\"background-color: #cecdcd\"></li>
+                                    ";
+                        // line 85
+                        $context["n"] = ((isset($context["n"]) ? $context["n"] : $this->getContext($context, "n")) + 1);
+                        // line 86
+                        echo "                                ";
+                    }
+                }
+                $_parent = $context['_parent'];
+                unset($context['_seq'], $context['_iterated'], $context['_key'], $context['notificacion'], $context['_parent'], $context['loop']);
+                $context = array_intersect_key($context, $_parent) + $_parent;
+                // line 87
+                echo "                                    <li class=\"text-center\"><a href = \"";
+                echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_notificacionesMonitor");
+                echo "\"><font color=\"blue\"><strong>Ver todas</strong></font></a></li>
+                            </ul>
+                        </li>
+                        <li><a class=\"hidden-sm hidden-md hidden-lg\" href = \"";
+                // line 90
+                echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_notificacionesMonitor");
+                echo "\"><img  src=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/campanaCN.png"), "html", null, true);
+                echo "\" style=\"width: 18px\"/></a></li>                        
+                    ";
             }
-            // line 63
+            // line 92
             echo "                    <li><a href = \"";
             echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_mensajes_recibidosMonitor");
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/correo.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
                     <li><a href=\"";
-            // line 64
+            // line 93
             echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_miperfilm");
             echo "\"><img src=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/user-128.png"), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/user.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
                     <li><a href=\"";
-            // line 65
+            // line 94
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
             echo "\" style=\"margin-right:12px;\"><img src=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/logout-128.png"), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/logout.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
                 </ul>
             ";
         }
-        // line 68
+        // line 97
         echo "
             <form method=\"GET\" class=\"navbar-form navbar-center\" role=\"search\">
                 <div class=\"input-group\">
                     <input type=\"text\" name=\"query\" class=\"form-control\" value=\"";
-        // line 71
+        // line 100
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "get", array(0 => "query"), "method"), "html", null, true);
         echo "\" 
                            placeholder=\"Buscar...\">
                     <div class=\"input-group-btn\">
                         <button type=\"submit\" class=\"btn btn-default\">
                             <img src=\"";
-        // line 75
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/search-128.png"), "html", null, true);
+        // line 104
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/search.png"), "html", null, true);
         echo "\" style=\"width: 15px;\" />  
                         </button>
                     </div>
@@ -200,16 +292,16 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 ";
     }
 
-    // line 83
+    // line 112
     public function block_body($context, array $blocks = array())
     {
-        // line 84
+        // line 113
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 86
+        // line 115
         $this->displayBlock('contenido', $context, $blocks);
-        // line 88
+        // line 117
         echo "        </div>
 
     </div>
@@ -217,10 +309,10 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 ";
     }
 
-    // line 86
+    // line 115
     public function block_contenido($context, array $blocks = array())
     {
-        // line 87
+        // line 116
         echo "            ";
     }
 
@@ -236,6 +328,6 @@ class __TwigTemplate_5043f5de5c740baeee536b2590a50084be5dc3a08b11d88acd4b3977a9c
 
     public function getDebugInfo()
     {
-        return array (  224 => 87,  221 => 86,  213 => 88,  211 => 86,  207 => 84,  204 => 83,  192 => 75,  185 => 71,  180 => 68,  172 => 65,  166 => 64,  159 => 63,  151 => 61,  144 => 59,  140 => 58,  137 => 57,  135 => 56,  129 => 53,  125 => 52,  119 => 49,  115 => 48,  104 => 40,  98 => 37,  94 => 36,  83 => 28,  79 => 27,  67 => 18,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
+        return array (  316 => 116,  313 => 115,  305 => 117,  303 => 115,  299 => 113,  296 => 112,  284 => 104,  277 => 100,  272 => 97,  264 => 94,  258 => 93,  251 => 92,  244 => 90,  237 => 87,  230 => 86,  228 => 85,  220 => 83,  217 => 82,  214 => 81,  211 => 80,  208 => 79,  205 => 78,  202 => 77,  199 => 76,  196 => 75,  193 => 74,  190 => 73,  187 => 72,  184 => 71,  181 => 70,  178 => 69,  175 => 68,  172 => 67,  170 => 66,  163 => 65,  159 => 64,  154 => 62,  151 => 61,  144 => 59,  140 => 58,  137 => 57,  135 => 56,  129 => 53,  125 => 52,  119 => 49,  115 => 48,  104 => 40,  98 => 37,  94 => 36,  83 => 28,  79 => 27,  67 => 18,  54 => 7,  51 => 6,  46 => 4,  40 => 2,  11 => 1,);
     }
 }

@@ -64,7 +64,7 @@ class __TwigTemplate_a008f252d44b1dc7fc574c78f011c9e8b6e874775701c746dc9a6b0ba1e
         // line 17
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
             // line 18
-            echo "                    <h2>No se encontraron monitores.</h2>
+            echo "                    <h2>No se encontraron monitores</h2>
                 ";
         } else {
             // line 20

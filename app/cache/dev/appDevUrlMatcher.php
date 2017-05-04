@@ -860,6 +860,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // moduloclientes_cliente_pagosCliente
+        if ($pathinfo === '/pagosCliente') {
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\UsuarioController::pagosClienteAction',  '_route' => 'moduloclientes_cliente_pagosCliente',);
+        }
+
         // crivero_prueba_home
         if ($pathinfo === '/home') {
             return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::homeAction',  '_route' => 'crivero_prueba_home',);

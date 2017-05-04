@@ -64,7 +64,7 @@ class __TwigTemplate_e822bf7cd2cefcf1bd2aab59592f89f2885044c8b90b38348be44859086
         // line 17
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
             // line 18
-            echo "                    <h2>No se encontraron aulas.</h2>
+            echo "                    <h2>No se encontraron aulas</h2>
                 ";
         } else {
             // line 20
