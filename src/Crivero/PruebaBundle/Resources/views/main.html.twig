@@ -73,6 +73,7 @@
                     {% if app.user.username == 'director' %}
                         <li><a href = "{{url('crivero_prueba_enviarMensaje')}}">enviar mensaje</a></li>
                     {% endif %} 
+                    <li><a href = "{{path('crivero_prueba_publicaciones')}}">publicaciones</a></li>
                     {% if not notificacionesSinLeer|length %}  
                         <li><a href = "{{url('crivero_prueba_notificacionesAdmin')}}"><img src="{{asset('images/campanaSN.png')}}" style="width: 18px;" /></a></li>
                     {% else %}
@@ -107,7 +108,6 @@
                         </li>
                         <li><a class="hidden-sm hidden-md hidden-lg" href = "{{url('crivero_prueba_notificacionesAdmin')}}"><img  src="{{asset('images/campanaCN.png')}}" style="width: 18px"/></a></li>                       
                     {% endif %}
-{#                    <li><a href = "{{path('crivero_prueba_publicaciones')}}">publicaciones</a></li>#}
                     <li><a href = "{{path('crivero_prueba_mensajes_recibidos')}}"><img src="{{asset('images/correo.png')}}" style="width: 18px;" /></a></li>
                     <li><a href = "{{path('crivero_prueba_perfil')}}"><img src="{{asset('images/user.png')}}" style="width: 18px;" /></a></li>
                     <li><a href="{{path('crivero_prueba_logout')}}" style="margin-right: 12px"><img src="{{asset('images/logout.png')}}" style="width: 18px;" /></a></li>

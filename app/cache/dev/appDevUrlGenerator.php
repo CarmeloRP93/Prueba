@@ -212,6 +212,7 @@ class appDevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         'crivero_prueba_mensajes_enviados' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::mensajesEnviadosAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/mensajes/enviados',    ),  ),  4 =>   array (  ),),
         'crivero_prueba_mensaje' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::mensajeAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/mensaje',    ),  ),  4 =>   array (  ),),
         'crivero_prueba_notificacionesAdmin' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::notificacionesAdminAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/notificacionesAdmin',    ),  ),  4 =>   array (  ),),
+        'crivero_prueba_publicaciones' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'Crivero\\PruebaBundle\\Controller\\PublicacionesController::publicacionesAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/publicaciones',    ),  ),  4 =>   array (  ),),
     );
 
     /**

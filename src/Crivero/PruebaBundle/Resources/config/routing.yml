@@ -349,3 +349,7 @@ crivero_prueba_mensaje:
 crivero_prueba_notificacionesAdmin:
     pattern:  /notificacionesAdmin
     defaults: { _controller: CriveroPruebaBundle:Mensajeria:notificacionesAdmin }
+
+crivero_prueba_publicaciones:
+    pattern:  /publicaciones
+    defaults: { _controller: CriveroPruebaBundle:Publicaciones:publicaciones }

@@ -1446,6 +1446,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\MensajeriaController::notificacionesAdminAction',  '_route' => 'crivero_prueba_notificacionesAdmin',);
         }
 
+        // crivero_prueba_publicaciones
+        if ($pathinfo === '/publicaciones') {
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PublicacionesController::publicacionesAction',  '_route' => 'crivero_prueba_publicaciones',);
+        }
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }
