@@ -34,7 +34,7 @@ class CanchaController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $canchas, $request->query->getInt('page', 1), 5);
+                $canchas, $request->query->getInt('page', 1), 4);
 
         $deleteFormAjax = $this->createCustomForm(':CANCHA_ID', 'DELETE', 'crivero_prueba_cancha_eliminar');
         return $this->render('CriveroPruebaBundle:Canchas:canchas.html.twig', array("pagination" => $pagination,
@@ -148,7 +148,7 @@ class CanchaController extends Controller {
                 $cancha->setValoracion(0);
                 $file = $form->get('imagen')->getData();
                 $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
-                $cancha->setImagen("images/" . $file->getClientOriginalName());
+                $cancha->setImagen($file->getClientOriginalName());
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($cancha);
                 $em->flush();
@@ -216,7 +216,7 @@ class CanchaController extends Controller {
             } else {
                 $file = $form->get('imagen')->getData();
                 $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
-                $cancha->setImagen("images/" . $file->getClientOriginalName());
+                $cancha->setImagen($file->getClientOriginalName());
             }
             $em->flush();
 

@@ -9,6 +9,10 @@ body {
     margin-top: 12px    
 }
 
+.noMargenBoton {
+    margin-bottom: 0px !important;
+}
+
 #differentTable {
     width: 60%;
     margin: 0px auto;
@@ -2573,7 +2577,7 @@ th a {
 .table > tfoot > tr > td {
     padding: 8px;
     line-height: 1.42857143;
-    vertical-align: top;
+    /*vertical-align: top;*/
     border-top: 1px solid #ddd;
     text-align: center;
 }

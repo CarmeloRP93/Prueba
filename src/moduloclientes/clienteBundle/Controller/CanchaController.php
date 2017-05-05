@@ -24,7 +24,7 @@ class CanchaController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $canchas, $request->query->getInt('page', 1), 5);
+                $canchas, $request->query->getInt('page', 1), 4);
 
         return $this->render('moduloclientesclienteBundle:Canchas:canchasClientes.html.twig', array("pagination" => $pagination,
                     'notificacionesSinLeer' => $this->getNewNotification()));

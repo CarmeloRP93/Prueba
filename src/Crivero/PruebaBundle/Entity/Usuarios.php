@@ -123,6 +123,13 @@ class Usuarios implements AdvancedUserInterface, \Serializable {
     private $imagen;
     
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="activo", type="boolean", nullable=false)
+     */
+    private $activo;
+    
+    /**
      * Set fNacimiento
      *
      * @param string $fNacimiento
@@ -304,6 +311,26 @@ class Usuarios implements AdvancedUserInterface, \Serializable {
         return $this->imagen;
     }
     
+    /**
+     * Set activo
+     *
+     * @param boolean $activo
+     * @return Usuarios
+     */
+    public function setActivo($activo) {
+        $this->activo = $activo;
+        return $this;
+    }
+    
+    /**
+     * Get activo
+     *
+     * @return boolean 
+     */
+    public function getActivo() {
+        return $this->activo;
+    }
+    
     public function eraseCredentials() {
         
     }
@@ -350,7 +377,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable {
     }
 
     public function isEnabled() {
-        return true;
+        return $this->activo;
     }
 
     public function serialize() {

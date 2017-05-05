@@ -20,16 +20,18 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'c.tipo') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Deporte', 'c.deporte') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Estado', 'c.disponibilidad') }}</th>
                                     <th><div class="hidden-xs">{{ knp_pagination_sortable(pagination, 'Horario', 'c.horario') }}</div></th>
-                                    <th class="t3">Acciones</th>
-                                </tr>
+                            <th class="t3">Acciones</th>
+                            </tr>
                             </thead>
                             <tbody>
                                 {% for cancha in pagination %}
                                     <tr data-id="{{ cancha.id }}">
+                                        <td><img src="{{ asset('images/'~cancha.imagen) }}" class="img-responsive center-block " style="max-width: 60px; height: 55px"/></td>
                                         <td>{{cancha.tipo}}</td>
                                         <td>{{cancha.deporte}}</td>
                                         {% if cancha.disponibilidad != 'Disponible' %}
@@ -41,9 +43,13 @@
                                         <td class="actions">
                                             {% if cancha.disponibilidad != 'Disponible' %}
                                                 <button class="btn btn-sm btn-info" disabled>Ver</button>
+                                                <button class="btn btn-sm btn-success" disabled>Reservar</button>
                                             {% else %}                                              
                                                 <a href="{{ path('moduloclientes_cliente_canchaClientes', { id: cancha.id }) }}" class="btn btn-sm btn-info">
                                                     Ver
+                                                </a>
+                                                <a href="{{path('moduloclientes_cliente_nuevaReserva', {id: cancha.id})}}" class="btn btn-sm btn-success" >
+                                                    Reservar 
                                                 </a>
                                             {% endif %}
                                         </td>

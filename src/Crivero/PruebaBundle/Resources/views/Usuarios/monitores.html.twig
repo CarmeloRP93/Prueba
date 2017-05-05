@@ -21,6 +21,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Usuario', 'u.username') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'u.nombre') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Correo electrónico', 'u.email') }}</th>
@@ -31,18 +32,19 @@
                             <tbody>
                                 {% for usuario in pagination %}
                                     <tr data-id="{{ usuario.id }}">
+                                        <td><img src="{{ asset('images/'~usuario.imagen) }}" class="img-responsive center-block " style="max-width: 45px"/></td>
                                         <td><strong>{{usuario.username}}</strong></td>
                                         <td>{{usuario.nombre}}</td>
                                         <td>{{usuario.email}}</td>
                                         <td>{{usuario.registro|date('d/m/Y')}}</td>
                                         <td class="actions">
-                                            <a href="{{ path('crivero_prueba_monitor', { id: usuario.id }) }}" class="btn btn-sm btn-info">
+                                            <a href="{{ path('crivero_prueba_monitor', { id: usuario.id }) }}" class="btn btn-sm btn-info noMargenBoton">
                                                 Ver
                                             </a>
-                                            <a href="{{ path('crivero_prueba_editarUsuario', { id: usuario.id }) }}" class="btn btn-sm btn-primary">
+                                            <a href="{{ path('crivero_prueba_editarUsuario', { id: usuario.id }) }}" class="btn btn-sm btn-primary noMargenBoton">
                                                 Editar
                                             </a>
-                                            <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                            <a href="#" class="btn btn-sm btn-danger btn-delete noMargenBoton">
                                                 Eliminar
                                             </a>
                                         </td>
@@ -52,15 +54,12 @@
                         </table>
                     </div>
                 {% endif %}
-                <div class="navigation text-center">
+                <div class="navigation text-center" >
                     {{ knp_pagination_render(pagination) }}
                 </div>
             </div>
         </div>
     </div>
-    {#<div class="nuevoUsuario text-center" style="margin-right: 80px">
-        <a href="{{path('crivero_prueba_nuevo')}}" class="btn btn-success" style="width: 150px;">Nuevo usuario <span class="glyphicon glyphicon-plus"></span></a>
-    </div>#}
     {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form_ajax, id: "form-delete", with_submit: false })}}
 {% endblock %}
 {% block javascripts %}

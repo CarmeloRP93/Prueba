@@ -72,20 +72,21 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
                         <table class=\"table table-hover\">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>";
-            // line 24
+            // line 25
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Usuario", "u.username");
             echo "</th>
                                     <th>";
-            // line 25
+            // line 26
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre", "u.nombre");
             echo "</th>
                                     <th>";
-            // line 26
+            // line 27
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Correo electrónico", "u.email");
             echo "</th>
                                     <th>";
-            // line 27
+            // line 28
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Creado", "u.registro");
             echo "</th>
                                     <th class=\"t3\">Acciones</th>
@@ -93,50 +94,54 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
                             </thead>
                             <tbody>
                                 ";
-            // line 32
+            // line 33
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
             foreach ($context['_seq'] as $context["_key"] => $context["usuario"]) {
-                // line 33
+                // line 34
                 echo "                                    <tr data-id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "id", array()), "html", null, true);
                 echo "\">
+                                        <td><img src=\"";
+                // line 35
+                echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("images/" . $this->getAttribute($context["usuario"], "imagen", array()))), "html", null, true);
+                echo "\" class=\"img-responsive center-block \" style=\"max-width: 45px\"/></td>
                                         <td><strong>";
-                // line 34
+                // line 36
                 echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "username", array()), "html", null, true);
                 echo "</strong></td>
                                         <td>";
-                // line 35
+                // line 37
                 echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "nombre", array()), "html", null, true);
                 echo "</td>
                                         <td>";
-                // line 36
+                // line 38
                 echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "email", array()), "html", null, true);
                 echo "</td>
                                         <td>";
-                // line 37
+                // line 39
                 echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["usuario"], "registro", array()), "d/m/Y"), "html", null, true);
                 echo "</td>
                                         <td class=\"actions\">
                                             <a href=\"";
-                // line 39
+                // line 41
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-sm btn-info\">
+                echo "\" class=\"btn btn-sm btn-info noMargenBoton\">
                                                 Ver
                                             </a>
                                             <a href=\"";
-                // line 42
+                // line 44
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_editarUsuario", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-sm btn-primary\">
+                echo "\" class=\"btn btn-sm btn-primary noMargenBoton\">
                                                 Editar
                                             </a>
                                             <a href=\"";
-                // line 45
+                // line 47
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_pagos_usuario", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-sm btn-warning\">
+                echo "\" class=\"btn btn-sm btn-warning noMargenBoton\">
                                                 Pagos
                                             </a>
-                                            <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
+                                            <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete noMargenBoton\">
                                                 Eliminar
                                             </a>
                                         </td>
@@ -146,38 +151,37 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['usuario'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 54
+            // line 56
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 58
+        // line 60
         echo "                <div class=\"navigation text-center\">
                     ";
-        // line 59
+        // line 61
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                 </div>
             </div>
         </div>
         ";
-        // line 66
-        echo "        ";
+        // line 65
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "id" => "form-delete", "with_submit" => false));
         echo "
     ";
     }
 
-    // line 69
+    // line 68
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 70
+        // line 69
         echo "        ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
         <script src=\"";
-        // line 71
+        // line 70
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/criveroprueba/js/delete-user.js"), "html", null, true);
         echo "\"></script>
     ";
@@ -195,6 +199,6 @@ class __TwigTemplate_c6c73cc2b9ea8fd5d630f3552c35a6dc3933ce3377fba41826d31f613d8
 
     public function getDebugInfo()
     {
-        return array (  181 => 71,  176 => 70,  173 => 69,  166 => 66,  159 => 59,  156 => 58,  150 => 54,  135 => 45,  129 => 42,  123 => 39,  118 => 37,  114 => 36,  110 => 35,  106 => 34,  101 => 33,  97 => 32,  89 => 27,  85 => 26,  81 => 25,  77 => 24,  71 => 20,  67 => 18,  65 => 17,  55 => 10,  44 => 3,  38 => 2,  11 => 1,);
+        return array (  185 => 70,  180 => 69,  177 => 68,  171 => 65,  164 => 61,  161 => 60,  155 => 56,  140 => 47,  134 => 44,  128 => 41,  123 => 39,  119 => 38,  115 => 37,  111 => 36,  107 => 35,  102 => 34,  98 => 33,  90 => 28,  86 => 27,  82 => 26,  78 => 25,  71 => 20,  67 => 18,  65 => 17,  55 => 10,  44 => 3,  38 => 2,  11 => 1,);
     }
 }

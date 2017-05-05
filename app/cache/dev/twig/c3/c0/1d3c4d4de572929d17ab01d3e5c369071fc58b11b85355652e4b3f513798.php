@@ -58,7 +58,7 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
             <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
                 <img src=\"";
         // line 10
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "imagen", array())), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("images/" . $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "imagen", array()))), "html", null, true);
         echo "\" class=\"img-responsive center-block\" style=\"max-width: 340px; margin-bottom:5px\"/>
                 ";
         // line 11
@@ -237,6 +237,28 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
         echo "                </div>
             </div>
         </div>
+        <div class=\"text-center\">
+            ";
+        // line 100
+        if ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")) {
+            // line 101
+            echo "                <a href=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method"), "html", null, true);
+            echo "\" class=\"btn btn-default\">
+                    Volver atrás
+                </a>
+            ";
+        } else {
+            // line 105
+            echo "                <a href=\"";
+            echo $this->env->getExtension('routing')->getPath("crivero_prueba_canchas");
+            echo "\" class=\"btn btn-default\">
+                    Volver atrás
+                </a>
+            ";
+        }
+        // line 109
+        echo "        </div>
     </div>
 
     <script>
@@ -266,6 +288,6 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
 
     public function getDebugInfo()
     {
-        return array (  237 => 96,  231 => 94,  224 => 89,  222 => 88,  217 => 85,  214 => 84,  205 => 79,  202 => 78,  193 => 73,  190 => 72,  182 => 67,  178 => 66,  170 => 60,  168 => 59,  161 => 57,  155 => 54,  148 => 50,  140 => 45,  136 => 43,  132 => 41,  129 => 40,  120 => 38,  115 => 37,  113 => 36,  106 => 32,  100 => 29,  94 => 26,  84 => 18,  78 => 16,  70 => 13,  67 => 12,  65 => 11,  61 => 10,  54 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  261 => 109,  253 => 105,  245 => 101,  243 => 100,  237 => 96,  231 => 94,  224 => 89,  222 => 88,  217 => 85,  214 => 84,  205 => 79,  202 => 78,  193 => 73,  190 => 72,  182 => 67,  178 => 66,  170 => 60,  168 => 59,  161 => 57,  155 => 54,  148 => 50,  140 => 45,  136 => 43,  132 => 41,  129 => 40,  120 => 38,  115 => 37,  113 => 36,  106 => 32,  100 => 29,  94 => 26,  84 => 18,  78 => 16,  70 => 13,  67 => 12,  65 => 11,  61 => 10,  54 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

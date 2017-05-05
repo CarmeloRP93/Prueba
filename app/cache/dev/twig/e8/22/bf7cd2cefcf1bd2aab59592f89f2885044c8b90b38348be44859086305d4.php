@@ -72,20 +72,21 @@ class __TwigTemplate_e822bf7cd2cefcf1bd2aab59592f89f2885044c8b90b38348be44859086
                         <table class=\"table table-hover\">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>";
-            // line 24
+            // line 25
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre", "a.nombre");
             echo "</th>
                                     <th>";
-            // line 25
+            // line 26
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Estado", "a.disponibilidad");
             echo "</th>
                                     <th>";
-            // line 26
+            // line 27
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Horario", "a.horario");
             echo "</th>
                                     <th>";
-            // line 27
+            // line 28
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Aforo", "a.aforo");
             echo "</th>
                                     <th class=\"t3\">Acciones</th>
@@ -93,70 +94,74 @@ class __TwigTemplate_e822bf7cd2cefcf1bd2aab59592f89f2885044c8b90b38348be44859086
                             </thead>
                             <tbody>
                                 ";
-            // line 32
+            // line 33
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
             foreach ($context['_seq'] as $context["_key"] => $context["aula"]) {
-                // line 33
+                // line 34
                 echo "                                    <tr data-id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "id", array()), "html", null, true);
                 echo "\">
+                                        <td><img src=\"";
+                // line 35
+                echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("images/" . $this->getAttribute($context["aula"], "imagen", array()))), "html", null, true);
+                echo "\" class=\"img-responsive center-block \" style=\"max-width: 60px; height: 55px\"/></td>
                                         <td>";
-                // line 34
+                // line 36
                 echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "nombre", array()), "html", null, true);
                 echo "</td>
                                         ";
-                // line 35
+                // line 37
                 if (($this->getAttribute($context["aula"], "disponibilidad", array()) == "Disponible")) {
-                    // line 36
+                    // line 38
                     echo "                                            <td><strong>";
                     echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "disponibilidad", array()), "html", null, true);
                     echo "</strong></td>
                                         ";
                 } else {
-                    // line 38
+                    // line 40
                     echo "                                            <td><strong style=\"color: red\">";
                     echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "disponibilidad", array()), "html", null, true);
                     echo "</strong></td>
                                         ";
                 }
-                // line 40
+                // line 42
                 echo "                                        <td>";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "horario", array()), "html", null, true);
                 echo "</td>
                                         <td>";
-                // line 41
+                // line 43
                 echo twig_escape_filter($this->env, ($this->getAttribute($context["aula"], "aforo", array()) . " plazas"), "html", null, true);
                 echo "</td>
                                         <td class=\"actions\">
                                             <a href=\"";
-                // line 43
+                // line 45
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_aula", array("id" => $this->getAttribute($context["aula"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-sm btn-info\">
+                echo "\" class=\"btn btn-sm btn-info noMargenBoton\">
                                                 Ver
                                             </a>
                                             <a href=\"";
-                // line 46
+                // line 48
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_aula_editar", array("id" => $this->getAttribute($context["aula"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-sm btn-primary\">
+                echo "\" class=\"btn btn-sm btn-primary noMargenBoton\">
                                                 Editar
                                             </a>
                                             ";
-                // line 49
+                // line 51
                 if (($this->getAttribute($context["aula"], "sesiones", array()) == null)) {
-                    // line 50
-                    echo "                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
+                    // line 52
+                    echo "                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete noMargenBoton\">
                                                     Eliminar
                                                 </a>
                                             ";
                 } else {
-                    // line 54
-                    echo "                                                <a onclick=\"warningEliminar()\" class=\"btn btn-sm btn-danger\">
+                    // line 56
+                    echo "                                                <a onclick=\"warningEliminar()\" class=\"btn btn-sm btn-danger noMargenBoton\">
                                                     Eliminar
                                                 </a>
                                             ";
                 }
-                // line 58
+                // line 60
                 echo "                                        </td>
                                     </tr>
                                 ";
@@ -164,16 +169,16 @@ class __TwigTemplate_e822bf7cd2cefcf1bd2aab59592f89f2885044c8b90b38348be44859086
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['aula'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 61
+            // line 63
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 65
+        // line 67
         echo "                <div class=\"navigation text-center\">
                     ";
-        // line 66
+        // line 68
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                 </div>
@@ -181,21 +186,21 @@ class __TwigTemplate_e822bf7cd2cefcf1bd2aab59592f89f2885044c8b90b38348be44859086
         </div>
     </div>
     ";
-        // line 71
+        // line 73
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "id" => "form-delete", "with_submit" => false));
         echo "
 ";
     }
 
-    // line 73
+    // line 75
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 74
+        // line 76
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <script src=\"";
-        // line 75
+        // line 77
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/criveroprueba/js/delete-aula.js"), "html", null, true);
         echo "\"></script>
     <script>
@@ -223,6 +228,6 @@ class __TwigTemplate_e822bf7cd2cefcf1bd2aab59592f89f2885044c8b90b38348be44859086
 
     public function getDebugInfo()
     {
-        return array (  199 => 75,  194 => 74,  191 => 73,  185 => 71,  177 => 66,  174 => 65,  168 => 61,  160 => 58,  154 => 54,  148 => 50,  146 => 49,  140 => 46,  134 => 43,  129 => 41,  124 => 40,  118 => 38,  112 => 36,  110 => 35,  106 => 34,  101 => 33,  97 => 32,  89 => 27,  85 => 26,  81 => 25,  77 => 24,  71 => 20,  67 => 18,  65 => 17,  55 => 10,  44 => 3,  38 => 2,  11 => 1,);
+        return array (  204 => 77,  199 => 76,  196 => 75,  190 => 73,  182 => 68,  179 => 67,  173 => 63,  165 => 60,  159 => 56,  153 => 52,  151 => 51,  145 => 48,  139 => 45,  134 => 43,  129 => 42,  123 => 40,  117 => 38,  115 => 37,  111 => 36,  107 => 35,  102 => 34,  98 => 33,  90 => 28,  86 => 27,  82 => 26,  78 => 25,  71 => 20,  67 => 18,  65 => 17,  55 => 10,  44 => 3,  38 => 2,  11 => 1,);
     }
 }

@@ -194,55 +194,85 @@ class __TwigTemplate_02bcc152e86b5cf18d89cbe10259956bd429351fb6aed4320bb2ee494e0
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "imagen", array()), 'errors');
             echo "</span>
                             </div>
-                        ";
-        } else {
+                            <div class=\"hidden\">
+                                ";
             // line 75
-            echo "                            <div class=\"hidden\">
+            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "activo", array()), 'label');
+            echo "
                                 ";
             // line 76
-            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "imagen", array()), 'label');
-            echo "
-                                ";
-            // line 77
-            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "imagen", array()), 'widget');
+            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "activo", array()), 'widget');
             echo "
                                 <span class=\"text-danger\">";
-            // line 78
-            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "imagen", array()), 'errors');
+            // line 77
+            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "activo", array()), 'errors');
             echo "</span>
                             </div>
                         ";
+        } else {
+            // line 80
+            echo "                            <div class=\"hidden\">
+                                ";
+            // line 81
+            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "imagen", array()), 'label');
+            echo "
+                                ";
+            // line 82
+            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "imagen", array()), 'widget');
+            echo "
+                                <span class=\"text-danger\">";
+            // line 83
+            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "imagen", array()), 'errors');
+            echo "</span>
+                            </div>
+
+                            <div class=\"text-center\">
+                                ";
+            // line 87
+            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "activo", array()), 'label');
+            echo "
+                                ";
+            // line 88
+            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "activo", array()), 'widget');
+            echo "
+                                <span class=\"text-danger\">";
+            // line 89
+            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "activo", array()), 'errors');
+            echo "</span>
+                            </div>
+
+                        ";
         }
-        // line 81
+        // line 93
         echo "
                     </form><br>
                     <div class=\"text-center\">
                         ";
-        // line 84
+        // line 96
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
                         ";
-        // line 85
+        // line 97
         if (($this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "tipo", array()) == 2)) {
-            // line 86
+            // line 98
             echo "                            ";
             $context["ruta"] = $this->env->getExtension('routing')->getPath("crivero_prueba_cliente", array("id" => $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "id", array())));
-            // line 87
+            // line 99
             echo "                        ";
         } elseif (($this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "tipo", array()) == 3)) {
-            // line 88
+            // line 100
             echo "                            ";
             $context["ruta"] = $this->env->getExtension('routing')->getPath("crivero_prueba_monitor", array("id" => $this->getAttribute((isset($context["usuario"]) ? $context["usuario"] : $this->getContext($context, "usuario")), "id", array())));
-            // line 89
+            // line 101
             echo "                        ";
         } else {
-            // line 90
+            // line 102
             echo "                            ";
             $context["ruta"] = $this->env->getExtension('routing')->getPath("crivero_prueba_perfil");
-            // line 91
+            // line 103
             echo "                        ";
         }
-        // line 92
+        // line 104
         echo "                        <form class=\"alinear\" action=\"";
         echo twig_escape_filter($this->env, (isset($context["ruta"]) ? $context["ruta"] : $this->getContext($context, "ruta")), "html", null, true);
         echo "\">
@@ -250,7 +280,7 @@ class __TwigTemplate_02bcc152e86b5cf18d89cbe10259956bd429351fb6aed4320bb2ee494e0
                         </form>
                     </div>
                     ";
-        // line 96
+        // line 108
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
                 </div>
@@ -273,6 +303,6 @@ class __TwigTemplate_02bcc152e86b5cf18d89cbe10259956bd429351fb6aed4320bb2ee494e0
 
     public function getDebugInfo()
     {
-        return array (  254 => 96,  246 => 92,  243 => 91,  240 => 90,  237 => 89,  234 => 88,  231 => 87,  228 => 86,  226 => 85,  222 => 84,  217 => 81,  211 => 78,  207 => 77,  203 => 76,  200 => 75,  194 => 72,  190 => 71,  186 => 70,  183 => 69,  181 => 68,  174 => 64,  170 => 63,  166 => 62,  158 => 57,  154 => 56,  150 => 55,  142 => 50,  138 => 49,  134 => 48,  122 => 39,  118 => 38,  114 => 37,  108 => 34,  104 => 33,  100 => 32,  91 => 26,  87 => 25,  83 => 24,  77 => 21,  73 => 20,  69 => 19,  60 => 13,  54 => 10,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
+        return array (  284 => 108,  276 => 104,  273 => 103,  270 => 102,  267 => 101,  264 => 100,  261 => 99,  258 => 98,  256 => 97,  252 => 96,  247 => 93,  240 => 89,  236 => 88,  232 => 87,  225 => 83,  221 => 82,  217 => 81,  214 => 80,  208 => 77,  204 => 76,  200 => 75,  194 => 72,  190 => 71,  186 => 70,  183 => 69,  181 => 68,  174 => 64,  170 => 63,  166 => 62,  158 => 57,  154 => 56,  150 => 55,  142 => 50,  138 => 49,  134 => 48,  122 => 39,  118 => 38,  114 => 37,  108 => 34,  104 => 33,  100 => 32,  91 => 26,  87 => 25,  83 => 24,  77 => 21,  73 => 20,  69 => 19,  60 => 13,  54 => 10,  48 => 6,  45 => 5,  37 => 3,  11 => 1,);
     }
 }

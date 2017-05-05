@@ -231,9 +231,9 @@ class __TwigTemplate_07ce4ffe77a4352d061cd75ea5950d9df3534b932a967f0a4c4618a3c8f
                         $context["i"] = ((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) + 1);
                         // line 85
                         echo "                                                <li>
-                                                    <p>Aula ";
+                                                    <p>";
                         // line 86
-                        echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "aula", array()), "html", null, true);
+                        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["recintos"]) ? $context["recintos"] : $this->getContext($context, "recintos")), $this->getAttribute($context["sesion"], "id", array()), array(), "array"), "html", null, true);
                         echo " - ";
                         echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
                         echo " con ";
@@ -307,6 +307,28 @@ class __TwigTemplate_07ce4ffe77a4352d061cd75ea5950d9df3534b932a967f0a4c4618a3c8f
         // line 113
         echo "                </div>
             </div>
+            <div class=\"text-center\">
+                ";
+        // line 116
+        if ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")) {
+            // line 117
+            echo "                    <a href=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method"), "html", null, true);
+            echo "\" class=\"btn btn-default\">
+                        Volver atrás
+                    </a>
+                ";
+        } else {
+            // line 121
+            echo "                    <a href=\"";
+            echo $this->env->getExtension('routing')->getPath("crivero_prueba_clientes");
+            echo "\" class=\"btn btn-default\">
+                        Volver atrás
+                    </a>
+                ";
+        }
+        // line 125
+        echo "            </div>
         </div>
     </div>
 </div>
@@ -325,6 +347,6 @@ class __TwigTemplate_07ce4ffe77a4352d061cd75ea5950d9df3534b932a967f0a4c4618a3c8f
 
     public function getDebugInfo()
     {
-        return array (  308 => 113,  302 => 111,  300 => 110,  296 => 108,  291 => 106,  288 => 105,  286 => 104,  283 => 103,  279 => 101,  270 => 96,  266 => 95,  263 => 94,  256 => 93,  248 => 88,  244 => 87,  236 => 86,  233 => 85,  230 => 84,  227 => 83,  221 => 82,  219 => 81,  215 => 79,  213 => 78,  209 => 76,  205 => 74,  197 => 69,  194 => 68,  186 => 66,  180 => 64,  173 => 62,  169 => 61,  164 => 60,  162 => 59,  158 => 58,  152 => 57,  149 => 56,  146 => 55,  140 => 54,  138 => 53,  134 => 51,  132 => 50,  124 => 45,  120 => 44,  116 => 43,  112 => 42,  108 => 41,  103 => 38,  94 => 32,  86 => 27,  79 => 23,  76 => 22,  74 => 21,  65 => 15,  59 => 12,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  331 => 125,  323 => 121,  315 => 117,  313 => 116,  308 => 113,  302 => 111,  300 => 110,  296 => 108,  291 => 106,  288 => 105,  286 => 104,  283 => 103,  279 => 101,  270 => 96,  266 => 95,  263 => 94,  256 => 93,  248 => 88,  244 => 87,  236 => 86,  233 => 85,  230 => 84,  227 => 83,  221 => 82,  219 => 81,  215 => 79,  213 => 78,  209 => 76,  205 => 74,  197 => 69,  194 => 68,  186 => 66,  180 => 64,  173 => 62,  169 => 61,  164 => 60,  162 => 59,  158 => 58,  152 => 57,  149 => 56,  146 => 55,  140 => 54,  138 => 53,  134 => 51,  132 => 50,  124 => 45,  120 => 44,  116 => 43,  112 => 42,  108 => 41,  103 => 38,  94 => 32,  86 => 27,  79 => 23,  76 => 22,  74 => 21,  65 => 15,  59 => 12,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }

@@ -7,7 +7,7 @@
 
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <img src="{{ asset(cancha.imagen) }}" class="img-responsive center-block" style="max-width: 340px; margin-bottom:5px"/>
+                <img src="{{ asset('images/'~cancha.imagen) }}" class="img-responsive center-block" style="max-width: 340px; margin-bottom:5px"/>
                 {% if cancha.disponibilidad == "Disponible" %}
                     <button class="btn btn-success active" style="width: 340px">
                         {{cancha.disponibilidad}} {{ (cancha.precio|length == 3 and '.' in cancha.precio|trans) ? '('~cancha.precio~'0 €/hora)': '('~cancha.precio~' €/hora)'}}
@@ -95,6 +95,17 @@
                     {% endif %}
                 </div>
             </div>
+        </div>
+        <div class="text-center">
+            {% if app.request.headers.get('referer')%}
+                <a href="{{app.request.headers.get('referer')}}" class="btn btn-default">
+                    Volver atrás
+                </a>
+            {% else %}
+                <a href="{{ path('crivero_prueba_canchas') }}" class="btn btn-default">
+                    Volver atrás
+                </a>
+            {% endif %}
         </div>
     </div>
 

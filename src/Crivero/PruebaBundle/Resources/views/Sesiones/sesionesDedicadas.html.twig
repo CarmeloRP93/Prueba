@@ -14,6 +14,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Nombre', 's.nombre') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Estado', 's.estado') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Monitor', 's.monitor') }}</th>
@@ -24,6 +25,7 @@
                             <tbody>
                                 {% for sesion in pagination %}
                                     <tr>
+                                        <td><img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block " style="max-width: 50px;height: 45px"/></td>
                                         <td>{{sesion.nombre}}</td>
                                         {% if sesion.estado == 'cancelada' or sesion.estado == 'suspendida' %}
                                             <td><strong style="color: red">{{sesion.estado}}</strong></td>
@@ -36,18 +38,18 @@
                                         <td>{{sesion.cliente}}</td>
 
                                         <td class="actions">
-                                            <a href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}" class="btn btn-sm btn-info">
+                                            <a href="{{ path('crivero_prueba_sesion', { id: sesion.id }) }}" class="btn btn-sm btn-info noMargenBoton">
                                                 Ver
                                             </a>
                                             {% if sesion.estado == 'pendiente' or sesion.estado == 'modificada' %}
-                                                <a href="{{path('crivero_prueba_aceptarSesion', {id: sesion.id})}}" class="btn btn-sm btn-success">
+                                                <a href="{{path('crivero_prueba_aceptarSesion', {id: sesion.id})}}" class="btn btn-sm btn-success noMargenBoton">
                                                     Aceptar
                                                 </a>
-                                                <a href="{{path('crivero_prueba_rechazarSesion', {id: sesion.id})}}" class="btn btn-sm btn-danger btn-delete">
+                                                <a href="{{path('crivero_prueba_rechazarSesion', {id: sesion.id})}}" class="btn btn-sm btn-danger noMargenBoton">
                                                     Rechazar
                                                 </a>
                                             {% elseif sesion.estado == 'validada' %}
-                                                <a href="{{path('crivero_prueba_cancelarSesion', {id: sesion.id})}}" class="btn btn-sm btn-danger btn-delete">
+                                                <a href="{{path('crivero_prueba_cancelarSesion', {id: sesion.id})}}" class="btn btn-sm btn-danger noMargenBoton">
                                                     Cancelar
                                                 </a>
                                             {% endif %}

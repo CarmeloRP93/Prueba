@@ -83,7 +83,7 @@
                                             {% if sesion.estado == 'validada' %}
                                                 {% set i = i+1 %}
                                                 <li>
-                                                    <p>Aula {{sesion.aula}} - {{sesion.nombre}} con {{sesion.monitor}} 
+                                                    <p>{{recintos[sesion.id]}} - {{sesion.nombre}} con {{sesion.monitor}} 
                                                         <a style="margin-bottom: 0; padding: 1px 1px; line-height: 0;" class="btn btn-xs btn-primary" href="{{path('crivero_prueba_horarios_sesion', { id: sesion.id })}}">
                                                             <img src="{{ asset("images/clock.png") }}" style="width: 13px" />
                                                         </a>
@@ -111,6 +111,17 @@
                         {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Eliminar usuario" })}}
                     {% endif %}
                 </div>
+            </div>
+            <div class="text-center">
+                {% if app.request.headers.get('referer')%}
+                    <a href="{{app.request.headers.get('referer')}}" class="btn btn-default">
+                        Volver atrás
+                    </a>
+                {% else %}
+                    <a href="{{ path('crivero_prueba_clientes') }}" class="btn btn-default">
+                        Volver atrás
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -1,6 +1,7 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
 {% block title %} Mis reservas {% endblock %}
 {% block contenido %}
+    {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class="progress no-border hidden" id="delete-progress" style="margin-top: -20px">
         <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
             <span class="sr-only">Loading...</span>
@@ -36,9 +37,9 @@
                                             <a href="{{ path('moduloclientes_cliente_reservaClientes', { id: reserva.id }) }}" class="btn btn-sm btn-info">
                                                 Ver
                                             </a>
-{#                                            <a href="{{path('moduloclientes_cliente_cancelarReserva', {id: reserva.id})}}" class="btn btn-sm btn-danger">
+                                            <a href="#" class="btn btn-sm btn-danger btn-delete">
                                                 Cancelar
-                                            </a>#}
+                                            </a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -53,5 +54,11 @@
                 </div>
             </div>                     
         </div>                     
-    </div>             
+    </div>
+    {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form_ajax, id: "form-delete", with_submit: false })}}
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/criveroprueba/js/delete-reserva.js') }}"></script>
 {% endblock %}

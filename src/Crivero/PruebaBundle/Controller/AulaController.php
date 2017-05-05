@@ -22,7 +22,7 @@ class AulaController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $aulas, $request->query->getInt('page', 1), 5);
+                $aulas, $request->query->getInt('page', 1), 4);
 
         $deleteFormAjax = $this->createCustomForm(':AULA_ID', 'DELETE', 'crivero_prueba_aula_eliminar');
         return $this->render('CriveroPruebaBundle:Aulas:aulas.html.twig', array("pagination" => $pagination,

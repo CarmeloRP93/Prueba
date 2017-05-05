@@ -21,6 +21,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'a.nombre') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Estado', 'a.disponibilidad') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Horario', 'a.horario') }}</th>
@@ -31,6 +32,7 @@
                             <tbody>
                                 {% for aula in pagination %}
                                     <tr data-id="{{ aula.id }}">
+                                        <td><img src="{{ asset('images/'~aula.imagen) }}" class="img-responsive center-block " style="max-width: 60px; height: 55px"/></td>
                                         <td>{{aula.nombre}}</td>
                                         {% if aula.disponibilidad == 'Disponible' %}
                                             <td><strong>{{aula.disponibilidad}}</strong></td>
@@ -40,18 +42,18 @@
                                         <td>{{aula.horario}}</td>
                                         <td>{{aula.aforo ~ ' plazas'}}</td>
                                         <td class="actions">
-                                            <a href="{{ path('crivero_prueba_aula', { id: aula.id }) }}" class="btn btn-sm btn-info">
+                                            <a href="{{ path('crivero_prueba_aula', { id: aula.id }) }}" class="btn btn-sm btn-info noMargenBoton">
                                                 Ver
                                             </a>
-                                            <a href="{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}" class="btn btn-sm btn-primary">
+                                            <a href="{{ path('crivero_prueba_aula_editar', { id: aula.id }) }}" class="btn btn-sm btn-primary noMargenBoton">
                                                 Editar
                                             </a>
                                             {% if aula.sesiones == null %}
-                                                <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                                <a href="#" class="btn btn-sm btn-danger btn-delete noMargenBoton">
                                                     Eliminar
                                                 </a>
                                             {% else %}
-                                                <a onclick="warningEliminar()" class="btn btn-sm btn-danger">
+                                                <a onclick="warningEliminar()" class="btn btn-sm btn-danger noMargenBoton">
                                                     Eliminar
                                                 </a>
                                             {% endif %}

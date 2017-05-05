@@ -8,6 +8,7 @@ use Crivero\PruebaBundle\Entity\Pagos;
 use Crivero\PruebaBundle\Form\PagosType;
 use Crivero\PruebaBundle\Form\ReservasType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormError;
 use Crivero\PruebaBundle\Entity\Notificaciones;
 
@@ -24,7 +25,9 @@ class ReservaController extends Controller {
         $pagination = $paginator->paginate(
                 $reservas, $request->query->getInt('page', 1), 5);
 
+        $deleteFormAjax = $this->createCustomForm(':RESERVA_ID', 'DELETE', 'moduloclientes_cliente_cancelarReserva');
         return $this->render('moduloclientesclienteBundle:Reservas:reservasClientes.html.twig', array("pagination" => $pagination,
+                    "delete_form_ajax" => $deleteFormAjax->createView(),
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
@@ -200,7 +203,7 @@ class ReservaController extends Controller {
             $instancia = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Horarioscanchas")->getInstancia($id, $fechaForm);
             $instancia[0]->setPeriodo(implode('&', $horariosArray));
 
-            $pago->setCuantia($cancha->getPrecio()*count($horitasArray));
+            $pago->setCuantia($cancha->getPrecio() * count($horitasArray));
             $em = $this->getDoctrine()->getManager();
             $em->persist($cliente);
             $em->persist($pago);
@@ -253,16 +256,26 @@ class ReservaController extends Controller {
         $form = $this->createCustomForm($reserva->getId(), 'DELETE', 'moduloclientes_cliente_cancelarReserva');
         $form->handleRequest($request);
 
-        $res = $this->deleteReserva($em, $reserva);
-        $request->getSession()->getFlashBag()->add('mensaje', $res['message']);
-        return $this->redirect($this->generateUrl('moduloclientes_cliente_reservasClientes'));
+        if ($form->isSubmitted() && $form->isValid() ) {
+            if ($request->isXmlHttpRequest()) {
+                $res = $this->deleteReserva($em, $reserva);
+
+                return new Response(
+                        json_encode(array('removed' => $res['removed'], 'message' => $res['message'])), 200, array('Content-Type' => 'application/json')
+                );
+            }
+
+            $res = $this->deleteReserva($em, $reserva);
+            $request->getSession()->getFlashBag()->add('mensaje', $res['message']);
+            return $this->redirect($this->generateUrl('moduloclientes_cliente_reservasClientes'));
+        }
     }
 
     private function deleteReserva($em, $reserva) {
         $em->remove($reserva);
         $em->flush();
 
-        $message = 'La reserva ha sido eliminada con éxito.';
+        $message = 'La reserva se canceló con éxito.';
         $remove = 1;
         return array('removed' => $remove, 'message' => $message);
     }

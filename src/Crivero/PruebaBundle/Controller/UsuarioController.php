@@ -35,15 +35,21 @@ class UsuarioController extends Controller {
 
         $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $cliente = $repositoryUsuarios->find($id);
-        $idsSesionesCliente = explode('&', $cliente->getSesiones());
+        $idsSesionesCliente = array_filter(explode('&', $cliente->getSesiones()));
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesionesCliente = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
+        
+        $recintos = array();
+        foreach ($sesionesCliente as $sesion) {
+            ($sesion->getConcepto() == 'cancha') ? $recintos[$sesion->getId()] = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas")->find($sesion->getCancha())->getTipo():
+                                    $recintos[$sesion->getId()] = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas")->find($sesion->getAula())->getNombre();
+        }
 
         $deleteForm = $this->createCustomForm($cliente->getId(), 'DELETE', 'crivero_prueba_eliminar');
         return $this->render('CriveroPruebaBundle:Usuarios:cliente.html.twig', array("cliente" => $cliente,
-                    'notificacionesSinLeer' => $this->getNewNotification(),
                     "reservas" => $reservasCliente, "sesiones" => $sesionesCliente,
-                    'delete_form' => $deleteForm->createView()));
+                    'delete_form' => $deleteForm->createView(), 'recintos' => $recintos,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function monitoresAction(Request $request) {
@@ -67,9 +73,16 @@ class UsuarioController extends Controller {
         $monitor = $repositoryUsuarios->find($id);
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesionesMonitor = $repositorySesiones->getSesionesMonitor($id);
+        
+        $recintos = array();
+        foreach ($sesionesMonitor as $sesion) {
+            ($sesion->getConcepto() == 'cancha') ? $recintos[$sesion->getId()] = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas")->find($sesion->getCancha())->getTipo():
+                                    $recintos[$sesion->getId()] = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas")->find($sesion->getAula())->getNombre();
+        }
 
         $deleteForm = $this->createCustomForm($monitor->getId(), 'DELETE', 'crivero_prueba_eliminar');
-        return $this->render('CriveroPruebaBundle:Usuarios:monitor.html.twig', array("monitor" => $monitor, "sesiones" => $sesionesMonitor,
+        return $this->render('CriveroPruebaBundle:Usuarios:monitor.html.twig', array(
+                    "monitor" => $monitor, "sesiones" => $sesionesMonitor, 'recintos' => $recintos,
                     'delete_form' => $deleteForm->createView(), 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
@@ -87,12 +100,12 @@ class UsuarioController extends Controller {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-//        $fecha = $form->get('fNacimiento')->getData();
             $password = $form->get('password')->getData();
             if (!empty($password)) {
                 $encoded = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
                 $usuario->setPassword($encoded);
-                $usuario->setImagen("no-image-found.png");
+                $usuario->setImagen("default-picture.png");
+                $usuario->setActivo(true);
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($usuario);
                 $em->flush();
@@ -258,6 +271,7 @@ class UsuarioController extends Controller {
     }
 
     private function getArrayEntidades($repository, $array) {
+        $resultado = array();
         for ($i = 0; $i < count($array); $i++) {
             $resultado[$i] = $repository->find($array[$i]);
         }

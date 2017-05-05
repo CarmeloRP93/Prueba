@@ -118,9 +118,9 @@ class __TwigTemplate_e034f6cae261413f62de8239e4e89d6b0dbbbf7afe27361f191dd12de83
                         $context["i"] = ((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) + 1);
                         // line 39
                         echo "                                                <li>
-                                                    <p>Aula ";
+                                                    <p>";
                         // line 40
-                        echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "aula", array()), "html", null, true);
+                        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["recintos"]) ? $context["recintos"] : $this->getContext($context, "recintos")), $this->getAttribute($context["sesion"], "id", array()), array(), "array"), "html", null, true);
                         echo " - ";
                         echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
                         echo " 
@@ -196,6 +196,28 @@ class __TwigTemplate_e034f6cae261413f62de8239e4e89d6b0dbbbf7afe27361f191dd12de83
                     </div>
                 </div>
             </div>
+            <div class=\"text-center\">
+                ";
+        // line 76
+        if ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")) {
+            // line 77
+            echo "                    <a href=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method"), "html", null, true);
+            echo "\" class=\"btn btn-default\">
+                        Volver atrás
+                    </a>
+                ";
+        } else {
+            // line 81
+            echo "                    <a href=\"";
+            echo $this->env->getExtension('routing')->getPath("crivero_prueba_monitores");
+            echo "\" class=\"btn btn-default\">
+                        Volver atrás
+                    </a>
+                ";
+        }
+        // line 85
+        echo "            </div>
         </div>
     </div>
 </div>
@@ -214,6 +236,6 @@ class __TwigTemplate_e034f6cae261413f62de8239e4e89d6b0dbbbf7afe27361f191dd12de83
 
     public function getDebugInfo()
     {
-        return array (  195 => 71,  189 => 68,  181 => 63,  174 => 59,  171 => 58,  168 => 57,  164 => 55,  155 => 50,  151 => 49,  148 => 48,  141 => 47,  133 => 42,  129 => 41,  123 => 40,  120 => 39,  117 => 38,  114 => 37,  108 => 36,  106 => 35,  102 => 33,  100 => 32,  92 => 27,  88 => 26,  84 => 25,  80 => 24,  76 => 23,  65 => 15,  59 => 12,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  220 => 85,  212 => 81,  204 => 77,  202 => 76,  195 => 71,  189 => 68,  181 => 63,  174 => 59,  171 => 58,  168 => 57,  164 => 55,  155 => 50,  151 => 49,  148 => 48,  141 => 47,  133 => 42,  129 => 41,  123 => 40,  120 => 39,  117 => 38,  114 => 37,  108 => 36,  106 => 35,  102 => 33,  100 => 32,  92 => 27,  88 => 26,  84 => 25,  80 => 24,  76 => 23,  65 => 15,  59 => 12,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }

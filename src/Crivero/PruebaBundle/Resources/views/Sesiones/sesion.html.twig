@@ -89,6 +89,22 @@
                 </div>
             </div>
         </div>
-
+        <div class="text-center">
+            {% if app.request.headers.get('referer')%}
+                <a href="{{app.request.headers.get('referer')}}" class="btn btn-default">
+                    Volver atrás
+                </a>
+            {% else %}
+                {% if sesion.cliente == 'normal' %}
+                    <a href="{{ path('crivero_prueba_sesiones') }}" class="btn btn-default">
+                        Volver atrás
+                    </a>
+                {% else %}
+                    <a href="{{ path('crivero_prueba_dedicadas') }}" class="btn btn-default">
+                        Volver atrás
+                    </a>
+                {% endif %}
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

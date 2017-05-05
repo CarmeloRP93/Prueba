@@ -185,22 +185,36 @@ class __TwigTemplate_5a9c591ab5821d7fe3ee51c695d6bcc2afae9b2c970de695f420b0b7573
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "imagen", array()), 'errors');
         echo "</span>
                         </div>
+                        <div class=\"hidden\">
+                            ";
+        // line 74
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "activo", array()), 'label');
+        echo "
+                            ";
+        // line 75
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "activo", array()), 'widget');
+        echo "
+                            <span class=\"text-danger\">";
+        // line 76
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "activo", array()), 'errors');
+        echo "</span>
+                        </div>
 
                     </form><br>
                     <div class=\"text-center\">
                         ";
-        // line 76
+        // line 81
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
                           <form class=\"alinear\" action=\"";
-        // line 77
+        // line 82
         echo $this->env->getExtension('routing')->getPath("crivero_prueba_clientes");
         echo "\">
                             <button type=\"submit\" class=\"btn btn-danger\" >Cancelar</button>
                         </form>
                     </div>
                     ";
-        // line 81
+        // line 86
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
                 </div>
@@ -223,6 +237,6 @@ class __TwigTemplate_5a9c591ab5821d7fe3ee51c695d6bcc2afae9b2c970de695f420b0b7573
 
     public function getDebugInfo()
     {
-        return array (  204 => 81,  197 => 77,  193 => 76,  185 => 71,  181 => 70,  177 => 69,  168 => 63,  164 => 62,  160 => 61,  152 => 56,  148 => 55,  144 => 54,  136 => 49,  132 => 48,  128 => 47,  116 => 38,  112 => 37,  108 => 36,  102 => 33,  98 => 32,  94 => 31,  85 => 25,  81 => 24,  77 => 23,  71 => 20,  67 => 19,  63 => 18,  54 => 12,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  218 => 86,  211 => 82,  207 => 81,  199 => 76,  195 => 75,  191 => 74,  185 => 71,  181 => 70,  177 => 69,  168 => 63,  164 => 62,  160 => 61,  152 => 56,  148 => 55,  144 => 54,  136 => 49,  132 => 48,  128 => 47,  116 => 38,  112 => 37,  108 => 36,  102 => 33,  98 => 32,  94 => 31,  85 => 25,  81 => 24,  77 => 23,  71 => 20,  67 => 19,  63 => 18,  54 => 12,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

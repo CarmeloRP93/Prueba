@@ -71,12 +71,24 @@
                                 {{ form_widget(form.imagen) }}
                                 <span class="text-danger">{{ form_errors(form.imagen) }}</span>
                             </div>
+                            <div class="hidden">
+                                {{ form_label(form.activo) }}
+                                {{ form_widget(form.activo) }}
+                                <span class="text-danger">{{ form_errors(form.activo) }}</span>
+                            </div>
                         {% else %}
                             <div class="hidden">
                                 {{ form_label(form.imagen) }}
                                 {{ form_widget(form.imagen) }}
                                 <span class="text-danger">{{ form_errors(form.imagen) }}</span>
                             </div>
+
+                            <div class="text-center">
+                                {{ form_label(form.activo) }}
+                                {{ form_widget(form.activo) }}
+                                <span class="text-danger">{{ form_errors(form.activo) }}</span>
+                            </div>
+
                         {% endif %}
 
                     </form><br>

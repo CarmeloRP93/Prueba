@@ -248,7 +248,42 @@ class __TwigTemplate_e48fc06279169411d45c4aefe77a9f983d3ac500f6a7d757d7f58f0724f
                 </div>
             </div>
         </div>
-
+        <div class=\"text-center\">
+            ";
+        // line 93
+        if ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")) {
+            // line 94
+            echo "                <a href=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method"), "html", null, true);
+            echo "\" class=\"btn btn-default\">
+                    Volver atrás
+                </a>
+            ";
+        } else {
+            // line 98
+            echo "                ";
+            if (($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "cliente", array()) == "normal")) {
+                // line 99
+                echo "                    <a href=\"";
+                echo $this->env->getExtension('routing')->getPath("crivero_prueba_sesiones");
+                echo "\" class=\"btn btn-default\">
+                        Volver atrás
+                    </a>
+                ";
+            } else {
+                // line 103
+                echo "                    <a href=\"";
+                echo $this->env->getExtension('routing')->getPath("crivero_prueba_dedicadas");
+                echo "\" class=\"btn btn-default\">
+                        Volver atrás
+                    </a>
+                ";
+            }
+            // line 107
+            echo "            ";
+        }
+        // line 108
+        echo "        </div>
     </div>
 ";
     }
@@ -265,6 +300,6 @@ class __TwigTemplate_e48fc06279169411d45c4aefe77a9f983d3ac500f6a7d757d7f58f0724f
 
     public function getDebugInfo()
     {
-        return array (  247 => 88,  241 => 86,  239 => 85,  236 => 84,  228 => 80,  226 => 79,  223 => 78,  217 => 76,  215 => 75,  210 => 74,  208 => 73,  204 => 72,  200 => 71,  196 => 70,  191 => 67,  188 => 66,  185 => 65,  179 => 63,  174 => 61,  170 => 60,  167 => 59,  165 => 58,  160 => 57,  154 => 55,  152 => 54,  147 => 52,  143 => 51,  139 => 50,  131 => 44,  124 => 40,  118 => 37,  114 => 35,  109 => 32,  107 => 31,  100 => 28,  98 => 27,  92 => 24,  88 => 22,  86 => 21,  80 => 18,  76 => 16,  74 => 15,  68 => 13,  66 => 12,  62 => 11,  53 => 7,  47 => 5,  44 => 4,  37 => 3,  11 => 1,);
+        return array (  286 => 108,  283 => 107,  275 => 103,  267 => 99,  264 => 98,  256 => 94,  254 => 93,  247 => 88,  241 => 86,  239 => 85,  236 => 84,  228 => 80,  226 => 79,  223 => 78,  217 => 76,  215 => 75,  210 => 74,  208 => 73,  204 => 72,  200 => 71,  196 => 70,  191 => 67,  188 => 66,  185 => 65,  179 => 63,  174 => 61,  170 => 60,  167 => 59,  165 => 58,  160 => 57,  154 => 55,  152 => 54,  147 => 52,  143 => 51,  139 => 50,  131 => 44,  124 => 40,  118 => 37,  114 => 35,  109 => 32,  107 => 31,  100 => 28,  98 => 27,  92 => 24,  88 => 22,  86 => 21,  80 => 18,  76 => 16,  74 => 15,  68 => 13,  66 => 12,  62 => 11,  53 => 7,  47 => 5,  44 => 4,  37 => 3,  11 => 1,);
     }
 }

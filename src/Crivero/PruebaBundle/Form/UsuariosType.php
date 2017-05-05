@@ -24,6 +24,7 @@ class UsuariosType extends AbstractType
                                           'label' => 'Rol'))
             ->add('fNacimiento', 'text', array('label' => 'Fecha nacimiento'))
             ->add('imagen', 'file',  array('data_class' => null))
+            ->add('activo', 'checkbox', array('label' => "Activo"))
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;
     }

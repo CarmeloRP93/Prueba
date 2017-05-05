@@ -59,7 +59,7 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
                     <div class=\"panel-body\">
                         <img src=\"";
         // line 13
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "imagen", array())), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("images/" . $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "imagen", array()))), "html", null, true);
         echo "\" class=\"img-responsive center-block\" style=\"width: 305px\"/>
                     </div>
                 </div>
@@ -141,7 +141,7 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
                             ";
         } else {
             // line 54
-            echo "                                <button class=\"btn btn-danger\">Reservada</button>
+            echo "                                <button class=\"btn btn-danger\">No disponible</button>
                             ";
         }
         // line 56
