@@ -112,10 +112,10 @@ class __TwigTemplate_ca5830256a792a656033d404e9a0f523947beb321c924995d169d4faca5
                                             <a href=\"";
                 // line 37
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_reservaClientes", array("id" => $this->getAttribute($context["reserva"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-sm btn-info\">
+                echo "\" class=\"btn btn-sm btn-info noMargenBoton\">
                                                 Ver
                                             </a>
-                                            <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
+                                            <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete noMargenBoton\">
                                                 Cancelar
                                             </a>
                                         </td>

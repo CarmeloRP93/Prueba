@@ -97,7 +97,7 @@ class AulaController extends Controller {
         $sesiones = $this->getArrayEntidades($repositoryS, $idsSesiones);
 
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 6);
+        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 5);
 
         return $this->render('CriveroPruebaBundle:Sesiones:sesionesAula.html.twig', array("pagination" => $pagination,
                     'aula' => $aula, 'notificacionesSinLeer' => $this->getNewNotification()));

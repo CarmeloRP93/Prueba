@@ -135,8 +135,8 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
                 // line 44
                 if (($this->getAttribute($context["cancha"], "disponibilidad", array()) != "Disponible")) {
                     // line 45
-                    echo "                                                <button class=\"btn btn-sm btn-info\" disabled>Ver</button>
-                                                <button class=\"btn btn-sm btn-success\" disabled>Reservar</button>
+                    echo "                                                <button class=\"btn btn-sm btn-info noMargenBoton\" disabled>Ver</button>
+                                                <button class=\"btn btn-sm btn-success noMargenBoton\" disabled>Reservar</button>
                                             ";
                 } else {
                     // line 47
@@ -144,13 +144,13 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
                                                 <a href=\"";
                     // line 48
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_canchaClientes", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
-                    echo "\" class=\"btn btn-sm btn-info\">
+                    echo "\" class=\"btn btn-sm btn-info noMargenBoton\">
                                                     Ver
                                                 </a>
                                                 <a href=\"";
                     // line 51
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_nuevaReserva", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
-                    echo "\" class=\"btn btn-sm btn-success\" >
+                    echo "\" class=\"btn btn-sm btn-success noMargenBoton\" >
                                                     Reservar 
                                                 </a>
                                             ";

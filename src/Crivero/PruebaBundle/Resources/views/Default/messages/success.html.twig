@@ -7,7 +7,7 @@
 {% endif %}
 
 {% for flashMessage in app.session.flashbag.get('mensaje') %}
-	<div class="alert alert-success" style="margin-top: -20px" role="alert">
+	<div class="alert alert-success" style="margin-top: -20px; margin-bottom: 0" role="alert">
 		<div class="container"> {{ flashMessage }} </div>
 	</div>
 {% endfor %}

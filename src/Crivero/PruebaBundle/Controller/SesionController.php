@@ -37,7 +37,7 @@ class SesionController extends Controller {
         $sesiones = $this->getArrayEntidades($repositorySesiones, $idsSesionesCliente);
 
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 6);
+        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 5);
 
         return $this->render('CriveroPruebaBundle:Sesiones:sesionesCliente.html.twig', array("pagination" => $pagination,
                     'username' => $cliente->getUsername(), 'cId' => $id,
@@ -49,7 +49,7 @@ class SesionController extends Controller {
         $sesiones = $repository->getSesionesMonitor($id);
 
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 6);
+        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 5);
 
         return $this->render('CriveroPruebaBundle:Sesiones:sesionesMonitor.html.twig', array("pagination" => $pagination,
                     'username' => $sesiones[0]->getMonitor(), 'mId' => $id,
@@ -519,6 +519,7 @@ class SesionController extends Controller {
                     $em->flush();
                 }
             }
+            $request->getSession()->getFlashBag()->add('mensaje', 'Las tarifas han sido actualizadas.');
             return $this->redirect($this->generateUrl('crivero_prueba_sesiones'));
         }
         return $this->render('CriveroPruebaBundle:Sesiones:tarifas.html.twig', array('form' => $form->createView(),

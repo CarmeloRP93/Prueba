@@ -34,10 +34,10 @@
                                         <td>{{reserva.cancha}}</td>
                                         <td><strong>{{reserva.fechaInicio|date('d-m-Y')}}</strong></td>
                                         <td class="actions">
-                                            <a href="{{ path('moduloclientes_cliente_reservaClientes', { id: reserva.id }) }}" class="btn btn-sm btn-info">
+                                            <a href="{{ path('moduloclientes_cliente_reservaClientes', { id: reserva.id }) }}" class="btn btn-sm btn-info noMargenBoton">
                                                 Ver
                                             </a>
-                                            <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                            <a href="#" class="btn btn-sm btn-danger btn-delete noMargenBoton">
                                                 Cancelar
                                             </a>
                                         </td>

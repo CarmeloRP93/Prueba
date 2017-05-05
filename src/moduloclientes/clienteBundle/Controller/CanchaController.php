@@ -15,7 +15,11 @@ use Crivero\PruebaBundle\Entity\Notificaciones;
 class CanchaController extends Controller {
 
     public function canchasClientesAction(Request $request) {
-        $this->changeStateNotification($request->get('id'));
+        $notificaciones = array();
+        if ($this->getUser() != null){
+            $this->changeStateNotification($request->get('id'));
+            $notificaciones = $this->getNewNotification();
+        }
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
 
         $searchQuery = $request->get('query');
@@ -27,7 +31,7 @@ class CanchaController extends Controller {
                 $canchas, $request->query->getInt('page', 1), 4);
 
         return $this->render('moduloclientesclienteBundle:Canchas:canchasClientes.html.twig', array("pagination" => $pagination,
-                    'notificacionesSinLeer' => $this->getNewNotification()));
+                    'notificacionesSinLeer' => $notificaciones));
     }
 
     public function canchaClientesAction($id) {

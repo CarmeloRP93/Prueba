@@ -14,26 +14,28 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Nombre', 's.nombre') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Estado', 's.estadoCliente') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Monitor', 's.monitor') }}</th>
                                     <th><div class="hidden-xs">{{ knp_pagination_sortable(pagination, 'Objetivo', 's.objetivo') }}</div></th>
-                                    <th>{{ knp_pagination_sortable(pagination, 'Estado', 's.estadoCliente') }}</th>
                                     <th class="t3">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for sesion in pagination %}
                                     <tr data-id="{{ sesion.id }}">
+                                        <td><img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block " style="max-width: 50px;height: 45px"/></td>
                                         <td>{{sesion.nombre}}</td>
-                                        <td>{{sesion.monitor}}</td>
-                                        <td>{{sesion.objetivo}}</td>
                                         {% if sesion.estadoCliente == 'disponible' %}
                                             <td>Disponible</td>
                                         {% else %}
                                             <td><font color="red">{{sesion.estadoCliente|capitalize}}</font></td>
                                             {% endif %}
+                                        <td>{{sesion.monitor}}</td>
+                                        <td>{{sesion.objetivo}}</td>
                                         <td class="actions">
-                                            <a href="{{ path('moduloclientes_cliente_sesionClientes', { id: sesion.id }) }}" class="btn btn-sm btn-info">
+                                            <a href="{{ path('moduloclientes_cliente_sesionClientes', { id: sesion.id }) }}" class="btn btn-sm btn-info noMargenBoton">
                                                 Ver
                                             </a>
                                         </td>

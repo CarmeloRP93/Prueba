@@ -63,7 +63,7 @@ class CanchaController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $reservas, $request->query->getInt('page', 1), 6);
+                $reservas, $request->query->getInt('page', 1), 5);
 
         return $this->render('CriveroPruebaBundle:Reservas:reservasCancha.html.twig', array("pagination" => $pagination,
                     'notificacionesSinLeer' => $this->getNewNotification()));
@@ -76,7 +76,7 @@ class CanchaController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $sesiones, $request->query->getInt('page', 1), 6);
+                $sesiones, $request->query->getInt('page', 1), 5);
 
         return $this->render('CriveroPruebaBundle:Sesiones:sesionesCancha.html.twig', array("pagination" => $pagination,
                     'cancha' => $cancha, 'notificacionesSinLeer' => $this->getNewNotification()));

@@ -33,7 +33,7 @@ class __TwigTemplate_4f487e4d60eed834550ca411b660691a63523e31d7a62b921901493dc9f
         $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session", array()), "flashbag", array()), "get", array(0 => "mensaje"), "method"));
         foreach ($context['_seq'] as $context["_key"] => $context["flashMessage"]) {
             // line 10
-            echo "\t<div class=\"alert alert-success\" style=\"margin-top: -20px\" role=\"alert\">
+            echo "\t<div class=\"alert alert-success\" style=\"margin-top: -20px; margin-bottom: 0\" role=\"alert\">
 \t\t<div class=\"container\"> ";
             // line 11
             echo twig_escape_filter($this->env, $context["flashMessage"], "html", null, true);

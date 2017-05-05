@@ -111,13 +111,15 @@ class __TwigTemplate_0be0207a81182abc0f26e0a37ed63a4b7a558c89d80f9f22a675a2c0aa5
         // line 38
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Actualizar", "attr" => array("class" => "btn btn-success")));
         echo "
-                        <a class=\"btn btn-danger\" href=\"";
+                        <form class=\"alinear\" action=\"";
         // line 39
         echo $this->env->getExtension('routing')->getPath("crivero_prueba_sesiones");
-        echo "\">Cancelar</a>
+        echo "\">
+                            <button type=\"submit\" class=\"btn btn-danger\">Cancelar</button>
+                        </form>
                     </div>
                     ";
-        // line 41
+        // line 43
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
                 </div>
@@ -139,6 +141,6 @@ class __TwigTemplate_0be0207a81182abc0f26e0a37ed63a4b7a558c89d80f9f22a675a2c0aa5
 
     public function getDebugInfo()
     {
-        return array (  121 => 41,  116 => 39,  112 => 38,  103 => 32,  99 => 31,  95 => 30,  87 => 25,  83 => 24,  79 => 23,  71 => 18,  67 => 17,  63 => 16,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  123 => 43,  116 => 39,  112 => 38,  103 => 32,  99 => 31,  95 => 30,  87 => 25,  83 => 24,  79 => 23,  71 => 18,  67 => 17,  63 => 16,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

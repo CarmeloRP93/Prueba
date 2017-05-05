@@ -42,13 +42,13 @@
                                         <td><div class="hidden-xs">{{cancha.horario}}</div></td>
                                         <td class="actions">
                                             {% if cancha.disponibilidad != 'Disponible' %}
-                                                <button class="btn btn-sm btn-info" disabled>Ver</button>
-                                                <button class="btn btn-sm btn-success" disabled>Reservar</button>
+                                                <button class="btn btn-sm btn-info noMargenBoton" disabled>Ver</button>
+                                                <button class="btn btn-sm btn-success noMargenBoton" disabled>Reservar</button>
                                             {% else %}                                              
-                                                <a href="{{ path('moduloclientes_cliente_canchaClientes', { id: cancha.id }) }}" class="btn btn-sm btn-info">
+                                                <a href="{{ path('moduloclientes_cliente_canchaClientes', { id: cancha.id }) }}" class="btn btn-sm btn-info noMargenBoton">
                                                     Ver
                                                 </a>
-                                                <a href="{{path('moduloclientes_cliente_nuevaReserva', {id: cancha.id})}}" class="btn btn-sm btn-success" >
+                                                <a href="{{path('moduloclientes_cliente_nuevaReserva', {id: cancha.id})}}" class="btn btn-sm btn-success noMargenBoton" >
                                                     Reservar 
                                                 </a>
                                             {% endif %}
