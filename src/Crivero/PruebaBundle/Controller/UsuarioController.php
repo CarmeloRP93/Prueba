@@ -96,7 +96,6 @@ class UsuarioController extends Controller {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($usuario);
                 $em->flush();
-
                 $request->getSession()->getFlashBag()->add('mensaje', 'El usuario ha sido creado con éxito.');
                 $tipo = $form->get('tipo')->getData();
                 return ($tipo == 3) ? $this->redirect($this->generateUrl('crivero_prueba_monitores')) : $this->redirect($this->generateUrl('crivero_prueba_clientes'));

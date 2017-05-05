@@ -121,7 +121,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable {
      * @ORM\Column(name="imagen", type="string", length=255, nullable=false)
      */
     private $imagen;
-
+    
     /**
      * Set fNacimiento
      *
@@ -303,7 +303,7 @@ class Usuarios implements AdvancedUserInterface, \Serializable {
     public function getImagen() {
         return $this->imagen;
     }
-
+    
     public function eraseCredentials() {
         
     }

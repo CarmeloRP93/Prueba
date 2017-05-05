@@ -11,14 +11,13 @@ use Symfony\Component\HttpFoundation\Response;
 class JugadorController extends Controller {
     
     public function jugadoresClientesAction(Request $request, $id) {
-        $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $repositoryClientes = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $searchQuery = $request->get('query');
-        (!empty($searchQuery)) ? $jugadores = $repository->searchClientes($searchQuery) :
-                        $jugadores = $repository->getClientes();
-
+        (!empty($searchQuery)) ? $clientes = $repositoryClientes->searchClientesJugadores($searchQuery) :
+                      $clientes = $repositoryClientes->getClientesEquipo();
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $jugadores, $request->query->getInt('page', 1), 5);
+                $clientes, $request->query->getInt('page', 1), 5);
         return $this->render('moduloclientesclienteBundle:Competiciones:jugadoresClientes.html.twig',
             array('notificacionesSinLeer' => $this->getNewNotification(), "pagination" => $pagination));
     }
@@ -35,7 +34,7 @@ class JugadorController extends Controller {
         $jugador ->setImagen($usuario->getImagen());
         $em->persist($jugador);
         $em->flush();
-        return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));
+        return $this->redirect($this->generateUrl('moduloclientes_cliente_equipoClientes', array('id'=>$request->get('idEquipo'))));
     }
     
     private function findEntity($id, $em, $repository) {
@@ -68,26 +67,18 @@ class JugadorController extends Controller {
         $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            if(($form->get('username')->getData() != 'No selecionado')){
-                $cliente =$this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->getNombreCliente($form->get('username')->getData());
-                $jugador->setNombre($cliente[0]['nombre']);
-                $jugador->setIdEquipo($form->get('idEquipo')->getData());
-                $jugador->setIncidencia('Ninguna');
+            $jugador->setIdEquipo($form->get('idEquipo')->getData());
+            $jugador->setIncidencia('Ninguna');
+            $jugador->setUsername('Invitado');
+            if($form->get('imagen')->getData() != null) {
                 $file = $form->get('imagen')->getData();
                 $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
                 $jugador->setImagen($file->getClientOriginalName());
-                $em->persist($jugador);
-                $em->flush();
-            }else{
-                $jugador->setIdEquipo($form->get('idEquipo')->getData());
-                $jugador->setIncidencia('Ninguna');
-                $jugador->setUsername(null);
-                $file = $form->get('imagen')->getData();
-                $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
-                $jugador->setImagen($file->getClientOriginalName());
-                $em->persist($jugador);
-                $em->flush();
+            } else {
+                $jugador->setImagen("no-image-found.png");
             }
+            $em->persist($jugador);
+            $em->flush();
             return $this->redirect($this->generateUrl('moduloclientes_cliente_equipoClientes', array('id'=>$form->get('idEquipo')->getData())));
         }
         return $this->render('moduloclientesclienteBundle:Competiciones:nuevoJugadorCliente.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),

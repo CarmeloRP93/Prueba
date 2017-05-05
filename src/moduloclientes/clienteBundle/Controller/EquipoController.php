@@ -33,7 +33,7 @@ class EquipoController extends Controller {
         
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $jugadores, $request->query->getInt('page', 1), 4);
+                $jugadores, $request->query->getInt('page', 1), 3);
         
         $deleteForm = $this->createCustomForm($equipo->getId(), 'DELETE', 'moduloclientes_cliente_equipo_eliminar');
         $deleteFormAjax = $this->createCustomForm(':JUGADOR_ID', 'DELETE', 'moduloclientes_cliente_jugador_eliminar');

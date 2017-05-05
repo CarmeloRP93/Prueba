@@ -7,7 +7,9 @@
         <div class="page-header">
             <h1 class="t1">Competiciones</h1>
         </div>
-        
+        {% if not competiciones|length %}
+            <h2>No se encontraron competiciones</h2>
+        {% else %}
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
@@ -50,6 +52,7 @@
                 </tbody>
             </table>
         </div>
+        {%endif%}
         {#<div class="nueva">
             <a href="{{path('crivero_prueba_competicion_nueva')}}" class="btn btn-success" style="height: 30px; width: 150px;">
                 Nueva Competicion 

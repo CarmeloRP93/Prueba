@@ -107,7 +107,10 @@ class __TwigTemplate_3741fd3faa52f9422047fc6cffe5b911035360a9449f91a0b0ccf01b5f5
                             <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-primary\">Mensaje a administrador</button>
                             <input type=\"hidden\" class=\"btn\">
                         </form>
-                        <form class=\"btn-group-vertical\" method=\"post\">
+                        <form class=\"btn-group-vertical\" action=\"";
+        // line 47
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_pagosCliente");
+        echo "\" method=\"post\">
                             <input type=\"hidden\" class=\"btn\">
                             <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-info\">Ver mis pagos</button>
                             <input type=\"hidden\" class=\"btn\">
@@ -145,7 +148,7 @@ class __TwigTemplate_3741fd3faa52f9422047fc6cffe5b911035360a9449f91a0b0ccf01b5f5
 
     public function getDebugInfo()
     {
-        return array (  117 => 52,  105 => 43,  98 => 39,  91 => 35,  85 => 32,  77 => 27,  71 => 24,  60 => 16,  54 => 13,  48 => 10,  40 => 4,  37 => 3,  29 => 2,  11 => 1,);
+        return array (  120 => 52,  112 => 47,  105 => 43,  98 => 39,  91 => 35,  85 => 32,  77 => 27,  71 => 24,  60 => 16,  54 => 13,  48 => 10,  40 => 4,  37 => 3,  29 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -204,7 +207,7 @@ class __TwigTemplate_3741fd3faa52f9422047fc6cffe5b911035360a9449f91a0b0ccf01b5f5
                             <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-primary\">Mensaje a administrador</button>
                             <input type=\"hidden\" class=\"btn\">
                         </form>
-                        <form class=\"btn-group-vertical\" method=\"post\">
+                        <form class=\"btn-group-vertical\" action=\"{{ path('moduloclientes_cliente_pagosCliente') }}\" method=\"post\">
                             <input type=\"hidden\" class=\"btn\">
                             <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-info\">Ver mis pagos</button>
                             <input type=\"hidden\" class=\"btn\">
