@@ -95,14 +95,30 @@ class __TwigTemplate_ec03a43d79939b0bf5def54d06effeacdcc3ba2dba87e01a7cf7c43f7e0
         // line 27
         echo twig_escape_filter($this->env, ($this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "dimensiones", array()) . " m²"), "html", null, true);
         echo " </p>
-                        <h4>Sesiones </h4>
                     </div>
+
                     <div style=\"display: inline-grid; margin-top: 16px\">
-                        <form class=\"btn-group-vertical\" action=\"";
+                        ";
         // line 31
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_disponibilidadM", array("id" => $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "id", array()))), "html", null, true);
+        if (($this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "disponibilidad", array()) == "Disponible")) {
+            // line 32
+            echo "                            <form class=\"btn-group-vertical\" action=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_disponibilidadM", array("id" => $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "id", array()))), "html", null, true);
+            echo "\" method=\"post\" class=\"alinear btn-group\">
+                                <button type=\"submit\" style=\"margin-bottom: 1px; margin-top: -10px\" class=\"btn btn-primary\">Disponibilidad</button>
+                                <input type=\"hidden\" class=\"btn\">
+                            </form>
+                        ";
+        } else {
+            // line 37
+            echo "                            <button disabled=\"disabled\" type=\"submit\" style=\"margin-bottom: 1px\" class=\"btn btn-primary\">Disponibilidad</button>
+                        ";
+        }
+        // line 39
+        echo "                        <form class=\"btn-group-vertical\" action=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_sesionesAula", array("id" => $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "id", array()))), "html", null, true);
         echo "\" method=\"post\" class=\"alinear btn-group\">
-                            <button type=\"submit\" style=\"margin-bottom: 1px\" class=\"btn btn-primary\">Disponibilidad</button>
+                            <button type=\"submit\" style=\"margin-bottom: 1px\" class=\"btn btn-info\">Ver sesiones</button>
                             <input type=\"hidden\" class=\"btn\">
                         </form>
                     </div>
@@ -110,7 +126,7 @@ class __TwigTemplate_ec03a43d79939b0bf5def54d06effeacdcc3ba2dba87e01a7cf7c43f7e0
             </div>
         </div>
         <a class=\"btn btn-default\" href=\"";
-        // line 39
+        // line 47
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_listadoAulas", array("id" => $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "id", array()))), "html", null, true);
         echo "\">Volver atrás</a>
     </div>
@@ -129,6 +145,6 @@ class __TwigTemplate_ec03a43d79939b0bf5def54d06effeacdcc3ba2dba87e01a7cf7c43f7e0
 
     public function getDebugInfo()
     {
-        return array (  114 => 39,  103 => 31,  96 => 27,  89 => 23,  85 => 22,  76 => 15,  70 => 13,  64 => 11,  62 => 10,  58 => 9,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  130 => 47,  118 => 39,  114 => 37,  105 => 32,  103 => 31,  96 => 27,  89 => 23,  85 => 22,  76 => 15,  70 => 13,  64 => 11,  62 => 10,  58 => 9,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

@@ -57,6 +57,11 @@
                         <div class="form-group">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <br>{{ form_widget(form.enviar, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
+                                {% if app.request.headers.get('referer') %}
+                                    <a class="btn btn-danger text-center img-responsive" href="{{ app.request.headers.get('referer') }}">Cancelar</a>
+                                {% endif %}
+                                
+                            
                                 
                             </div>     
                         </div>    

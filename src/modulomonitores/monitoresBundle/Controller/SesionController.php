@@ -39,9 +39,14 @@ class SesionController extends Controller {
         $sesion = $repository->find($id);
         $this->changeStateNotification($id);
         $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
-        $aula = $repositoryAula->find($sesion->getAula());
+        $repositoryCancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
+        if ($sesion->getConcepto() == 'aula') {
+            $recinto = $repositoryAula->find($sesion->getAula());
+        } else {
+            $recinto = $repositoryCancha->find($sesion->getCancha());
+        }
 
-        return $this->render('modulomonitoresmonitoresBundle:Publica:sesionMonitores.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "sesion" => $sesion, "aula" => $aula));
+        return $this->render('modulomonitoresmonitoresBundle:Publica:sesionMonitores.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "sesion" => $sesion, "recinto" => $recinto));
     }
 
     public function misSesionesMonitoresAction(Request $request) {
@@ -384,11 +389,21 @@ class SesionController extends Controller {
         return $this->render('modulomonitoresmonitoresBundle:Publica:editarSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'sesion' => $sesion, 'form' => $form->createView()));
     }
 
+    public function editarSesionDeportivaAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
+        $sesion->setDias(null);
+        $em->flush();
+        if (!$sesion) {
+            throw $this->createNotFoundException("no encontrado");
+        }
+        $form = $this->createEdiDForm($sesion);
+        return $this->render('modulomonitoresmonitoresBundle:Publica:editarSesionDeportiva.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'sesion' => $sesion, 'form' => $form->createView()));
+    }
+
     private function createEdiForm(Sesiones $entity) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $aulas = $repository->findAll();
-        $repositoryC = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
-        $canchas = $repositoryC->findAll();
         $aulasD = array();
         $contadorA = 0;
         foreach ($aulas as $aula) {
@@ -397,16 +412,28 @@ class SesionController extends Controller {
                 $contadorA++;
             }
         }
+        $flag = true;
+        $form = $this->createForm(new SesionesType($aulasD, $flag), $entity, array(
+            'action' => $this->generateUrl('modulomonitores_monitores_editar', array('id' => $entity->getId())),
+            'method' => 'PUT'
+        ));
+        return $form;
+    }
+
+    private function createEdiDForm(Sesiones $entity) {
+        $repositoryC = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
+        $canchas = $repositoryC->findAll();
         $canchasD = array();
         $contadorC = 0;
         foreach ($canchas as $cancha) {
-            if ($aula->getDisponibilidad() == "Disponible") {
+            if ($cancha->getDisponibilidad() == "Disponible") {
                 $canchasD[$contadorC] = $cancha;
                 $contadorC++;
             }
         }
-        $form = $this->createForm(new SesionesType($aulasD, $canchasD), $entity, array(
-            'action' => $this->generateUrl('modulomonitores_monitores_editar', array('id' => $entity->getId())),
+        $flag = false;
+        $form = $this->createForm(new SesionesType($canchasD, $flag), $entity, array(
+            'action' => $this->generateUrl('modulomonitores_monitores_editarDeportiva', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));
         return $form;
@@ -483,6 +510,77 @@ class SesionController extends Controller {
         return $this->render('modulomonitoresmonitoresBundle:Publica:editarSesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'sesion' => $sesion, 'form' => $form->createView()));
     }
 
+    public function editarDeportivaAction($id, Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
+        if (!$sesion) {
+            throw $this->createNotFoundException("no encontrado");
+        }
+        $form = $this->createEdiDForm($sesion);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->get('nSesiones')->getData() > 20) {
+                $form->get('nSesiones')->addError(new FormError('El límite son 20 sesiones'));
+                return $this->render('modulomonitoresmonitoresBundle:Publica:editarSesionDeportiva.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
+            }
+            if ($form->get('duracion')->getData() > 120) {
+                $form->get('duracion')->addError(new FormError('Máximo 120 minutos por sesión'));
+                return $this->render('modulomonitoresmonitoresBundle:Publica:editarSesionDeportiva.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
+            }
+
+            $dias = $form->get('dias')->getData();
+            $diasElegidos = "";
+            foreach ($dias as $dia) {
+                if ($diasElegidos == "") {
+
+                    $diasElegidos = $dia;
+                } else {
+                    $diasElegidos = $diasElegidos . "&" . $dia;
+                }
+            }
+            if (count($dias) < 1) {
+                $form->get('dias')->addError(new FormError('Seleccione mínimo un día'));
+                return $this->render('modulomonitoresmonitoresBundle:Publica:editarSesionDeportiva.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
+            }
+            $sesion->setDias($diasElegidos);
+            $lClientes = $form->get('lClientes')->getData();
+            if ($lClientes != null) {
+                if ($lClientes > 30) {
+                    $form->get('lClientes')->addError(new FormError('Máximo 30 participantes'));
+                    return $this->render('modulomonitoresmonitoresBundle:Publica:editarSesionDeportiva.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'form' => $form->createView()));
+                }
+                $em = $this->getDoctrine()->getManager();
+                $sesion->setEstado("modificada");
+                $sesion->setEstadoCliente("no disponible");
+                $sesion->setObservaciones("");
+                $em->persist($sesion);
+                $em->flush();
+
+                $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
+                foreach ($usuarios as $usuario) {
+                    if ($usuario->getTipo() == 1) {
+                        $notificacion = new Notificaciones();
+                        $notificacion->setIdDestinatario($usuario->getId());
+                        $notificacion->setIdEntidad($sesion->getId());
+                        $notificacion->setMensaje("El monitor " . $this->getUser()->getUsername() . " ha"
+                                . " editado la sesión " . $sesion->getNombre());
+                        $notificacion->setIdOrigen($this->getUser()->getId());
+                        $notificacion->setConcepto("Publica");
+                        $notificacion->setEstado("No leido");
+                        $em->persist($notificacion);
+                        $em->flush();
+                    }
+                }
+
+                $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido modificada con éxito.');
+                return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionesMonitores'));
+            } else {
+                $form->get('lClientes')->addError(new FormError('Introduzca un valor correcto'));
+            }
+        }
+        return $this->render('modulomonitoresmonitoresBundle:Publica:editarSesionDeportiva.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), 'sesion' => $sesion, 'form' => $form->createView()));
+    }
+
     public function suspenderAction($id) {
         $em = $this->getDoctrine()->getManager();
         $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
@@ -495,7 +593,7 @@ class SesionController extends Controller {
     }
 
     private function createSuspenderSesionForm(Sesiones $entity) {
-        $form = $this->createForm(new SesionesType(array()), $entity, array(
+        $form = $this->createForm(new SesionesType(array(), null), $entity, array(
             'action' => $this->generateUrl('modulomonitores_monitores_suspenderSe', array('id' => $entity->getId())),
             'method' => 'PUT'
         ));
@@ -504,18 +602,106 @@ class SesionController extends Controller {
 
     public function suspenderSeAction($id, Request $request) {
         $em = $this->getDoctrine()->getManager();
-        $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
-        if (!$sesion) {
-            throw $this->createNotFoundException("no encontrado");
-        }
+        $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
+
         $form = $this->createSuspenderSesionForm($sesion);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $sesion->setEstado("suspendida");
-            $sesion->setEstadoCliente("suspendida");
+
             $observaciones = $form->get('observaciones')->getData();
+
             if ($observaciones != null) {
-                $em->flush();
+                $sesion->setEstado("suspendida");
+                $sesion->setEstadoCliente("suspendida");
+                $em->persist($sesion);
+
+                $horarios = explode('&', $sesion->getHorario());
+                foreach ($horarios as $clave => $horario) {
+                    if ($horario{1} == '/') {
+                        $horario = "0" . $horario;
+                    }
+                    $dias[$clave] = substr($horario, 0, 2);
+                    $horas[$clave] = substr($horario, 8);
+                }
+
+                for ($i = 0; $i < count($dias); $i++) {
+                    if ($sesion->getConcepto() == 'cancha') {
+                        $horarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosCanchas");
+                        $diaReservado = $horarios->getDiaReserva($sesion->getCancha(), $dias[$i])[0];
+                    } else {
+                        $horarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
+                        $diaReservado = $horarios->getDiaReserva($sesion->getAula(), $dias[$i])[0];
+                    }
+
+                    if ($diaReservado->getPeriodo() == null) {
+                        $res = $horas[$i];
+                    } else {
+                        $horasNoUsadas = explode('&', $diaReservado->getPeriodo());
+                        $flag = 0;
+                        $res = "";
+                        for ($j = 0; $j < count($horasNoUsadas); $j++) {
+                            if ((int) substr($horasNoUsadas[$j], 0, 2) > (int) substr($horas[$i], 0, 2) && $flag == 0) {
+                                if ($sesion->getConcepto() == 'cancha') {
+                                    if ($sesion->getDuracion() > 60) {
+                                        $resAux = explode('-', $horas[$i]);
+                                        $auxT = explode(':', $resAux[1])[0] - 1;
+                                        ($auxT < 10) ? $auxT2 = '0' . $auxT : $auxT2 = $auxT;
+
+                                        $res .= $resAux[0] . '-' . $auxT2 . ':00';
+                                        $res .= '&' . $auxT2 . ':00-' . $resAux[1] . '&';
+                                    } else {
+                                        $res .= $horas[$i] . '&';
+                                    }
+                                } else {
+                                    if ($sesion->getDuracion() > 60) {
+                                        $resAux = explode('-', $horas[$i]);
+                                        $auxT = explode(':', $resAux[1])[0] - 1;
+                                        ($auxT < 10) ? $auxT2 = '0' . $auxT : $auxT2 = $auxT;
+
+                                        $res .= $resAux[0] . '-' . $auxT2 . ':00';
+                                        $res .= '&' . $auxT2 . ':00-' . $resAux[1] . '&';
+                                    } else {
+                                        $res .= $horas[$i] . '&';
+                                    }
+                                }
+                                $flag = 1;
+                            }
+                            ($j == count($horasNoUsadas) - 1) ? $res .= $horasNoUsadas[$j] : $res .= $horasNoUsadas[$j] . '&';
+
+                            if ($j == count($horasNoUsadas) - 1 && $flag == 0) {
+                                if ($sesion->getConcepto() == 'cancha') {
+
+                                    if ($sesion->getDuracion() > 60) {
+                                        $resAux = explode('-', $horas[$i]);
+                                        $auxT = explode(':', $resAux[1])[0] - 1;
+                                        ($auxT < 10) ? $auxT2 = '0' . $auxT : $auxT2 = $auxT;
+
+                                        $res .= '&' . $resAux[0] . '-' . $auxT2 . ':00';
+                                        $res .= '&' . $auxT2 . ':00-' . $resAux[1];
+                                    } else {
+                                        $res .= '&' . $horas[$i];
+                                    }
+                                } else {
+
+                                    if ($sesion->getDuracion() > 60) {
+                                        $resAux = explode('-', $horas[$i]);
+                                        $auxT = explode(':', $resAux[1])[0] - 1;
+                                        ($auxT < 10) ? $auxT2 = '0' . $auxT : $auxT2 = $auxT;
+
+                                        $res .= $resAux[0] . '-' . $auxT2 . ':00';
+                                        $res .= '&' . $auxT2 . ':00-' . $resAux[1] . '&';
+                                    } else {
+                                        $res .= $horas[$i] . '&';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    $diaReservado->setPeriodo($res);
+                    $em->persist($diaReservado);
+                    $em->flush();
+                }
+
                 $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
                 foreach ($usuarios as $usuario) {
                     if ($usuario->getTipo() == 1 || $usuario->getTipo() == 2) {
@@ -548,10 +734,16 @@ class SesionController extends Controller {
         $sesion->setIdMonitor(null);
 
         if ($sesion->getNClientes() == 0 && $sesion->getEstado() == 'cancelada') {
+            if ($sesion->getConcepto() == 'aula') {
+                $aula = $this->findEntity($sesion->getAula(), $em, 'CriveroPruebaBundle:Aulas');
+                $this->removeSesionId($aula, $id);
+                $em->persist($aula);
+            } else {
+                $cancha = $this->findEntity($sesion->getCancha(), $em, 'CriveroPruebaBundle:Cnacha');
+                $this->removeSesionId($cancha, $id);
+                $em->persist($cancha);
+            }
             $em->remove($sesion);
-            $aula = $this->findEntity($sesion->getAula(), $em, 'CriveroPruebaBundle:Aulas');
-            $this->removeSesionId($aula, $id);
-            $em->persist($aula);
         } else {
             $em->persist($sesion);
         }

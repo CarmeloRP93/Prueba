@@ -1,0 +1,55 @@
+{% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
+{% block title %} Canchas {% endblock %}
+{% block contenido %}
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="t1">Canchas</h1>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body myelement">
+                {% if not pagination|length %}
+                    <h2>No se encontraron canchas</h2>
+                {% else %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'c.tipo') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Deporte', 'c.deporte') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Estado', 'c.disponibilidad') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Horario', 'c.horario') }}</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cancha in pagination %}
+                                    <tr data-id="{{ cancha.id }}">
+                                        <td><img src="{{ asset('images/'~cancha.imagen) }}" class="img-responsive center-block " style="max-width: 60px; height: 55px"/></td>
+                                        <td>{{cancha.tipo}}</td>
+                                        <td>{{cancha.deporte}}</td>
+                                        {% if cancha.disponibilidad == 'Disponible' %}
+                                            <td><strong>{{cancha.disponibilidad}}</strong></td>
+                                        {% else %}
+                                            <td><strong style="color: red">{{cancha.disponibilidad}}</strong></td>
+                                        {% endif %}
+                                        <td>{{cancha.horario}}</td>
+                                        <td class="actions">
+                                            <a href="{{ path('modulomonitores_monitores_cancha', { id: cancha.id }) }}" class="btn btn-sm btn-primary">
+                                                Ver más información
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}        
+                <div class="navigation text-center">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} 

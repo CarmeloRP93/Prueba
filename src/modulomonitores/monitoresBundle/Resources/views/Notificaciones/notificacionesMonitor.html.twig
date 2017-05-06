@@ -75,6 +75,19 @@
                                                         Ver notificación
                                                     </button>
                                                 </form>
+                                            {% elseif notificacion.concepto == "Cancha"%}
+                                                <form action="{{ path('modulomonitores_monitores_cancha', {id: notificacion.idEntidad}) }}">
+                                                    <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                        Ver notificación
+                                                    </button>
+                                                </form>
+                                            {% elseif notificacion.concepto == "Celiminada"%}
+                                                <form action="{{ path('modulomonitores_monitores_canchas') }} " method="GET">
+                                                    <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
+                                                    <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                        Ver notificación
+                                                    </button>
+                                                </form>
                                             {% endif %}
                                         </td>
                                     </tr>

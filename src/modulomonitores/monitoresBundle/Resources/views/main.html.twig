@@ -24,14 +24,14 @@
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">Mis sesiones <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{url('modulomonitores_monitores_misSesionesMonitores')}}">Mis sesiones públicas</a></li>
-                        <li><a href="{{url('modulomonitores_monitores_misSesionesDedicadas')}}">Mis sesiones privadas</a></li>
+                        <li><a href="{{url('modulomonitores_monitores_misSesionesMonitores')}}">Públicas</a></li>
+                        <li><a href="{{url('modulomonitores_monitores_misSesionesDedicadas')}}">Privadas</a></li>
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-submenu">
                             <a tabindex="-1" href="#">Nueva sesión</a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{url('modulomonitores_monitores_recintoPublico')}}">Sesión pública</a></li> 
-                                <li><a href="{{url('modulomonitores_monitores_nuevaSesionDedicada')}}">Sesión privada</a></li> 
+                                <li><a href="{{url('modulomonitores_monitores_recintoPublico')}}">Pública</a></li> 
+                                <li><a href="{{url('modulomonitores_monitores_nuevaSesionDedicada')}}">Privada</a></li> 
                             </ul>
                         </li>   
                     </ul>
@@ -39,11 +39,17 @@
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">Sesiones <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{url('modulomonitores_monitores_sesionesMonitores')}}">Sesiones públicas</a></li>
-                        <li><a href="{{url('modulomonitores_monitores_sesionesDedicadas')}}">Sesiones privadas</a></li>
+                        <li><a href="{{url('modulomonitores_monitores_sesionesMonitores')}}">Públicas</a></li>
+                        <li><a href="{{url('modulomonitores_monitores_sesionesDedicadas')}}">Privadas</a></li>
                     </ul>
                 </li>
-                <li><a href="{{url('modulomonitores_monitores_listadoAulas')}}">Aulas</a></li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Instalaciones <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{url('modulomonitores_monitores_canchas')}}">Canchas</a></li>
+                        <li><a href="{{url('modulomonitores_monitores_listadoAulas')}}">Aulas</a></li>
+                    </ul>
+                </li>
                 <li><a href="{{url('modulomonitores_monitores_listadoParticipantes')}}">Participantes</a></li>
             </ul>
 
@@ -51,7 +57,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     {% if not notificacionesSinLeer|length %}  
                         <li><a href = "{{url('modulomonitores_monitores_notificacionesMonitor')}}"><img src="{{asset('images/campanaSN.png')}}" style="width: 18px;" /></a></li>
-                    {% else %}
+                            {% else %}
                         <li class="dropdown hidden-xs">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('images/campanaCN.png')}}" style="width: 18px;" /></a>
                             <ul class="dropdown-menu" style="background-color: rgba(67, 152, 147, 0.46); border-radius: 15px 15px;">
@@ -69,20 +75,22 @@
                                         {% set ruta = url('modulomonitores_monitores_listadoAulas', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == "AbandonoPublica"%}
                                         {% set ruta = url('modulomonitores_monitores_misSesionesMonitores', {id: notificacion.idEntidad})%}
+                                    {% elseif notificacion.concepto == "Cancha"%}
+                                        {% set ruta = url('modulomonitores_monitores_cancha', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == "NuevoParticipantePublica"%}
                                         {% set ruta = 'http://localhost/Prueba/web/app_dev.php/miSesionMonitores/'~notificacion.idEntidad~'/verParticipantes/'~notificacion.idOrigen %}
                                     {% elseif notificacion.concepto == "NuevoParticipantePrivada"%}
                                         {% set ruta = url('modulomonitores_monitores_participantePrivado', {id: notificacion.idEntidad})%}
                                     {% endif %}
-                                        <li class="text-center"><a style="color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;" href="{{ ruta }}">{{ notificacion.mensaje }}</a></li>
-                                        <li role="separator" class="divider" style="background-color: #cecdcd"></li>
-                                    {% set n = n + 1 %}
-                                {% endfor %}
-                                    <li class="text-center"><a href = "{{url('modulomonitores_monitores_notificacionesMonitor')}}"><font color="blue"><strong>Ver todas</strong></font></a></li>
+                                    <li class="text-center"><a style="color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;" href="{{ ruta }}">{{ notificacion.mensaje }}</a></li>
+                                    <li role="separator" class="divider" style="background-color: #cecdcd"></li>
+                                        {% set n = n + 1 %}
+                                    {% endfor %}
+                                <li class="text-center"><a href = "{{url('modulomonitores_monitores_notificacionesMonitor')}}"><font color="blue"><strong>Ver todas</strong></font></a></li>
                             </ul>
                         </li>
                         <li><a class="hidden-sm hidden-md hidden-lg" href = "{{url('modulomonitores_monitores_notificacionesMonitor')}}"><img  src="{{asset('images/campanaCN.png')}}" style="width: 18px"/></a></li>                        
-                    {% endif %}
+                            {% endif %}
                     <li><a href = "{{path('modulomonitores_monitores_mensajes_recibidosMonitor')}}"><img src="{{asset('images/correo.png')}}" style="width: 18px;" /></a></li>
                     <li><a href="{{path('modulomonitores_monitores_miperfilm')}}"><img src="{{asset('images/user.png')}}" style="width: 18px;" /></a></li>
                     <li><a href="{{path('crivero_prueba_logout')}}" style="margin-right:12px;"><img src="{{asset('images/logout.png')}}" style="width: 18px;" /></a></li>

@@ -201,14 +201,14 @@ class __TwigTemplate_c696f449411db34bd54f03bd467e6153c604d14730a5b2ff8fdfb164868
 
                     <div class=\"row\">
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
-                            <label>Seleccione los días de la sesión</label> 
+                            <label>Seleccione la hora de comienzo</label> 
                             ";
         // line 85
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "dias", array()), 'widget');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horaComienzo", array()), 'widget', array("attr" => array("class" => "form-control")));
         echo "
                             <span class=\"text-danger\">";
         // line 86
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "dias", array()), 'errors');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horaComienzo", array()), 'errors');
         echo "</span><br>
                         </div>
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
@@ -236,14 +236,14 @@ class __TwigTemplate_c696f449411db34bd54f03bd467e6153c604d14730a5b2ff8fdfb164868
         echo "</span><br>
                         </div>
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
-                            <label>Seleccione la hora de comienzo</label> 
+                            <label>Seleccione los días de la sesión</label> 
                             ";
         // line 102
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horaComienzo", array()), 'widget', array("attr" => array("class" => "form-control")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "dias", array()), 'widget');
         echo "
                             <span class=\"text-danger\">";
         // line 103
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "horaComienzo", array()), 'errors');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "dias", array()), 'errors');
         echo "</span><br>
                         </div>
                     </div>

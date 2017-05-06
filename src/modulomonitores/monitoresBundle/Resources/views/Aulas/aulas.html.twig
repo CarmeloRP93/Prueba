@@ -15,16 +15,18 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'pagination.nombre') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Estado', 'pagination.disponibilidad') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Horario', 'pagination.horario') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Área', 'pagination.dimensiones') }}</th>
-                                    <th class="t3">Acciones</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for aula in pagination %}
                                     <tr data-id="{{ aula.id }}">
+                                        <td><img src="{{ asset('images/'~aula.imagen) }}" class="img-responsive center-block " style="max-width: 60px; height: 55px"/></td>
                                         <td>{{aula.nombre}}</td>
                                         <td><strong>{{aula.disponibilidad}}</strong></td>
                                         <td>{{aula.horario}}</td>

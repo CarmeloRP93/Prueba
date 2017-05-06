@@ -1,0 +1,64 @@
+{% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
+
+{% block title %} {{ username|capitalize }} - Sesiones {% endblock %}
+
+{% block contenido %}
+    <div class="container">
+        <div class="page-header">
+            <h1 class="t1"> {{ username|capitalize }} - Sesiones</h1>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-body myelement">
+                {% if not pagination|length %}
+                    <h2>No se encontraron sesiones</h2>
+                {% else %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Sesión', 's.nombre') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Estado', 's.estado') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Participantes', 's.nClientes') }}</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for sesion in pagination %}
+                                    <tr>
+                                        <td><img src="{{asset(sesion.imagen) }}" class="img-responsive center-block " style="max-width: 50px; height: 45px"/></td>
+                                        <td>{{sesion.nombre}}</td>
+                                        {% if sesion.estado == 'cancelada' or sesion.estado == 'suspendida' %}
+                                            <td><strong style="color: red">{{sesion.estado}}</strong></td>
+                                            {% elseif sesion.estado == 'validada' %}
+                                            <td><strong style="color: greenyellow">{{sesion.estado}}</strong></td>
+                                            {% else %}
+                                            <td><strong> {{sesion.estado}}</strong></td>
+                                        {% endif %}
+                                        <td>{{sesion.nClientes}}/{{sesion.lClientes}}</td>
+
+                                        <td class="actions">
+                                            {% if sesion.cliente == 'normal' %}
+                                                <a href="{{ path('modulomonitores_monitores_miSesionMonitores', { id: sesion.id }) }}" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                    Ver sesión
+                                                </a>
+                                            {% else %}
+                                                <a href="{{ path('modulomonitores_monitores_miSesionDedicada', { id: sesion.id }) }}" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                    Ver sesión
+                                                </a>
+                                            {% endif %} 
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                <div class="navigation text-center" style="margin: -10px">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

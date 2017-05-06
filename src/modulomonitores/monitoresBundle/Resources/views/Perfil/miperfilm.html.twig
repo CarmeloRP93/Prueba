@@ -33,18 +33,18 @@
                             <h4>Teléfono </h4> <p>{{monitor.telefono}}</p>
                         </div>
                     </div>
-                        <div style="display: inline-grid">
+                    <div style="display: inline-grid">
                         <form class="btn-group-vertical" action="{{ path('modulomonitores_monitores_mensajearAdministradorMonitor') }}" method="post">
                             <button type="submit" style="margin-bottom: 0" class="btn btn-primary">Mensaje a administrador</button>
                             <input type="hidden" class="btn">
                         </form>
-                        
+
                         <form class="btn-group-vertical" action="{{ path('crivero_prueba_logout') }}" method="post">
                             <input type="hidden" class="btn">
                             <button type="submit" style="margin-bottom: 0" class="btn btn-danger">Salir de sesión</button>
                             <input type="hidden" class="btn">
                         </form>
-                        
+
                     </div> 
                 </div>
             </div>

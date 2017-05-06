@@ -7,10 +7,42 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ParticipantesController extends Controller {
 
+    public function sesionesParticipanteAction($id, Request $request) {
+        $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
+        $cliente = $repositoryUsuarios->find($id);
+
+        $idsSesionesCliente = explode('&', $cliente->getSesiones());
+        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+       $contador = 0;
+       $sesiones = array();
+        for ($i = 0; $i < count($idsSesionesCliente); $i++) {
+            if ($repositorySesiones->find($idsSesionesCliente[$i])->getIdMonitor() == $this->getUser()->getId()) {
+                $searchQuery = $request->get('query');
+                if (!empty($searchQuery)) {
+                    if (strpos($repositorySesiones->find($idsSesionesCliente[$i])->getNombre(), $searchQuery) !== false) {
+                        $sesiones[$contador] = $repositorySesiones->find($idsSesionesCliente[$i]);
+                        $contador++;
+                    } else {
+                        continue;
+                    }
+                } else {
+                    $sesiones[$contador] = $repositorySesiones->find($idsSesionesCliente[$i]);
+                    $contador++;
+                }
+            }
+        }
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 6);
+
+        return $this->render('modulomonitoresmonitoresBundle:Participantes:sesionesParticipante.html.twig', array("pagination" => $pagination,
+                    'username' => $cliente->getUsername(), 'cId' => $id,
+                    'notificacionesSinLeer' => $this->getNewNotification()));
+    }
+
     public function listadoParticipantesAction(Request $request) {
         $repositoryU = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $usuarios = $repositoryU->findAll();
-        $clientes=array();
+        $clientes = array();
         foreach ($usuarios as $clave => $usuario) {
             if ($usuario->getTipo() == 2)
                 $clientes[$clave] = $usuario;
@@ -23,8 +55,19 @@ class ParticipantesController extends Controller {
             foreach ($sesiones as $sesion) {
                 if (strpos($sesion->getIdsClientes(), strval($cliente->getId())) !== false &&
                         $sesion->getIdMonitor() == $this->getUser()->getId()) {
-                    $clienteConMonitor[$contador] = $cliente;
-                    $contador++;
+                    $searchQuery = $request->get('query');
+                    if (!empty($searchQuery)) {
+                        if (strpos($cliente->getNombre(), $searchQuery) !== false ||
+                                strpos($cliente->getUsername(), $searchQuery) !== false) {
+                            $clienteConMonitor[$contador] = $cliente;
+                            $contador++;
+                        } else {
+                            continue;
+                        }
+                    } else {
+                        $clienteConMonitor[$contador] = $cliente;
+                        $contador++;
+                    }
                     break;
                 }
             }
@@ -33,9 +76,9 @@ class ParticipantesController extends Controller {
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $clienteConMonitor, $request->query->getInt('page', 1), 5);
-        return $this->render('modulomonitoresmonitoresBundle:Participantes:participantes.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "flag" => $flag,  "pagination" => $pagination));
+        return $this->render('modulomonitoresmonitoresBundle:Participantes:participantes.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "flag" => $flag, "pagination" => $pagination));
     }
-    
+
     public function participanteListadoAction($id) {
         $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $cliente = $repositoryUsuarios->find($id);
@@ -52,8 +95,15 @@ class ParticipantesController extends Controller {
         $arrayClientes = explode('&', $sesion->getIdsClientes());
         $repositoryu = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         for ($i = 0; $i < count($arrayClientes); $i++) {
-            $clientes[$i] = $repositoryu->find($arrayClientes[$i]);
+            $searchQuery = $request->get('query');
+            (!empty($searchQuery)) ? $clientes = $repositoryu->searchClientesMonitores($searchQuery, $arrayClientes[$i]) :
+                            $clientes[$i] = $repositoryu->find($arrayClientes[$i]);
         }
+
+        $searchQuery = $request->get('query');
+        (!empty($searchQuery)) ? $clientes = $repositoryu->searchClientes($searchQuery) :
+                        $clientes = $repositoryu->getClientes();
+
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $clientes, $request->query->getInt('page', 1), 5);

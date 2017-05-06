@@ -78,7 +78,11 @@
                         {{ include('modulomonitoresmonitoresBundle:Default:forms/form.html.twig', { form: delete_form })}}
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <a href="{{path('modulomonitores_monitores_editarSesion', {id: sesion.id})}}" class="btn btn-primary text-center center-block img-responsive" style="width: 180px;">Modificar sesión</a> 
+                        {% if sesion.concepto == "aula" %} 
+                            <a href="{{path('modulomonitores_monitores_editarSesion', {id: sesion.id})}}" class="btn btn-primary text-center center-block img-responsive" style="width: 180px;">Modificar sesión</a> 
+                        {% else %}
+                            <a href="{{path('modulomonitores_monitores_editarSesionDeportiva', {id: sesion.id})}}" class="btn btn-primary text-center center-block img-responsive" style="width: 180px;">Modificar sesión</a> 
+                        {% endif %}
                     </div>
                 </div> 
             {% else %}

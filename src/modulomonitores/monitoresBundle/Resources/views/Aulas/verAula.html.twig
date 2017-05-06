@@ -25,11 +25,19 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <h4>Dimensiones </h4><p>{{aula.dimensiones ~ ' m²'}} </p>
-                        <h4>Sesiones </h4>
                     </div>
+
                     <div style="display: inline-grid; margin-top: 16px">
-                        <form class="btn-group-vertical" action="{{ path('modulomonitores_monitores_disponibilidadM', { id: aula.id }) }}" method="post" class="alinear btn-group">
-                            <button type="submit" style="margin-bottom: 1px" class="btn btn-primary">Disponibilidad</button>
+                        {% if aula.disponibilidad == 'Disponible'%}
+                            <form class="btn-group-vertical" action="{{ path('modulomonitores_monitores_disponibilidadM', { id: aula.id }) }}" method="post" class="alinear btn-group">
+                                <button type="submit" style="margin-bottom: 1px; margin-top: -10px" class="btn btn-primary">Disponibilidad</button>
+                                <input type="hidden" class="btn">
+                            </form>
+                        {% else %}
+                            <button disabled="disabled" type="submit" style="margin-bottom: 1px" class="btn btn-primary">Disponibilidad</button>
+                        {% endif %}
+                        <form class="btn-group-vertical" action="{{ path('modulomonitores_monitores_sesionesAula', { id: aula.id }) }}" method="post" class="alinear btn-group">
+                            <button type="submit" style="margin-bottom: 1px" class="btn btn-info">Ver sesiones</button>
                             <input type="hidden" class="btn">
                         </form>
                     </div>

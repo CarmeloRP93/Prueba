@@ -1,0 +1,54 @@
+{% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
+
+{% block title %} {{ cancha.tipo|capitalize }} - Disponibilidad {% endblock %}
+
+{% block contenido %}
+    <div class="container">
+        <div class="page-header "> 
+            <h2 class="t1">{{ cancha.tipo|capitalize }} - Horarios disponibles de los próximos 18 días</h2>
+        </div>
+
+        <div class="panel panel-default">                  
+            <div class="panel-body" style="padding-bottom: 0px">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <tbody>
+                            {% set i = 1 %}
+                            {% for horario in horarios  %}
+                                <tr>
+                                    {% if i == 1 %}
+                                        <td style='border: none'><strong>Día {{ horario.fechaInicio|split('-')[0] }}</strong></td>
+                                    {% else %}
+                                        <td><strong>Día {{ horario.fechaInicio|split('-')[0] }}</strong></td>
+                                    {% endif %}
+                                    {% for horitas in "09:00-10:00&10:00-11:00&11:00-12:00&12:00-13:00&16:00-17:00&17:00-18:00&18:00-19:00&19:00-20:00&20:00-21:00&21:00-22:00"|split('&') %}
+                                        {% if not (horitas in horario.periodo)  %}
+                                            {% if i == 1 %}
+                                                <td style="border: none; color: red">{{ horitas }}</td>
+                                            {% else %}
+                                                <td style="color: red">{{ horitas }}</td>
+                                            {% endif %}
+                                        {% else %}
+                                            {% if i == 1 %}
+                                                <td style="border: none;">{{ horitas }}</td>
+                                            {% else %}
+                                                <td>{{ horitas }}</td>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </tr>
+                                {% set i = i+1 %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="navigation text-center" style="margin-top: -10px">
+                    {{ knp_pagination_render(horarios) }}
+                </div>
+            </div>
+        </div>
+        <a class="btn btn-default" href="{{ path('modulomonitores_monitores_cancha', { id: cancha.id }) }}">Volver atrás</a>
+    </div>
+{% endblock %} 
+
+

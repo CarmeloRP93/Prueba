@@ -199,3 +199,35 @@ modulomonitores_monitores_participanteListado:
 modulomonitores_monitores_recintoPublico:
     pattern:  /recintoPublico
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:recintoPublico }
+    
+modulomonitores_monitores_canchas:
+    pattern:  /listadoCanchas
+    defaults: { _controller: modulomonitoresmonitoresBundle:Canchas:canchas }
+
+modulomonitores_monitores_cancha:
+    pattern:  /verCancha/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Canchas:cancha }
+    
+modulomonitores_monitores_canchaDisponibilidad:
+    pattern:  /canchaDisponibilidad/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Canchas:disponibilidadCancha }
+    
+modulomonitores_monitores_sesionesParticipante:
+    pattern:  /sesionesParticipante/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Participantes:sesionesParticipante }
+modulomonitores_monitores_sesionesAula:
+    pattern:  /sesionesAula/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Aulas:sesionesAula }
+modulomonitores_monitores_sesionesCancha:
+    pattern:  /sesionesCancha/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Canchas:sesionesCancha }
+    
+modulomonitores_monitores_editarSesionDeportiva:
+    pattern:  /editarSesionDeportiva/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:editarSesionDeportiva }
+
+modulomonitores_monitores_editarDeportiva:
+    pattern:  /editarDeportiva/{id}
+    defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:editarDeportiva }
+    requirements:
+        _method:  POST|PUT|GET

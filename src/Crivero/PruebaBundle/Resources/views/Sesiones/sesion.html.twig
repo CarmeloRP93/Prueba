@@ -73,7 +73,7 @@
                             {% if sesion.cliente == 'normal' %}
                                 <h4>Límite de participantes</h4> <p>{{sesion.lClientes}}</p>
                             {% elseif sesion.estado == "validada" %}
-                                <h4>Aula de la sesión</h4> <p>{{aula.nombre}}</p>
+                                <h4>Recinto de la sesión</h4> <p>{{recinto.nombre}}</p>
                             {% endif %}
 
                             {% if sesion.estado == "validada"%}

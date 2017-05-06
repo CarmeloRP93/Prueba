@@ -139,18 +139,105 @@ class DedicadaController extends Controller {
 
     public function suspenderSeDeAction($id, Request $request) {
         $em = $this->getDoctrine()->getManager();
-        $sesion = $em->getRepository('CriveroPruebaBundle:Sesiones')->find($id);
-        if (!$sesion) {
-            throw $this->createNotFoundException("no encontrado");
-        }
-        $form = $this->createSuspenderSesionDeForm($sesion);
+        $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
+
+        $form = $this->createSuspenderSesionForm($sesion);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $sesion->setEstado("suspendida");
-            $sesion->setEstadoCliente("suspendida");
+
             $observaciones = $form->get('observaciones')->getData();
+
             if ($observaciones != null) {
-                $em->flush();
+                $sesion->setEstado("suspendida");
+                $sesion->setEstadoCliente("suspendida");
+                $em->persist($sesion);
+
+                $horarios = explode('&', $sesion->getHorario());
+                foreach ($horarios as $clave => $horario) {
+                    if ($horario{1} == '/') {
+                        $horario = "0" . $horario;
+                    }
+                    $dias[$clave] = substr($horario, 0, 2);
+                    $horas[$clave] = substr($horario, 8);
+                }
+
+                for ($i = 0; $i < count($dias); $i++) {
+                    if ($sesion->getConcepto() == 'cancha') {
+                        $horarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosCanchas");
+                        $diaReservado = $horarios->getDiaReserva($sesion->getCancha(), $dias[$i])[0];
+                    } else {
+                        $horarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:HorariosAulas");
+                        $diaReservado = $horarios->getDiaReserva($sesion->getAula(), $dias[$i])[0];
+                    }
+
+                    if ($diaReservado->getPeriodo() == null) {
+                        $res = $horas[$i];
+                    } else {
+                        $horasNoUsadas = explode('&', $diaReservado->getPeriodo());
+                        $flag = 0;
+                        $res = "";
+                        for ($j = 0; $j < count($horasNoUsadas); $j++) {
+                            if ((int) substr($horasNoUsadas[$j], 0, 2) > (int) substr($horas[$i], 0, 2) && $flag == 0) {
+                                if ($sesion->getConcepto() == 'cancha') {
+                                    if ($sesion->getDuracion() > 60) {
+                                        $resAux = explode('-', $horas[$i]);
+                                        $auxT = explode(':', $resAux[1])[0] - 1;
+                                        ($auxT < 10) ? $auxT2 = '0' . $auxT : $auxT2 = $auxT;
+
+                                        $res .= $resAux[0] . '-' . $auxT2 . ':00';
+                                        $res .= '&' . $auxT2 . ':00-' . $resAux[1] . '&';
+                                    } else {
+                                        $res .= $horas[$i] . '&';
+                                    }
+                                } else {
+                                    if ($sesion->getDuracion() > 60) {
+                                        $resAux = explode('-', $horas[$i]);
+                                        $auxT = explode(':', $resAux[1])[0] - 1;
+                                        ($auxT < 10) ? $auxT2 = '0' . $auxT : $auxT2 = $auxT;
+
+                                        $res .= $resAux[0] . '-' . $auxT2 . ':00';
+                                        $res .= '&' . $auxT2 . ':00-' . $resAux[1] . '&';
+                                    } else {
+                                        $res .= $horas[$i] . '&';
+                                    }
+                                }
+                                $flag = 1;
+                            }
+                            ($j == count($horasNoUsadas) - 1) ? $res .= $horasNoUsadas[$j] : $res .= $horasNoUsadas[$j] . '&';
+
+                            if ($j == count($horasNoUsadas) - 1 && $flag == 0) {
+                                if ($sesion->getConcepto() == 'cancha') {
+
+                                    if ($sesion->getDuracion() > 60) {
+                                        $resAux = explode('-', $horas[$i]);
+                                        $auxT = explode(':', $resAux[1])[0] - 1;
+                                        ($auxT < 10) ? $auxT2 = '0' . $auxT : $auxT2 = $auxT;
+
+                                        $res .= '&' . $resAux[0] . '-' . $auxT2 . ':00';
+                                        $res .= '&' . $auxT2 . ':00-' . $resAux[1];
+                                    } else {
+                                        $res .= '&' . $horas[$i];
+                                    }
+                                } else {
+
+                                    if ($sesion->getDuracion() > 60) {
+                                        $resAux = explode('-', $horas[$i]);
+                                        $auxT = explode(':', $resAux[1])[0] - 1;
+                                        ($auxT < 10) ? $auxT2 = '0' . $auxT : $auxT2 = $auxT;
+
+                                        $res .= $resAux[0] . '-' . $auxT2 . ':00';
+                                        $res .= '&' . $auxT2 . ':00-' . $resAux[1] . '&';
+                                    } else {
+                                        $res .= $horas[$i] . '&';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    $diaReservado->setPeriodo($res);
+                    $em->persist($diaReservado);
+                    $em->flush();
+                }
                 $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
                 foreach ($usuarios as $usuario) {
                     if ($usuario->getTipo() == 1 || $usuario->getTipo() == 2) {
@@ -195,8 +282,8 @@ class DedicadaController extends Controller {
         }
         $flag = true;
         $form = $this->createForm(new SesionesType($aulasD, $flag), $entity, array(
-            'action' => $this->generateUrl('modulomonitores_monitores_crearSesionDedicada', array('id' => $entity->getId())),
-            'method' => 'PUT'
+            'action' => $this->generateUrl('modulomonitores_monitores_crearSesionDedicada'),
+            'method' => 'POST'
         ));
         return $form;
     }
@@ -207,6 +294,7 @@ class DedicadaController extends Controller {
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $sesion->setConcepto("aula");
             $sesion->setEstado("pendiente");
             $sesion->setEstadoCliente("no disponible");
             $sesion->setnClientes(0);

@@ -68,7 +68,7 @@ class __TwigTemplate_217140106243fc9c7f2f2e816194f8aff586f9be1bf9696f5bf34628c22
 
                     <div class=\"row\">
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
-                            <h4>E-mail </h4> <p>";
+                            <h4>Correo electrónico </h4> <p>";
         // line 22
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "email", array()), "html", null, true);
         echo "</p>
@@ -82,76 +82,36 @@ class __TwigTemplate_217140106243fc9c7f2f2e816194f8aff586f9be1bf9696f5bf34628c22
         // line 26
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "telefono", array()), "html", null, true);
         echo "</p>
-                            <h4>Sesiones en activo</h4>
-                            <div>
-                                <ul style=\"list-style: none\">
-                                    ";
+                            <h4>Usuario </h4> <p>";
+        // line 27
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "username", array()), "html", null, true);
+        echo "</p>
+                        </div>
+                        <div>
+                            <form style=\"margin-right: -3px\" action=\"";
         // line 30
-        $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["sesiones"]) ? $context["sesiones"] : $this->getContext($context, "sesiones")));
-        foreach ($context['_seq'] as $context["_key"] => $context["sesion"]) {
-            // line 31
-            echo "                                        ";
-            if (($this->getAttribute($context["sesion"], "estado", array()) == "validada")) {
-                // line 32
-                echo "                                            <li>
-                                                ";
-                // line 33
-                if (($this->getAttribute($context["sesion"], "cliente", array()) == "normal")) {
-                    // line 34
-                    echo "                                                    <p>Sesión";
-                    echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
-                    echo " 
-                                                        <a href=\"";
-                    // line 35
-                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_miSesionMonitores", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
-                    echo "\" class=\"btn btn-sm btn-primary\">
-                                                            Ver más información
-                                                        </a>
-                                                    </p>
-                                                ";
-                } else {
-                    // line 40
-                    echo "                                                    <p>Sesión";
-                    echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
-                    echo " 
-                                                        <a href=\"";
-                    // line 41
-                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_miSesionDedicada", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
-                    echo "\" class=\"btn btn-sm btn-primary\">
-                                                            Ver más información
-                                                        </a>
-                                                    </p>
-                                                </li>
-                                            ";
-                }
-                // line 47
-                echo "                                        ";
-            }
-            // line 48
-            echo "                                    ";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sesion'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 49
-        echo "                                </ul>
-                            </div>
-                            <a class=\"btn btn-default\" href=\"";
-        // line 51
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_sesionesParticipante", array("id" => $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "id", array()))), "html", null, true);
+        echo "\" method=\"post\" class=\"alinear btn-group\">
+                                <button type=\"submit\" class=\"btn btn-success\">Ver sesiones</button>
+                                <input type=\"hidden\" class=\"btn\">
+                            </form>
+                            <form style=\"margin-left: -3px; margin-top: -10px\" action=\"";
+        // line 34
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_enviarMensajeCliente", array("id" => $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "id", array()))), "html", null, true);
-        echo "\">Enviar mensaje</a>
+        echo "\" method=\"post\" class=\"alinear btn-group\">
+                                <input type=\"hidden\" class=\"btn\">
+                                <button type=\"submit\" class=\"btn btn-default\">Enviar mensaje</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id=\"colder\" class=\"col-md-8\"><a href=\"";
-        // line 56
+                <div id=\"colder\" class=\"col-md-8\"><a href=\"";
+        // line 41
         echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_listadoParticipantes");
         echo "\" style=\"height: 30px; width: 190px; margin-top: 10px;\" class=\"btn btn-default\">Volver atrás</a></div>
+            </div>
         </div>
     </div>
-</div>
 </div>
 ";
     }
@@ -168,6 +128,6 @@ class __TwigTemplate_217140106243fc9c7f2f2e816194f8aff586f9be1bf9696f5bf34628c22
 
     public function getDebugInfo()
     {
-        return array (  150 => 56,  142 => 51,  138 => 49,  132 => 48,  129 => 47,  120 => 41,  115 => 40,  107 => 35,  102 => 34,  100 => 33,  97 => 32,  94 => 31,  90 => 30,  83 => 26,  77 => 23,  73 => 22,  62 => 14,  56 => 11,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  110 => 41,  100 => 34,  93 => 30,  87 => 27,  83 => 26,  77 => 23,  73 => 22,  62 => 14,  56 => 11,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
     }
 }

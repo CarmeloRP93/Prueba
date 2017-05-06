@@ -192,8 +192,34 @@ $context["notificacion"], "concepto", array()) == "NuevoParticipantePrivada")) {
                                                     </button>
                                                 </form>
                                             ";
+                } elseif (($this->getAttribute(                // line 78
+$context["notificacion"], "concepto", array()) == "Cancha")) {
+                    // line 79
+                    echo "                                                <form action=\"";
+                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_cancha", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array()))), "html", null, true);
+                    echo "\">
+                                                    <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                        Ver notificación
+                                                    </button>
+                                                </form>
+                                            ";
+                } elseif (($this->getAttribute(                // line 84
+$context["notificacion"], "concepto", array()) == "Celiminada")) {
+                    // line 85
+                    echo "                                                <form action=\"";
+                    echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_canchas");
+                    echo " \" method=\"GET\">
+                                                    <input type=\"hidden\" name=\"id\" value=\"";
+                    // line 86
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "idEntidad", array()), "html", null, true);
+                    echo "\">
+                                                    <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                        Ver notificación
+                                                    </button>
+                                                </form>
+                                            ";
                 }
-                // line 79
+                // line 92
                 echo "                                        </td>
                                     </tr>
                                 ";
@@ -201,16 +227,16 @@ $context["notificacion"], "concepto", array()) == "NuevoParticipantePrivada")) {
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['notificacion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 82
+            // line 95
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 86
+        // line 99
         echo "                <div class=\"navigation text-center\"  >
                     ";
-        // line 87
+        // line 100
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                 </div>
@@ -232,6 +258,6 @@ $context["notificacion"], "concepto", array()) == "NuevoParticipantePrivada")) {
 
     public function getDebugInfo()
     {
-        return array (  214 => 87,  211 => 86,  205 => 82,  197 => 79,  188 => 73,  184 => 72,  176 => 67,  172 => 66,  164 => 61,  159 => 60,  157 => 59,  149 => 54,  144 => 53,  142 => 52,  134 => 47,  130 => 46,  122 => 41,  118 => 40,  109 => 35,  107 => 34,  98 => 29,  96 => 28,  91 => 26,  87 => 25,  82 => 24,  78 => 23,  70 => 18,  66 => 17,  60 => 13,  56 => 11,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  240 => 100,  237 => 99,  231 => 95,  223 => 92,  214 => 86,  209 => 85,  207 => 84,  198 => 79,  196 => 78,  188 => 73,  184 => 72,  176 => 67,  172 => 66,  164 => 61,  159 => 60,  157 => 59,  149 => 54,  144 => 53,  142 => 52,  134 => 47,  130 => 46,  122 => 41,  118 => 40,  109 => 35,  107 => 34,  98 => 29,  96 => 28,  91 => 26,  87 => 25,  82 => 24,  78 => 23,  70 => 18,  66 => 17,  60 => 13,  56 => 11,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

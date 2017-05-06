@@ -212,10 +212,25 @@ class SesionController extends Controller {
         $sesion->setNClientes($restaCliente);
 
         if ($restaCliente == 0 && $sesion->getEstado() == 'cancelada' && $sesion->getIdMonitor() == null) {
-            $em->remove($sesion);
-            $aula = $this->findEntity($sesion->getAula(), $em, 'CriveroPruebaBundle:Aulas');
-            $this->removeSesionId($aula, $id);
-            $em->persist($aula);
+            if ($sesion->getConcepto() == 'aula') {
+                $aula = $this->findEntity($sesion->getAula(), $em, 'CriveroPruebaBundle:Aulas');
+                $this->removeSesionId($aula, $id);
+                $em->persist($aula);
+            }else{
+                $cancha = $this->findEntity($sesion->getCancha(), $em, 'CriveroPruebaBundle:Canchas');
+                $this->removeSesionId($cancha, $id);
+                $em->persist($cancha);
+            }
+        }elseif ($restaCliente == 0 && $sesion->getEstado() == 'suspendida') {
+            if ($sesion->getConcepto() == 'aula') {
+                $aula = $this->findEntity($sesion->getAula(), $em, 'CriveroPruebaBundle:Aulas');
+                $this->removeSesionId($aula, $id);
+                $em->persist($aula);
+            }else{
+                $cancha = $this->findEntity($sesion->getCancha(), $em, 'CriveroPruebaBundle:Canchas');
+                $this->removeSesionId($cancha, $id);
+                $em->persist($cancha);
+            }
         } else {
             // Si no está cancelada, el estadoCliente volverá a disponible (esté completa o no)
             $sesion->setEstadoCliente('disponible');
@@ -259,7 +274,8 @@ class SesionController extends Controller {
                 }
             }
         }
-
+        $em->remove($sesion);
+        $em->flush();
         return $this->redirect($this->generateUrl('moduloclientes_cliente_misSesionesClientes'));
     }
 

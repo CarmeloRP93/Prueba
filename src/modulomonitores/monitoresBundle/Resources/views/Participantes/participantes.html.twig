@@ -14,6 +14,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>{{ knp_pagination_sortable(pagination, 'Nombre del cliente', 'pagination.nombre') }}</th>
                                 <th><div class="hidden-xs">{{ knp_pagination_sortable(pagination, 'Número de teléfono', 'pagination.telefono') }}</div></th>
                                 <th>{{ knp_pagination_sortable(pagination, 'Correo electrónico', 'pagination.email') }}</th>
@@ -24,6 +25,8 @@
 
                         {% for cliente in pagination %}
                             <tr data-id="{{ cliente.id }}">
+                                <td><img src="{{ asset('images/'~cliente.imagen) }}" class="img-responsive center-block " style="max-width: 45px"/></td>
+                                        
                                 <td>{{cliente.nombre}}</td>
                                 <td>{{cliente.telefono}}</td>
                                 <td>{{cliente.email}}</td>

@@ -14,7 +14,12 @@
                 <div class="panel panel-default">                  
                     <div class="panel-body">   
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">    
-                            <h4>Aula de la sesión:</h4> <p>{{aula.nombre}}</p>
+                            <h4>Recinto de la sesión:</h4> 
+                            {% if sesion.concepto == "aula" %} 
+                                <td>{{recinto.nombre}}</td>
+                            {% else %}
+                                <td>{{recinto.tipo}}</td>
+                            {% endif %}
                             <h4>Monitor:</h4> <p>{{sesion.monitor}}</p>
                             <h4>Ejercicios a realizar:</h4> <p>{{sesion.ejercicios}}</p>
                             <h4>Repeticiones por cada ejercicio:</h4> <p>{{sesion.repeticiones}} por ejercicio</p>

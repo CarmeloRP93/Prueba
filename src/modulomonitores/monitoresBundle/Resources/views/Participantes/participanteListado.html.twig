@@ -19,43 +19,28 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <h4>E-mail </h4> <p>{{cliente.email}}</p>
+                            <h4>Correo electrónico </h4> <p>{{cliente.email}}</p>
                             <h4>Fecha nacimiento </h4> <p>{{cliente.fNacimiento}}</p>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <h4>Teléfono </h4> <p>{{cliente.telefono}}</p>
-                            <h4>Sesiones en activo</h4>
-                            <div>
-                                <ul style="list-style: none">
-                                    {% for sesion in sesiones %}
-                                        {% if sesion.estado == 'validada' %}
-                                            <li>
-                                                {% if sesion.cliente == 'normal' %}
-                                                    <p>Sesión{{sesion.nombre}} 
-                                                        <a href="{{ path('modulomonitores_monitores_miSesionMonitores', { id: sesion.id }) }}" class="btn btn-sm btn-primary">
-                                                            Ver más información
-                                                        </a>
-                                                    </p>
-                                                {% else %}
-                                                    <p>Sesión{{sesion.nombre}} 
-                                                        <a href="{{ path('modulomonitores_monitores_miSesionDedicada', { id: sesion.id }) }}" class="btn btn-sm btn-primary">
-                                                            Ver más información
-                                                        </a>
-                                                    </p>
-                                                </li>
-                                            {% endif %}
-                                        {% endif %}
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            <a class="btn btn-default" href="{{ path('modulomonitores_monitores_enviarMensajeCliente', { id : cliente.id } ) }}">Enviar mensaje</a>
+                            <h4>Usuario </h4> <p>{{cliente.username}}</p>
+                        </div>
+                        <div>
+                            <form style="margin-right: -3px" action="{{ path('modulomonitores_monitores_sesionesParticipante', { id: cliente.id }) }}" method="post" class="alinear btn-group">
+                                <button type="submit" class="btn btn-success">Ver sesiones</button>
+                                <input type="hidden" class="btn">
+                            </form>
+                            <form style="margin-left: -3px; margin-top: -10px" action="{{ path('modulomonitores_monitores_enviarMensajeCliente', { id : cliente.id } ) }}" method="post" class="alinear btn-group">
+                                <input type="hidden" class="btn">
+                                <button type="submit" class="btn btn-default">Enviar mensaje</button>
+                            </form>
                         </div>
                     </div>
                 </div>
+                <div id="colder" class="col-md-8"><a href="{{url('modulomonitores_monitores_listadoParticipantes')}}" style="height: 30px; width: 190px; margin-top: 10px;" class="btn btn-default">Volver atrás</a></div>
             </div>
-            <div id="colder" class="col-md-8"><a href="{{url('modulomonitores_monitores_listadoParticipantes')}}" style="height: 30px; width: 190px; margin-top: 10px;" class="btn btn-default">Volver atrás</a></div>
         </div>
     </div>
-</div>
 </div>
 {% endblock %}

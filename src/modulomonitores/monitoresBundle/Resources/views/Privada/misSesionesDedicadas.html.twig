@@ -15,6 +15,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Nombre de la sesión', 'pagination.nombre') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Estado de la sesión', 'pagination.estado') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Paticipante', 'pagination.cliente') }}</th>
@@ -26,6 +27,7 @@
                             <tbody>
                                 {% for sesion in pagination %}
                                     <tr data-id="{{ sesion.id }}">
+                                        <td><img src="{{asset(sesion.imagen) }}" class="img-responsive center-block " style="max-width: 50px; height: 45px"/></td>
                                         <td>{{sesion.nombre}}</td>
                                         <td>{{sesion.estado}}</td>
                                         <td>{{sesion.cliente}}</td>

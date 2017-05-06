@@ -63,42 +63,55 @@ class __TwigTemplate_e367319631aa0c978a397a5d54d6ae2dad73e15c810708f4f772667fc1f
                 <div class=\"panel panel-default\">                  
                     <div class=\"panel-body\">   
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">    
-                            <h4>Aula de la sesión:</h4> <p>";
-        // line 17
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "nombre", array()), "html", null, true);
-        echo "</p>
-                            <h4>Monitor:</h4> <p>";
+                            <h4>Recinto de la sesión:</h4> 
+                            ";
         // line 18
+        if (($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "concepto", array()) == "aula")) {
+            echo " 
+                                <td>";
+            // line 19
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["recinto"]) ? $context["recinto"] : $this->getContext($context, "recinto")), "nombre", array()), "html", null, true);
+            echo "</td>
+                            ";
+        } else {
+            // line 21
+            echo "                                <td>";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["recinto"]) ? $context["recinto"] : $this->getContext($context, "recinto")), "tipo", array()), "html", null, true);
+            echo "</td>
+                            ";
+        }
+        // line 23
+        echo "                            <h4>Monitor:</h4> <p>";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "monitor", array()), "html", null, true);
         echo "</p>
                             <h4>Ejercicios a realizar:</h4> <p>";
-        // line 19
+        // line 24
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "ejercicios", array()), "html", null, true);
         echo "</p>
                             <h4>Repeticiones por cada ejercicio:</h4> <p>";
-        // line 20
+        // line 25
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "repeticiones", array()), "html", null, true);
         echo " por ejercicio</p>
                             <a href=\"";
-        // line 21
+        // line 26
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_verHorario", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array()))), "html", null, true);
         echo "\" style=\"height: 30px; width: 100px;\" class=\"btn btn-primary\">Ver Horario</a>
                         </div>
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
                             <h4>Duración de cada sesión:</h4> <p>";
-        // line 24
+        // line 29
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "duracion", array()), "html", null, true);
         echo " minutos</p>
                             <h4>Descanso entre ejercicios:</h4> <p>";
-        // line 25
+        // line 30
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "descanso", array()), "html", null, true);
         echo " segundos</p>
                             <h4>Objetivo de la sesión:</h4> <p>";
-        // line 26
+        // line 31
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "objetivo", array()), "html", null, true);
         echo "</p>
                             <h4>Límite de participantes:</h4> <p>";
-        // line 27
+        // line 32
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "lClientes", array()), "html", null, true);
         echo "</p>
                         </div>
@@ -122,6 +135,6 @@ class __TwigTemplate_e367319631aa0c978a397a5d54d6ae2dad73e15c810708f4f772667fc1f
 
     public function getDebugInfo()
     {
-        return array (  102 => 27,  98 => 26,  94 => 25,  90 => 24,  84 => 21,  80 => 20,  76 => 19,  72 => 18,  68 => 17,  59 => 11,  51 => 6,  47 => 4,  44 => 3,  37 => 2,  11 => 1,);
+        return array (  115 => 32,  111 => 31,  107 => 30,  103 => 29,  97 => 26,  93 => 25,  89 => 24,  84 => 23,  78 => 21,  73 => 19,  69 => 18,  59 => 11,  51 => 6,  47 => 4,  44 => 3,  37 => 2,  11 => 1,);
     }
 }

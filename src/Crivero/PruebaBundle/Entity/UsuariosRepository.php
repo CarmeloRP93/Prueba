@@ -90,4 +90,11 @@ class UsuariosRepository extends EntityRepository {
             ->setParameter('username', $searchQuery)
             ->getResult();
     }
+    
+    public function searchClientesMonitores($searchQuery, $id){
+        return $this->getEntityManager()
+                        ->createQuery("SELECT u FROM CriveroPruebaBundle:Usuarios u WHERE u.id = :id AND (u.username LIKE '%{$searchQuery}%' OR u.nombre LIKE '%{$searchQuery}%') ")
+                        ->setParameter('id', $id)
+                        ->getResult();
+    }
 }

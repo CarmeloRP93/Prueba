@@ -157,7 +157,7 @@ class CanchaController extends Controller {
 
                 $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
                 foreach ($usuarios as $usuario) {
-                    if ($usuario->getTipo() == 2) {
+                    if ($usuario->getTipo() != 1) {
                         $notificacion = new Notificaciones();
                         $notificacion->setIdDestinatario($usuario->getId());
                         $notificacion->setIdEntidad($cancha->getId());
@@ -222,7 +222,7 @@ class CanchaController extends Controller {
 
             $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
             foreach ($usuarios as $usuario) {
-                if ($usuario->getTipo() == 2) {
+                if ($usuario->getTipo() != 1) {
                     $notificacion = new Notificaciones();
                     $notificacion->setIdDestinatario($usuario->getId());
                     $notificacion->setIdEntidad($cancha->getId());
@@ -272,7 +272,7 @@ class CanchaController extends Controller {
 
         $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();
         foreach ($usuarios as $usuario) {
-            if ($usuario->getTipo() == 2) {
+            if ($usuario->getTipo() != 1) {
                 $notificacion = new Notificaciones();
                 $notificacion->setIdDestinatario($usuario->getId());
                 $notificacion->setIdEntidad($cancha->getId());

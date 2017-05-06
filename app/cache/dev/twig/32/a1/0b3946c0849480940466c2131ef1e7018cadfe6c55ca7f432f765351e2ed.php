@@ -46,7 +46,7 @@ class __TwigTemplate_32a10b3946c0849480940466c2131ef1e7018cadfe6c55ca7f432f76535
         echo "    <div class=\"container\">
         <div class=\"panel panel-default text-center\">
             <div class=\"panel-heading\">
-                <h1 class=\"t1\">Elegir tipo de sesión</h1>
+                <h1 class=\"t1\">Elegir lugar de la sesión</h1>
             </div>
             <div class=\"panel-body myelement\">
                 <div class=\"row\">
@@ -57,7 +57,7 @@ class __TwigTemplate_32a10b3946c0849480940466c2131ef1e7018cadfe6c55ca7f432f76535
         // line 14
         echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_nuevaSesion");
         echo "\">
-                                    <h2 class=\"t1\">Entrenamiento</h2>   
+                                    <h2 class=\"t1\">Aula</h2>   
                             </div>
                             <div class=\"panel-body myelement\">
                                 <img src=\"";
@@ -75,7 +75,7 @@ class __TwigTemplate_32a10b3946c0849480940466c2131ef1e7018cadfe6c55ca7f432f76535
         // line 26
         echo $this->env->getExtension('routing')->getUrl("modulomonitores_monitores_nuevaSesionDeportiva");
         echo "\">
-                                    <h2 class=\"t1\">Deportiva</h2>   
+                                    <h2 class=\"t1\">Cancha</h2>   
                             </div>
                             <div class=\"panel-body myelement\">
                                 <img src=\"";

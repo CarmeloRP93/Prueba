@@ -223,19 +223,32 @@ class __TwigTemplate_c6492b0b8d4effa000d2b7f80d9b299785df897a8c2a7e1658924e53123
             echo "
                     </div>
                     <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
-                        <a href=\"";
+                        ";
             // line 81
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_editarSesion", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array()))), "html", null, true);
-            echo "\" class=\"btn btn-primary text-center center-block img-responsive\" style=\"width: 180px;\">Modificar sesión</a> 
-                    </div>
+            if (($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "concepto", array()) == "aula")) {
+                echo " 
+                            <a href=\"";
+                // line 82
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_editarSesion", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array()))), "html", null, true);
+                echo "\" class=\"btn btn-primary text-center center-block img-responsive\" style=\"width: 180px;\">Modificar sesión</a> 
+                        ";
+            } else {
+                // line 84
+                echo "                            <a href=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_editarSesionDeportiva", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array()))), "html", null, true);
+                echo "\" class=\"btn btn-primary text-center center-block img-responsive\" style=\"width: 180px;\">Modificar sesión</a> 
+                        ";
+            }
+            // line 86
+            echo "                    </div>
                 </div> 
             ";
         } else {
-            // line 85
+            // line 89
             echo "                <button class=\"btn btn-warning text-center center-block img-responsive\" style=\"width: 180px;\" disabled=\"disabled\">Pendiente</button>
             ";
         }
-        // line 87
+        // line 91
         echo "        </div>
     </div>
 ";
@@ -253,6 +266,6 @@ class __TwigTemplate_c6492b0b8d4effa000d2b7f80d9b299785df897a8c2a7e1658924e53123
 
     public function getDebugInfo()
     {
-        return array (  239 => 87,  235 => 85,  228 => 81,  222 => 78,  218 => 76,  216 => 75,  211 => 74,  209 => 73,  206 => 72,  204 => 71,  201 => 70,  199 => 69,  194 => 67,  190 => 65,  183 => 61,  177 => 59,  174 => 58,  171 => 57,  169 => 56,  160 => 49,  154 => 47,  151 => 46,  145 => 44,  143 => 43,  139 => 42,  135 => 41,  131 => 40,  125 => 37,  121 => 36,  116 => 35,  110 => 33,  105 => 31,  101 => 30,  91 => 22,  85 => 20,  83 => 19,  80 => 18,  78 => 17,  73 => 16,  71 => 15,  66 => 14,  64 => 13,  59 => 11,  51 => 6,  47 => 4,  44 => 3,  37 => 2,  11 => 1,);
+        return array (  252 => 91,  248 => 89,  243 => 86,  237 => 84,  232 => 82,  228 => 81,  222 => 78,  218 => 76,  216 => 75,  211 => 74,  209 => 73,  206 => 72,  204 => 71,  201 => 70,  199 => 69,  194 => 67,  190 => 65,  183 => 61,  177 => 59,  174 => 58,  171 => 57,  169 => 56,  160 => 49,  154 => 47,  151 => 46,  145 => 44,  143 => 43,  139 => 42,  135 => 41,  131 => 40,  125 => 37,  121 => 36,  116 => 35,  110 => 33,  105 => 31,  101 => 30,  91 => 22,  85 => 20,  83 => 19,  80 => 18,  78 => 17,  73 => 16,  71 => 15,  66 => 14,  64 => 13,  59 => 11,  51 => 6,  47 => 4,  44 => 3,  37 => 2,  11 => 1,);
     }
 }

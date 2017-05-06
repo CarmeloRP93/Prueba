@@ -214,8 +214,8 @@ class __TwigTemplate_e48fc06279169411d45c4aefe77a9f983d3ac500f6a7d757d7f58f0724f
         } elseif (($this->getAttribute(        // line 75
 (isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estado", array()) == "validada")) {
             // line 76
-            echo "                                <h4>Aula de la sesión</h4> <p>";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "nombre", array()), "html", null, true);
+            echo "                                <h4>Recinto de la sesión</h4> <p>";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["recinto"]) ? $context["recinto"] : $this->getContext($context, "recinto")), "nombre", array()), "html", null, true);
             echo "</p>
                             ";
         }

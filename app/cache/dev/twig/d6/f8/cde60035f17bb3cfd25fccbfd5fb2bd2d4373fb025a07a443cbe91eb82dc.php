@@ -101,7 +101,7 @@ class __TwigTemplate_d6f8cde60035f17bb3cfd25fccbfd5fb2bd2d4373fb025a07a443cbe91e
         echo "</p>
                         </div>
                     </div>
-                        <div style=\"display: inline-grid\">
+                    <div style=\"display: inline-grid\">
                         <form class=\"btn-group-vertical\" action=\"";
         // line 37
         echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_mensajearAdministradorMonitor");
@@ -109,7 +109,7 @@ class __TwigTemplate_d6f8cde60035f17bb3cfd25fccbfd5fb2bd2d4373fb025a07a443cbe91e
                             <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-primary\">Mensaje a administrador</button>
                             <input type=\"hidden\" class=\"btn\">
                         </form>
-                        
+
                         <form class=\"btn-group-vertical\" action=\"";
         // line 42
         echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
@@ -118,7 +118,7 @@ class __TwigTemplate_d6f8cde60035f17bb3cfd25fccbfd5fb2bd2d4373fb025a07a443cbe91e
                             <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-danger\">Salir de sesión</button>
                             <input type=\"hidden\" class=\"btn\">
                         </form>
-                        
+
                     </div> 
                 </div>
             </div>
