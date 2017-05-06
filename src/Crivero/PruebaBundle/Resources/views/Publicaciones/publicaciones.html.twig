@@ -9,54 +9,63 @@
 {% endblock %}
 {% block contenido %}
 
-    <div class="main">
+    <div class="main" >
         <div class="slides">
-            <img src="{{asset('images/Tulips.jpg')}}" alt="">
-            <img src="{{asset('images/futbol (1).jpg')}}" alt="">
-            <img src="{{asset('images/kickboxing.jpg')}}" alt="">
+            {% for publicacion in publicaciones %}
+                <div class="image">
+                    {% if publicaciones|length > 1 %}
+                        <img src="{{asset('images/'~publicacion.imagen)}}" style="border-radius: 4px" title={{publicacion.titulo}}>
+                    {% else %}
+                        <img src="{{asset('images/'~publicacion.imagen)}}" style="border-radius: 4px; max-width: 91%" title={{publicacion.titulo}} >
+                    {% endif %}
+                    <h3><span>{{publicacion.titulo}}</span></h3>
+                </div>
+            {% endfor %}
         </div>
     </div>
 
-    {% block javascripts %}
-        {{ parent() }}
-        <script src="{{asset ('js/jquery.slides.min.js')}}"></script>
-        <script src="{{asset ('js/jquery.slides.js')}}"></script>
-    {% endblock %}
+{% endblock %}
 
-    <script>
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{asset ('js/jquery.slides.js')}}"></script>
+    {% if publicaciones|length > 1 %}
+        <script>
 
-        $(function () {
-            $(".slides").slidesjs({
-                play: {
-                    active: true,
-                    // [boolean] Generate the play and stop buttons.
-                    // You cannot use your own buttons. Sorry.
-                    effect: "fade",
-                    // [string] Can be either "slide" or "fade".
-                    interval: 5000,
-                    // [number] Time spent on each slide in milliseconds.
-                    auto: true,
-                    // [boolean] Start playing the slideshow on load.
-                    swap: true,
-                    // [boolean] show/hide stop and play buttons
-                    pauseOnHover: false,
-                    // [boolean] pause a playing slideshow on hover
-                    restartDelay: 3000
-                            // [number] restart delay on inactive slideshow
-                }
+            $(function () {
+                $(".slides").slidesjs({
+                    play: {
+                        active: true,
+                        // [boolean] Generate the play and stop buttons.
+                        // You cannot use your own buttons. Sorry.
+                        effect: "fade",
+                        // [string] Can be either "slide" or "fade".
+                        interval: 5000,
+                        // [number] Time spent on each slide in milliseconds.
+                        auto: true,
+                        // [boolean] Start playing the slideshow on load.
+                        swap: true,
+                        // [boolean] show/hide stop and play buttons
+                        pauseOnHover: false,
+                        // [boolean] pause a playing slideshow on hover
+                        restartDelay: 3000
+                                // [number] restart delay on inactive slideshow
+                    }
+                });
+
+
+                var stop = '<img src="{{asset('images/stop-xxl.png')}}" style="width: 13px; border-radius: 0px" />';
+                var play = '<img src="{{asset('images/white-play-512.png')}}" style="width: 19.4px; border-radius: 0px" />';
+                var next = '<img src="{{asset('images/next.png')}}" style="width: 17px; border-radius: 0px" />';
+                var previous = '<img src="{{asset('images/previous.png')}}" style="width: 10px; border-radius: 0px" />';
+                $('.slidesjs-stop').append(stop);
+                $('.slidesjs-play').append(play);
+                $('.slidesjs-next').append(next);
+                $('.slidesjs-previous').append(previous);
             });
-            
-
-            var stop= '<img src="{{asset('images/stop-xxl.png')}}" style="width: 13px; border-radius: 0px" />';
-            var play= '<img src="{{asset('images/white-play-512.png')}}" style="width: 19.4px; border-radius: 0px" />';
-            var next= '<img src="{{asset('images/next.png')}}" style="width: 17px; border-radius: 0px" />';
-            var previous= '<img src="{{asset('images/previous.png')}}" style="width: 10px; border-radius: 0px" />';
-            $('.slidesjs-stop').append(stop);
-            $('.slidesjs-play').append(play);
-            $('.slidesjs-next').append(next);
-            $('.slidesjs-previous').append(previous);
-        });
 
 
-    </script>
+
+        </script>
+    {% endif %}
 {% endblock %}

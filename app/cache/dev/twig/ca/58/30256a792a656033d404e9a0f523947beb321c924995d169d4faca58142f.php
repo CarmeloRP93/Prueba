@@ -81,6 +81,10 @@ class __TwigTemplate_ca5830256a792a656033d404e9a0f523947beb321c924995d169d4faca5
             echo "</th>
                                     <th>";
             // line 26
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Estado", "r.estadoReserva");
+            echo "</th>
+                                    <th>";
+            // line 27
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Fecha", "r.fechaInicio");
             echo "</th>
                                     <th class=\"t3\">Acciones</th>
@@ -88,55 +92,83 @@ class __TwigTemplate_ca5830256a792a656033d404e9a0f523947beb321c924995d169d4faca5
                             </thead>
                             <tbody>
                                 ";
-            // line 31
+            // line 32
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
             foreach ($context['_seq'] as $context["_key"] => $context["reserva"]) {
-                // line 32
+                // line 33
                 echo "                                    <tr data-id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "id", array()), "html", null, true);
                 echo "\">
                                         <td>";
-                // line 33
+                // line 34
                 echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "id", array()), "html", null, true);
                 echo "</td>
                                         <td>";
-                // line 34
+                // line 35
                 echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "cancha", array()), "html", null, true);
                 echo "</td>
-                                        <td><strong>";
-                // line 35
+                                        ";
+                // line 36
+                if (($this->getAttribute($context["reserva"], "estadoReserva", array()) == "Cancelada")) {
+                    // line 37
+                    echo "                                            <td style=\"color: red\"><strong>";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "estadoReserva", array()), "html", null, true);
+                    echo "</strong></td>
+                                        ";
+                } else {
+                    // line 39
+                    echo "                                            <td><strong>";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "estadoReserva", array()), "html", null, true);
+                    echo "</strong></td>
+                                        ";
+                }
+                // line 41
+                echo "                                        <td><strong>";
                 echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["reserva"], "fechaInicio", array()), "d-m-Y"), "html", null, true);
                 echo "</strong></td>
                                         <td class=\"actions\">
                                             <a href=\"";
-                // line 37
+                // line 43
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_reservaClientes", array("id" => $this->getAttribute($context["reserva"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-info noMargenBoton\">
                                                 Ver
                                             </a>
-                                            <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete noMargenBoton\">
-                                                Cancelar
-                                            </a>
-                                        </td>
+                                            ";
+                // line 46
+                if (($this->getAttribute($context["reserva"], "estadoReserva", array()) == "Cancelada")) {
+                    // line 47
+                    echo "                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete noMargenBoton\">
+                                                    Descartar
+                                                </a>
+                                            ";
+                } else {
+                    // line 51
+                    echo "                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete noMargenBoton\">
+                                                    Cancelar
+                                                </a>
+                                            ";
+                }
+                // line 55
+                echo "                                        </td>
                                     </tr>
                                 ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['reserva'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 46
+            // line 58
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 49
+        // line 61
         echo "        
                 <div>
                     <div class=\"navigation\">
                         ";
-        // line 52
+        // line 64
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                     </div>
@@ -145,22 +177,22 @@ class __TwigTemplate_ca5830256a792a656033d404e9a0f523947beb321c924995d169d4faca5
         </div>                     
     </div>
     ";
-        // line 58
+        // line 70
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "id" => "form-delete", "with_submit" => false));
         echo "
 
 ";
     }
 
-    // line 61
+    // line 73
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 62
+        // line 74
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <script src=\"";
-        // line 63
+        // line 75
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/criveroprueba/js/delete-reserva.js"), "html", null, true);
         echo "\"></script>
 ";
@@ -178,6 +210,6 @@ class __TwigTemplate_ca5830256a792a656033d404e9a0f523947beb321c924995d169d4faca5
 
     public function getDebugInfo()
     {
-        return array (  164 => 63,  159 => 62,  156 => 61,  149 => 58,  140 => 52,  135 => 49,  129 => 46,  114 => 37,  109 => 35,  105 => 34,  101 => 33,  96 => 32,  92 => 31,  84 => 26,  80 => 25,  76 => 24,  70 => 20,  66 => 18,  64 => 17,  47 => 4,  44 => 3,  38 => 2,  11 => 1,);
+        return array (  196 => 75,  191 => 74,  188 => 73,  181 => 70,  172 => 64,  167 => 61,  161 => 58,  153 => 55,  147 => 51,  141 => 47,  139 => 46,  133 => 43,  127 => 41,  121 => 39,  115 => 37,  113 => 36,  109 => 35,  105 => 34,  100 => 33,  96 => 32,  88 => 27,  84 => 26,  80 => 25,  76 => 24,  70 => 20,  66 => 18,  64 => 17,  47 => 4,  44 => 3,  38 => 2,  11 => 1,);
     }
 }

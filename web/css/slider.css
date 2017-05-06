@@ -4,11 +4,14 @@
 }
 
 .main {
-	width:90%;
+	width:70%;
 	max-width:1000px;
 	margin:20px auto;
 }
 
+body {
+    background: rgba(231, 231, 231, 0.65);
+}
 .slides {
 	width:100%;
 }
@@ -18,7 +21,7 @@
 }
 
 .slidesjs-pagination {
-	background:#424242;
+	background: rgba(66,66,66, 0.4);
 	list-style:none;
 	overflow:hidden;
 }
@@ -49,4 +52,25 @@
 	display:inline-block;
 	padding:10px 20px;
 	float:right;
+}
+
+.image { 
+   position: relative; 
+   width: 100%; /* for IE 6 */
+}
+
+h3 { 
+   position: absolute; 
+   top: 260px; 
+   left: 0; 
+   width: 100%; 
+}
+
+h3 span { 
+   color: white; 
+   font: bold 24px/45px Helvetica, Sans-Serif; 
+   letter-spacing: -1px;  
+   background: rgba(0, 0, 0, 0.15); /* fallback color */
+   padding: 10px; 
+   border-radius: 2px;
 }

@@ -1455,7 +1455,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getKnpPaginator_Subscriber_SlidingPaginationService()
     {
-        return $this->services['knp_paginator.subscriber.sliding_pagination'] = new \Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber(array('defaultPaginationTemplate' => 'KnpPaginatorBundle:Pagination:foundation_v5_pagination.html.twig', 'defaultSortableTemplate' => 'KnpPaginatorBundle:Pagination:sortable_link.html.twig', 'defaultFiltrationTemplate' => 'KnpPaginatorBundle:Pagination:filtration.html.twig', 'defaultPageRange' => 3));
+        return $this->services['knp_paginator.subscriber.sliding_pagination'] = new \Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber(array('defaultPaginationTemplate' => 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig', 'defaultSortableTemplate' => 'KnpPaginatorBundle:Pagination:sortable_link.html.twig', 'defaultFiltrationTemplate' => 'KnpPaginatorBundle:Pagination:filtration.html.twig', 'defaultPageRange' => 3));
     }
 
     /**
@@ -1989,7 +1989,7 @@ class appDevDebugProjectContainer extends Container
 
         $i = new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $d, '/login', false);
 
-        return $this->services['security.firewall.map.context.default'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('security.user.provider.concrete.our_db_provider')), 'default', $b, $c), 2 => $g, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($a, $f, $this->get('security.authentication.session_strategy'), $d, 'default', $h, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $d, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $b), array('check_path' => '/login_check', 'username_parameter' => '_username', 'password_parameter' => '_password', 'use_forward' => false, 'require_previous_session' => true, 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $b, $c), 4 => new \Symfony\Component\Security\Http\Firewall\BasicAuthenticationListener($a, $f, 'default', $i, $b), 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '590c60dc483bb', $b), 6 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $d, 'default', $i, NULL, NULL, $b));
+        return $this->services['security.firewall.map.context.default'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('security.user.provider.concrete.our_db_provider')), 'default', $b, $c), 2 => $g, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($a, $f, $this->get('security.authentication.session_strategy'), $d, 'default', $h, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $d, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $b), array('check_path' => '/login_check', 'username_parameter' => '_username', 'password_parameter' => '_password', 'use_forward' => false, 'require_previous_session' => true, 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $b, $c), 4 => new \Symfony\Component\Security\Http\Firewall\BasicAuthenticationListener($a, $f, 'default', $i, $b), 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '590da061d522c', $b), 6 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $d, 'default', $i, NULL, NULL, $b));
     }
 
     /**
@@ -3472,7 +3472,7 @@ class appDevDebugProjectContainer extends Container
 
         $c = new \Symfony\Component\Security\Core\User\UserChecker();
 
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $c, 'default', $b, true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('590c60dc483bb'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $c, 'secured_area', $b, true)), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $c, 'default', $b, true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('590da061d522c'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $c, 'secured_area', $b, true)), true);
 
         $instance->setEventDispatcher($this->get('event_dispatcher'));
 
@@ -4244,7 +4244,7 @@ class appDevDebugProjectContainer extends Container
             'sensio_framework_extra.view.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\TemplateListener',
             'knp_paginator.class' => 'Knp\\Component\\Pager\\Paginator',
             'knp_paginator.helper.processor.class' => 'Knp\\Bundle\\PaginatorBundle\\Helper\\Processor',
-            'knp_paginator.template.pagination' => 'KnpPaginatorBundle:Pagination:foundation_v5_pagination.html.twig',
+            'knp_paginator.template.pagination' => 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig',
             'knp_paginator.template.filtration' => 'KnpPaginatorBundle:Pagination:filtration.html.twig',
             'knp_paginator.template.sortable' => 'KnpPaginatorBundle:Pagination:sortable_link.html.twig',
             'knp_paginator.page_range' => 3,

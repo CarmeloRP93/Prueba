@@ -77,6 +77,8 @@
                                         {% set ruta = url('modulomonitores_monitores_misSesionesMonitores', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == "Cancha"%}
                                         {% set ruta = url('modulomonitores_monitores_cancha', {id: notificacion.idEntidad})%}
+                                    {% elseif notificacion.concepto == "Publicacion"%}
+                                        {# poner ruta de publicaciones #}
                                     {% elseif notificacion.concepto == "NuevoParticipantePublica"%}
                                         {% set ruta = 'http://localhost/Prueba/web/app_dev.php/miSesionMonitores/'~notificacion.idEntidad~'/verParticipantes/'~notificacion.idOrigen %}
                                     {% elseif notificacion.concepto == "NuevoParticipantePrivada"%}

@@ -26,7 +26,7 @@
 
                 <li><a href="{{url('moduloclientes_cliente_canchasClientes')}}">Canchas</a></li>
 
-                 {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">Competiciones <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -58,12 +58,13 @@
                 <ul class="nav navbar-nav navbar-right">
                     {% if not notificacionesSinLeer|length %}  
                         <li><a href = "{{url('moduloclientes_cliente_notificacionesCliente')}}"><img src="{{asset('images/campanaSN.png')}}" style="width: 18px;" /></a></li>
-                    {% else %}
+                            {% else %}
                         <li class="dropdown hidden-xs">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('images/campanaCN.png')}}" style="width: 18px;" /></a>
                             <ul class="dropdown-menu" style="background-color: rgba(67, 152, 147, 0.46); border-radius: 15px 15px;">
                                 {% set n = 0 %} 
                                 {% for notificacion in notificacionesSinLeer if n < 5 %}  
+                                    {% set flag = 0 %}
                                     {% if notificacion.concepto == "Publica"%}
                                         {% if notificacion.idEntidad in app.user.sesiones %}
                                             {% set ruta = url('moduloclientes_cliente_miSesionClientes', {id: notificacion.idEntidad})%}
@@ -80,24 +81,37 @@
                                         {% set ruta = url('moduloclientes_cliente_canchaClientes', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == "Mensaje"%}
                                         {% set ruta = url('moduloclientes_cliente_mensajeCliente', {id: notificacion.idEntidad})%}
-                                    {#{% elseif notificacion.concepto == "Celiminada"%}
-                                        {% set ruta = url('moduloclientes_cliente_canchasClientes')%}#}
+                                    {% elseif notificacion.concepto == "Celiminada"%}
+                                        <li><form action="{{ path('moduloclientes_cliente_canchasClientes') }} " method="GET">
+                                            <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
+                                            <input style="background: transparent; color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;" type="submit" value="{{ notificacion.mensaje }}" >
+                                        </form></li>
+                                        {% set flag = 1 %}
                                     {% elseif notificacion.concepto == "AbandonoPublica"%}
                                         {% set ruta = url('moduloclientes_cliente_sesionClientes', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == "Tarifas"%}
-                                        {% set ruta = url('moduloclientes_cliente_sesionesClientes')%}
+                                        <li><form action="{{ path('moduloclientes_cliente_sesionesClientes') }} " method="GET">
+                                            <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
+                                            <input style="background: transparent; color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;" type="submit" value="{{ notificacion.mensaje }}">
+                                        </form></li>
+                                        {% set flag = 1 %}
+                                    {% elseif notificacion.concepto == "Publicacion"%}
+                                         {# poner ruta de publicaciones #}
+                                        {% set flag = 1 %}
                                     {% else %}
                                         {% set ruta = url('moduloclientes_cliente_notificacionesCliente', {id: notificacion.idEntidad})%}
                                     {% endif %}
+                                    {% if flag == 0 %}
                                         <li class="text-center"><a style="color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;" href="{{ ruta }}">{{ notificacion.mensaje }}</a></li>
-                                        <li role="separator" class="divider" style="background-color: #cecdcd"></li>
-                                    {% set n = n + 1 %}
-                                {% endfor %}
-                                    <li class="text-center"><a href = "{{url('moduloclientes_cliente_notificacionesCliente')}}"><font color="blue"><strong>Ver todas</strong></font></a></li>
+                                    {% endif %}
+                                    <li role="separator" class="divider" style="background-color: #cecdcd"></li>
+                                        {% set n = n + 1 %}
+                                    {% endfor %}
+                                <li class="text-center"><a href = "{{url('moduloclientes_cliente_notificacionesCliente')}}"><font color="blue"><strong>Ver todas</strong></font></a></li>
                             </ul>
                         </li>
                         <li><a class="hidden-sm hidden-md hidden-lg" href = "{{url('moduloclientes_cliente_notificacionesCliente')}}"><img  src="{{asset('images/campanaCN.png')}}" style="width: 18px"/></a></li>
-                    {% endif %}
+                            {% endif %}
                     <li><a href = "{{path('moduloclientes_cliente_mensajes_recibidosCliente')}}"><img src="{{asset('images/correo.png')}}" style="width: 18px;" /></a></li>
                     <li><a href="{{url('moduloclientes_cliente_miPerfil', {id:app.user.id} )}}"><img src="{{asset('images/user.png')}}" style="width: 18px;" /></a></li>
                     <li><a href="{{path('crivero_prueba_logout')}}" style="margin-right:12px;"><img src="{{asset('images/logout.png')}}" style="width: 18px;" /></a></li>

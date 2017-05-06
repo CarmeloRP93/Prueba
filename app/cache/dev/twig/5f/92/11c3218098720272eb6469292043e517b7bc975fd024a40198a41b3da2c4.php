@@ -185,7 +185,7 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
             echo " 
                     <li><a href = \"";
             // line 76
-            echo $this->env->getExtension('routing')->getPath("crivero_prueba_publicaciones");
+            echo $this->env->getExtension('routing')->getUrl("crivero_prueba_publicaciones");
             echo "\">publicaciones</a></li>
                     ";
             // line 77
@@ -201,7 +201,7 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
             } else {
                 // line 80
                 echo "                        <li class=\"dropdown hidden-xs\">
-                            <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><img src=\"";
+                        <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><img src=\"";
                 // line 81
                 echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/campanaCN.png"), "html", null, true);
                 echo "\" style=\"width: 18px;\" /></a>

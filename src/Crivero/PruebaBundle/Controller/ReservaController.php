@@ -17,13 +17,13 @@ class ReservaController extends Controller {
         $searchQuery = $request->get('query');
         (!empty($searchQuery)) ? $reservas = $repository->searchReservas($searchQuery) :
                         $reservas = $repository->getReservas();
-        
+
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $reservas, $request->query->getInt('page', 1), 5);
 
         return $this->render('CriveroPruebaBundle:Reservas:reservas.html.twig', array("pagination" => $pagination,
-                      'notificacionesSinLeer' => $this->getNewNotification()));
+                    'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function reservasClienteAction($id, Request $request) {
@@ -70,8 +70,34 @@ class ReservaController extends Controller {
             if ($motivos != null) {
                 $reserva->setEstadoReserva("Cancelada");
                 $reserva->setCliente($orig);
-
                 $em->persist($reserva);
+
+                $fechaReserva = date_format($reserva->getFechaInicio(), 'd-m');
+                $horarioscancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Horarioscanchas")->getHorario($reserva->getIdCancha(), $fechaReserva);
+                if ($horarioscancha[0]['periodo'] == null) {
+                    $concatenado = substr($reserva->getHorario(), 0, -1);
+                } else {
+
+                    $horarioReservado = explode('&', $reserva->getHorario());
+                    $horarioscancha2 = implode("", $horarioscancha[0]);
+                    $horariosNoReservados = explode('&', $horarioscancha2);
+                    $concatenado = '';
+                    $flag = 0;
+                    for ($i = 0; $i < count($horariosNoReservados); $i++) {
+                        if ((int) substr($horariosNoReservados[$i], 0, 2) > (int) substr($horarioReservado[0], 0, 2) && $flag == 0) {
+                            $concatenado .= $reserva->getHorario();
+                            $flag = 1;
+                        }
+                        ($i == count($horariosNoReservados) - 1) ? $concatenado .= $horariosNoReservados[$i] : $concatenado .= $horariosNoReservados[$i] . '&';
+                        if ($i == count($horariosNoReservados) - 1 && $flag == 0) {
+                            $concatenado .= '&' . substr($reserva->getHorario(), 0, -1);
+                        }
+                    }
+                }
+
+                $instancia = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Horarioscanchas")->getInstancia($reserva->getIdCancha(), $fechaReserva);
+                $instancia[0]->setPeriodo($concatenado);
+                $em->persist($instancia[0]);
                 $em->flush();
 
                 $notificacion = new Notificaciones();

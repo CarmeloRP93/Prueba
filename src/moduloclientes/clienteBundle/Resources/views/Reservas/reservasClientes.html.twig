@@ -23,6 +23,7 @@
                                 <tr>
                                     <th>{{ knp_pagination_sortable(pagination, 'Código', 'r.id') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Cancha', 'r.cancha') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Estado', 'r.estadoReserva') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Fecha', 'r.fechaInicio') }}</th>
                                     <th class="t3">Acciones</th>
                                 </tr>
@@ -32,14 +33,25 @@
                                     <tr data-id="{{ reserva.id }}">
                                         <td>{{reserva.id}}</td>
                                         <td>{{reserva.cancha}}</td>
+                                        {% if reserva.estadoReserva == 'Cancelada' %}
+                                            <td style="color: red"><strong>{{reserva.estadoReserva}}</strong></td>
+                                        {% else %}
+                                            <td><strong>{{reserva.estadoReserva}}</strong></td>
+                                        {% endif %}
                                         <td><strong>{{reserva.fechaInicio|date('d-m-Y')}}</strong></td>
                                         <td class="actions">
                                             <a href="{{ path('moduloclientes_cliente_reservaClientes', { id: reserva.id }) }}" class="btn btn-sm btn-info noMargenBoton">
                                                 Ver
                                             </a>
-                                            <a href="#" class="btn btn-sm btn-danger btn-delete noMargenBoton">
-                                                Cancelar
-                                            </a>
+                                            {% if reserva.estadoReserva == 'Cancelada' %}
+                                                <a href="#" class="btn btn-sm btn-danger btn-delete noMargenBoton">
+                                                    Descartar
+                                                </a>
+                                            {% else %}
+                                                <a href="#" class="btn btn-sm btn-danger btn-delete noMargenBoton">
+                                                    Cancelar
+                                                </a>
+                                            {% endif %}
                                         </td>
                                     </tr>
                                 {% endfor %}

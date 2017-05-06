@@ -483,6 +483,58 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::recintoPublicoAction',  '_route' => 'modulomonitores_monitores_recintoPublico',);
         }
 
+        // modulomonitores_monitores_canchas
+        if ($pathinfo === '/listadoCanchas') {
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\CanchasController::canchasAction',  '_route' => 'modulomonitores_monitores_canchas',);
+        }
+
+        // modulomonitores_monitores_cancha
+        if (0 === strpos($pathinfo, '/verCancha') && preg_match('#^/verCancha/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_cancha')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\CanchasController::canchaAction',));
+        }
+
+        // modulomonitores_monitores_canchaDisponibilidad
+        if (0 === strpos($pathinfo, '/canchaDisponibilidad') && preg_match('#^/canchaDisponibilidad/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_canchaDisponibilidad')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\CanchasController::disponibilidadCanchaAction',));
+        }
+
+        if (0 === strpos($pathinfo, '/sesiones')) {
+            // modulomonitores_monitores_sesionesParticipante
+            if (0 === strpos($pathinfo, '/sesionesParticipante') && preg_match('#^/sesionesParticipante/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_sesionesParticipante')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\ParticipantesController::sesionesParticipanteAction',));
+            }
+
+            // modulomonitores_monitores_sesionesAula
+            if (0 === strpos($pathinfo, '/sesionesAula') && preg_match('#^/sesionesAula/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_sesionesAula')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\AulasController::sesionesAulaAction',));
+            }
+
+            // modulomonitores_monitores_sesionesCancha
+            if (0 === strpos($pathinfo, '/sesionesCancha') && preg_match('#^/sesionesCancha/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_sesionesCancha')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\CanchasController::sesionesCanchaAction',));
+            }
+
+        }
+
+        if (0 === strpos($pathinfo, '/editar')) {
+            // modulomonitores_monitores_editarSesionDeportiva
+            if (0 === strpos($pathinfo, '/editarSesionDeportiva') && preg_match('#^/editarSesionDeportiva/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_editarSesionDeportiva')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::editarSesionDeportivaAction',));
+            }
+
+            // modulomonitores_monitores_editarDeportiva
+            if (0 === strpos($pathinfo, '/editarDeportiva') && preg_match('#^/editarDeportiva/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT', 'GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT', 'GET', 'HEAD'));
+                    goto not_modulomonitores_monitores_editarDeportiva;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'modulomonitores_monitores_editarDeportiva')), array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\SesionController::editarDeportivaAction',));
+            }
+            not_modulomonitores_monitores_editarDeportiva:
+
+        }
+
         if (0 === strpos($pathinfo, '/cancha')) {
             // moduloclientes_cliente_canchasClientes
             if ($pathinfo === '/canchasClientes') {
@@ -1450,6 +1502,22 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         if ($pathinfo === '/publicaciones') {
             return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PublicacionesController::publicacionesAction',  '_route' => 'crivero_prueba_publicaciones',);
         }
+
+        // crivero_prueba_publicacion_nueva
+        if ($pathinfo === '/nuevaPublicacion') {
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PublicacionesController::nuevaPublicacionAction',  '_route' => 'crivero_prueba_publicacion_nueva',);
+        }
+
+        // crivero_prueba_publicar
+        if ($pathinfo === '/publicar') {
+            if (!in_array($this->context->getMethod(), array('POST', 'GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('POST', 'GET', 'HEAD'));
+                goto not_crivero_prueba_publicar;
+            }
+
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\PublicacionesController::publicarAction',  '_route' => 'crivero_prueba_publicar',);
+        }
+        not_crivero_prueba_publicar:
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }

@@ -1,0 +1,54 @@
+{% extends 'CriveroPruebaBundle::main.html.twig' %}
+
+{% block title %} Nueva publicación {% endblock %}
+
+{% block contenido %}
+
+    <div class="container"><br>
+
+        <div class="col-xs-12 col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h2 class="t3">Nueva publicación</h2>
+                </div>
+                {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    {{ form_label(form.titulo) }}
+                                    {{ form_widget(form.titulo, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Título de publicación'} }) }}
+                                    <span class="text-danger">{{ form_errors(form.titulo) }}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    {{ form_label(form.fechaFinalizacion) }}
+                                    {{ form_widget(form.fechaFinalizacion, {'attr': {'class' : 'form-control'} } ) }}
+                                    <span class="text-danger">{{ form_errors(form.fechaFinalizacion) }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                <div class="form-group ">
+                    {{ form_label(form.imagen) }}
+                    {{ form_widget(form.imagen) }}
+                    <span class="text-danger">{{ form_errors(form.imagen) }}</span>
+                </div>
+
+                </form><br>
+                <div class="text-center">
+                    {{ form_widget(form.confirmar, {'label' : 'Confirmar', 'attr': {'class': 'btn btn-success'}}) }}
+                    <form class="alinear" action="{{ path("crivero_prueba_publicaciones") }}">
+                        <button type="submit" class="btn btn-danger" >Cancelar</button>
+                    </form>
+                </div>
+                {{ form_end(form) }}
+                </div>
+            </div>
+        </div>               
+    </div>
+</div>           
+
+{% endblock %}

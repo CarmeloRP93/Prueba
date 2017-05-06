@@ -119,10 +119,10 @@ class __TwigTemplate_238f51906398213b4f2d0f16b3828d2ce5c8045c6551f87076b9aa66e1a
                                     </form>
                                     <form class=\"btn-group-vertical\" action=\"";
             // line 44
-            echo $this->env->getExtension('routing')->getPath("crivero_prueba_nuevo");
+            echo $this->env->getExtension('routing')->getPath("crivero_prueba_publicacion_nueva");
             echo "\" method=\"post\">
                                         <input type=\"hidden\" class=\"btn\">
-                                        <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-info\">Publicar evento</button>
+                                        <button type=\"submit\" style=\"margin-bottom: 0\" class=\"btn btn-info\">Nueva publicación</button>
                                         <input type=\"hidden\" class=\"btn\">
                                     </form>
                                     <form class=\"btn-group-vertical\" action=\"";

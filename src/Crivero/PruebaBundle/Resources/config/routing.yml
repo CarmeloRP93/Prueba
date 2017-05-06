@@ -353,3 +353,14 @@ crivero_prueba_notificacionesAdmin:
 crivero_prueba_publicaciones:
     pattern:  /publicaciones
     defaults: { _controller: CriveroPruebaBundle:Publicaciones:publicaciones }
+
+crivero_prueba_publicacion_nueva:
+    pattern:  /nuevaPublicacion
+    defaults: { _controller: CriveroPruebaBundle:Publicaciones:nuevaPublicacion }
+
+crivero_prueba_publicar:
+    pattern:  /publicar
+    defaults: { _controller: CriveroPruebaBundle:Publicaciones:publicar }
+    requirements:
+        _method:  POST|GET
+    

@@ -24,8 +24,7 @@ class ReservasRepository extends EntityRepository {
         return $this->getEntityManager()
                         ->createQueryBuilder()->select('r')
                         ->from('CriveroPruebaBundle:Reservas', 'r')
-                        ->where("r.estadoReserva = 'Reservado'")
-                        ->andWhere("r.idCliente = :id")
+                        ->where("r.idCliente = :id")
                         ->setParameter('id', $id)
                         ->getQuery();
     }
