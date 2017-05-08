@@ -93,16 +93,22 @@ class SesionController extends Controller {
         $this->changeStateNotification($id);
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repository->find($id);
-        $repositoryCancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
+        $recinto = null;
+        $recintoId = null;
+        if ($sesion->getEstado() != 'terminada') {
+            $repositoryCancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
+            $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
 
-        $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
-        if ($sesion->getConcepto() == 'aula') {
-            $recinto = $repositoryAula->find($sesion->getAula());
-        } else {
-            $recinto = $repositoryCancha->find($sesion->getCancha());
+            if ($sesion->getConcepto() == 'aula') {
+                $recinto = $repositoryAula->find($sesion->getAula());
+                $recintoId = $sesion->getAula();
+            } else {
+                $recinto = $repositoryCancha->find($sesion->getCancha());
+                $recintoId = $sesion->getCancha();
+            }
         }
         return $this->render('CriveroPruebaBundle:Sesiones:sesion.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(),
-                    "sesion" => $sesion, "recinto" => $recinto, 'notificacionesSinLeer' => $this->getNewNotification()));
+                    "sesion" => $sesion, "recinto" => $recinto, "recintoId" => $recintoId, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function aceptarSesionAction($id, Request $request) {
@@ -124,7 +130,7 @@ class SesionController extends Controller {
         } else {
             if ($sesion->getConcepto() == 'aula') {
                 $sesion->setPrecio($tarifas->getEntrenamiento() * $duracionSesion);
-            } elseif ($sesion->getConcepto() == 'cancha') {                
+            } elseif ($sesion->getConcepto() == 'cancha') {
                 $sesion->setPrecio($tarifas->getDeportiva() * $duracionSesion);
             }
         }
@@ -473,8 +479,8 @@ class SesionController extends Controller {
         return $this->render('CriveroPruebaBundle:Sesiones:rechazarSesion.html.twig', array('sesion' => $sesion,
                     'form' => $form->createView(), 'notificacionesSinLeer' => $this->getNewNotification()));
     }
-    
-        public function tarifasAction() {
+
+    public function tarifasAction() {
         $em = $this->getDoctrine()->getManager();
         $tarifas = $this->findTarifas(1, $em);
         $form = $this->createEditTarifasForm($tarifas);

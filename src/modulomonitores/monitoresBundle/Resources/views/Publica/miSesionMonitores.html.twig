@@ -14,8 +14,6 @@
                         <h4 class="terr">Motivos: {{sesion.observaciones}}</h4>
                     {% elseif sesion.estado == "cancelada" %}
                         <h4 class="terr">Motivos: {{sesion.observaciones}}</h4>
-                    {% elseif sesion.estado == "terminada" %}
-                        <h4>¡Gracias por su participación! </h4>
                     {% elseif sesion.estado == "rechazada" %}
                         <h4 class="terr">Motivos: {{sesion.observaciones}}</h4>
                     {% endif %}
@@ -26,11 +24,14 @@
                 <div class="panel panel-default">                  
                     <div class="panel-body">   
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">  
-                            <h4>Recinto de la sesión:</h4> 
-                            {% if sesion.concepto == "aula" %} 
-                                <td>{{recinto.nombre}}</td>
-                            {% else %}
-                                <td>{{recinto.tipo}}</td>
+                            {% if sesion.estado != "terminada" %} 
+                                <h4>Recinto de la sesión:</h4> 
+
+                                {% if sesion.concepto == "aula" %} 
+                                    <td>{{recinto.nombre}}</td>
+                                {% else %}
+                                    <td>{{recinto.tipo}}</td>
+                                {% endif %}
                             {% endif %}
                             <h4>Ejercicios a realizar:</h4> <p>{{sesion.ejercicios}}</p>
                             <h4>Repeticiones por cada ejercicio:</h4> <p>{{sesion.repeticiones}} por ejercicio</p>

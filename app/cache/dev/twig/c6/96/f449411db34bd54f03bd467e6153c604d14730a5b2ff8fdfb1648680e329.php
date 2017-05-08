@@ -226,7 +226,7 @@ class __TwigTemplate_c696f449411db34bd54f03bd467e6153c604d14730a5b2ff8fdfb164868
 
                     <div class=\"row\">
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
-                            <label>Seleccione un cancha para realizar la sesión</label> ";
+                            <label>Seleccione una cancha para realizar la sesión</label> ";
         // line 97
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "cancha", array()), 'widget');
         echo " 

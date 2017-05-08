@@ -64,6 +64,22 @@
                                     {% endif %}
                                 {% endif %}
                             {% endif %}
+                            {% if sesion.estado == "pendiente" %}
+                                <h4>Recinto de la sesión:</h4> 
+                                {% if sesion.concepto == "aula" %} 
+                                    <td>{{recinto.nombre}} 
+                                        <a style="margin-bottom: 0; padding: 1px 1px; line-height: 0;" class="btn btn-xs btn-primary" href="{{ path('crivero_prueba_aula_disponibilidad', { id: recintoId }) }}">
+                                            <img src="{{ asset("images/clock.png") }}" style="width: 13px" />
+                                        </a>
+                                    </td>
+                                {% else %}
+                                    <td>{{recinto.tipo}} 
+                                        <a style="margin-bottom: 0; padding: 1px 1px; line-height: 0;" class="btn btn-xs btn-primary" href="{{ path('crivero_prueba_cancha_disponibilidad', { id: recintoId }) }}">
+                                            <img src="{{ asset("images/clock.png") }}" style="width: 13px" />
+                                        </a>
+                                    </td>
+                                {% endif %}
+                            {% endif %}
                         </div> 
 
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">

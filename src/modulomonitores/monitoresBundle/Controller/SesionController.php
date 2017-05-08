@@ -52,8 +52,7 @@ class SesionController extends Controller {
     public function misSesionesMonitoresAction(Request $request) {
         $this->changeStateNotification($request->get('id'));
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
-        $repositoryCancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
+
 
         $em = $this->getDoctrine()->getManager();
         $usuarioId = $this->getUser()->getId();
@@ -65,12 +64,17 @@ class SesionController extends Controller {
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $sesiones, $request->query->getInt('page', 1), 5);
+
+        $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+        $repositoryCancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
         $recinto = null;
         foreach ($sesiones as $sesion) {
-            if ($sesion->getConcepto() == 'aula') {
-                $recinto[$sesion->getId()] = $repositoryAula->find($sesion->getAula());
-            } else {
-                $recinto[$sesion->getId()] = $repositoryCancha->find($sesion->getCancha());
+            if ($sesion->getEstado() != 'terminada') {
+                if ($sesion->getConcepto() == 'aula') {
+                    $recinto[$sesion->getId()] = $repositoryAula->find($sesion->getAula());
+                } else {
+                    $recinto[$sesion->getId()] = $repositoryCancha->find($sesion->getCancha());
+                }
             }
         }
 
@@ -79,8 +83,7 @@ class SesionController extends Controller {
 
     public function miSesionMonitoresAction($id) {
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-        $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
-        $repositoryCancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
+
         $sesion = $repository->find($id);
         $horario = explode('&', $sesion->getHorario());
         $ultimaSesion = $horario[count($horario) - 1];
@@ -100,12 +103,16 @@ class SesionController extends Controller {
             }
         }
         $this->changeStateNotification($id);
-        if ($sesion->getConcepto() == 'aula') {
-            $recinto = $repositoryAula->find($sesion->getAula());
-        } else {
-            $recinto = $repositoryCancha->find($sesion->getCancha());
+        $recinto = null;
+        if ($sesion->getEstado() != 'terminada') {
+            $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+            $repositoryCancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
+            if ($sesion->getConcepto() == 'aula') {
+                $recinto = $repositoryAula->find($sesion->getAula());
+            } else {
+                $recinto = $repositoryCancha->find($sesion->getCancha());
+            }
         }
-
         $deleteForm = $this->createDeleteForm($sesion);
         return $this->render('modulomonitoresmonitoresBundle:Publica:miSesionMonitores.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "flag" => $flag, "sesion" => $sesion, "recinto" => $recinto, 'delete_form' => $deleteForm->createView()));
     }
@@ -840,8 +847,35 @@ class SesionController extends Controller {
         $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
         $sesion->setEstado("terminada");
         $sesion->setEstadoCliente("terminada");
-
-
+        if ($sesion->getConcepto() == 'aula') {
+            $aula = $this->getDoctrine()->getManager()->getRepository('CriveroPruebaBundle:Aulas')->find($sesion->getAula());
+            $arraySesiones = explode('&', $aula->getSesiones());
+            for ($i = 0; $i <= count($arraySesiones); $i++) {
+                if ($arraySesiones[$i] == $id) {
+                    $pos = $i;
+                    break;
+                }
+            }
+            unset($arraySesiones[$pos]);
+            $arraySesiones1 = array_values($arraySesiones);
+            $aula->setSesiones(implode($arraySesiones1, '&'));
+            $em->persist($aula);
+            $sesion->setAula(null);
+        } else {
+            $cancha = $this->getDoctrine()->getManager()->getRepository('CriveroPruebaBundle:Canchas')->find($sesion->getCancha());
+            $arraySesiones = explode('&', $cancha->getSesiones());
+            for ($i = 0; $i <= count($arraySesiones); $i++) {
+                if ($arraySesiones[$i] == $id) {
+                    $pos = $i;
+                    break;
+                }
+            }
+            unset($arraySesiones[$pos]);
+            $arraySesiones1 = array_values($arraySesiones);
+            $cancha->setSesiones(implode($arraySesiones1, '&'));
+            $em->persist($cancha);
+            $sesion->setCancha(null);
+        }
         $em->persist($sesion);
         $em->flush();
         $usuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios")->findAll();

@@ -32,10 +32,14 @@
                                         <td>{{sesion.estado}}</td>
                                         <td>{{sesion.nClientes}} Clientes</td>
                                         <td>{{sesion.nSesiones}} Sesiones</td>
-                                        {% if sesion.concepto == "aula" %} 
-                                        <td>{{recinto[sesion.id].nombre}}</td>
+                                        {% if sesion.estado != 'terminada' %}
+                                            {% if sesion.concepto == "aula" %} 
+                                                <td>{{recinto[sesion.id].nombre}}</td>
+                                            {% else %}
+                                                <td>{{recinto[sesion.id].tipo}}</td>
+                                            {% endif %}
                                         {% else %}
-                                        <td>{{recinto[sesion.id].tipo}}</td>
+                                            <td></td>
                                         {% endif %}
                                         <td class="actions">
                                             <a href="{{ path('modulomonitores_monitores_miSesionMonitores', { id: sesion.id }) }}" class="btn btn-sm btn-primary">

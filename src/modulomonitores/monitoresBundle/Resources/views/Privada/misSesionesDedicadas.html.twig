@@ -32,7 +32,11 @@
                                         <td>{{sesion.estado}}</td>
                                         <td>{{sesion.cliente}}</td>
                                         <td>{{sesion.nSesiones}} Sesiones</td>
-                                        <td>{{aulas[sesion.id].nombre}}</td>
+                                        {% if sesion.estado != 'terminada' %}
+                                            <td>{{aulas[sesion.id].nombre}}</td>
+                                        {% else %}
+                                            <td></td>
+                                        {% endif %}
                                         <td class="actions">
 
                                             <a href="{{ path('modulomonitores_monitores_miSesionDedicada', { id: sesion.id }) }}" class="btn btn-sm btn-primary">

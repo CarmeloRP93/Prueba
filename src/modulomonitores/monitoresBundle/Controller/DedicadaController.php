@@ -52,8 +52,11 @@ class DedicadaController extends Controller {
         $pagination = $paginator->paginate(
                 $sesiones, $request->query->getInt('page', 1), 5);
         $aulas = null;
-        foreach ($sesiones as  $sesion) {
-            $aulas[$sesion->getId()] = $repositoryAula->find($sesion->getAula());
+
+        foreach ($sesiones as $sesion) {
+            if ($sesion->getEstado() != 'terminada') {
+                $aulas[$sesion->getId()] = $repositoryAula->find($sesion->getAula());
+            }
         }
         return $this->render('modulomonitoresmonitoresBundle:Privada:misSesionesDedicadas.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "pagination" => $pagination, "aulas" => $aulas));
     }
@@ -64,20 +67,26 @@ class DedicadaController extends Controller {
         $sesion = $repository->find($id);
         $horario = explode('&', $sesion->getHorario());
         $ultimaSesion = $horario[count($horario) - 1];
-        if ($ultimaSesion{1} == '/') {
-            $ultimaSesion = "0" . $ultimaSesion;
-        }
-        $dia = (int) substr($ultimaSesion, 0, 2);
-        $mes = (int) substr($ultimaSesion, 3, 2);
-
         $flag = false;
-        if ((int) date("d") >= $dia && $mes == date("n")) {
-            $flag = true;
-        } elseif ($mes < date("n")) {
-            $flag = true;
+        if ($sesion->getEstado() == 'validada') {
+            if ($ultimaSesion{1} == '/') {
+                $ultimaSesion = "0" . $ultimaSesion;
+            }
+            $dia = (int) substr($ultimaSesion, 0, 2);
+            $mes = (int) substr($ultimaSesion, 3, 2);
+
+            $flag = false;
+            if ((int) date("d") >= $dia && $mes == date("n")) {
+                $flag = true;
+            } elseif ($mes < date("n")) {
+                $flag = true;
+            }
         }
         $this->changeStateNotification($id);
-        $aula = $repositoryAula->find($sesion->getAula());
+        $aula = null;
+        if ($sesion->getEstado() != 'terminada') {
+            $aula = $repositoryAula->find($sesion->getAula());
+        }
         $deleteForm = $this->createDeleteFormDedicada($sesion);
         return $this->render('modulomonitoresmonitoresBundle:Privada:miSesionDedicada.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "sesion" => $sesion, "flag" => $flag, "aula" => $aula, 'delete_form' => $deleteForm->createView()));
     }
@@ -456,6 +465,35 @@ class DedicadaController extends Controller {
         $sesion = $this->findEntity($id, $em, 'CriveroPruebaBundle:Sesiones');
         $sesion->setEstado("terminada");
         $sesion->setEstadoCliente("terminada");
+        if ($sesion->getConcepto() == 'aula') {
+            $aula = $this->getDoctrine()->getManager()->getRepository('CriveroPruebaBundle:Aulas')->find($sesion->getAula());
+            $arraySesiones = explode('&', $aula->getSesiones());
+            for ($i = 0; $i <= count($arraySesiones); $i++) {
+                if ($arraySesiones[$i] == $id) {
+                    $pos = $i;
+                    break;
+                }
+            }
+            unset($arraySesiones[$pos]);
+            $arraySesiones1 = array_values($arraySesiones);
+            $aula->setSesiones(implode($arraySesiones1, '&'));
+            $em->persist($aula);
+            $sesion->setAula(null);
+        } else {
+            $cancha = $this->getDoctrine()->getManager()->getRepository('CriveroPruebaBundle:Canchas')->find($sesion->getCancha());
+            $arraySesiones = explode('&', $cancha->getSesiones());
+            for ($i = 0; $i <= count($arraySesiones); $i++) {
+                if ($arraySesiones[$i] == $id) {
+                    $pos = $i;
+                    break;
+                }
+            }
+            unset($arraySesiones[$pos]);
+            $arraySesiones1 = array_values($arraySesiones);
+            $cancha->setSesiones(implode($arraySesiones1, '&'));
+            $em->persist($cancha);
+            $sesion->setCancha(null);
+        }
         $em->persist($sesion);
         $em->flush();
         $notificacion = new Notificaciones();
