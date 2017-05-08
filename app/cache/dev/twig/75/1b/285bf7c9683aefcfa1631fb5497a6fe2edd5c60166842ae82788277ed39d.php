@@ -46,18 +46,19 @@ class __TwigTemplate_751b285bf7c9683aefcfa1631fb5497a6fe2edd5c60166842ae82788277
     {
         // line 4
         echo "    <div class=\"container\">
-        <div class=\"col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3\">
+        <div class=\"col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 text-center\">
             <div class=\"panel panel-default text-center\">
                 <div class=\"panel-heading\">
                     <div class=\"row\">
                         <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
-                            ";
-        // line 11
-        echo "                          <h3 style=\"font-weight: 600\">\"Foto\"</h3>
+                            <img src=\"";
+        // line 10
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("images/" . $this->getAttribute((isset($context["jugador"]) ? $context["jugador"] : $this->getContext($context, "jugador")), "imagen", array()))), "html", null, true);
+        echo "\" class=\"img-circle\" style=\"width:60px;\" />        
                         </div>
                         <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
                             <h3 style=\"font-weight: 600\">";
-        // line 14
+        // line 13
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["jugador"]) ? $context["jugador"] : $this->getContext($context, "jugador")), "nombre", array()), "html", null, true);
         echo "</h3>
                         </div>
@@ -67,25 +68,25 @@ class __TwigTemplate_751b285bf7c9683aefcfa1631fb5497a6fe2edd5c60166842ae82788277
                     <div class=\"row\">
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
                             <h4>Nº de Dorsal:</h4> <p>";
-        // line 21
+        // line 20
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["jugador"]) ? $context["jugador"] : $this->getContext($context, "jugador")), "dorsal", array()), "html", null, true);
         echo "</p>
                             ";
-        // line 22
+        // line 21
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["equipos"]) ? $context["equipos"] : $this->getContext($context, "equipos")));
         foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
-            // line 23
+            // line 22
             echo "                                <h4>Equipo al que pertenece:</h4><p>";
             echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "nombre", array()), "html", null, true);
             echo "</p>
                                 ";
-            // line 24
+            // line 23
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["competiciones"]) ? $context["competiciones"] : $this->getContext($context, "competiciones")));
             foreach ($context['_seq'] as $context["_key"] => $context["competicion"]) {
                 if (($this->getAttribute($context["equipo"], "idCompeticion", array()) == $this->getAttribute($context["competicion"], "id", array()))) {
-                    // line 25
+                    // line 24
                     echo "                                    <h4>Competición en la que participa: </h4><p>";
                     echo twig_escape_filter($this->env, $this->getAttribute($context["competicion"], "nombre", array()), "html", null, true);
                     echo "</p>
@@ -95,22 +96,22 @@ class __TwigTemplate_751b285bf7c9683aefcfa1631fb5497a6fe2edd5c60166842ae82788277
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['competicion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 27
+            // line 26
             echo "                            ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 28
+        // line 27
         echo "                        </div>
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6 \" >
                             ";
-        // line 30
+        // line 29
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["equipos"]) ? $context["equipos"] : $this->getContext($context, "equipos")));
         foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
             if (($this->getAttribute($context["equipo"], "id", array()) == $this->getAttribute((isset($context["jugador"]) ? $context["jugador"] : $this->getContext($context, "jugador")), "idEquipo", array()))) {
-                // line 31
+                // line 30
                 echo "                                <h4>Nº de partidos en los que su equipo ha disputado:</h4><p>";
                 echo twig_escape_filter($this->env, (($this->getAttribute($context["equipo"], "victorias", array()) + $this->getAttribute($context["equipo"], "empates", array())) + $this->getAttribute($context["equipo"], "derrotas", array())), "html", null, true);
                 echo "</p>
@@ -120,22 +121,22 @@ class __TwigTemplate_751b285bf7c9683aefcfa1631fb5497a6fe2edd5c60166842ae82788277
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 33
+        // line 32
         echo "                            <h4>Incidencias:</h4><p>";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["jugador"]) ? $context["jugador"] : $this->getContext($context, "jugador")), "incidencia", array()), "html", null, true);
         echo "</p>
+                            <a class=\"btn btn-default\" href=\"";
+        // line 33
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_equipo", array("id" => $this->getAttribute((isset($context["jugador"]) ? $context["jugador"] : $this->getContext($context, "jugador")), "idEquipo", array()))), "html", null, true);
+        echo "\">Ver equipo</a>
                         </div>
                     </div>
                 </div>
-                <a class=\"btn btn-default\" href=\"";
-        // line 37
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_equipo", array("id" => $this->getAttribute((isset($context["jugador"]) ? $context["jugador"] : $this->getContext($context, "jugador")), "idEquipo", array()))), "html", null, true);
-        echo "\">Ver equipo</a>
-                <a class=\"btn btn-default\" href=\"";
+            </div>
+            <a class=\"btn btn-default\" href=\"";
         // line 38
         echo $this->env->getExtension('routing')->getPath("crivero_prueba_jugadores");
         echo "\">Volver a listado jugadores</a>
-            </div>
         </div>
     </div>
 ";
@@ -153,6 +154,6 @@ class __TwigTemplate_751b285bf7c9683aefcfa1631fb5497a6fe2edd5c60166842ae82788277
 
     public function getDebugInfo()
     {
-        return array (  136 => 38,  132 => 37,  124 => 33,  114 => 31,  109 => 30,  105 => 28,  99 => 27,  89 => 25,  84 => 24,  79 => 23,  75 => 22,  71 => 21,  61 => 14,  56 => 11,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  138 => 38,  130 => 33,  125 => 32,  115 => 30,  110 => 29,  106 => 27,  100 => 26,  90 => 24,  85 => 23,  80 => 22,  76 => 21,  72 => 20,  62 => 13,  56 => 10,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

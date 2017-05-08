@@ -6,8 +6,12 @@
         <h1 class="t1 page-header">Cancha {{cancha.tipo}}</h1><br>
 
         <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <img src="{{ asset('images/'~cancha.imagen) }}" class="img-responsive center-block" style="max-width: 340px; margin-bottom:5px"/>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-1">
+                <div class="panel panel-default">                  
+                    <div class="panel-body">
+                        <img src="{{ asset('images/'~cancha.imagen) }}" class="img-responsive center-block" style="max-width: 305px"/>
+                    </div>
+                </div>
                 {% if cancha.disponibilidad == "Disponible" %}
                     <button class="btn btn-success active" style="width: 340px">
                         {{cancha.disponibilidad}} {{ (cancha.precio|length == 3 and '.' in cancha.precio|trans) ? '('~cancha.precio~'0 €/hora)': '('~cancha.precio~' €/hora)'}}
@@ -16,7 +20,6 @@
                     <button class="btn btn-danger active" style="width: 340px">{{cancha.disponibilidad}}</button>
                 {% endif %}
             </div>
-
 
             <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0 col-lg-6 col-lg-offset-0"> 
                 <div class="panel panel-default">                  
@@ -28,10 +31,10 @@
                             <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
                                 <h4>Deporte </h4><p>{{cancha.deporte}}</p>
                             </div>
-                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                                 <h4>Dimensiones </h4><p>{{cancha.dimensiones}} m²</p>
                             </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <h4>Valoración </h4>
                                 {% if cancha.valoracion|round (0, 'common') != 0 %}
                                     {% for i in 1..cancha.valoracion|round (0, 'common') %}

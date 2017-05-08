@@ -6,11 +6,15 @@
             <h1 class="t1">{{aula.nombre}}</h1>
         </div>
         <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xs-offset-0 col-sm-offset-1 col-md-offset-2 col-lg-offset-0">
-            <img src="{{ asset('images/' ~ aula.imagen) }}" style="width:400px; margin-bottom: 5px"  class="img-rounded"/><br>
+            <div class="panel panel-default">                  
+                <div class="panel-body">
+                    <img src="{{ asset('images/' ~ aula.imagen) }}" class="img-responsive center-block" style="width:305px"/>
+                </div>
+            </div>
             {% if aula.disponibilidad == "Disponible" %}
-                <button style="width:400px;" class="btn btn-success active" >{{aula.disponibilidad}}</button>
+                <button style="width:300px;" class="btn btn-success active" >{{aula.disponibilidad}}</button>
             {% else %}
-                <button style="width:400px;" class="btn btn-danger active">{{aula.disponibilidad}}</button>
+                <button style="width:300px;" class="btn btn-danger active">{{aula.disponibilidad}}</button>
             {% endif %}
         </div>
 
@@ -43,7 +47,7 @@
                     </div>
                 </div>
             </div>
+            <a class="btn btn-default" href="{{ path('modulomonitores_monitores_listadoAulas', { id: aula.id }) }}">Volver atrás</a>
         </div>
-        <a class="btn btn-default" href="{{ path('modulomonitores_monitores_listadoAulas', { id: aula.id }) }}">Volver atrás</a>
     </div>
 {% endblock %}

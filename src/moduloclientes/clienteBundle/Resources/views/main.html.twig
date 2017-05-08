@@ -82,7 +82,7 @@
                                     {% elseif notificacion.concepto == "Mensaje"%}
                                         {% set ruta = url('moduloclientes_cliente_mensajeCliente', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == "Celiminada"%}
-                                        <li><form action="{{ path('moduloclientes_cliente_canchasClientes') }} " method="GET">
+                                        <li class="text-center"><form action="{{ path('moduloclientes_cliente_canchasClientes') }} " method="GET">
                                             <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
                                             <input style="background: transparent; color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;" type="submit" value="{{ notificacion.mensaje }}" >
                                         </form></li>
@@ -90,13 +90,16 @@
                                     {% elseif notificacion.concepto == "AbandonoPublica"%}
                                         {% set ruta = url('moduloclientes_cliente_sesionClientes', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == "Tarifas"%}
-                                        <li><form action="{{ path('moduloclientes_cliente_sesionesClientes') }} " method="GET">
+                                        <li class="text-center"><form action="{{ path('moduloclientes_cliente_sesionesClientes') }} " method="GET">
                                             <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
                                             <input style="background: transparent; color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;" type="submit" value="{{ notificacion.mensaje }}">
                                         </form></li>
                                         {% set flag = 1 %}
                                     {% elseif notificacion.concepto == "Publicacion"%}
-                                         {# poner ruta de publicaciones #}
+                                        <li class="text-center"><form action="{{ path('moduloclientes_cliente_homeCliente') }} " method="GET">
+                                            <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
+                                            <input style="background: transparent; color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;" type="submit" value="{{ notificacion.mensaje }}">
+                                        </form></li>
                                         {% set flag = 1 %}
                                     {% else %}
                                         {% set ruta = url('moduloclientes_cliente_notificacionesCliente', {id: notificacion.idEntidad})%}

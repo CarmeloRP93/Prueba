@@ -68,16 +68,16 @@ class __TwigTemplate_812f09b96dd1e3ccf6ab2bfd73da4d2681113917b6b722965a24b60297b
             echo "</th>
                                     <th>";
             // line 19
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Estado", "s.estadoCliente");
+            echo "</th>
+                                    <th>";
+            // line 20
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Monitor", "s.monitor");
             echo "</th>
                                     <th><div class=\"hidden-xs\">";
-            // line 20
+            // line 21
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Objetivo", "s.objetivo");
             echo "</div></th>
-                                    <th>";
-            // line 21
-            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Estado", "s.estadoCliente");
-            echo "</th>
                                     <th class=\"t3\">Acciones</th>
                                 </tr>
                             </thead>
@@ -99,29 +99,28 @@ class __TwigTemplate_812f09b96dd1e3ccf6ab2bfd73da4d2681113917b6b722965a24b60297b
                 // line 29
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);
                 echo "</td>
-                                        <td>";
-                // line 30
-                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "monitor", array()), "html", null, true);
-                echo "</td>
-                                        <td>";
-                // line 31
-                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "objetivo", array()), "html", null, true);
-                echo "</td>
                                         ";
-                // line 32
+                // line 30
                 if (($this->getAttribute($context["sesion"], "estadoCliente", array()) == "disponible")) {
-                    // line 33
+                    // line 31
                     echo "                                            <td>Disponible</td>
                                         ";
                 } else {
-                    // line 35
+                    // line 33
                     echo "                                            <td><font color=\"red\">";
                     echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, $this->getAttribute($context["sesion"], "estadoCliente", array())), "html", null, true);
                     echo "</font></td>
                                             ";
                 }
-                // line 37
-                echo "                                        <td class=\"actions\">
+                // line 35
+                echo "                                        <td>";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "monitor", array()), "html", null, true);
+                echo "</td>
+                                        <td>";
+                // line 36
+                echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "objetivo", array()), "html", null, true);
+                echo "</td>
+                                        <td class=\"actions\">
                                             <a href=\"";
                 // line 38
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_sesionClientes", array("id" => $this->getAttribute($context["sesion"], "id", array()))), "html", null, true);
@@ -169,6 +168,6 @@ class __TwigTemplate_812f09b96dd1e3ccf6ab2bfd73da4d2681113917b6b722965a24b60297b
 
     public function getDebugInfo()
     {
-        return array (  150 => 50,  145 => 47,  139 => 44,  127 => 38,  124 => 37,  118 => 35,  114 => 33,  112 => 32,  108 => 31,  104 => 30,  100 => 29,  96 => 28,  91 => 27,  87 => 26,  79 => 21,  75 => 20,  71 => 19,  67 => 18,  60 => 13,  56 => 11,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  149 => 50,  144 => 47,  138 => 44,  126 => 38,  121 => 36,  116 => 35,  110 => 33,  106 => 31,  104 => 30,  100 => 29,  96 => 28,  91 => 27,  87 => 26,  79 => 21,  75 => 20,  71 => 19,  67 => 18,  60 => 13,  56 => 11,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

@@ -1,63 +1,65 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
-
 {% block title %} Partidos {% endblock %}
-
 {% block contenido %}
     <div class="container">
         <div class="page-header">
             <h1 class="t1">Partidos</h1>
         </div>
-        {% if not partidos|length %}
-            <h2>No se encontraron partidos</h2>
-        {% else %}
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>{{ knp_pagination_sortable(partidos, 'Competición', 'partidos.idCompeticion') }}</th>
-                        <th>{{ knp_pagination_sortable(partidos, 'Equipo Local', 'partidos.idEquipoLocal') }}</th>
-                        <th>{{ knp_pagination_sortable(partidos, 'Equipo Visitante', 'partidos.idEquipoVisitante') }}</th>
-                        <th>{{ knp_pagination_sortable(partidos, 'Lugar del partido', 'partidos.idCancha') }}</th>
-                        <th>Fecha Inicio</th>
-                        <th>{{ knp_pagination_sortable(partidos, 'Resultado', 'partidos.resultado') }}</th>
-                        <th>{{ knp_pagination_sortable(partidos, 'Estado de los partidos', 'partidos.estadoPartido') }}</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for partido in partidos %}
-                        <tr>
-                            <td>{{competiciones[partido.idCompeticion].nombre}}</td>
-                            <td>{{equiposLocales[partido.idEquipoLocal].nombre}}</td>
-                            <td>{{equiposVisitantes[partido.idEquipoVisitante].nombre}}</td>
-                            <td>{{canchas[partido.idCancha].tipo}}</td>
-                            <td><strong>{{partido.fechaInicio|date('d/m/Y')}}</strong></td>
-                            <td>{{partido.resultado}}</td>
-                            <td>{{partido.estadoPartido}}</td>
-                            <td class="actions">
-                                <a href="{{ path('crivero_prueba_partido', { id: partido.id }) }}" class="btn btn-sm btn-info">
-                                    Ver
-                                </a>
-                                <a href="{{ path('crivero_prueba_editarPartido', { id: partido.id }) }}" class="btn btn-sm btn-primary">
-                                    Editar
-                                </a>
-                                <a href="#" class="btn btn-sm btn-danger btn-delete">
-                                    Eliminar
-                                </a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <div class="panel panel-default text-center">
+            <div class="panel-body myelement">
+                {% if not partidos|length %}
+                    <h2>No se encontraron partidos</h2>
+                {% else %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{{ knp_pagination_sortable(partidos, 'Competición', 'partidos.idCompeticion') }}</th>
+                                    <th>{{ knp_pagination_sortable(partidos, 'Equipo Local', 'partidos.idEquipoLocal') }}</th>
+                                    <th>{{ knp_pagination_sortable(partidos, 'Equipo Visitante', 'partidos.idEquipoVisitante') }}</th>
+                                    <th>{{ knp_pagination_sortable(partidos, 'Lugar del partido', 'partidos.idCancha') }}</th>
+                                    <th>Fecha Inicio</th>
+                                    <th>{{ knp_pagination_sortable(partidos, 'Resultado', 'partidos.resultado') }}</th>
+                                    <th>{{ knp_pagination_sortable(partidos, 'Estado de los partidos', 'partidos.estadoPartido') }}</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for partido in partidos %}
+                                    <tr>
+                                        <td>{{competiciones[partido.idCompeticion].nombre}}</td>
+                                        <td>{{equiposLocales[partido.idEquipoLocal].nombre}}</td>
+                                        <td>{{equiposVisitantes[partido.idEquipoVisitante].nombre}}</td>
+                                        <td>{{canchas[partido.idCancha].tipo}}</td>
+                                        <td><strong>{{partido.fechaInicio|date('d/m/Y')}}</strong></td>
+                                        <td>{{partido.resultado}}</td>
+                                        <td>{{partido.estadoPartido}}</td>
+                                        <td class="actions">
+                                            <a href="{{ path('crivero_prueba_partido', { id: partido.id }) }}" class="btn btn-sm btn-info">
+                                                Ver
+                                            </a>
+                                            <a href="{{ path('crivero_prueba_editarPartido', { id: partido.id }) }}" class="btn btn-sm btn-primary">
+                                                Editar
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                                Eliminar
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                <div class="navigation text-center">
+                    {{ knp_pagination_render(partidos)}}
+                </div>
+            </div>
         </div>
-        {%endif%}
         {#<div class="nueva">
             <a href="{{path('crivero_prueba_partido_nuevo')}}" class="btn btn-success" style="height: 30px; width: 150px;">
                 Nuevo Partido
              <span class="glyphicon glyphicon-plus"></span></a>
         </div>#}
-        <div class="navigation text-center">
-            {{ knp_pagination_render(partidos)}}
-        </div>
     </div>
 {% endblock %}

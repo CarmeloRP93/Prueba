@@ -53,26 +53,30 @@ class __TwigTemplate_ec03a43d79939b0bf5def54d06effeacdcc3ba2dba87e01a7cf7c43f7e0
         echo "</h1>
         </div>
         <div class=\"col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xs-offset-0 col-sm-offset-1 col-md-offset-2 col-lg-offset-0\">
-            <img src=\"";
-        // line 9
+            <div class=\"panel panel-default\">                  
+                <div class=\"panel-body\">
+                    <img src=\"";
+        // line 11
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("images/" . $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "imagen", array()))), "html", null, true);
-        echo "\" style=\"width:400px; margin-bottom: 5px\"  class=\"img-rounded\"/><br>
+        echo "\" class=\"img-responsive center-block\" style=\"width:305px\"/>
+                </div>
+            </div>
             ";
-        // line 10
+        // line 14
         if (($this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "disponibilidad", array()) == "Disponible")) {
-            // line 11
-            echo "                <button style=\"width:400px;\" class=\"btn btn-success active\" >";
+            // line 15
+            echo "                <button style=\"width:300px;\" class=\"btn btn-success active\" >";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "disponibilidad", array()), "html", null, true);
             echo "</button>
             ";
         } else {
-            // line 13
-            echo "                <button style=\"width:400px;\" class=\"btn btn-danger active\">";
+            // line 17
+            echo "                <button style=\"width:300px;\" class=\"btn btn-danger active\">";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "disponibilidad", array()), "html", null, true);
             echo "</button>
             ";
         }
-        // line 15
+        // line 19
         echo "        </div>
 
         <div class=\"col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xs-offset-0 col-sm-offset-1 col-md-offset-2 col-lg-offset-0\">
@@ -81,27 +85,27 @@ class __TwigTemplate_ec03a43d79939b0bf5def54d06effeacdcc3ba2dba87e01a7cf7c43f7e0
                     <div class=\"col-md-6 col-xs-12\">
                         <div class=\"text-center\">
                             <h4>Disponibilidad </h4><p>";
-        // line 22
+        // line 26
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "horario", array()), "html", null, true);
         echo "</p>
                             <h4>Descripción</h4><p>";
-        // line 23
+        // line 27
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "descripcion", array()), "html", null, true);
         echo "</p>
                         </div>
                     </div>
                     <div class=\"col-xs-12 col-sm-12 col-md-6 col-lg-6\">
                         <h4>Dimensiones </h4><p>";
-        // line 27
+        // line 31
         echo twig_escape_filter($this->env, ($this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "dimensiones", array()) . " m²"), "html", null, true);
         echo " </p>
                     </div>
 
                     <div style=\"display: inline-grid; margin-top: 16px\">
                         ";
-        // line 31
+        // line 35
         if (($this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "disponibilidad", array()) == "Disponible")) {
-            // line 32
+            // line 36
             echo "                            <form class=\"btn-group-vertical\" action=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_disponibilidadM", array("id" => $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "id", array()))), "html", null, true);
             echo "\" method=\"post\" class=\"alinear btn-group\">
@@ -110,11 +114,11 @@ class __TwigTemplate_ec03a43d79939b0bf5def54d06effeacdcc3ba2dba87e01a7cf7c43f7e0
                             </form>
                         ";
         } else {
-            // line 37
+            // line 41
             echo "                            <button disabled=\"disabled\" type=\"submit\" style=\"margin-bottom: 1px\" class=\"btn btn-primary\">Disponibilidad</button>
                         ";
         }
-        // line 39
+        // line 43
         echo "                        <form class=\"btn-group-vertical\" action=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_sesionesAula", array("id" => $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "id", array()))), "html", null, true);
         echo "\" method=\"post\" class=\"alinear btn-group\">
@@ -124,11 +128,11 @@ class __TwigTemplate_ec03a43d79939b0bf5def54d06effeacdcc3ba2dba87e01a7cf7c43f7e0
                     </div>
                 </div>
             </div>
-        </div>
-        <a class=\"btn btn-default\" href=\"";
-        // line 47
+            <a class=\"btn btn-default\" href=\"";
+        // line 50
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_listadoAulas", array("id" => $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "id", array()))), "html", null, true);
         echo "\">Volver atrás</a>
+        </div>
     </div>
 ";
     }
@@ -145,6 +149,6 @@ class __TwigTemplate_ec03a43d79939b0bf5def54d06effeacdcc3ba2dba87e01a7cf7c43f7e0
 
     public function getDebugInfo()
     {
-        return array (  130 => 47,  118 => 39,  114 => 37,  105 => 32,  103 => 31,  96 => 27,  89 => 23,  85 => 22,  76 => 15,  70 => 13,  64 => 11,  62 => 10,  58 => 9,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  133 => 50,  122 => 43,  118 => 41,  109 => 36,  107 => 35,  100 => 31,  93 => 27,  89 => 26,  80 => 19,  74 => 17,  68 => 15,  66 => 14,  60 => 11,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

@@ -50,7 +50,7 @@ class __TwigTemplate_c21506cdc8736fcc19f962a697f59721caf3d667fb762cf4183c4343f63
         <div class=\"page-header\">
             <h1 class=\"t1\">Reservas</h1>
         </div>
-        <div class=\"panel panel-default\">
+        <div class=\"panel panel-default text-center\">
             <div class=\"panel-body myelement\">
                 ";
         // line 11

@@ -50,7 +50,7 @@ class __TwigTemplate_db262f23e8a5b451e21ed1709a7ceea6b75e1aa3c8bf0acdca8e501d313
         <div class=\"page-header\">
             <h1 class=\"t1\">Sesiones Públicas</h1>
         </div>
-        <div class=\"panel panel-default\">
+        <div class=\"panel panel-default text-center\">
             <div class=\"panel-body myelement\">
                 ";
         // line 11

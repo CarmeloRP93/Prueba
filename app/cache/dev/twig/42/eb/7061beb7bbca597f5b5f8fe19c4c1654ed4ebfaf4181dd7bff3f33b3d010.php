@@ -84,8 +84,8 @@ class __TwigTemplate_42eb7061beb7bbca597f5b5f8fe19c4c1654ed4ebfaf4181dd7bff3f33b
             // line 27
             echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Horario", "c.horario");
             echo "</div></th>
-                            <th class=\"t3\">Acciones</th>
-                            </tr>
+                                    <th class=\"t3\">Acciones</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 ";

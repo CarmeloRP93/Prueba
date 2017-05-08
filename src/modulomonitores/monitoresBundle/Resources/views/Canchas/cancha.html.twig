@@ -5,17 +5,18 @@
         <h1 class="t1 page-header">Cancha {{cancha.tipo}}</h1><br>
 
         <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <img src="{{ asset('images/'~cancha.imagen) }}" class="img-responsive center-block" style="max-width: 340px; margin-bottom:5px"/>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-1">
+                <div class="panel panel-default">                  
+                    <div class="panel-body">
+                        <img src="{{ asset('images/'~cancha.imagen) }}" class="img-responsive center-block" style="max-width: 305px"/>
+                    </div>
+                </div>
                 {% if cancha.disponibilidad == "Disponible" %}
-                    <button class="btn btn-success active" style="width: 340px">
-                        {{cancha.disponibilidad}} 
-                    </button>
+                    <button class="btn btn-success active" style="width: 340px">{{cancha.disponibilidad}} </button>
                 {% else %}
                     <button class="btn btn-danger active" style="width: 340px">{{cancha.disponibilidad}}</button>
                 {% endif %}
             </div>
-
 
             <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-5 col-md-offset-0 col-lg-5 col-lg-offset-0"> 
                 <div class="panel panel-default">                  

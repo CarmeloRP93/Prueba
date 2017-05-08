@@ -47,7 +47,7 @@ class __TwigTemplate_7ee64068a57593b58e91cdcd2f010ff14a4ffbd7b23fff633777fe740be
         <div class=\"page-header\">
             <h1 class=\"t1\">Sesiones Privadas</h1>
         </div>
-        <div class=\"panel panel-default\">
+        <div class=\"panel panel-default text-center\">
             <div class=\"panel-body myelement\">
                 ";
         // line 10

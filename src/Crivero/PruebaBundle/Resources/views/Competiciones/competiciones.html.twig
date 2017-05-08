@@ -1,65 +1,67 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
-
 {% block title %} Competiciones {% endblock %}
-
 {% block contenido %}
     <div class="container">
         <div class="page-header">
             <h1 class="t1">Competiciones</h1>
         </div>
-        {% if not competiciones|length %}
-            <h2>No se encontraron competiciones</h2>
-        {% else %}
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>{{ knp_pagination_sortable(competiciones, 'Nombre', 'competiciones.nombre') }}</th>
-                        <th>{{ knp_pagination_sortable(competiciones, 'Deporte', 'competiciones.deporte') }}</th>
-                        <th>{{ knp_pagination_sortable(competiciones, 'Estado de la competicion', 'competiciones.estadoCompeticion') }}</th>
-                        <th>{{ knp_pagination_sortable(competiciones, 'Tipo Competicion', 'competiciones.tipoCompeticion') }}</th>
-                        <th>Fecha inicio</th>
-                        <th>Fecha finalización</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for competicion in competiciones %}
-                        <tr>
-                            <td>{{competicion.nombre}}</td>
-                            <td>{{competicion.deporte}}</td>
-                            <td>{{competicion.estadoCompeticion}}</td>
-                            <td>{{competicion.tipoCompeticion}}</td>
-                            <td><strong>{{competicion.fechaInicio|date('d/m/Y')}}</strong></td>
-                            {% if competicion.fechaFinalizacion != null %}
-                                <td><strong>{{competicion.fechaFinalizacion|date('d/m/Y')}}</strong></td>
-                                {% else %}
-                                <td><strong>No Consta</strong></td>
-                            {% endif %}
-                            <td class="actions">
-                                <a href="{{ path('crivero_prueba_competicion', { id: competicion.id }) }}" class="btn btn-sm btn-info">
-                                    Ver
-                                </a>
-                                <a href="{{ path('crivero_prueba_editarCompeticion', { id: competicion.id }) }}" class="btn btn-sm btn-primary">
-                                    Editar
-                                </a>
-                                <a href="#" class="btn btn-sm btn-danger btn-delete">
-                                    Eliminar
-                                </a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <div class="panel panel-default text-center">
+            <div class="panel-body myelement">
+                {% if not competiciones|length %}
+                    <h2>No se encontraron competiciones</h2>
+                {% else %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{{ knp_pagination_sortable(competiciones, 'Nombre', 'competiciones.nombre') }}</th>
+                                    <th>{{ knp_pagination_sortable(competiciones, 'Deporte', 'competiciones.deporte') }}</th>
+                                    <th>{{ knp_pagination_sortable(competiciones, 'Estado de la competicion', 'competiciones.estadoCompeticion') }}</th>
+                                    <th>{{ knp_pagination_sortable(competiciones, 'Tipo Competicion', 'competiciones.tipoCompeticion') }}</th>
+                                    <th>Fecha inicio</th>
+                                    <th>Fecha finalización</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for competicion in competiciones %}
+                                    <tr>
+                                        <td>{{competicion.nombre}}</td>
+                                        <td>{{competicion.deporte}}</td>
+                                        <td>{{competicion.estadoCompeticion}}</td>
+                                        <td>{{competicion.tipoCompeticion}}</td>
+                                        <td><strong>{{competicion.fechaInicio|date('d/m/Y')}}</strong></td>
+                                        {% if competicion.fechaFinalizacion != null %}
+                                            <td><strong>{{competicion.fechaFinalizacion|date('d/m/Y')}}</strong></td>
+                                        {% else %}
+                                            <td><strong>No Consta</strong></td>
+                                        {% endif %}
+                                        <td class="actions">
+                                            <a href="{{ path('crivero_prueba_competicion', { id: competicion.id }) }}" class="btn btn-sm btn-info">
+                                                Ver
+                                            </a>
+                                            <a href="{{ path('crivero_prueba_editarCompeticion', { id: competicion.id }) }}" class="btn btn-sm btn-primary">
+                                                Editar
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-danger btn-delete">
+                                                Eliminar
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {%endif%}
+                <div class="navigation">
+                    {{ knp_pagination_render(competiciones) }}
+                </div>
+            </div>
         </div>
-        {%endif%}
         {#<div class="nueva">
             <a href="{{path('crivero_prueba_competicion_nueva')}}" class="btn btn-success" style="height: 30px; width: 150px;">
                 Nueva Competicion 
              <span class="glyphicon glyphicon-plus"></span></a>
         </div>#}
-        <div class="navigation">
-            {{ knp_pagination_render(competiciones) }}
-        </div>
     </div>
 {% endblock %}

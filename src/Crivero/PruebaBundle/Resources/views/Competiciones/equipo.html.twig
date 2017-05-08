@@ -1,35 +1,36 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
-
 {% block title %}Vista de {{equipo.nombre}} {% endblock %}
 {% block contenido %}
     <div class="container text-center">
-        <h1 class="t1">Deporte: {{equipo.deporte}}</h1>
-        <h3 class="t3">Detalles del Equipo {{equipo.nombre}}</h3>
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th> Nombre y apellidos </th>
-                            <th> Dorsal </th>
-                            <th> Incidencia </th>
-                            <th> Acciones </th>
-                        </tr>
-                    </thead>
-                    {% for jugador in jugadores %}
-                        {% if equipo.id == jugador.idEquipo%}
-                        <tr>
-                            <td>  {{jugador.nombre}}  </td>
-                            <td>   {{jugador.Dorsal}}   </td>
-                            <td>   {{jugador.incidencia}}   </td>
-                            <td> <a href="{{ path('crivero_prueba_jugador', { id: jugador.id })  }}" class="btn btn-sm btn-info">
-                                    Ver Detalles
-                                </a>
-                            <td>
-                        </tr>
-                        {%endif%}
-                    {%endfor%}
-                </table>
+        <div class="page-header">
+            <h1 class="t1">{{equipo.nombre}} de {{equipo.deporte}}</h1>
+        </div>
+        <div class="panel panel-default text-center">
+            <div class="panel-body myelement">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nombre y apellidos</th>
+                                <th>Dorsal</th>
+                                <th>Incidencia</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        {% for jugador in jugadores %}
+                            {% if equipo.id == jugador.idEquipo%}
+                                <tr>
+                                    <td>{{jugador.nombre}}</td>
+                                    <td>{{jugador.Dorsal}}</td>
+                                    <td>{{jugador.incidencia}}</td>
+                                    <td> <a href="{{ path('crivero_prueba_jugador', { id: jugador.id })  }}" class="btn btn-info">Ver Detalles</a></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
             </div>
+        </div>
         <a class="btn btn-default" href="{{ path('crivero_prueba_competicion',{id:equipo.idCompeticion}) }}">Ver competición</a>        
         <a class="btn btn-default" href="{{ path('crivero_prueba_equipos') }}">Volver a Equipos</a>        
     </div>

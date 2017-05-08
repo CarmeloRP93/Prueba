@@ -33,7 +33,7 @@ class __TwigTemplate_616bc43d3db257ccbae0f9c36dc3f0aef1349c16fb19eabc06c5b60ace0
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 3
+    // line 2
     public function block_title($context, array $blocks = array())
     {
         echo "Vista de ";
@@ -41,76 +41,77 @@ class __TwigTemplate_616bc43d3db257ccbae0f9c36dc3f0aef1349c16fb19eabc06c5b60ace0
         echo " ";
     }
 
-    // line 4
+    // line 3
     public function block_contenido($context, array $blocks = array())
     {
-        // line 5
+        // line 4
         echo "    <div class=\"container text-center\">
-        <h1 class=\"t1\">Deporte: ";
+        <div class=\"page-header\">
+            <h1 class=\"t1\">";
         // line 6
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["equipo"]) ? $context["equipo"] : $this->getContext($context, "equipo")), "nombre", array()), "html", null, true);
+        echo " de ";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["equipo"]) ? $context["equipo"] : $this->getContext($context, "equipo")), "deporte", array()), "html", null, true);
         echo "</h1>
-        <h3 class=\"t3\">Detalles del Equipo ";
-        // line 7
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["equipo"]) ? $context["equipo"] : $this->getContext($context, "equipo")), "nombre", array()), "html", null, true);
-        echo "</h3>
-            <div class=\"table-responsive\">
-                <table class=\"table table-hover\">
-                    <thead>
-                        <tr>
-                            <th> Nombre y apellidos </th>
-                            <th> Dorsal </th>
-                            <th> Incidencia </th>
-                            <th> Acciones </th>
-                        </tr>
-                    </thead>
-                    ";
-        // line 18
+        </div>
+        <div class=\"panel panel-default text-center\">
+            <div class=\"panel-body myelement\">
+                <div class=\"table-responsive\">
+                    <table class=\"table table-hover\">
+                        <thead>
+                            <tr>
+                                <th>Nombre y apellidos</th>
+                                <th>Dorsal</th>
+                                <th>Incidencia</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        ";
+        // line 20
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["jugadores"]) ? $context["jugadores"] : $this->getContext($context, "jugadores")));
         foreach ($context['_seq'] as $context["_key"] => $context["jugador"]) {
-            // line 19
-            echo "                        ";
+            // line 21
+            echo "                            ";
             if (($this->getAttribute((isset($context["equipo"]) ? $context["equipo"] : $this->getContext($context, "equipo")), "id", array()) == $this->getAttribute($context["jugador"], "idEquipo", array()))) {
-                // line 20
-                echo "                        <tr>
-                            <td>  ";
-                // line 21
-                echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "nombre", array()), "html", null, true);
-                echo "  </td>
-                            <td>   ";
                 // line 22
-                echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "Dorsal", array()), "html", null, true);
-                echo "   </td>
-                            <td>   ";
+                echo "                                <tr>
+                                    <td>";
                 // line 23
-                echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "incidencia", array()), "html", null, true);
-                echo "   </td>
-                            <td> <a href=\"";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "nombre", array()), "html", null, true);
+                echo "</td>
+                                    <td>";
                 // line 24
+                echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "Dorsal", array()), "html", null, true);
+                echo "</td>
+                                    <td>";
+                // line 25
+                echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "incidencia", array()), "html", null, true);
+                echo "</td>
+                                    <td> <a href=\"";
+                // line 26
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_jugador", array("id" => $this->getAttribute($context["jugador"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-sm btn-info\">
-                                    Ver Detalles
-                                </a>
-                            <td>
-                        </tr>
-                        ";
+                echo "\" class=\"btn btn-info\">Ver Detalles</a></td>
+                                </tr>
+                            ";
             }
-            // line 30
-            echo "                    ";
+            // line 29
+            echo "                        ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['jugador'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 31
-        echo "                </table>
+        // line 30
+        echo "                    </table>
+                </div>
             </div>
+        </div>
         <a class=\"btn btn-default\" href=\"";
-        // line 33
+        // line 34
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_competicion", array("id" => $this->getAttribute((isset($context["equipo"]) ? $context["equipo"] : $this->getContext($context, "equipo")), "idCompeticion", array()))), "html", null, true);
         echo "\">Ver competición</a>        
         <a class=\"btn btn-default\" href=\"";
-        // line 34
+        // line 35
         echo $this->env->getExtension('routing')->getPath("crivero_prueba_equipos");
         echo "\">Volver a Equipos</a>        
     </div>
@@ -129,6 +130,6 @@ class __TwigTemplate_616bc43d3db257ccbae0f9c36dc3f0aef1349c16fb19eabc06c5b60ace0
 
     public function getDebugInfo()
     {
-        return array (  114 => 34,  110 => 33,  106 => 31,  100 => 30,  91 => 24,  87 => 23,  83 => 22,  79 => 21,  76 => 20,  73 => 19,  69 => 18,  55 => 7,  51 => 6,  48 => 5,  45 => 4,  37 => 3,  11 => 1,);
+        return array (  115 => 35,  111 => 34,  105 => 30,  99 => 29,  93 => 26,  89 => 25,  85 => 24,  81 => 23,  78 => 22,  75 => 21,  71 => 20,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

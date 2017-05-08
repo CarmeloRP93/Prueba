@@ -227,7 +227,7 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
                             echo "                                    ";
                         } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Celiminada")) {
                             // line 85
-                            echo "                                        <li><form action=\"";
+                            echo "                                        <li class=\"text-center\"><form action=\"";
                             echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_canchasClientes");
                             echo " \" method=\"GET\">
                                             <input type=\"hidden\" name=\"id\" value=\"";
@@ -252,7 +252,7 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
                             echo "                                    ";
                         } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Tarifas")) {
                             // line 93
-                            echo "                                        <li><form action=\"";
+                            echo "                                        <li class=\"text-center\"><form action=\"";
                             echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_sesionesClientes");
                             echo " \" method=\"GET\">
                                             <input type=\"hidden\" name=\"id\" value=\"";
@@ -271,23 +271,34 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
                             echo "                                    ";
                         } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Publicacion")) {
                             // line 99
-                            echo "                                         ";
+                            echo "                                        <li class=\"text-center\"><form action=\"";
+                            echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_homeCliente");
+                            echo " \" method=\"GET\">
+                                            <input type=\"hidden\" name=\"id\" value=\"";
                             // line 100
-                            echo "                                        ";
-                            $context["flag"] = 1;
+                            echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "idEntidad", array()), "html", null, true);
+                            echo "\">
+                                            <input style=\"background: transparent; color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;\" type=\"submit\" value=\"";
                             // line 101
+                            echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "mensaje", array()), "html", null, true);
+                            echo "\">
+                                        </form></li>
+                                        ";
+                            // line 103
+                            $context["flag"] = 1;
+                            // line 104
                             echo "                                    ";
                         } else {
-                            // line 102
+                            // line 105
                             echo "                                        ";
                             $context["ruta"] = $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_notificacionesCliente", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
-                            // line 103
+                            // line 106
                             echo "                                    ";
                         }
-                        // line 104
+                        // line 107
                         echo "                                    ";
                         if (((isset($context["flag"]) ? $context["flag"] : $this->getContext($context, "flag")) == 0)) {
-                            // line 105
+                            // line 108
                             echo "                                        <li class=\"text-center\"><a style=\"color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;\" href=\"";
                             echo twig_escape_filter($this->env, (isset($context["ruta"]) ? $context["ruta"] : $this->getContext($context, "ruta")), "html", null, true);
                             echo "\">";
@@ -295,46 +306,46 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
                             echo "</a></li>
                                     ";
                         }
-                        // line 107
+                        // line 110
                         echo "                                    <li role=\"separator\" class=\"divider\" style=\"background-color: #cecdcd\"></li>
                                         ";
-                        // line 108
+                        // line 111
                         $context["n"] = ((isset($context["n"]) ? $context["n"] : $this->getContext($context, "n")) + 1);
-                        // line 109
+                        // line 112
                         echo "                                    ";
                     }
                 }
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['notificacion'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 110
+                // line 113
                 echo "                                <li class=\"text-center\"><a href = \"";
                 echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_notificacionesCliente");
                 echo "\"><font color=\"blue\"><strong>Ver todas</strong></font></a></li>
                             </ul>
                         </li>
                         <li><a class=\"hidden-sm hidden-md hidden-lg\" href = \"";
-                // line 113
+                // line 116
                 echo $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_notificacionesCliente");
                 echo "\"><img  src=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/campanaCN.png"), "html", null, true);
                 echo "\" style=\"width: 18px\"/></a></li>
                             ";
             }
-            // line 115
+            // line 118
             echo "                    <li><a href = \"";
             echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_mensajes_recibidosCliente");
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/correo.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
                     <li><a href=\"";
-            // line 116
+            // line 119
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("moduloclientes_cliente_miPerfil", array("id" => $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))), "html", null, true);
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/user.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
                     <li><a href=\"";
-            // line 117
+            // line 120
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
             echo "\" style=\"margin-right:12px;\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/logout.png"), "html", null, true);
@@ -342,19 +353,19 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
                 </ul>
             ";
         }
-        // line 120
+        // line 123
         echo "
             <form method=\"GET\" class=\"navbar-form navbar-center\" role=\"search\">
                 <div class=\"input-group\">
                     <input type=\"text\" name=\"query\" class=\"form-control\" value=\"";
-        // line 123
+        // line 126
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "get", array(0 => "query"), "method"), "html", null, true);
         echo "\" 
                            placeholder=\"Buscar usuarios, reservas\" >
                     <div class=\"input-group-btn\">
                         <button type=\"submit\" class=\"btn btn-default\">
                             <img src=\"";
-        // line 127
+        // line 130
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/search.png"), "html", null, true);
         echo "\" style=\"width: 15px;\" />  
                         </button>
@@ -367,25 +378,25 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
 ";
     }
 
-    // line 136
+    // line 139
     public function block_body($context, array $blocks = array())
     {
-        // line 137
+        // line 140
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 139
+        // line 142
         $this->displayBlock('contenido', $context, $blocks);
-        // line 141
+        // line 144
         echo "        </div>
     </div>
 ";
     }
 
-    // line 139
+    // line 142
     public function block_contenido($context, array $blocks = array())
     {
-        // line 140
+        // line 143
         echo "            ";
     }
 
@@ -401,6 +412,6 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
 
     public function getDebugInfo()
     {
-        return array (  389 => 140,  386 => 139,  380 => 141,  378 => 139,  374 => 137,  371 => 136,  358 => 127,  351 => 123,  346 => 120,  338 => 117,  332 => 116,  325 => 115,  318 => 113,  311 => 110,  304 => 109,  302 => 108,  299 => 107,  291 => 105,  288 => 104,  285 => 103,  282 => 102,  279 => 101,  276 => 100,  274 => 99,  271 => 98,  269 => 97,  264 => 95,  260 => 94,  255 => 93,  252 => 92,  249 => 91,  246 => 90,  244 => 89,  239 => 87,  235 => 86,  230 => 85,  227 => 84,  224 => 83,  221 => 82,  218 => 81,  215 => 80,  212 => 79,  209 => 78,  206 => 77,  203 => 76,  200 => 75,  197 => 74,  194 => 73,  191 => 72,  188 => 71,  185 => 70,  182 => 69,  179 => 68,  177 => 67,  170 => 66,  166 => 65,  161 => 63,  158 => 62,  151 => 60,  147 => 59,  144 => 58,  142 => 57,  138 => 55,  129 => 49,  125 => 48,  117 => 43,  107 => 36,  102 => 34,  98 => 33,  93 => 30,  91 => 29,  86 => 27,  80 => 24,  67 => 16,  54 => 5,  51 => 4,  46 => 3,  40 => 2,  11 => 1,);
+        return array (  400 => 143,  397 => 142,  391 => 144,  389 => 142,  385 => 140,  382 => 139,  369 => 130,  362 => 126,  357 => 123,  349 => 120,  343 => 119,  336 => 118,  329 => 116,  322 => 113,  315 => 112,  313 => 111,  310 => 110,  302 => 108,  299 => 107,  296 => 106,  293 => 105,  290 => 104,  288 => 103,  283 => 101,  279 => 100,  274 => 99,  271 => 98,  269 => 97,  264 => 95,  260 => 94,  255 => 93,  252 => 92,  249 => 91,  246 => 90,  244 => 89,  239 => 87,  235 => 86,  230 => 85,  227 => 84,  224 => 83,  221 => 82,  218 => 81,  215 => 80,  212 => 79,  209 => 78,  206 => 77,  203 => 76,  200 => 75,  197 => 74,  194 => 73,  191 => 72,  188 => 71,  185 => 70,  182 => 69,  179 => 68,  177 => 67,  170 => 66,  166 => 65,  161 => 63,  158 => 62,  151 => 60,  147 => 59,  144 => 58,  142 => 57,  138 => 55,  129 => 49,  125 => 48,  117 => 43,  107 => 36,  102 => 34,  98 => 33,  93 => 30,  91 => 29,  86 => 27,  80 => 24,  67 => 16,  54 => 5,  51 => 4,  46 => 3,  40 => 2,  11 => 1,);
     }
 }

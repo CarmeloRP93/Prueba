@@ -52,32 +52,32 @@ class __TwigTemplate_0b2d3d3b1205e28ed106f1b43582aedafcb6ecd650bac5e9141779a1a78
         echo "</h1><br>
 
         <div class=\"row\">
-            <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
-                <img src=\"";
-        // line 9
+            <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-1\">
+                <div class=\"panel panel-default\">                  
+                    <div class=\"panel-body\">
+                        <img src=\"";
+        // line 11
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("images/" . $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "imagen", array()))), "html", null, true);
-        echo "\" class=\"img-responsive center-block\" style=\"max-width: 340px; margin-bottom:5px\"/>
+        echo "\" class=\"img-responsive center-block\" style=\"max-width: 305px\"/>
+                    </div>
+                </div>
                 ";
-        // line 10
+        // line 14
         if (($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()) == "Disponible")) {
-            // line 11
-            echo "                    <button class=\"btn btn-success active\" style=\"width: 340px\">
-                        ";
-            // line 12
+            // line 15
+            echo "                    <button class=\"btn btn-success active\" style=\"width: 340px\">";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()), "html", null, true);
-            echo " 
-                    </button>
+            echo " </button>
                 ";
         } else {
-            // line 15
+            // line 17
             echo "                    <button class=\"btn btn-danger active\" style=\"width: 340px\">";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()), "html", null, true);
             echo "</button>
                 ";
         }
-        // line 17
+        // line 19
         echo "            </div>
-
 
             <div class=\"col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-5 col-md-offset-0 col-lg-5 col-lg-offset-0\"> 
                 <div class=\"panel panel-default\">                  
@@ -85,13 +85,13 @@ class __TwigTemplate_0b2d3d3b1205e28ed106f1b43582aedafcb6ecd650bac5e9141779a1a78
                         <div class=\"row\">
                             <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
                                 <h4>Horario </h4> <p>";
-        // line 25
+        // line 26
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "horario", array()), "html", null, true);
         echo "</p>
                             </div>
                             <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
                                 <h4>Deporte </h4><p>";
-        // line 28
+        // line 29
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "deporte", array()), "html", null, true);
         echo "</p>
                             </div>
@@ -99,13 +99,13 @@ class __TwigTemplate_0b2d3d3b1205e28ed106f1b43582aedafcb6ecd650bac5e9141779a1a78
                         <div class=\"row\">
                             <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
                                 <h4>Dimensiones </h4><p>";
-        // line 33
+        // line 34
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "dimensiones", array()), "html", null, true);
         echo " m²</p>
                             </div>
                             <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
                                 <h4>Dirección </h4><p>";
-        // line 36
+        // line 37
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "direccion", array()), "html", null, true);
         echo "</p>
                             </div>
@@ -113,9 +113,9 @@ class __TwigTemplate_0b2d3d3b1205e28ed106f1b43582aedafcb6ecd650bac5e9141779a1a78
                     </div>
                     <div class=\"\" style=\"margin-bottom: 10px;margin-top: 10px\">
                         ";
-        // line 41
+        // line 42
         if (($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()) == "Disponible")) {
-            // line 42
+            // line 43
             echo "                            <form style=\"margin-right: -4px\" action=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_canchaDisponibilidad", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
             echo "\" method=\"post\" class=\"alinear btn-group\">
@@ -124,11 +124,11 @@ class __TwigTemplate_0b2d3d3b1205e28ed106f1b43582aedafcb6ecd650bac5e9141779a1a78
                             </form>
                         ";
         } else {
-            // line 47
+            // line 48
             echo "                            <button disabled=\"disabled\" type=\"submit\" style=\"margin-bottom: 1px\" class=\"btn btn-primary\">Disponibilidad</button>
                         ";
         }
-        // line 49
+        // line 50
         echo "                        <form class=\"btn-group-vertical\" action=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_sesionesCancha", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
         echo "\" method=\"post\" class=\"alinear btn-group\">
@@ -155,6 +155,6 @@ class __TwigTemplate_0b2d3d3b1205e28ed106f1b43582aedafcb6ecd650bac5e9141779a1a78
 
     public function getDebugInfo()
     {
-        return array (  132 => 49,  128 => 47,  119 => 42,  117 => 41,  109 => 36,  103 => 33,  95 => 28,  89 => 25,  79 => 17,  73 => 15,  67 => 12,  64 => 11,  62 => 10,  58 => 9,  51 => 5,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  132 => 50,  128 => 48,  119 => 43,  117 => 42,  109 => 37,  103 => 34,  95 => 29,  89 => 26,  80 => 19,  74 => 17,  68 => 15,  66 => 14,  60 => 11,  51 => 5,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

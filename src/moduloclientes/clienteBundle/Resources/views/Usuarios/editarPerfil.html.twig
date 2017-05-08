@@ -10,6 +10,10 @@
                     <h3 class="t3">Editar mi perfil</h3>
                 </div>
                 {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+                <div class="hidden">
+                    {{ form_label(form.activo) }}
+                    {{ form_widget(form.activo, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Username'} }) }}
+                </div>
                 <div class="panel-body">
                     <form role="form">
                         <div class="row">

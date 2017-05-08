@@ -106,7 +106,12 @@ class UsuarioController extends Controller {
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
-    public function homeClienteAction() {
+    public function homeClienteAction(Request $request) {
+        $notificaciones = array();
+        if ($this->getUser() != null) {
+            $this->changeStateNotification($request->get('id'));
+            $notificaciones = $this->getNewNotification();
+        }
         return $this->render('moduloclientesclienteBundle:Usuarios:homeCliente.html.twig', array('notificacionesSinLeer' => $this->getNewNotification()));
     }
 

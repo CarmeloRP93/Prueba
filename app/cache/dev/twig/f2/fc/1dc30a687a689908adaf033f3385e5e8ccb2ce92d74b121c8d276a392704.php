@@ -113,10 +113,6 @@ class __TwigTemplate_f2fc1dc30a687a689908adaf033f3385e5e8ccb2ce92d74b121c8d276a3
         echo "\" placeholder=\"Usuario\" required autofocus />
                                 <input type=\"password\" id=\"password\" class=\"form-control\" name=\"_password\" placeholder=\"Contraseña\" required style=\"margin-top: 10px\"/>
                                 <input type=\"hidden\" name=\"_target_path\" value=\"crivero_prueba_home\"/>
-                                <a href=\"";
-        // line 49
-        echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_canchasClientes");
-        echo "\">Entrar como anonimo</a>
                                 <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\">Entrar</button>   
                             </fieldset>
                         </div>
@@ -140,6 +136,6 @@ class __TwigTemplate_f2fc1dc30a687a689908adaf033f3385e5e8ccb2ce92d74b121c8d276a3
 
     public function getDebugInfo()
     {
-        return array (  118 => 49,  112 => 46,  109 => 45,  101 => 40,  96 => 37,  94 => 36,  88 => 33,  84 => 32,  75 => 25,  71 => 22,  66 => 18,  52 => 5,  49 => 4,  44 => 3,  38 => 2,  11 => 1,);
+        return array (  112 => 46,  109 => 45,  101 => 40,  96 => 37,  94 => 36,  88 => 33,  84 => 32,  75 => 25,  71 => 22,  66 => 18,  52 => 5,  49 => 4,  44 => 3,  38 => 2,  11 => 1,);
     }
 }

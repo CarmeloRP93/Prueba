@@ -32,7 +32,7 @@ class CanchasController extends Controller {
             }
         }
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 6);
+        $pagination = $paginator->paginate($sesiones, $request->query->getInt('page', 1), 4);
 
         return $this->render('modulomonitoresmonitoresBundle:Canchas:sesionesCancha.html.twig', array("pagination" => $pagination,
                     'nombre' => $cancha->getTipo(), 'cId' => $id,
@@ -49,7 +49,7 @@ class CanchasController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $canchas, $request->query->getInt('page', 1), 5);
+                $canchas, $request->query->getInt('page', 1), 4);
 
         return $this->render('modulomonitoresmonitoresBundle:Canchas:canchas.html.twig', array("pagination" => $pagination,
                     'notificacionesSinLeer' => $this->getNewNotification()));
@@ -99,7 +99,7 @@ class CanchasController extends Controller {
         }
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-                $horarios, $request->query->getInt('page', 1), 6);
+                $horarios, $request->query->getInt('page', 1), 4);
         return $this->render('modulomonitoresmonitoresBundle:Canchas:disponibilidadCancha.html.twig', array(
             "horarios" => $pagination, 'cancha' => $cancha, 'notificacionesSinLeer' => $this->getNewNotification()));
     }

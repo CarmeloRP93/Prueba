@@ -10,7 +10,7 @@
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-1">
                 <div class="panel panel-default">                  
                     <div class="panel-body">
-                        <img src="{{ asset(cancha.imagen) }}" class="img-responsive center-block" style="width: 310px"/>
+                        <img src="{{ asset('images/'~cancha.imagen) }}" class="img-responsive center-block" style="width: 310px"/>
                     </div>
                     {% if reserva.estadoReserva == 'Reservado' %}
                         {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form, nombre: "Cancelar reserva" })}}
