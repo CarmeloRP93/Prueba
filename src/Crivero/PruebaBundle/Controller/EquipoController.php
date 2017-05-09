@@ -27,12 +27,17 @@ class EquipoController extends Controller {
            "competiciones"=>$competiciones,"representantes"=>$representantes));
     }
     
-    public function equipoAction($id) {
+    public function equipoAction(Request $request,$id) {
       $repositoryEquipo = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
       $equipo=$repositoryEquipo->find($id);
-      $repositoryJugadores = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Jugadores");
-      $jugadores=$repositoryJugadores->findAll();
-      return $this->render('CriveroPruebaBundle:Competiciones:equipo.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),"equipo"=>$equipo,"jugadores"=>$jugadores));
+      $searchQuery = $request->get('query');
+      $repositorioJugadores = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Jugadores");
+      (!empty($searchQuery)) ? $jugadores = $repositorioJugadores->searchJugadores($searchQuery) :
+                        $jugadores = $repositorioJugadores->findJugadoresEquipo($id);
+      $paginator = $this->get('knp_paginator');
+      $pagination = $paginator->paginate(
+                $jugadores, $request->query->getInt('page', 1), 4);
+      return $this->render('CriveroPruebaBundle:Competiciones:equipo.html.twig', array("notificacionesSinLeer"=>$this->getNewNotification(),"equipo"=>$equipo,"jugadores"=>$pagination));
     }
     
     private function getNewNotification() {

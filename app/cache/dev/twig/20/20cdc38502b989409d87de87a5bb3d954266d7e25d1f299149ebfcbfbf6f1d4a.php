@@ -43,7 +43,7 @@ class __TwigTemplate_b9e2e7f14ea359014bb72c8af4694d394484effc03b62efa13d04c29c07
                 <div class=\"panel-heading\">
                     <div class=\"row\">
                         <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
-                            <h3 style=\"font-weight: 600\">\"Foto\"</h3>
+                            <h3 style=\"font-weight: 600\">Foto</h3>
                             <img src=\"";
         // line 11
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl(("images/" . $this->getAttribute((isset($context["jugador"]) ? $context["jugador"] : $this->getContext($context, "jugador")), "imagen", array()))), "html", null, true);
@@ -169,7 +169,7 @@ class __TwigTemplate_b9e2e7f14ea359014bb72c8af4694d394484effc03b62efa13d04c29c07
                 <div class=\"panel-heading\">
                     <div class=\"row\">
                         <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
-                            <h3 style=\"font-weight: 600\">\"Foto\"</h3>
+                            <h3 style=\"font-weight: 600\">Foto</h3>
                             <img src=\"{{ asset('images/' ~ jugador.imagen) }}\" class=\"img-circle\" style=\"width:60px;\" />        
                         </div>
                         <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">

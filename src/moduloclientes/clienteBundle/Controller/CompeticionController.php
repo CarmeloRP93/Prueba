@@ -12,7 +12,7 @@ class CompeticionController extends Controller {
     public function competicionesClientesAction(Request $request) {
         $repositoryCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
         $searchQuery = $request->get('query');
-        (!empty($searchQuery)) ? $competiciones = $repositoryCompeticiones->searchCompeticiones($searchQuery) :
+        (!empty($searchQuery)) ? $competiciones = $repositoryCompeticiones->searchCompeticionesClientes($searchQuery) :
                         $competiciones = $repositoryCompeticiones->getCompeticionesMostrables();
 
         $paginator = $this->get('knp_paginator');

@@ -193,7 +193,7 @@ class __TwigTemplate_de6f92432f329499ce88251e02d337213d320e0a5450e0a4537a7762a3b
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for competicion in pagination %}
+                                {% for competicion in pagination%}
                                     <tr data-id=\"{{ competicion.id }}\">
                                         <td>{{competicion.nombre}}</td>
                                         <td>{{competicion.deporte}}</td>

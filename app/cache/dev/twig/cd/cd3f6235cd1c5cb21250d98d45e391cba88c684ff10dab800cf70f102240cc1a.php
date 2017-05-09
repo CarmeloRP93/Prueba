@@ -33,7 +33,7 @@ class __TwigTemplate_51dddead73ac74f9583ec116edc8a70455ab9532786567767b6194a41a7
         $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session", array()), "flashbag", array()), "get", array(0 => "mensaje"), "method"));
         foreach ($context['_seq'] as $context["_key"] => $context["flashMessage"]) {
             // line 10
-            echo "\t<div class=\"alert alert-success\" style=\"margin-top: -20px\" role=\"alert\">
+            echo "\t<div class=\"alert alert-success\" style=\"margin-top: -20px; margin-bottom: 0\" role=\"alert\">
 \t\t<div class=\"container\"> ";
             // line 11
             echo twig_escape_filter($this->env, $context["flashMessage"], "html", null, true);
@@ -80,7 +80,7 @@ class __TwigTemplate_51dddead73ac74f9583ec116edc8a70455ab9532786567767b6194a41a7
 {% endif %}
 
 {% for flashMessage in app.session.flashbag.get('mensaje') %}
-\t<div class=\"alert alert-success\" style=\"margin-top: -20px\" role=\"alert\">
+\t<div class=\"alert alert-success\" style=\"margin-top: -20px; margin-bottom: 0\" role=\"alert\">
 \t\t<div class=\"container\"> {{ flashMessage }} </div>
 \t</div>
 {% endfor %}", "CriveroPruebaBundle:Default:messages/success.html.twig", "C:\\xampp\\htdocs\\Prueba\\src\\Crivero\\PruebaBundle/Resources/views/Default/messages/success.html.twig");

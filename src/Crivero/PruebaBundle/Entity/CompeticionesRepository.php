@@ -35,4 +35,16 @@ class CompeticionesRepository extends EntityRepository {
             ->setParameter('tipocompeticion', $searchQuery)
             ->getResult();
     }
+    public function searchCompeticionesClientes($searchQuery) {
+        return $this->getEntityManager()
+            ->createQuery("SELECT c FROM CriveroPruebaBundle:Competiciones"
+                    . " c WHERE c.estadocompeticion != 'Finalizado' AND (c.nombre= :nombre "
+                    . "OR c.deporte = :deporte "
+                    . "OR c.estadocompeticion = :estadocompeticion OR c.tipocompeticion = :tipocompeticion)")
+            ->setParameter('nombre', $searchQuery)
+            ->setParameter('deporte', $searchQuery)
+            ->setParameter('estadocompeticion', $searchQuery)
+            ->setParameter('tipocompeticion', $searchQuery)
+            ->getResult();
+    }
 }

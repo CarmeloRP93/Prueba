@@ -8,26 +8,37 @@
         <div class="panel panel-default text-center">
             <div class="panel-body myelement">
                 <div class="table-responsive">
+                    {% if not jugadores|length %}
+                    <h2>No se encontraron jugadores</h2>
+                {% else %}
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Nombre y apellidos</th>
-                                <th>Dorsal</th>
+                                <th></th>
+                                <th>{{ knp_pagination_sortable(jugadores, 'Nombre del jugador', 'pagination.nombre') }}</th>
+                                 <th>{{ knp_pagination_sortable(jugadores, 'Dorsal', 'pagination.dorsal') }}</th>
                                 <th>Incidencia</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         {% for jugador in jugadores %}
-                            {% if equipo.id == jugador.idEquipo%}
                                 <tr>
+                                    {%if jugador.imagen != null%}
+                                        <td><img src="{{ asset('images/'~jugador.imagen) }}" class="img-responsive center-block" style="max-width: 50px"/></td>
+                                    {%else%}
+                                        <td>Imagen no Disponible</td>
+                                    {%endif%}
                                     <td>{{jugador.nombre}}</td>
                                     <td>{{jugador.Dorsal}}</td>
                                     <td>{{jugador.incidencia}}</td>
                                     <td> <a href="{{ path('crivero_prueba_jugador', { id: jugador.id })  }}" class="btn btn-info">Ver Detalles</a></td>
                                 </tr>
-                            {% endif %}
                         {% endfor %}
                     </table>
+                </div>
+                {% endif %}
+                <div class="navigation">
+                    {{ knp_pagination_render(jugadores) }}
                 </div>
             </div>
         </div>

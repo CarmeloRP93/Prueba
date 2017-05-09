@@ -40,86 +40,96 @@ class __TwigTemplate_626a499ec01021564f44a0025124defe9340389e905ef28cad6b11b79ef
         <div class=\"page-header\">
             <h1 class=\"t1\"> Jugadores</h1>
         </div>
-        
-        <div class=\"table-responsive\">
+        ";
+        // line 11
+        if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
+            // line 12
+            echo "            <h2>No se encontraron jugadores</h2>
+        ";
+        } else {
+            // line 14
+            echo "        <div class=\"table-responsive\">
             <table class=\"table table-hover\">
                 <thead>
                     <tr>
                         <th>Equipo</th>
                          <th>";
-        // line 17
-        echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre del jugador", "pagination.nombre");
-        echo "</th>
+            // line 19
+            echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre del jugador", "pagination.nombre");
+            echo "</th>
                          <th>";
-        // line 18
-        echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Dorsal", "pagination.dorsal");
-        echo "</th>
+            // line 20
+            echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Dorsal", "pagination.dorsal");
+            echo "</th>
                         <th>Incidencias</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     ";
-        // line 24
-        $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
-        foreach ($context['_seq'] as $context["_key"] => $context["jugador"]) {
-            // line 25
-            echo "                        <tr>
-                            ";
             // line 26
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["equipos"]) ? $context["equipos"] : $this->getContext($context, "equipos")));
-            foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
-                if (($this->getAttribute($context["equipo"], "id", array()) == $this->getAttribute($context["jugador"], "idEquipo", array()))) {
-                    // line 27
-                    echo "                                <td>";
-                    echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "nombre", array()), "html", null, true);
-                    echo "</td>
+            $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
+            foreach ($context['_seq'] as $context["_key"] => $context["jugador"]) {
+                // line 27
+                echo "                        <tr>
                             ";
+                // line 28
+                $context['_parent'] = $context;
+                $context['_seq'] = twig_ensure_traversable((isset($context["equipos"]) ? $context["equipos"] : $this->getContext($context, "equipos")));
+                foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
+                    if (($this->getAttribute($context["equipo"], "id", array()) == $this->getAttribute($context["jugador"], "idEquipo", array()))) {
+                        // line 29
+                        echo "                                <td>";
+                        echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "nombre", array()), "html", null, true);
+                        echo "</td>
+                            ";
+                    }
                 }
-            }
-            $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
-            $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 29
-            echo "                            <td>";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "nombre", array()), "html", null, true);
-            echo "</td>
+                $_parent = $context['_parent'];
+                unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
+                $context = array_intersect_key($context, $_parent) + $_parent;
+                // line 31
+                echo "                            <td>";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "nombre", array()), "html", null, true);
+                echo "</td>
                             <td>";
-            // line 30
-            echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "dorsal", array()), "html", null, true);
-            echo "</td>
+                // line 32
+                echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "dorsal", array()), "html", null, true);
+                echo "</td>
                             <td>";
-            // line 31
-            echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "incidencia", array()), "html", null, true);
-            echo "</td>
+                // line 33
+                echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "incidencia", array()), "html", null, true);
+                echo "</td>
                             <td class=\"actions\">
                                 <a href=\"";
-            // line 33
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_jugador", array("id" => $this->getAttribute($context["jugador"], "id", array()))), "html", null, true);
-            echo "\" class=\"btn btn-sm btn-info\">
+                // line 35
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_jugador", array("id" => $this->getAttribute($context["jugador"], "id", array()))), "html", null, true);
+                echo "\" class=\"btn btn-sm btn-info\">
                                     Ver Detalles
                                 </a>
                                 ";
-            // line 39
-            echo "                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
+                // line 41
+                echo "                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
                                     Eliminar Jugador
                                 </a>
                             </td>
                         </tr>
                     ";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['jugador'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 45
-        echo "                </tbody>
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['jugador'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 47
+            echo "                </tbody>
             </table>
         </div>
-        <div class=\"navigation\">
+        ";
+        }
+        // line 51
+        echo "        <div class=\"navigation\">
             ";
-        // line 49
+        // line 52
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
         </div>
@@ -139,7 +149,7 @@ class __TwigTemplate_626a499ec01021564f44a0025124defe9340389e905ef28cad6b11b79ef
 
     public function getDebugInfo()
     {
-        return array (  123 => 49,  117 => 45,  106 => 39,  100 => 33,  95 => 31,  91 => 30,  86 => 29,  76 => 27,  71 => 26,  68 => 25,  64 => 24,  55 => 18,  51 => 17,  38 => 6,  35 => 5,  29 => 3,  11 => 1,);
+        return array (  133 => 52,  130 => 51,  124 => 47,  113 => 41,  107 => 35,  102 => 33,  98 => 32,  93 => 31,  83 => 29,  78 => 28,  75 => 27,  71 => 26,  62 => 20,  58 => 19,  51 => 14,  47 => 12,  45 => 11,  38 => 6,  35 => 5,  29 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -162,7 +172,9 @@ class __TwigTemplate_626a499ec01021564f44a0025124defe9340389e905ef28cad6b11b79ef
         <div class=\"page-header\">
             <h1 class=\"t1\"> Jugadores</h1>
         </div>
-        
+        {% if not pagination|length %}
+            <h2>No se encontraron jugadores</h2>
+        {% else %}
         <div class=\"table-responsive\">
             <table class=\"table table-hover\">
                 <thead>
@@ -199,6 +211,7 @@ class __TwigTemplate_626a499ec01021564f44a0025124defe9340389e905ef28cad6b11b79ef
                 </tbody>
             </table>
         </div>
+        {%endif%}
         <div class=\"navigation\">
             {{ knp_pagination_render(pagination) }}
         </div>
