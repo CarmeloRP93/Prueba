@@ -941,17 +941,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\UsuarioController::pagosClienteAction',  '_route' => 'moduloclientes_cliente_pagosCliente',);
         }
 
-        if (0 === strpos($pathinfo, '/home')) {
-            // moduloclientes_cliente_homeCliente
-            if ($pathinfo === '/homeCliente') {
-                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\UsuarioController::homeClienteAction',  '_route' => 'moduloclientes_cliente_homeCliente',);
-            }
+        // moduloclientes_cliente_homeCliente
+        if ($pathinfo === '/homeCliente') {
+            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\UsuarioController::homeClienteAction',  '_route' => 'moduloclientes_cliente_homeCliente',);
+        }
 
-            // crivero_prueba_home
-            if ($pathinfo === '/home') {
-                return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::homeAction',  '_route' => 'crivero_prueba_home',);
-            }
+        // crivero_prueba_inicio
+        if ($pathinfo === '/inicio') {
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\InicioController::paginaInicioAction',  '_route' => 'crivero_prueba_inicio',);
+        }
 
+        // crivero_prueba_home
+        if ($pathinfo === '/redirect') {
+            return array (  '_controller' => 'Crivero\\PruebaBundle\\Controller\\UsuarioController::homeAction',  '_route' => 'crivero_prueba_home',);
         }
 
         // crivero_prueba_perfil

@@ -73,7 +73,7 @@
                     {% if app.user.username == 'director' %}
                         <li><a href = "{{url('crivero_prueba_enviarMensaje')}}">enviar mensaje</a></li>
                     {% endif %} 
-                    <li><a href = "{{ url('crivero_prueba_publicaciones') }}">publicaciones</a></li>
+                    <li><a href = "{{ url('crivero_prueba_publicaciones') }}"><img src="{{asset('images/news.png')}}" style="width: 20px;"></a></li>
                     {% if not notificacionesSinLeer|length %}  
                         <li><a href = "{{url('crivero_prueba_notificacionesAdmin')}}"><img src="{{asset('images/campanaSN.png')}}" style="width: 18px;" /></a></li>
                     {% else %}
@@ -98,6 +98,8 @@
                                         {% set ruta = url('crivero_prueba_sesiones')%}
                                     {% elseif notificacion.concepto == "PrivadaEliminada"%}
                                         {% set ruta = url('crivero_prueba_dedicadas', {id: notificacion.idEntidad})%}
+                                    {% elseif notificacion.concepto == "Competicion"%}
+                                        {% set ruta = url('crivero_prueba_competicion', {id: notificacion.idEntidad})%}
                                     {% endif %}
                                         <li class="text-center"><a style="color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;" href="{{ ruta }}">{{ notificacion.mensaje }}</a></li>
                                         <li role="separator" class="divider" style="background-color: #cecdcd"></li>

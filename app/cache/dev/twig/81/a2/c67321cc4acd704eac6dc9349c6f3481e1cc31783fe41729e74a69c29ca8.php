@@ -49,13 +49,13 @@ class __TwigTemplate_81a2c67321cc4acd704eac6dc9349c6f3481e1cc31783fe41729e74a69c
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:messages/success.html.twig");
         echo "
     <div class=\"container\">
-        <div class=\"page-header \"> 
+        <div class=\"page-header\"> 
             <h1 class=\"t1\">";
         // line 10
         echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), 0, array(), "array"), "cancha", array())), "html", null, true);
         echo " - Reservas</h1>
         </div>
-        <div class=\"panel panel-default\">
+        <div class=\"panel panel-default text-center\">
             <div class=\"panel-body myelement\">
                 ";
         // line 14

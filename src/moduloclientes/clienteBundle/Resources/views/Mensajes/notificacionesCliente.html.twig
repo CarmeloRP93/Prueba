@@ -92,6 +92,12 @@
                                                             Ver notificación
                                                         </button>
                                                     </form>
+                                                {% elseif notificacion.concepto == "Competicion"%}
+                                                    <form action="{{ path('moduloclientes_cliente_competicionClientes', {id: notificacion.idEntidad}) }} " method="GET">
+                                                        <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                            Ver notificación
+                                                        </button>
+                                                    </form>
                                                 {% endif %}
                                         </td>
                                     </tr>

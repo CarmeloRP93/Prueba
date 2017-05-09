@@ -37,15 +37,24 @@
                                             <td><strong>No Consta</strong></td>
                                         {% endif %}
                                         <td class="actions">
-                                            <a href="{{ path('crivero_prueba_competicion', { id: competicion.id }) }}" class="btn btn-sm btn-info">
+                                            <a href="{{ path('crivero_prueba_competicion', { id: competicion.id }) }}" class="btn btn-sm btn-info noMargenBoton">
                                                 Ver
                                             </a>
-                                            <a href="{{ path('crivero_prueba_editarCompeticion', { id: competicion.id }) }}" class="btn btn-sm btn-primary">
-                                                Editar
-                                            </a>
-                                            <a href="#" class="btn btn-sm btn-danger btn-delete">
-                                                Eliminar
-                                            </a>
+                                            {% if competicion.estadoCompeticion == 'Pendiente' %}
+                                                <a href="{{path('crivero_prueba_competicion_validar', {id: competicion.id})}}" class="btn btn-sm btn-success noMargenBoton">
+                                                    Validar
+                                                </a>
+                                                <a href="{{path('crivero_prueba_competicion_rechazar', {id: competicion.id})}}" class="btn btn-sm btn-danger noMargenBoton">
+                                                    Rechazar
+                                                </a>
+                                            {% else %}
+                                                <a href="{{ path('crivero_prueba_editarCompeticion', { id: competicion.id }) }}" class="btn btn-sm btn-primary noMargenBoton">
+                                                    Editar
+                                                </a>
+                                                <a href="#" class="btn btn-sm btn-danger btn-delete noMargenBoton">
+                                                    Eliminar
+                                                </a>
+                                            {% endif %}
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -58,10 +67,5 @@
                 </div>
             </div>
         </div>
-        {#<div class="nueva">
-            <a href="{{path('crivero_prueba_competicion_nueva')}}" class="btn btn-success" style="height: 30px; width: 150px;">
-                Nueva Competicion 
-             <span class="glyphicon glyphicon-plus"></span></a>
-        </div>#}
     </div>
 {% endblock %}

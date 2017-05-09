@@ -42,7 +42,7 @@ class __TwigTemplate_0a0d7c2b21bc3124710f155c13d1d9390dcacee1da8ee3c1ccdb269e091
     // line 4
     public function block_title($context, array $blocks = array())
     {
-        echo "Home";
+        echo "Redirecting";
     }
 
     // line 5

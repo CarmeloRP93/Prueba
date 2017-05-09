@@ -90,7 +90,7 @@ class CanchaController extends Controller {
         $cambio = false;
         $vuelta = 0;
         $cont = 1;
-        for ($i = 1; $cont < 19; $i++) {
+        for ($i = 1; $i < 19; $i++) {
             $dia = date('d') + $i;
             if ($dia > date('t')) {
                 $dia = $dia - date('t');
@@ -107,12 +107,12 @@ class CanchaController extends Controller {
             }
             if ($dia < 10) $dia = '0' . $dia;
             
-            if ($this->isWeekend($dia, $mes, $vuelta)) continue;
+            //if ($this->isWeekend($dia, $mes, $vuelta)) continue;
             
             $diaMes = $dia . '-' . $mes;
 
-            $horarios[$cont-1] = $repositoryH->getInstancia($id, $diaMes)[0];
-            $cont++;
+            $horarios[$i] = $repositoryH->getInstancia($id, $diaMes)[0];
+            //$cont++;
         }
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(

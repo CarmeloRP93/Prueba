@@ -68,7 +68,7 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
         // line 15
         if (($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()) == "Disponible")) {
             // line 16
-            echo "                    <button class=\"btn btn-success active\" style=\"width: 340px\">
+            echo "                    <button class=\"btn btn-success active\" style=\"width: 305px\">
                         ";
             // line 17
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()), "html", null, true);
@@ -79,7 +79,7 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
                 ";
         } else {
             // line 20
-            echo "                    <button class=\"btn btn-danger active\" style=\"width: 340px\">";
+            echo "                    <button class=\"btn btn-danger active\" style=\"width: 305px\">";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()), "html", null, true);
             echo "</button>
                 ";
@@ -171,7 +171,7 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
         if ((((isset($context["nReservas"]) ? $context["nReservas"] : $this->getContext($context, "nReservas")) > 0) && ((isset($context["nSesiones"]) ? $context["nSesiones"] : $this->getContext($context, "nSesiones")) > 0))) {
             // line 63
             echo "
-                            <div class=\"btn-group\" style=\"margin-left: -1px\">
+                            <div class=\"btn-group\" style=\"margin-left: -2px\">
                                 <input type=\"hidden\" class=\"btn\">
                                 <button type=\"submit\" class=\"btn btn-success dropdown-toggle\" data-toggle=\"dropdown\">
                                     Ver reservas <span class=\"caret\"></span></button>
@@ -193,7 +193,7 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
             echo "                            ";
             if (((isset($context["nReservas"]) ? $context["nReservas"] : $this->getContext($context, "nReservas")) > 0)) {
                 // line 76
-                echo "                                <form style=\"margin-left: -1px\" action=\"";
+                echo "                                <form style=\"margin-left: -2px\" action=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha_reservas", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
                 echo "\" method=\"post\" class=\"alinear btn-group\">
                                     <input type=\"hidden\" class=\"btn\">
@@ -205,7 +205,7 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
             echo "                            ";
             if (((isset($context["nSesiones"]) ? $context["nSesiones"] : $this->getContext($context, "nSesiones")) > 0)) {
                 // line 82
-                echo "                                <form style=\"margin-left: -1px\" action=\"";
+                echo "                                <form style=\"margin-left: -2px\" action=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_cancha_sesiones", array("id" => $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "id", array()))), "html", null, true);
                 echo "\" method=\"post\" class=\"alinear btn-group\">
                                     <input type=\"hidden\" class=\"btn\">
@@ -243,7 +243,7 @@ class __TwigTemplate_c3c01d3c4d4de572929d17ab01d3e5c369071fc58b11b85355652e4b3f5
         <div class=\"text-center\">
             ";
         // line 103
-        if ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")) {
+        if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method") && !twig_in_filter("editar", $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")))) {
             // line 104
             echo "                <a href=\"";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method"), "html", null, true);

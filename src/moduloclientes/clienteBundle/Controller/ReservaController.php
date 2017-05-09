@@ -226,37 +226,39 @@ class ReservaController extends Controller {
         $fechaReserva = date_format($reserva->getFechaInicio(), 'd-m');
         $idCancha = $reserva->getIdCancha();
         $horarioscancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Horarioscanchas")->getHorario($idCancha, $fechaReserva);
-        if ($horarioscancha[0]['periodo'] == null) {
-            $concatenado = substr($reserva->getHorario(), 0, -1);
-        } else {
+        $diaReserva = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Horarioscanchas")->getInstancia($idCancha, $fechaReserva)[0];
+        if (strpos($diaReserva->getPeriodo(), substr($reserva->getHorario(), 0, -1)) === false) {
+            if ($horarioscancha[0]['periodo'] == null) {
+                $concatenado = substr($reserva->getHorario(), 0, -1);
+            } else {
 
-            //Cogemos el horario reservado y lo metemos en un vector para comparar con los no reservados
-            $horarioReservado = explode('&', $reserva->getHorario());
-            $horarioscancha2 = implode("", $horarioscancha[0]);
-            $horariosNoReservados = explode('&', $horarioscancha2);
-            $concatenado = '';
-            $flag = 0;
-            for ($i = 0; $i < count($horariosNoReservados); $i++) {
-                if ((int) substr($horariosNoReservados[$i], 0, 2) > (int) substr($horarioReservado[0], 0, 2) && $flag == 0) {
-                    $concatenado .= $reserva->getHorario();
-                    $flag = 1;
-                }
-                ($i == count($horariosNoReservados) - 1) ? $concatenado .= $horariosNoReservados[$i] : $concatenado .= $horariosNoReservados[$i] . '&';
-                if ($i == count($horariosNoReservados) - 1 && $flag == 0) {
-                    $concatenado .= '&' . substr($reserva->getHorario(), 0, -1);
+                //Cogemos el horario reservado y lo metemos en un vector para comparar con los no reservados
+                $horarioReservado = explode('&', $reserva->getHorario());
+                $horarioscancha2 = implode("", $horarioscancha[0]);
+                $horariosNoReservados = explode('&', $horarioscancha2);
+                $concatenado = '';
+                $flag = 0;
+                for ($i = 0; $i < count($horariosNoReservados); $i++) {
+                    if ((int) substr($horariosNoReservados[$i], 0, 2) > (int) substr($horarioReservado[0], 0, 2) && $flag == 0) {
+                        $concatenado .= $reserva->getHorario();
+                        $flag = 1;
+                    }
+                    ($i == count($horariosNoReservados) - 1) ? $concatenado .= $horariosNoReservados[$i] : $concatenado .= $horariosNoReservados[$i] . '&';
+                    if ($i == count($horariosNoReservados) - 1 && $flag == 0) {
+                        $concatenado .= '&' . substr($reserva->getHorario(), 0, -1);
+                    }
                 }
             }
+            $instancia = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Horarioscanchas")->getInstancia($idCancha, $fechaReserva);
+            $instancia[0]->setPeriodo($concatenado);
+            $em->persist($instancia[0]);
+            $em->flush();
         }
-
-        $instancia = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Horarioscanchas")->getInstancia($idCancha, $fechaReserva);
-        $instancia[0]->setPeriodo($concatenado);
-        $em->persist($instancia[0]);
-        $em->flush();
 
         $form = $this->createCustomForm($reserva->getId(), 'DELETE', 'moduloclientes_cliente_cancelarReserva');
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid() ) {
+        if ($form->isSubmitted() && $form->isValid()) {
             if ($request->isXmlHttpRequest()) {
                 $res = $this->deleteReserva($em, $reserva);
 

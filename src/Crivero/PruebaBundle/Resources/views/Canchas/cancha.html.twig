@@ -13,11 +13,11 @@
                     </div>
                 </div>
                 {% if cancha.disponibilidad == "Disponible" %}
-                    <button class="btn btn-success active" style="width: 340px">
+                    <button class="btn btn-success active" style="width: 305px">
                         {{cancha.disponibilidad}} {{ (cancha.precio|length == 3 and '.' in cancha.precio|trans) ? '('~cancha.precio~'0 €/hora)': '('~cancha.precio~' €/hora)'}}
                     </button>
                 {% else %}
-                    <button class="btn btn-danger active" style="width: 340px">{{cancha.disponibilidad}}</button>
+                    <button class="btn btn-danger active" style="width: 305px">{{cancha.disponibilidad}}</button>
                 {% endif %}
             </div>
 
@@ -61,7 +61,7 @@
                         </form>
                         {% if nReservas > 0 and nSesiones > 0 %}
 
-                            <div class="btn-group" style="margin-left: -1px">
+                            <div class="btn-group" style="margin-left: -2px">
                                 <input type="hidden" class="btn">
                                 <button type="submit" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
                                     Ver reservas <span class="caret"></span></button>
@@ -73,13 +73,13 @@
 
                         {% else %}
                             {% if nReservas > 0 %}
-                                <form style="margin-left: -1px" action="{{ path('crivero_prueba_cancha_reservas', { id: cancha.id }) }}" method="post" class="alinear btn-group">
+                                <form style="margin-left: -2px" action="{{ path('crivero_prueba_cancha_reservas', { id: cancha.id }) }}" method="post" class="alinear btn-group">
                                     <input type="hidden" class="btn">
                                     <button type="submit" class="btn btn-success" >Ver reservas</button>
                                 </form>
                             {% endif %}
                             {% if nSesiones > 0 %}
-                                <form style="margin-left: -1px" action="{{ path('crivero_prueba_cancha_sesiones', { id: cancha.id }) }}" method="post" class="alinear btn-group">
+                                <form style="margin-left: -2px" action="{{ path('crivero_prueba_cancha_sesiones', { id: cancha.id }) }}" method="post" class="alinear btn-group">
                                     <input type="hidden" class="btn">
                                     <button type="submit" class="btn btn-success" >Ver sesiones</button>
                                 </form>
@@ -100,7 +100,7 @@
             </div>
         </div>
         <div class="text-center">
-            {% if app.request.headers.get('referer')%}
+            {% if app.request.headers.get('referer') and 'editar' not in app.request.headers.get('referer') %}
                 <a href="{{app.request.headers.get('referer')}}" class="btn btn-default">
                     Volver atrás
                 </a>

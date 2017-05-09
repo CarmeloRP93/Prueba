@@ -136,20 +136,14 @@ class __TwigTemplate_ca5830256a792a656033d404e9a0f523947beb321c924995d169d4faca5
                                             </a>
                                             ";
                 // line 46
-                if (($this->getAttribute($context["reserva"], "estadoReserva", array()) == "Cancelada")) {
-                    // line 47
-                    echo "                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete noMargenBoton\">
-                                                    Descartar
-                                                </a>
-                                            ";
-                } else {
-                    // line 51
-                    echo "                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete noMargenBoton\">
+                if (($this->getAttribute($context["reserva"], "estadoReserva", array()) != "Cancelada")) {
+                    echo "                                              
+                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete noMargenBoton\">
                                                     Cancelar
                                                 </a>
                                             ";
                 }
-                // line 55
+                // line 51
                 echo "                                        </td>
                                     </tr>
                                 ";
@@ -157,18 +151,18 @@ class __TwigTemplate_ca5830256a792a656033d404e9a0f523947beb321c924995d169d4faca5
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['reserva'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 58
+            // line 54
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 61
+        // line 57
         echo "        
                 <div>
                     <div class=\"navigation\">
                         ";
-        // line 64
+        // line 60
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                     </div>
@@ -177,22 +171,22 @@ class __TwigTemplate_ca5830256a792a656033d404e9a0f523947beb321c924995d169d4faca5
         </div>                     
     </div>
     ";
-        // line 70
+        // line 66
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "id" => "form-delete", "with_submit" => false));
         echo "
 
 ";
     }
 
-    // line 73
+    // line 69
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 74
+        // line 70
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <script src=\"";
-        // line 75
+        // line 71
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/criveroprueba/js/delete-reserva.js"), "html", null, true);
         echo "\"></script>
 ";
@@ -210,6 +204,6 @@ class __TwigTemplate_ca5830256a792a656033d404e9a0f523947beb321c924995d169d4faca5
 
     public function getDebugInfo()
     {
-        return array (  196 => 75,  191 => 74,  188 => 73,  181 => 70,  172 => 64,  167 => 61,  161 => 58,  153 => 55,  147 => 51,  141 => 47,  139 => 46,  133 => 43,  127 => 41,  121 => 39,  115 => 37,  113 => 36,  109 => 35,  105 => 34,  100 => 33,  96 => 32,  88 => 27,  84 => 26,  80 => 25,  76 => 24,  70 => 20,  66 => 18,  64 => 17,  47 => 4,  44 => 3,  38 => 2,  11 => 1,);
+        return array (  190 => 71,  185 => 70,  182 => 69,  175 => 66,  166 => 60,  161 => 57,  155 => 54,  147 => 51,  139 => 46,  133 => 43,  127 => 41,  121 => 39,  115 => 37,  113 => 36,  109 => 35,  105 => 34,  100 => 33,  96 => 32,  88 => 27,  84 => 26,  80 => 25,  76 => 24,  70 => 20,  66 => 18,  64 => 17,  47 => 4,  44 => 3,  38 => 2,  11 => 1,);
     }
 }

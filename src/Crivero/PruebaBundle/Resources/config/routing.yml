@@ -1,5 +1,9 @@
+crivero_prueba_inicio:
+    pattern:  /inicio
+    defaults: { _controller: CriveroPruebaBundle:Inicio:paginaInicio }
+
 crivero_prueba_home:
-    pattern:  /home
+    pattern:  /redirect
     defaults: { _controller: CriveroPruebaBundle:Usuario:home }
     
 crivero_prueba_perfil:
@@ -314,7 +318,7 @@ crivero_prueba_actualizarTarifas:
     defaults: { _controller: CriveroPruebaBundle:Sesion:actualizarTarifas }
     
 #---------------------------------------------------------------------------------
-# Otros
+# Mensajeria y notificaciones
 
 crivero_prueba_enviarMensaje:
     pattern: /enviarMensaje/{id}
@@ -349,6 +353,8 @@ crivero_prueba_mensaje:
 crivero_prueba_notificacionesAdmin:
     pattern:  /notificacionesAdmin
     defaults: { _controller: CriveroPruebaBundle:Mensajeria:notificacionesAdmin }
+
+#---------------------------------------------------------------------------------
 
 crivero_prueba_publicaciones:
     pattern:  /publicaciones

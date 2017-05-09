@@ -106,31 +106,51 @@ class __TwigTemplate_a008f252d44b1dc7fc574c78f011c9e8b6e874775701c746dc9a6b0ba1e
                 // line 35
                 echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("images/" . $this->getAttribute($context["usuario"], "imagen", array()))), "html", null, true);
                 echo "\" class=\"img-responsive center-block \" style=\"max-width: 45px\"/></td>
-                                        <td><strong>";
+                                        ";
                 // line 36
-                echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "username", array()), "html", null, true);
-                echo "</strong></td>
-                                        <td>";
-                // line 37
+                if (($this->getAttribute($context["usuario"], "activo", array()) == 1)) {
+                    // line 37
+                    echo "                                            <td><strong>";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "username", array()), "html", null, true);
+                    echo "</strong></td>
+                                        ";
+                } else {
+                    // line 39
+                    echo "                                            <td style=\"color: red\"><strong>";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "username", array()), "html", null, true);
+                    echo "</strong></td>
+                                         ";
+                }
+                // line 41
+                echo "                                        <td>";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "nombre", array()), "html", null, true);
                 echo "</td>
                                         <td>";
-                // line 38
+                // line 42
                 echo twig_escape_filter($this->env, $this->getAttribute($context["usuario"], "email", array()), "html", null, true);
                 echo "</td>
                                         <td>";
-                // line 39
+                // line 43
                 echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["usuario"], "registro", array()), "d/m/Y"), "html", null, true);
                 echo "</td>
                                         <td class=\"actions\">
-                                            <a href=\"";
-                // line 41
-                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_monitor", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-sm btn-info noMargenBoton\">
-                                                Ver
-                                            </a>
-                                            <a href=\"";
-                // line 44
+                                            ";
+                // line 45
+                if (($this->getAttribute($context["usuario"], "activo", array()) == 1)) {
+                    // line 46
+                    echo "                                                <a href=\"";
+                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_monitor", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
+                    echo "\" class=\"btn btn-sm btn-info noMargenBoton\">
+                                                    Ver
+                                                </a>
+                                            ";
+                } else {
+                    // line 50
+                    echo "                                                <button class=\"btn btn-sm btn-info noMargenBoton\" disabled>Ver</button>
+                                            ";
+                }
+                // line 52
+                echo "                                            <a href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_editarUsuario", array("id" => $this->getAttribute($context["usuario"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-primary noMargenBoton\">
                                                 Editar
@@ -145,16 +165,16 @@ class __TwigTemplate_a008f252d44b1dc7fc574c78f011c9e8b6e874775701c746dc9a6b0ba1e
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['usuario'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 53
+            // line 61
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 57
+        // line 65
         echo "                <div class=\"navigation text-center\" >
                     ";
-        // line 58
+        // line 66
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                 </div>
@@ -162,21 +182,21 @@ class __TwigTemplate_a008f252d44b1dc7fc574c78f011c9e8b6e874775701c746dc9a6b0ba1e
         </div>
     </div>
     ";
-        // line 63
+        // line 71
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "id" => "form-delete", "with_submit" => false));
         echo "
 ";
     }
 
-    // line 65
+    // line 73
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 66
+        // line 74
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <script src=\"";
-        // line 67
+        // line 75
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/criveroprueba/js/delete-user.js"), "html", null, true);
         echo "\"></script>
 ";
@@ -194,6 +214,6 @@ class __TwigTemplate_a008f252d44b1dc7fc574c78f011c9e8b6e874775701c746dc9a6b0ba1e
 
     public function getDebugInfo()
     {
-        return array (  180 => 67,  175 => 66,  172 => 65,  166 => 63,  158 => 58,  155 => 57,  149 => 53,  134 => 44,  128 => 41,  123 => 39,  119 => 38,  115 => 37,  111 => 36,  107 => 35,  102 => 34,  98 => 33,  90 => 28,  86 => 27,  82 => 26,  78 => 25,  71 => 20,  67 => 18,  65 => 17,  55 => 10,  44 => 3,  38 => 2,  11 => 1,);
+        return array (  200 => 75,  195 => 74,  192 => 73,  186 => 71,  178 => 66,  175 => 65,  169 => 61,  153 => 52,  149 => 50,  141 => 46,  139 => 45,  134 => 43,  130 => 42,  125 => 41,  119 => 39,  113 => 37,  111 => 36,  107 => 35,  102 => 34,  98 => 33,  90 => 28,  86 => 27,  82 => 26,  78 => 25,  71 => 20,  67 => 18,  65 => 17,  55 => 10,  44 => 3,  38 => 2,  11 => 1,);
     }
 }

@@ -186,7 +186,9 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
                     <li><a href = \"";
             // line 76
             echo $this->env->getExtension('routing')->getUrl("crivero_prueba_publicaciones");
-            echo "\">publicaciones</a></li>
+            echo "\"><img src=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/news.png"), "html", null, true);
+            echo "\" style=\"width: 20px;\"></a></li>
                     ";
             // line 77
             if ( !twig_length_filter($this->env, (isset($context["notificacionesSinLeer"]) ? $context["notificacionesSinLeer"] : $this->getContext($context, "notificacionesSinLeer")))) {
@@ -268,8 +270,14 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
                             $context["ruta"] = $this->env->getExtension('routing')->getUrl("crivero_prueba_dedicadas", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
                             // line 101
                             echo "                                    ";
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Competicion")) {
+                            // line 102
+                            echo "                                        ";
+                            $context["ruta"] = $this->env->getExtension('routing')->getUrl("crivero_prueba_competicion", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
+                            // line 103
+                            echo "                                    ";
                         }
-                        // line 102
+                        // line 104
                         echo "                                        <li class=\"text-center\"><a style=\"color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;\" href=\"";
                         echo twig_escape_filter($this->env, (isset($context["ruta"]) ? $context["ruta"] : $this->getContext($context, "ruta")), "html", null, true);
                         echo "\">";
@@ -277,43 +285,43 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
                         echo "</a></li>
                                         <li role=\"separator\" class=\"divider\" style=\"background-color: #cecdcd\"></li>
                                     ";
-                        // line 104
+                        // line 106
                         $context["n"] = ((isset($context["n"]) ? $context["n"] : $this->getContext($context, "n")) + 1);
-                        // line 105
+                        // line 107
                         echo "                                ";
                     }
                 }
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['notificacion'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 106
+                // line 108
                 echo "                                <li class=\"text-center\"><a href = \"";
                 echo $this->env->getExtension('routing')->getUrl("crivero_prueba_notificacionesAdmin");
                 echo "\"><font color=\"blue\"><strong>Ver todas</strong></font></a></li>
                             </ul>
                         </li>
                         <li><a class=\"hidden-sm hidden-md hidden-lg\" href = \"";
-                // line 109
+                // line 111
                 echo $this->env->getExtension('routing')->getUrl("crivero_prueba_notificacionesAdmin");
                 echo "\"><img  src=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/campanaCN.png"), "html", null, true);
                 echo "\" style=\"width: 18px\"/></a></li>                       
                     ";
             }
-            // line 111
+            // line 113
             echo "                    <li><a href = \"";
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_mensajes_recibidos");
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/correo.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
                     <li><a href = \"";
-            // line 112
+            // line 114
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_perfil");
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/user.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
                     <li><a href=\"";
-            // line 113
+            // line 115
             echo $this->env->getExtension('routing')->getPath("crivero_prueba_logout");
             echo "\" style=\"margin-right: 12px\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/logout.png"), "html", null, true);
@@ -321,19 +329,19 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
                 </ul>
             ";
         }
-        // line 116
+        // line 118
         echo "
             <form method=\"GET\" class=\"navbar-form navbar-center\" role=\"search\">
                 <div class=\"input-group\">
                     <input type=\"text\" name=\"query\" class=\"form-control\" value=\"";
-        // line 119
+        // line 121
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "get", array(0 => "query"), "method"), "html", null, true);
         echo "\" 
                            placeholder=\"Buscar usuarios, reservas\" >
                     <div class=\"input-group-btn\">
                         <button type=\"submit\" class=\"btn btn-default\">
                             <img src=\"";
-        // line 123
+        // line 125
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/search.png"), "html", null, true);
         echo "\" style=\"width: 15px;\" />  
                         </button>
@@ -345,16 +353,16 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
 ";
     }
 
-    // line 131
+    // line 133
     public function block_body($context, array $blocks = array())
     {
-        // line 132
+        // line 134
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 134
-        $this->displayBlock('contenido', $context, $blocks);
         // line 136
+        $this->displayBlock('contenido', $context, $blocks);
+        // line 138
         echo "        </div>
 
     </div>
@@ -362,17 +370,17 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
 ";
     }
 
-    // line 134
+    // line 136
     public function block_contenido($context, array $blocks = array())
     {
-        // line 135
+        // line 137
         echo "            ";
     }
 
-    // line 142
+    // line 144
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 143
+        // line 145
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
@@ -391,6 +399,6 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
 
     public function getDebugInfo()
     {
-        return array (  376 => 143,  373 => 142,  369 => 135,  366 => 134,  358 => 136,  356 => 134,  352 => 132,  349 => 131,  337 => 123,  330 => 119,  325 => 116,  317 => 113,  311 => 112,  304 => 111,  297 => 109,  290 => 106,  283 => 105,  281 => 104,  273 => 102,  270 => 101,  267 => 100,  264 => 99,  261 => 98,  258 => 97,  255 => 96,  252 => 95,  249 => 94,  246 => 93,  243 => 92,  240 => 91,  237 => 90,  234 => 89,  231 => 88,  229 => 87,  224 => 86,  222 => 85,  215 => 84,  211 => 83,  206 => 81,  203 => 80,  196 => 78,  192 => 77,  188 => 76,  185 => 75,  179 => 74,  177 => 73,  174 => 72,  172 => 71,  164 => 66,  159 => 64,  155 => 63,  146 => 57,  141 => 55,  137 => 54,  133 => 53,  129 => 52,  122 => 48,  114 => 43,  110 => 42,  102 => 37,  98 => 36,  89 => 30,  84 => 28,  80 => 27,  68 => 18,  55 => 7,  52 => 6,  47 => 4,  41 => 2,  11 => 1,);
+        return array (  384 => 145,  381 => 144,  377 => 137,  374 => 136,  366 => 138,  364 => 136,  360 => 134,  357 => 133,  345 => 125,  338 => 121,  333 => 118,  325 => 115,  319 => 114,  312 => 113,  305 => 111,  298 => 108,  291 => 107,  289 => 106,  281 => 104,  278 => 103,  275 => 102,  272 => 101,  269 => 100,  266 => 99,  263 => 98,  260 => 97,  257 => 96,  254 => 95,  251 => 94,  248 => 93,  245 => 92,  242 => 91,  239 => 90,  236 => 89,  233 => 88,  231 => 87,  226 => 86,  224 => 85,  217 => 84,  213 => 83,  208 => 81,  205 => 80,  198 => 78,  194 => 77,  188 => 76,  185 => 75,  179 => 74,  177 => 73,  174 => 72,  172 => 71,  164 => 66,  159 => 64,  155 => 63,  146 => 57,  141 => 55,  137 => 54,  133 => 53,  129 => 52,  122 => 48,  114 => 43,  110 => 42,  102 => 37,  98 => 36,  89 => 30,  84 => 28,  80 => 27,  68 => 18,  55 => 7,  52 => 6,  47 => 4,  41 => 2,  11 => 1,);
     }
 }

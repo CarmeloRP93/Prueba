@@ -29,7 +29,7 @@
                                 {% for reserva in pagination %}
                                     <tr>
                                         <td>{{reserva.id}}</td>
-                                        <td><strong><a class="atd"  >{{reserva.cancha}}</a></strong></td>
+                                        <td><strong>{{reserva.cancha}}</strong></td>
                                         <td>{{reserva.fechaInicio|date('d/m/Y')}}</td>
                                         {% set horario = reserva.horario|split('&') %} 
                                         {% if horario|length > 2 %}

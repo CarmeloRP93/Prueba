@@ -4,7 +4,6 @@
 {% block title %}Publicaciones{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
-    <link href="{{ asset('css/fonts.css') }}" type="text/css" rel="stylesheet">
     <link href="{{ asset('css/slider.css') }}" type="text/css" rel="stylesheet">
 {% endblock %}
 {% block contenido %}
@@ -14,9 +13,9 @@
             {% for publicacion in publicaciones %}
                 <div class="image">
                     {% if publicaciones|length > 1 %}
-                        <img src="{{asset('images/'~publicacion.imagen)}}" style="border-radius: 4px" title={{publicacion.titulo}}>
+                        <img class="img-thumbnail" src="{{asset('images/'~publicacion.imagen)}}" title={{publicacion.titulo}}>
                     {% else %}
-                        <img src="{{asset('images/'~publicacion.imagen)}}" style="border-radius: 4px; max-width: 91%" title={{publicacion.titulo}} >
+                        <img src="{{asset('images/'~publicacion.imagen)}}" style="max-width: 91%" title={{publicacion.titulo}} >
                     {% endif %}
                     <h3><span>{{publicacion.titulo}}</span></h3>
                 </div>
@@ -59,9 +58,13 @@
                 var next = '<img src="{{asset('images/next.png')}}" style="width: 17px; border-radius: 0px" />';
                 var previous = '<img src="{{asset('images/previous.png')}}" style="width: 10px; border-radius: 0px" />';
                 $('.slidesjs-stop').append(stop);
+                $('.slidesjs-stop').addClass("hidden-xs");
                 $('.slidesjs-play').append(play);
+                $('.slidesjs-play').addClass("hidden-xs");
                 $('.slidesjs-next').append(next);
+                $('.slidesjs-next').addClass("hidden-xs");
                 $('.slidesjs-previous').append(previous);
+                $('.slidesjs-previous').addClass("hidden-xs");
             });
 
 

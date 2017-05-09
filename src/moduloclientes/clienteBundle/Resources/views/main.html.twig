@@ -77,6 +77,8 @@
                                         {% set ruta = url('moduloclientes_cliente_reservaClientes', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == "Usuario"%}
                                         {% set ruta = url('moduloclientes_cliente_miPerfil', {id: notificacion.idEntidad})%}
+                                    {% elseif notificacion.concepto == "Competicion"%}
+                                        {% set ruta = url('moduloclientes_cliente_competicionClientes', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == "Cancha"%}
                                         {% set ruta = url('moduloclientes_cliente_canchaClientes', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == "Mensaje"%}

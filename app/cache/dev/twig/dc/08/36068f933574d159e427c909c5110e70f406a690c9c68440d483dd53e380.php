@@ -53,7 +53,7 @@ class __TwigTemplate_dc0836068f933574d159e427c909c5110e70f406a690c9c68440d483dd5
         echo " - Sesiones</h1>
         </div>
 
-        <div class=\"panel panel-default\">
+        <div class=\"panel panel-default text-center\">
             <div class=\"panel-body myelement\">
                 <div class=\"table-responsive\">
                     <table class=\"table table-hover\">

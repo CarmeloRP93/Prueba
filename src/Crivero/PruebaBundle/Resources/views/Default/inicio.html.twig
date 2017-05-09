@@ -1,0 +1,102 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Bienvenido!{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/slider.css') }}" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+    <div class="container" style="">
+        <div class="row">
+            <div class="col-lg-6" style="display: inline;float: right;">
+                <h3 class="nothing " >Nuestras instalaciones</h3>
+                <p>fefbewfkefefiehefiefe ijfejfiojiojieofjioo fefbewfkefefiehefiefe ijfejfiojiojieofjioofefbewfkefefiehefiefe ijfejfiojiojieofjioo
+                    fefbewfkefefiehefiefe ijfejfiojiojieofjioofefbewfkefefiehefiefe ijfejfiojiojieofjioofefbewfkefefiehefiefe ijfejfiojiojieofjioofefbewfkefefiehefiefe ijfejfiojiojieofjioo
+                    fefbewfkefefiehefiefe ijfejfiojiojieofjioofefbewfkefefiehefiefe ijfejfiojiojieofjioofefbewfkefefiehefiefe ijfejfiojiojieofjioo</p>
+            </div>
+            <div class="main col-lg-6" style=" width: 50%; max-width: none; margin: 0" >
+                <div class="slides">
+                    {% for publicacion in publicaciones %}
+                        <div class="image">
+                            {% if publicaciones|length > 1 %}
+                                <img class="img-thumbnail" style="width: 100%" src="{{asset('images/'~publicacion.imagen)}}" title={{publicacion.titulo}}>
+                            {% else %}
+                                <img src="{{asset('images/'~publicacion.imagen)}}" style="max-width: 91%" title={{publicacion.titulo}} >
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="main col-lg-6" style=" float: right;width: 50%; max-width: none;" >
+                <div class="slides">
+                    {% for publicacion in publicaciones %}
+                        <div class="image">
+                            {% if publicaciones|length > 1 %}
+                                <img class="img-thumbnail" style="width: 100%" src="{{asset('images/'~publicacion.imagen)}}" title={{publicacion.titulo}}>
+                            {% else %}
+                                <img src="{{asset('images/'~publicacion.imagen)}}" style="max-width: 91%" title={{publicacion.titulo}} >
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-6" style="display: inline;">
+                <h3 class="nothing " >Nuestras instalaciones</h3>
+                <p>fefbewfkefefiehefiefe ijfejfiojiojieofjioo fefbewfkefefiehefiefe ijfejfiojiojieofjioofefbewfkefefiehefiefe ijfejfiojiojieofjioo
+                    fefbewfkefefiehefiefe ijfejfiojiojieofjioofefbewfkefefiehefiefe ijfejfiojiojieofjioofefbewfkefefiehefiefe ijfejfiojiojieofjioofefbewfkefefiehefiefe ijfejfiojiojieofjioo
+                    fefbewfkefefiehefiefe ijfejfiojiojieofjioofefbewfkefefiehefiefe ijfejfiojiojieofjioofefbewfkefefiehefiefe ijfejfiojiojieofjioo</p>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{asset ('js/jquery.slides.js')}}"></script>
+    {% if publicaciones|length > 1 %}
+        <script>
+
+            $(function () {
+                $(".slides").slidesjs({
+                    play: {
+                        active: true,
+                        // [boolean] Generate the play and stop buttons.
+                        // You cannot use your own buttons. Sorry.
+                        effect: "fade",
+                        // [string] Can be either "slide" or "fade".
+                        interval: 5000,
+                        // [number] Time spent on each slide in milliseconds.
+                        auto: true,
+                        // [boolean] Start playing the slideshow on load.
+                        swap: true,
+                        // [boolean] show/hide stop and play buttons
+                        pauseOnHover: false,
+                        // [boolean] pause a playing slideshow on hover
+                        restartDelay: 3000
+                                // [number] restart delay on inactive slideshow
+                    }
+                });
+
+
+
+                $('.slidesjs-stop').addClass('hidden');
+                $('.slidesjs-play').addClass('hidden');
+                $('.slidesjs-next').addClass('hidden');
+                $('.slidesjs-previous').addClass('hidden');
+                $('.slidesjs-pagination').addClass('hidden');
+
+                $('.slidesjs-container').css('height', "700px");
+                $('.slidesjs-container').css('width', "580px");
+            });
+
+
+
+        </script>
+    {% endif %}
+{% endblock %}

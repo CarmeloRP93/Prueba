@@ -4,6 +4,7 @@ namespace moduloclientes\clienteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Crivero\PruebaBundle\Entity\Competiciones;
+use Crivero\PruebaBundle\Entity\Notificaciones;
 use Crivero\PruebaBundle\Form\CompeticionesType;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -23,6 +24,7 @@ class CompeticionController extends Controller {
     }
 
     public function competicionClientesAction($id) {
+        $this->changeStateNotification($id);
         $repositoryCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
         $competicion = $repositoryCompeticiones->find($id);
         $repositoryEquipos = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Equipos");
@@ -55,6 +57,18 @@ class CompeticionController extends Controller {
             $competicion->setEstadocompeticion("Pendiente");
             $em->persist($competicion);
             $em->flush();
+
+            $admin = $this->getDoctrine()->getRepository('CriveroPruebaBundle:Usuarios')->getAdmin()[0];
+            $notificacion = new Notificaciones();
+            $notificacion->setIdEntidad($competicion->getId());
+            $notificacion->setIdDestinatario($admin->getId());
+            $notificacion->setEstado('No leido');
+            $notificacion->setConcepto('Competicion');
+            $notificacion->setIdOrigen($this->getUser()->getId());
+            $notificacion->setMensaje('El usuario ' . $this->getUser()->getUsername() . ' ha creado una competición');
+            $em->persist($notificacion);
+            $em->flush();
+
             return $this->redirect($this->generateUrl('moduloclientes_cliente_competicionesClientes'));
         }
         return $this->render('moduloclientesclienteBundle:Competiciones:nuevaCompeticionClientes.html.twig', array("notificacionesSinLeer" => $this->getNewNotification(),
@@ -71,6 +85,14 @@ class CompeticionController extends Controller {
             }
         }
         return $notificacionesSinLeer;
+    }
+
+    private function changeStateNotification($idEntidad) {
+        $repositoryN = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Notificaciones");
+        if ($repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())) {
+            $repositoryN->getNotificacionEntidad($idEntidad, $this->getUser()->getId())[0]->setEstado("Leido");
+            $this->getDoctrine()->getManager()->flush();
+        }
     }
 
 }

@@ -73,7 +73,7 @@
                 </div>
             </div>
             <div class="text-center">
-                {% if app.request.headers.get('referer')%}
+                {% if app.request.headers.get('referer') and 'editarUsuario' not in app.request.headers.get('referer') %}
                     <a href="{{app.request.headers.get('referer')}}" class="btn btn-default">
                         Volver atrás
                     </a>

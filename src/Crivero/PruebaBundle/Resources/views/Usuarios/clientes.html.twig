@@ -33,20 +33,32 @@
                                 {% for usuario in pagination %}
                                     <tr data-id="{{ usuario.id }}">
                                         <td><img src="{{ asset('images/'~usuario.imagen) }}" class="img-responsive center-block " style="max-width: 45px"/></td>
-                                        <td><strong>{{usuario.username}}</strong></td>
-                                        <td>{{usuario.nombre}}</td>
+                                            {% if usuario.activo == 1 %}
+                                            <td><strong>{{usuario.username}}</strong></td>
+                                        {% else %}
+                                            <td style="color: red"><strong>{{usuario.username}}</strong></td>
+                                                {% endif %}
                                         <td>{{usuario.email}}</td>
+                                        <td>{{usuario.nombre}}</td>
                                         <td>{{usuario.registro|date('d/m/Y')}}</td>
                                         <td class="actions">
-                                            <a href="{{ path('crivero_prueba_cliente', { id: usuario.id }) }}" class="btn btn-sm btn-info noMargenBoton">
-                                                Ver
-                                            </a>
+                                            {% if usuario.activo == 1 %}
+                                                <a href="{{ path('crivero_prueba_cliente', { id: usuario.id }) }}" class="btn btn-sm btn-info noMargenBoton">
+                                                    Ver
+                                                </a>
+                                            {% else %}
+                                                <button class="btn btn-sm btn-info noMargenBoton" disabled>Ver</button>
+                                            {% endif %}
                                             <a href="{{ path('crivero_prueba_editarUsuario', { id: usuario.id }) }}" class="btn btn-sm btn-primary noMargenBoton">
                                                 Editar
                                             </a>
-                                            <a href="{{ path('crivero_prueba_pagos_usuario', { id: usuario.id }) }}" class="btn btn-sm btn-warning noMargenBoton">
-                                                Pagos
-                                            </a>
+                                            {% if usuario.activo == 1 %}
+                                                <a href="{{ path('crivero_prueba_pagos_usuario', { id: usuario.id }) }}" class="btn btn-sm btn-warning noMargenBoton">
+                                                    Pagos
+                                                </a>
+                                            {% else %}
+                                                <button class="btn btn-sm btn-warning noMargenBoton" disabled>Pagos</button>
+                                            {% endif %}
                                             <a href="#" class="btn btn-sm btn-danger btn-delete noMargenBoton">
                                                 Eliminar
                                             </a>
