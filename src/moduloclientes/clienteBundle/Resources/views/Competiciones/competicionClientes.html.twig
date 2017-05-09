@@ -1,82 +1,78 @@
 {% extends 'moduloclientesclienteBundle::main.html.twig' %}
 {% block title %} {{competicion.nombre}} {% endblock %}
 {% block contenido %}
-    <div class="container">
-         <h1 class="t1"> {{competicion.tipoCompeticion}} {{competicion.nombre}} de {{competicion.deporte}}</h1>
+    <div class="container text-center">
+        <div class="page-header">
+            <h1 class="t1"> {{competicion.tipoCompeticion}} {{competicion.nombre}} de {{competicion.deporte}}</h1>
+        </div>
 
         {% if competicion.estadoCompeticion == "Validado"%}
-        <h4>Le fecha de comienzo es el {{competicion.fechaInicio|date('d/m/Y')}}. Después de esta fecha la fase de inscripción quedará cerrada.</h4>
-        <div class="nuevoEquipo">
-            <a href="{{path('moduloclientes_cliente_equipo_nuevo',{'id':competicion.id})}}" class="btn btn-success">
-                Crear Equipo 
-                <span class="glyphicon glyphicon-plus"></span></a>
-        </div>
-        <a class="btn btn-default" href="{{ path('moduloclientes_cliente_competicionesClientes') }}">Volver atrás</a>
-        {%endif%}
+            <h4>Le fecha de comienzo es el {{competicion.fechaInicio|date('d/m/Y')}}. Después de esta fecha la fase de inscripción quedará cerrada.</h4>
+            <a href="{{path('moduloclientes_cliente_equipo_nuevo',{'id':competicion.id})}}" class="btn btn-success">Crear Equipo <span class="glyphicon glyphicon-plus"></span></a>
+        {% endif %}
         {% if competicion.estadoCompeticion == "Jugandose"%}
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th> Posición </th>
-                            <th> Equipo  </th>
-                            <th> Puntos   </th>
-                            <th> Victorias </th>
-                            <th> Derrotas </th>
-                            <th> Empates  </th>
-                        </tr>
-                    </thead>
-                    {%for equipo in equipos%}
-                        <tr>
-                            <td>   {{equipo.clasificacion}}º  </td>
-                            <td>   {{equipo.nombre}}           </td>
-                            <td>   {{equipo.puntuacion}}   </td>
-                            <td>   {{equipo.victorias}}   </td>
-                            <td>   {{equipo.derrotas}}  </td>
-                            <td>   {{equipo.empates}}   </td>
-                        </tr>
-                    {%endfor%}
-                </table>
+            <div class="panel panel-default text-center">
+                <div class="panel-body myelement">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Posición</th>
+                                    <th>Equipo</th>
+                                    <th>Puntos</th>
+                                    <th>Victorias</th>
+                                    <th>Derrotas</th>
+                                    <th>Empates</th>
+                                </tr>
+                            </thead>
+                            {% for equipo in equipos %}
+                                <tr>
+                                    <td>{{equipo.clasificacion}}º</td>
+                                    <td>{{equipo.nombre}}</td>
+                                    <td>{{equipo.puntuacion}}</td>
+                                    <td>{{equipo.victorias}}</td>
+                                    <td>{{equipo.derrotas}}</td>
+                                    <td>{{equipo.empates}}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+                <a href="{{ path('moduloclientes_cliente_partidosClientes',{ id: competicion.id }) }}" class="btn btn-success">Ver Partidos</a>
             </div>
-            <a href="{{ path('moduloclientes_cliente_partidosClientes',{ id: competicion.id }) }}" class="btn btn-sm btn-info">
-                Ver Partidos
-            </a>
-            <a class="btn btn-default" href="{{ path('moduloclientes_cliente_competicionesClientes') }}">Volver atrás</a>
-        {%endif%}
-    </div>
-    <div>
-        <ul class="container text-center">
-            {%if competicion.estadoCompeticion == "Finalizado" %}
-                <h3 class="t3">Resumen del {{competicion.nombre}}</h3>
-                <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th> Posición </th>
-                            <th> Equipo  </th>
-                            <th> Puntos   </th>
-                            <th> Victorias </th>
-                            <th> Derrotas </th>
-                            <th> Empates  </th>
-                        </tr>
-                    </thead>
-                    {%for equipo in equipos%}
-                        <tr>
-                            <td>   {{equipo.clasificacion}}º  </td>
-                            <td>   {{equipo.nombre}}           </td>
-                            <td>   {{equipo.puntuacion}}   </td>
-                            <td>   {{equipo.victorias}}   </td>
-                            <td>   {{equipo.derrotas}}  </td>
-                            <td>   {{equipo.empates}}   </td>
-                        </tr>
-                    {%endfor%}
-                </table>
+        {% endif %}
+        {% if competicion.estadoCompeticion == "Finalizado" %}
+            <h3 class="t3">Finalizado</h3>
+            <div class="panel panel-default text-center">
+                <div class="panel-body myelement">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Posición </th>
+                                    <th> Equipo  </th>
+                                    <th> Puntos   </th>
+                                    <th> Victorias </th>
+                                    <th> Derrotas </th>
+                                    <th> Empates  </th>
+                                </tr>
+                            </thead>
+                            {% for equipo in equipos %}
+                                <tr>
+                                    <td>{{equipo.clasificacion}}º</td>
+                                    <td>{{equipo.nombre}}</td>
+                                    <td>{{equipo.puntuacion}}</td>
+                                    <td>{{equipo.victorias}}</td>
+                                    <td>{{equipo.derrotas}}</td>
+                                    <td>{{equipo.empates}}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+                <a href="{{ path('moduloclientes_cliente_partidosClientes',{ id: competicion.id }) }}" class="btn btn-sm btn-info">Ver Partidos</a>
             </div>
-                <a href="{{ path('moduloclientes_cliente_partidosClientes',{ id: competicion.id }) }}" class="btn btn-sm btn-info">
-                    Ver Partidos
-                </a>
-                <a class="btn btn-default" href="{{ path('moduloclientes_cliente_competicionesClientes') }}">Volver atrás</a>
-            {%endif%}
-        </ul>
+        {% endif %}
+        <a class="btn btn-default" href="{{ path('moduloclientes_cliente_competicionesClientes') }}">Volver atrás</a>
     </div>
 {% endblock %}

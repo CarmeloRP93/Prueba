@@ -231,3 +231,7 @@ modulomonitores_monitores_editarDeportiva:
     defaults: { _controller: modulomonitoresmonitoresBundle:Sesion:editarDeportiva }
     requirements:
         _method:  POST|PUT|GET
+        
+modulomonitores_monitores_homeMonitor:
+    pattern: /homeMonitor
+    defaults: { _controller: modulomonitoresmonitoresBundle:Perfil:homeMonitor }

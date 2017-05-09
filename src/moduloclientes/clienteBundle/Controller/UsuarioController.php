@@ -107,12 +107,25 @@ class UsuarioController extends Controller {
     }
 
     public function homeClienteAction(Request $request) {
+
+        $publicaciones = $this->getDoctrine()->getRepository('CriveroPruebaBundle:Publicaciones')->getPublicaciones();
+        $publicacionesF = array();
+        foreach ($publicaciones as $clave => $publicacion) {
+            if (date_diff(date_create(date('Y-m-d')), $publicacion->getFechaFinalizacion())->format('%R') === '+') {
+                $publicacionesF[$clave] = $publicacion;
+            }
+        }
+        
+        $canchas = $this->getDoctrine()->getRepository('CriveroPruebaBundle:Canchas')->getCanchas();
+        $aulas = $this->getDoctrine()->getRepository('CriveroPruebaBundle:Aulas')->getAulas();
+
         $notificaciones = array();
         if ($this->getUser() != null) {
             $this->changeStateNotification($request->get('id'));
             $notificaciones = $this->getNewNotification();
         }
-        return $this->render('moduloclientesclienteBundle:Usuarios:homeCliente.html.twig', array('notificacionesSinLeer' => $this->getNewNotification()));
+        return $this->render('moduloclientesclienteBundle:Usuarios:homeCliente.html.twig', array(
+                    'publicaciones' => $publicacionesF, 'canchas' => $canchas, 'aulas' => $aulas, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     private function getNewNotification() {

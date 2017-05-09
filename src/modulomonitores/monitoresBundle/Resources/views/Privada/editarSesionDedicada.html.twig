@@ -21,7 +21,7 @@
 
                         {{ form_label(form.observaciones) }}
                         {{ form_widget(form.observaciones, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Motivos de cancelación'} }) }}
-                        <span class="text-danger">{{ form_errors(form.observaciones) }}</span>   
+                        <span class="text-danger">{{ form_errors(form.observaciones) }}</span>
 
                         {{ form_label(form.lClientes) }}
                         {{ form_widget(form.lClientes, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Motivos de cancelación'} }) }}
@@ -83,19 +83,20 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <label>Seleccione la hora de comienzo</label> 
-                            {{ form_widget(form.horaComienzo, { 'attr' : {'class' : 'form-control'} }) }}
-                            <span class="text-danger">{{ form_errors(form.horaComienzo) }}</span><br>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <label>Seleccione los días de la sesión</label> {{ form_widget(form.dias) }}
                             <span class="text-danger">{{ form_errors(form.dias) }}</span><br>
                         </div>
-
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <label>Seleccione un recinto para realizar la sesión</label> {{ form_widget(form.aula) }}
+                            <span class="text-danger">{{ form_errors(form.aula) }}</span><br>
+                        </div>
                     </div>
-                    <div class="text-center">
-                        <label>Seleccione un recinto para realizar la sesión</label> {{ form_widget(form.aula) }}
-                        <span class="text-danger">{{ form_errors(form.aula) }}</span><br>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xs-offset-0 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+                            <label>Seleccione el turno</label> 
+                            {{ form_widget(form.horaComienzo, { 'attr' : {'class' : 'form-control'} }) }}
+                            <span class="text-danger">{{ form_errors(form.horaComienzo) }}</span><br>
+                        </div>
                     </div>
                 </form><br>
 

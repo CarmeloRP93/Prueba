@@ -51,7 +51,7 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
     public function block_navegation($context, array $blocks = array())
     {
         // line 5
-        echo "    <nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\" >
+        echo "    <nav class=\"navbar navbar-default navbar-fixed-top\" style=\"opacity: 0.9\" role=\"navigation\" >
         <!-- El logotipo y el icono que despliega el menú se agrupan
              para mostrarlos mejor en los dispositivos móviles -->
         <div class=\"navbar-header\">
@@ -367,7 +367,7 @@ class __TwigTemplate_7e81a51135b4badac170c56395ac437579ac4b10390ee0a8246ba369963
         // line 128
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "get", array(0 => "query"), "method"), "html", null, true);
         echo "\" 
-                           placeholder=\"Buscar usuarios, reservas\" >
+                           placeholder=\"Buscar...\" >
                     <div class=\"input-group-btn\">
                         <button type=\"submit\" class=\"btn btn-default\">
                             <img src=\"";

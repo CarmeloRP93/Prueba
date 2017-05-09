@@ -483,6 +483,15 @@ class SesionController extends Controller {
     public function tarifasAction() {
         $em = $this->getDoctrine()->getManager();
         $tarifas = $this->findTarifas(1, $em);
+        if ($tarifas === null) {
+            $tarifa = new Tarifas();
+            $tarifa->setEntrenamiento(0);
+            $tarifa->setDeportiva(0);
+            $tarifa->setPrivada(0);
+            $em->persist($tarifa);
+            $em->flush();
+            $tarifas = $this->findTarifas(1, $em);
+        }
         $form = $this->createEditTarifasForm($tarifas);
         return $this->render('CriveroPruebaBundle:Sesiones:tarifas.html.twig', array(
                     'form' => $form->createView(),
@@ -676,7 +685,7 @@ class SesionController extends Controller {
     private function findTarifas($id, $em) {
         $tarifas = $em->getRepository('CriveroPruebaBundle:Tarifas')->find($id);
         if (!$tarifas) {
-            throw $this->createNotFoundException('Tarifas no encontradas');
+            return null;
         }
         return $tarifas;
     }

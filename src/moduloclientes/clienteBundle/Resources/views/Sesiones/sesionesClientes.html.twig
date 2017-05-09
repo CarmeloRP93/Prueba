@@ -25,7 +25,7 @@
                             <tbody>
                                 {% for sesion in pagination %}
                                     <tr data-id="{{ sesion.id }}">
-                                        <td><img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block " style="max-width: 50px;height: 45px"/></td>
+                                        <td><img src="{{ asset(sesion.imagen) }}" class="img-responsive center-block " style="max-width: 60px; height: 55px"/></td>
                                         <td>{{sesion.nombre}}</td>
                                         {% if sesion.estadoCliente == 'disponible' %}
                                             <td>Disponible</td>

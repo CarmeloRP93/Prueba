@@ -63,14 +63,14 @@ class __TwigTemplate_0a0d7c2b21bc3124710f155c13d1d9390dcacee1da8ee3c1ccdb269e091
 (isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 2)) {
             // line 11
             echo "            <form id=\"formu\" action=\"";
-            echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_reservasClientes");
+            echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_homeCliente");
             echo "\" method=\"post\">
             </form>
         ";
         } else {
             // line 14
             echo "            <form id=\"formu\" action=\"";
-            echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_misSesionesMonitores");
+            echo $this->env->getExtension('routing')->getPath("modulomonitores_monitores_homeMonitor");
             echo "\" method=\"post\">
             </form>
         ";

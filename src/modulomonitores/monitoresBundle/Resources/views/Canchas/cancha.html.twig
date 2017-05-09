@@ -10,12 +10,12 @@
                     <div class="panel-body">
                         <img src="{{ asset('images/'~cancha.imagen) }}" class="img-responsive center-block" style="max-width: 305px"/>
                     </div>
-                </div>
                 {% if cancha.disponibilidad == "Disponible" %}
-                    <button class="btn btn-success active" style="width: 340px">{{cancha.disponibilidad}} </button>
+                    <a class="btn btn-success" style="width: 305px">{{cancha.disponibilidad}}</a>
                 {% else %}
-                    <button class="btn btn-danger active" style="width: 340px">{{cancha.disponibilidad}}</button>
+                    <a class="btn btn-danger" style="width: 305px">{{cancha.disponibilidad}}</a>
                 {% endif %}
+                </div>
             </div>
 
             <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-5 col-md-offset-0 col-lg-5 col-lg-offset-0"> 

@@ -94,7 +94,7 @@ class __TwigTemplate_9dba75544428893e6c9f79aa021e674d5d1b4def8852cce935a9dc64962
                                         <td><img src=\"";
                 // line 28
                 echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl($this->getAttribute($context["sesion"], "imagen", array())), "html", null, true);
-                echo "\" class=\"img-responsive center-block \" style=\"max-width: 50px;height: 45px\"/></td>
+                echo "\" class=\"img-responsive center-block \" style=\"max-width: 60px; height: 55px\"/></td>
                                         <td>";
                 // line 29
                 echo twig_escape_filter($this->env, $this->getAttribute($context["sesion"], "nombre", array()), "html", null, true);

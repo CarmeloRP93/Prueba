@@ -32,7 +32,7 @@ class __TwigTemplate_a7d22e35372eb03abf96b8f59822e1ff1dbd8ab3f405b52ea83c7897e56
                 // line 22
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath((isset($context["route"]) ? $context["route"] : $this->getContext($context, "route")), twig_array_merge((isset($context["query"]) ? $context["query"] : $this->getContext($context, "query")), array((isset($context["pageParameterName"]) ? $context["pageParameterName"] : $this->getContext($context, "pageParameterName")) => (isset($context["previous"]) ? $context["previous"] : $this->getContext($context, "previous"))))), "html", null, true);
                 echo "\">&laquo;&nbsp;";
-                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Previous"), "html", null, true);
+                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("anterior"), "html", null, true);
                 echo "</a>
         </li>
     ";
@@ -41,7 +41,7 @@ class __TwigTemplate_a7d22e35372eb03abf96b8f59822e1ff1dbd8ab3f405b52ea83c7897e56
                 echo "        <li class=\"disabled\">
             <span>&laquo;&nbsp;";
                 // line 26
-                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Previous"), "html", null, true);
+                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("anterior"), "html", null, true);
                 echo "</span>
         </li>
     ";
@@ -170,7 +170,7 @@ class __TwigTemplate_a7d22e35372eb03abf96b8f59822e1ff1dbd8ab3f405b52ea83c7897e56
                 // line 77
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath((isset($context["route"]) ? $context["route"] : $this->getContext($context, "route")), twig_array_merge((isset($context["query"]) ? $context["query"] : $this->getContext($context, "query")), array((isset($context["pageParameterName"]) ? $context["pageParameterName"] : $this->getContext($context, "pageParameterName")) => (isset($context["next"]) ? $context["next"] : $this->getContext($context, "next"))))), "html", null, true);
                 echo "\">";
-                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Next"), "html", null, true);
+                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("siguiente"), "html", null, true);
                 echo "&nbsp;&raquo;</a>
         </li>
     ";
@@ -179,7 +179,7 @@ class __TwigTemplate_a7d22e35372eb03abf96b8f59822e1ff1dbd8ab3f405b52ea83c7897e56
                 echo "        <li class=\"disabled\">
             <span>";
                 // line 81
-                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Next"), "html", null, true);
+                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("siguiente"), "html", null, true);
                 echo "&nbsp;&raquo;</span>
         </li>
     ";

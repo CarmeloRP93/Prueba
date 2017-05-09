@@ -60,24 +60,24 @@ class __TwigTemplate_0b2d3d3b1205e28ed106f1b43582aedafcb6ecd650bac5e9141779a1a78
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("images/" . $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "imagen", array()))), "html", null, true);
         echo "\" class=\"img-responsive center-block\" style=\"max-width: 305px\"/>
                     </div>
-                </div>
                 ";
-        // line 14
+        // line 13
         if (($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()) == "Disponible")) {
-            // line 15
-            echo "                    <button class=\"btn btn-success active\" style=\"width: 340px\">";
+            // line 14
+            echo "                    <a class=\"btn btn-success\" style=\"width: 305px\">";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()), "html", null, true);
-            echo " </button>
+            echo "</a>
                 ";
         } else {
-            // line 17
-            echo "                    <button class=\"btn btn-danger active\" style=\"width: 340px\">";
+            // line 16
+            echo "                    <a class=\"btn btn-danger\" style=\"width: 305px\">";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "disponibilidad", array()), "html", null, true);
-            echo "</button>
+            echo "</a>
                 ";
         }
-        // line 19
-        echo "            </div>
+        // line 18
+        echo "                </div>
+            </div>
 
             <div class=\"col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-5 col-md-offset-0 col-lg-5 col-lg-offset-0\"> 
                 <div class=\"panel panel-default\">                  
@@ -155,6 +155,6 @@ class __TwigTemplate_0b2d3d3b1205e28ed106f1b43582aedafcb6ecd650bac5e9141779a1a78
 
     public function getDebugInfo()
     {
-        return array (  132 => 50,  128 => 48,  119 => 43,  117 => 42,  109 => 37,  103 => 34,  95 => 29,  89 => 26,  80 => 19,  74 => 17,  68 => 15,  66 => 14,  60 => 11,  51 => 5,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  132 => 50,  128 => 48,  119 => 43,  117 => 42,  109 => 37,  103 => 34,  95 => 29,  89 => 26,  79 => 18,  73 => 16,  67 => 14,  65 => 13,  60 => 11,  51 => 5,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

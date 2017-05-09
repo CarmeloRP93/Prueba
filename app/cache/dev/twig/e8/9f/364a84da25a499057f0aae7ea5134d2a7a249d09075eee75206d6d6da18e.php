@@ -88,16 +88,28 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
         echo " m²</p>
                             </div>
                             <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\">
+                                <h4>Precio/hora: </h4><p>";
+        // line 32
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "precio", array()), "html", null, true);
+        echo " €</p>
+                            </div>
+                            <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\">
+                                <h4>Dirección: </h4><p>";
+        // line 35
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "direccion", array()), "html", null, true);
+        echo "</p>
+                            </div>
+                            <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\">
                                 <h4>Valoracion: </h4>
                                 ";
-        // line 33
+        // line 39
         if ((twig_round($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "valoracion", array()), 0, "common") != 0)) {
-            // line 34
+            // line 40
             echo "                                    ";
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable(range(1, twig_round($this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "valoracion", array()), 0, "common")));
             foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-                // line 35
+                // line 41
                 echo "                                        <img src=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/star-icon.png"), "html", null, true);
                 echo "\" style=\"width: 18px;\" />
@@ -106,27 +118,15 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 37
+            // line 43
             echo "                                ";
         } else {
-            // line 38
+            // line 44
             echo "                                    <p>Sin valoraciones</p>
                                 ";
         }
-        // line 40
+        // line 46
         echo "                            </div>
-                            <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\">
-                                <h4>Precio/hora: </h4><p>";
-        // line 42
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "precio", array()), "html", null, true);
-        echo " €</p>
-                            </div>
-                            <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\">
-                                <h4>Dirección: </h4><p>";
-        // line 45
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "direccion", array()), "html", null, true);
-        echo "</p>
-                            </div>
                         </div>
                     </div>
                     <div class=\"row\">
@@ -276,6 +276,6 @@ class __TwigTemplate_e89f364a84da25a499057f0aae7ea5134d2a7a249d09075eee75206d6d6
 
     public function getDebugInfo()
     {
-        return array (  261 => 103,  253 => 97,  247 => 96,  245 => 95,  242 => 94,  236 => 93,  233 => 92,  227 => 90,  221 => 88,  218 => 87,  215 => 86,  209 => 84,  203 => 82,  200 => 81,  197 => 80,  192 => 79,  186 => 77,  180 => 75,  178 => 74,  175 => 73,  170 => 72,  168 => 71,  152 => 58,  148 => 56,  144 => 54,  138 => 52,  136 => 51,  127 => 45,  121 => 42,  117 => 40,  113 => 38,  110 => 37,  101 => 35,  96 => 34,  94 => 33,  87 => 29,  81 => 26,  75 => 23,  62 => 13,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  261 => 103,  253 => 97,  247 => 96,  245 => 95,  242 => 94,  236 => 93,  233 => 92,  227 => 90,  221 => 88,  218 => 87,  215 => 86,  209 => 84,  203 => 82,  200 => 81,  197 => 80,  192 => 79,  186 => 77,  180 => 75,  178 => 74,  175 => 73,  170 => 72,  168 => 71,  152 => 58,  148 => 56,  144 => 54,  138 => 52,  136 => 51,  129 => 46,  125 => 44,  122 => 43,  113 => 41,  108 => 40,  106 => 39,  99 => 35,  93 => 32,  87 => 29,  81 => 26,  75 => 23,  62 => 13,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

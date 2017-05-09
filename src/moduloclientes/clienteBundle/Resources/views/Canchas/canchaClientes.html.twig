@@ -29,6 +29,12 @@
                                 <h4>Dimensiones: </h4><p>{{cancha.dimensiones}} m²</p>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                                <h4>Precio/hora: </h4><p>{{cancha.precio}} €</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                                <h4>Dirección: </h4><p>{{cancha.direccion}}</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
                                 <h4>Valoracion: </h4>
                                 {% if cancha.valoracion|round (0, 'common') != 0 %}
                                     {% for i in 1..cancha.valoracion|round (0, 'common') %}
@@ -37,12 +43,6 @@
                                 {% else %}
                                     <p>Sin valoraciones</p>
                                 {% endif %}
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-                                <h4>Precio/hora: </h4><p>{{cancha.precio}} €</p>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-                                <h4>Dirección: </h4><p>{{cancha.direccion}}</p>
                             </div>
                         </div>
                     </div>

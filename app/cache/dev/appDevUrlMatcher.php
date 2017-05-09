@@ -535,6 +535,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // modulomonitores_monitores_homeMonitor
+        if ($pathinfo === '/homeMonitor') {
+            return array (  '_controller' => 'modulomonitores\\monitoresBundle\\Controller\\PerfilController::homeMonitorAction',  '_route' => 'modulomonitores_monitores_homeMonitor',);
+        }
+
         if (0 === strpos($pathinfo, '/cancha')) {
             // moduloclientes_cliente_canchasClientes
             if ($pathinfo === '/canchasClientes') {
