@@ -88,6 +88,20 @@
                                                         Ver notificación
                                                     </button>
                                                 </form>
+                                            {% elseif notificacion.concepto == "Publicacion"%}
+                                                <form action="{{ path('modulomonitores_monitores_homeMonitor') }} " method="GET">
+                                                    <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
+                                                    <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                        Ver notificación
+                                                    </button>
+                                                </form>
+                                            {% elseif notificacion.concepto == "Usuario"%}
+                                                <form action="{{ path('modulomonitores_monitores_miperfilm') }} " method="GET">
+                                                    <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
+                                                    <button type="submit" class="btn btn-sm btn-primary" style="margin-bottom: 0">
+                                                        Ver notificación
+                                                    </button>
+                                                </form> 
                                             {% endif %}
                                         </td>
                                     </tr>

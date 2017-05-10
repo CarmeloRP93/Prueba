@@ -88,7 +88,19 @@ class SesionController extends Controller {
         $this->changeStateNotification($id);
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repository->find($id);
-        return $this->render('moduloclientesclienteBundle:Sesiones:sesionClientes.html.twig', array("sesion" => $sesion,
+        if ($sesion->getEstado() != 'terminada') {
+            $repositoryCancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
+            $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+
+            if ($sesion->getConcepto() == 'aula') {
+                $recinto = $repositoryAula->find($sesion->getAula());
+                $recintoId = $sesion->getAula();
+            } else {
+                $recinto = $repositoryCancha->find($sesion->getCancha());
+                $recintoId = $sesion->getCancha();
+            }
+        }
+        return $this->render('moduloclientesclienteBundle:Sesiones:sesionClientes.html.twig', array("sesion" => $sesion, "recinto" => $recinto,
                     'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
@@ -96,8 +108,36 @@ class SesionController extends Controller {
         $this->changeStateNotification($id);
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
         $sesion = $repository->find($id);
-        return $this->render('moduloclientesclienteBundle:Sesiones:miSesionClientes.html.twig', array("sesion" => $sesion,
+        if ($sesion->getEstado() != 'terminada') {
+            $repositoryCancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
+            $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+
+            if ($sesion->getConcepto() == 'aula') {
+                $recinto = $repositoryAula->find($sesion->getAula());
+                $recintoId = $sesion->getAula();
+            } else {
+                $recinto = $repositoryCancha->find($sesion->getCancha());
+                $recintoId = $sesion->getCancha();
+            }
+        }
+        return $this->render('moduloclientesclienteBundle:Sesiones:miSesionClientes.html.twig', array("sesion" => $sesion, "recinto" => $recinto,
                     'notificacionesSinLeer' => $this->getNewNotification()));
+    }
+
+    public function horarioSesionClienteAction($id) {
+        $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
+        $sesion = $repositorySesiones->find($id);
+        $horarios = explode("&", $sesion->getHorario());
+
+        $repositoryAula = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
+        $repositoryCancha = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Canchas");
+        if ($sesion->getConcepto() == 'aula') {
+            $recinto = $repositoryAula->find($sesion->getAula());
+        } else {
+            $recinto = $repositoryCancha->find($sesion->getCancha());
+        }
+        return $this->render('moduloclientesclienteBundle:Sesiones:horarioSesionCliente.html.twig', array("sesion" => $sesion,
+                    "pagination" => $horarios, 'recinto' => $recinto, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
     public function pagoSesionAction($id) {
@@ -216,17 +256,17 @@ class SesionController extends Controller {
                 $aula = $this->findEntity($sesion->getAula(), $em, 'CriveroPruebaBundle:Aulas');
                 $this->removeSesionId($aula, $id);
                 $em->persist($aula);
-            }else{
+            } else {
                 $cancha = $this->findEntity($sesion->getCancha(), $em, 'CriveroPruebaBundle:Canchas');
                 $this->removeSesionId($cancha, $id);
                 $em->persist($cancha);
             }
-        }elseif ($restaCliente == 0 && $sesion->getEstado() == 'suspendida') {
+        } elseif ($restaCliente == 0 && $sesion->getEstado() == 'suspendida') {
             if ($sesion->getConcepto() == 'aula') {
                 $aula = $this->findEntity($sesion->getAula(), $em, 'CriveroPruebaBundle:Aulas');
                 $this->removeSesionId($aula, $id);
                 $em->persist($aula);
-            }else{
+            } else {
                 $cancha = $this->findEntity($sesion->getCancha(), $em, 'CriveroPruebaBundle:Canchas');
                 $this->removeSesionId($cancha, $id);
                 $em->persist($cancha);

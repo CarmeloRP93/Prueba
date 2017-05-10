@@ -31,7 +31,8 @@ class PerfilController extends Controller {
                     'publicaciones' => $publicacionesF, 'canchas' => $canchas, 'aulas' => $aulas, 'notificacionesSinLeer' => $this->getNewNotification()));
     }
 
-    public function miperfilmAction() {
+    public function miperfilmAction(Request $request) {
+        $this->changeStateNotification($request->get('id'));
         $repository = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
         $monitor = $repository->find($this->getUser()->getId());
         return $this->render('modulomonitoresmonitoresBundle:Perfil:miperfilm.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "monitor" => $monitor));

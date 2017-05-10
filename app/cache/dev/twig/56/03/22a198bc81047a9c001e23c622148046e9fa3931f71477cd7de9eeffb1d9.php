@@ -35,44 +35,43 @@ class __TwigTemplate_560322a198bc81047a9c001e23c622148046e9fa3931f71477cd7de9eef
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 4
+    // line 2
     public function block_title($context, array $blocks = array())
     {
         echo "Publicaciones";
     }
 
-    // line 5
+    // line 3
     public function block_stylesheets($context, array $blocks = array())
     {
-        // line 6
+        // line 4
         echo "    ";
         $this->displayParentBlock("stylesheets", $context, $blocks);
         echo "
     <link href=\"";
-        // line 7
+        // line 5
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("css/slider.css"), "html", null, true);
         echo "\" type=\"text/css\" rel=\"stylesheet\">
 ";
     }
 
-    // line 9
+    // line 7
     public function block_contenido($context, array $blocks = array())
     {
-        // line 10
-        echo "
-    <div class=\"main\" >
+        // line 8
+        echo "    <div class=\"main\" >
         <div class=\"slides\">
             ";
-        // line 13
+        // line 10
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["publicaciones"]) ? $context["publicaciones"] : $this->getContext($context, "publicaciones")));
         foreach ($context['_seq'] as $context["_key"] => $context["publicacion"]) {
-            // line 14
+            // line 11
             echo "                <div class=\"image\">
                     ";
-            // line 15
+            // line 12
             if ((twig_length_filter($this->env, (isset($context["publicaciones"]) ? $context["publicaciones"] : $this->getContext($context, "publicaciones"))) > 1)) {
-                // line 16
+                // line 13
                 echo "                        <img class=\"img-thumbnail\" src=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("images/" . $this->getAttribute($context["publicacion"], "imagen", array()))), "html", null, true);
                 echo "\" title=";
@@ -80,7 +79,7 @@ class __TwigTemplate_560322a198bc81047a9c001e23c622148046e9fa3931f71477cd7de9eef
                 echo ">
                     ";
             } else {
-                // line 18
+                // line 15
                 echo "                        <img src=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("images/" . $this->getAttribute($context["publicacion"], "imagen", array()))), "html", null, true);
                 echo "\" style=\"max-width: 91%\" title=";
@@ -88,7 +87,7 @@ class __TwigTemplate_560322a198bc81047a9c001e23c622148046e9fa3931f71477cd7de9eef
                 echo " >
                     ";
             }
-            // line 20
+            // line 17
             echo "                    <h3><span>";
             echo twig_escape_filter($this->env, $this->getAttribute($context["publicacion"], "titulo", array()), "html", null, true);
             echo "</span></h3>
@@ -98,30 +97,28 @@ class __TwigTemplate_560322a198bc81047a9c001e23c622148046e9fa3931f71477cd7de9eef
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['publicacion'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 23
+        // line 20
         echo "        </div>
     </div>
-
 ";
     }
 
-    // line 28
+    // line 24
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 29
+        // line 25
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <script src=\"";
-        // line 30
+        // line 26
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/jquery.slides.js"), "html", null, true);
         echo "\"></script>
     ";
-        // line 31
+        // line 27
         if ((twig_length_filter($this->env, (isset($context["publicaciones"]) ? $context["publicaciones"] : $this->getContext($context, "publicaciones"))) > 1)) {
-            // line 32
+            // line 28
             echo "        <script>
-
             \$(function () {
                 \$(\".slides\").slidesjs({
                     play: {
@@ -142,22 +139,20 @@ class __TwigTemplate_560322a198bc81047a9c001e23c622148046e9fa3931f71477cd7de9eef
                                 // [number] restart delay on inactive slideshow
                     }
                 });
-
-
                 var stop = '<img src=\"";
-            // line 56
+            // line 49
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/stop-xxl.png"), "html", null, true);
             echo "\" style=\"width: 13px; border-radius: 0px\" />';
                 var play = '<img src=\"";
-            // line 57
+            // line 50
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/white-play-512.png"), "html", null, true);
             echo "\" style=\"width: 19.4px; border-radius: 0px\" />';
                 var next = '<img src=\"";
-            // line 58
+            // line 51
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/next.png"), "html", null, true);
             echo "\" style=\"width: 17px; border-radius: 0px\" />';
                 var previous = '<img src=\"";
-            // line 59
+            // line 52
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/previous.png"), "html", null, true);
             echo "\" style=\"width: 10px; border-radius: 0px\" />';
                 \$('.slidesjs-stop').append(stop);
@@ -169,9 +164,6 @@ class __TwigTemplate_560322a198bc81047a9c001e23c622148046e9fa3931f71477cd7de9eef
                 \$('.slidesjs-previous').append(previous);
                 \$('.slidesjs-previous').addClass(\"hidden-xs\");
             });
-
-
-
         </script>
     ";
         }
@@ -189,6 +181,6 @@ class __TwigTemplate_560322a198bc81047a9c001e23c622148046e9fa3931f71477cd7de9eef
 
     public function getDebugInfo()
     {
-        return array (  161 => 59,  157 => 58,  153 => 57,  149 => 56,  123 => 32,  121 => 31,  117 => 30,  112 => 29,  109 => 28,  102 => 23,  92 => 20,  84 => 18,  76 => 16,  74 => 15,  71 => 14,  67 => 13,  62 => 10,  59 => 9,  53 => 7,  48 => 6,  45 => 5,  39 => 4,  11 => 1,);
+        return array (  156 => 52,  152 => 51,  148 => 50,  144 => 49,  121 => 28,  119 => 27,  115 => 26,  110 => 25,  107 => 24,  101 => 20,  91 => 17,  83 => 15,  75 => 13,  73 => 12,  70 => 11,  66 => 10,  62 => 8,  59 => 7,  53 => 5,  48 => 4,  45 => 3,  39 => 2,  11 => 1,);
     }
 }

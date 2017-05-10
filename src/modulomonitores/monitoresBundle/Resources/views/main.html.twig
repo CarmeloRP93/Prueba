@@ -1,8 +1,6 @@
 {% extends '::base.html.twig' %}
 {% block title %} Vista desde main {% endblock %}
-
 {% block header %}{% endblock %}
-
 {% block navegation %}
     <nav class="navbar navbar-default navbar-fixed-top" style="opacity: 0.9" role="navigation" >
         <!-- El logotipo y el icono que despliega el menú se agrupan
@@ -62,32 +60,51 @@
                             <a href="" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('images/campanaCN.png')}}" style="width: 18px;" /></a>
                             <ul class="dropdown-menu" style="background-color: rgba(67, 152, 147, 0.46); border-radius: 15px 15px;">
                                 {% set n = 0 %} 
-                                {% for notificacion in notificacionesSinLeer if n < 5 %}  
+                                {% for notificacion in notificacionesSinLeer if n < 5 %} 
+                                    {% set flag = 0 %}
                                     {% if notificacion.concepto == "Publica"%}
                                         {% set ruta = url('modulomonitores_monitores_miSesionMonitores', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == "Privada"%}
                                         {% set ruta = url('modulomonitores_monitores_miSesionDedicada', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == "Mensaje"%}
                                         {% set ruta = url('modulomonitores_monitores_mensajeMonitor', {id: notificacion.idEntidad})%}
+                                    {% elseif notificacion.concepto == "Usuario"%}
+                                        {% set ruta = url('modulomonitores_monitores_miperfilm', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == "Aula"%}
                                         {% set ruta = url('modulomonitores_monitores_verAula', {id: notificacion.idEntidad})%}
-                                    {% elseif notificacion.concepto == "Aeliminada"%}
-                                        {% set ruta = url('modulomonitores_monitores_listadoAulas', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == "AbandonoPublica"%}
                                         {% set ruta = url('modulomonitores_monitores_misSesionesMonitores', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == "Cancha"%}
                                         {% set ruta = url('modulomonitores_monitores_cancha', {id: notificacion.idEntidad})%}
-                                    {% elseif notificacion.concepto == "Publicacion"%}
-                                        {# poner ruta de publicaciones #}
                                     {% elseif notificacion.concepto == "NuevoParticipantePublica"%}
                                         {% set ruta = 'http://localhost/Prueba/web/app_dev.php/miSesionMonitores/'~notificacion.idEntidad~'/verParticipantes/'~notificacion.idOrigen %}
                                     {% elseif notificacion.concepto == "NuevoParticipantePrivada"%}
                                         {% set ruta = url('modulomonitores_monitores_participantePrivado', {id: notificacion.idEntidad})%}
+                                    {% elseif notificacion.concepto == "Aeliminada"%}
+                                         <li class="text-center"><form action="{{ path('modulomonitores_monitores_listadoAulas') }} " method="GET">
+                                            <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
+                                            <input style="border:none; background: transparent; color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;" type="submit" value="{{ notificacion.mensaje }}">
+                                        </form></li>
+                                        {% set flag = 1 %}
+                                    {% elseif notificacion.concepto == "Celiminada"%}
+                                         <li class="text-center"><form action="{{ path('modulomonitores_monitores_canchas') }} " method="GET">
+                                            <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
+                                            <input style="border:none; background: transparent; color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;" type="submit" value="{{ notificacion.mensaje }}">
+                                        </form></li>
+                                        {% set flag = 1 %}
+                                    {% elseif notificacion.concepto == "Publicacion"%}
+                                        <li class="text-center"><form action="{{ path('modulomonitores_monitores_homeMonitor') }} " method="GET">
+                                            <input type="hidden" name="id" value="{{ notificacion.idEntidad }}">
+                                            <input style="border:none; background: transparent; color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;" type="submit" value="{{ notificacion.mensaje }}">
+                                        </form></li>
+                                        {% set flag = 1 %}
                                     {% endif %}
-                                    <li class="text-center"><a style="color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;" href="{{ ruta }}">{{ notificacion.mensaje }}</a></li>
+                                    {% if flag == 0 %}
+                                        <li class="text-center"><a style="color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;" href="{{ ruta }}">{{ notificacion.mensaje }}</a></li>
+                                    {% endif %}
                                     <li role="separator" class="divider" style="background-color: #cecdcd"></li>
-                                        {% set n = n + 1 %}
-                                    {% endfor %}
+                                    {% set n = n + 1 %}
+                                {% endfor %}
                                 <li class="text-center"><a href = "{{url('modulomonitores_monitores_notificacionesMonitor')}}"><font color="blue"><strong>Ver todas</strong></font></a></li>
                             </ul>
                         </li>

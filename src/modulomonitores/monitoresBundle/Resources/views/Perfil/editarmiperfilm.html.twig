@@ -12,6 +12,9 @@
                     <h3>Mi Perfil</h3>                          
                 </div>
                 {{ form_start(form, { 'attr' : {'novalidate' : 'novalidate', 'role' : 'form'} }) }}
+                <div class="hidden">
+                    {{ form_widget(form.activo) }}
+                </div>
                 <div class="panel-body">
                     <form role="form">
                         <div class="row">

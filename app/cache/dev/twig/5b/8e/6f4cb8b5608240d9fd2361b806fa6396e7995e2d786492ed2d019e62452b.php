@@ -81,7 +81,7 @@ class __TwigTemplate_5b8e6f4cb8b5608240d9fd2361b806fa6396e7995e2d786492ed2d019e6
             // line 19
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "precio", array()), "html", null, true);
             echo " €</a>
-                            ";
+                        ";
         } elseif (($this->getAttribute(        // line 20
 (isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "estadoCliente", array()) == "Completo")) {
             // line 21
@@ -131,29 +131,65 @@ class __TwigTemplate_5b8e6f4cb8b5608240d9fd2361b806fa6396e7995e2d786492ed2d019e6
         echo "                            <h4>Objetivo</h4> <p>";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "objetivo", array()), "html", null, true);
         echo "</p>
-                        </div>
+                            <h4>Lugar y horario</h4>
+                            ";
+        // line 44
+        if (($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "concepto", array()) == "aula")) {
+            echo " 
+                                <td>Aula de ";
+            // line 45
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["recinto"]) ? $context["recinto"] : $this->getContext($context, "recinto")), "nombre", array()), "html", null, true);
+            echo " 
+                                    <a style=\"margin-bottom: 0; padding: 1px 1px; line-height: 0;\" class=\"btn btn-xs btn-primary\" href=\"";
+            // line 46
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_horarioSesionCliente", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array()))), "html", null, true);
+            echo "\">
+                                        <img src=\"";
+            // line 47
+            echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/clock.png"), "html", null, true);
+            echo "\" style=\"width: 13px\" />
+                                    </a>
+                                </td>
+                            ";
+        } else {
+            // line 51
+            echo "                                <td>Cancha de ";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["recinto"]) ? $context["recinto"] : $this->getContext($context, "recinto")), "tipo", array()), "html", null, true);
+            echo " 
+                                    <a style=\"margin-bottom: 0; padding: 1px 1px; line-height: 0;\" class=\"btn btn-xs btn-primary\" href=\"";
+            // line 52
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_horarioSesionCliente", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array()))), "html", null, true);
+            echo "\">
+                                        <img src=\"";
+            // line 53
+            echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/clock.png"), "html", null, true);
+            echo "\" style=\"width: 13px\" />
+                                    </a>
+                                </td>
+                            ";
+        }
+        // line 57
+        echo "                        </div>
                         <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
                             <h4>Tiempo estimado</h4> <p>";
-        // line 45
+        // line 59
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "duracion", array()), "html", null, true);
         echo " minutos</p>
                             <h4>Descanso entre ejercicios</h4> <p>";
-        // line 46
+        // line 60
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "descanso", array()), "html", null, true);
         echo " minutos</p>
                             <h4>Ejercicios</h4> <p>";
-        // line 47
+        // line 61
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "ejercicios", array()), "html", null, true);
         echo "</p>
-                        </div>
-                        <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12\">
                             <h4>Monitor</h4> 
                             <a href=\"";
-        // line 51
+        // line 63
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("moduloclientes_cliente_verMonitor", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "idMonitor", array()))), "html", null, true);
         echo "\" 
                                class=\"btn btn-success text-center center-block img-responsive\" style=\"width: 180px;\">";
-        // line 52
+        // line 64
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "monitor", array()), "html", null, true);
         echo "</a>
                         </div>
@@ -162,15 +198,15 @@ class __TwigTemplate_5b8e6f4cb8b5608240d9fd2361b806fa6396e7995e2d786492ed2d019e6
             </div>
         </div>
         ";
-        // line 58
+        // line 70
         if ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "headers", array()), "get", array(0 => "referer"), "method")) {
-            // line 59
+            // line 71
             echo "            <a class=\"btn btn-default\" href=\"";
             echo $this->env->getExtension('routing')->getPath("moduloclientes_cliente_sesionesClientes");
             echo "\">Volver atrás</a>
         ";
         }
-        // line 61
+        // line 73
         echo "    </div>
 ";
     }
@@ -187,6 +223,6 @@ class __TwigTemplate_5b8e6f4cb8b5608240d9fd2361b806fa6396e7995e2d786492ed2d019e6
 
     public function getDebugInfo()
     {
-        return array (  174 => 61,  168 => 59,  166 => 58,  157 => 52,  153 => 51,  146 => 47,  142 => 46,  138 => 45,  131 => 42,  125 => 40,  119 => 38,  117 => 37,  112 => 35,  102 => 27,  98 => 25,  96 => 24,  93 => 23,  91 => 22,  88 => 21,  86 => 20,  82 => 19,  77 => 18,  74 => 17,  68 => 15,  66 => 14,  62 => 13,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  210 => 73,  204 => 71,  202 => 70,  193 => 64,  189 => 63,  184 => 61,  180 => 60,  176 => 59,  172 => 57,  165 => 53,  161 => 52,  156 => 51,  149 => 47,  145 => 46,  141 => 45,  137 => 44,  131 => 42,  125 => 40,  119 => 38,  117 => 37,  112 => 35,  102 => 27,  98 => 25,  96 => 24,  93 => 23,  91 => 22,  88 => 21,  86 => 20,  82 => 19,  77 => 18,  74 => 17,  68 => 15,  66 => 14,  62 => 13,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

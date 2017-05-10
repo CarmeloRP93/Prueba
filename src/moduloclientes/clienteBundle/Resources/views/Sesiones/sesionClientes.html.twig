@@ -17,7 +17,7 @@
                         {% if sesion.estadoCliente == "disponible" %}
                             <a href="{{path('moduloclientes_cliente_pagoSesion', {id: sesion.id})}}" 
                                class="btn btn-primary text-center center-block img-responsive" style="width: 180px;">Apuntarse {{sesion.precio}} €</a>
-                            {% elseif sesion.estadoCliente == "Completo" %}
+                        {% elseif sesion.estadoCliente == "Completo" %}
                             <button class="btn btn-danger text-center center-block img-responsive" style="width: 180px;" disabled="disabled">Completo</button>
                         {% elseif sesion.estado == "terminada" %}
                             <button class="btn btn-warning text-center center-block img-responsive" style="width: 180px;" disabled>Sesión terminada</button>
@@ -40,13 +40,25 @@
                                 <p>{{sesion.estadoCliente|capitalize}}</p>
                             {% endif %}
                             <h4>Objetivo</h4> <p>{{sesion.objetivo}}</p>
+                            <h4>Lugar y horario</h4>
+                            {% if sesion.concepto == "aula" %} 
+                                <td>Aula de {{recinto.nombre}} 
+                                    <a style="margin-bottom: 0; padding: 1px 1px; line-height: 0;" class="btn btn-xs btn-primary" href="{{ path('moduloclientes_cliente_horarioSesionCliente', { id: sesion.id }) }}">
+                                        <img src="{{ asset("images/clock.png") }}" style="width: 13px" />
+                                    </a>
+                                </td>
+                            {% else %}
+                                <td>Cancha de {{recinto.tipo}} 
+                                    <a style="margin-bottom: 0; padding: 1px 1px; line-height: 0;" class="btn btn-xs btn-primary" href="{{ path('moduloclientes_cliente_horarioSesionCliente', { id: sesion.id }) }}">
+                                        <img src="{{ asset("images/clock.png") }}" style="width: 13px" />
+                                    </a>
+                                </td>
+                            {% endif %}
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <h4>Tiempo estimado</h4> <p>{{sesion.duracion}} minutos</p>
                             <h4>Descanso entre ejercicios</h4> <p>{{sesion.descanso}} minutos</p>
                             <h4>Ejercicios</h4> <p>{{sesion.ejercicios}}</p>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <h4>Monitor</h4> 
                             <a href="{{path('moduloclientes_cliente_verMonitor', {id: sesion.idMonitor})}}" 
                                class="btn btn-success text-center center-block img-responsive" style="width: 180px;">{{sesion.monitor}}</a>

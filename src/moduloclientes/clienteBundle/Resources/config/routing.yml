@@ -256,3 +256,7 @@ moduloclientes_cliente_pagosCliente:
 moduloclientes_cliente_homeCliente:
     pattern: /homeCliente
     defaults: { _controller: moduloclientesclienteBundle:Usuario:homeCliente }
+    
+moduloclientes_cliente_horarioSesionCliente:
+    pattern: /horarioSesionCliente/{id}
+    defaults: { _controller: moduloclientesclienteBundle:Sesion:horarioSesionCliente }

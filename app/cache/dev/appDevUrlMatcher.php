@@ -946,9 +946,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\UsuarioController::pagosClienteAction',  '_route' => 'moduloclientes_cliente_pagosCliente',);
         }
 
-        // moduloclientes_cliente_homeCliente
-        if ($pathinfo === '/homeCliente') {
-            return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\UsuarioController::homeClienteAction',  '_route' => 'moduloclientes_cliente_homeCliente',);
+        if (0 === strpos($pathinfo, '/ho')) {
+            // moduloclientes_cliente_homeCliente
+            if ($pathinfo === '/homeCliente') {
+                return array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\UsuarioController::homeClienteAction',  '_route' => 'moduloclientes_cliente_homeCliente',);
+            }
+
+            // moduloclientes_cliente_horarioSesionCliente
+            if (0 === strpos($pathinfo, '/horarioSesionCliente') && preg_match('#^/horarioSesionCliente/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'moduloclientes_cliente_horarioSesionCliente')), array (  '_controller' => 'moduloclientes\\clienteBundle\\Controller\\SesionController::horarioSesionClienteAction',));
+            }
+
         }
 
         // crivero_prueba_inicio

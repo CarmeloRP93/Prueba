@@ -218,6 +218,7 @@ modulomonitores_monitores_sesionesParticipante:
 modulomonitores_monitores_sesionesAula:
     pattern:  /sesionesAula/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Aulas:sesionesAula }
+    
 modulomonitores_monitores_sesionesCancha:
     pattern:  /sesionesCancha/{id}
     defaults: { _controller: modulomonitoresmonitoresBundle:Canchas:sesionesCancha }

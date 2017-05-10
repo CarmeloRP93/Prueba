@@ -52,7 +52,7 @@ class __TwigTemplate_5f9211c3218098720272eb6469292043e517b7bc975fd024a40198a41b3
     public function block_navegation($context, array $blocks = array())
     {
         // line 7
-        echo "    <nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\" >
+        echo "    <nav class=\"navbar navbar-default navbar-fixed-top\" style=\"opacity: 0.9\" role=\"navigation\" >
         <!-- El logotipo y el icono que despliega el menú se agrupan
              para mostrarlos mejor en los dispositivos móviles -->
         <div class=\"navbar-header\">
