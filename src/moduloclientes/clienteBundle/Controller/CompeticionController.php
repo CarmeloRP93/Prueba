@@ -55,6 +55,7 @@ class CompeticionController extends Controller {
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $competicion->setEstadocompeticion("Pendiente");
+            $competicion->setIdCreador($this->getUser()->getId());
             $em->persist($competicion);
             $em->flush();
 

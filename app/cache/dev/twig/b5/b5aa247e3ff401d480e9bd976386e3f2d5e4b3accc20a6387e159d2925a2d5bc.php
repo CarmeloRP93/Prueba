@@ -44,7 +44,7 @@ class __TwigTemplate_f6da0f4cbb7357127b0a6ff9dfbface301cf219a353373d3f4a24092ace
         <div class=\"page-header\">
             <h1 class=\"t1\">Clientes</h1>
         </div>
-        <div class=\"panel panel-default\">
+        <div class=\"panel panel-default text-center\">
             <div class=\"panel-body myelement\">
                 ";
         // line 15
@@ -176,7 +176,7 @@ class __TwigTemplate_f6da0f4cbb7357127b0a6ff9dfbface301cf219a353373d3f4a24092ace
         <div class=\"page-header\">
             <h1 class=\"t1\">Clientes</h1>
         </div>
-        <div class=\"panel panel-default\">
+        <div class=\"panel panel-default text-center\">
             <div class=\"panel-body myelement\">
                 {% if not pagination|length %}
                     <h2>No se encontraron clientes</h2>

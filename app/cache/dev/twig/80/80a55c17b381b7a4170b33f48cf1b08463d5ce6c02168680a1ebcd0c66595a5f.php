@@ -44,7 +44,7 @@ class __TwigTemplate_a9742f6333c9985b74f27f550eb4e307982dd42301b5062c6da6033f8c1
     public function block_navegation($context, array $blocks = array())
     {
         // line 7
-        echo "    <nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\" >
+        echo "    <nav class=\"navbar navbar-default navbar-fixed-top\" style=\"opacity: 0.9\" role=\"navigation\" >
         <!-- El logotipo y el icono que despliega el menú se agrupan
              para mostrarlos mejor en los dispositivos móviles -->
         <div class=\"navbar-header\">
@@ -178,7 +178,9 @@ class __TwigTemplate_a9742f6333c9985b74f27f550eb4e307982dd42301b5062c6da6033f8c1
                     <li><a href = \"";
             // line 76
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_publicaciones");
-            echo "\">publicaciones</a></li>
+            echo "\"><img src=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/news.png"), "html", null, true);
+            echo "\" style=\"width: 20px;\"></a></li>
                     ";
             // line 77
             if ( !twig_length_filter($this->env, (isset($context["notificacionesSinLeer"]) ? $context["notificacionesSinLeer"] : $this->getContext($context, "notificacionesSinLeer")))) {
@@ -260,8 +262,14 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
                             $context["ruta"] = $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_dedicadas", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
                             // line 101
                             echo "                                    ";
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Competicion")) {
+                            // line 102
+                            echo "                                        ";
+                            $context["ruta"] = $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_competicion", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
+                            // line 103
+                            echo "                                    ";
                         }
-                        // line 102
+                        // line 104
                         echo "                                        <li class=\"text-center\"><a style=\"color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;\" href=\"";
                         echo twig_escape_filter($this->env, (isset($context["ruta"]) ? $context["ruta"] : $this->getContext($context, "ruta")), "html", null, true);
                         echo "\">";
@@ -269,43 +277,43 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
                         echo "</a></li>
                                         <li role=\"separator\" class=\"divider\" style=\"background-color: #cecdcd\"></li>
                                     ";
-                        // line 104
+                        // line 106
                         $context["n"] = ((isset($context["n"]) ? $context["n"] : $this->getContext($context, "n")) + 1);
-                        // line 105
+                        // line 107
                         echo "                                ";
                     }
                 }
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['notificacion'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 106
+                // line 108
                 echo "                                <li class=\"text-center\"><a href = \"";
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_notificacionesAdmin");
                 echo "\"><font color=\"blue\"><strong>Ver todas</strong></font></a></li>
                             </ul>
                         </li>
                         <li><a class=\"hidden-sm hidden-md hidden-lg\" href = \"";
-                // line 109
+                // line 111
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("crivero_prueba_notificacionesAdmin");
                 echo "\"><img  src=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/campanaCN.png"), "html", null, true);
                 echo "\" style=\"width: 18px\"/></a></li>                       
                     ";
             }
-            // line 111
+            // line 113
             echo "                    <li><a href = \"";
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_mensajes_recibidos");
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/correo.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
                     <li><a href = \"";
-            // line 112
+            // line 114
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_perfil");
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/user.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
                     <li><a href=\"";
-            // line 113
+            // line 115
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_logout");
             echo "\" style=\"margin-right: 12px\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/logout.png"), "html", null, true);
@@ -313,19 +321,19 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
                 </ul>
             ";
         }
-        // line 116
+        // line 118
         echo "
             <form method=\"GET\" class=\"navbar-form navbar-center\" role=\"search\">
                 <div class=\"input-group\">
                     <input type=\"text\" name=\"query\" class=\"form-control\" value=\"";
-        // line 119
+        // line 121
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "get", array(0 => "query"), "method"), "html", null, true);
         echo "\" 
                            placeholder=\"Buscar usuarios, reservas\" >
                     <div class=\"input-group-btn\">
                         <button type=\"submit\" class=\"btn btn-default\">
                             <img src=\"";
-        // line 123
+        // line 125
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/search.png"), "html", null, true);
         echo "\" style=\"width: 15px;\" />  
                         </button>
@@ -337,16 +345,16 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
 ";
     }
 
-    // line 131
+    // line 133
     public function block_body($context, array $blocks = array())
     {
-        // line 132
+        // line 134
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 134
-        $this->displayBlock('contenido', $context, $blocks);
         // line 136
+        $this->displayBlock('contenido', $context, $blocks);
+        // line 138
         echo "        </div>
 
     </div>
@@ -354,17 +362,17 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
 ";
     }
 
-    // line 134
+    // line 136
     public function block_contenido($context, array $blocks = array())
     {
-        // line 135
+        // line 137
         echo "            ";
     }
 
-    // line 142
+    // line 144
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 143
+        // line 145
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
@@ -383,7 +391,7 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
 
     public function getDebugInfo()
     {
-        return array (  368 => 143,  365 => 142,  361 => 135,  358 => 134,  350 => 136,  348 => 134,  344 => 132,  341 => 131,  329 => 123,  322 => 119,  317 => 116,  309 => 113,  303 => 112,  296 => 111,  289 => 109,  282 => 106,  275 => 105,  273 => 104,  265 => 102,  262 => 101,  259 => 100,  256 => 99,  253 => 98,  250 => 97,  247 => 96,  244 => 95,  241 => 94,  238 => 93,  235 => 92,  232 => 91,  229 => 90,  226 => 89,  223 => 88,  221 => 87,  216 => 86,  214 => 85,  207 => 84,  203 => 83,  198 => 81,  195 => 80,  188 => 78,  184 => 77,  180 => 76,  177 => 75,  171 => 74,  169 => 73,  166 => 72,  164 => 71,  156 => 66,  151 => 64,  147 => 63,  138 => 57,  133 => 55,  129 => 54,  125 => 53,  121 => 52,  114 => 48,  106 => 43,  102 => 42,  94 => 37,  90 => 36,  81 => 30,  76 => 28,  72 => 27,  60 => 18,  47 => 7,  44 => 6,  39 => 4,  33 => 2,  11 => 1,);
+        return array (  376 => 145,  373 => 144,  369 => 137,  366 => 136,  358 => 138,  356 => 136,  352 => 134,  349 => 133,  337 => 125,  330 => 121,  325 => 118,  317 => 115,  311 => 114,  304 => 113,  297 => 111,  290 => 108,  283 => 107,  281 => 106,  273 => 104,  270 => 103,  267 => 102,  264 => 101,  261 => 100,  258 => 99,  255 => 98,  252 => 97,  249 => 96,  246 => 95,  243 => 94,  240 => 93,  237 => 92,  234 => 91,  231 => 90,  228 => 89,  225 => 88,  223 => 87,  218 => 86,  216 => 85,  209 => 84,  205 => 83,  200 => 81,  197 => 80,  190 => 78,  186 => 77,  180 => 76,  177 => 75,  171 => 74,  169 => 73,  166 => 72,  164 => 71,  156 => 66,  151 => 64,  147 => 63,  138 => 57,  133 => 55,  129 => 54,  125 => 53,  121 => 52,  114 => 48,  106 => 43,  102 => 42,  94 => 37,  90 => 36,  81 => 30,  76 => 28,  72 => 27,  60 => 18,  47 => 7,  44 => 6,  39 => 4,  33 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -402,7 +410,7 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
 {% block header %}{% endblock %}
 
 {% block navegation %}
-    <nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\" >
+    <nav class=\"navbar navbar-default navbar-fixed-top\" style=\"opacity: 0.9\" role=\"navigation\" >
         <!-- El logotipo y el icono que despliega el menú se agrupan
              para mostrarlos mejor en los dispositivos móviles -->
         <div class=\"navbar-header\">
@@ -471,7 +479,7 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
                     {% if app.user.username == 'director' %}
                         <li><a href = \"{{url('crivero_prueba_enviarMensaje')}}\">enviar mensaje</a></li>
                     {% endif %} 
-                    <li><a href = \"{{ url('crivero_prueba_publicaciones') }}\">publicaciones</a></li>
+                    <li><a href = \"{{ url('crivero_prueba_publicaciones') }}\"><img src=\"{{asset('images/news.png')}}\" style=\"width: 20px;\"></a></li>
                     {% if not notificacionesSinLeer|length %}  
                         <li><a href = \"{{url('crivero_prueba_notificacionesAdmin')}}\"><img src=\"{{asset('images/campanaSN.png')}}\" style=\"width: 18px;\" /></a></li>
                     {% else %}
@@ -496,6 +504,8 @@ $context["notificacion"], "concepto", array()) == "Privada")) {
                                         {% set ruta = url('crivero_prueba_sesiones')%}
                                     {% elseif notificacion.concepto == \"PrivadaEliminada\"%}
                                         {% set ruta = url('crivero_prueba_dedicadas', {id: notificacion.idEntidad})%}
+                                    {% elseif notificacion.concepto == \"Competicion\"%}
+                                        {% set ruta = url('crivero_prueba_competicion', {id: notificacion.idEntidad})%}
                                     {% endif %}
                                         <li class=\"text-center\"><a style=\"color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;\" href=\"{{ ruta }}\">{{ notificacion.mensaje }}</a></li>
                                         <li role=\"separator\" class=\"divider\" style=\"background-color: #cecdcd\"></li>

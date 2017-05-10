@@ -54,12 +54,13 @@ class __TwigTemplate_8e9b558cdb11d1eb70efeb6d68f524e6a641076a9d9d5c2ea5a76afc6fe
                         <table class=\"table table-hover\">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>";
-            // line 17
+            // line 18
             echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre", "equipos.nombre");
             echo "</th>
                                     <th>";
-            // line 18
+            // line 19
             echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Deporte", "equipos.deporte");
             echo "</th>
                                     <th class=\"t3\">Acciones</th>
@@ -67,25 +68,38 @@ class __TwigTemplate_8e9b558cdb11d1eb70efeb6d68f524e6a641076a9d9d5c2ea5a76afc6fe
                             </thead>
                             <tbody>
                                 ";
-            // line 23
+            // line 24
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
             foreach ($context['_seq'] as $context["_key"] => $context["equipo"]) {
-                // line 24
+                // line 25
                 echo "                                    <tr data-id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "id", array()), "html", null, true);
                 echo "\">
-                                        <td>";
-                // line 25
+                                        ";
+                // line 26
+                if (($this->getAttribute($context["equipo"], "imagen", array()) != null)) {
+                    // line 27
+                    echo "                                            <td><img src=\"";
+                    echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl(("images/" . $this->getAttribute($context["equipo"], "imagen", array()))), "html", null, true);
+                    echo "\" class=\"img-responsive center-block\" style=\"max-width: 50px\"/></td>
+                                        ";
+                } else {
+                    // line 29
+                    echo "                                            <td>Imagen no Disponible</td>
+                                        ";
+                }
+                // line 31
+                echo "                                        <td>";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "nombre", array()), "html", null, true);
                 echo "</td>
                                         <td>";
-                // line 26
+                // line 32
                 echo twig_escape_filter($this->env, $this->getAttribute($context["equipo"], "deporte", array()), "html", null, true);
                 echo "</td>
                                         <td class=\"actions\">                                               
                                             <a href=\"";
-                // line 28
+                // line 34
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_equipoClientes", array("id" => $this->getAttribute($context["equipo"], "id", array()))), "html", null, true);
                 echo "\"  class=\"btn btn-sm btn-info\">
                                                 Ver
@@ -97,16 +111,16 @@ class __TwigTemplate_8e9b558cdb11d1eb70efeb6d68f524e6a641076a9d9d5c2ea5a76afc6fe
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 34
+            // line 40
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 38
+        // line 44
         echo "                <div class=\"navigation\">
                     ";
-        // line 39
+        // line 45
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                 </div>
@@ -129,7 +143,7 @@ class __TwigTemplate_8e9b558cdb11d1eb70efeb6d68f524e6a641076a9d9d5c2ea5a76afc6fe
 
     public function getDebugInfo()
     {
-        return array (  110 => 39,  107 => 38,  101 => 34,  89 => 28,  84 => 26,  80 => 25,  75 => 24,  71 => 23,  63 => 18,  59 => 17,  52 => 12,  48 => 11,  46 => 10,  38 => 4,  35 => 3,  29 => 2,  11 => 1,);
+        return array (  124 => 45,  121 => 44,  115 => 40,  103 => 34,  98 => 32,  93 => 31,  89 => 29,  83 => 27,  81 => 26,  76 => 25,  72 => 24,  64 => 19,  60 => 18,  52 => 12,  48 => 11,  46 => 10,  38 => 4,  35 => 3,  29 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -158,6 +172,7 @@ class __TwigTemplate_8e9b558cdb11d1eb70efeb6d68f524e6a641076a9d9d5c2ea5a76afc6fe
                         <table class=\"table table-hover\">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'equipos.nombre') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Deporte', 'equipos.deporte') }}</th>
                                     <th class=\"t3\">Acciones</th>
@@ -166,6 +181,11 @@ class __TwigTemplate_8e9b558cdb11d1eb70efeb6d68f524e6a641076a9d9d5c2ea5a76afc6fe
                             <tbody>
                                 {% for equipo in pagination %}
                                     <tr data-id=\"{{ equipo.id }}\">
+                                        {%if equipo.imagen != null%}
+                                            <td><img src=\"{{ asset('images/'~equipo.imagen) }}\" class=\"img-responsive center-block\" style=\"max-width: 50px\"/></td>
+                                        {%else%}
+                                            <td>Imagen no Disponible</td>
+                                        {%endif%}
                                         <td>{{equipo.nombre}}</td>
                                         <td>{{equipo.deporte}}</td>
                                         <td class=\"actions\">                                               

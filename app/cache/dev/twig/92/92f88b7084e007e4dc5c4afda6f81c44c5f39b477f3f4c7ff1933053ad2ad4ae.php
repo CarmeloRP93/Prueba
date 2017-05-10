@@ -43,7 +43,7 @@ class __TwigTemplate_84447f4b7555ad9090c461e4f2c8469c430711b447b23575ba4bac40abd
     public function block_navegation($context, array $blocks = array())
     {
         // line 5
-        echo "    <nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\" >
+        echo "    <nav class=\"navbar navbar-default navbar-fixed-top\" style=\"opacity: 0.9\" role=\"navigation\" >
         <!-- El logotipo y el icono que despliega el menú se agrupan
              para mostrarlos mejor en los dispositivos móviles -->
         <div class=\"navbar-header\">
@@ -78,201 +78,272 @@ class __TwigTemplate_84447f4b7555ad9090c461e4f2c8469c430711b447b23575ba4bac40abd
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_canchasClientes");
         echo "\">Canchas</a></li>
 
-                <li class=\"dropdown\">
-                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Competiciones <b class=\"caret\"></b></a>
-                    <ul class=\"dropdown-menu\">
-                        <li><a href=\"";
-        // line 32
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_competicionesClientes");
-        echo "\">Competiciones </a></li>
-                        <li><a href=\"";
-        // line 33
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_equiposClientes");
-        echo "\"> Mis equipos </a></li>
-                        <li role=\"separator\" class=\"divider\"></li>
-                        <li><a href=\"";
-        // line 35
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_competicion_nueva");
-        echo "\">Crear competición</a></li>
-                    </ul>
-                </li>
+                ";
+        // line 29
+        if ($this->env->getExtension('Symfony\Bridge\Twig\Extension\SecurityExtension')->isGranted("IS_AUTHENTICATED_FULLY")) {
+            // line 30
+            echo "                    <li class=\"dropdown\">
+                        <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Competiciones <b class=\"caret\"></b></a>
+                        <ul class=\"dropdown-menu\">
+                            <li><a href=\"";
+            // line 33
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_competicionesClientes");
+            echo "\">Competiciones </a></li>
+                            <li><a href=\"";
+            // line 34
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_equiposClientes");
+            echo "\"> Mis equipos </a></li>
+                            <li role=\"separator\" class=\"divider\"></li>
+                            <li><a href=\"";
+            // line 36
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_competicion_nueva");
+            echo "\">Crear competición</a></li>
+                        </ul>
+                    </li>
 
-                <li class=\"dropdown\">
-                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Sesiones<b class=\"caret\"></b></a>
-                    <ul class=\"dropdown-menu\">
-                        <li><a href=\"";
-        // line 42
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_misSesionesClientes");
-        echo "\">Apuntadas</a></li>
-                        <li role=\"separator\" class=\"divider\"></li>
-                        <li class=\"dropdown-submenu\">
-                            <a tabindex=\"-1\" href=\"#\">No apuntadas</a>
-                            <ul class=\"dropdown-menu\">
-                                <li><a href=\"";
-        // line 47
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_sesionesClientes");
-        echo "\">Públicas</a></li>                    
-                                <li><a href=\"";
-        // line 48
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_sesionesPrivadasClientes");
-        echo "\">Privadas</a></li>                          
-                            </ul>
-                        </li>   
-                    </ul>
-                </li>
-            </ul>
+                    <li class=\"dropdown\">
+                        <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Sesiones<b class=\"caret\"></b></a>
+                        <ul class=\"dropdown-menu\">
+                            <li><a href=\"";
+            // line 43
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_misSesionesClientes");
+            echo "\">Apuntadas</a></li>
+                            <li role=\"separator\" class=\"divider\"></li>
+                            <li class=\"dropdown-submenu\">
+                                <a tabindex=\"-1\" href=\"#\">No apuntadas</a>
+                                <ul class=\"dropdown-menu\">
+                                    <li><a href=\"";
+            // line 48
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_sesionesClientes");
+            echo "\">Públicas</a></li>                    
+                                    <li><a href=\"";
+            // line 49
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_sesionesPrivadasClientes");
+            echo "\">Privadas</a></li>                          
+                                </ul>
+                            </li>   
+                        </ul>
+                    </li>
+                ";
+        }
+        // line 55
+        echo "            </ul>
 
             ";
-        // line 55
+        // line 57
         if ($this->env->getExtension('Symfony\Bridge\Twig\Extension\SecurityExtension')->isGranted("IS_AUTHENTICATED_FULLY")) {
-            // line 56
+            // line 58
             echo "                <ul class=\"nav navbar-nav navbar-right\">
                     ";
-            // line 57
+            // line 59
             if ( !twig_length_filter($this->env, (isset($context["notificacionesSinLeer"]) ? $context["notificacionesSinLeer"] : $this->getContext($context, "notificacionesSinLeer")))) {
                 echo "  
                         <li><a href = \"";
-                // line 58
+                // line 60
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_notificacionesCliente");
                 echo "\"><img src=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/campanaSN.png"), "html", null, true);
                 echo "\" style=\"width: 18px;\" /></a></li>
-                    ";
+                            ";
             } else {
-                // line 60
+                // line 62
                 echo "                        <li class=\"dropdown hidden-xs\">
                             <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><img src=\"";
-                // line 61
+                // line 63
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/campanaCN.png"), "html", null, true);
                 echo "\" style=\"width: 18px;\" /></a>
                             <ul class=\"dropdown-menu\" style=\"background-color: rgba(67, 152, 147, 0.46); border-radius: 15px 15px;\">
                                 ";
-                // line 63
+                // line 65
                 $context["n"] = 0;
                 echo " 
                                 ";
-                // line 64
+                // line 66
                 $context['_parent'] = $context;
                 $context['_seq'] = twig_ensure_traversable((isset($context["notificacionesSinLeer"]) ? $context["notificacionesSinLeer"] : $this->getContext($context, "notificacionesSinLeer")));
                 foreach ($context['_seq'] as $context["_key"] => $context["notificacion"]) {
                     if (((isset($context["n"]) ? $context["n"] : $this->getContext($context, "n")) < 5)) {
                         echo "  
                                     ";
-                        // line 65
+                        // line 67
+                        $context["flag"] = 0;
+                        // line 68
+                        echo "                                    ";
                         if (($this->getAttribute($context["notificacion"], "concepto", array()) == "Publica")) {
-                            // line 66
+                            // line 69
                             echo "                                        ";
                             if (twig_in_filter($this->getAttribute($context["notificacion"], "idEntidad", array()), $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "sesiones", array()))) {
-                                // line 67
+                                // line 70
                                 echo "                                            ";
                                 $context["ruta"] = $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_miSesionClientes", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
-                                // line 68
+                                // line 71
                                 echo "                                        ";
                             } else {
-                                // line 69
+                                // line 72
                                 echo "                                            ";
                                 $context["ruta"] = $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_sesionClientes", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
-                                // line 70
+                                // line 73
                                 echo "                                        ";
                             }
-                            // line 71
+                            // line 74
                             echo "                                    ";
                         } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Privada")) {
-                            // line 72
+                            // line 75
                             echo "                                        ";
                             $context["ruta"] = $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_sesionClientes", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
-                            // line 73
+                            // line 76
                             echo "                                    ";
                         } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Reserva")) {
-                            // line 74
+                            // line 77
                             echo "                                        ";
                             $context["ruta"] = $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_reservaClientes", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
-                            // line 75
+                            // line 78
                             echo "                                    ";
                         } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Usuario")) {
-                            // line 76
+                            // line 79
                             echo "                                        ";
                             $context["ruta"] = $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_miPerfil", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
-                            // line 77
+                            // line 80
+                            echo "                                    ";
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Competicion")) {
+                            // line 81
+                            echo "                                        ";
+                            $context["ruta"] = $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_competicionClientes", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
+                            // line 82
                             echo "                                    ";
                         } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Cancha")) {
-                            // line 78
+                            // line 83
                             echo "                                        ";
                             $context["ruta"] = $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_canchaClientes", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
-                            // line 79
+                            // line 84
                             echo "                                    ";
                         } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Mensaje")) {
-                            // line 80
+                            // line 85
                             echo "                                        ";
                             $context["ruta"] = $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_mensajeCliente", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
-                            // line 81
+                            // line 86
                             echo "                                    ";
-                            // line 83
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Celiminada")) {
+                            // line 87
+                            echo "                                        <li class=\"text-center\"><form action=\"";
+                            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_canchasClientes");
+                            echo " \" method=\"GET\">
+                                            <input type=\"hidden\" name=\"id\" value=\"";
+                            // line 88
+                            echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "idEntidad", array()), "html", null, true);
+                            echo "\">
+                                            <input style=\"border:none; background: transparent; color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;\" type=\"submit\" value=\"";
+                            // line 89
+                            echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "mensaje", array()), "html", null, true);
+                            echo "\" >
+                                        </form></li>
+                                        ";
+                            // line 91
+                            $context["flag"] = 1;
+                            // line 92
                             echo "                                    ";
                         } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "AbandonoPublica")) {
-                            // line 84
+                            // line 93
                             echo "                                        ";
                             $context["ruta"] = $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_sesionClientes", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
-                            // line 85
+                            // line 94
                             echo "                                    ";
                         } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Tarifas")) {
-                            // line 86
-                            echo "                                        ";
-                            $context["ruta"] = $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_sesionesClientes");
-                            // line 87
+                            // line 95
+                            echo "                                        <li class=\"text-center\"><form action=\"";
+                            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_sesionesClientes");
+                            echo " \" method=\"GET\">
+                                            <input type=\"hidden\" name=\"id\" value=\"";
+                            // line 96
+                            echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "idEntidad", array()), "html", null, true);
+                            echo "\">
+                                            <input style=\"border:none; background: transparent; color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;\" type=\"submit\" value=\"";
+                            // line 97
+                            echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "mensaje", array()), "html", null, true);
+                            echo "\">
+                                        </form></li>
+                                        ";
+                            // line 99
+                            $context["flag"] = 1;
+                            // line 100
+                            echo "                                    ";
+                        } elseif (($this->getAttribute($context["notificacion"], "concepto", array()) == "Publicacion")) {
+                            // line 101
+                            echo "                                        <li class=\"text-center\"><form action=\"";
+                            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_homeCliente");
+                            echo " \" method=\"GET\">
+                                            <input type=\"hidden\" name=\"id\" value=\"";
+                            // line 102
+                            echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "idEntidad", array()), "html", null, true);
+                            echo "\">
+                                            <input style=\"border:none; background: transparent; color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;\" type=\"submit\" value=\"";
+                            // line 103
+                            echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "mensaje", array()), "html", null, true);
+                            echo "\">
+                                        </form></li>
+                                        ";
+                            // line 105
+                            $context["flag"] = 1;
+                            // line 106
                             echo "                                    ";
                         } else {
-                            // line 88
+                            // line 107
                             echo "                                        ";
                             $context["ruta"] = $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_notificacionesCliente", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array())));
-                            // line 89
+                            // line 108
                             echo "                                    ";
                         }
-                        // line 90
-                        echo "                                        <li class=\"text-center\"><a style=\"color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;\" href=\"";
-                        echo twig_escape_filter($this->env, (isset($context["ruta"]) ? $context["ruta"] : $this->getContext($context, "ruta")), "html", null, true);
-                        echo "\">";
-                        echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "mensaje", array()), "html", null, true);
-                        echo "</a></li>
-                                        <li role=\"separator\" class=\"divider\" style=\"background-color: #cecdcd\"></li>
+                        // line 109
+                        echo "                                    ";
+                        if (((isset($context["flag"]) ? $context["flag"] : $this->getContext($context, "flag")) == 0)) {
+                            // line 110
+                            echo "                                        <li class=\"text-center\"><a style=\"color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;\" href=\"";
+                            echo twig_escape_filter($this->env, (isset($context["ruta"]) ? $context["ruta"] : $this->getContext($context, "ruta")), "html", null, true);
+                            echo "\">";
+                            echo twig_escape_filter($this->env, $this->getAttribute($context["notificacion"], "mensaje", array()), "html", null, true);
+                            echo "</a></li>
                                     ";
-                        // line 92
+                        }
+                        // line 112
+                        echo "                                    <li role=\"separator\" class=\"divider\" style=\"background-color: #cecdcd\"></li>
+                                        ";
+                        // line 113
                         $context["n"] = ((isset($context["n"]) ? $context["n"] : $this->getContext($context, "n")) + 1);
-                        // line 93
-                        echo "                                ";
+                        // line 114
+                        echo "                                    ";
                     }
                 }
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['notificacion'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 94
-                echo "                                    <li class=\"text-center\"><a href = \"";
+                // line 115
+                echo "                                <li class=\"text-center\"><a href = \"";
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_notificacionesCliente");
                 echo "\"><font color=\"blue\"><strong>Ver todas</strong></font></a></li>
                             </ul>
                         </li>
                         <li><a class=\"hidden-sm hidden-md hidden-lg\" href = \"";
-                // line 97
+                // line 118
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_notificacionesCliente");
                 echo "\"><img  src=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/campanaCN.png"), "html", null, true);
                 echo "\" style=\"width: 18px\"/></a></li>
-                    ";
+                            ";
             }
-            // line 99
+            // line 120
             echo "                    <li><a href = \"";
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_mensajes_recibidosCliente");
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/correo.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
                     <li><a href=\"";
-            // line 100
+            // line 121
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getUrl("moduloclientes_cliente_miPerfil", array("id" => $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))), "html", null, true);
             echo "\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/user.png"), "html", null, true);
             echo "\" style=\"width: 18px;\" /></a></li>
                     <li><a href=\"";
-            // line 101
+            // line 122
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_logout");
             echo "\" style=\"margin-right:12px;\"><img src=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/logout.png"), "html", null, true);
@@ -280,19 +351,19 @@ class __TwigTemplate_84447f4b7555ad9090c461e4f2c8469c430711b447b23575ba4bac40abd
                 </ul>
             ";
         }
-        // line 104
+        // line 125
         echo "
             <form method=\"GET\" class=\"navbar-form navbar-center\" role=\"search\">
                 <div class=\"input-group\">
                     <input type=\"text\" name=\"query\" class=\"form-control\" value=\"";
-        // line 107
+        // line 128
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request", array()), "get", array(0 => "query"), "method"), "html", null, true);
         echo "\" 
-                           placeholder=\"Buscar usuarios, reservas\" >
+                           placeholder=\"Buscar...\" >
                     <div class=\"input-group-btn\">
                         <button type=\"submit\" class=\"btn btn-default\">
                             <img src=\"";
-        // line 111
+        // line 132
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("images/search.png"), "html", null, true);
         echo "\" style=\"width: 15px;\" />  
                         </button>
@@ -305,25 +376,25 @@ class __TwigTemplate_84447f4b7555ad9090c461e4f2c8469c430711b447b23575ba4bac40abd
 ";
     }
 
-    // line 120
+    // line 141
     public function block_body($context, array $blocks = array())
     {
-        // line 121
+        // line 142
         echo "    <div id=\"pagina\" class=\"cfix\">
         <div id =\"contenido\">
             ";
-        // line 123
+        // line 144
         $this->displayBlock('contenido', $context, $blocks);
-        // line 125
+        // line 146
         echo "        </div>
     </div>
 ";
     }
 
-    // line 123
+    // line 144
     public function block_contenido($context, array $blocks = array())
     {
-        // line 124
+        // line 145
         echo "            ";
     }
 
@@ -339,7 +410,7 @@ class __TwigTemplate_84447f4b7555ad9090c461e4f2c8469c430711b447b23575ba4bac40abd
 
     public function getDebugInfo()
     {
-        return array (  327 => 124,  324 => 123,  318 => 125,  316 => 123,  312 => 121,  309 => 120,  296 => 111,  289 => 107,  284 => 104,  276 => 101,  270 => 100,  263 => 99,  256 => 97,  249 => 94,  242 => 93,  240 => 92,  232 => 90,  229 => 89,  226 => 88,  223 => 87,  220 => 86,  217 => 85,  214 => 84,  211 => 83,  209 => 81,  206 => 80,  203 => 79,  200 => 78,  197 => 77,  194 => 76,  191 => 75,  188 => 74,  185 => 73,  182 => 72,  179 => 71,  176 => 70,  173 => 69,  170 => 68,  167 => 67,  164 => 66,  162 => 65,  155 => 64,  151 => 63,  146 => 61,  143 => 60,  136 => 58,  132 => 57,  129 => 56,  127 => 55,  117 => 48,  113 => 47,  105 => 42,  95 => 35,  90 => 33,  86 => 32,  78 => 27,  72 => 24,  59 => 16,  46 => 5,  43 => 4,  38 => 3,  32 => 2,  11 => 1,);
+        return array (  398 => 145,  395 => 144,  389 => 146,  387 => 144,  383 => 142,  380 => 141,  367 => 132,  360 => 128,  355 => 125,  347 => 122,  341 => 121,  334 => 120,  327 => 118,  320 => 115,  313 => 114,  311 => 113,  308 => 112,  300 => 110,  297 => 109,  294 => 108,  291 => 107,  288 => 106,  286 => 105,  281 => 103,  277 => 102,  272 => 101,  269 => 100,  267 => 99,  262 => 97,  258 => 96,  253 => 95,  250 => 94,  247 => 93,  244 => 92,  242 => 91,  237 => 89,  233 => 88,  228 => 87,  225 => 86,  222 => 85,  219 => 84,  216 => 83,  213 => 82,  210 => 81,  207 => 80,  204 => 79,  201 => 78,  198 => 77,  195 => 76,  192 => 75,  189 => 74,  186 => 73,  183 => 72,  180 => 71,  177 => 70,  174 => 69,  171 => 68,  169 => 67,  162 => 66,  158 => 65,  153 => 63,  150 => 62,  143 => 60,  139 => 59,  136 => 58,  134 => 57,  130 => 55,  121 => 49,  117 => 48,  109 => 43,  99 => 36,  94 => 34,  90 => 33,  85 => 30,  83 => 29,  78 => 27,  72 => 24,  59 => 16,  46 => 5,  43 => 4,  38 => 3,  32 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -356,7 +427,7 @@ class __TwigTemplate_84447f4b7555ad9090c461e4f2c8469c430711b447b23575ba4bac40abd
 {% block title %} Vista desde main{% endblock %}
 {% block header %}{% endblock %}
 {% block navegation %}
-    <nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\" >
+    <nav class=\"navbar navbar-default navbar-fixed-top\" style=\"opacity: 0.9\" role=\"navigation\" >
         <!-- El logotipo y el icono que despliega el menú se agrupan
              para mostrarlos mejor en los dispositivos móviles -->
         <div class=\"navbar-header\">
@@ -380,42 +451,45 @@ class __TwigTemplate_84447f4b7555ad9090c461e4f2c8469c430711b447b23575ba4bac40abd
 
                 <li><a href=\"{{url('moduloclientes_cliente_canchasClientes')}}\">Canchas</a></li>
 
-                <li class=\"dropdown\">
-                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Competiciones <b class=\"caret\"></b></a>
-                    <ul class=\"dropdown-menu\">
-                        <li><a href=\"{{url('moduloclientes_cliente_competicionesClientes')}}\">Competiciones </a></li>
-                        <li><a href=\"{{url('moduloclientes_cliente_equiposClientes')}}\"> Mis equipos </a></li>
-                        <li role=\"separator\" class=\"divider\"></li>
-                        <li><a href=\"{{url('moduloclientes_cliente_competicion_nueva')}}\">Crear competición</a></li>
-                    </ul>
-                </li>
+                {% if is_granted(\"IS_AUTHENTICATED_FULLY\") %}
+                    <li class=\"dropdown\">
+                        <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Competiciones <b class=\"caret\"></b></a>
+                        <ul class=\"dropdown-menu\">
+                            <li><a href=\"{{url('moduloclientes_cliente_competicionesClientes')}}\">Competiciones </a></li>
+                            <li><a href=\"{{url('moduloclientes_cliente_equiposClientes')}}\"> Mis equipos </a></li>
+                            <li role=\"separator\" class=\"divider\"></li>
+                            <li><a href=\"{{url('moduloclientes_cliente_competicion_nueva')}}\">Crear competición</a></li>
+                        </ul>
+                    </li>
 
-                <li class=\"dropdown\">
-                    <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Sesiones<b class=\"caret\"></b></a>
-                    <ul class=\"dropdown-menu\">
-                        <li><a href=\"{{url('moduloclientes_cliente_misSesionesClientes')}}\">Apuntadas</a></li>
-                        <li role=\"separator\" class=\"divider\"></li>
-                        <li class=\"dropdown-submenu\">
-                            <a tabindex=\"-1\" href=\"#\">No apuntadas</a>
-                            <ul class=\"dropdown-menu\">
-                                <li><a href=\"{{url('moduloclientes_cliente_sesionesClientes')}}\">Públicas</a></li>                    
-                                <li><a href=\"{{url('moduloclientes_cliente_sesionesPrivadasClientes')}}\">Privadas</a></li>                          
-                            </ul>
-                        </li>   
-                    </ul>
-                </li>
+                    <li class=\"dropdown\">
+                        <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Sesiones<b class=\"caret\"></b></a>
+                        <ul class=\"dropdown-menu\">
+                            <li><a href=\"{{url('moduloclientes_cliente_misSesionesClientes')}}\">Apuntadas</a></li>
+                            <li role=\"separator\" class=\"divider\"></li>
+                            <li class=\"dropdown-submenu\">
+                                <a tabindex=\"-1\" href=\"#\">No apuntadas</a>
+                                <ul class=\"dropdown-menu\">
+                                    <li><a href=\"{{url('moduloclientes_cliente_sesionesClientes')}}\">Públicas</a></li>                    
+                                    <li><a href=\"{{url('moduloclientes_cliente_sesionesPrivadasClientes')}}\">Privadas</a></li>                          
+                                </ul>
+                            </li>   
+                        </ul>
+                    </li>
+                {% endif %}
             </ul>
 
             {% if is_granted(\"IS_AUTHENTICATED_FULLY\") %}
                 <ul class=\"nav navbar-nav navbar-right\">
                     {% if not notificacionesSinLeer|length %}  
                         <li><a href = \"{{url('moduloclientes_cliente_notificacionesCliente')}}\"><img src=\"{{asset('images/campanaSN.png')}}\" style=\"width: 18px;\" /></a></li>
-                    {% else %}
+                            {% else %}
                         <li class=\"dropdown hidden-xs\">
                             <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><img src=\"{{asset('images/campanaCN.png')}}\" style=\"width: 18px;\" /></a>
                             <ul class=\"dropdown-menu\" style=\"background-color: rgba(67, 152, 147, 0.46); border-radius: 15px 15px;\">
                                 {% set n = 0 %} 
                                 {% for notificacion in notificacionesSinLeer if n < 5 %}  
+                                    {% set flag = 0 %}
                                     {% if notificacion.concepto == \"Publica\"%}
                                         {% if notificacion.idEntidad in app.user.sesiones %}
                                             {% set ruta = url('moduloclientes_cliente_miSesionClientes', {id: notificacion.idEntidad})%}
@@ -428,28 +502,46 @@ class __TwigTemplate_84447f4b7555ad9090c461e4f2c8469c430711b447b23575ba4bac40abd
                                         {% set ruta = url('moduloclientes_cliente_reservaClientes', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == \"Usuario\"%}
                                         {% set ruta = url('moduloclientes_cliente_miPerfil', {id: notificacion.idEntidad})%}
+                                    {% elseif notificacion.concepto == \"Competicion\"%}
+                                        {% set ruta = url('moduloclientes_cliente_competicionClientes', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == \"Cancha\"%}
                                         {% set ruta = url('moduloclientes_cliente_canchaClientes', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == \"Mensaje\"%}
                                         {% set ruta = url('moduloclientes_cliente_mensajeCliente', {id: notificacion.idEntidad})%}
-                                    {#{% elseif notificacion.concepto == \"Celiminada\"%}
-                                        {% set ruta = url('moduloclientes_cliente_canchasClientes')%}#}
+                                    {% elseif notificacion.concepto == \"Celiminada\"%}
+                                        <li class=\"text-center\"><form action=\"{{ path('moduloclientes_cliente_canchasClientes') }} \" method=\"GET\">
+                                            <input type=\"hidden\" name=\"id\" value=\"{{ notificacion.idEntidad }}\">
+                                            <input style=\"border:none; background: transparent; color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;\" type=\"submit\" value=\"{{ notificacion.mensaje }}\" >
+                                        </form></li>
+                                        {% set flag = 1 %}
                                     {% elseif notificacion.concepto == \"AbandonoPublica\"%}
                                         {% set ruta = url('moduloclientes_cliente_sesionClientes', {id: notificacion.idEntidad})%}
                                     {% elseif notificacion.concepto == \"Tarifas\"%}
-                                        {% set ruta = url('moduloclientes_cliente_sesionesClientes')%}
+                                        <li class=\"text-center\"><form action=\"{{ path('moduloclientes_cliente_sesionesClientes') }} \" method=\"GET\">
+                                            <input type=\"hidden\" name=\"id\" value=\"{{ notificacion.idEntidad }}\">
+                                            <input style=\"border:none; background: transparent; color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;\" type=\"submit\" value=\"{{ notificacion.mensaje }}\">
+                                        </form></li>
+                                        {% set flag = 1 %}
+                                    {% elseif notificacion.concepto == \"Publicacion\"%}
+                                        <li class=\"text-center\"><form action=\"{{ path('moduloclientes_cliente_homeCliente') }} \" method=\"GET\">
+                                            <input type=\"hidden\" name=\"id\" value=\"{{ notificacion.idEntidad }}\">
+                                            <input style=\"border:none; background: transparent; color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;\" type=\"submit\" value=\"{{ notificacion.mensaje }}\">
+                                        </form></li>
+                                        {% set flag = 1 %}
                                     {% else %}
                                         {% set ruta = url('moduloclientes_cliente_notificacionesCliente', {id: notificacion.idEntidad})%}
                                     {% endif %}
+                                    {% if flag == 0 %}
                                         <li class=\"text-center\"><a style=\"color: white; text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;\" href=\"{{ ruta }}\">{{ notificacion.mensaje }}</a></li>
-                                        <li role=\"separator\" class=\"divider\" style=\"background-color: #cecdcd\"></li>
-                                    {% set n = n + 1 %}
-                                {% endfor %}
-                                    <li class=\"text-center\"><a href = \"{{url('moduloclientes_cliente_notificacionesCliente')}}\"><font color=\"blue\"><strong>Ver todas</strong></font></a></li>
+                                    {% endif %}
+                                    <li role=\"separator\" class=\"divider\" style=\"background-color: #cecdcd\"></li>
+                                        {% set n = n + 1 %}
+                                    {% endfor %}
+                                <li class=\"text-center\"><a href = \"{{url('moduloclientes_cliente_notificacionesCliente')}}\"><font color=\"blue\"><strong>Ver todas</strong></font></a></li>
                             </ul>
                         </li>
                         <li><a class=\"hidden-sm hidden-md hidden-lg\" href = \"{{url('moduloclientes_cliente_notificacionesCliente')}}\"><img  src=\"{{asset('images/campanaCN.png')}}\" style=\"width: 18px\"/></a></li>
-                    {% endif %}
+                            {% endif %}
                     <li><a href = \"{{path('moduloclientes_cliente_mensajes_recibidosCliente')}}\"><img src=\"{{asset('images/correo.png')}}\" style=\"width: 18px;\" /></a></li>
                     <li><a href=\"{{url('moduloclientes_cliente_miPerfil', {id:app.user.id} )}}\"><img src=\"{{asset('images/user.png')}}\" style=\"width: 18px;\" /></a></li>
                     <li><a href=\"{{path('crivero_prueba_logout')}}\" style=\"margin-right:12px;\"><img src=\"{{asset('images/logout.png')}}\" style=\"width: 18px;\" /></a></li>
@@ -459,7 +551,7 @@ class __TwigTemplate_84447f4b7555ad9090c461e4f2c8469c430711b447b23575ba4bac40abd
             <form method=\"GET\" class=\"navbar-form navbar-center\" role=\"search\">
                 <div class=\"input-group\">
                     <input type=\"text\" name=\"query\" class=\"form-control\" value=\"{{app.request.get('query')}}\" 
-                           placeholder=\"Buscar usuarios, reservas\" >
+                           placeholder=\"Buscar...\" >
                     <div class=\"input-group-btn\">
                         <button type=\"submit\" class=\"btn btn-default\">
                             <img src=\"{{asset('images/search.png')}}\" style=\"width: 15px;\" />  

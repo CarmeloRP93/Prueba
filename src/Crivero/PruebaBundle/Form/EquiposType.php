@@ -18,6 +18,7 @@ class EquiposType extends AbstractType
             ->add('idCompeticion', 'hidden')
             ->add('nombre', 'text')
             ->add('deporte','hidden')
+            ->add('imagen', 'file',  array('data_class' => null))
             ->add('confirmar', 'submit', array('label' => 'Confirmar'))
         ;
     }

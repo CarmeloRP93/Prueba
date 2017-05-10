@@ -16,7 +16,7 @@ class CompeticionesType extends AbstractType
     {
         $builder
             ->add('nombre', 'text')
-            ->add('deporte','choice', array('choices' => array("Futbol"=>'Futbol', 
+            ->add('deporte','choice', array('choices' => array("Fútbol"=>'Fútbol', 
                                                                "Padel"=>'Padel')))
             ->add('tipocompeticion','choice', array('choices' => array("Liga"=>'Liga', "Torneo"=>'Torneo'), 'label' => 'Tipo'))
             ->add('fechainicio','date', array('widget' => "single_text", 'label' => 'Fecha de inicio'))

@@ -34,7 +34,7 @@ class __TwigTemplate_053ca705518580c627ff0a18f2e5dda13dda5f726d7957748fe976caa28
     // line 4
     public function block_title($context, array $blocks = array())
     {
-        echo "Home";
+        echo "Redirecting";
     }
 
     // line 5
@@ -55,14 +55,14 @@ class __TwigTemplate_053ca705518580c627ff0a18f2e5dda13dda5f726d7957748fe976caa28
 (isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "tipo", array()) == 2)) {
             // line 11
             echo "            <form id=\"formu\" action=\"";
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_reservasClientes");
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_homeCliente");
             echo "\" method=\"post\">
             </form>
         ";
         } else {
             // line 14
             echo "            <form id=\"formu\" action=\"";
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("modulomonitores_monitores_misSesionesMonitores");
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("modulomonitores_monitores_homeMonitor");
             echo "\" method=\"post\">
             </form>
         ";
@@ -109,17 +109,17 @@ class __TwigTemplate_053ca705518580c627ff0a18f2e5dda13dda5f726d7957748fe976caa28
         return new Twig_Source("{% extends 'CriveroPruebaBundle::main.html.twig' %}
 
 {% block navegation %}{% endblock %}
-{% block title %}Home{% endblock %}
+{% block title %}Redirecting{% endblock %}
 {% block body %}
     <div class=\"container\" >
         {% if app.user.tipo == 1 %}
             <form id=\"formu\" action=\"{{ path('crivero_prueba_clientes') }}\" method=\"post\">
             </form>
         {% elseif app.user.tipo == 2 %}
-            <form id=\"formu\" action=\"{{ path('moduloclientes_cliente_reservasClientes') }}\" method=\"post\">
+            <form id=\"formu\" action=\"{{ path('moduloclientes_cliente_homeCliente') }}\" method=\"post\">
             </form>
         {% else %}
-            <form id=\"formu\" action=\"{{ path('modulomonitores_monitores_misSesionesMonitores') }}\" method=\"post\">
+            <form id=\"formu\" action=\"{{ path('modulomonitores_monitores_homeMonitor') }}\" method=\"post\">
             </form>
         {% endif %}
         <img src=\"{{ asset('images/loading.gif') }}\" class=\"centradoV\" style=\"width: 10%; top: 50%\" />

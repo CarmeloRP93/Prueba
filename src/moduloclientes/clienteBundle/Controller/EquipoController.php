@@ -118,6 +118,13 @@ class EquipoController extends Controller {
             $equipo->setVictorias(0);
             $equipo->setEmpates(0);
             $equipo->setDerrotas(0);
+            if($form->get('imagen')->getData() != null) {
+                $file = $form->get('imagen')->getData();
+                $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
+                $equipo->setImagen($file->getClientOriginalName());
+            } else {
+                $equipo->setImagen("no-image-found.png");
+            }
             $em->persist($equipo);
             $em->flush();
             return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));
@@ -148,6 +155,13 @@ class EquipoController extends Controller {
         $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            if($form->get('imagen')->getData() != null) {
+                $file = $form->get('imagen')->getData();
+                $file->move("C://xampp//htdocs//Prueba//web//images", $file->getClientOriginalName());
+                $equipo->setImagen($file->getClientOriginalName());
+            } else {
+                $equipo->setImagen("no-image-found.png");
+            }
             $em->persist($equipo);
             $em->flush();
             return $this->redirect($this->generateUrl('moduloclientes_cliente_equiposClientes'));

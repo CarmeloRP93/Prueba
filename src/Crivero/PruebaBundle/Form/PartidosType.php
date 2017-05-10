@@ -15,10 +15,12 @@ class PartidosType extends AbstractType
     private $competiciones;
     private $equipos;
     private $canchas;
-    public function __construct(array $competiciones, array $equipos, array $canchas) {
+    private $competicionFiltro;
+    public function __construct(array $competiciones, array $equipos, array $canchas, $competicionFiltro) {
         $this->competiciones=$competiciones;
         $this->equipos = $equipos;
         $this->canchas = $canchas;
+        $this->competicionFiltro = $competicionFiltro;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -29,11 +31,15 @@ class PartidosType extends AbstractType
         }
         $resEquipos = array();
         for($i=0; $i < count($this->equipos); $i++){
-            $resEquipos[$i]= array($this->equipos[$i]->getId() => $this->equipos[$i]->getNombre());
+            if($this->competicionFiltro->getId() == $this->equipos[$i]->getIdCompeticion()){
+                $resEquipos[$i]= array($this->equipos[$i]->getId() => $this->equipos[$i]->getNombre());
+            }
         }
         $resCanchas = array();
         for($i=0; $i < count($this->canchas); $i++){
-            $resCanchas[$i]= array($this->canchas[$i]->getId() => $this->canchas[$i]->getTipo());
+            if($this->competicionFiltro->getDeporte() == $this->canchas[$i]->getDeporte()){
+                $resCanchas[$i]= array($this->canchas[$i]->getId() => $this->canchas[$i]->getTipo());
+            }
         }
 
         $builder

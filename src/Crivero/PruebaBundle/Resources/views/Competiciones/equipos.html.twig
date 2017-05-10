@@ -14,6 +14,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>{{ knp_pagination_sortable(equipos, 'Equipo', 'equipo.nombre') }}</th>
                                     <th>{{ knp_pagination_sortable(equipos, 'Competición inscrito', 'equipo.idCompeticion') }}</th>
                                     <th>{{ knp_pagination_sortable(equipos, 'Responsable', 'equipo.idCliente') }}</th>
@@ -29,6 +30,11 @@
                             <tbody>
                                 {% for equipo in equipos %}
                                     <tr>
+                                        {%if equipo.imagen != null%}
+                                            <td><img src="{{ asset('images/'~equipo.imagen) }}" class="img-responsive center-block" style="max-width: 50px"/></td>
+                                        {%else%}
+                                            <td>Imagen no Disponible</td>
+                                        {%endif%}
                                         <td>{{equipo.nombre}}</td>
                                         <td>{{competiciones[equipo.idCompeticion].nombre}}</td>
                                         <td>{{representantes[equipo.idCliente].nombre}}</td>

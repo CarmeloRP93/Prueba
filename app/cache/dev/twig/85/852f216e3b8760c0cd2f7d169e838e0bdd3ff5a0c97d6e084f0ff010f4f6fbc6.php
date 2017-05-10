@@ -12,6 +12,7 @@ class __TwigTemplate_30ca32159862267618169873e332d499b76e982cae3cf58baf8aedeeb6f
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'contenido' => array($this, 'block_contenido'),
+            'javascripts' => array($this, 'block_javascripts'),
         );
     }
 
@@ -35,7 +36,10 @@ class __TwigTemplate_30ca32159862267618169873e332d499b76e982cae3cf58baf8aedeeb6f
     public function block_contenido($context, array $blocks = array())
     {
         // line 4
-        echo "    <div class=\"progress no-border hidden\" id=\"delete-progress\" style=\"margin-top: -20px\">
+        echo "    ";
+        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:messages/success.html.twig");
+        echo "
+    <div class=\"progress no-border hidden\" id=\"delete-progress\" style=\"margin-top: -20px\">
         <div class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"45\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 100%\">
             <span class=\"sr-only\">Loading...</span>
         </div>
@@ -48,27 +52,31 @@ class __TwigTemplate_30ca32159862267618169873e332d499b76e982cae3cf58baf8aedeeb6f
         <div class=\"panel panel-default text-center\">
             <div class=\"panel-body myelement\">
                 ";
-        // line 16
+        // line 17
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
-            // line 17
+            // line 18
             echo "                    <h2>No se encontraron reservas</h2>
                 ";
         } else {
-            // line 19
+            // line 20
             echo "                    <div class=\"table-responsive\">
                         <table class=\"table table-hover\">
                             <thead>
                                 <tr>
                                     <th>";
-            // line 23
+            // line 24
             echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Código", "r.id");
             echo "</th>
                                     <th>";
-            // line 24
+            // line 25
             echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Cancha", "r.cancha");
             echo "</th>
                                     <th>";
-            // line 25
+            // line 26
+            echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Estado", "r.estadoReserva");
+            echo "</th>
+                                    <th>";
+            // line 27
             echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Fecha", "r.fechaInicio");
             echo "</th>
                                     <th class=\"t3\">Acciones</th>
@@ -76,35 +84,64 @@ class __TwigTemplate_30ca32159862267618169873e332d499b76e982cae3cf58baf8aedeeb6f
                             </thead>
                             <tbody>
                                 ";
-            // line 30
+            // line 32
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
             foreach ($context['_seq'] as $context["_key"] => $context["reserva"]) {
-                // line 31
+                // line 33
                 echo "                                    <tr data-id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "id", array()), "html", null, true);
                 echo "\">
                                         <td>";
-                // line 32
+                // line 34
                 echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "id", array()), "html", null, true);
                 echo "</td>
                                         <td>";
-                // line 33
+                // line 35
                 echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "cancha", array()), "html", null, true);
                 echo "</td>
-                                        <td><strong>";
-                // line 34
+                                        ";
+                // line 36
+                if (($this->getAttribute($context["reserva"], "estadoReserva", array()) == "Cancelada")) {
+                    // line 37
+                    echo "                                            <td style=\"color: red\"><strong>";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "estadoReserva", array()), "html", null, true);
+                    echo "</strong></td>
+                                        ";
+                } else {
+                    // line 39
+                    echo "                                            <td><strong>";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["reserva"], "estadoReserva", array()), "html", null, true);
+                    echo "</strong></td>
+                                        ";
+                }
+                // line 41
+                echo "                                        <td><strong>";
                 echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["reserva"], "fechaInicio", array()), "d-m-Y"), "html", null, true);
                 echo "</strong></td>
                                         <td class=\"actions\">
                                             <a href=\"";
-                // line 36
+                // line 43
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_reservaClientes", array("id" => $this->getAttribute($context["reserva"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-sm btn-info\">
+                echo "\" class=\"btn btn-sm btn-info noMargenBoton\">
                                                 Ver
                                             </a>
-";
-                // line 42
+                                            ";
+                // line 46
+                if (($this->getAttribute($context["reserva"], "estadoReserva", array()) == "Cancelada")) {
+                    // line 47
+                    echo "                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete noMargenBoton\">
+                                                    Descartar
+                                                </a>
+                                            ";
+                } else {
+                    // line 51
+                    echo "                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete noMargenBoton\">
+                                                    Cancelar
+                                                </a>
+                                            ";
+                }
+                // line 55
                 echo "                                        </td>
                                     </tr>
                                 ";
@@ -112,25 +149,44 @@ class __TwigTemplate_30ca32159862267618169873e332d499b76e982cae3cf58baf8aedeeb6f
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['reserva'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 45
+            // line 58
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 48
+        // line 61
         echo "        
                 <div>
                     <div class=\"navigation\">
                         ";
-        // line 51
+        // line 64
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                     </div>
                 </div>
             </div>                     
         </div>                     
-    </div>             
+    </div>
+    ";
+        // line 70
+        echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "id" => "form-delete", "with_submit" => false));
+        echo "
+
+";
+    }
+
+    // line 73
+    public function block_javascripts($context, array $blocks = array())
+    {
+        // line 74
+        echo "    ";
+        $this->displayParentBlock("javascripts", $context, $blocks);
+        echo "
+    <script src=\"";
+        // line 75
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("bundles/criveroprueba/js/delete-reserva.js"), "html", null, true);
+        echo "\"></script>
 ";
     }
 
@@ -146,7 +202,7 @@ class __TwigTemplate_30ca32159862267618169873e332d499b76e982cae3cf58baf8aedeeb6f
 
     public function getDebugInfo()
     {
-        return array (  127 => 51,  122 => 48,  116 => 45,  108 => 42,  102 => 36,  97 => 34,  93 => 33,  89 => 32,  84 => 31,  80 => 30,  72 => 25,  68 => 24,  64 => 23,  58 => 19,  54 => 17,  52 => 16,  38 => 4,  35 => 3,  29 => 2,  11 => 1,);
+        return array (  188 => 75,  183 => 74,  180 => 73,  173 => 70,  164 => 64,  159 => 61,  153 => 58,  145 => 55,  139 => 51,  133 => 47,  131 => 46,  125 => 43,  119 => 41,  113 => 39,  107 => 37,  105 => 36,  101 => 35,  97 => 34,  92 => 33,  88 => 32,  80 => 27,  76 => 26,  72 => 25,  68 => 24,  62 => 20,  58 => 18,  56 => 17,  39 => 4,  36 => 3,  30 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -162,6 +218,7 @@ class __TwigTemplate_30ca32159862267618169873e332d499b76e982cae3cf58baf8aedeeb6f
         return new Twig_Source("{% extends 'moduloclientesclienteBundle::main.html.twig' %}
 {% block title %} Mis reservas {% endblock %}
 {% block contenido %}
+    {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class=\"progress no-border hidden\" id=\"delete-progress\" style=\"margin-top: -20px\">
         <div class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"45\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 100%\">
             <span class=\"sr-only\">Loading...</span>
@@ -183,6 +240,7 @@ class __TwigTemplate_30ca32159862267618169873e332d499b76e982cae3cf58baf8aedeeb6f
                                 <tr>
                                     <th>{{ knp_pagination_sortable(pagination, 'Código', 'r.id') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Cancha', 'r.cancha') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Estado', 'r.estadoReserva') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Fecha', 'r.fechaInicio') }}</th>
                                     <th class=\"t3\">Acciones</th>
                                 </tr>
@@ -192,14 +250,25 @@ class __TwigTemplate_30ca32159862267618169873e332d499b76e982cae3cf58baf8aedeeb6f
                                     <tr data-id=\"{{ reserva.id }}\">
                                         <td>{{reserva.id}}</td>
                                         <td>{{reserva.cancha}}</td>
+                                        {% if reserva.estadoReserva == 'Cancelada' %}
+                                            <td style=\"color: red\"><strong>{{reserva.estadoReserva}}</strong></td>
+                                        {% else %}
+                                            <td><strong>{{reserva.estadoReserva}}</strong></td>
+                                        {% endif %}
                                         <td><strong>{{reserva.fechaInicio|date('d-m-Y')}}</strong></td>
                                         <td class=\"actions\">
-                                            <a href=\"{{ path('moduloclientes_cliente_reservaClientes', { id: reserva.id }) }}\" class=\"btn btn-sm btn-info\">
+                                            <a href=\"{{ path('moduloclientes_cliente_reservaClientes', { id: reserva.id }) }}\" class=\"btn btn-sm btn-info noMargenBoton\">
                                                 Ver
                                             </a>
-{#                                            <a href=\"{{path('moduloclientes_cliente_cancelarReserva', {id: reserva.id})}}\" class=\"btn btn-sm btn-danger\">
-                                                Cancelar
-                                            </a>#}
+                                            {% if reserva.estadoReserva == 'Cancelada' %}
+                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete noMargenBoton\">
+                                                    Descartar
+                                                </a>
+                                            {% else %}
+                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete noMargenBoton\">
+                                                    Cancelar
+                                                </a>
+                                            {% endif %}
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -214,7 +283,13 @@ class __TwigTemplate_30ca32159862267618169873e332d499b76e982cae3cf58baf8aedeeb6f
                 </div>
             </div>                     
         </div>                     
-    </div>             
+    </div>
+    {{ include('CriveroPruebaBundle:Default:forms/form.html.twig', { form: delete_form_ajax, id: \"form-delete\", with_submit: false })}}
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src=\"{{ asset('bundles/criveroprueba/js/delete-reserva.js') }}\"></script>
 {% endblock %}", "moduloclientesclienteBundle:Reservas:reservasClientes.html.twig", "C:\\xampp\\htdocs\\Prueba\\src\\moduloclientes\\clienteBundle/Resources/views/Reservas/reservasClientes.html.twig");
     }
 }

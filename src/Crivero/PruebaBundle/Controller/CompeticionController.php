@@ -38,7 +38,7 @@ class CompeticionController extends Controller {
 
         $notificacion = new Notificaciones();
         $notificacion->setIdEntidad($competicion->getId());
-        $notificacion->setIdDestinatario(21);
+        $notificacion->setIdDestinatario($competicion->getIdCreador());
         $notificacion->setEstado('No leido');
         $notificacion->setConcepto('Competicion');
         $notificacion->setIdOrigen($this->getUser()->getId());
@@ -56,7 +56,7 @@ class CompeticionController extends Controller {
         
         $notificacion = new Notificaciones();
         $notificacion->setIdEntidad($competicion->getId());
-        $notificacion->setIdDestinatario(21);
+        $notificacion->setIdDestinatario($competicion->getIdCreador());
         $notificacion->setEstado('No leido');
         $notificacion->setConcepto('Competicion');
         $notificacion->setIdOrigen($this->getUser()->getId());
@@ -96,6 +96,7 @@ class CompeticionController extends Controller {
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $competicion->setEstadocompeticion("Validado");
+            $competicion->setIdCreador($this->getUser()->getId());
             $em->persist($competicion);
             $em->flush();
             return $this->redirect($this->generateUrl('crivero_prueba_competiciones'));

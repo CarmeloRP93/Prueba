@@ -64,20 +64,21 @@ class __TwigTemplate_878ad436a233b05869202e28f32d6d272b9e36d915822b2df67b18ecf4c
                         <table class=\"table table-hover\">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>";
-            // line 24
+            // line 25
             echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Nombre", "c.tipo");
             echo "</th>
                                     <th>";
-            // line 25
+            // line 26
             echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Deporte", "c.deporte");
             echo "</th>
                                     <th>";
-            // line 26
+            // line 27
             echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Estado", "c.disponibilidad");
             echo "</th>
                                     <th>";
-            // line 27
+            // line 28
             echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Horario", "c.horario");
             echo "</th>
                                     <th class=\"t3\">Acciones</th>
@@ -85,90 +86,127 @@ class __TwigTemplate_878ad436a233b05869202e28f32d6d272b9e36d915822b2df67b18ecf4c
                             </thead>
                             <tbody>
                                 ";
-            // line 32
+            // line 33
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
             foreach ($context['_seq'] as $context["_key"] => $context["cancha"]) {
-                // line 33
+                // line 34
                 echo "                                    <tr data-id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "id", array()), "html", null, true);
                 echo "\">
+                                        <td><img src=\"";
+                // line 35
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl(("images/" . $this->getAttribute($context["cancha"], "imagen", array()))), "html", null, true);
+                echo "\" class=\"img-responsive center-block \" style=\"max-width: 60px; height: 55px\"/></td>
                                         <td>";
-                // line 34
+                // line 36
                 echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "tipo", array()), "html", null, true);
                 echo "</td>
                                         <td>";
-                // line 35
+                // line 37
                 echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "deporte", array()), "html", null, true);
                 echo "</td>
-                                        <td><strong>";
-                // line 36
-                echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
-                echo "</strong></td>
-                                        <td>";
-                // line 37
+                                        ";
+                // line 38
+                if (($this->getAttribute($context["cancha"], "disponibilidad", array()) == "Disponible")) {
+                    // line 39
+                    echo "                                            <td><strong>";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
+                    echo "</strong></td>
+                                        ";
+                } else {
+                    // line 41
+                    echo "                                            <td><strong style=\"color: red\">";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "disponibilidad", array()), "html", null, true);
+                    echo "</strong></td>
+                                        ";
+                }
+                // line 43
+                echo "                                        <td>";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["cancha"], "horario", array()), "html", null, true);
                 echo "</td>
                                         <td class=\"actions\">
                                             <a href=\"";
-                // line 39
+                // line 45
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_cancha", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-sm btn-info\">
+                echo "\" class=\"btn btn-sm btn-info noMargenBoton\">
                                                 Ver
                                             </a>
                                             <a href=\"";
-                // line 42
+                // line 48
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_cancha_editar", array("id" => $this->getAttribute($context["cancha"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-sm btn-primary\">
+                echo "\" class=\"btn btn-sm btn-primary noMargenBoton\">
                                                 Editar
                                             </a>
-                                            <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
-                                                Eliminar
-                                            </a>
-                                        </td>
+                                            
+                                            ";
+                // line 52
+                if (($this->getAttribute((isset($context["flags"]) ? $context["flags"] : $this->getContext($context, "flags")), $this->getAttribute($context["cancha"], "id", array()), array(), "array") == 0)) {
+                    // line 53
+                    echo "                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete noMargenBoton\">
+                                                    Eliminar
+                                                </a>
+                                            ";
+                } else {
+                    // line 57
+                    echo "                                                 <a onclick=\"warningEliminar()\" class=\"btn btn-sm btn-danger noMargenBoton\">
+                                                    Eliminar
+                                                </a>
+                                            ";
+                }
+                // line 61
+                echo "                                        </td>
                                     </tr>
                                 ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cancha'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 51
+            // line 64
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 54
+        // line 67
         echo "        
                 <div class=\"navigation text-center\">
                     ";
-        // line 56
+        // line 69
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                 </div>
-                ";
-        // line 61
-        echo "            </div>
+            </div>
         </div>
     </div>
     ";
-        // line 64
+        // line 74
         echo twig_include($this->env, $context, "CriveroPruebaBundle:Default:forms/form.html.twig", array("form" => (isset($context["delete_form_ajax"]) ? $context["delete_form_ajax"] : $this->getContext($context, "delete_form_ajax")), "id" => "form-delete", "with_submit" => false));
         echo "
 ";
     }
 
-    // line 66
+    // line 76
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 67
+        // line 77
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <script src=\"";
-        // line 68
+        // line 78
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl("bundles/criveroprueba/js/delete-cancha.js"), "html", null, true);
         echo "\"></script>
+    <script>
+        function warningEliminar(){
+            var dialog=bootbox.dialog({
+                title: '<h4 class=\"text-center\" style=\"font-weight: 600; color: red\">¡ATENCIÓN!</h4>',
+                message: '<p class=\"text-center\" >No es posible eliminar una cancha con reservas asignadas.</p>',
+                closeButton: false
+            });
+            setTimeout(function (){dialog.modal('hide');}, 4000);
+        }
+    </script>
 ";
     }
 
@@ -184,7 +222,7 @@ class __TwigTemplate_878ad436a233b05869202e28f32d6d272b9e36d915822b2df67b18ecf4c
 
     public function getDebugInfo()
     {
-        return array (  170 => 68,  165 => 67,  162 => 66,  156 => 64,  151 => 61,  146 => 56,  142 => 54,  136 => 51,  121 => 42,  115 => 39,  110 => 37,  106 => 36,  102 => 35,  98 => 34,  93 => 33,  89 => 32,  81 => 27,  77 => 26,  73 => 25,  69 => 24,  63 => 20,  59 => 18,  57 => 17,  47 => 10,  39 => 4,  36 => 3,  30 => 2,  11 => 1,);
+        return array (  198 => 78,  193 => 77,  190 => 76,  184 => 74,  176 => 69,  172 => 67,  166 => 64,  158 => 61,  152 => 57,  146 => 53,  144 => 52,  137 => 48,  131 => 45,  125 => 43,  119 => 41,  113 => 39,  111 => 38,  107 => 37,  103 => 36,  99 => 35,  94 => 34,  90 => 33,  82 => 28,  78 => 27,  74 => 26,  70 => 25,  63 => 20,  59 => 18,  57 => 17,  47 => 10,  39 => 4,  36 => 3,  30 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -220,6 +258,7 @@ class __TwigTemplate_878ad436a233b05869202e28f32d6d272b9e36d915822b2df67b18ecf4c
                         <table class=\"table table-hover\">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'c.tipo') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Deporte', 'c.deporte') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Estado', 'c.disponibilidad') }}</th>
@@ -230,20 +269,32 @@ class __TwigTemplate_878ad436a233b05869202e28f32d6d272b9e36d915822b2df67b18ecf4c
                             <tbody>
                                 {% for cancha in pagination %}
                                     <tr data-id=\"{{ cancha.id }}\">
+                                        <td><img src=\"{{ asset('images/'~cancha.imagen) }}\" class=\"img-responsive center-block \" style=\"max-width: 60px; height: 55px\"/></td>
                                         <td>{{cancha.tipo}}</td>
                                         <td>{{cancha.deporte}}</td>
-                                        <td><strong>{{cancha.disponibilidad}}</strong></td>
+                                        {% if cancha.disponibilidad == 'Disponible' %}
+                                            <td><strong>{{cancha.disponibilidad}}</strong></td>
+                                        {% else %}
+                                            <td><strong style=\"color: red\">{{cancha.disponibilidad}}</strong></td>
+                                        {% endif %}
                                         <td>{{cancha.horario}}</td>
                                         <td class=\"actions\">
-                                            <a href=\"{{ path('crivero_prueba_cancha', { id: cancha.id }) }}\" class=\"btn btn-sm btn-info\">
+                                            <a href=\"{{ path('crivero_prueba_cancha', { id: cancha.id }) }}\" class=\"btn btn-sm btn-info noMargenBoton\">
                                                 Ver
                                             </a>
-                                            <a href=\"{{ path('crivero_prueba_cancha_editar', { id: cancha.id }) }}\" class=\"btn btn-sm btn-primary\">
+                                            <a href=\"{{ path('crivero_prueba_cancha_editar', { id: cancha.id }) }}\" class=\"btn btn-sm btn-primary noMargenBoton\">
                                                 Editar
                                             </a>
-                                            <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
-                                                Eliminar
-                                            </a>
+                                            
+                                            {% if flags[cancha.id] == 0 %}
+                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete noMargenBoton\">
+                                                    Eliminar
+                                                </a>
+                                            {% else %}
+                                                 <a onclick=\"warningEliminar()\" class=\"btn btn-sm btn-danger noMargenBoton\">
+                                                    Eliminar
+                                                </a>
+                                            {% endif %}
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -254,9 +305,6 @@ class __TwigTemplate_878ad436a233b05869202e28f32d6d272b9e36d915822b2df67b18ecf4c
                 <div class=\"navigation text-center\">
                     {{ knp_pagination_render(pagination) }}
                 </div>
-                {#<div class=\"nuevoUsuario text-center\">
-                    <a href=\"{{path('crivero_prueba_cancha_nueva')}}\" class=\"btn btn-success\" style=\"width: 150px;\"> Nueva cancha <span class=\"glyphicon glyphicon-plus\"></span></a>
-                </div>#}
             </div>
         </div>
     </div>
@@ -265,6 +313,16 @@ class __TwigTemplate_878ad436a233b05869202e28f32d6d272b9e36d915822b2df67b18ecf4c
 {% block javascripts %}
     {{ parent() }}
     <script src=\"{{ asset('bundles/criveroprueba/js/delete-cancha.js') }}\"></script>
+    <script>
+        function warningEliminar(){
+            var dialog=bootbox.dialog({
+                title: '<h4 class=\"text-center\" style=\"font-weight: 600; color: red\">¡ATENCIÓN!</h4>',
+                message: '<p class=\"text-center\" >No es posible eliminar una cancha con reservas asignadas.</p>',
+                closeButton: false
+            });
+            setTimeout(function (){dialog.modal('hide');}, 4000);
+        }
+    </script>
 {% endblock %}", "CriveroPruebaBundle:Canchas:canchas.html.twig", "C:\\xampp\\htdocs\\Prueba\\src\\Crivero\\PruebaBundle/Resources/views/Canchas/canchas.html.twig");
     }
 }

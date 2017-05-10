@@ -84,8 +84,13 @@ class Equipos
      * @ORM\Column(name="puntuacion", type="integer", nullable=false)
      */
     private $puntuacion;
-
-
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="imagen", type="string", length=255, nullable=true)
+     */
+    private $imagen;
 
     /**
      * Get id
@@ -302,5 +307,25 @@ class Equipos
     public function getPuntuacion()
     {
         return $this->puntuacion;
+    }
+    
+    /**
+     * Set imagen
+     *
+     * @param string $imagen
+     * @return Equipos
+     */
+    public function setImagen($imagen) {
+        $this->imagen = $imagen;
+        return $this;
+    }
+
+    /**
+     * Get imagen
+     *
+     * @return string 
+     */
+    public function getImagen() {
+        return $this->imagen;
     }
 }

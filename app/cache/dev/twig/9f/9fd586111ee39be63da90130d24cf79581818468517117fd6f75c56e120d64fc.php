@@ -120,43 +120,61 @@ class __TwigTemplate_bf8b93a1a69a5b0c555817c3976d4b6622f7ccdd639c7ad3b085f6289c3
                                             <a href=\"";
                 // line 40
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_competicion", array("id" => $this->getAttribute($context["competicion"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-sm btn-info\">
+                echo "\" class=\"btn btn-sm btn-info noMargenBoton\">
                                                 Ver
                                             </a>
-                                            <a href=\"";
+                                            ";
                 // line 43
-                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_editarCompeticion", array("id" => $this->getAttribute($context["competicion"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-sm btn-primary\">
-                                                Editar
-                                            </a>
-                                            <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
-                                                Eliminar
-                                            </a>
-                                        </td>
+                if (($this->getAttribute($context["competicion"], "estadoCompeticion", array()) == "Pendiente")) {
+                    // line 44
+                    echo "                                                <a href=\"";
+                    echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_competicion_validar", array("id" => $this->getAttribute($context["competicion"], "id", array()))), "html", null, true);
+                    echo "\" class=\"btn btn-sm btn-success noMargenBoton\">
+                                                    Validar
+                                                </a>
+                                                <a href=\"";
+                    // line 47
+                    echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_competicion_rechazar", array("id" => $this->getAttribute($context["competicion"], "id", array()))), "html", null, true);
+                    echo "\" class=\"btn btn-sm btn-danger noMargenBoton\">
+                                                    Rechazar
+                                                </a>
+                                            ";
+                } else {
+                    // line 51
+                    echo "                                                <a href=\"";
+                    echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_editarCompeticion", array("id" => $this->getAttribute($context["competicion"], "id", array()))), "html", null, true);
+                    echo "\" class=\"btn btn-sm btn-primary noMargenBoton\">
+                                                    Editar
+                                                </a>
+                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete noMargenBoton\">
+                                                    Eliminar
+                                                </a>
+                                            ";
+                }
+                // line 58
+                echo "                                        </td>
                                     </tr>
                                 ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['competicion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 52
+            // line 61
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 56
+        // line 65
         echo "                <div class=\"navigation\">
                     ";
-        // line 57
+        // line 66
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["competiciones"]) ? $context["competiciones"] : $this->getContext($context, "competiciones")));
         echo "
                 </div>
             </div>
         </div>
-        ";
-        // line 66
-        echo "    </div>
+    </div>
 ";
     }
 
@@ -172,7 +190,7 @@ class __TwigTemplate_bf8b93a1a69a5b0c555817c3976d4b6622f7ccdd639c7ad3b085f6289c3
 
     public function getDebugInfo()
     {
-        return array (  159 => 66,  152 => 57,  149 => 56,  143 => 52,  128 => 43,  122 => 40,  119 => 39,  115 => 37,  109 => 35,  107 => 34,  103 => 33,  99 => 32,  95 => 31,  91 => 30,  87 => 29,  84 => 28,  80 => 27,  70 => 20,  66 => 19,  62 => 18,  58 => 17,  52 => 13,  48 => 11,  46 => 10,  38 => 4,  35 => 3,  29 => 2,  11 => 1,);
+        return array (  172 => 66,  169 => 65,  163 => 61,  155 => 58,  144 => 51,  137 => 47,  130 => 44,  128 => 43,  122 => 40,  119 => 39,  115 => 37,  109 => 35,  107 => 34,  103 => 33,  99 => 32,  95 => 31,  91 => 30,  87 => 29,  84 => 28,  80 => 27,  70 => 20,  66 => 19,  62 => 18,  58 => 17,  52 => 13,  48 => 11,  46 => 10,  38 => 4,  35 => 3,  29 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -224,15 +242,24 @@ class __TwigTemplate_bf8b93a1a69a5b0c555817c3976d4b6622f7ccdd639c7ad3b085f6289c3
                                             <td><strong>No Consta</strong></td>
                                         {% endif %}
                                         <td class=\"actions\">
-                                            <a href=\"{{ path('crivero_prueba_competicion', { id: competicion.id }) }}\" class=\"btn btn-sm btn-info\">
+                                            <a href=\"{{ path('crivero_prueba_competicion', { id: competicion.id }) }}\" class=\"btn btn-sm btn-info noMargenBoton\">
                                                 Ver
                                             </a>
-                                            <a href=\"{{ path('crivero_prueba_editarCompeticion', { id: competicion.id }) }}\" class=\"btn btn-sm btn-primary\">
-                                                Editar
-                                            </a>
-                                            <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
-                                                Eliminar
-                                            </a>
+                                            {% if competicion.estadoCompeticion == 'Pendiente' %}
+                                                <a href=\"{{path('crivero_prueba_competicion_validar', {id: competicion.id})}}\" class=\"btn btn-sm btn-success noMargenBoton\">
+                                                    Validar
+                                                </a>
+                                                <a href=\"{{path('crivero_prueba_competicion_rechazar', {id: competicion.id})}}\" class=\"btn btn-sm btn-danger noMargenBoton\">
+                                                    Rechazar
+                                                </a>
+                                            {% else %}
+                                                <a href=\"{{ path('crivero_prueba_editarCompeticion', { id: competicion.id }) }}\" class=\"btn btn-sm btn-primary noMargenBoton\">
+                                                    Editar
+                                                </a>
+                                                <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete noMargenBoton\">
+                                                    Eliminar
+                                                </a>
+                                            {% endif %}
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -245,11 +272,6 @@ class __TwigTemplate_bf8b93a1a69a5b0c555817c3976d4b6622f7ccdd639c7ad3b085f6289c3
                 </div>
             </div>
         </div>
-        {#<div class=\"nueva\">
-            <a href=\"{{path('crivero_prueba_competicion_nueva')}}\" class=\"btn btn-success\" style=\"height: 30px; width: 150px;\">
-                Nueva Competicion 
-             <span class=\"glyphicon glyphicon-plus\"></span></a>
-        </div>#}
     </div>
 {% endblock %}", "CriveroPruebaBundle:Competiciones:competiciones.html.twig", "C:\\xampp\\htdocs\\Prueba\\src\\Crivero\\PruebaBundle/Resources/views/Competiciones/competiciones.html.twig");
     }

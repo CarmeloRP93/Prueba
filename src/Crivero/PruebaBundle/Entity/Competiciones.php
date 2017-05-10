@@ -21,6 +21,13 @@ class Competiciones
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idCreador", type="integer", nullable=false)
+     */
+    private $idCreador;
 
     /**
      * @var string
@@ -82,7 +89,29 @@ class Competiciones
     {
         return $this->id;
     }
+    
+    /**
+     * Set idCliente
+     *
+     * @param integer $idCreador
+     * @return Competiciones
+     */
+    public function setIdCreador($idCreador)
+    {
+        $this->idCreador = $idCreador;
 
+        return $this;
+    }
+
+    /**
+     * Get idCliente
+     *
+     * @return integer
+     */
+    public function getIdCreador()
+    {
+        return $this->idCreador;
+    }
     /**
      * Set nombre
      *

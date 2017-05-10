@@ -36,58 +36,57 @@ class __TwigTemplate_05a274fb677e295879416f346646b77eeb5dd63ff7be0dbab8aca424ffc
     {
         // line 4
         echo "    <div class=\"container\">
-        <div class=\"col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-1 col-md-offset-1 col-lg-offset-1\">
-            <div class=\"page-header\">
-                <div class=\"row text-center\">
-                    <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
-                        <h1 class=\"t1\">Mensajes recibidos</h1>
-                    </div>
-                    <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\"><br>
-                        <div class=\"dropdown\">
-                            <button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Mensajes Recibidos<span class=\"caret\"></span></button>
-                            <ul class=\"dropdown-menu\">
-                                <li><a href=\"";
-        // line 15
+        <div class=\"page-header\">
+            <div class=\"row text-center\">
+                <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
+                    <h1 class=\"t1\">Mensajes recibidos</h1>
+                </div>
+                <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\"><br>
+                    <div class=\"dropdown\" style=\"float: left\">
+                        <button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Mensajes Recibidos<span class=\"caret\"></span></button>
+                        <ul class=\"dropdown-menu\">
+                            <li><a href=\"";
+        // line 14
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_mensajes_enviadosCliente");
         echo "\">Mensajes Enviados</a></li>
-                                <li class=\"active\"><a href=\"#\">Mensajes Recibidos</a></li>
-                            </ul>
-                        </div>
+                            <li class=\"active\"><a href=\"#\">Mensajes Recibidos</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class=\"panel panel-default text-center\">
-                <div class=\"panel-body myelement\">
-                    ";
-        // line 24
+        </div>
+        <div class=\"panel panel-default text-center\">
+            <div class=\"panel-body myelement\">
+                ";
+        // line 23
         if ( !twig_length_filter($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")))) {
-            // line 25
-            echo "                        <h2>No se encontraron mensajes</h2>
-                    ";
+            // line 24
+            echo "                    <h2>No se encontraron mensajes</h2>
+                ";
         } else {
-            // line 27
-            echo "                        <div class=\"table-responsive\">
-                            <table class=\"table table-hover table-condensed\">
-                                <thead>
-                                    <tr>
-                                        <th>";
-            // line 31
+            // line 26
+            echo "                    <div class=\"table-responsive\">
+                        <table class=\"table table-hover table-condensed\">
+                            <thead>
+                                <tr>
+                                    <th>";
+            // line 30
             echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Remitente", "m.idRemitente");
             echo "</th>
-                                        <th><div class=\"hidden-xs\">";
-            // line 32
+                                    <th><div class=\"hidden-xs\">";
+            // line 31
             echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Asunto", "m.asunto");
             echo "</div></th>
-                                        <th>";
-            // line 33
+                                    <th>";
+            // line 32
             echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Recibido", "m.fecha");
             echo "</th>
-                                        <th class=\"t3\">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    ";
-            // line 38
+                                    <th class=\"t3\">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ";
+            // line 37
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
             $context['loop'] = array(
@@ -104,44 +103,44 @@ class __TwigTemplate_05a274fb677e295879416f346646b77eeb5dd63ff7be0dbab8aca424ffc
                 $context['loop']['last'] = 1 === $length;
             }
             foreach ($context['_seq'] as $context["_key"] => $context["mensaje"]) {
-                // line 39
-                echo "                                        ";
+                // line 38
+                echo "                                    ";
                 echo ((($this->getAttribute($context["mensaje"], "estado", array()) == "nuevo")) ? ("<tr data-id='{{ mensaje.id }}' style='font-weight: bold'>") : ("<tr data-id='{{ mensaje.id }}'>"));
-                // line 40
+                // line 39
                 echo "
-                                    <td>";
-                // line 41
+                                <td>";
+                // line 40
                 echo twig_escape_filter($this->env, $this->getAttribute((isset($context["remitentes"]) ? $context["remitentes"] : $this->getContext($context, "remitentes")), $this->getAttribute($context["loop"], "index0", array()), array(), "array"), "html", null, true);
                 echo "</td>
-                                    ";
-                // line 42
+                                ";
+                // line 41
                 if (($this->getAttribute($context["mensaje"], "asunto", array()) == null)) {
-                    // line 43
-                    echo "                                        <td>Sin asunto</td>
-                                    ";
+                    // line 42
+                    echo "                                    <td>Sin asunto</td>
+                                ";
                 } else {
-                    // line 45
-                    echo "                                        <td><div class=\"hidden-xs\">";
+                    // line 44
+                    echo "                                    <td><div class=\"hidden-xs\">";
                     echo twig_escape_filter($this->env, $this->getAttribute($context["mensaje"], "asunto", array()), "html", null, true);
                     echo "</div></td>
-                                        ";
+                                    ";
                 }
-                // line 47
-                echo "                                    <td>";
+                // line 46
+                echo "                                <td>";
                 echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["mensaje"], "fecha", array()), "d/m/Y H:i"), "html", null, true);
                 echo "</td>
-                                    <td class=\"actions\">
-                                        <form action=\"";
-                // line 49
+                                <td class=\"actions\">
+                                    <form action=\"";
+                // line 48
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("moduloclientes_cliente_mensajeCliente", array("id" => $this->getAttribute($context["mensaje"], "id", array()))), "html", null, true);
                 echo "\">
-                                            <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
-                                                Ver mensaje
-                                            </button>
-                                        </form>
-                                    </td>
-                                    </tr>
-                                ";
+                                        <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                            Ver mensaje
+                                        </button>
+                                    </form>
+                                </td>
+                                </tr>
+                            ";
                 ++$context['loop']['index0'];
                 ++$context['loop']['index'];
                 $context['loop']['first'] = false;
@@ -154,20 +153,19 @@ class __TwigTemplate_05a274fb677e295879416f346646b77eeb5dd63ff7be0dbab8aca424ffc
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['mensaje'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 57
-            echo "                                </tbody>
-                            </table>
-                        </div>
-                    ";
+            // line 56
+            echo "                            </tbody>
+                        </table>
+                    </div>
+                ";
         }
-        // line 61
-        echo "                </div>
-                <div class=\"navigation\">
-                    ";
-        // line 63
+        // line 60
+        echo "            </div>
+            <div class=\"navigation\">
+                ";
+        // line 62
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
-                </div>
             </div>
         </div>
     </div>
@@ -186,7 +184,7 @@ class __TwigTemplate_05a274fb677e295879416f346646b77eeb5dd63ff7be0dbab8aca424ffc
 
     public function getDebugInfo()
     {
-        return array (  168 => 63,  164 => 61,  158 => 57,  136 => 49,  130 => 47,  124 => 45,  120 => 43,  118 => 42,  114 => 41,  111 => 40,  108 => 39,  91 => 38,  83 => 33,  79 => 32,  75 => 31,  69 => 27,  65 => 25,  63 => 24,  51 => 15,  38 => 4,  35 => 3,  29 => 2,  11 => 1,);
+        return array (  167 => 62,  163 => 60,  157 => 56,  135 => 48,  129 => 46,  123 => 44,  119 => 42,  117 => 41,  113 => 40,  110 => 39,  107 => 38,  90 => 37,  82 => 32,  78 => 31,  74 => 30,  68 => 26,  64 => 24,  62 => 23,  50 => 14,  38 => 4,  35 => 3,  29 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -203,66 +201,64 @@ class __TwigTemplate_05a274fb677e295879416f346646b77eeb5dd63ff7be0dbab8aca424ffc
 {% block title %} Mensajes Recibidos {% endblock %}
 {% block contenido %}
     <div class=\"container\">
-        <div class=\"col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-1 col-md-offset-1 col-lg-offset-1\">
-            <div class=\"page-header\">
-                <div class=\"row text-center\">
-                    <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
-                        <h1 class=\"t1\">Mensajes recibidos</h1>
-                    </div>
-                    <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\"><br>
-                        <div class=\"dropdown\">
-                            <button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Mensajes Recibidos<span class=\"caret\"></span></button>
-                            <ul class=\"dropdown-menu\">
-                                <li><a href=\"{{path('moduloclientes_cliente_mensajes_enviadosCliente')}}\">Mensajes Enviados</a></li>
-                                <li class=\"active\"><a href=\"#\">Mensajes Recibidos</a></li>
-                            </ul>
-                        </div>
+        <div class=\"page-header\">
+            <div class=\"row text-center\">
+                <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\">
+                    <h1 class=\"t1\">Mensajes recibidos</h1>
+                </div>
+                <div class=\"col-xs-12 col-sm-6 col-md-6 col-lg-6\"><br>
+                    <div class=\"dropdown\" style=\"float: left\">
+                        <button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Mensajes Recibidos<span class=\"caret\"></span></button>
+                        <ul class=\"dropdown-menu\">
+                            <li><a href=\"{{path('moduloclientes_cliente_mensajes_enviadosCliente')}}\">Mensajes Enviados</a></li>
+                            <li class=\"active\"><a href=\"#\">Mensajes Recibidos</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class=\"panel panel-default text-center\">
-                <div class=\"panel-body myelement\">
-                    {% if not pagination|length %}
-                        <h2>No se encontraron mensajes</h2>
-                    {% else %}
-                        <div class=\"table-responsive\">
-                            <table class=\"table table-hover table-condensed\">
-                                <thead>
-                                    <tr>
-                                        <th>{{ knp_pagination_sortable(pagination, 'Remitente', 'm.idRemitente') }}</th>
-                                        <th><div class=\"hidden-xs\">{{ knp_pagination_sortable(pagination, 'Asunto', 'm.asunto') }}</div></th>
-                                        <th>{{ knp_pagination_sortable(pagination, 'Recibido', 'm.fecha') }}</th>
-                                        <th class=\"t3\">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for mensaje in pagination %}
-                                        {{ (mensaje.estado == \"nuevo\") ? \"<tr data-id='{{ mensaje.id }}' style='font-weight: bold'>\"|raw : 
+        </div>
+        <div class=\"panel panel-default text-center\">
+            <div class=\"panel-body myelement\">
+                {% if not pagination|length %}
+                    <h2>No se encontraron mensajes</h2>
+                {% else %}
+                    <div class=\"table-responsive\">
+                        <table class=\"table table-hover table-condensed\">
+                            <thead>
+                                <tr>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Remitente', 'm.idRemitente') }}</th>
+                                    <th><div class=\"hidden-xs\">{{ knp_pagination_sortable(pagination, 'Asunto', 'm.asunto') }}</div></th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Recibido', 'm.fecha') }}</th>
+                                    <th class=\"t3\">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for mensaje in pagination %}
+                                    {{ (mensaje.estado == \"nuevo\") ? \"<tr data-id='{{ mensaje.id }}' style='font-weight: bold'>\"|raw : 
                                                              \"<tr data-id='{{ mensaje.id }}'>\"|raw }}
-                                    <td>{{ remitentes[loop.index0] }}</td>
-                                    {% if mensaje.asunto == null %}
-                                        <td>Sin asunto</td>
-                                    {% else %}
-                                        <td><div class=\"hidden-xs\">{{mensaje.asunto}}</div></td>
-                                        {% endif %}
-                                    <td>{{ mensaje.fecha|date('d/m/Y H:i') }}</td>
-                                    <td class=\"actions\">
-                                        <form action=\"{{ path('moduloclientes_cliente_mensajeCliente', {id: mensaje.id}) }}\">
-                                            <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
-                                                Ver mensaje
-                                            </button>
-                                        </form>
-                                    </td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    {% endif %}
-                </div>
-                <div class=\"navigation\">
-                    {{ knp_pagination_render(pagination) }}
-                </div>
+                                <td>{{ remitentes[loop.index0] }}</td>
+                                {% if mensaje.asunto == null %}
+                                    <td>Sin asunto</td>
+                                {% else %}
+                                    <td><div class=\"hidden-xs\">{{mensaje.asunto}}</div></td>
+                                    {% endif %}
+                                <td>{{ mensaje.fecha|date('d/m/Y H:i') }}</td>
+                                <td class=\"actions\">
+                                    <form action=\"{{ path('moduloclientes_cliente_mensajeCliente', {id: mensaje.id}) }}\">
+                                        <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                            Ver mensaje
+                                        </button>
+                                    </form>
+                                </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+            </div>
+            <div class=\"navigation\">
+                {{ knp_pagination_render(pagination) }}
             </div>
         </div>
     </div>

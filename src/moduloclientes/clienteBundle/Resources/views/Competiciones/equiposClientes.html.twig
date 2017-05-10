@@ -14,6 +14,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'equipos.nombre') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Deporte', 'equipos.deporte') }}</th>
                                     <th class="t3">Acciones</th>
@@ -22,6 +23,11 @@
                             <tbody>
                                 {% for equipo in pagination %}
                                     <tr data-id="{{ equipo.id }}">
+                                        {%if equipo.imagen != null%}
+                                            <td><img src="{{ asset('images/'~equipo.imagen) }}" class="img-responsive center-block" style="max-width: 50px"/></td>
+                                        {%else%}
+                                            <td>Imagen no Disponible</td>
+                                        {%endif%}
                                         <td>{{equipo.nombre}}</td>
                                         <td>{{equipo.deporte}}</td>
                                         <td class="actions">                                               
