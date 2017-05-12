@@ -21,12 +21,18 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
+                                        <th></th>
                                         <th>Jugador</th>
                                         <th>Dorsal</th>
                                         <th>Incidencias</th>
                                     </tr>
-                                    {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
+                                    {% for jugador in jugadores if equipoLocal.id == jugador.idEquipo%}
                                         <tr>
+                                            {%if jugador.imagen != null%}
+                                                    <td><img src="{{ asset('images/'~jugador.imagen) }}" class="img-responsive center-block" style="max-width: 50px"/></td>
+                                            {%else%}
+                                                    <td>Imagen no Disponible</td>
+                                            {%endif%}
                                             <td>{{ jugador.nombre }}</td>
                                             <td>{{ jugador.dorsal }}</td>
                                             <td>{{ jugador.incidencia }}</td>
@@ -46,12 +52,18 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
+                                        <th></th>
                                         <th>Jugador</th>
                                         <th>Dorsal</th>
                                         <th>Incidencias</th>
                                     </tr>
                                     {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
                                         <tr>
+                                            {%if jugador.imagen != null%}
+                                                    <td><img src="{{ asset('images/'~jugador.imagen) }}" class="img-responsive center-block" style="max-width: 50px"/></td>
+                                            {%else%}
+                                                    <td>Imagen no Disponible</td>
+                                            {%endif%}
                                             <td>{{ jugador.nombre }}</td>
                                             <td>{{ jugador.dorsal }}</td>
                                             <td>{{ jugador.incidencia }}</td>
@@ -62,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-                <a class="btn btn-default" href="{{ path('moduloclientes_cliente_partidosClientes', {id: competicion.id}) }}">Volver atrás</a>
+                <a class="btn btn-default" href="{{ path('moduloclientes_cliente_partidosClientes', {id: competicion.id}) }}">Volver atrás</a>                
             {% endif %}
             {% if partido.estadoPartido == 'Pendiente' %}  
                 <div class="panel-body">  
@@ -78,7 +90,7 @@
                         </div>
                     </div>
                 </div>
-                <a class="btn btn-default" href="{{ path('moduloclientes_cliente_partidosClientes', {id: competicion.id}) }}">Volver atrás</a>
+                    <a class="btn btn-default" href="{{ path('moduloclientes_cliente_partidosClientes', {id: competicion.id}) }}">Volver atrás</a>
             {% endif %}
 
             {% if partido.estadoPartido == 'Jugandose' %}
@@ -94,11 +106,17 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
+                                        <th></th>
                                         <th>Jugador</th>
                                         <th>Dorsal</th>
                                     </tr>
-                                    {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
+                                    {% for jugador in jugadores if equipoLocal.id == jugador.idEquipo%}
                                         <tr>
+                                            {%if jugador.imagen != null%}
+                                                    <td><img src="{{ asset('images/'~jugador.imagen) }}" class="img-responsive center-block" style="max-width: 50px"/></td>
+                                            {%else%}
+                                                    <td>Imagen no Disponible</td>
+                                            {%endif%}
                                             <td>{{ jugador.nombre }}</td>
                                             <td>{{ jugador.dorsal }}</td>
                                         </tr>
@@ -116,11 +134,17 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
+                                        <th></th>
                                         <th>Jugador</th>
                                         <th>Dorsal</th>
                                     </tr>
                                     {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
                                         <tr>
+                                            {%if jugador.imagen != null%}
+                                                <td><img src="{{ asset('images/'~jugador.imagen) }}" class="img-responsive center-block" style="max-width: 50px"/></td>
+                                            {%else%}
+                                                <td>Imagen no Disponible</td>
+                                            {%endif%}
                                             <td>{{ jugador.nombre }}</td>
                                             <td>{{ jugador.dorsal }}</td>
                                         </tr>

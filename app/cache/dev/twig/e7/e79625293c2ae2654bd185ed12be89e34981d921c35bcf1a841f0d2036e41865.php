@@ -166,9 +166,6 @@ class __TwigTemplate_5776560c3f48a8c1416af46f84c23e0c4a1081ad59ac4bf58ee541bf52d
                 echo "\" class=\"btn btn-sm btn-info\">
                                                 Ver
                                             </a>
-                                            <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
-                                                Eliminar
-                                            </a>
                                         </td>
                                     </tr>
                                 ";
@@ -176,16 +173,16 @@ class __TwigTemplate_5776560c3f48a8c1416af46f84c23e0c4a1081ad59ac4bf58ee541bf52d
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['equipo'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 61
+            // line 58
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 65
+        // line 62
         echo "                <div class=\"navigation\">
                     ";
-        // line 66
+        // line 63
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, (isset($context["equipos"]) ? $context["equipos"] : $this->getContext($context, "equipos")));
         echo "
                 </div>
@@ -207,7 +204,7 @@ class __TwigTemplate_5776560c3f48a8c1416af46f84c23e0c4a1081ad59ac4bf58ee541bf52d
 
     public function getDebugInfo()
     {
-        return array (  189 => 66,  186 => 65,  180 => 61,  165 => 52,  160 => 50,  156 => 49,  152 => 48,  147 => 47,  143 => 45,  137 => 43,  135 => 42,  131 => 41,  127 => 40,  123 => 39,  118 => 38,  114 => 36,  108 => 34,  106 => 33,  103 => 32,  99 => 31,  91 => 26,  87 => 25,  83 => 24,  79 => 23,  75 => 22,  71 => 21,  67 => 20,  63 => 19,  59 => 18,  52 => 13,  48 => 11,  46 => 10,  38 => 4,  35 => 3,  29 => 2,  11 => 1,);
+        return array (  186 => 63,  183 => 62,  177 => 58,  165 => 52,  160 => 50,  156 => 49,  152 => 48,  147 => 47,  143 => 45,  137 => 43,  135 => 42,  131 => 41,  127 => 40,  123 => 39,  118 => 38,  114 => 36,  108 => 34,  106 => 33,  103 => 32,  99 => 31,  91 => 26,  87 => 25,  83 => 24,  79 => 23,  75 => 22,  71 => 21,  67 => 20,  63 => 19,  59 => 18,  52 => 13,  48 => 11,  46 => 10,  38 => 4,  35 => 3,  29 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -273,9 +270,6 @@ class __TwigTemplate_5776560c3f48a8c1416af46f84c23e0c4a1081ad59ac4bf58ee541bf52d
                                         <td class=\"actions\">
                                             <a href=\"{{ path('crivero_prueba_equipo', { id: equipo.id }) }}\" class=\"btn btn-sm btn-info\">
                                                 Ver
-                                            </a>
-                                            <a href=\"#\" class=\"btn btn-sm btn-danger btn-delete\">
-                                                Eliminar
                                             </a>
                                         </td>
                                     </tr>

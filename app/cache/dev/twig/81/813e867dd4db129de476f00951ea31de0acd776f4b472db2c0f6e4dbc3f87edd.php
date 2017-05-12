@@ -85,28 +85,42 @@ class __TwigTemplate_a66e6e888dd50f4d35633852da1fcc1a187e50c46215195b2db3046da93
                             <table class=\"table\">
                                 <tbody>
                                     <tr>
+                                        <th></th>
                                         <th>Jugador</th>
                                         <th>Dorsal</th>
                                         <th>Incidencias</th>
                                     </tr>
                                     ";
-            // line 28
+            // line 29
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["jugadores"]) ? $context["jugadores"] : $this->getContext($context, "jugadores")));
             foreach ($context['_seq'] as $context["_key"] => $context["jugador"]) {
-                if (($this->getAttribute((isset($context["equipoVisitante"]) ? $context["equipoVisitante"] : $this->getContext($context, "equipoVisitante")), "id", array()) == $this->getAttribute($context["jugador"], "idEquipo", array()))) {
-                    // line 29
-                    echo "                                        <tr>
-                                            <td>";
+                if (($this->getAttribute((isset($context["equipoLocal"]) ? $context["equipoLocal"] : $this->getContext($context, "equipoLocal")), "id", array()) == $this->getAttribute($context["jugador"], "idEquipo", array()))) {
                     // line 30
+                    echo "                                        <tr>
+                                            ";
+                    // line 31
+                    if (($this->getAttribute($context["jugador"], "imagen", array()) != null)) {
+                        // line 32
+                        echo "                                                    <td><img src=\"";
+                        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl(("images/" . $this->getAttribute($context["jugador"], "imagen", array()))), "html", null, true);
+                        echo "\" class=\"img-responsive center-block\" style=\"max-width: 50px\"/></td>
+                                            ";
+                    } else {
+                        // line 34
+                        echo "                                                    <td>Imagen no Disponible</td>
+                                            ";
+                    }
+                    // line 36
+                    echo "                                            <td>";
                     echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "nombre", array()), "html", null, true);
                     echo "</td>
                                             <td>";
-                    // line 31
+                    // line 37
                     echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "dorsal", array()), "html", null, true);
                     echo "</td>
                                             <td>";
-                    // line 32
+                    // line 38
                     echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "incidencia", array()), "html", null, true);
                     echo "</td>
                                         </tr>
@@ -116,7 +130,7 @@ class __TwigTemplate_a66e6e888dd50f4d35633852da1fcc1a187e50c46215195b2db3046da93
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['jugador'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 35
+            // line 41
             echo "                                </tbody>
                             </table>
                         </div>
@@ -127,38 +141,52 @@ class __TwigTemplate_a66e6e888dd50f4d35633852da1fcc1a187e50c46215195b2db3046da93
 
                         <div class=\"col-xs-12 col-sm-5 col-md-5 col-lg-5\">
                             <h4>";
-            // line 44
+            // line 50
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["equipoVisitante"]) ? $context["equipoVisitante"] : $this->getContext($context, "equipoVisitante")), "nombre", array()), "html", null, true);
             echo "</h4>
                             <h4>Posición en la liga: ";
-            // line 45
+            // line 51
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["equipoVisitante"]) ? $context["equipoVisitante"] : $this->getContext($context, "equipoVisitante")), "clasificacion", array()), "html", null, true);
             echo "</h4>
                             <table class=\"table\">
                                 <tbody>
                                     <tr>
+                                        <th></th>
                                         <th>Jugador</th>
                                         <th>Dorsal</th>
                                         <th>Incidencias</th>
                                     </tr>
                                     ";
-            // line 53
+            // line 60
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["jugadores"]) ? $context["jugadores"] : $this->getContext($context, "jugadores")));
             foreach ($context['_seq'] as $context["_key"] => $context["jugador"]) {
                 if (($this->getAttribute((isset($context["equipoVisitante"]) ? $context["equipoVisitante"] : $this->getContext($context, "equipoVisitante")), "id", array()) == $this->getAttribute($context["jugador"], "idEquipo", array()))) {
-                    // line 54
+                    // line 61
                     echo "                                        <tr>
-                                            <td>";
-                    // line 55
+                                            ";
+                    // line 62
+                    if (($this->getAttribute($context["jugador"], "imagen", array()) != null)) {
+                        // line 63
+                        echo "                                                    <td><img src=\"";
+                        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl(("images/" . $this->getAttribute($context["jugador"], "imagen", array()))), "html", null, true);
+                        echo "\" class=\"img-responsive center-block\" style=\"max-width: 50px\"/></td>
+                                            ";
+                    } else {
+                        // line 65
+                        echo "                                                    <td>Imagen no Disponible</td>
+                                            ";
+                    }
+                    // line 67
+                    echo "                                            <td>";
                     echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "nombre", array()), "html", null, true);
                     echo "</td>
                                             <td>";
-                    // line 56
+                    // line 68
                     echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "dorsal", array()), "html", null, true);
                     echo "</td>
                                             <td>";
-                    // line 57
+                    // line 69
                     echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "incidencia", array()), "html", null, true);
                     echo "</td>
                                         </tr>
@@ -168,19 +196,19 @@ class __TwigTemplate_a66e6e888dd50f4d35633852da1fcc1a187e50c46215195b2db3046da93
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['jugador'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 60
+            // line 72
             echo "                                </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
                 <a class=\"btn btn-default\" href=\"";
-            // line 65
+            // line 77
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_partidos");
             echo "\">Volver atrás</a>
             ";
         }
-        // line 67
+        // line 79
         echo "            ";
         if (($this->getAttribute((isset($context["partido"]) ? $context["partido"] : $this->getContext($context, "partido")), "estadoPartido", array()) == "Pendiente")) {
             echo "  
@@ -188,7 +216,7 @@ class __TwigTemplate_a66e6e888dd50f4d35633852da1fcc1a187e50c46215195b2db3046da93
                     <div class=\"row\">
                         <div class=\"col-xs-12 col-sm-4 col-md-4 col-lg-4\">
                             <h4>Fecha prevista</h4> <p>El ";
-            // line 71
+            // line 83
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["partido"]) ? $context["partido"] : $this->getContext($context, "partido")), "fechaInicio", array()), "d/m/Y"), "html", null, true);
             echo " a las ";
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["partido"]) ? $context["partido"] : $this->getContext($context, "partido")), "fechaInicio", array()), "H:i"), "html", null, true);
@@ -196,35 +224,35 @@ class __TwigTemplate_a66e6e888dd50f4d35633852da1fcc1a187e50c46215195b2db3046da93
                         </div>
                         <div class=\"col-xs-12 col-sm-4 col-md-4 col-lg-4\">
                             <h4>Cancha</h4> <p>";
-            // line 74
+            // line 86
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cancha"]) ? $context["cancha"] : $this->getContext($context, "cancha")), "tipo", array()), "html", null, true);
             echo "</p>
                         </div>
                         <div class=\"col-xs-12 col-sm-4 col-md-4 col-lg-4\">
                             <h4>Árbitro designado</h4> <p>";
-            // line 77
+            // line 89
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["partido"]) ? $context["partido"] : $this->getContext($context, "partido")), "arbitro", array()), "html", null, true);
             echo "</p>
                         </div>
                     </div>
                 </div>
                 <a class=\"btn btn-default\" href=\"";
-            // line 81
+            // line 93
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_partidos");
             echo "\">Volver atrás</a>
             ";
         }
-        // line 83
+        // line 95
         echo "
             ";
-        // line 84
+        // line 96
         if (($this->getAttribute((isset($context["partido"]) ? $context["partido"] : $this->getContext($context, "partido")), "estadoPartido", array()) == "Jugandose")) {
-            // line 85
+            // line 97
             echo "                <div class=\"panel-body\">  
                     <div class=\"row\">
                         <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12\">
                             <h4>Arbitro pitando: ";
-            // line 88
+            // line 100
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["partido"]) ? $context["partido"] : $this->getContext($context, "partido")), "arbitro", array()), "html", null, true);
             echo "</h4>
                         </div>
@@ -232,29 +260,43 @@ class __TwigTemplate_a66e6e888dd50f4d35633852da1fcc1a187e50c46215195b2db3046da93
                     <div class=\"row\">
                         <div class=\"col-xs-12 col-sm-5 col-md-5 col-lg-5\">
                             <h4>";
-            // line 93
+            // line 105
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["equipoLocal"]) ? $context["equipoLocal"] : $this->getContext($context, "equipoLocal")), "nombre", array()), "html", null, true);
             echo "</h4>
                             <table class=\"table\">
                                 <tbody>
                                     <tr>
+                                        <th></th>
                                         <th>Jugador</th>
                                         <th>Dorsal</th>
                                     </tr>
                                     ";
-            // line 100
+            // line 113
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["jugadores"]) ? $context["jugadores"] : $this->getContext($context, "jugadores")));
             foreach ($context['_seq'] as $context["_key"] => $context["jugador"]) {
-                if (($this->getAttribute((isset($context["equipoVisitante"]) ? $context["equipoVisitante"] : $this->getContext($context, "equipoVisitante")), "id", array()) == $this->getAttribute($context["jugador"], "idEquipo", array()))) {
-                    // line 101
+                if (($this->getAttribute((isset($context["equipoLocal"]) ? $context["equipoLocal"] : $this->getContext($context, "equipoLocal")), "id", array()) == $this->getAttribute($context["jugador"], "idEquipo", array()))) {
+                    // line 114
                     echo "                                        <tr>
-                                            <td>";
-                    // line 102
+                                            ";
+                    // line 115
+                    if (($this->getAttribute($context["jugador"], "imagen", array()) != null)) {
+                        // line 116
+                        echo "                                                    <td><img src=\"";
+                        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl(("images/" . $this->getAttribute($context["jugador"], "imagen", array()))), "html", null, true);
+                        echo "\" class=\"img-responsive center-block\" style=\"max-width: 50px\"/></td>
+                                            ";
+                    } else {
+                        // line 118
+                        echo "                                                    <td>Imagen no Disponible</td>
+                                            ";
+                    }
+                    // line 120
+                    echo "                                            <td>";
                     echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "nombre", array()), "html", null, true);
                     echo "</td>
                                             <td>";
-                    // line 103
+                    // line 121
                     echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "dorsal", array()), "html", null, true);
                     echo "</td>
                                         </tr>
@@ -264,7 +306,7 @@ class __TwigTemplate_a66e6e888dd50f4d35633852da1fcc1a187e50c46215195b2db3046da93
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['jugador'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 106
+            // line 124
             echo "                                </tbody>
                             </table>
                         </div>
@@ -275,29 +317,43 @@ class __TwigTemplate_a66e6e888dd50f4d35633852da1fcc1a187e50c46215195b2db3046da93
 
                         <div class=\"col-xs-12 col-sm-5 col-md-5 col-lg-5\">
                             <h4>";
-            // line 115
+            // line 133
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["equipoVisitante"]) ? $context["equipoVisitante"] : $this->getContext($context, "equipoVisitante")), "nombre", array()), "html", null, true);
             echo "</h4>
                             <table class=\"table\">
                                 <tbody>
                                     <tr>
+                                        <th></th>
                                         <th>Jugador</th>
                                         <th>Dorsal</th>
                                     </tr>
                                     ";
-            // line 122
+            // line 141
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["jugadores"]) ? $context["jugadores"] : $this->getContext($context, "jugadores")));
             foreach ($context['_seq'] as $context["_key"] => $context["jugador"]) {
                 if (($this->getAttribute((isset($context["equipoVisitante"]) ? $context["equipoVisitante"] : $this->getContext($context, "equipoVisitante")), "id", array()) == $this->getAttribute($context["jugador"], "idEquipo", array()))) {
-                    // line 123
+                    // line 142
                     echo "                                        <tr>
-                                            <td>";
-                    // line 124
+                                            ";
+                    // line 143
+                    if (($this->getAttribute($context["jugador"], "imagen", array()) != null)) {
+                        // line 144
+                        echo "                                                <td><img src=\"";
+                        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bundle\TwigBundle\Extension\AssetsExtension')->getAssetUrl(("images/" . $this->getAttribute($context["jugador"], "imagen", array()))), "html", null, true);
+                        echo "\" class=\"img-responsive center-block\" style=\"max-width: 50px\"/></td>
+                                            ";
+                    } else {
+                        // line 146
+                        echo "                                                <td>Imagen no Disponible</td>
+                                            ";
+                    }
+                    // line 148
+                    echo "                                            <td>";
                     echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "nombre", array()), "html", null, true);
                     echo "</td>
                                             <td>";
-                    // line 125
+                    // line 149
                     echo twig_escape_filter($this->env, $this->getAttribute($context["jugador"], "dorsal", array()), "html", null, true);
                     echo "</td>
                                         </tr>
@@ -307,19 +363,19 @@ class __TwigTemplate_a66e6e888dd50f4d35633852da1fcc1a187e50c46215195b2db3046da93
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['jugador'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 128
+            // line 152
             echo "                                </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
                 <a class=\"btn btn-default\" href=\"";
-            // line 133
+            // line 157
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("crivero_prueba_partidos");
             echo "\">Volver atrás</a>
             ";
         }
-        // line 135
+        // line 159
         echo "        </div>
     </div>
 ";
@@ -337,7 +393,7 @@ class __TwigTemplate_a66e6e888dd50f4d35633852da1fcc1a187e50c46215195b2db3046da93
 
     public function getDebugInfo()
     {
-        return array (  323 => 135,  318 => 133,  311 => 128,  301 => 125,  297 => 124,  294 => 123,  289 => 122,  279 => 115,  268 => 106,  258 => 103,  254 => 102,  251 => 101,  246 => 100,  236 => 93,  228 => 88,  223 => 85,  221 => 84,  218 => 83,  213 => 81,  206 => 77,  200 => 74,  192 => 71,  184 => 67,  179 => 65,  172 => 60,  162 => 57,  158 => 56,  154 => 55,  151 => 54,  146 => 53,  135 => 45,  131 => 44,  120 => 35,  110 => 32,  106 => 31,  102 => 30,  99 => 29,  94 => 28,  83 => 20,  79 => 19,  73 => 16,  68 => 14,  65 => 13,  59 => 11,  51 => 9,  49 => 8,  43 => 5,  40 => 4,  37 => 3,  29 => 2,  11 => 1,);
+        return array (  379 => 159,  374 => 157,  367 => 152,  357 => 149,  352 => 148,  348 => 146,  342 => 144,  340 => 143,  337 => 142,  332 => 141,  321 => 133,  310 => 124,  300 => 121,  295 => 120,  291 => 118,  285 => 116,  283 => 115,  280 => 114,  275 => 113,  264 => 105,  256 => 100,  251 => 97,  249 => 96,  246 => 95,  241 => 93,  234 => 89,  228 => 86,  220 => 83,  212 => 79,  207 => 77,  200 => 72,  190 => 69,  186 => 68,  181 => 67,  177 => 65,  171 => 63,  169 => 62,  166 => 61,  161 => 60,  149 => 51,  145 => 50,  134 => 41,  124 => 38,  120 => 37,  115 => 36,  111 => 34,  105 => 32,  103 => 31,  100 => 30,  95 => 29,  83 => 20,  79 => 19,  73 => 16,  68 => 14,  65 => 13,  59 => 11,  51 => 9,  49 => 8,  43 => 5,  40 => 4,  37 => 3,  29 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -373,12 +429,18 @@ class __TwigTemplate_a66e6e888dd50f4d35633852da1fcc1a187e50c46215195b2db3046da93
                             <table class=\"table\">
                                 <tbody>
                                     <tr>
+                                        <th></th>
                                         <th>Jugador</th>
                                         <th>Dorsal</th>
                                         <th>Incidencias</th>
                                     </tr>
-                                    {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
+                                    {% for jugador in jugadores if equipoLocal.id == jugador.idEquipo%}
                                         <tr>
+                                            {%if jugador.imagen != null%}
+                                                    <td><img src=\"{{ asset('images/'~jugador.imagen) }}\" class=\"img-responsive center-block\" style=\"max-width: 50px\"/></td>
+                                            {%else%}
+                                                    <td>Imagen no Disponible</td>
+                                            {%endif%}
                                             <td>{{ jugador.nombre }}</td>
                                             <td>{{ jugador.dorsal }}</td>
                                             <td>{{ jugador.incidencia }}</td>
@@ -398,12 +460,18 @@ class __TwigTemplate_a66e6e888dd50f4d35633852da1fcc1a187e50c46215195b2db3046da93
                             <table class=\"table\">
                                 <tbody>
                                     <tr>
+                                        <th></th>
                                         <th>Jugador</th>
                                         <th>Dorsal</th>
                                         <th>Incidencias</th>
                                     </tr>
                                     {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
                                         <tr>
+                                            {%if jugador.imagen != null%}
+                                                    <td><img src=\"{{ asset('images/'~jugador.imagen) }}\" class=\"img-responsive center-block\" style=\"max-width: 50px\"/></td>
+                                            {%else%}
+                                                    <td>Imagen no Disponible</td>
+                                            {%endif%}
                                             <td>{{ jugador.nombre }}</td>
                                             <td>{{ jugador.dorsal }}</td>
                                             <td>{{ jugador.incidencia }}</td>
@@ -446,11 +514,17 @@ class __TwigTemplate_a66e6e888dd50f4d35633852da1fcc1a187e50c46215195b2db3046da93
                             <table class=\"table\">
                                 <tbody>
                                     <tr>
+                                        <th></th>
                                         <th>Jugador</th>
                                         <th>Dorsal</th>
                                     </tr>
-                                    {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
+                                    {% for jugador in jugadores if equipoLocal.id == jugador.idEquipo%}
                                         <tr>
+                                            {%if jugador.imagen != null%}
+                                                    <td><img src=\"{{ asset('images/'~jugador.imagen) }}\" class=\"img-responsive center-block\" style=\"max-width: 50px\"/></td>
+                                            {%else%}
+                                                    <td>Imagen no Disponible</td>
+                                            {%endif%}
                                             <td>{{ jugador.nombre }}</td>
                                             <td>{{ jugador.dorsal }}</td>
                                         </tr>
@@ -468,11 +542,17 @@ class __TwigTemplate_a66e6e888dd50f4d35633852da1fcc1a187e50c46215195b2db3046da93
                             <table class=\"table\">
                                 <tbody>
                                     <tr>
+                                        <th></th>
                                         <th>Jugador</th>
                                         <th>Dorsal</th>
                                     </tr>
                                     {% for jugador in jugadores if equipoVisitante.id == jugador.idEquipo%}
                                         <tr>
+                                            {%if jugador.imagen != null%}
+                                                <td><img src=\"{{ asset('images/'~jugador.imagen) }}\" class=\"img-responsive center-block\" style=\"max-width: 50px\"/></td>
+                                            {%else%}
+                                                <td>Imagen no Disponible</td>
+                                            {%endif%}
                                             <td>{{ jugador.nombre }}</td>
                                             <td>{{ jugador.dorsal }}</td>
                                         </tr>

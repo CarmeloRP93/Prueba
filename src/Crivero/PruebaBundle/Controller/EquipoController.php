@@ -14,7 +14,7 @@ class EquipoController extends Controller {
                                  $equipos = $repository->findAll();
        $paginator = $this->get('knp_paginator');
        $pagination = $paginator->paginate(
-                $equipos, $request->query->getInt('page', 1), 5);
+                $equipos, $request->query->getInt('page', 1), 4);
        $repositoryCompeticiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Competiciones");
        $repositoryUsuarios = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Usuarios");
        $competiciones = array();

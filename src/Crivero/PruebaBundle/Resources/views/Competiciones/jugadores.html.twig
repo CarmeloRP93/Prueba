@@ -14,6 +14,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+									<th></th>
                                     <th>Equipo</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Nombre del jugador', 'pagination.nombre') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Dorsal', 'pagination.dorsal') }}</th>
@@ -24,6 +25,11 @@
                             <tbody>
                                 {% for jugador in pagination %}
                                     <tr>
+										{%if jugador.imagen != null%}
+                                            <td><img src="{{ asset('images/'~jugador.imagen) }}" class="img-responsive center-block" style="max-width: 50px"/></td>
+                                        {%else%}
+                                            <td>Imagen no Disponible</td>
+                                        {%endif%}
                                         {% for equipo in equipos if equipo.id == jugador.idEquipo%}
                                             <td>{{equipo.nombre}}</td>
                                         {%endfor%}
