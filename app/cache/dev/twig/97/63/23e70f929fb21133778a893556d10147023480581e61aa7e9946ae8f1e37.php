@@ -48,7 +48,7 @@ class __TwigTemplate_976323e70f929fb21133778a893556d10147023480581e61aa7e9946ae8
         echo "
     <div class=\"container\">
         <div class=\"page-header\">
-            <h1 class=\"t1\">Sesiones públicas aceptadas</h1>
+            <h1 class=\"t1\">Sesiones públicas</h1>
         </div>
         <div class=\"panel panel-default text-center\">
             <div class=\"panel-body myelement\">
@@ -83,7 +83,7 @@ class __TwigTemplate_976323e70f929fb21133778a893556d10147023480581e61aa7e9946ae8
             echo "</th>
                                     <th>";
             // line 23
-            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Aula asignada", "pagination.aula");
+            echo $this->env->getExtension('knp_pagination')->sortable($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")), "Recinto", "pagination.aula");
             echo "</th>
                                     <th></th>
                                 </tr>

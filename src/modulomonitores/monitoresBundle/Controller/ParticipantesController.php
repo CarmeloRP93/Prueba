@@ -101,14 +101,16 @@ class ParticipantesController extends Controller {
         }
 
         $searchQuery = $request->get('query');
-        (!empty($searchQuery)) ? $clientes = $repositoryu->searchClientes($searchQuery) :
-                        $clientes = $repositoryu->getClientes();
+        if((!empty($searchQuery))){
+            $clientes = $repositoryu->searchClientes($searchQuery);
+        }
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $clientes, $request->query->getInt('page', 1), 5);
         $flag = true;
-        return $this->render('modulomonitoresmonitoresBundle:Participantes:participantes.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "idSesion" => $id, "flag" => $flag, "pagination" => $pagination));
+        $nombreSesion = $sesion->getNombre();
+        return $this->render('modulomonitoresmonitoresBundle:Participantes:participantes.html.twig', array('notificacionesSinLeer' => $this->getNewNotification(), "idSesion" => $id, "nombreSesion" => $nombreSesion, "flag" => $flag, "pagination" => $pagination));
     }
 
     public function participanteAction($id, $idUsuario) {

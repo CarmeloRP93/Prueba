@@ -760,7 +760,7 @@ class SesionController extends Controller {
         return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionesMonitores'));
     }
 
-    public function expulsarAction($id, $idUsuario) {
+    public function expulsarAction($id, $idUsuario, Request $request) {
         $em = $this->getDoctrine()->getManager();
 
         // Aquí eliminamos el cliente en la tabla sesiones
@@ -836,8 +836,10 @@ class SesionController extends Controller {
             }
         }
         if (count($arrayClientes) > 0) {
+            $request->getSession()->getFlashBag()->add('mensaje', 'El participante ha sido expulsado con éxito');
             return $this->redirect($this->generateUrl('modulomonitores_monitores_verParticipantes', array('notificacionesSinLeer' => $this->getNewNotification(), 'id' => $id)));
         } else {
+            $request->getSession()->getFlashBag()->add('mensaje', 'El participante ha sido expulsado con éxito');
             return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionMonitores', array('notificacionesSinLeer' => $this->getNewNotification(), 'id' => $id)));
         }
     }
@@ -895,7 +897,7 @@ class SesionController extends Controller {
         }
 
         $request->getSession()->getFlashBag()->add('mensaje', 'La sesión ha sido terminada con éxito');
-        return $this->redirect($this->generateUrl('modulomonitores_monitores_miSesionMonitores', array('notificacionesSinLeer' => $this->getNewNotification(), 'id' => $sesion->getId())));
+        return $this->redirect($this->generateUrl('modulomonitores_monitores_misSesionesMonitores', array('notificacionesSinLeer' => $this->getNewNotification())));
     }
 
     private function getNewNotification() {

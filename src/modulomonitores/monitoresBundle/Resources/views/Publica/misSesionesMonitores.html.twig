@@ -20,7 +20,7 @@
                                     <th>{{ knp_pagination_sortable(pagination, 'Estado de la sesión', 'pagination.estado') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Número de clientes', 'pagination.nClientes') }}</th>
                                     <th>{{ knp_pagination_sortable(pagination, 'Número de sesiones', 'pagination.nSesiones') }}</th>
-                                    <th>{{ knp_pagination_sortable(pagination, 'Aula asignada', 'pagination.aula') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Recinto', 'pagination.aula') }}</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -29,7 +29,14 @@
                                     <tr data-id="{{ sesion.id }}">
                                         <td><img src="{{asset(sesion.imagen) }}" class="img-responsive center-block " style="max-width: 50px; height: 45px"/></td>
                                         <td>{{sesion.nombre}}</td>
-                                        <td>{{sesion.estado}}</td>
+                                        
+                                        {% if sesion.estado == 'cancelada' or sesion.estado == 'suspendida' or sesion.estado == 'rechazada'%}
+                                            <td><strong style="color: red">{{sesion.estado}}</strong></td>
+                                            {% elseif sesion.estado == 'validada' %}
+                                            <td><strong style="color: greenyellow">{{sesion.estado}}</strong></td>
+                                            {% else %}
+                                            <td><strong> {{sesion.estado}}</strong></td>
+                                        {% endif %}
                                         <td>{{sesion.nClientes}} Clientes</td>
                                         <td>{{sesion.nSesiones}} Sesiones</td>
                                         {% if sesion.estado != 'terminada' %}

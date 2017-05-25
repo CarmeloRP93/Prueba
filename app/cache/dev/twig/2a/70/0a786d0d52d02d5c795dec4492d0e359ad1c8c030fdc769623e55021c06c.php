@@ -100,21 +100,32 @@ class __TwigTemplate_2a700a786d0d52d02d5c795dec4492d0e359ad1c8c030fdc769623e5502
                 // line 30
                 echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "nombre", array()), "html", null, true);
                 echo "</td>
-                                        <td><strong>";
+                                        ";
                 // line 31
-                echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "disponibilidad", array()), "html", null, true);
-                echo "</strong></td>
-                                        <td>";
-                // line 32
+                if (($this->getAttribute($context["aula"], "disponibilidad", array()) == "Disponible")) {
+                    // line 32
+                    echo "                                            <td><strong>";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "disponibilidad", array()), "html", null, true);
+                    echo "</strong></td>
+                                        ";
+                } else {
+                    // line 34
+                    echo "                                            <td><strong style=\"color: red\">";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "disponibilidad", array()), "html", null, true);
+                    echo "</strong></td>
+                                        ";
+                }
+                // line 36
+                echo "                                        <td>";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["aula"], "horario", array()), "html", null, true);
                 echo "</td>
                                         <td>";
-                // line 33
+                // line 37
                 echo twig_escape_filter($this->env, ($this->getAttribute($context["aula"], "dimensiones", array()) . "m²"), "html", null, true);
                 echo "</td>
                                         <td class=\"actions\">
                                             <a href=\"";
-                // line 35
+                // line 39
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_verAula", array("id" => $this->getAttribute($context["aula"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-sm btn-primary\">
                                                 Ver más información
@@ -126,16 +137,16 @@ class __TwigTemplate_2a700a786d0d52d02d5c795dec4492d0e359ad1c8c030fdc769623e5502
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['aula'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 41
+            // line 45
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 45
+        // line 49
         echo "                <div class=\"navigation text-center\">
                     ";
-        // line 46
+        // line 50
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                 </div>
@@ -157,6 +168,6 @@ class __TwigTemplate_2a700a786d0d52d02d5c795dec4492d0e359ad1c8c030fdc769623e5502
 
     public function getDebugInfo()
     {
-        return array (  139 => 46,  136 => 45,  130 => 41,  118 => 35,  113 => 33,  109 => 32,  105 => 31,  101 => 30,  97 => 29,  92 => 28,  88 => 27,  80 => 22,  76 => 21,  72 => 20,  68 => 19,  61 => 14,  57 => 12,  55 => 11,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  150 => 50,  147 => 49,  141 => 45,  129 => 39,  124 => 37,  119 => 36,  113 => 34,  107 => 32,  105 => 31,  101 => 30,  97 => 29,  92 => 28,  88 => 27,  80 => 22,  76 => 21,  72 => 20,  68 => 19,  61 => 14,  57 => 12,  55 => 11,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

@@ -109,7 +109,7 @@ class __TwigTemplate_b3036cb19441537101ec76515dde31c399ef048cc0ed2d157c8792e3e61
             <a href=\"";
         // line 41
         echo twig_escape_filter($this->env, ("http://localhost/Prueba/web/app_dev.php/miSesionDedicada/" . (isset($context["idSesion"]) ? $context["idSesion"] : $this->getContext($context, "idSesion"))), "html", null, true);
-        echo "\" class=\"btn btn-default\">Volver a lista de participantes</a>
+        echo "\" class=\"btn btn-default\">Volver atrás</a>
     </div>
 ";
     }

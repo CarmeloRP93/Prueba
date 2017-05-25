@@ -119,17 +119,23 @@ class __TwigTemplate_ec03a43d79939b0bf5def54d06effeacdcc3ba2dba87e01a7cf7c43f7e0
                         ";
         }
         // line 43
-        echo "                        <form class=\"btn-group-vertical\" action=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_sesionesAula", array("id" => $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "id", array()))), "html", null, true);
-        echo "\" method=\"post\" class=\"alinear btn-group\">
-                            <button type=\"submit\" style=\"margin-bottom: 1px\" class=\"btn btn-info\">Ver sesiones</button>
-                            <input type=\"hidden\" class=\"btn\">
-                        </form>
-                    </div>
+        echo "                        ";
+        if (($this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "sesiones", array()) != null)) {
+            // line 44
+            echo "                            <form class=\"btn-group-vertical\" action=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_sesionesAula", array("id" => $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "id", array()))), "html", null, true);
+            echo "\" method=\"post\" class=\"alinear btn-group\">
+                                <button type=\"submit\" style=\"margin-bottom: 1px\" class=\"btn btn-info\">Ver sesiones</button>
+                                <input type=\"hidden\" class=\"btn\">
+                            </form>
+                        ";
+        }
+        // line 49
+        echo "                    </div>
                 </div>
             </div>
             <a class=\"btn btn-default\" href=\"";
-        // line 50
+        // line 52
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("modulomonitores_monitores_listadoAulas", array("id" => $this->getAttribute((isset($context["aula"]) ? $context["aula"] : $this->getContext($context, "aula")), "id", array()))), "html", null, true);
         echo "\">Volver atrás</a>
         </div>
@@ -149,6 +155,6 @@ class __TwigTemplate_ec03a43d79939b0bf5def54d06effeacdcc3ba2dba87e01a7cf7c43f7e0
 
     public function getDebugInfo()
     {
-        return array (  133 => 50,  122 => 43,  118 => 41,  109 => 36,  107 => 35,  100 => 31,  93 => 27,  89 => 26,  80 => 19,  74 => 17,  68 => 15,  66 => 14,  60 => 11,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
+        return array (  139 => 52,  134 => 49,  125 => 44,  122 => 43,  118 => 41,  109 => 36,  107 => 35,  100 => 31,  93 => 27,  89 => 26,  80 => 19,  74 => 17,  68 => 15,  66 => 14,  60 => 11,  52 => 6,  48 => 4,  45 => 3,  37 => 2,  11 => 1,);
     }
 }

@@ -11,7 +11,7 @@
                             <img src="{{ asset('images/'~cliente.imagen) }}" class="img-circle" style="width:60px;" />        
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                            <h3 style="font-weight: 600">{{ cliente.nombre|capitalize }}</h3>
+                            <h3 style="font-weight: 600">{{ cliente.username }}</h3>
                         </div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <h4>Teléfono </h4> <p>{{cliente.telefono}}</p>
-                            <h4>Usuario </h4> <p>{{cliente.username}}</p>
+                            <h4>Nombe y apellidos </h4> <p>{{cliente.nombre}}</p>
                         </div>
                         <div>
                             <form style="margin-right: -3px" action="{{ path('modulomonitores_monitores_sesionesParticipante', { id: cliente.id }) }}" method="post" class="alinear btn-group">

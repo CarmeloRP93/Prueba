@@ -10,11 +10,11 @@
                     <div class="panel-body">
                         <img src="{{ asset('images/'~cancha.imagen) }}" class="img-responsive center-block" style="max-width: 305px"/>
                     </div>
-                {% if cancha.disponibilidad == "Disponible" %}
-                    <a class="btn btn-success" style="width: 305px">{{cancha.disponibilidad}}</a>
-                {% else %}
-                    <a class="btn btn-danger" style="width: 305px">{{cancha.disponibilidad}}</a>
-                {% endif %}
+                    {% if cancha.disponibilidad == "Disponible" %}
+                        <a class="btn btn-success" style="width: 305px">{{cancha.disponibilidad}}</a>
+                    {% else %}
+                        <a class="btn btn-danger" style="width: 305px">{{cancha.disponibilidad}}</a>
+                    {% endif %}
                 </div>
             </div>
 
@@ -45,14 +45,17 @@
                                 <input type="hidden" class="btn">
                             </form>
                         {% else %}
-                            <button disabled="disabled" type="submit" style="margin-bottom: 1px" class="btn btn-primary">Disponibilidad</button>
+                            <button disabled="disabled" type="submit" style="margin-right: -4px" class="btn btn-primary">Disponibilidad</button>
                         {% endif %}
-                        <form class="btn-group-vertical" action="{{ path('modulomonitores_monitores_sesionesCancha', { id: cancha.id }) }}" method="post" class="alinear btn-group">
-                            <button type="submit" style="margin-top: -1px" class="btn btn-info">Ver sesiones</button>
-                            <input type="hidden" class="btn">
-                        </form>
+                        {% if cancha.sesiones != null %}
+                            <form class="btn-group-vertical" action="{{ path('modulomonitores_monitores_sesionesCancha', { id: cancha.id }) }}" method="post" class="alinear btn-group">
+                                <button type="submit" style="margin-top: -1px" class="btn btn-info">Ver sesiones</button>
+                                <input type="hidden" class="btn">
+                            </form>
+                        {% endif %}
                     </div>
                 </div>
+                <a class="btn btn-default" href="{{ path('modulomonitores_monitores_canchas', { id: cancha.id }) }}">Volver atrás</a>
             </div>
         </div>
     </div>

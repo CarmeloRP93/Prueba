@@ -28,7 +28,11 @@
                                     <tr data-id="{{ aula.id }}">
                                         <td><img src="{{ asset('images/'~aula.imagen) }}" class="img-responsive center-block " style="max-width: 60px; height: 55px"/></td>
                                         <td>{{aula.nombre}}</td>
-                                        <td><strong>{{aula.disponibilidad}}</strong></td>
+                                        {% if aula.disponibilidad == 'Disponible' %}
+                                            <td><strong>{{aula.disponibilidad}}</strong></td>
+                                        {% else %}
+                                            <td><strong style="color: red">{{aula.disponibilidad}}</strong></td>
+                                        {% endif %}
                                         <td>{{aula.horario}}</td>
                                         <td>{{aula.dimensiones ~ 'm²'}}</td>
                                         <td class="actions">

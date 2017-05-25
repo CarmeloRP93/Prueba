@@ -6,29 +6,30 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class AulasController extends Controller {
-    
-    
+
     public function sesionesAulaAction($id, Request $request) {
         $repositoryAulas = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Aulas");
         $aula = $repositoryAulas->find($id);
 
         $idsSesionesAula = explode('&', $aula->getSesiones());
         $repositorySesiones = $this->getDoctrine()->getRepository("CriveroPruebaBundle:Sesiones");
-       $contador = 0;
-       $sesiones = array();
-        for ($i = 0; $i < count($idsSesionesAula); $i++) {
-            if ($repositorySesiones->find($idsSesionesAula[$i])->getIdMonitor() == $this->getUser()->getId()) {
-                $searchQuery = $request->get('query');
-                if (!empty($searchQuery)) {
-                    if (strpos($repositorySesiones->find($idsSesionesAula[$i])->getNombre(), $searchQuery) !== false) {
+        $contador = 0;
+        $sesiones = array();
+        if (count($idsSesionesAula) > 0) {
+            for ($i = 0; $i < count($idsSesionesAula); $i++) {
+                if ($repositorySesiones->find($idsSesionesAula[$i])->getIdMonitor() == $this->getUser()->getId()) {
+                    $searchQuery = $request->get('query');
+                    if (!empty($searchQuery)) {
+                        if (strpos($repositorySesiones->find($idsSesionesAula[$i])->getNombre(), $searchQuery) !== false) {
+                            $sesiones[$contador] = $repositorySesiones->find($idsSesionesAula[$i]);
+                            $contador++;
+                        } else {
+                            continue;
+                        }
+                    } else {
                         $sesiones[$contador] = $repositorySesiones->find($idsSesionesAula[$i]);
                         $contador++;
-                    } else {
-                        continue;
                     }
-                } else {
-                    $sesiones[$contador] = $repositorySesiones->find($idsSesionesAula[$i]);
-                    $contador++;
                 }
             }
         }
@@ -130,4 +131,5 @@ class AulasController extends Controller {
         $diaS = date('w', strtotime($fecha));
         return ($diaS == 0 || $diaS == 6 );
     }
+
 }

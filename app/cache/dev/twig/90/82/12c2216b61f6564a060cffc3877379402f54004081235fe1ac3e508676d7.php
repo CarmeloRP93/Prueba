@@ -48,7 +48,7 @@ class __TwigTemplate_908212c2216b61f6564a060cffc3877379402f54004081235fe1ac3e508
         echo "
     <div class=\"container\">
         <div class=\"page-header\">
-            <h1 class=\"t1\">Sesiones privadas aceptadas</h1>
+            <h1 class=\"t1\">Sesiones privadas</h1>
         </div>
         <div class=\"panel panel-default text-center\">
             <div class=\"panel-body myelement\">

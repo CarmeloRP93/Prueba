@@ -1,6 +1,7 @@
 {% extends 'modulomonitoresmonitoresBundle::main.html.twig' %}
 {% block title %}{{sesion.nombre}} {% endblock %}
 {% block contenido %}
+    {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div id="sesiondat" class="container text-center">
         <div class="page-header">    
             <h1 class="t1">Sesión pública - {{sesion.nombre}}</h1>

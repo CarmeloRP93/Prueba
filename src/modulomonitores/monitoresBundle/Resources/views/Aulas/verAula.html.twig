@@ -40,10 +40,12 @@
                         {% else %}
                             <button disabled="disabled" type="submit" style="margin-bottom: 1px" class="btn btn-primary">Disponibilidad</button>
                         {% endif %}
-                        <form class="btn-group-vertical" action="{{ path('modulomonitores_monitores_sesionesAula', { id: aula.id }) }}" method="post" class="alinear btn-group">
-                            <button type="submit" style="margin-bottom: 1px" class="btn btn-info">Ver sesiones</button>
-                            <input type="hidden" class="btn">
-                        </form>
+                        {% if aula.sesiones != null %}
+                            <form class="btn-group-vertical" action="{{ path('modulomonitores_monitores_sesionesAula', { id: aula.id }) }}" method="post" class="alinear btn-group">
+                                <button type="submit" style="margin-bottom: 1px" class="btn btn-info">Ver sesiones</button>
+                                <input type="hidden" class="btn">
+                            </form>
+                        {% endif %}
                     </div>
                 </div>
             </div>
