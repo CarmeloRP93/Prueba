@@ -36,7 +36,7 @@ class __TwigTemplate_749f2a9b90ac2971ce015851ef296ebb9a932cc1b420e78d8d3af5f3729
     // line 2
     public function block_title($context, array $blocks = array())
     {
-        echo "Editar sesión pública";
+        echo "Modificar sesión pública";
     }
 
     // line 3
@@ -46,7 +46,7 @@ class __TwigTemplate_749f2a9b90ac2971ce015851ef296ebb9a932cc1b420e78d8d3af5f3729
         echo "    <div class=\"container center-block\">
         <div class=\"panel panel-default\">
             <div class=\"panel-heading text-center\">
-                <h1 class=\"t1\">Editar sesión pública</h1>                       
+                <h1 class=\"t1\">Modificar sesión pública</h1>                       
             </div>
 
             ";

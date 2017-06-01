@@ -57,9 +57,9 @@ class __TwigTemplate_366a09cd201d201b370210aef649d3df61c5a043b6ea5d865937b9c8f5a
         echo "\" class=\"img-circle\" style=\"width:60px;\" />        
                         </div>
                         <div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4\">
-                            <h3>";
+                            <h3 style=\"font-weight: 600\">";
         // line 13
-        echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "nombre", array())), "html", null, true);
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "username", array()), "html", null, true);
         echo "</h3>
                         </div>
                     </div>
@@ -71,9 +71,9 @@ class __TwigTemplate_366a09cd201d201b370210aef649d3df61c5a043b6ea5d865937b9c8f5a
         // line 20
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "email", array()), "html", null, true);
         echo "</p>
-                            <h4>Usuario </h4> <p>";
+                            <h4>Nombe y apellidos </h4> <p>";
         // line 21
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "username", array()), "html", null, true);
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cliente"]) ? $context["cliente"] : $this->getContext($context, "cliente")), "nombre", array()), "html", null, true);
         echo "</p>
                         </div>
                         <div class=\"row\">
