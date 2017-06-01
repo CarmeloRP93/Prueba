@@ -38,8 +38,8 @@
                                         {% else %}
                                             <td style="color: red"><strong>{{usuario.username}}</strong></td>
                                                 {% endif %}
-                                        <td>{{usuario.email}}</td>
                                         <td>{{usuario.nombre}}</td>
+                                        <td>{{usuario.email}}</td>
                                         <td>{{usuario.registro|date('d/m/Y')}}</td>
                                         <td class="actions">
                                             {% if usuario.activo == 1 %}

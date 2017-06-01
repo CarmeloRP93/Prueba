@@ -16,7 +16,7 @@ class CanchaController extends Controller {
 
     public function canchasClientesAction(Request $request) {
         $notificaciones = array();
-        if ($this->getUser() != null){
+        if ($this->getUser() != null) {
             $this->changeStateNotification($request->get('id'));
             $notificaciones = $this->getNewNotification();
         }
@@ -95,6 +95,16 @@ class CanchaController extends Controller {
             $comentario->setEstado('nuevo');
             $em = $this->getDoctrine()->getManager();
             $em->persist($comentario);
+            $em->flush();
+
+            $notificacion = new Notificaciones();
+            $notificacion->setIdDestinatario($admins[0]->getId());
+            $notificacion->setIdEntidad($comentario->getId());
+            $notificacion->setConcepto('Mensaje');
+            $notificacion->setMensaje("Tiene un nuevo mensaje de " . $this->getUser()->getUsername());
+            $notificacion->setIdOrigen($this->getUser()->getId());
+            $notificacion->setEstado("No leido");
+            $em->persist($notificacion);
             $em->flush();
 
             $request->getSession()->getFlashBag()->add('mensaje', 'Sugerencia enviada.');

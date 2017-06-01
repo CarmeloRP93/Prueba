@@ -1,16 +1,20 @@
 {% extends 'CriveroPruebaBundle::main.html.twig' %}
-{% block title %} {{aula.nombre}} {% endblock %}
+{% block title %} Aula {{aula.nombre}} {% endblock %}
 {% block contenido %}
     {{ include('CriveroPruebaBundle:Default:messages/success.html.twig') }}
     <div class="container text-center">
-        <h1 class="t1 page-header">{{aula.nombre}}</h1><br>
+        <h1 class="t1 page-header">Aula {{aula.nombre}}</h1><br>
 
-        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xs-offset-0 col-sm-offset-1 col-md-offset-2 col-lg-offset-0">
-            <img src="{{ asset('images/' ~ aula.imagen) }}" style="width:400px; margin-bottom: 5px"  class="img-rounded"/><br>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-1">
+            <div class="panel panel-default">                  
+                <div class="panel-body">
+                    <img src="{{ asset('images/' ~ aula.imagen) }}" style="height: 230px; width:305px; margin-bottom: 5px"  class="img-rounded"/><br>
+                </div>
+            </div>
             {% if aula.disponibilidad == "Disponible" %}
-                <button style="width:400px;" class="btn btn-success active" >{{aula.disponibilidad}}</button>
+                <button style="width:305px;" class="btn btn-success active" >{{aula.disponibilidad}}</button>
             {% else %}
-                <button style="width:400px;" class="btn btn-danger active">{{aula.disponibilidad}}</button>
+                <button style="width:305px;" class="btn btn-danger active">{{aula.disponibilidad}}</button>
             {% endif %}
         </div>
 
@@ -20,7 +24,7 @@
                     <div class="row">
                         <div class="text-center">
                             <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-                                <h4>Disponibilidad </h4><p>{{ aula.horario }}</p>
+                                <h4>Horario </h4><p>{{ aula.horario }}</p>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
                                 <h4>Aforo</h4><p>{{ aula.aforo }} personas</p>

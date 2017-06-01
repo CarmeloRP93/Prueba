@@ -197,8 +197,19 @@ $context["notificacion"], "concepto", array()) == "PrivadaEliminada")) {
                                                     </button>
                                                 </form>
                                             ";
+                } elseif (($this->getAttribute(                // line 81
+$context["notificacion"], "concepto", array()) == "Competicion")) {
+                    // line 82
+                    echo "                                                <form action=\"";
+                    echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("crivero_prueba_competicion", array("id" => $this->getAttribute($context["notificacion"], "idEntidad", array()))), "html", null, true);
+                    echo "\">
+                                                    <button type=\"submit\" class=\"btn btn-sm btn-primary\" style=\"margin-bottom: 0\">
+                                                        Ver notificación
+                                                    </button>
+                                                </form>
+                                            ";
                 }
-                // line 82
+                // line 88
                 echo "                                        </td>
                                     </tr>
                                 ";
@@ -206,16 +217,16 @@ $context["notificacion"], "concepto", array()) == "PrivadaEliminada")) {
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['notificacion'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 85
+            // line 91
             echo "                            </tbody>
                         </table>
                     </div>
                 ";
         }
-        // line 89
+        // line 95
         echo "                <div class=\"navigation text-center\">
                     ";
-        // line 90
+        // line 96
         echo $this->env->getExtension('knp_pagination')->render($this->env, (isset($context["pagination"]) ? $context["pagination"] : $this->getContext($context, "pagination")));
         echo "
                 </div>
@@ -237,6 +248,6 @@ $context["notificacion"], "concepto", array()) == "PrivadaEliminada")) {
 
     public function getDebugInfo()
     {
-        return array (  219 => 90,  216 => 89,  210 => 85,  202 => 82,  193 => 76,  188 => 75,  186 => 74,  178 => 69,  173 => 68,  171 => 67,  162 => 62,  160 => 61,  151 => 56,  149 => 55,  140 => 50,  138 => 49,  129 => 44,  127 => 43,  118 => 38,  116 => 37,  107 => 32,  105 => 31,  100 => 29,  96 => 28,  92 => 27,  87 => 26,  83 => 25,  74 => 19,  70 => 18,  66 => 17,  60 => 13,  56 => 11,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  230 => 96,  227 => 95,  221 => 91,  213 => 88,  203 => 82,  201 => 81,  193 => 76,  188 => 75,  186 => 74,  178 => 69,  173 => 68,  171 => 67,  162 => 62,  160 => 61,  151 => 56,  149 => 55,  140 => 50,  138 => 49,  129 => 44,  127 => 43,  118 => 38,  116 => 37,  107 => 32,  105 => 31,  100 => 29,  96 => 28,  92 => 27,  87 => 26,  83 => 25,  74 => 19,  70 => 18,  66 => 17,  60 => 13,  56 => 11,  54 => 10,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }

@@ -91,7 +91,7 @@ class __TwigTemplate_106a97a5e9fc35c0d8a0b79247ff8f4d9909c903b502fc7aeae75fde994
                                 <a href=\"";
         // line 28
         echo twig_escape_filter($this->env, (isset($context["ref"]) ? $context["ref"] : $this->getContext($context, "ref")), "html", null, true);
-        echo "\" class=\"btn btn-danger\">Anular</a>
+        echo "\" class=\"btn btn-danger\">Cancelar</a>
                             </div>                
                         </div>                
                     </div>                

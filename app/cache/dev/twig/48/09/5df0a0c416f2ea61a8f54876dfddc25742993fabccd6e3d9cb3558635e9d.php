@@ -69,37 +69,40 @@ class __TwigTemplate_48095df0a0c416f2ea61a8f54876dfddc25742993fabccd6e3d9cb35586
         // line 17
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "observaciones", array()), 'errors');
         echo "</span>
-                            </div><br>
-
-                            <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12\">
+                            </div>
+                        </div><br>
+                        <div class=\"row\">
+                            <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
                                 ";
-        // line 21
-        if (($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "cliente", array()) == "normal")) {
-            // line 22
-            echo "                                    ";
-            $context["ruta"] = $this->env->getExtension('routing')->getPath("crivero_prueba_sesion", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array())));
-            // line 23
-            echo "                                ";
-        } else {
-            // line 24
-            echo "                                    ";
-            $context["ruta"] = $this->env->getExtension('routing')->getPath("crivero_prueba_dedicadas", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array())));
-            // line 25
-            echo "                                ";
-        }
-        // line 26
-        echo "                                <br>";
+        // line 22
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirmar", array()), 'widget', array("label" => "Confirmar", "attr" => array("class" => "btn btn-success")));
         echo "
-                                <a href=\"";
-        // line 27
+                            </div>            
+                            <div class=\"col-xs-6 col-sm-6 col-md-6 col-lg-6\">
+                                ";
+        // line 25
+        if (($this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "cliente", array()) == "normal")) {
+            // line 26
+            echo "                                    ";
+            $context["ruta"] = $this->env->getExtension('routing')->getPath("crivero_prueba_sesion", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array())));
+            // line 27
+            echo "                                ";
+        } else {
+            // line 28
+            echo "                                    ";
+            $context["ruta"] = $this->env->getExtension('routing')->getPath("crivero_prueba_dedicadas", array("id" => $this->getAttribute((isset($context["sesion"]) ? $context["sesion"] : $this->getContext($context, "sesion")), "id", array())));
+            // line 29
+            echo "                                ";
+        }
+        // line 30
+        echo "                                <a href=\"";
         echo twig_escape_filter($this->env, (isset($context["ruta"]) ? $context["ruta"] : $this->getContext($context, "ruta")), "html", null, true);
-        echo "\" class=\"btn btn-danger\">Anular</a>
+        echo "\" class=\"btn btn-danger\">Cancelar</a>
                             </div>                
                         </div>                
                     </div>                
                     ";
-        // line 31
+        // line 34
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
                 </div>
@@ -121,6 +124,6 @@ class __TwigTemplate_48095df0a0c416f2ea61a8f54876dfddc25742993fabccd6e3d9cb35586
 
     public function getDebugInfo()
     {
-        return array (  103 => 31,  96 => 27,  91 => 26,  88 => 25,  85 => 24,  82 => 23,  79 => 22,  77 => 21,  70 => 17,  66 => 16,  62 => 15,  55 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
+        return array (  106 => 34,  98 => 30,  95 => 29,  92 => 28,  89 => 27,  86 => 26,  84 => 25,  78 => 22,  70 => 17,  66 => 16,  62 => 15,  55 => 11,  46 => 4,  43 => 3,  37 => 2,  11 => 1,);
     }
 }
